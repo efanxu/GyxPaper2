@@ -1,0 +1,18 @@
+{
+  "run_root": "custom_models\\results\\st_mgprompt\\smoke_v43_seed_agg",
+  "model_name": "STMGPrompt_TemporalOnly",
+  "seeds": [
+    {
+      "seed": 2026,
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt\\smoke_v43_seed_agg\\seed_2026\\STMGPrompt_TemporalOnly",
+      "best_epoch": 1,
+      "best_val_score": 21.995811609618602
+    },
+    {
+      "seed": 2027,
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt\\smoke_v43_seed_agg\\seed_2027\\STMGPrompt_TemporalOnly",
+      "best_epoch": 1,
+      "best_val_score": 19.148737741011946
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "volatility_mean": 0.03404246270656586,
+  "volatility_std": 0.037672363221645355,
+  "rolling_std_mean": 0.02167866937816143,
+  "rolling_std_std": 0.01749744638800621,
+  "gate_mean": 0.43851447105407715,
+  "gate_std": 0.0007092459709383547,
+  "gate_min": 0.4348193407058716,
+  "gate_max": 0.48158910870552063,
+  "corr_gate_abs_delta_source": 0.9495581884644422,
+  "volatility_source_cols": [
+    "Wspd",
+    "Patv_clean_for_input"
+  ],
+  "history_only": true,
+  "uses_target_mask": false,
+  "uses_future_inputs": false
+}

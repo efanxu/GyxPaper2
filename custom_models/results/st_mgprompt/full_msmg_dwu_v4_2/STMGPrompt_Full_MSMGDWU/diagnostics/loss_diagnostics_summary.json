@@ -1,0 +1,26 @@
+{
+  "loss_function": "msmg_dwu_loss",
+  "base_loss": "smooth_l1",
+  "lambda_site": 0.2,
+  "ema_alpha": 0.9,
+  "node_weight_clip": [
+    0.5,
+    3.0
+  ],
+  "eval_horizons": [
+    3,
+    6,
+    10
+  ],
+  "final_granularity_weight": {
+    "h3": 14.111563682556152,
+    "h6": 10.687902450561523,
+    "h10": 8.36524772644043
+  },
+  "final_log_sigma_g": {
+    "h3": -2.6469945907592773,
+    "h6": -2.369112491607666,
+    "h10": -2.1240859031677246
+  },
+  "granularity_weight_curve_path": "custom_models\\results\\st_mgprompt\\full_msmg_dwu_v4_2\\STMGPrompt_Full_MSMGDWU\\diagnostics\\granularity_weight_curve.png"
+}

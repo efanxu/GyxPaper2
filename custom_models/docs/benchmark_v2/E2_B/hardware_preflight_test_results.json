@@ -1,0 +1,28 @@
+{
+  "task": "E2-B",
+  "status": "PASS",
+  "tests_run": 8,
+  "test_only_dummy_process_runner": true,
+  "exact_shape": {
+    "B": 32,
+    "T": 144,
+    "N": 134,
+    "C": 16,
+    "H": 10
+  },
+  "verified": {
+    "all_four_identity_fields_are_exact": true,
+    "only_exact_local_oom_models_require_preflight": true,
+    "timesnet_and_micn_local_pass_do_not_require_preflight": true,
+    "wpmixer_and_multipatchformer_oom_require_preflight": true,
+    "missing_pass_spawns_preflight": true,
+    "matching_pass_spawns_formal_train": true,
+    "preflight_exits_before_formal_train_starts": true,
+    "preflight_pid_differs_from_formal_pid": true,
+    "fail_oom_stops_before_formal_train": true,
+    "fail_non_oom_stops_before_formal_train": true,
+    "config_or_shape_mismatch_not_reused": true,
+    "parent_launcher_constructs_no_cuda_tensor": true
+  },
+  "target_high_memory_hardware_preflight": "NOT_RUN"
+}

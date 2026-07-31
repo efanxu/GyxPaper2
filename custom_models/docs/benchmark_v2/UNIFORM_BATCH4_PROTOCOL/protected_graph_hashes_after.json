@@ -1,0 +1,120 @@
+{
+  "schema_version": "uniform_batch4_protection_snapshot_v1",
+  "phase": "after",
+  "created_at": "2026-07-29T12:43:27.648488+00:00",
+  "project_root": "D:\\PaperProject\\GyxPaper2",
+  "files": [
+    {
+      "path": "custom_models/graphs/trend_prior_v4_2/macro_trend_adjacency.npy",
+      "exists": true,
+      "size": 71952,
+      "mtime_ns": 1785328885327470000,
+      "sha256": "1ec6a0e06156f7a9a6b750b239e8f3dd21ade09aa354a006d18f5df59d677ff4"
+    },
+    {
+      "path": "custom_models/graphs/trend_prior_v4_2/metadata.json",
+      "exists": true,
+      "size": 1650,
+      "mtime_ns": 1785328954413150900,
+      "sha256": "c3b0a90d1e73c39b14058d0405ecb42f547f233fed5e4b89d18e117669eb4cd2"
+    },
+    {
+      "path": "custom_models/graphs/trend_prior_v4_2/micro_local_adjacency.npy",
+      "exists": true,
+      "size": 71952,
+      "mtime_ns": 1785328885328521300,
+      "sha256": "415931db3133b844c693a20e317f5b5facb5d57305eed8eeb2639f6ebc498f9d"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/protocol/graph_protocol_v1.json",
+      "exists": true,
+      "size": 5581,
+      "mtime_ns": 1785224150394349600,
+      "sha256": "6045202248645e8e84e76b13dedc8f49e2d02fa790008531dae26c13d00df215"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/protocol/graph_v1/adjacency_binary_directed_v1.npy",
+      "exists": true,
+      "size": 143776,
+      "mtime_ns": 1785224150373622500,
+      "sha256": "3cbad735fbf6f7c3983495b50ceb9c062fab5132ee64179dceda217b5bb105c8"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/protocol/graph_v1/adjacency_binary_undirected_v1.npy",
+      "exists": true,
+      "size": 143776,
+      "mtime_ns": 1785224150374392100,
+      "sha256": "b39cd083e937970e0c4c0703a3f7b5085a0e8bba8e7ce84d9b973aef2abc517f"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/protocol/graph_v1/adjacency_directed_v1.npy",
+      "exists": true,
+      "size": 143776,
+      "mtime_ns": 1785224150377350300,
+      "sha256": "dc7b5f5209c8113c0dd4f4ae238de4c5847de93c5a51f53c165d1e34f0d3ab83"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/protocol/graph_v1/adjacency_gcn_v1.npy",
+      "exists": true,
+      "size": 143776,
+      "mtime_ns": 1785224150377887300,
+      "sha256": "acd257e4fb1f4e5ea3aa466352747b27f7e95d513e37cb45d7df4a6dbff179ff"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/protocol/graph_v1/adjacency_undirected_v1.npy",
+      "exists": true,
+      "size": 143776,
+      "mtime_ns": 1785224150377887300,
+      "sha256": "c690cad31b84cd842e26d4425819ee26fc9881314995690841dd923a1ea1f68c"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/protocol/graph_v1/graph_bundle_manifest_v1.json",
+      "exists": true,
+      "size": 3621,
+      "mtime_ns": 1785224150392570200,
+      "sha256": "75421fd68245cc439d0188dbb340c0d09ed48f40e64b56415335a2d211892f21"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/protocol/graph_v1/laplacian_scaled_v1.npy",
+      "exists": true,
+      "size": 143776,
+      "mtime_ns": 1785224150383065700,
+      "sha256": "cb5644746dcfaad38307b5f3879a5d3af735f95b8055cbb9f44047009a757c80"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/protocol/graph_v1/laplacian_symmetric_v1.npy",
+      "exists": true,
+      "size": 143776,
+      "mtime_ns": 1785224150383065700,
+      "sha256": "c155db98263f9b352cbf00730c75ce2005da2aa5fa403d5477e02d05fd34dd44"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/protocol/graph_v1/node_metadata_v1.json",
+      "exists": true,
+      "size": 16868,
+      "mtime_ns": 1785224150391539100,
+      "sha256": "009745391472312b425711276cb62157b09047228f4bba748f8e452399d7bc03"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/protocol/graph_v1/node_order_v1.json",
+      "exists": true,
+      "size": 2065,
+      "mtime_ns": 1785224150383065700,
+      "sha256": "2fb259959a7c56552ae38b0a1a924a00221ba74f7237475174aa53debe8ab3fa"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/protocol/graph_v1/random_walk_forward_v1.npy",
+      "exists": true,
+      "size": 143776,
+      "mtime_ns": 1785224150377887300,
+      "sha256": "e93b04e7db34825c9a11cbe6d895bbc47bd72d4737a396b7e252bdeb00f9d777"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/protocol/graph_v1/random_walk_reverse_v1.npy",
+      "exists": true,
+      "size": 143776,
+      "mtime_ns": 1785224150383065700,
+      "sha256": "d6574de007f334dd0e8c26e63b8d1d2726a2d62bff86be57e6cb6e432dfdb617"
+    }
+  ]
+}

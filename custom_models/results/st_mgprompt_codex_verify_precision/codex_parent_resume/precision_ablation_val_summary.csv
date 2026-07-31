@@ -1,0 +1,2 @@
+variant,status,train_status,evaluation_status,skip_reason,graph_operator,decoder_context_mode,hidden_dim,num_coupling_layers,trainable_parameters,best_epoch,best_val_Score_H3,best_val_Score_H6,best_val_Score_H10,relative_improvement_vs_P0_H10
+P0,,completed,completed,,simple,last_state,64,1,16086,1,,,13.356164253820788,0.0

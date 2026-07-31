@@ -1,0 +1,334 @@
+{
+  "schema": "e0_a_inventory_only",
+  "inventory_only": true,
+  "not_runtime_registry": true,
+  "generated_at": "2026-07-26T14:18:17.852379+00:00",
+  "project_root": "D:\\PaperProject\\GyxPaper2",
+  "registries_found": [
+    {
+      "path": "custom_models/src/st_mgprompt/registry.py",
+      "type": "dict",
+      "keys": [
+        "STMGPrompt_TemporalOnly",
+        "STMGPrompt_TemporalOnly_VADSP",
+        "STMGPrompt_DynamicPatching",
+        "STMGPrompt_FairFull",
+        "STMGPrompt_Full_MSMGDWU",
+        "STMGPrompt_ComponentAblation",
+        "STMGPrompt_FairFull_Diffusion",
+        "STMGPrompt_FairFull_HistoryDecoder",
+        "STMGPrompt_FairFull_DiffusionHistory",
+        "STMGPrompt_Full_MSMGDWU_DiffusionHistory",
+        "STMGPrompt_SerialGraphThenFusion",
+        "STMGPrompt_CouplingCrossFusion",
+        "STMGPrompt_TrendPriorGraph",
+        "STMGPrompt_GraphTemporalSmoke"
+      ],
+      "consumers": [
+        "st_mgprompt/__init__.py",
+        "train.py",
+        "run_st_mgprompt.py",
+        "full_shape_matrix_smoke.py"
+      ],
+      "risks": [
+        "STMGPrompt-only; not external benchmark registry",
+        "one registered key has implemented=False",
+        "many aliases map to STMGPrompt_FairFull"
+      ]
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/experiment_protocol.py",
+      "type": "dict",
+      "keys": [
+        "P0",
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "A0",
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A6",
+        "A7",
+        "A8"
+      ],
+      "consumers": [
+        "formal_runner.py",
+        "run_ablation.py",
+        "run_precision_ablation.py"
+      ],
+      "risks": [
+        "formal internal experiment registry; must remain isolated"
+      ]
+    },
+    {
+      "path": "Time-Series-Library/exp/exp_basic.py",
+      "type": "autoscanning LazyModelDict",
+      "keys": [
+        "runtime filenames in models/"
+      ],
+      "consumers": [
+        "exp_long_term_forecasting.py"
+      ],
+      "risks": [
+        "no fixed canonical names",
+        "imports any models/*.py",
+        "model availability depends on cwd"
+      ]
+    },
+    {
+      "path": "Time-Series-Library/run.py",
+      "type": "argparse",
+      "keys": [
+        "args.model"
+      ],
+      "consumers": [
+        "exp selection and training/test main"
+      ],
+      "risks": [
+        "generic task/data arguments",
+        "no SDWPF/mask/Score contract"
+      ]
+    }
+  ],
+  "models": {
+    "Persistence": {
+      "aliases": "Persistence",
+      "status": "MISSING",
+      "implementation_paths": "NONE FOUND",
+      "registry_keys": "NONE",
+      "recommended_stage": "E1-A"
+    },
+    "MovingAverage": {
+      "aliases": "MovingAverage",
+      "status": "MISSING",
+      "implementation_paths": "NONE FOUND",
+      "registry_keys": "NONE",
+      "recommended_stage": "E1-A"
+    },
+    "GRU": {
+      "aliases": "GRU (internal STMGPrompt temporal block)",
+      "status": "PARTIAL_IMPLEMENTATION",
+      "implementation_paths": "custom_models/src/st_mgprompt/model.py",
+      "registry_keys": "STMGPrompt_TemporalOnly",
+      "recommended_stage": "E1-A"
+    },
+    "DLinear": {
+      "aliases": "DLinear",
+      "status": "IMPLEMENTED_PROTOCOL_RISK",
+      "implementation_paths": "Time-Series-Library/models/DLinear.py",
+      "registry_keys": "DLinear",
+      "recommended_stage": "E1-B"
+    },
+    "LightTS": {
+      "aliases": "LightTS",
+      "status": "IMPLEMENTED_PROTOCOL_RISK",
+      "implementation_paths": "Time-Series-Library/models/LightTS.py",
+      "registry_keys": "LightTS",
+      "recommended_stage": "E1-B"
+    },
+    "TiDE": {
+      "aliases": "TiDE",
+      "status": "IMPLEMENTED_PROTOCOL_RISK",
+      "implementation_paths": "Time-Series-Library/models/TiDE.py",
+      "registry_keys": "TiDE",
+      "recommended_stage": "E1-B"
+    },
+    "SegRNN": {
+      "aliases": "SegRNN",
+      "status": "IMPLEMENTED_PROTOCOL_RISK",
+      "implementation_paths": "Time-Series-Library/models/SegRNN.py",
+      "registry_keys": "SegRNN",
+      "recommended_stage": "E1-B"
+    },
+    "Transformer": {
+      "aliases": "Transformer",
+      "status": "IMPLEMENTED_PROTOCOL_RISK",
+      "implementation_paths": "Time-Series-Library/models/Transformer.py",
+      "registry_keys": "Transformer",
+      "recommended_stage": "E2-A"
+    },
+    "PatchTST": {
+      "aliases": "PatchTST",
+      "status": "IMPLEMENTED_PROTOCOL_RISK",
+      "implementation_paths": "Time-Series-Library/models/PatchTST.py",
+      "registry_keys": "PatchTST",
+      "recommended_stage": "E2-A"
+    },
+    "iTransformer": {
+      "aliases": "iTransformer",
+      "status": "IMPLEMENTED_PROTOCOL_RISK",
+      "implementation_paths": "Time-Series-Library/models/iTransformer.py",
+      "registry_keys": "iTransformer",
+      "recommended_stage": "E2-A"
+    },
+    "TimeXer": {
+      "aliases": "TimeXer",
+      "status": "IMPLEMENTED_PROTOCOL_RISK",
+      "implementation_paths": "Time-Series-Library/models/TimeXer.py",
+      "registry_keys": "TimeXer",
+      "recommended_stage": "E2-A"
+    },
+    "TimesNet": {
+      "aliases": "TimesNet",
+      "status": "IMPLEMENTED_PROTOCOL_RISK",
+      "implementation_paths": "Time-Series-Library/models/TimesNet.py",
+      "registry_keys": "TimesNet",
+      "recommended_stage": "E2-B"
+    },
+    "MICN": {
+      "aliases": "MICN",
+      "status": "IMPLEMENTED_PROTOCOL_RISK",
+      "implementation_paths": "Time-Series-Library/models/MICN.py",
+      "registry_keys": "MICN",
+      "recommended_stage": "E2-B"
+    },
+    "WPMixer": {
+      "aliases": "WPMixer",
+      "status": "IMPLEMENTED_PROTOCOL_RISK",
+      "implementation_paths": "Time-Series-Library/models/WPMixer.py",
+      "registry_keys": "WPMixer",
+      "recommended_stage": "E2-B"
+    },
+    "MultiPatchFormer": {
+      "aliases": "MultiPatchFormer",
+      "status": "IMPLEMENTED_PROTOCOL_RISK",
+      "implementation_paths": "Time-Series-Library/models/MultiPatchFormer.py",
+      "registry_keys": "MultiPatchFormer",
+      "recommended_stage": "E2-B"
+    },
+    "TimeMixer": {
+      "aliases": "TimeMixer",
+      "status": "IMPLEMENTED_PROTOCOL_RISK",
+      "implementation_paths": "Time-Series-Library/models/TimeMixer.py",
+      "registry_keys": "TimeMixer",
+      "recommended_stage": "E2-C"
+    },
+    "TSMixer": {
+      "aliases": "TSMixer",
+      "status": "IMPLEMENTED_PROTOCOL_RISK",
+      "implementation_paths": "Time-Series-Library/models/TSMixer.py",
+      "registry_keys": "TSMixer",
+      "recommended_stage": "E2-C"
+    },
+    "FreTS": {
+      "aliases": "FreTS",
+      "status": "IMPLEMENTED_PROTOCOL_RISK",
+      "implementation_paths": "Time-Series-Library/models/FreTS.py",
+      "registry_keys": "FreTS",
+      "recommended_stage": "E2-C"
+    },
+    "Crossformer": {
+      "aliases": "Crossformer",
+      "status": "IMPLEMENTED_PROTOCOL_RISK",
+      "implementation_paths": "Time-Series-Library/models/Crossformer.py",
+      "registry_keys": "Crossformer",
+      "recommended_stage": "E2-D"
+    },
+    "MSGNet": {
+      "aliases": "MSGNet",
+      "status": "IMPLEMENTED_PROTOCOL_RISK",
+      "implementation_paths": "Time-Series-Library/models/MSGNet.py",
+      "registry_keys": "MSGNet",
+      "recommended_stage": "E2-D"
+    },
+    "TimeFilter": {
+      "aliases": "TimeFilter",
+      "status": "IMPLEMENTED_PROTOCOL_RISK",
+      "implementation_paths": "Time-Series-Library/models/TimeFilter.py",
+      "registry_keys": "TimeFilter",
+      "recommended_stage": "E2-D"
+    },
+    "GCN": {
+      "aliases": "GCN",
+      "status": "MISSING",
+      "implementation_paths": "NONE FOUND",
+      "registry_keys": "NONE",
+      "recommended_stage": "E3-B"
+    },
+    "STCN_STGCN": {
+      "aliases": "STCN; STGCN (requested label only)",
+      "status": "NAME_CONFLICT",
+      "implementation_paths": "NONE",
+      "registry_keys": "NONE",
+      "recommended_stage": "E3-A"
+    },
+    "DCRNN": {
+      "aliases": "DCRNN",
+      "status": "MISSING",
+      "implementation_paths": "NONE FOUND",
+      "registry_keys": "NONE",
+      "recommended_stage": "E3-B"
+    },
+    "Graph WaveNet": {
+      "aliases": "Graph WaveNet",
+      "status": "MISSING",
+      "implementation_paths": "NONE FOUND",
+      "registry_keys": "NONE",
+      "recommended_stage": "E3-C"
+    },
+    "MTGNN": {
+      "aliases": "MTGNN",
+      "status": "MISSING",
+      "implementation_paths": "NONE FOUND",
+      "registry_keys": "NONE",
+      "recommended_stage": "E3-C"
+    },
+    "AGCRN": {
+      "aliases": "AGCRN",
+      "status": "MISSING",
+      "implementation_paths": "NONE FOUND",
+      "registry_keys": "NONE",
+      "recommended_stage": "E3-C"
+    },
+    "STID": {
+      "aliases": "STID",
+      "status": "MISSING",
+      "implementation_paths": "NONE FOUND",
+      "registry_keys": "NONE",
+      "recommended_stage": "E3-C"
+    }
+  },
+  "name_conflicts": [
+    {
+      "canonical_name": "STCN_STGCN",
+      "status": "NAME_CONFLICT",
+      "evidence": [
+        "no STCN.py/STGCN.py",
+        "only generic GCN flags in Time-Series-Library/run.py:143-149"
+      ],
+      "resolution": "E3-A source/paper identity audit; do not rename now"
+    }
+  ],
+  "duplicate_implementations": [],
+  "orphan_implementations": [
+    "Time-Series-Library/models/Autoformer.py",
+    "Chronos.py",
+    "ETSformer.py",
+    "FEDformer.py",
+    "FiLM.py",
+    "Informer.py",
+    "KANAD.py",
+    "Koopa.py",
+    "Mamba.py",
+    "MambaSimple.py",
+    "Moirai.py",
+    "Nonstationary_Transformer.py",
+    "PAttn.py",
+    "Pyraformer.py",
+    "Reformer.py",
+    "SCINet.py",
+    "Sundial.py",
+    "TemporalFusionTransformer.py",
+    "TimeMoE.py",
+    "TimesFM.py",
+    "TiRex.py"
+  ],
+  "orphan_registry_entries": [
+    "STMGPrompt_SerialGraphThenFusion (implemented=False; internal experimental registry, not external benchmark)"
+  ]
+}

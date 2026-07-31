@@ -1,0 +1,290 @@
+{
+  "task": "E3-A",
+  "scope": "graph protocol, canonical node identity, GraphSpec/GraphBundle contract, and STCN/STGCN identity only",
+  "task_start_existing_changes": "UNKNOWN: project root has no Git metadata",
+  "prerequisite_files_found": [
+    "custom_models/docs/benchmark_v2/E2_A/HANDOFF_E2_A.md",
+    "custom_models/docs/benchmark_v2/E2_A/E2_A_HARDWARE_PREFLIGHT_POLICY.md",
+    "custom_models/docs/benchmark_v2/E2_B/HANDOFF_E2_B.md",
+    "custom_models/docs/benchmark_v2/E2_B/E2_B_IMPLEMENTATION_REPORT.md",
+    "custom_models/docs/benchmark_v2/E2_B/E2_B_RUNBOOK.md",
+    "custom_models/docs/benchmark_v2/E2_C/HANDOFF_E2_C.md",
+    "custom_models/docs/benchmark_v2/E2_C/E2_C_IMPLEMENTATION_REPORT.md",
+    "custom_models/docs/benchmark_v2/E2_C/E2_C_RUNBOOK.md",
+    "custom_models/docs/benchmark_v2/E2_D/HANDOFF_E2_D.md",
+    "custom_models/docs/benchmark_v2/E2_D/E2_D_IMPLEMENTATION_REPORT.md",
+    "custom_models/docs/benchmark_v2/E2_D/E2_D_CONFIG_RESOLUTION.md",
+    "custom_models/docs/benchmark_v2/E2_D/E2_D_MODEL_SPECIFICATIONS.md",
+    "custom_models/docs/benchmark_v2/E2_D/E2_D_TSLIB_SOURCE_AUDIT.md",
+    "custom_models/docs/benchmark_v2/E2_D/E2_D_BATCH_ISOLATION_AUDIT.md",
+    "custom_models/docs/benchmark_v2/E2_D/E2_D_CORRELATION_FAIRNESS_AUDIT.md",
+    "custom_models/docs/benchmark_v2/E2_D/E2_D_RUNBOOK.md",
+    "custom_models/docs/benchmark_v2/E2_D/E2_D_IMPLEMENTATION_MANIFEST.json",
+    "custom_models/docs/benchmark_v2/E2_D/test_results.json"
+  ],
+  "prerequisite_files_missing": [
+    "实验总Plan.md",
+    "HANDOFF.md"
+  ],
+  "graph_protocol_status": "FROZEN",
+  "graph_id": "sdwpf_physical_knn_v1",
+  "selected_k": 4,
+  "node_count": 134,
+  "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
+  "location_source_hash": "233a120f4db2b52402bf4dc7c90631ac9301d6af236a56c6a245e46beec1f236",
+  "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
+  "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
+  "stcn_stgcn_final_canonical_id": "stgcn",
+  "stcn_stgcn_identity_status": "RESOLVED_CANONICAL_TARGET_STGCN_SOURCE_MISSING",
+  "stcn_stgcn_implementation_status": "MISSING_IMPLEMENTATION",
+  "registry_counts_before": {
+    "total_entries": 28,
+    "formal_runnable_trainable": 19,
+    "locally_full_shape_verified": 9,
+    "hardware_preflight_required": 10,
+    "non_trainable_available": 2,
+    "true_blocked_or_unavailable": 7
+  },
+  "registry_counts_after": {
+    "total_entries": 28,
+    "formal_runnable_trainable": 19,
+    "locally_full_shape_verified": 9,
+    "hardware_preflight_required": 10,
+    "non_trainable_available": 2,
+    "true_blocked_or_unavailable": 7
+  },
+  "allowlist_before": 18,
+  "allowlist_after": 18,
+  "formal_training_started": false,
+  "formal_evaluation_started": false,
+  "target_high_memory_preflight_started": false,
+  "graph_model_implementation_started": false,
+  "e3_b_started": false,
+  "formal_output_root_created": false,
+  "protocol_hash_before": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "protocol_hash_after": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "protocol_file_sha256_before": "a250a476a03683c7ed62c77685d8b878b0fb5e2d371b694aba308d6df62e2492",
+  "protocol_file_sha256_after": "a250a476a03683c7ed62c77685d8b878b0fb5e2d371b694aba308d6df62e2492",
+  "canonical_sha256_before": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+  "canonical_sha256_after": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+  "tslib_modified": false,
+  "st_mgprompt_modified": false,
+  "prior_models_modified": false,
+  "dependencies_changed": false,
+  "files_created_count": 68,
+  "files_created": [
+    "custom_models/docs/benchmark_v2/E3_A/E3_A_EXISTING_GRAPH_IMPLEMENTATION_AUDIT.md",
+    "custom_models/docs/benchmark_v2/E3_A/E3_A_GRAPH_IDENTITY_AND_PREFLIGHT_POLICY.md",
+    "custom_models/docs/benchmark_v2/E3_A/E3_A_GRAPH_MATRIX_DIAGNOSTICS.md",
+    "custom_models/docs/benchmark_v2/E3_A/E3_A_GRAPH_PROTOCOL_DECISION.md",
+    "custom_models/docs/benchmark_v2/E3_A/E3_A_GRAPH_RUNTIME_CONTRACT.md",
+    "custom_models/docs/benchmark_v2/E3_A/E3_A_IMPLEMENTATION_MANIFEST.json",
+    "custom_models/docs/benchmark_v2/E3_A/E3_A_IMPLEMENTATION_REPORT.md",
+    "custom_models/docs/benchmark_v2/E3_A/E3_A_LOCATION_COORDINATE_AUDIT.md",
+    "custom_models/docs/benchmark_v2/E3_A/E3_A_NODE_ORDER_AUDIT.md",
+    "custom_models/docs/benchmark_v2/E3_A/E3_A_RUNBOOK.md",
+    "custom_models/docs/benchmark_v2/E3_A/E3_A_STCN_STGCN_IDENTITY_AUDIT.md",
+    "custom_models/docs/benchmark_v2/E3_A/HANDOFF_E3_A.md",
+    "custom_models/docs/benchmark_v2/E3_A/build_graph_protocol_v1.py",
+    "custom_models/docs/benchmark_v2/E3_A/collect_e3_a_results.py",
+    "custom_models/docs/benchmark_v2/E3_A/double_rebuild_hash_verification.json",
+    "custom_models/docs/benchmark_v2/E3_A/dummy_graph_contract_smoke_results.json",
+    "custom_models/docs/benchmark_v2/E3_A/e3_a_collected_summary.json",
+    "custom_models/docs/benchmark_v2/E3_A/existing_graph_implementation_matrix.json",
+    "custom_models/docs/benchmark_v2/E3_A/generate_protection_snapshots.py",
+    "custom_models/docs/benchmark_v2/E3_A/graph_build_diagnostics.json",
+    "custom_models/docs/benchmark_v2/E3_A/graph_hash_manifest.json",
+    "custom_models/docs/benchmark_v2/E3_A/graph_protocol_check_result.json",
+    "custom_models/docs/benchmark_v2/E3_A/node_order_audit.json",
+    "custom_models/docs/benchmark_v2/E3_A/protected_benchmark_frozen_hashes_after.json",
+    "custom_models/docs/benchmark_v2/E3_A/protected_benchmark_frozen_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E3_A/protected_core_hashes_after.json",
+    "custom_models/docs/benchmark_v2/E3_A/protected_core_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E3_A/protected_e1_a_hashes_after.json",
+    "custom_models/docs/benchmark_v2/E3_A/protected_e1_a_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E3_A/protected_e1_b_hashes_after.json",
+    "custom_models/docs/benchmark_v2/E3_A/protected_e1_b_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E3_A/protected_e2_a_hashes_after.json",
+    "custom_models/docs/benchmark_v2/E3_A/protected_e2_a_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E3_A/protected_e2_b_hashes_after.json",
+    "custom_models/docs/benchmark_v2/E3_A/protected_e2_b_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E3_A/protected_e2_c_hashes_after.json",
+    "custom_models/docs/benchmark_v2/E3_A/protected_e2_c_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E3_A/protected_e2_d_hashes_after.json",
+    "custom_models/docs/benchmark_v2/E3_A/protected_e2_d_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E3_A/protected_tslib_hashes_after.json",
+    "custom_models/docs/benchmark_v2/E3_A/protected_tslib_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E3_A/run_dummy_graph_contract_smoke.py",
+    "custom_models/docs/benchmark_v2/E3_A/stcn_stgcn_identity_resolution.json",
+    "custom_models/docs/benchmark_v2/E3_A/stcn_stgcn_legacy_artifact_inventory.json",
+    "custom_models/docs/benchmark_v2/E3_A/test_results.json",
+    "custom_models/results_smoke/benchmark_v2/e3_a_contract/dummy_checkpoint_metadata.json",
+    "custom_models/results_smoke/benchmark_v2/e3_a_contract/dummy_graph_identity.json",
+    "custom_models/src/benchmark_v2/graph/__init__.py",
+    "custom_models/src/benchmark_v2/graph/builder.py",
+    "custom_models/src/benchmark_v2/graph/contracts.py",
+    "custom_models/src/benchmark_v2/graph/hashing.py",
+    "custom_models/src/benchmark_v2/graph/provider.py",
+    "custom_models/src/benchmark_v2/graph/transforms.py",
+    "custom_models/src/benchmark_v2/graph/validation.py",
+    "custom_models/src/benchmark_v2/protocol/graph_protocol_v1.json",
+    "custom_models/src/benchmark_v2/protocol/graph_v1/adjacency_binary_directed_v1.npy",
+    "custom_models/src/benchmark_v2/protocol/graph_v1/adjacency_binary_undirected_v1.npy",
+    "custom_models/src/benchmark_v2/protocol/graph_v1/adjacency_directed_v1.npy",
+    "custom_models/src/benchmark_v2/protocol/graph_v1/adjacency_gcn_v1.npy",
+    "custom_models/src/benchmark_v2/protocol/graph_v1/adjacency_undirected_v1.npy",
+    "custom_models/src/benchmark_v2/protocol/graph_v1/graph_bundle_manifest_v1.json",
+    "custom_models/src/benchmark_v2/protocol/graph_v1/laplacian_scaled_v1.npy",
+    "custom_models/src/benchmark_v2/protocol/graph_v1/laplacian_symmetric_v1.npy",
+    "custom_models/src/benchmark_v2/protocol/graph_v1/node_metadata_v1.json",
+    "custom_models/src/benchmark_v2/protocol/graph_v1/node_order_v1.json",
+    "custom_models/src/benchmark_v2/protocol/graph_v1/random_walk_forward_v1.npy",
+    "custom_models/src/benchmark_v2/protocol/graph_v1/random_walk_reverse_v1.npy",
+    "custom_models/tests/benchmark_v2/test_e3_a_graph_protocol.py"
+  ],
+  "files_modified_count": 2,
+  "files_modified": [
+    "custom_models/src/benchmark_v2/cli.py",
+    "custom_models/src/benchmark_v2/registry/benchmark_registry.json"
+  ],
+  "files_deleted": [],
+  "files_moved": [],
+  "commands_executed": [
+    "UTF-8 read of attached E3-A prompt and all required available prerequisites",
+    "nine-group E3-A before protection snapshot",
+    "read-only whole-workspace graph and STCN/STGCN audit",
+    "parquet key/schema and location metadata audit",
+    "CPU float64 graph_protocol_v1 initial freeze",
+    "two consecutive in-memory graph rebuilds",
+    "python -m compileall -q custom_models/src/benchmark_v2",
+    "python -m unittest custom_models.tests.benchmark_v2.test_e3_a_graph_protocol -v",
+    "python -m unittest discover -s custom_models/tests/benchmark_v2 -p test_*.py",
+    "run_benchmark.py protocol-check",
+    "run_benchmark.py graph-protocol-check",
+    "CPU-only dummy graph contract smoke",
+    "nine-group E3-A after protection snapshot"
+  ],
+  "tests": {
+    "task": "E3-A",
+    "status": "PASS",
+    "interpreter": "D:/Apps/Miniconda3/envs/env_tslib/python.exe",
+    "compileall": "PASS",
+    "focused_e3_a": {
+      "status": "PASS",
+      "tests_run": 25,
+      "failures": 0,
+      "errors": 0
+    },
+    "full_suite": {
+      "status": "PASS",
+      "tests_run": 121,
+      "failures": 0,
+      "errors": 0
+    },
+    "prior_registry_cli_regression": {
+      "status": "PASS",
+      "tests_run": 10,
+      "failures": 0,
+      "errors": 0
+    },
+    "protocol_check": {
+      "status": "PASS",
+      "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b"
+    },
+    "graph_protocol_check": {
+      "status": "PASS",
+      "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef"
+    },
+    "double_rebuild_hash_verification": "PASS",
+    "frozen_graph_overwrite_fail_closed": "PASS",
+    "dummy_graph_contract_smoke": "PASS",
+    "formal_training": "NOT_RUN",
+    "formal_evaluation": "NOT_RUN",
+    "target_machine_preflight": "NOT_RUN"
+  },
+  "protection": {
+    "core": {
+      "mismatches": [],
+      "protocol_matches_before": true,
+      "canonical_matches_before": true,
+      "formal_output_root_matches_before": true
+    },
+    "tslib": {
+      "mismatches": [],
+      "protocol_matches_before": true,
+      "canonical_matches_before": true,
+      "formal_output_root_matches_before": true
+    },
+    "benchmark_frozen": {
+      "mismatches": [
+        "custom_models/src/benchmark_v2/cli.py",
+        "custom_models/src/benchmark_v2/registry"
+      ],
+      "protocol_matches_before": true,
+      "canonical_matches_before": true,
+      "formal_output_root_matches_before": true
+    },
+    "e1_a": {
+      "mismatches": [],
+      "protocol_matches_before": true,
+      "canonical_matches_before": true,
+      "formal_output_root_matches_before": true
+    },
+    "e1_b": {
+      "mismatches": [],
+      "protocol_matches_before": true,
+      "canonical_matches_before": true,
+      "formal_output_root_matches_before": true
+    },
+    "e2_a": {
+      "mismatches": [],
+      "protocol_matches_before": true,
+      "canonical_matches_before": true,
+      "formal_output_root_matches_before": true
+    },
+    "e2_b": {
+      "mismatches": [],
+      "protocol_matches_before": true,
+      "canonical_matches_before": true,
+      "formal_output_root_matches_before": true
+    },
+    "e2_c": {
+      "mismatches": [],
+      "protocol_matches_before": true,
+      "canonical_matches_before": true,
+      "formal_output_root_matches_before": true
+    },
+    "e2_d": {
+      "mismatches": [],
+      "protocol_matches_before": true,
+      "canonical_matches_before": true,
+      "formal_output_root_matches_before": true
+    }
+  },
+  "expected_in_scope_protected_mismatches": [
+    "custom_models/src/benchmark_v2/cli.py",
+    "custom_models/src/benchmark_v2/registry"
+  ],
+  "warnings": [
+    "实验总Plan.md and HANDOFF.md are NOT_FOUND and were not reconstructed.",
+    "The project has no Git metadata; existing task-start changes are UNKNOWN.",
+    "Local evidence fixes Cartesian x/y semantics but does not declare coordinate/elevation units; units are SOURCE_UNIT_UNSPECIFIED.",
+    "benchmark_frozen snapshot changes are limited to CLI graph-protocol-check dispatch and the expressly permitted STCN/STGCN Registry metadata resolution."
+  ],
+  "blocked_reasons": [
+    "STGCN runtime remains BLOCKED_UNIMPLEMENTED because no verifiable local implementation exists."
+  ],
+  "not_run": {
+    "GCN implementation": "NOT_STARTED",
+    "STGCN implementation": "NOT_STARTED",
+    "DCRNN implementation": "NOT_STARTED",
+    "Graph WaveNet implementation": "NOT_STARTED",
+    "MTGNN implementation": "NOT_STARTED",
+    "AGCRN implementation": "NOT_STARTED",
+    "STID implementation": "NOT_STARTED",
+    "formal training": "NOT_RUN",
+    "formal evaluation": "NOT_RUN",
+    "target-machine preflight": "NOT_RUN",
+    "E3-B": "NOT_STARTED"
+  }
+}

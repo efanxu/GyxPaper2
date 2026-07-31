@@ -1,0 +1,253 @@
+{
+  "schema_version": "benchmark_v2_transformer_nonfinite_replay_v1",
+  "model_id": "transformer",
+  "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\Transformer_node_shared_d512_bs4_seed2026",
+  "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\Transformer_node_shared_d512_bs4_seed2026\\last_checkpoint.pt",
+  "training_profile": "uniform_train_batch4_v1",
+  "exact_update_replay": true,
+  "backward_executed_during_comparison": false,
+  "optimizer_step_executed_during_comparison": false,
+  "checkpoint_epoch": 6,
+  "checkpoint_global_step": 9960,
+  "failure": {
+    "epoch": 7,
+    "batch_index": 1686,
+    "global_step": 11560,
+    "window_end_indices": [
+      40608,
+      40614,
+      40620,
+      40626
+    ],
+    "error_type": "ContractError",
+    "error_message": "prediction contains NaN/Inf"
+  },
+  "comparison": {
+    "classification": "AMP_ONLY_FORWARD_OVERFLOW",
+    "same_batch_callable": true,
+    "same_rng_state": true,
+    "model_training": true,
+    "backward_executed": false,
+    "optimizer_step_executed": false,
+    "amp_prediction": {
+      "shape": [
+        4,
+        134,
+        10
+      ],
+      "dtype": "torch.float16",
+      "device": "cuda:0",
+      "numel": 5360,
+      "nan_count": 30,
+      "posinf_count": 0,
+      "neginf_count": 0,
+      "finite_count": 5330,
+      "finite_ratio": 0.9944029850746269,
+      "min": -0.1983642578125,
+      "max": -0.096923828125,
+      "mean": -0.14738483726978302,
+      "abs_max": 0.1983642578125,
+      "first_nonfinite_index": [
+        1,
+        23,
+        0
+      ]
+    },
+    "fp32_prediction": {
+      "shape": [
+        4,
+        134,
+        10
+      ],
+      "dtype": "torch.float32",
+      "device": "cuda:0",
+      "numel": 5360,
+      "nan_count": 0,
+      "posinf_count": 0,
+      "neginf_count": 0,
+      "finite_count": 5360,
+      "finite_ratio": 1.0,
+      "min": -0.1983148455619812,
+      "max": -0.09727779030799866,
+      "mean": -0.14733760058879852,
+      "abs_max": 0.1983148455619812
+    },
+    "amp_first_nonfinite_module": null,
+    "fp32_first_nonfinite_module": null,
+    "rng_state_after": {
+      "python_hash": "71760d2faa0be874465271c5d71b90c5d17b07a52564df4190cdb05871ceb200",
+      "numpy_hash": "5929386af60feb4336c6768aec94e8048f76df4b1b5627645f213beb17bcf882",
+      "torch_cpu_hash": "3124a372d1babbc0af5a080fdd5acd30280c6d0c203784191d24ac5370e5a09d",
+      "cuda_hashes": [
+        "7332376a62159e4221ed8963153259ecbfda1aa142e59e15db0dc5b2f0b92a01"
+      ]
+    }
+  },
+  "diagnostic": {
+    "schema_version": "benchmark_v2_nonfinite_diagnostic_v1",
+    "classification": "AMP_ONLY_FORWARD_OVERFLOW",
+    "run_identity": {
+      "model_id": "transformer",
+      "run_id": "Transformer_node_shared_d512_bs4_seed2026",
+      "run_mode": "formal",
+      "artifact_profile": "DIAGNOSTIC",
+      "phase": "replay",
+      "epoch": 7,
+      "batch_index": 1686,
+      "global_step": 11560,
+      "resolved_config_hash": "c4f20de0701230ac46807e4f2e1cdda8a246bd9d2bdca8595a107276dc1edf6c",
+      "effective_config_hash": "c4f20de0701230ac46807e4f2e1cdda8a246bd9d2bdca8595a107276dc1edf6c",
+      "checkpoint": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\Transformer_node_shared_d512_bs4_seed2026\\last_checkpoint.pt"
+      }
+    },
+    "inputs": {
+      "x": {
+        "shape": [
+          4,
+          144,
+          134,
+          16
+        ],
+        "dtype": "torch.float32",
+        "device": "cuda:0",
+        "numel": 1234944,
+        "nan_count": 0,
+        "posinf_count": 0,
+        "neginf_count": 0,
+        "finite_count": 1234944,
+        "finite_ratio": 1.0,
+        "min": -7.0756120681762695,
+        "max": 5.918522834777832,
+        "mean": -0.002948239678516984,
+        "abs_max": 7.0756120681762695
+      },
+      "target": {
+        "shape": [
+          4,
+          134,
+          10
+        ],
+        "dtype": "torch.float32",
+        "device": "cuda:0",
+        "numel": 5360,
+        "nan_count": 0,
+        "posinf_count": 0,
+        "neginf_count": 0,
+        "finite_count": 5360,
+        "finite_ratio": 1.0,
+        "min": -1.2142339944839478,
+        "max": 1.5607410669326782,
+        "mean": -0.3025112450122833,
+        "abs_max": 1.5607410669326782
+      },
+      "mask": {
+        "shape": [
+          4,
+          134,
+          10
+        ],
+        "dtype": "torch.bool",
+        "device": "cuda:0",
+        "numel": 5360,
+        "nan_count": 0,
+        "posinf_count": 0,
+        "neginf_count": 0,
+        "finite_count": 5360,
+        "finite_ratio": 1.0,
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.8805969953536987,
+        "abs_max": 1.0
+      }
+    },
+    "adapter_inputs": {},
+    "prediction": null,
+    "first_nonfinite_module": {
+      "module": "encoder.attn_layers.0.attention.inner_attention.dropout",
+      "class": "Dropout",
+      "module_training": true,
+      "autocast_enabled": true,
+      "inputs": [
+        {
+          "shape": [
+            536,
+            8,
+            144,
+            144
+          ],
+          "dtype": "torch.float32",
+          "device": "cuda:0",
+          "numel": 88915968,
+          "nan_count": 576,
+          "posinf_count": 0,
+          "neginf_count": 0,
+          "finite_count": 88915392,
+          "finite_ratio": 0.999993521973466,
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.0069444440305233,
+          "abs_max": 1.0,
+          "first_nonfinite_index": [
+            157,
+            5,
+            123,
+            0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "shape": [
+            536,
+            8,
+            144,
+            144
+          ],
+          "dtype": "torch.float32",
+          "device": "cuda:0",
+          "numel": 88915968,
+          "nan_count": 576,
+          "posinf_count": 0,
+          "neginf_count": 0,
+          "finite_count": 88915392,
+          "finite_ratio": 0.999993521973466,
+          "min": 0.0,
+          "max": 1.1111111640930176,
+          "mean": 0.006948353722691536,
+          "abs_max": 1.1111111640930176,
+          "first_nonfinite_index": [
+            157,
+            5,
+            123,
+            0
+          ]
+        }
+      ]
+    },
+    "optimizer_update": null,
+    "parameters": null,
+    "random_state": {
+      "python_hash": "71760d2faa0be874465271c5d71b90c5d17b07a52564df4190cdb05871ceb200",
+      "numpy_hash": "5929386af60feb4336c6768aec94e8048f76df4b1b5627645f213beb17bcf882",
+      "torch_cpu_hash": "3124a372d1babbc0af5a080fdd5acd30280c6d0c203784191d24ac5370e5a09d",
+      "cuda_hashes": [
+        "7332376a62159e4221ed8963153259ecbfda1aa142e59e15db0dc5b2f0b92a01"
+      ]
+    },
+    "exception": {
+      "type": "ContractError",
+      "message": "prediction contains NaN/Inf"
+    }
+  },
+  "skipped_all_masked_batches": 86,
+  "rng_state_summary": {
+    "python_hash": "71760d2faa0be874465271c5d71b90c5d17b07a52564df4190cdb05871ceb200",
+    "numpy_hash": "5929386af60feb4336c6768aec94e8048f76df4b1b5627645f213beb17bcf882",
+    "torch_cpu_hash": "3124a372d1babbc0af5a080fdd5acd30280c6d0c203784191d24ac5370e5a09d",
+    "cuda_hashes": [
+      "7332376a62159e4221ed8963153259ecbfda1aa142e59e15db0dc5b2f0b92a01"
+    ]
+  },
+  "status": "PASS"
+}

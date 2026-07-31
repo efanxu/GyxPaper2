@@ -1,0 +1,11 @@
+{
+  "status": "completed",
+  "last_epoch": 20,
+  "best_epoch": 20,
+  "best_val_score_h10": 5.872388445034447,
+  "best_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results_smoke\\interpreter_path_fix_launch\\precision_p1\\P1\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+  "last_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results_smoke\\interpreter_path_fix_launch\\precision_p1\\P1\\STMGPrompt_ComponentAblation\\last_checkpoint.pt",
+  "amp_enabled": true,
+  "amp_dtype": "float16",
+  "config_hash": "f0d77b6742f1b1b69633276b8ca856420d6fa79d1c01ab03fbb1f7a15c4db17f"
+}

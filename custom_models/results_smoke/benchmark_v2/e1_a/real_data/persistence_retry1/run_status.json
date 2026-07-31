@@ -1,0 +1,16 @@
+{
+  "status": "FAILED",
+  "run_mode": "smoke",
+  "artifact_profile": "NON_TRAINABLE",
+  "started_at": "2026-07-27T09:32:44.648817+00:00",
+  "finished_at": "2026-07-27T09:32:44.693633+00:00",
+  "exit_code": 1,
+  "failure_stage": "metrics_semantic_validation",
+  "error_type": "FrameworkMetricError",
+  "error_message": "official_score returned NaN despite valid masked targets",
+  "traceback_tail": [
+    "Retry1 fixed JSON null serialization but still exposed NaN * False propagation in official_score.",
+    "This attempt is retained as FAIL; retry2 is the accepted post-fix smoke."
+  ],
+  "formal_training": false
+}

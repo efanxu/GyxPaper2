@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "checkpoint_hash_equal": true,
+  "config_hash_equal": true,
+  "metrics_hash_equal": true,
+  "state_dict_strict_load": true,
+  "loss_state_dict_strict_load": true,
+  "parameter_count_match": true
+}

@@ -1,0 +1,358 @@
+{
+  "schema_version": "e5_loss_numerical_parity_v1",
+  "status": "PASS",
+  "cpu_fp32": "PASS",
+  "cuda_amp": "PASS",
+  "all_masked_behavior": "None",
+  "import_path": "st_mgprompt.losses.masked_score_aligned_hybrid_loss",
+  "st_mgprompt_model_modules_loaded": [],
+  "extra_gpu_model_created": false,
+  "cases": [
+    {
+      "case": "all_valid",
+      "shape": [
+        2,
+        4,
+        10
+      ],
+      "device": "cpu",
+      "amp": false,
+      "canonical_value": 1.196987509727478,
+      "adapter_value": 1.196987509727478,
+      "value_equal": true,
+      "gradient_equal": true,
+      "gradient_max_abs_diff": 0.0,
+      "canonical_dtype": "torch.float32",
+      "adapter_dtype": "torch.float32",
+      "dtype_equal": true,
+      "finite_equal": true,
+      "status": "PASS"
+    },
+    {
+      "case": "partial_mask",
+      "shape": [
+        2,
+        4,
+        10
+      ],
+      "device": "cpu",
+      "amp": false,
+      "canonical_value": 1.2756297588348389,
+      "adapter_value": 1.2756297588348389,
+      "value_equal": true,
+      "gradient_equal": true,
+      "gradient_max_abs_diff": 0.0,
+      "canonical_dtype": "torch.float32",
+      "adapter_dtype": "torch.float32",
+      "dtype_equal": true,
+      "finite_equal": true,
+      "status": "PASS"
+    },
+    {
+      "case": "random_missing",
+      "shape": [
+        3,
+        7,
+        6
+      ],
+      "device": "cpu",
+      "amp": false,
+      "canonical_value": 1.3054053783416748,
+      "adapter_value": 1.3054053783416748,
+      "value_equal": true,
+      "gradient_equal": true,
+      "gradient_max_abs_diff": 0.0,
+      "canonical_dtype": "torch.float32",
+      "adapter_dtype": "torch.float32",
+      "dtype_equal": true,
+      "finite_equal": true,
+      "status": "PASS"
+    },
+    {
+      "case": "single_valid",
+      "shape": [
+        1,
+        2,
+        3
+      ],
+      "device": "cpu",
+      "amp": false,
+      "canonical_value": 0.6563631296157837,
+      "adapter_value": 0.6563631296157837,
+      "value_equal": true,
+      "gradient_equal": true,
+      "gradient_max_abs_diff": 0.0,
+      "canonical_dtype": "torch.float32",
+      "adapter_dtype": "torch.float32",
+      "dtype_equal": true,
+      "finite_equal": true,
+      "status": "PASS"
+    },
+    {
+      "case": "positive_error",
+      "shape": [
+        2,
+        3,
+        10
+      ],
+      "device": "cpu",
+      "amp": false,
+      "canonical_value": 2.0,
+      "adapter_value": 2.0,
+      "value_equal": true,
+      "gradient_equal": true,
+      "gradient_max_abs_diff": 0.0,
+      "canonical_dtype": "torch.float32",
+      "adapter_dtype": "torch.float32",
+      "dtype_equal": true,
+      "finite_equal": true,
+      "status": "PASS"
+    },
+    {
+      "case": "negative_error",
+      "shape": [
+        2,
+        3,
+        10
+      ],
+      "device": "cpu",
+      "amp": false,
+      "canonical_value": 2.0,
+      "adapter_value": 2.0,
+      "value_equal": true,
+      "gradient_equal": true,
+      "gradient_max_abs_diff": 0.0,
+      "canonical_dtype": "torch.float32",
+      "adapter_dtype": "torch.float32",
+      "dtype_equal": true,
+      "finite_equal": true,
+      "status": "PASS"
+    },
+    {
+      "case": "zero_error",
+      "shape": [
+        2,
+        3,
+        10
+      ],
+      "device": "cpu",
+      "amp": false,
+      "canonical_value": 0.0005000000237487257,
+      "adapter_value": 0.0005000000237487257,
+      "value_equal": true,
+      "gradient_equal": true,
+      "gradient_max_abs_diff": 0.0,
+      "canonical_dtype": "torch.float32",
+      "adapter_dtype": "torch.float32",
+      "dtype_equal": true,
+      "finite_equal": true,
+      "status": "PASS"
+    },
+    {
+      "case": "extreme_finite",
+      "shape": [
+        1,
+        5,
+        4
+      ],
+      "device": "cpu",
+      "amp": false,
+      "canonical_value": 8368.501953125,
+      "adapter_value": 8368.501953125,
+      "value_equal": true,
+      "gradient_equal": true,
+      "gradient_max_abs_diff": 0.0,
+      "canonical_dtype": "torch.float32",
+      "adapter_dtype": "torch.float32",
+      "dtype_equal": true,
+      "finite_equal": true,
+      "status": "PASS"
+    },
+    {
+      "case": "all_masked",
+      "shape": [
+        2,
+        4,
+        10
+      ],
+      "device": "cpu",
+      "amp": false,
+      "canonical_is_none": true,
+      "adapter_is_none": true,
+      "status": "PASS"
+    },
+    {
+      "case": "all_valid",
+      "shape": [
+        2,
+        4,
+        10
+      ],
+      "device": "cuda",
+      "amp": true,
+      "canonical_value": 1.196987509727478,
+      "adapter_value": 1.196987509727478,
+      "value_equal": true,
+      "gradient_equal": true,
+      "gradient_max_abs_diff": 0.0,
+      "canonical_dtype": "torch.float32",
+      "adapter_dtype": "torch.float32",
+      "dtype_equal": true,
+      "finite_equal": true,
+      "status": "PASS"
+    },
+    {
+      "case": "partial_mask",
+      "shape": [
+        2,
+        4,
+        10
+      ],
+      "device": "cuda",
+      "amp": true,
+      "canonical_value": 1.2756297588348389,
+      "adapter_value": 1.2756297588348389,
+      "value_equal": true,
+      "gradient_equal": true,
+      "gradient_max_abs_diff": 0.0,
+      "canonical_dtype": "torch.float32",
+      "adapter_dtype": "torch.float32",
+      "dtype_equal": true,
+      "finite_equal": true,
+      "status": "PASS"
+    },
+    {
+      "case": "random_missing",
+      "shape": [
+        3,
+        7,
+        6
+      ],
+      "device": "cuda",
+      "amp": true,
+      "canonical_value": 1.305405616760254,
+      "adapter_value": 1.305405616760254,
+      "value_equal": true,
+      "gradient_equal": true,
+      "gradient_max_abs_diff": 0.0,
+      "canonical_dtype": "torch.float32",
+      "adapter_dtype": "torch.float32",
+      "dtype_equal": true,
+      "finite_equal": true,
+      "status": "PASS"
+    },
+    {
+      "case": "single_valid",
+      "shape": [
+        1,
+        2,
+        3
+      ],
+      "device": "cuda",
+      "amp": true,
+      "canonical_value": 0.6563631296157837,
+      "adapter_value": 0.6563631296157837,
+      "value_equal": true,
+      "gradient_equal": true,
+      "gradient_max_abs_diff": 0.0,
+      "canonical_dtype": "torch.float32",
+      "adapter_dtype": "torch.float32",
+      "dtype_equal": true,
+      "finite_equal": true,
+      "status": "PASS"
+    },
+    {
+      "case": "positive_error",
+      "shape": [
+        2,
+        3,
+        10
+      ],
+      "device": "cuda",
+      "amp": true,
+      "canonical_value": 2.0,
+      "adapter_value": 2.0,
+      "value_equal": true,
+      "gradient_equal": true,
+      "gradient_max_abs_diff": 0.0,
+      "canonical_dtype": "torch.float32",
+      "adapter_dtype": "torch.float32",
+      "dtype_equal": true,
+      "finite_equal": true,
+      "status": "PASS"
+    },
+    {
+      "case": "negative_error",
+      "shape": [
+        2,
+        3,
+        10
+      ],
+      "device": "cuda",
+      "amp": true,
+      "canonical_value": 2.0,
+      "adapter_value": 2.0,
+      "value_equal": true,
+      "gradient_equal": true,
+      "gradient_max_abs_diff": 0.0,
+      "canonical_dtype": "torch.float32",
+      "adapter_dtype": "torch.float32",
+      "dtype_equal": true,
+      "finite_equal": true,
+      "status": "PASS"
+    },
+    {
+      "case": "zero_error",
+      "shape": [
+        2,
+        3,
+        10
+      ],
+      "device": "cuda",
+      "amp": true,
+      "canonical_value": 0.0005000000237487257,
+      "adapter_value": 0.0005000000237487257,
+      "value_equal": true,
+      "gradient_equal": true,
+      "gradient_max_abs_diff": 0.0,
+      "canonical_dtype": "torch.float32",
+      "adapter_dtype": "torch.float32",
+      "dtype_equal": true,
+      "finite_equal": true,
+      "status": "PASS"
+    },
+    {
+      "case": "extreme_finite",
+      "shape": [
+        1,
+        5,
+        4
+      ],
+      "device": "cuda",
+      "amp": true,
+      "canonical_value": 8368.501953125,
+      "adapter_value": 8368.501953125,
+      "value_equal": true,
+      "gradient_equal": true,
+      "gradient_max_abs_diff": 0.0,
+      "canonical_dtype": "torch.float32",
+      "adapter_dtype": "torch.float32",
+      "dtype_equal": true,
+      "finite_equal": true,
+      "status": "PASS"
+    },
+    {
+      "case": "all_masked",
+      "shape": [
+        2,
+        4,
+        10
+      ],
+      "device": "cuda",
+      "amp": true,
+      "canonical_is_none": true,
+      "adapter_is_none": true,
+      "status": "PASS"
+    }
+  ]
+}

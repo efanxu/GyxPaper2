@@ -1,0 +1,4 @@
+horizon,MAE,RMSE,R2,SMAPE,MAPE,official_align_score,score,Score,valid_target_count,total_target_count,valid_target_ratio,num_valid_points,score_compute_unit,score_lower_is_better,physical_clip_applied
+3,52.349,60.134,-0.432,0.059,0.057,7.168,7.168,7.168,71,72,0.986,71,MW_after_kW_to_MW_conversion,True,True
+6,63.133,72.288,-0.889,0.071,0.068,8.673,8.673,8.673,143,144,0.993,143,MW_after_kW_to_MW_conversion,True,True
+10,79.946,90.847,-1.539,0.089,0.085,11.085,11.085,11.085,239,240,0.996,239,MW_after_kW_to_MW_conversion,True,True

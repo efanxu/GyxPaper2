@@ -1,0 +1,460 @@
+{
+  "passed": true,
+  "formal_shape": {
+    "B": 32,
+    "N": 134,
+    "C": 16,
+    "lookback": 144,
+    "max_pred_len": 10
+  },
+  "required_variants": [
+    "P1",
+    "P2",
+    "P4",
+    "P5",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "A8"
+  ],
+  "missing_required_variants": [],
+  "variants": [
+    {
+      "variant": "A1",
+      "status": "passed",
+      "device": "cuda",
+      "train_x_shape": [
+        32,
+        144,
+        134,
+        16
+      ],
+      "train_y_shape": [
+        32,
+        10,
+        134
+      ],
+      "prediction_shape": [
+        32,
+        10,
+        134
+      ],
+      "evaluation_shape": [
+        4,
+        10,
+        134
+      ],
+      "loss": 0.44984757900238037,
+      "loss_finite": true,
+      "gradient_finite": true,
+      "optimizer_step": true,
+      "hidden_dim": 64,
+      "num_coupling_layers": 1,
+      "graph_operator": "bidirectional_diffusion",
+      "decoder_context_mode": "last_state",
+      "loss_name": "msmg_dwu_loss",
+      "peak_allocated_mib": 6877.54296875
+    },
+    {
+      "variant": "A2",
+      "status": "passed",
+      "device": "cuda",
+      "train_x_shape": [
+        32,
+        144,
+        134,
+        16
+      ],
+      "train_y_shape": [
+        32,
+        10,
+        134
+      ],
+      "prediction_shape": [
+        32,
+        10,
+        134
+      ],
+      "evaluation_shape": [
+        4,
+        10,
+        134
+      ],
+      "loss": 0.5054038763046265,
+      "loss_finite": true,
+      "gradient_finite": true,
+      "optimizer_step": true,
+      "hidden_dim": 64,
+      "num_coupling_layers": 1,
+      "graph_operator": "bidirectional_diffusion",
+      "decoder_context_mode": "last_state",
+      "loss_name": "msmg_dwu_loss",
+      "peak_allocated_mib": 8702.392578125
+    },
+    {
+      "variant": "A3",
+      "status": "passed",
+      "device": "cuda",
+      "train_x_shape": [
+        32,
+        144,
+        134,
+        16
+      ],
+      "train_y_shape": [
+        32,
+        10,
+        134
+      ],
+      "prediction_shape": [
+        32,
+        10,
+        134
+      ],
+      "evaluation_shape": [
+        4,
+        10,
+        134
+      ],
+      "loss": 0.3529849946498871,
+      "loss_finite": true,
+      "gradient_finite": true,
+      "optimizer_step": true,
+      "hidden_dim": 64,
+      "num_coupling_layers": 1,
+      "graph_operator": "simple",
+      "decoder_context_mode": "last_state",
+      "loss_name": "msmg_dwu_loss",
+      "peak_allocated_mib": 7562.8515625
+    },
+    {
+      "variant": "A4",
+      "status": "passed",
+      "device": "cuda",
+      "train_x_shape": [
+        32,
+        144,
+        134,
+        16
+      ],
+      "train_y_shape": [
+        32,
+        10,
+        134
+      ],
+      "prediction_shape": [
+        32,
+        10,
+        134
+      ],
+      "evaluation_shape": [
+        4,
+        10,
+        134
+      ],
+      "loss": 0.24367094039916992,
+      "loss_finite": true,
+      "gradient_finite": true,
+      "optimizer_step": true,
+      "hidden_dim": 64,
+      "num_coupling_layers": 1,
+      "graph_operator": "bidirectional_diffusion",
+      "decoder_context_mode": "last_state",
+      "loss_name": "msmg_dwu_loss",
+      "peak_allocated_mib": 9363.28955078125
+    },
+    {
+      "variant": "A5",
+      "status": "passed",
+      "device": "cuda",
+      "train_x_shape": [
+        32,
+        144,
+        134,
+        16
+      ],
+      "train_y_shape": [
+        32,
+        10,
+        134
+      ],
+      "prediction_shape": [
+        32,
+        10,
+        134
+      ],
+      "evaluation_shape": [
+        4,
+        10,
+        134
+      ],
+      "loss": 0.4837997257709503,
+      "loss_finite": true,
+      "gradient_finite": true,
+      "optimizer_step": true,
+      "hidden_dim": 64,
+      "num_coupling_layers": 1,
+      "graph_operator": "bidirectional_diffusion",
+      "decoder_context_mode": "last_state",
+      "loss_name": "msmg_dwu_loss",
+      "peak_allocated_mib": 8666.54345703125
+    },
+    {
+      "variant": "A6",
+      "status": "passed",
+      "device": "cuda",
+      "train_x_shape": [
+        32,
+        144,
+        134,
+        16
+      ],
+      "train_y_shape": [
+        32,
+        10,
+        134
+      ],
+      "prediction_shape": [
+        32,
+        10,
+        134
+      ],
+      "evaluation_shape": [
+        4,
+        10,
+        134
+      ],
+      "loss": 0.45986101031303406,
+      "loss_finite": true,
+      "gradient_finite": true,
+      "optimizer_step": true,
+      "hidden_dim": 64,
+      "num_coupling_layers": 1,
+      "graph_operator": "bidirectional_diffusion",
+      "decoder_context_mode": "last_state",
+      "loss_name": "msmg_dwu_loss",
+      "peak_allocated_mib": 6878.97314453125
+    },
+    {
+      "variant": "A7",
+      "status": "passed",
+      "device": "cuda",
+      "train_x_shape": [
+        32,
+        144,
+        134,
+        16
+      ],
+      "train_y_shape": [
+        32,
+        10,
+        134
+      ],
+      "prediction_shape": [
+        32,
+        10,
+        134
+      ],
+      "evaluation_shape": [
+        4,
+        10,
+        134
+      ],
+      "loss": 0.4423912465572357,
+      "loss_finite": true,
+      "gradient_finite": true,
+      "optimizer_step": true,
+      "hidden_dim": 64,
+      "num_coupling_layers": 1,
+      "graph_operator": "bidirectional_diffusion",
+      "decoder_context_mode": "last_state",
+      "loss_name": "msmg_dwu_loss",
+      "peak_allocated_mib": 9310.13427734375
+    },
+    {
+      "variant": "A8",
+      "status": "passed",
+      "device": "cuda",
+      "train_x_shape": [
+        32,
+        144,
+        134,
+        16
+      ],
+      "train_y_shape": [
+        32,
+        10,
+        134
+      ],
+      "prediction_shape": [
+        32,
+        10,
+        134
+      ],
+      "evaluation_shape": [
+        4,
+        10,
+        134
+      ],
+      "loss": 0.871179461479187,
+      "loss_finite": true,
+      "gradient_finite": true,
+      "optimizer_step": true,
+      "hidden_dim": 64,
+      "num_coupling_layers": 1,
+      "graph_operator": "bidirectional_diffusion",
+      "decoder_context_mode": "last_state",
+      "loss_name": "masked_score_aligned_hybrid",
+      "peak_allocated_mib": 9310.1650390625
+    },
+    {
+      "variant": "P1",
+      "status": "passed",
+      "device": "cuda",
+      "train_x_shape": [
+        32,
+        144,
+        134,
+        16
+      ],
+      "train_y_shape": [
+        32,
+        10,
+        134
+      ],
+      "prediction_shape": [
+        32,
+        10,
+        134
+      ],
+      "evaluation_shape": [
+        4,
+        10,
+        134
+      ],
+      "loss": 0.3529849946498871,
+      "loss_finite": true,
+      "gradient_finite": true,
+      "optimizer_step": true,
+      "hidden_dim": 64,
+      "num_coupling_layers": 1,
+      "graph_operator": "simple",
+      "decoder_context_mode": "last_state",
+      "loss_name": "msmg_dwu_loss",
+      "peak_allocated_mib": 7556.017578125
+    },
+    {
+      "variant": "P2",
+      "status": "passed",
+      "device": "cpu",
+      "train_x_shape": [
+        32,
+        144,
+        134,
+        16
+      ],
+      "train_y_shape": [
+        32,
+        10,
+        134
+      ],
+      "prediction_shape": [
+        32,
+        10,
+        134
+      ],
+      "evaluation_shape": [
+        4,
+        10,
+        134
+      ],
+      "loss": 0.28386831283569336,
+      "loss_finite": true,
+      "gradient_finite": true,
+      "optimizer_step": true,
+      "hidden_dim": 64,
+      "num_coupling_layers": 1,
+      "graph_operator": "simple",
+      "decoder_context_mode": "full_history_cross_attention",
+      "loss_name": "msmg_dwu_loss",
+      "peak_allocated_mib": null
+    },
+    {
+      "variant": "P4",
+      "status": "passed",
+      "device": "cpu",
+      "train_x_shape": [
+        32,
+        144,
+        134,
+        16
+      ],
+      "train_y_shape": [
+        32,
+        10,
+        134
+      ],
+      "prediction_shape": [
+        32,
+        10,
+        134
+      ],
+      "evaluation_shape": [
+        4,
+        10,
+        134
+      ],
+      "loss": 0.19897572696208954,
+      "loss_finite": true,
+      "gradient_finite": true,
+      "optimizer_step": true,
+      "hidden_dim": 96,
+      "num_coupling_layers": 1,
+      "graph_operator": "bidirectional_diffusion",
+      "decoder_context_mode": "full_history_cross_attention",
+      "loss_name": "msmg_dwu_loss",
+      "peak_allocated_mib": null
+    },
+    {
+      "variant": "P5",
+      "status": "passed",
+      "device": "cpu",
+      "autocast_dtype": "bfloat16",
+      "train_x_shape": [
+        32,
+        144,
+        134,
+        16
+      ],
+      "train_y_shape": [
+        32,
+        10,
+        134
+      ],
+      "prediction_shape": [
+        32,
+        10,
+        134
+      ],
+      "evaluation_shape": [
+        4,
+        10,
+        134
+      ],
+      "loss": 0.4273466467857361,
+      "loss_finite": true,
+      "gradient_finite": true,
+      "optimizer_step": true,
+      "hidden_dim": 96,
+      "num_coupling_layers": 2,
+      "graph_operator": "bidirectional_diffusion",
+      "decoder_context_mode": "full_history_cross_attention",
+      "loss_name": "msmg_dwu_loss",
+      "peak_allocated_mib": null
+    }
+  ]
+}

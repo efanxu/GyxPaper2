@@ -1,0 +1,13 @@
+{
+  "mode": "full_shape_smoke",
+  "sys_executable": "D:\\Apps\\Miniconda3\\envs\\env_tslib\\python.exe",
+  "python_version": "3.11.15 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:12:53) [MSC v.1942 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "torch_version": "2.5.1+cu124",
+  "torch_cuda_version": "12.4",
+  "cuda_available": true,
+  "gpu_name": "NVIDIA GeForce GTX 1060",
+  "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results_smoke\\st_mgprompt_fixed_dual_refactor_full_shape\\precision_ablation_fixed_dual_seed2026\\P1\\STMGPrompt_FairFull",
+  "error_type": "ValueError",
+  "error": "STMGPrompt_FairFull must use masked_score_aligned_hybrid."
+}

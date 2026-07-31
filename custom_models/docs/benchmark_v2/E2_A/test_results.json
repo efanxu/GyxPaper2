@@ -1,0 +1,28 @@
+{
+  "task": "E2-A",
+  "interpreter": "D:/Apps/Miniconda3/envs/env_tslib/python.exe",
+  "framework": "unittest",
+  "final_suite": {
+    "command": "python -m unittest discover -s custom_models/tests/benchmark_v2 -p test_*.py",
+    "status": "PASS",
+    "tests_run": 60,
+    "failures": 0,
+    "errors": 0
+  },
+  "protocol_check": {
+    "status": "PASS",
+    "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b"
+  },
+  "focused_checks": [
+    "E1-B OOM status migration and historical record retention",
+    "exact preflight identity and PASS reuse",
+    "preflight then formal worker ordering and distinct processes",
+    "FAIL_OOM/FAIL_NON_OOM stop before formal worker",
+    "eight-entry TSLib allowlist and lazy import",
+    "Transformer zero future decoder and zero marks",
+    "PatchTST exact patch geometry",
+    "iTransformer exactly 16 feature tokens",
+    "TimeXer frozen endogenous/exogenous split and future rejection",
+    "target/mask leakage and output shape"
+  ]
+}

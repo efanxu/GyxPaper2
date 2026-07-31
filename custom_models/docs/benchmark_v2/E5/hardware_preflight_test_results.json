@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "target_machine_preflight_started": false,
+  "base_loss_pass_reusable": false,
+  "e5_identity_fields": [
+    "experiment_profile_id",
+    "e5_common_loss_protocol_hash",
+    "loss_id",
+    "loss_source_hash",
+    "loss_profile_hash",
+    "base_model_config_hash",
+    "model_source_closure_hash",
+    "benchmark_protocol_hash",
+    "B",
+    "T",
+    "N",
+    "C",
+    "H",
+    "amp",
+    "seed"
+  ],
+  "local_full_shape": {
+    "PASS": 16,
+    "FAIL_OOM": 10,
+    "FAIL_NON_OOM": 0
+  }
+}

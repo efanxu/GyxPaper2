@@ -1,0 +1,214 @@
+{
+  "trainable_parameters": 2074,
+  "non_trainable_parameters": 0,
+  "total_parameters": 2074,
+  "parameter_memory_mb": 0.00791168212890625,
+  "input_dim": 16,
+  "num_nodes": 8,
+  "feature_cols": [
+    "Wspd",
+    "Wdir",
+    "Etmp",
+    "Itmp",
+    "Ndir",
+    "Pab1",
+    "Pab2",
+    "Pab3",
+    "Prtv",
+    "T2m",
+    "Sp",
+    "RelH",
+    "Wspd_w",
+    "Wdir_w",
+    "Tp",
+    "Patv_clean_for_input"
+  ],
+  "window_counts": {
+    "train": 86,
+    "val": 3,
+    "test": 3
+  },
+  "raw_split_valid_ratio": {
+    "train": 0.9928385615348816,
+    "val": 0.9947916865348816,
+    "test": 0.9947916865348816
+  },
+  "window_expanded_valid_ratio": {
+    "train": 0.9934593023255814,
+    "val": 0.9875,
+    "test": 0.9958333333333333
+  },
+  "model_name": "STMGPrompt_TemporalOnly",
+  "run_id": "smoke_v43_seed_agg",
+  "seed": 2026,
+  "checkpoint": "custom_models\\results\\st_mgprompt\\smoke_v43_seed_agg\\seed_2026\\STMGPrompt_TemporalOnly\\best_checkpoint.pt",
+  "loss_function": "masked_score_aligned_hybrid",
+  "eligible_for_fair_main_table": true,
+  "loss_changed_from_fair_protocol": false,
+  "eligible_for_method_full_table": false,
+  "fair_loss_comparison": true,
+  "skipped_all_invalid_batches": 0,
+  "registry": [
+    {
+      "name": "STMGPrompt_TemporalOnly",
+      "implemented": true,
+      "eligible_for_fair_main_table": true,
+      "uses_msmg_dwu": false,
+      "requires_coupling_block": false,
+      "description": "Step-0 shared-parameter GRU temporal-only baseline."
+    },
+    {
+      "name": "STMGPrompt_TemporalOnly_VADSP",
+      "implemented": true,
+      "eligible_for_fair_main_table": true,
+      "uses_msmg_dwu": false,
+      "requires_coupling_block": false,
+      "description": "Step-1 VADSP + TemporalOnly smoke path; not the FairFull coupled architecture."
+    },
+    {
+      "name": "STMGPrompt_DynamicPatching",
+      "implemented": true,
+      "eligible_for_fair_main_table": false,
+      "uses_msmg_dwu": false,
+      "requires_coupling_block": false,
+      "description": "Step-1 dynamic patching ablation alias for the VADSP smoke path."
+    },
+    {
+      "name": "STMGPrompt_FairFull",
+      "implemented": true,
+      "eligible_for_fair_main_table": true,
+      "uses_msmg_dwu": false,
+      "requires_coupling_block": true,
+      "description": "Step-4 VADSP + TrendPriorDualGraph + ST-MG Coupling Block + direct ST-prompt head."
+    },
+    {
+      "name": "STMGPrompt_Full_MSMGDWU",
+      "implemented": true,
+      "eligible_for_fair_main_table": false,
+      "uses_msmg_dwu": true,
+      "requires_coupling_block": true,
+      "description": "Method-full model with MS-MG-DWU, not eligible for fair main table."
+    },
+    {
+      "name": "STMGPrompt_SerialGraphThenFusion",
+      "implemented": false,
+      "eligible_for_fair_main_table": false,
+      "uses_msmg_dwu": false,
+      "requires_coupling_block": false,
+      "description": "Serial ablation only; never the FairFull default."
+    },
+    {
+      "name": "STMGPrompt_CouplingCrossFusion",
+      "implemented": true,
+      "eligible_for_fair_main_table": false,
+      "uses_msmg_dwu": false,
+      "requires_coupling_block": true,
+      "description": "Step-4/5 coupling and cross-fusion ablation using the ST-Prompt direct decoder."
+    },
+    {
+      "name": "STMGPrompt_TrendPriorGraph",
+      "implemented": true,
+      "eligible_for_fair_main_table": false,
+      "uses_msmg_dwu": false,
+      "requires_coupling_block": false,
+      "description": "Step-2 VADSP + Trend-Prior Adaptive Dual Graph smoke ablation; not the FairFull model."
+    },
+    {
+      "name": "STMGPrompt_GraphTemporalSmoke",
+      "implemented": true,
+      "eligible_for_fair_main_table": false,
+      "uses_msmg_dwu": false,
+      "requires_coupling_block": false,
+      "description": "Step-3 VADSP + adaptive dual graph + Graph-Temporal Encoder smoke ablation."
+    }
+  ],
+  "metadata": {
+    "input_feature_set": "base_official_scada_era5",
+    "feature_names": [
+      "Wspd",
+      "Wdir",
+      "Etmp",
+      "Itmp",
+      "Ndir",
+      "Pab1",
+      "Pab2",
+      "Pab3",
+      "Prtv",
+      "T2m",
+      "Sp",
+      "RelH",
+      "Wspd_w",
+      "Wdir_w",
+      "Tp",
+      "Patv_clean_for_input"
+    ],
+    "num_features": 16,
+    "target_col": "Patv_raw",
+    "target_mask_col": "valid_target_mask",
+    "target_mask_used_as_model_input": false,
+    "final_prediction_target_is_power": true,
+    "split_indices": {
+      "train": [
+        0,
+        192
+      ],
+      "val": [
+        192,
+        216
+      ],
+      "test": [
+        216,
+        240
+      ]
+    },
+    "window_counts": {
+      "train": 86,
+      "val": 3,
+      "test": 3
+    },
+    "valid_target_ratio": {
+      "train": 0.9928385615348816,
+      "val": 0.9947916865348816,
+      "test": 0.9947916865348816
+    },
+    "raw_split_valid_ratio": {
+      "train": 0.9928385615348816,
+      "val": 0.9947916865348816,
+      "test": 0.9947916865348816
+    },
+    "raw_split_valid_count": {
+      "train": 1525,
+      "val": 191,
+      "test": 191
+    },
+    "raw_split_total_count": {
+      "train": 1536,
+      "val": 192,
+      "test": 192
+    },
+    "window_expanded_valid_ratio": {
+      "train": 0.9934593023255814,
+      "val": 0.9875,
+      "test": 0.9958333333333333
+    },
+    "window_expanded_valid_count": {
+      "train": 6835,
+      "val": 237,
+      "test": 239
+    },
+    "window_expanded_total_count": {
+      "train": 6880,
+      "val": 240,
+      "test": 240
+    },
+    "input_scaler_fit_split": "train_only",
+    "target_scaler_fit_split": "train_only",
+    "target_scaler_fit_mask": "valid_target_mask",
+    "window_rule": "[t-lookback,t)->[t,t+max_pred_len)",
+    "sample_stride_is_prediction_start_stride": true,
+    "uses_on_the_fly_features": false,
+    "on_the_fly_feature_names": [],
+    "on_the_fly_features_history_only": true
+  },
+  "graph_snapshot_summary": null
+}

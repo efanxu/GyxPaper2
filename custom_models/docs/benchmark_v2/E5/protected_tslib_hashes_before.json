@@ -1,0 +1,1851 @@
+{
+  "schema_version": "e5_protection_snapshot_v1",
+  "category": "tslib_hashes",
+  "phase": "before",
+  "created_at": "2026-07-28T13:07:59.097840+00:00",
+  "project_root": "D:\\PaperProject\\GyxPaper2",
+  "file_count": 368,
+  "logical_hash": "23cadfaffada55787da7cdd5ec6176ebd5b3618aec07a02178f4e44fb21aa3e3",
+  "files": [
+    {
+      "path": "Time-Series-Library/.gitignore",
+      "size": 2576,
+      "sha256": "75f12c15980676bc734db7bafb346ab3deae3a95720a026e3a16fe2f7be7937a"
+    },
+    {
+      "path": "Time-Series-Library/CONTRIBUTING.md",
+      "size": 1496,
+      "sha256": "d5ff220e78ff095fd2bf65a8212ce957ef95c83f89b4c624eead8e4f63c7fe52"
+    },
+    {
+      "path": "Time-Series-Library/data_provider/__init__.py",
+      "size": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "Time-Series-Library/data_provider/data_factory.py",
+      "size": 2631,
+      "sha256": "8034b4a9b624d358e0a33fe584b3575c9b61c8aff6ee30537a865a126b63ad9a"
+    },
+    {
+      "path": "Time-Series-Library/data_provider/data_loader.py",
+      "size": 36439,
+      "sha256": "3fcf59f01f1889a9d9436964ba0d1190e61453f82819049f85d2a58b4cae508f"
+    },
+    {
+      "path": "Time-Series-Library/data_provider/m4.py",
+      "size": 5260,
+      "sha256": "88cb5d523690142f4a3d68fbc92d783bb41fc1034f63849ba85c4fb3268dfad0"
+    },
+    {
+      "path": "Time-Series-Library/data_provider/uea.py",
+      "size": 5036,
+      "sha256": "49e011c8119fa791296dd930a688c075d05a1c13e2f37e06495e569521eb348e"
+    },
+    {
+      "path": "Time-Series-Library/docker-compose.yml",
+      "size": 809,
+      "sha256": "2728d61412e620e32299983a76b1b05f58d8b88e1341960fe3e7e72df20c627a"
+    },
+    {
+      "path": "Time-Series-Library/Dockerfile",
+      "size": 822,
+      "sha256": "65002136fa7313173d4f4addd958d750cb816d1fa4e2f3c4da91ad9682446b73"
+    },
+    {
+      "path": "Time-Series-Library/exp/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "Time-Series-Library/exp/exp_anomaly_detection.py",
+      "size": 7805,
+      "sha256": "c7d85b45256fb6dbd7edb6ad76d09aa8be2306a0175036aa8d7804b5dbe4d1bc"
+    },
+    {
+      "path": "Time-Series-Library/exp/exp_basic.py",
+      "size": 3552,
+      "sha256": "694ac20676eab3c1a3778b972b503950887d7198db938bc40a58b4c74b00bdee"
+    },
+    {
+      "path": "Time-Series-Library/exp/exp_classification.py",
+      "size": 7456,
+      "sha256": "06f998de716b5920b549a0195bd4fe67e00e2438338c0699ce508932ca44d94b"
+    },
+    {
+      "path": "Time-Series-Library/exp/exp_imputation.py",
+      "size": 8631,
+      "sha256": "4c09815f1c38bd71bc0cb1308e4582e0f2afd6b355caae1113bae40c67861c77"
+    },
+    {
+      "path": "Time-Series-Library/exp/exp_long_term_forecasting.py",
+      "size": 11442,
+      "sha256": "0413d8670d75ae53e0a3950a9ff4c7192f1cb52c57c18c84dfeca60654f548f2"
+    },
+    {
+      "path": "Time-Series-Library/exp/exp_short_term_forecasting.py",
+      "size": 10325,
+      "sha256": "361fa90441e6076ea37a83f044273ea326ce486d357cd93b72d67d9e363af33f"
+    },
+    {
+      "path": "Time-Series-Library/exp/exp_zero_shot_forecasting.py",
+      "size": 5787,
+      "sha256": "85a6b1ce0a13b402bc5838e58b50325b633e602638f6b49c4915f97e297564c9"
+    },
+    {
+      "path": "Time-Series-Library/layers/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "Time-Series-Library/layers/AutoCorrelation.py",
+      "size": 6462,
+      "sha256": "354b44e54bdd39380c9f5c2bfaaf3b967fdbe80dc7998741dbfdfa5d521a040c"
+    },
+    {
+      "path": "Time-Series-Library/layers/Autoformer_EncDec.py",
+      "size": 6831,
+      "sha256": "48745b4bb647355e9845792a855df9c59fd7df7fcc664c765351fec390c4073e"
+    },
+    {
+      "path": "Time-Series-Library/layers/Conv_Blocks.py",
+      "size": 2376,
+      "sha256": "16d9f2d9e4fa094dc357901e32beecda9839709bcca02625e6447186933ce4e1"
+    },
+    {
+      "path": "Time-Series-Library/layers/Crossformer_EncDec.py",
+      "size": 4333,
+      "sha256": "ee2cc5c8d3a44f4de67ce986e6b442488826a20fa4d8f87991941a75587936a1"
+    },
+    {
+      "path": "Time-Series-Library/layers/DWT_Decomposition.py",
+      "size": 46759,
+      "sha256": "422af1eec77df1b9dcfdea3d457e545c8575da69da4f505f27ba54db0c9f7764"
+    },
+    {
+      "path": "Time-Series-Library/layers/Embed.py",
+      "size": 7012,
+      "sha256": "17e7c3577324c41a0da427a199c955b782fde905aabb1f7cbc3c4e15ebd4ae35"
+    },
+    {
+      "path": "Time-Series-Library/layers/ETSformer_EncDec.py",
+      "size": 11433,
+      "sha256": "4ba2a0b76381602e32341fcc1a6a74ca86d2347905589fb34a74f8e54d7023e3"
+    },
+    {
+      "path": "Time-Series-Library/layers/FourierCorrelation.py",
+      "size": 7523,
+      "sha256": "cea1095b3a94764f240e6ac67280d6ea7fac9f5ef54de137cd1f5e5adab1305f"
+    },
+    {
+      "path": "Time-Series-Library/layers/MambaBlock.py",
+      "size": 18260,
+      "sha256": "cbcbbd6cbb83366e40ffe5926da16b4ca0aa11b6649e2259750994b60527a390"
+    },
+    {
+      "path": "Time-Series-Library/layers/MSGBlock.py",
+      "size": 9954,
+      "sha256": "01d3d446a214c33062ba098f251a1e49ed8a342dd4372e973a0a8c0dde5cd8c0"
+    },
+    {
+      "path": "Time-Series-Library/layers/MultiWaveletCorrelation.py",
+      "size": 23039,
+      "sha256": "cf0b8faf45a1b7fab4a3c1c521623c0762e2f9d7375b20ba9a9acd2142747342"
+    },
+    {
+      "path": "Time-Series-Library/layers/Pyraformer_EncDec.py",
+      "size": 7433,
+      "sha256": "ab92396677a9ad2e49c7bf171e15c96108d388b8898d29ee520d18dfe0bd5306"
+    },
+    {
+      "path": "Time-Series-Library/layers/SelfAttention_Family.py",
+      "size": 12001,
+      "sha256": "6f6592aed0753e342fc04c01db70528c2eb191eeb067cd5fd4c8d348fddcb794"
+    },
+    {
+      "path": "Time-Series-Library/layers/StandardNorm.py",
+      "size": 2184,
+      "sha256": "3f690dc5fc0e395d4f1ffe6396717548d18bd04f4518258308bbe5f392703f5f"
+    },
+    {
+      "path": "Time-Series-Library/layers/TimeFilter_layers.py",
+      "size": 10046,
+      "sha256": "3441713bdb54de1153afe3d5e746de4e251c07b545492180a073c4f275df6b9f"
+    },
+    {
+      "path": "Time-Series-Library/layers/Transformer_EncDec.py",
+      "size": 4929,
+      "sha256": "7b26f4459735c341f161011f6bc24b9deb8ecc3bcf61e4f15431998272a44fb4"
+    },
+    {
+      "path": "Time-Series-Library/LICENSE",
+      "size": 1084,
+      "sha256": "8a6caa178ea3f33ebff5d7bb5558628cf5b423305dc30d3630f86564c7db94a2"
+    },
+    {
+      "path": "Time-Series-Library/models/__init__.py",
+      "size": 5,
+      "sha256": "d97d758fc2ef4da5eb24a20e940538bb5b8f6ed81d9b2e6ecaf20a2b178daee2"
+    },
+    {
+      "path": "Time-Series-Library/models/Autoformer.py",
+      "size": 6815,
+      "sha256": "e7d31b5071e4412bcece030f343450d2ca93932988ee912b95058d9955473810"
+    },
+    {
+      "path": "Time-Series-Library/models/Chronos.py",
+      "size": 1420,
+      "sha256": "7386167682450aeaf40fd6faaf07444f4bc95348d7a59c4793451c9815e70965"
+    },
+    {
+      "path": "Time-Series-Library/models/Chronos2.py",
+      "size": 1759,
+      "sha256": "093198a31974e720e72c1f438640334dabc5a8cfc88546e8b02e4ade85d80e5a"
+    },
+    {
+      "path": "Time-Series-Library/models/Crossformer.py",
+      "size": 6363,
+      "sha256": "f5892f70eb3fc320f69fa0a9b2019b68537cc5a5e5aa2ec544c15127b19e36f0"
+    },
+    {
+      "path": "Time-Series-Library/models/DLinear.py",
+      "size": 4501,
+      "sha256": "e03acaf97e70c85ea6bda6776b3a62550f84470afa7bc53dffccb6121626e7eb"
+    },
+    {
+      "path": "Time-Series-Library/models/ETSformer.py",
+      "size": 4599,
+      "sha256": "3cd25f1ea4dc18e926720b2976d86820363dcc5db0436e490f2b794630086035"
+    },
+    {
+      "path": "Time-Series-Library/models/FEDformer.py",
+      "size": 8587,
+      "sha256": "2d9051784362cf848f061cfec9038aff8ec2bb3047abdffe47f0ad0abdf88e62"
+    },
+    {
+      "path": "Time-Series-Library/models/FiLM.py",
+      "size": 11567,
+      "sha256": "866054afc57411ebaf47c270566c05302b19acf3a3663b0b86e9153e386d2dc6"
+    },
+    {
+      "path": "Time-Series-Library/models/FreTS.py",
+      "size": 4630,
+      "sha256": "2b6c9e0cd3d4f42bc74736343147812db94f029f1a8b13b098b9841705de5c18"
+    },
+    {
+      "path": "Time-Series-Library/models/Informer.py",
+      "size": 6395,
+      "sha256": "95dee85f6c0642dbfeee7736d526f9e20a54b5f5871a7085343b6a8be3cf56d2"
+    },
+    {
+      "path": "Time-Series-Library/models/iTransformer.py",
+      "size": 5735,
+      "sha256": "7fdc721d041b0f8f63be8fa794ecd68422fd958c7c8d449026320fd9f368788e"
+    },
+    {
+      "path": "Time-Series-Library/models/KANAD.py",
+      "size": 3832,
+      "sha256": "8503dc8fffb3c1c5212c60da9d645c28ecf590ef5846d37dea9bcc6568f7e95d"
+    },
+    {
+      "path": "Time-Series-Library/models/Koopa.py",
+      "size": 13374,
+      "sha256": "056464ecec26ff00893f8ff4c372992c1c46c0563990d7c0593a945b8d7c4402"
+    },
+    {
+      "path": "Time-Series-Library/models/LightTS.py",
+      "size": 5622,
+      "sha256": "1de1583c4ee0bbfa0764fa9b158f09ac8bcd7ddf7f2d9f1b58ab1a03a7d13989"
+    },
+    {
+      "path": "Time-Series-Library/models/Mamba.py",
+      "size": 1590,
+      "sha256": "de6c2ce01371e8cc7b0524df8caffaf299b58d093c4096661ad4cc66d216595e"
+    },
+    {
+      "path": "Time-Series-Library/models/MambaSimple.py",
+      "size": 5501,
+      "sha256": "0d8251e73c4b74eff403bf913bb4277bbc9427f69a419767121dc7ea0d0f6a95"
+    },
+    {
+      "path": "Time-Series-Library/models/MambaSingleLayer.py",
+      "size": 5326,
+      "sha256": "32db2b9a7081c9bec00a0c882d94ca0959cef05d6a96a0b4ccbbf9b2499cd4bb"
+    },
+    {
+      "path": "Time-Series-Library/models/MICN.py",
+      "size": 9946,
+      "sha256": "a0cb59254e850bfd1d94114a73126c290e6baf2ea700132ede8aade680bbedbf"
+    },
+    {
+      "path": "Time-Series-Library/models/Moirai.py",
+      "size": 1791,
+      "sha256": "f387c8ff2f06d37893d0c72bf93cf509e68e270c51da7887dbefbda02879ab41"
+    },
+    {
+      "path": "Time-Series-Library/models/MSGNet.py",
+      "size": 9560,
+      "sha256": "e6f8f3fbd4e0bc9d77c78e2409969c4fe4b2fc6560e7c1f5cced2a809d8e9e59"
+    },
+    {
+      "path": "Time-Series-Library/models/MultiPatchFormer.py",
+      "size": 12067,
+      "sha256": "e8603a9d8b1e796a822171399a057bd3945cf51b38fb1661d91fe60ad79313b3"
+    },
+    {
+      "path": "Time-Series-Library/models/Nonstationary_Transformer.py",
+      "size": 10251,
+      "sha256": "8c12c8bddbfe7414a87efee19f019079e62e9ad7cc4e7627cb25d2886ae60c33"
+    },
+    {
+      "path": "Time-Series-Library/models/PatchTST.py",
+      "size": 9071,
+      "sha256": "29835d4fedddd3cbee26cc60d6a54c04513f5a9ca32e4a0d08de2c9e059084e5"
+    },
+    {
+      "path": "Time-Series-Library/models/PAttn.py",
+      "size": 2500,
+      "sha256": "04a11e5b15afd261e005982c76424b219303114a3b32bfe3da00d1df862dae88"
+    },
+    {
+      "path": "Time-Series-Library/models/Pyraformer.py",
+      "size": 4215,
+      "sha256": "6ec9a21d56fa47b81b706b05b7caf76f440daf3cb4ffe2dca9d2f149b02dd877"
+    },
+    {
+      "path": "Time-Series-Library/models/Reformer.py",
+      "size": 5090,
+      "sha256": "d559a572111615a3a6c0b2ed25e29a2678997a6406d44814aba97b24c1c63517"
+    },
+    {
+      "path": "Time-Series-Library/models/SCINet.py",
+      "size": 7357,
+      "sha256": "06dcae9cfce5d3dc09e8db9b537479421848ee678ffbd1d3ca0b5c335a1baf25"
+    },
+    {
+      "path": "Time-Series-Library/models/SegRNN.py",
+      "size": 4215,
+      "sha256": "764d4ad950ee65162c70746248754942cfb4ba661162d515caab0a4eedd12252"
+    },
+    {
+      "path": "Time-Series-Library/models/Sundial.py",
+      "size": 1309,
+      "sha256": "4acd97dbda41f644cda908c98178b9995b1853d707aba22dc21bbd9e56c74ae5"
+    },
+    {
+      "path": "Time-Series-Library/models/TemporalFusionTransformer.py",
+      "size": 14027,
+      "sha256": "f1b348f304bcf8954059eaa356a2b2bafd73c2278e85bd62be5f794e73e59388"
+    },
+    {
+      "path": "Time-Series-Library/models/TiDE.py",
+      "size": 7222,
+      "sha256": "4ab07dec4ae85f8b7c3062ff7d2fec00be342968d41cf09e48d599d8e40f6143"
+    },
+    {
+      "path": "Time-Series-Library/models/TimeFilter.py",
+      "size": 6769,
+      "sha256": "6cbce92f112a9907fe6117ea23527bf1864c0ea00721a812d786e86e0a1b0724"
+    },
+    {
+      "path": "Time-Series-Library/models/TimeMixer.py",
+      "size": 20056,
+      "sha256": "bbf378cab03d16d3e7ae907f7b3cefbac89ae1504e036270578d5d496ffbd133"
+    },
+    {
+      "path": "Time-Series-Library/models/TimeMoE.py",
+      "size": 1750,
+      "sha256": "fc13c8165d8687cdd720a9ce17704037f6576cbe578c8f2e291f44e8bc8f6734"
+    },
+    {
+      "path": "Time-Series-Library/models/TimesFM.py",
+      "size": 1756,
+      "sha256": "6407e32aacc7d67411e23fe9de270ce7d1af0e8c61f8e965942e16a75cffcc8b"
+    },
+    {
+      "path": "Time-Series-Library/models/TimesNet.py",
+      "size": 8735,
+      "sha256": "f64c4bed1fd7347090044a0163bd4209c9f9ec1c1b19ceff47842df36b64bba7"
+    },
+    {
+      "path": "Time-Series-Library/models/TimeXer.py",
+      "size": 9019,
+      "sha256": "b334d7869544d0a5de7a35501d0342d7bd0be4ebda06ccc045855a42819728c0"
+    },
+    {
+      "path": "Time-Series-Library/models/TiRex.py",
+      "size": 1221,
+      "sha256": "87d3682830ddc1e2e8cfcc3673e275ec450789ac133ae4bfb221910184dcec1e"
+    },
+    {
+      "path": "Time-Series-Library/models/Transformer.py",
+      "size": 5561,
+      "sha256": "46ded6c516fd03951bce0a82c3f4245f0247efd01fb5bde775145cfbb6d8435d"
+    },
+    {
+      "path": "Time-Series-Library/models/TSMixer.py",
+      "size": 1814,
+      "sha256": "a82942ddc22cba59f4161f3ea480eb0e474eba6f0ab2d13f2bd949f100b2ce87"
+    },
+    {
+      "path": "Time-Series-Library/models/WPMixer.py",
+      "size": 13212,
+      "sha256": "5b549f5454864d19a230747f0060dc00732fb0de6b50a359173e0d7a6b04ce8f"
+    },
+    {
+      "path": "Time-Series-Library/pic/dataset.png",
+      "size": 159483,
+      "sha256": "b89b339766aa988c46d9b3cd4092bd51e4a19270f82b9f317e73a872a2a32c71"
+    },
+    {
+      "path": "Time-Series-Library/README.md",
+      "size": 30580,
+      "sha256": "2d03e4917e41917105ed647c5ea7537e1394f88b0af190e05715457b55dc5be6"
+    },
+    {
+      "path": "Time-Series-Library/README_zh.md",
+      "size": 28047,
+      "sha256": "48edb5fda3be94a8623e3c6df428246bc1559e0df4c299a832e6979122de8635"
+    },
+    {
+      "path": "Time-Series-Library/requirements.txt",
+      "size": 502,
+      "sha256": "1467f08eca3f4b749addf69042955eeb547dfb13a8a569e7e881b545c696df9f"
+    },
+    {
+      "path": "Time-Series-Library/run.py",
+      "size": 16328,
+      "sha256": "db6dfa215520ba193fe7095380f9005949a958efa9526975410cb5d97afe3fc4"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/MSL/Autoformer.sh",
+      "size": 386,
+      "sha256": "baa62fc3fede7cd1e653a594c2e309593059fc931e6a6d4ba2a90b8621a2101b"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/MSL/Crossformer.sh",
+      "size": 387,
+      "sha256": "1081964522c94dec6d58bae69570fc70f93996f354a3cdd9b7a0fc03260ac110"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/MSL/DLinear.sh",
+      "size": 385,
+      "sha256": "aa5a6ca2c4d6b41bbc26be52382afaf15a39dc511883fbbf9e550a179fb74b46"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/MSL/ETSformer.sh",
+      "size": 404,
+      "sha256": "02f8f35591b8446416e58063b4286bf824ec2f438bdd987cc81b6a7d4bfe1b6c"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/MSL/FEDformer.sh",
+      "size": 385,
+      "sha256": "92ff35938daa909849f04ade85f1aa797d397ac50ce5c7fd80b7367df5259917"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/MSL/FiLM.sh",
+      "size": 381,
+      "sha256": "58febc00851c9f51d57c46497c3502b73bc0f83a3512b49765b2dd076d356043"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/MSL/Informer.sh",
+      "size": 384,
+      "sha256": "a1c191a86fe9f2afa8f908f408c7002e33d81368d9d8557db0c438a043bc638b"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/MSL/iTransformer.sh",
+      "size": 388,
+      "sha256": "a76a5636bac19d7d319d248a34f1b69f3235c988f4371dad2dfd5b4ff898b97d"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/MSL/KANAD.sh",
+      "size": 392,
+      "sha256": "ab02511fa657d2b0f6a3c0595ac962088132bf53e46e400adbd3be009a075c35"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/MSL/LightTS.sh",
+      "size": 383,
+      "sha256": "c4d2ab39982c214ce6dd6a1bb5b2f4c1d40980f3abaf940ad94ce5a6d910eab4"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/MSL/MICN.sh",
+      "size": 380,
+      "sha256": "372dd74485631793a584d7f51737d832fab594bf1838e6696121caa4bb9e516c"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/MSL/Pyraformer.sh",
+      "size": 386,
+      "sha256": "878e113737064eabeeac284a8569975a00af9205f5aaa64c674afc85c1f62fbf"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/MSL/Reformer.sh",
+      "size": 384,
+      "sha256": "c497aab4dac52ada66bd60244a8c0ff9119253665685d9574c3e04611e0eba40"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/MSL/TimesNet.sh",
+      "size": 394,
+      "sha256": "6d7537724f99f9857f95564bf6e858823dbbf7643ef013e85e943743312c477a"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/MSL/Transformer.sh",
+      "size": 387,
+      "sha256": "6cd6ebbee3965006d3dad82a02f3ccbecf3b9266236c1401e7b5e41677855db1"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/PSM/Autoformer.sh",
+      "size": 385,
+      "sha256": "d848ffe23c3b4e22a7f87402c2bc8df87bf40da32d6fdb90567c55748ffe3d74"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/PSM/DLinear.sh",
+      "size": 384,
+      "sha256": "280bf12c12c56f0504c636f0579496036d5f401c5428319d2138588ddba4db32"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/PSM/KANAD.sh",
+      "size": 392,
+      "sha256": "867ab83df5e2570e97b558168f11b64119946ad1769d361702477dedbc7b7f68"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/PSM/TimesNet.sh",
+      "size": 395,
+      "sha256": "5959a165ae55210dad41c7a592456d4fe35ae02d7ca6e85de82404ed168c0278"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/PSM/Transformer.sh",
+      "size": 386,
+      "sha256": "707b9e81e5876f6a803e1fd2fda46852b6cc4cd2d8d7d2b9c225d2060f7963b8"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/SMAP/Autoformer.sh",
+      "size": 388,
+      "sha256": "f0ab6516f25ecb797ea39f6f634208d24e66347cea615282e0ce9f66317f146f"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/SMAP/KANAD.sh",
+      "size": 395,
+      "sha256": "899ef0f43a9c438c6abeb16df9676289304619660e2949d2eab389028abd172d"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/SMAP/TimesNet.sh",
+      "size": 400,
+      "sha256": "79fa08e7dcc544c7ecacd13dfacf425845ff3ae4f6f9abfe439052657b6a822b"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/SMAP/Transformer.sh",
+      "size": 389,
+      "sha256": "6cf65c41bf899f36316b6c6c39442a26f54bee52048d4ee22adab422a3a162d9"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/SMD/Autoformer.sh",
+      "size": 388,
+      "sha256": "5189d696f716bf04ce3776702488155e311a043365945f270b48ba6701d91dd7"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/SMD/KANAD.sh",
+      "size": 394,
+      "sha256": "d864082f3ee8f7bc1fd2930e089d95f9d3494bb3b5cf526460f9c42ea912a40a"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/SMD/TimesNet.sh",
+      "size": 398,
+      "sha256": "8cc1422bb32924317e4f2af2638f9c494fdf62a0e13362e0af45362ce4bfffe4"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/SMD/Transformer.sh",
+      "size": 389,
+      "sha256": "2e98989ff2c76891fecefb1a35663171f1f97459fea5670b23b940515bcc7f9f"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/SWAT/Autoformer.sh",
+      "size": 402,
+      "sha256": "007a31f28bd54b90e4dda9a6c7ad70bb2b4933206d5ee9a5ce6d43b82b1d4cb2"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/SWAT/KANAD.sh",
+      "size": 395,
+      "sha256": "a1310ebd607e22f7e599f9a63b293b8780a6cf82cbc886699752da0f9d0e2bfc"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/SWAT/TimesNet.sh",
+      "size": 2977,
+      "sha256": "e6ee435fb59855097921fee24dbc2f75f787308a55e450cf819db8704d9db63b"
+    },
+    {
+      "path": "Time-Series-Library/scripts/anomaly_detection/SWAT/Transformer.sh",
+      "size": 403,
+      "sha256": "696c094df7102629e27c1130a81a03acae5640225f86eda856a333e4e9fa141a"
+    },
+    {
+      "path": "Time-Series-Library/scripts/classification/Autoformer.sh",
+      "size": 3657,
+      "sha256": "0a6b6b22d07ba85a292781234768a3a2acb796047549abd689e60c2045879c81"
+    },
+    {
+      "path": "Time-Series-Library/scripts/classification/Crossformer.sh",
+      "size": 3658,
+      "sha256": "850e774a9e5fc120509ce9eb2d45fc8ee21457cf27091861e075c77159d8f58a"
+    },
+    {
+      "path": "Time-Series-Library/scripts/classification/DLinear.sh",
+      "size": 3654,
+      "sha256": "89a7900767bb0a483c40b5955c1f2ad1e916bed7a2351cefaae0fed04e137dac"
+    },
+    {
+      "path": "Time-Series-Library/scripts/classification/ETSformer.sh",
+      "size": 3826,
+      "sha256": "bae309b1d8e79f39c223674bebd5a89cab4b2af8b060fd950d9809ae83e25e09"
+    },
+    {
+      "path": "Time-Series-Library/scripts/classification/FEDformer.sh",
+      "size": 3656,
+      "sha256": "a70af7898540d5fa411c970f5696d5ef8bfec5158a1dd16afea12db881c1e638"
+    },
+    {
+      "path": "Time-Series-Library/scripts/classification/FiLM.sh",
+      "size": 3690,
+      "sha256": "54347503bca99a0434ec1e1da02a2933c2c03a3f7ff0aff61c42ad3a9540a84d"
+    },
+    {
+      "path": "Time-Series-Library/scripts/classification/Informer.sh",
+      "size": 3655,
+      "sha256": "237223e793563a97f7554794af613407158a129a968c6355d16f30d0c422a35b"
+    },
+    {
+      "path": "Time-Series-Library/scripts/classification/iTransformer.sh",
+      "size": 3810,
+      "sha256": "97d198dba299e187bbd2fcebb279b0e525c257ce5b41a6e086efe35431fe6558"
+    },
+    {
+      "path": "Time-Series-Library/scripts/classification/LightTS.sh",
+      "size": 3654,
+      "sha256": "ea727f96262df4b94cf6071a840df0f1a9f390f5ce75a62d4e329948be179bf8"
+    },
+    {
+      "path": "Time-Series-Library/scripts/classification/MambaSL.out",
+      "size": 69622,
+      "sha256": "134a31c3719d107c198bedd2a20d29350bbd371ab119ecea71adaac1781a88c5"
+    },
+    {
+      "path": "Time-Series-Library/scripts/classification/MambaSL.sh",
+      "size": 3196,
+      "sha256": "1f15f7416593152affc08c963557fbeb4831f8029ed12ccb4605831bee372c6d"
+    },
+    {
+      "path": "Time-Series-Library/scripts/classification/MICN.sh",
+      "size": 3665,
+      "sha256": "f1d3f4d4eea791128ed11457646b93232d011abc758db804761e39a39a5ab704"
+    },
+    {
+      "path": "Time-Series-Library/scripts/classification/PatchTST.sh",
+      "size": 3655,
+      "sha256": "3181179bfd5c0b987a3f7a8a2369ddad2d3a5c9d9be1f392420f2dc3cbadabb6"
+    },
+    {
+      "path": "Time-Series-Library/scripts/classification/Pyraformer.sh",
+      "size": 3647,
+      "sha256": "0daa4e9799947694f7c678e046e4dac965ac3600a1381ecc5486c5d2f9b1eacb"
+    },
+    {
+      "path": "Time-Series-Library/scripts/classification/Reformer.sh",
+      "size": 3655,
+      "sha256": "e3b3fd639b67d64f58964c116f57e9b7e68aff538e61c77d9cc972cb7bf1f0ea"
+    },
+    {
+      "path": "Time-Series-Library/scripts/classification/TimesNet.sh",
+      "size": 3560,
+      "sha256": "3694ce11e690bf7bf1f094753efaae1c92e0fe7b249c3e27e7a6d3355dca022f"
+    },
+    {
+      "path": "Time-Series-Library/scripts/classification/Transformer.sh",
+      "size": 3658,
+      "sha256": "fb8d9128df741d1beb83ac695b77c51935f575ffdc9cc60218fcf2a713f32ce3"
+    },
+    {
+      "path": "Time-Series-Library/scripts/exogenous_forecast/ECL/TimeXer.sh",
+      "size": 1720,
+      "sha256": "4177dd5e6813d560a61fea8d825e5b3bc8f58568d048882a1b4ccfba7eea6854"
+    },
+    {
+      "path": "Time-Series-Library/scripts/exogenous_forecast/EPF/TimeXer.sh",
+      "size": 2117,
+      "sha256": "af3c5f23e93ded12103fe40e909987024bffa45d17978ac97e72441920ca8f56"
+    },
+    {
+      "path": "Time-Series-Library/scripts/exogenous_forecast/ETTh1/TimeXer.sh",
+      "size": 1766,
+      "sha256": "f573c124cecd66f1c6a34959d87cd8823589797996929142ee73b96ec4d2bd09"
+    },
+    {
+      "path": "Time-Series-Library/scripts/exogenous_forecast/ETTh2/TimeXer.sh",
+      "size": 1782,
+      "sha256": "97bac235661f5fde7be6b1c40cf5a002a2e3b171183d9ab8548fdaba5cd9b81d"
+    },
+    {
+      "path": "Time-Series-Library/scripts/exogenous_forecast/ETTm1/TimeXer.sh",
+      "size": 1744,
+      "sha256": "6e1e6aed41129ccd17329b272f4942cd172437dd08328111d63c2ff63dffac54"
+    },
+    {
+      "path": "Time-Series-Library/scripts/exogenous_forecast/ETTm2/TimeXer.sh",
+      "size": 1742,
+      "sha256": "1abfe0eae3b45ce0751dce6ae5d4c0bd149f7272b5bda3da7141bd2e66810503"
+    },
+    {
+      "path": "Time-Series-Library/scripts/exogenous_forecast/Traffic/TimeXer.sh",
+      "size": 1842,
+      "sha256": "5aecc3faf896483df338cabdaec6cceb02a308d640dd48332a0b6ab5c8793085"
+    },
+    {
+      "path": "Time-Series-Library/scripts/exogenous_forecast/Weather/TimeXer.sh",
+      "size": 1685,
+      "sha256": "4a270ddc4833e2496756a2c86a71faa62acde4e725b643730ae982d07f8c957e"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ECL_script/Autoformer.sh",
+      "size": 2123,
+      "sha256": "f9230e18b1fba2d8b39824d253e594bb647c81f8874d33bef8d508147a45d323"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ECL_script/DLinear.sh",
+      "size": 2100,
+      "sha256": "6f543dd8ce365dab93bc243f55a2723d2bcb3239fba13bfec00075436fbaf3d1"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ECL_script/ETSformer.sh",
+      "size": 2122,
+      "sha256": "1ebe96b947146c004e0fde1c4ebc27a0a12f4ccccdc880a700ebbd1c28ed846d"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ECL_script/FEDformer.sh",
+      "size": 2122,
+      "sha256": "9da830b09ff1a387f0d160e209b84300ef55e4fa290f7b93318389de62f12b1c"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ECL_script/Informer.sh",
+      "size": 2121,
+      "sha256": "6ec995fb1a575fb35eb78db15174a0070a711a3a6987a3292d777663351bab7a"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ECL_script/iTransformer.sh",
+      "size": 2125,
+      "sha256": "42c9e1de98b78ad5b05b20c99abfe1ad9de6cdde483124c94ac711856d7f68fd"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ECL_script/LightTS.sh",
+      "size": 2124,
+      "sha256": "dce4ce5251792dc309bb11c8e66583e5494679fbcc34894ac140f395e8ea179e"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ECL_script/Pyraformer.sh",
+      "size": 2123,
+      "sha256": "4276b7bf6c44ad6b5e03fae55af05076b1955416396c1dc55581cc83fc823d5c"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ECL_script/Reformer.sh",
+      "size": 2121,
+      "sha256": "7d8652d61adefdefb8cdcbcbd1e089b560e2587b2d6ff250af582ee6a97d4c14"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ECL_script/TimesNet.sh",
+      "size": 2113,
+      "sha256": "9399e9d50c69392ce46af24ee7c95b2be91637b5413f3d3fdef59b916918a758"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ECL_script/Transformer.sh",
+      "size": 2124,
+      "sha256": "077f97212e93b0238693a9e87a7bf9381f20f1b29180920b0c5faebda58c0dc0"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ETT_script/Autoformer_ETTh1.sh",
+      "size": 2071,
+      "sha256": "d623a47971c95635196520093106cca9e265a4c795727b3f5747ecb95c183edd"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ETT_script/Autoformer_ETTh2.sh",
+      "size": 2071,
+      "sha256": "d4536b75adc344d109a305ade7e5aaa42ac993192a22f4bb7abed8d5526b59de"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ETT_script/Autoformer_ETTm1.sh",
+      "size": 2071,
+      "sha256": "1f9aa32ab73fc4f12ade2f1d78e6a3f6423a35643ea992cffd3f687231385298"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ETT_script/Autoformer_ETTm2.sh",
+      "size": 2071,
+      "sha256": "3aa4d672b1ef58efed00fc347d9dd0794f24573dd3a4fc238effb7bd4fa13cc8"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ETT_script/Crossformer_ETTh1.sh",
+      "size": 2064,
+      "sha256": "0295299821a24855fb8ed4b25c941208922d4d7fa150c1e3438c729cfe2ffea6"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ETT_script/DLinear_ETTh1.sh",
+      "size": 2072,
+      "sha256": "f7fdf637ad984b622ffb8b2698378325a7dd251e5665826c99a90a9d1ee5ac5d"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ETT_script/FiLM_ETTh1.sh",
+      "size": 2061,
+      "sha256": "2875923634946828ab335dfb268b9bcb29e6a048afb3fc5b87bb10405d871f58"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ETT_script/iTransformer_ETTh2.sh",
+      "size": 2073,
+      "sha256": "546057519b4e5c568071c7ce48d60fdeaa263004f2eed8ae9dfffa631815a083"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ETT_script/MICN_ETTh1.sh",
+      "size": 2153,
+      "sha256": "0b1ada6941180c8fa916d3ac32854899fff011db0e884902fc109ff93f8110ca"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ETT_script/Nonstationary_Transformer_ETTh1.sh",
+      "size": 2294,
+      "sha256": "6c595dc152742817a319a9892d2a06ce701fccbcd88e7f244e34ceb709602e51"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ETT_script/TiDE_ETTh1.sh",
+      "size": 2059,
+      "sha256": "94df3c7259bdcc5961f3f37b03520b16f1ba7957048de48d4ed0939c068a9e0d"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ETT_script/TimesNet_ETTh1.sh",
+      "size": 2061,
+      "sha256": "28c54dcd37d942507797d2f635080a6c2998d40af0636e4406393cbb811ab7b3"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ETT_script/TimesNet_ETTh2.sh",
+      "size": 2061,
+      "sha256": "e5c6445bc5c63e27d01e647fa1bd41e75b141a7df984d923f3fe441aa1dc2df3"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ETT_script/TimesNet_ETTm1.sh",
+      "size": 2061,
+      "sha256": "fcfa6bac0211668b196b907efec1071587772098322c8a31d22f53647f28e4c6"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ETT_script/TimesNet_ETTm2.sh",
+      "size": 2061,
+      "sha256": "3284efa921cd37f6ed02e8a285abb680722f0eed1a6248f14ff90e1b874273aa"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ETT_script/Transformer_ETTh1.sh",
+      "size": 2072,
+      "sha256": "b998b07621b33be34a50dc6e039eb6bb8a50ea412f3ec4d46579713b94eeb625"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ETT_script/Transformer_ETTh2.sh",
+      "size": 2072,
+      "sha256": "37c8842f8b590c84066162f9c2924367cc207519f1b4ba041c7f2d4c197b15c8"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ETT_script/Transformer_ETTm1.sh",
+      "size": 2072,
+      "sha256": "9347bbe00b02389400a636d7ead42edc05b2667311dc6fd891d94c67516897a0"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/ETT_script/Transformer_ETTm2.sh",
+      "size": 2072,
+      "sha256": "9d963f827d26a05feb9bc126b5eaa9df7677416cf842655a45bfa78ff0be8072"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/Weather_script/Autoformer.sh",
+      "size": 2095,
+      "sha256": "e359376f731703a526b5f0a0910b422a853d12c83be43838c753c04515a24bc2"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/Weather_script/TimesNet.sh",
+      "size": 2085,
+      "sha256": "aef9befbddb0d5ce95ac0a0a0a220c48588d8e1c4c6497f5c59262badd1129f2"
+    },
+    {
+      "path": "Time-Series-Library/scripts/imputation/Weather_script/Transformer.sh",
+      "size": 2096,
+      "sha256": "3a01a4d5d009efc615d07914f2654d79b8a0e560838165edef339bc8bdd039d5"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/AugmentSample/Classification/PatchTST.sh",
+      "size": 641,
+      "sha256": "58ebce14d464456f434083d266b29b24587069ada6b5696a67fda312e697c7f2"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/AugmentSample/Forecasting/PatchTST.sh",
+      "size": 732,
+      "sha256": "47edf748784c089c2e19a8a46bef794f3b74c6e83b801a7a42070e9bcf3ba034"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/AugmentSample/ReadMe.md",
+      "size": 2605,
+      "sha256": "a91e6b1a3ef6876480677ebe91927b3875642611e6e6fab3da716be5e6ebcd61"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ECL_script/Autoformer.sh",
+      "size": 1694,
+      "sha256": "f8a86cfc096d4d8037cfdf91cb60a56d850ce91d74a2c75f14f007b2efe65c3b"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ECL_script/Crossformer.sh",
+      "size": 1963,
+      "sha256": "633cc26648868b8520838576ecabb93ea546fea20252fc5acf18b05c3e0ae7a1"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ECL_script/DLinear.sh",
+      "size": 1691,
+      "sha256": "90cf479386da01fb72ea4617d0f52beaa031a4c8cd9952913956010d1abef38d"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ECL_script/ETSformer.sh",
+      "size": 1693,
+      "sha256": "c7744bf16123d9ef8958e5912e159684350b949f81024bb6f2612240d4c0ddc8"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ECL_script/FEDformer.sh",
+      "size": 1694,
+      "sha256": "8d92fe4e6c9de53da0481a6bc798fd432fd3b57b06451ac15e473129cd0425d5"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ECL_script/FiLM.sh",
+      "size": 1768,
+      "sha256": "db4977ec13007f737ebd35747bdc035479aade4a9fe24e4e6b9c7dfe983f7af1"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ECL_script/Informer.sh",
+      "size": 1692,
+      "sha256": "5bc06a11361ae0518ed7813fac5219c6fb4509f867685b4cf10c46c87749151f"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ECL_script/iTransformer.sh",
+      "size": 2018,
+      "sha256": "f42397fbc063f934184ebf74b3b8f992504dab664f8e6d6cae3666dd72ab9336"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ECL_script/Koopa.sh",
+      "size": 1721,
+      "sha256": "405c9fa2fa7353a37ede3e67fc976cc75a72faac071bc71f1653be010df6cf4d"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ECL_script/LightTS.sh",
+      "size": 1691,
+      "sha256": "9939944abd6b1cf589be4fd48ed87d7d368805650992d2cca7bdaa06d08bdd75"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ECL_script/Mamba.sh",
+      "size": 555,
+      "sha256": "622b8bc55da21eb82901e3f9771bd2d3127b35954282791d4601529b16b2ea24"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ECL_script/MICN.sh",
+      "size": 1876,
+      "sha256": "d5709c528c4ce5ab32a8448046fd1ddcd0e42ab4a61a05f6345e463141e3c47a"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ECL_script/MultiPatchFormer.sh",
+      "size": 1878,
+      "sha256": "ee1767b6a4a693a0fdf9bedc487d3cc67f4055e67e1fc6a21edefeb664746819"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ECL_script/Nonstationary_Transformer.sh",
+      "size": 1994,
+      "sha256": "a6393f439255bda6bf4d3fe14832c43098bde8580243e787c310289221c2a470"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ECL_script/PatchTST.sh",
+      "size": 1772,
+      "sha256": "ec3bfe34c28b9bde41a6f0fd1f64d28b8de0210d3b8c2c7714649ff7c7ba73bc"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ECL_script/Pyraformer.sh",
+      "size": 1694,
+      "sha256": "e4217d53d0dbf478026338be0bf5abf3060a5606eb58e74d2b844fa7d5f1c994"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ECL_script/Reformer.sh",
+      "size": 1692,
+      "sha256": "73fc9c1ee988ad380114a7e1fd6bbc91d517a4502da105b0534fd57f93797456"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ECL_script/SegRNN.sh",
+      "size": 513,
+      "sha256": "21705d837b7209ace21c2f3582d69ad87191eda0a3663a72b94144dd95b8f010"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ECL_script/TimeMixer.sh",
+      "size": 3091,
+      "sha256": "89b0c34325def762e3764e89ca093f15a36188f8e93705fe3cea02d66e675123"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ECL_script/TimesNet.sh",
+      "size": 1880,
+      "sha256": "a99fbbb74cdfd035e636722b93c1197be8dacb967453ae488e16a9ce9f0db897"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ECL_script/TimeXer.sh",
+      "size": 1715,
+      "sha256": "12ff2969ffad0222ba346e52dd99b299149d6167f6ed1e6d436ea09b489afebc"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ECL_script/Transformer.sh",
+      "size": 1671,
+      "sha256": "95f5f519025cf3cd88f6984917fd17f58c4a31cbd7fe1d5c1d017b5dc88f1f77"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ECL_script/TSMixer.sh",
+      "size": 1849,
+      "sha256": "7a26085a3fb32c01605420f5b21c65a678753d2cae0197ce8567027ff79e1b50"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ECL_script/WPMixer.sh",
+      "size": 1246,
+      "sha256": "40112751d96624e61ca39af223b711e09a66d9c2a8b5c2b5fb17039513b66074"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Autoformer_ETTh1.sh",
+      "size": 1642,
+      "sha256": "0974ffde1bec9e5d151780125900058cbdfb94e0fb14b01b590ba96859c2b9d6"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Autoformer_ETTh2.sh",
+      "size": 1642,
+      "sha256": "c2b2fbd33e03a41726e89b4e1e3e15385e760cf8adee45c86cd7efb30ed09f78"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Autoformer_ETTm1.sh",
+      "size": 1642,
+      "sha256": "3ef9607252be7719bbd962c2a1705440c256011e23925dc1c813e47c37f7574c"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Autoformer_ETTm2.sh",
+      "size": 1642,
+      "sha256": "5269e5fe847287d274f998d15cb8746a5256728177e04787d8d41ca2d74d27da"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Crossformer_ETTh1.sh",
+      "size": 1643,
+      "sha256": "1bd7fb722628e0e1af50f543f0e59614fd3057535be648935a715433ae4f2a00"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Crossformer_ETTh2.sh",
+      "size": 1643,
+      "sha256": "885028a3a3f8b05be89a8a6bccbee0edf0e449aa99a3905606889ed4ee552fcb"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Crossformer_ETTm1.sh",
+      "size": 1583,
+      "sha256": "1c57c9eba36e0cd33b2d4037ec3457e79c7abed762a02cfefab4d2154ea73611"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Crossformer_ETTm2.sh",
+      "size": 1643,
+      "sha256": "6c2fb362e89b32164a43eadd8a5417aa739093f014c1ba3e2fb7c3bae4caf957"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/DLinear_ETTh1.sh",
+      "size": 1639,
+      "sha256": "7839693e199debc419612d464b8c6dcbb983bd923b759743be4215746cf69dd1"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/ETSformer_ETTh1.sh",
+      "size": 1641,
+      "sha256": "ff23425bd1e88f6a2465d655aeac38c9622c778829b5de2d5aa118bfe637c8ee"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/FEDformer_ETTh1.sh",
+      "size": 1641,
+      "sha256": "28bc5ea7122cdafa4e06a43f37da05a26c1a6b0412d4f0a3944c6ad154a99941"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/FiLM_ETTh1.sh",
+      "size": 1640,
+      "sha256": "9c361ec983a60463269f019d50e4ed088619b61c9f30a803d879dba808d82819"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/FiLM_ETTh2.sh",
+      "size": 1640,
+      "sha256": "f90b1c48793d74fb788ddbdcb2e327e12c1f6c38b4349ef4ea9fc331dc2d6a5c"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/FiLM_ETTm1.sh",
+      "size": 1640,
+      "sha256": "9b2b569b36600d3bc6f2d3460dc80d9346a71961692855d669496d50e9d14f9f"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/FiLM_ETTm2.sh",
+      "size": 1640,
+      "sha256": "02c743812db735a3a4d6664bf66bc36472364eb857cdc1e0bef7daaf0c271c4a"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Informer_ETTh1.sh",
+      "size": 1640,
+      "sha256": "3b905ce5a9d310fd42e07a4281abc7c0c7a304f4b59380698f84b43e20f89d53"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/iTransformer_ETTh2.sh",
+      "size": 1777,
+      "sha256": "a46ec19e030977e23e6e554741f0c35979270c87dd21b535c22f57d68f2625ef"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Koopa_ETTh1.sh",
+      "size": 1669,
+      "sha256": "6bbfd8d89f1f3208e6e114593413897ff6d5bd9470238859b9469b7b847b10c2"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Koopa_ETTh2.sh",
+      "size": 1669,
+      "sha256": "6acf5dfcc616ec7f3a82f10540680a84bd6614570d22f3a113711913574ac908"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Koopa_ETTm1.sh",
+      "size": 1669,
+      "sha256": "7ad12447aa1f30c51e1cf17f30602a1197d417fee921c637bfbfab22ef50fde7"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Koopa_ETTm2.sh",
+      "size": 1669,
+      "sha256": "84eb09a011b8ac35864e4e9f963f0930d2f87746dd2d36e055f7f751045ea0dd"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/LightTS_ETTh1.sh",
+      "size": 1639,
+      "sha256": "1c845cbd2afea8849c55378db2af6d85fa4756f17ef1ae4faffcb5c0889e7c22"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/LTSM.sh",
+      "size": 1848,
+      "sha256": "9c1cafb848e487b41c57c6449a306a41fe3bfa723540eb730cd9ad74d25b6f23"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Mamba_ETT_all.sh",
+      "size": 308,
+      "sha256": "f830b397362695bcfdf0c953f616a786ba14582dba7d006ef02234cac6f6c3a9"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Mamba_ETTh1.sh",
+      "size": 516,
+      "sha256": "d21d5e0237cd68597768a70efdc4ebb96e037185de735e60eb8fb79ceca9966e"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Mamba_ETTh2.sh",
+      "size": 500,
+      "sha256": "552c25b26a932b535a759ad7a3a2ac8a2a4cdb6c375f68b5455ffda574960fed"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Mamba_ETTm1.sh",
+      "size": 500,
+      "sha256": "50a1c16c4c60c5099fe3b94a15c48cd6d0fffd139c7b9b5d2805272f99790c2d"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Mamba_ETTm2.sh",
+      "size": 500,
+      "sha256": "23b9bde866d306b2644cf00c8e5bbe94b007eeaebbb743f8a64589148273ca95"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/MambaSimple_ETTh1.sh",
+      "size": 523,
+      "sha256": "b493363b4fc79912b4a63a23dd6fcb11ef13e02d88a6aab06c6c45e5fe1ac6e9"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/MICN_ETTh1.sh",
+      "size": 1637,
+      "sha256": "574d14a1b12bc614f4587cd496f3eee967be2127f792401786fd5cc435f2a4c0"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/MICN_ETTh2.sh",
+      "size": 1637,
+      "sha256": "476f1758e8f6d3545c341adecec6ec20b9217f9482e585f8339b8cd1454ddcbb"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/MICN_ETTm1.sh",
+      "size": 1692,
+      "sha256": "34d6ac91879ffcf7e1c50f5b763cac2db61a962466c3793cf157c0a4c0cfb147"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/MICN_ETTm2.sh",
+      "size": 1692,
+      "sha256": "0d1ba803d0eb120f08459d5e336ea05c17d8d145c0e5449085b05e62cb4bba6f"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/MultiPatchFormer_ETTh1.sh",
+      "size": 1655,
+      "sha256": "69eb41c88985f3f5025bc819e2e9111d8249f6d9fe978076518bdc2ded129e97"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/MultiPatchFormer_ETTm1.sh",
+      "size": 1799,
+      "sha256": "cfd79454ed92e7a69d655182588cde774c2368d3a2500f5dc2efd291b6715770"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Nonstationary_Transformer_ETTh1.sh",
+      "size": 1937,
+      "sha256": "5f7a5771b5b39352e990d1a120d813ecc49f842d25f90d400b6a82071bdbcbeb"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Nonstationary_Transformer_ETTh2.sh",
+      "size": 1882,
+      "sha256": "6357d75cf708e29ae9dccd334592a3dc40ac1f731504bdc48937d3fb31bb2586"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Nonstationary_Transformer_ETTm1.sh",
+      "size": 1821,
+      "sha256": "6fdaab034995b65de8ffdb3b1105163478fa2e396422f55c6e29473544daceaf"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Nonstationary_Transformer_ETTm2.sh",
+      "size": 1889,
+      "sha256": "ba8e39c6d351dbd4ed537812d6f2a3c3c6b879c050b5295db0f3c747be0b1f9d"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/PatchTST_ETTh1.sh",
+      "size": 1705,
+      "sha256": "fc6b16a942354937b9aec02c7bd9a31cc36bc457ab28ad942e6dfd6078c58cf7"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/PatchTST_ETTh2.sh",
+      "size": 1704,
+      "sha256": "7362cf022bf365b4efe4a91429385bde7cf75a9b66ceaf9b9925e550146fc0ed"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/PatchTST_ETTm1.sh",
+      "size": 1787,
+      "sha256": "06ce9c03e479a579fc0c758842496fcfc265baa4f36cd9063672e38ff2359b36"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/PatchTST_ETTm2.sh",
+      "size": 1787,
+      "sha256": "2c453433dbd1535361c7bb832a793910b6cb8c91fa7555a522b2a3d24b47982c"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/PAttn_ETTh1.sh",
+      "size": 1566,
+      "sha256": "f9ca3a3e2053a5f1c47b6d26bceec46a8854af778ef03bc14bbf45bccd217d71"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Pyraformer_ETTh1.sh",
+      "size": 1642,
+      "sha256": "e9f3dcd85b88da96c9a90d3174db803ab1cdd967ce9242ceaee0d842364927c1"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Pyraformer_ETTh2.sh",
+      "size": 1642,
+      "sha256": "e14ff9b804d4c8fd6ed589b037de880e7402701077f64c134cd14b4ba39320cf"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Pyraformer_ETTm1.sh",
+      "size": 1642,
+      "sha256": "9f3180acb1ee86c2b15727f6ba8ff57e10b5473f98bcdb1a662e4e56d92bf6bb"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Pyraformer_ETTm2.sh",
+      "size": 1642,
+      "sha256": "177e1877c64d41b91a11bd6e0a84beb1d773c751648cb25471c425df5783e0a8"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Reformer_ETTh1.sh",
+      "size": 1640,
+      "sha256": "490f8852202cd53ebbc89d10ebe4fc21f719c4765944c17dca917904e94df830"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/SegRNN_ETTh1.sh",
+      "size": 506,
+      "sha256": "017d8d245165c7eb2c6b6266e874c463d31b2032b73687e8b66cdb232fa2aedd"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/SegRNN_ETTh2.sh",
+      "size": 506,
+      "sha256": "27bab67065f99a3d699a9f8a27c1314ab9c8857d267257ddab990cb2ad1a29cf"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/SegRNN_ETTm1.sh",
+      "size": 506,
+      "sha256": "65ea3e8f66e03968727ae60bd203f954b9162b1bad21aa20b7dd42d57a5e7e19"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/SegRNN_ETTm2.sh",
+      "size": 506,
+      "sha256": "8f232c06e25293e7a969d297b36216590aca23d28c2b4cf1efbde76d24d2a643"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/TiDE_ETTh1.sh",
+      "size": 2023,
+      "sha256": "15828183cb3d0fcddb7d08d0cbb4e0b619e75e4d0a75ab329d7eff5aa67926ce"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/TimeMixer_ETTh1.sh",
+      "size": 2822,
+      "sha256": "13086d899b992b67cdd4409d26f686c1ac7e15e9ad4fd03dd53a2e0728554fc4"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/TimeMixer_ETTh2.sh",
+      "size": 2478,
+      "sha256": "0090959fa31019c4325f85c77b14aca843861a2e1bf53ee4012bba461cf5ac32"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/TimeMixer_ETTm1.sh",
+      "size": 2594,
+      "sha256": "8b394d5ff94bb039d22c698398e6783586575792f010d903324d3ec57cdf4aba"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/TimeMixer_ETTm2.sh",
+      "size": 2562,
+      "sha256": "20e784f63bf84c722e5f8ce4788d65e799bf1152d18f091cb9760f11a07dd333"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/TimesNet_ETTh1.sh",
+      "size": 1825,
+      "sha256": "8490506e32ef9ee8f3a62a4286b35be552a3035d243d87104bd02e9cc381922e"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/TimesNet_ETTh2.sh",
+      "size": 1821,
+      "sha256": "91168f9bad8eac1fbad9b971a4c47778f9437cfeb61b18ab96d2ac9314687aa7"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/TimesNet_ETTm1.sh",
+      "size": 1841,
+      "sha256": "a72e68ea4e4ad2032e1490bb1e9c75ed010c3fb042b108d9be7ad855104b0dd8"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/TimesNet_ETTm2.sh",
+      "size": 1862,
+      "sha256": "a11016292fba948153b84e018d6289ac048715b5809c63a22bb309d32033a74f"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/TimeXer_ETTh1.sh",
+      "size": 1755,
+      "sha256": "7ea65ad9cfcb62fc3b7201d43fff69ec28a9fdc42c8a2f07a446427393293931"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/TimeXer_ETTh2.sh",
+      "size": 1766,
+      "sha256": "1a24cf587fe03fc6cad31b387ed92a68eae6487dba00e23ba04cf07480732d61"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/TimeXer_ETTm1.sh",
+      "size": 1765,
+      "sha256": "d616c3c1f7597d5f9799b574227390db09ad88e2b13e675b329f3491057b254a"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/TimeXer_ETTm2.sh",
+      "size": 1764,
+      "sha256": "e9e64eab509addd8f2438bb9ec6fa01dacec0237dfbf6bba010d94d6733b69d4"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Transformer_ETTh1.sh",
+      "size": 1643,
+      "sha256": "1a85ccb854c404230fa0df9caa699842f5f9b7296343f15c059fb2f6ff93dbfd"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Transformer_ETTh2.sh",
+      "size": 1643,
+      "sha256": "6be3e3391b0c35f55adcf45530d965c9ae7ef1778d95fa5ec17e4bd01baa2be4"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Transformer_ETTm1.sh",
+      "size": 1583,
+      "sha256": "d102b69894b35aa8b5f868344ae5c77390f7d5934f028d6660612bf40b375f20"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/Transformer_ETTm2.sh",
+      "size": 1643,
+      "sha256": "f9e9d65f797a4a575edfa2791f92e77bbbe9a4a2e1d38a18db1a0b21ca2187da"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/TSMixer_ETTh1.sh",
+      "size": 1609,
+      "sha256": "7e39102db7685193b7c7a400feaf080b4979c6e9f1909d250cdcd27064d62016"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/TSMixer_ETTh2.sh",
+      "size": 1609,
+      "sha256": "e43fd3c4502f14fef972e0750e4570688f09fc7168a9560cad25d8c3a54ecc20"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/TSMixer_ETTm1.sh",
+      "size": 1609,
+      "sha256": "f28d8bbe98f95099e2df4f82c2df1c0e9dd77a28f3547b6d6493b97f33b0310f"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/TSMixer_ETTm2.sh",
+      "size": 1609,
+      "sha256": "1b552067737d71653fc3f6936dc37b036935c867a9eb28d20790b96c4a31caaf"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/WPMixer_ETTh1.sh",
+      "size": 1249,
+      "sha256": "ac205a67bba5c2ff2e558af513fe6eaed17d04fa8f242cfa7dcdab09bfc45799"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/WPMixer_ETTh2.sh",
+      "size": 1227,
+      "sha256": "2fc2d7d6a283593c9a216afea5a65b226aa59eeb14be54fbb80c6d02be3fda2e"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/WPMixer_ETTm1.sh",
+      "size": 1231,
+      "sha256": "8ee0aacd25d448e68c2951e1a1c6ff19a110892d149fa85ef7761574de9e6049"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ETT_script/WPMixer_ETTm2.sh",
+      "size": 1255,
+      "sha256": "ff48834551312b1ee1c55c78e72576d6d943917e5c3c13772a1ba85a03d53286"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Exchange_script/Autoformer.sh",
+      "size": 1748,
+      "sha256": "2503ad67c71c4763b6efe811496216272fe7e635f3e090a823c372c23a4ea7e4"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Exchange_script/Crossformer.sh",
+      "size": 1930,
+      "sha256": "61ef26bebb0aa201c9dc33f41a2dd8147c1ced8e647150ebbfe3b0868fac1d14"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Exchange_script/FiLM.sh",
+      "size": 1716,
+      "sha256": "c12697f8715c6b2e1d7246f26d23b6fff817c12936c8a00a63313f40e7c8a146"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Exchange_script/Koopa.sh",
+      "size": 1733,
+      "sha256": "ed3da1869e40f4e51e54a0bc95970aef9e991f59ec725acf8f07d741c5f31615"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Exchange_script/Mamba.sh",
+      "size": 532,
+      "sha256": "7d7df852abdbca270ff3fca623620ce79849c532b2054cf5e1fea2b70b1c302c"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Exchange_script/MICN.sh",
+      "size": 1923,
+      "sha256": "700b6164dd46f53f6921aaad151a14fcdb986cf698dd175a63b019b4e3025d8a"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Exchange_script/Nonstationary_Transformer.sh",
+      "size": 1954,
+      "sha256": "00a0fd96aba4282f84dcaa04bc18cc4fa7e6651a39f6be5a034171237df6cb63"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Exchange_script/PatchTST.sh",
+      "size": 1725,
+      "sha256": "bc2a099f0d84c0adb3fde3c79021ab0ab8d203723d11d201a2b1abb77aba7bd9"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Exchange_script/Pyraformer.sh",
+      "size": 1748,
+      "sha256": "9668b443e1fe5f97e233694a1708f57f51e5feb0a6838ff81b25ee7dd6b06bd5"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Exchange_script/TimesNet.sh",
+      "size": 1927,
+      "sha256": "713ac204f8c30c6dca2a8750b83f754eb8d8fff1aa2111ed473c77c3e83d2903"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Exchange_script/Transformer.sh",
+      "size": 1728,
+      "sha256": "cce7ef91558e588abb7d6867e2ac39d5c09e1a353f45e4556d78006c53c79a75"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ILI_script/Autoformer.sh",
+      "size": 1668,
+      "sha256": "77090c047b73910348f385b6ddda85565ee4f1b128dc0619965d57bcb57f5e5a"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ILI_script/Crossformer.sh",
+      "size": 1926,
+      "sha256": "ec0471d17b8abde416d6fdcc9f96ed9c43df71dd710e28a69b8ceebd21dc960a"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ILI_script/FiLM.sh",
+      "size": 1626,
+      "sha256": "fdfdb6b3fd44a365016299442831e98b426a6c2f586cbe95a760f7cbdfc5d754"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ILI_script/Koopa.sh",
+      "size": 1693,
+      "sha256": "212d1c8438c0163f90dd4190741c240ccb26a0813c80502e02d89eb5690b0cab"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ILI_script/MICN.sh",
+      "size": 1851,
+      "sha256": "5f5762d922ad6e81ec0525963c6dfab84fe56a9abb88231664089f6c8e653d22"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ILI_script/Nonstationary_Transformer.sh",
+      "size": 1881,
+      "sha256": "a6ea5543326f310bfd2bf8cd1ecb87ae36a738cdaa5977ca57713e6e75c63245"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ILI_script/PatchTST.sh",
+      "size": 1804,
+      "sha256": "8596ae15147bf770071235d52deeb549bea5aab68e65223e9a33207843d102a7"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ILI_script/TimesNet.sh",
+      "size": 1854,
+      "sha256": "8e9e591c2fa5f26b371cdde48e8bcbd3840b82abc6b4b6c9416bed30392545db"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/ILI_script/Transformer.sh",
+      "size": 1669,
+      "sha256": "c7d358f7edd904723e8e5f3a5260cb5414485eb38bec0453fbe82249027c4630"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Mamba_all.sh",
+      "size": 209,
+      "sha256": "26a1cafbefbf22df64a762a40f305a5cafcf4768045e4e9595329d1117ca8286"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Traffic_script/Autoformer.sh",
+      "size": 1762,
+      "sha256": "9eb2693ad15dae4ab8b0def9a207af18097b7ad0cfa5b817ac237b4f66984b5f"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Traffic_script/Crossformer.sh",
+      "size": 1875,
+      "sha256": "cf0dccef45fccbd5fe87193274937fde6eaf6325007ddf89ad05ab6f225ee09c"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Traffic_script/FiLM.sh",
+      "size": 1752,
+      "sha256": "4c7bfbd44463df8ab41279ece48e2fc0488e2d6d0583566293dd8c08f532324c"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Traffic_script/iTransformer.sh",
+      "size": 1996,
+      "sha256": "09c2e373e141cc23f816438006dcbce51e8b8c3adb9785462edae970dd799298"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Traffic_script/Koopa.sh",
+      "size": 1705,
+      "sha256": "ea7f7d46356f5cee7eb78590aae42666f8d392e30271634aaf69e3706e3e4280"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Traffic_script/Mamba.sh",
+      "size": 524,
+      "sha256": "baea6fef3e1bdcb48e7e026fa2274e37123940a74696329f97a8dc9f5abfcaa5"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Traffic_script/MICN.sh",
+      "size": 1860,
+      "sha256": "3afbd340da3c469f33999b3f11ec345228faf4f38b32ad607a2d55c170a0bc5b"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Traffic_script/MultiPatchFormer.sh",
+      "size": 1833,
+      "sha256": "e4d65cffe68594644a7a1dcb0d01874c3ec48d5f1951c36db3859a03c9168bb4"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Traffic_script/Nonstationary_Transformer.sh",
+      "size": 1983,
+      "sha256": "82f3f9e58ed021cdc7e670f068171acdc30093a6920a7141b4e57ecca799650a"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Traffic_script/PatchTST.sh",
+      "size": 1940,
+      "sha256": "118d9cbd24b2235da49f43774c379392c60ff88be6615e8e6af5824fa77a5e23"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Traffic_script/Pyraformer.sh",
+      "size": 1762,
+      "sha256": "f4b60c642ada0ee668633f40d1990e3ffd5aff352aa48830c2da1fb6e293d20f"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Traffic_script/SegRNN.sh",
+      "size": 509,
+      "sha256": "4135f926bd78134f7ade9372c0ac786df699072892186759cf95caf84c83ef4c"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Traffic_script/TimeMixer.sh",
+      "size": 2815,
+      "sha256": "4b3170f24cb6cd62039a403f78566e29f50e6a43248105200fcf9db6b2e1faab"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Traffic_script/TimesNet.sh",
+      "size": 1864,
+      "sha256": "786de168b86040c1dd7eba27d71fa051a5e582e1525d504528a8bd6f533d8633"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Traffic_script/TimeXer.sh",
+      "size": 1924,
+      "sha256": "3a9b64221996d12c34bef68987a86c2d6b1825e9e3f41ee3fc80b4f6bc6300e3"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Traffic_script/Transformer.sh",
+      "size": 1764,
+      "sha256": "aee80001b925bd1fb93a5800e9d58c83abeadfdc7aa4efb56fe26709447ec2f0"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Traffic_script/TSMixer.sh",
+      "size": 1944,
+      "sha256": "5a8689b0cd667e83f0affde349c0b3bb930a8a86e4bf4c7f281f8dc351bd351a"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Traffic_script/WPMixer.sh",
+      "size": 1236,
+      "sha256": "543d14779ea251824ebf186a7200f9172dcaa51a9917c94fb3ee380ae127ecef"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Weather_script/Autoformer.sh",
+      "size": 1687,
+      "sha256": "dfdcdbb730ff95032545a06b43cc26e42ee5a7d322021ea73c0c73f00f620b37"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Weather_script/Crossformer.sh",
+      "size": 1890,
+      "sha256": "1668a3d3009353d16ffcb6ab79d8aa9cf23912dabb7e38177ce0bb0363634930"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Weather_script/FiLM.sh",
+      "size": 1619,
+      "sha256": "4e55eee1f97c6ef0ecf0fbc453ca62af355710dba2155e3bde5b7e4cb43d32cd"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Weather_script/iTransformer.sh",
+      "size": 1801,
+      "sha256": "99602b0e392b5a73fc43c9522fd34f576aa70807370ff4d429a139696fccdf2b"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Weather_script/Mamba.sh",
+      "size": 522,
+      "sha256": "44109d1ca39471c03c0141a19d21425a13d21a331c80d069ebf3776d0b50b431"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Weather_script/MICN.sh",
+      "size": 1883,
+      "sha256": "29e72ca9d4e6de496db062b9547e13e19cd827a7b7dcd59bca193376ae06f97e"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Weather_script/MultiPatchFormer.sh",
+      "size": 1823,
+      "sha256": "ed7f762f6dccdfe3cb097212bbdd892894a49cb890ef03e62a977786ecc65ae5"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Weather_script/Nonstationary_Transformer.sh",
+      "size": 1910,
+      "sha256": "ce5b1d58fcc5f140fc5da9f47493bd9ff2aefd985cf3d824a1fefa1e7bb0d299"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Weather_script/PatchTST.sh",
+      "size": 1855,
+      "sha256": "e31dbb0e596eba3cbea1102458e7eceb3ae0ecb2b8fcb7ef890b96404a0d7ee2"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Weather_script/Pyraformer.sh",
+      "size": 1687,
+      "sha256": "7500a0cb83013b6189c1bc276d32a5bfb826a953fc7f6e00a30aa475ce58dd73"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Weather_script/SegRNN.sh",
+      "size": 511,
+      "sha256": "81d6020208436ead457b3a8f706927e2efd44be266210bd360ed87a9b47397d6"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Weather_script/TimeMixer.sh",
+      "size": 2982,
+      "sha256": "24638b0358519d62024bc7d4e42ad76e0cb71f4b85b74482d32bd15d3816f8d2"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Weather_script/TimesNet.sh",
+      "size": 1887,
+      "sha256": "b8d26eac0653e9e0fee08ae1ddb689f07e9524f604e378766c4464bd3b589654"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Weather_script/TimeXer.sh",
+      "size": 1777,
+      "sha256": "0fc17a521fd3d73fdc9c4fdff6f9b0180c9479a688aaeded22c77a02b2b84802"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Weather_script/Transformer.sh",
+      "size": 1688,
+      "sha256": "3fb10063aed4e8d5face9579f8a59938cdfdb147ca951101bd2fae6b88664e80"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Weather_script/TSMixer.sh",
+      "size": 1819,
+      "sha256": "0dfcc7956d0c2ef32590623b7e4f3aa0f7b120e34be74ccb1a44f15a626baa55"
+    },
+    {
+      "path": "Time-Series-Library/scripts/long_term_forecast/Weather_script/WPMixer.sh",
+      "size": 1232,
+      "sha256": "ce95b1c4de1572b9409d2d17296c1939307fd1a6b44048a44746f2b0956213d3"
+    },
+    {
+      "path": "Time-Series-Library/scripts/short_term_forecast/Autoformer_M4.sh",
+      "size": 2579,
+      "sha256": "cbf538d124f2d5064d57a8ed80ff6b57c146ec703bf7593564979c30192e3f9e"
+    },
+    {
+      "path": "Time-Series-Library/scripts/short_term_forecast/Crossformer_M4.sh",
+      "size": 2741,
+      "sha256": "69e052c73b421bc7bca2159f0dc554e56d09530f62973d998d77c1d9dc7f5f7b"
+    },
+    {
+      "path": "Time-Series-Library/scripts/short_term_forecast/DLinear_M4.sh",
+      "size": 2576,
+      "sha256": "cc0e8e733d9ee0b6703f1e8850be132b3dcae765d34f8f38c0ef21e29cec3005"
+    },
+    {
+      "path": "Time-Series-Library/scripts/short_term_forecast/ETSformer_M4.sh",
+      "size": 2579,
+      "sha256": "828d6e5508f09ea2d15e25178df230534175873521c3812ff2c0d79a042d7118"
+    },
+    {
+      "path": "Time-Series-Library/scripts/short_term_forecast/FEDformer_M4.sh",
+      "size": 2578,
+      "sha256": "f7450ae79dc033abb3e3491422004a894b4dcf1d7246df6188e8eb7a70d382d8"
+    },
+    {
+      "path": "Time-Series-Library/scripts/short_term_forecast/FiLM_M4.sh",
+      "size": 2734,
+      "sha256": "67a68829bab4f39cdf91343cfe51fecbe2c68fc080bcba7e1eddc275d1b750f5"
+    },
+    {
+      "path": "Time-Series-Library/scripts/short_term_forecast/Informer_M4.sh",
+      "size": 2577,
+      "sha256": "4a27e895cc6daf06a02f5e1011765a951b8eee745f01c64e351b471bfa060869"
+    },
+    {
+      "path": "Time-Series-Library/scripts/short_term_forecast/iTransformer_M4.sh",
+      "size": 2580,
+      "sha256": "2bf6db6b0305625aa7042f4ab631d4680746728b221151cac374901355d05886"
+    },
+    {
+      "path": "Time-Series-Library/scripts/short_term_forecast/LightTS_M4.sh",
+      "size": 2576,
+      "sha256": "abe8022c76eb8710b12270e865a9490fd43ab626a975ce64002bffea70eb65db"
+    },
+    {
+      "path": "Time-Series-Library/scripts/short_term_forecast/Mamba_M4.sh",
+      "size": 2559,
+      "sha256": "d0ec995967cfb905669ba71eb20cad4536182db4caaf4b2789da00db7fbdb327"
+    },
+    {
+      "path": "Time-Series-Library/scripts/short_term_forecast/MICN_M4.sh",
+      "size": 2734,
+      "sha256": "b2b95fdd9afedca9503314279c516c601afdd97aa9b5be8d33ba0aaf13ee3b63"
+    },
+    {
+      "path": "Time-Series-Library/scripts/short_term_forecast/Nonstationary_Transformer_M4.sh",
+      "size": 2905,
+      "sha256": "04274a363cc54c8d3a65d466d36cb90fc6a825ecd3f74e2295a84c044fa74c1e"
+    },
+    {
+      "path": "Time-Series-Library/scripts/short_term_forecast/Pyraformer_M4.sh",
+      "size": 2579,
+      "sha256": "5ce49944504fa3dd4e7f61fccfb5d64504374c1699ae3187a68d16725e710cea"
+    },
+    {
+      "path": "Time-Series-Library/scripts/short_term_forecast/Reformer_M4.sh",
+      "size": 2577,
+      "sha256": "f571ab683ba7c31a21a93a0e17f260736881a870d886d2de22c1a01631cab7d0"
+    },
+    {
+      "path": "Time-Series-Library/scripts/short_term_forecast/TimeMixer_M4.sh",
+      "size": 3924,
+      "sha256": "f164c24fedacc7d8479b42df9802c76db6ab887f280688890c830ab356ea02ee"
+    },
+    {
+      "path": "Time-Series-Library/scripts/short_term_forecast/TimesNet_M4.sh",
+      "size": 2739,
+      "sha256": "d2cd09c44fc7becbd4bf454443954a685fc09506728c7707f636c2aee7ba3200"
+    },
+    {
+      "path": "Time-Series-Library/scripts/short_term_forecast/Transformer_M4.sh",
+      "size": 2579,
+      "sha256": "6efbb54893920b70aea335708978c722ad9e8b39d8b25f221f32a2591bd1ffd6"
+    },
+    {
+      "path": "Time-Series-Library/scripts/short_term_forecast/TSMixer_M4.sh",
+      "size": 2572,
+      "sha256": "32681e4d5de677d5e1facd351677b37f260691ff918f8965f84634f0b4065398"
+    },
+    {
+      "path": "Time-Series-Library/tutorial/conv.png",
+      "size": 683079,
+      "sha256": "c9aaee37032552a08b9d21540ac5f9b225e9dd97c8467c7d1e2274abb13399d0"
+    },
+    {
+      "path": "Time-Series-Library/tutorial/dataset.png",
+      "size": 30465,
+      "sha256": "a81406cfe64399a93d7ee79bfa0cdfaaa391717b71dbcb94ee836bbc664d9362"
+    },
+    {
+      "path": "Time-Series-Library/tutorial/fft.png",
+      "size": 637644,
+      "sha256": "aa2b172470c37fef5f46ba8b67c22bd9d76de9f7423117191994589cd2950c62"
+    },
+    {
+      "path": "Time-Series-Library/tutorial/result.png",
+      "size": 70386,
+      "sha256": "f16a17daab16dcf0fe0b968fe799ff4313642bf96e0968e548407c8410083440"
+    },
+    {
+      "path": "Time-Series-Library/tutorial/TimesNet_tutorial.ipynb",
+      "size": 67253,
+      "sha256": "71d250fe64a07c8028d47bcdaf25b544b2c487610029a6da554d3c114527af1c"
+    },
+    {
+      "path": "Time-Series-Library/utils/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "Time-Series-Library/utils/ADFtest.py",
+      "size": 2490,
+      "sha256": "fcc30ead66778d2f70409740f8d54287fbeb032cd080695879a370722f7a4b26"
+    },
+    {
+      "path": "Time-Series-Library/utils/augmentation.py",
+      "size": 19234,
+      "sha256": "17bac803a96fb6c98d0822052c1edc9f6bc72ae37eec5aa859e9e2918d537b69"
+    },
+    {
+      "path": "Time-Series-Library/utils/dtw.py",
+      "size": 7197,
+      "sha256": "a12084ab35783e4c09ddfadb54b0253f1fa8a3499abd88c772f93f499bcffa2a"
+    },
+    {
+      "path": "Time-Series-Library/utils/dtw_metric.py",
+      "size": 5817,
+      "sha256": "308c56507b01a945f38796f2f9b4bb104adc213ab574aa2693f93635c9748889"
+    },
+    {
+      "path": "Time-Series-Library/utils/losses.py",
+      "size": 3459,
+      "sha256": "d7f924f9abdf9dbbf097b60329a25ad727b163111014954ebf5856370a1aa116"
+    },
+    {
+      "path": "Time-Series-Library/utils/m4_summary.py",
+      "size": 6174,
+      "sha256": "bfc7ba06736c3919b4542b0e68a15280642d80989a7f837132121136e8a4e8a7"
+    },
+    {
+      "path": "Time-Series-Library/utils/masking.py",
+      "size": 832,
+      "sha256": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef"
+    },
+    {
+      "path": "Time-Series-Library/utils/metrics.py",
+      "size": 866,
+      "sha256": "0a565c3f64d7cd29d9a87dee0c22d48f4a6a329476f893458cc18a35fa46a5df"
+    },
+    {
+      "path": "Time-Series-Library/utils/print_args.py",
+      "size": 3141,
+      "sha256": "423454ec7e2cefe6d24a458903f6080e866efdbe78c0ac2481b2cf32d44c558a"
+    },
+    {
+      "path": "Time-Series-Library/utils/timefeatures.py",
+      "size": 4369,
+      "sha256": "319b3da2ef15ccae95162b1b4f4a9a0b0da63fa0062a7f6006a06dd567258d85"
+    },
+    {
+      "path": "Time-Series-Library/utils/tools.py",
+      "size": 3694,
+      "sha256": "f47237f29d2a27570ef11871d9acdc51d1742b3bd1d8d09e5226e4140f4ad024"
+    }
+  ]
+}

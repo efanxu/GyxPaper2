@@ -1,0 +1,32 @@
+{
+  "dataset_id": "SYNTHETIC_E1_A_SMOKE",
+  "shape": [
+    4,
+    144,
+    4,
+    16
+  ],
+  "feature_names": [
+    "Wspd",
+    "Wdir",
+    "Etmp",
+    "Itmp",
+    "Ndir",
+    "Pab1",
+    "Pab2",
+    "Pab3",
+    "Prtv",
+    "T2m",
+    "Sp",
+    "RelH",
+    "Wspd_w",
+    "Wdir_w",
+    "Tp",
+    "Patv_clean_for_input"
+  ],
+  "feature_order_hash": "b9878a5091618737ca8c126dcee80d5b70f122ff3901960a620cb6bc10e7f853",
+  "node_count": 4,
+  "node_order_hash": "synthetic",
+  "timestamp_count": 144,
+  "normalization_fit_scope": "synthetic_explicit_no_fit"
+}

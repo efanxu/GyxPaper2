@@ -1,0 +1,44 @@
+{
+  "events": [
+    {
+      "stage": "TRAIN_STARTED",
+      "time": "2026-07-20T23:45:24"
+    },
+    {
+      "stage": "TRAIN_FINISHED",
+      "time": "2026-07-21T00:05:32",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A5\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+      "last_completed_epoch": 13
+    },
+    {
+      "stage": "BEST_CHECKPOINT_SAVED",
+      "time": "2026-07-21T00:05:32",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A5\\STMGPrompt_ComponentAblation\\best_checkpoint.pt"
+    },
+    {
+      "stage": "FINAL_VALIDATION_STARTED",
+      "time": "2026-07-21T00:05:32"
+    },
+    {
+      "stage": "FINAL_VALIDATION_FINISHED",
+      "time": "2026-07-21T00:05:32"
+    },
+    {
+      "stage": "TEST_STARTED",
+      "time": "2026-07-21T00:05:32",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A5\\STMGPrompt_ComponentAblation\\best_checkpoint.pt"
+    },
+    {
+      "stage": "TEST_FINISHED",
+      "time": "2026-07-21T00:06:02"
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-21T00:07:08"
+    }
+  ],
+  "current_stage": "PROCESS_FINISHED",
+  "updated_at": "2026-07-21T00:07:08",
+  "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A5\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+  "last_completed_epoch": 13
+}

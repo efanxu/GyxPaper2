@@ -1,0 +1,30 @@
+{
+  "loss_function": "msmg_dwu_loss",
+  "base_loss": "smooth_l1",
+  "lambda_site": 0.2,
+  "ema_alpha": 0.9,
+  "node_weight_clip": [
+    0.5,
+    3.0
+  ],
+  "granularity_weight_mode": "difficulty_rate",
+  "eval_horizons": [
+    3,
+    6,
+    10
+  ],
+  "final_granularity_weight": {
+    "h3": 1.0375241041183472,
+    "h6": 0.9496015310287476,
+    "h10": 1.0128744840621948
+  },
+  "final_log_sigma_g": {
+    "h3": 0.0,
+    "h6": 0.0,
+    "h10": 0.0
+  },
+  "artifact_source_checkpoint": "best_checkpoint.pt",
+  "granularity_weight_curve_path": "custom_models\\results\\st_mgprompt\\smoke_v43_full_difficulty\\STMGPrompt_Full_MSMGDWU\\diagnostics\\granularity_weight_curve.png",
+  "granularity_weight_curve_fallback": "stdlib_png",
+  "granularity_weight_curve_error": "No module named 'matplotlib'"
+}

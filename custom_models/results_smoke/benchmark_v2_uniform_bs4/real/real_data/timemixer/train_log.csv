@@ -1,0 +1,2 @@
+epoch,train_loss,val_loss,val_score_h10,is_best
+1,0.15404623746871948,0.3123825490474701,25.176728892114,True

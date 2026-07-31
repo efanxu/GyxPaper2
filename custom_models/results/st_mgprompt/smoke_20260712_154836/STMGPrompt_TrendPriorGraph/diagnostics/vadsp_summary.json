@@ -1,0 +1,19 @@
+{
+  "volatility_mean": 0.12530732154846191,
+  "volatility_std": 0.08583687990903854,
+  "rolling_std_mean": 0.07386767119169235,
+  "rolling_std_std": 0.03399166837334633,
+  "gate_mean": 0.5350494384765625,
+  "gate_std": 0.003964244853705168,
+  "gate_min": 0.5283766388893127,
+  "gate_max": 0.5435335636138916,
+  "corr_gate_abs_delta_source": 0.9879321310478941,
+  "volatility_source_cols": [
+    "Wspd",
+    "Patv_clean_for_input"
+  ],
+  "history_only": true,
+  "uses_target_mask": false,
+  "uses_future_inputs": false,
+  "plot_error": "No module named 'matplotlib'"
+}

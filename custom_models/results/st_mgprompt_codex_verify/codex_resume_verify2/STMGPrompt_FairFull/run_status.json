@@ -1,0 +1,201 @@
+{
+  "events": [
+    {
+      "stage": "TRAIN_STARTED",
+      "time": "2026-07-15T22:12:17"
+    },
+    {
+      "stage": "TRAIN_FINISHED",
+      "time": "2026-07-15T22:12:23",
+      "checkpoint": "custom_models\\results\\st_mgprompt_codex_verify\\codex_resume_verify2\\STMGPrompt_FairFull\\best_checkpoint.pt",
+      "last_completed_epoch": 2
+    },
+    {
+      "stage": "BEST_CHECKPOINT_SAVED",
+      "time": "2026-07-15T22:12:23",
+      "checkpoint": "custom_models\\results\\st_mgprompt_codex_verify\\codex_resume_verify2\\STMGPrompt_FairFull\\best_checkpoint.pt"
+    },
+    {
+      "stage": "FINAL_VALIDATION_STARTED",
+      "time": "2026-07-15T22:12:23"
+    },
+    {
+      "stage": "FINAL_VALIDATION_FINISHED",
+      "time": "2026-07-15T22:12:23"
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-15T22:12:23",
+      "skip_test": true
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-15T22:12:23"
+    },
+    {
+      "stage": "TRAIN_STARTED",
+      "time": "2026-07-15T22:12:39"
+    },
+    {
+      "stage": "PROCESS_EXCEPTION",
+      "time": "2026-07-15T22:12:41",
+      "failure_stage": "PROCESS_EXCEPTION",
+      "last_completed_epoch": "2",
+      "best_checkpoint_exists": true,
+      "last_checkpoint_exists": true,
+      "train_complete_exists": true,
+      "evaluation_complete_exists": false,
+      "num_workers": 0,
+      "persistent_workers": false,
+      "amp_enabled": false,
+      "cuda_memory_allocated": 453120,
+      "cuda_memory_reserved": 2097152,
+      "error_type": "TypeError",
+      "error": "RNG state must be a torch.ByteTensor"
+    },
+    {
+      "stage": "TRAIN_STARTED",
+      "time": "2026-07-15T22:13:06"
+    },
+    {
+      "stage": "PROCESS_EXCEPTION",
+      "time": "2026-07-15T22:13:08",
+      "failure_stage": "PROCESS_EXCEPTION",
+      "last_completed_epoch": "2",
+      "best_checkpoint_exists": true,
+      "last_checkpoint_exists": true,
+      "train_complete_exists": true,
+      "evaluation_complete_exists": false,
+      "num_workers": 0,
+      "persistent_workers": false,
+      "amp_enabled": false,
+      "cuda_memory_allocated": 453632,
+      "cuda_memory_reserved": 2097152,
+      "error_type": "TypeError",
+      "error": "RNG state must be a torch.ByteTensor"
+    },
+    {
+      "stage": "TRAIN_STARTED",
+      "time": "2026-07-15T22:13:30"
+    },
+    {
+      "stage": "TRAIN_FINISHED",
+      "time": "2026-07-15T22:13:34",
+      "checkpoint": "custom_models\\results\\st_mgprompt_codex_verify\\codex_resume_verify2\\STMGPrompt_FairFull\\best_checkpoint.pt",
+      "last_completed_epoch": 3
+    },
+    {
+      "stage": "BEST_CHECKPOINT_SAVED",
+      "time": "2026-07-15T22:13:34",
+      "checkpoint": "custom_models\\results\\st_mgprompt_codex_verify\\codex_resume_verify2\\STMGPrompt_FairFull\\best_checkpoint.pt"
+    },
+    {
+      "stage": "FINAL_VALIDATION_STARTED",
+      "time": "2026-07-15T22:13:34"
+    },
+    {
+      "stage": "FINAL_VALIDATION_FINISHED",
+      "time": "2026-07-15T22:13:34"
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-15T22:13:34",
+      "skip_test": true
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-15T22:13:34"
+    },
+    {
+      "stage": "TEST_STARTED",
+      "time": "2026-07-15T22:13:49",
+      "checkpoint": "custom_models\\results\\st_mgprompt_codex_verify\\codex_resume_verify2\\STMGPrompt_FairFull\\best_checkpoint.pt"
+    },
+    {
+      "stage": "FINAL_VALIDATION_STARTED",
+      "time": "2026-07-15T22:13:49"
+    },
+    {
+      "stage": "FINAL_VALIDATION_FINISHED",
+      "time": "2026-07-15T22:13:49"
+    },
+    {
+      "stage": "TEST_FINISHED",
+      "time": "2026-07-15T22:13:49"
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-15T22:13:49"
+    },
+    {
+      "stage": "TRAIN_STARTED",
+      "time": "2026-07-15T22:15:26"
+    },
+    {
+      "stage": "TRAIN_FINISHED",
+      "time": "2026-07-15T22:15:30",
+      "checkpoint": "custom_models\\results\\st_mgprompt_codex_verify\\codex_resume_verify2\\STMGPrompt_FairFull\\best_checkpoint.pt",
+      "last_completed_epoch": 4
+    },
+    {
+      "stage": "BEST_CHECKPOINT_SAVED",
+      "time": "2026-07-15T22:15:30",
+      "checkpoint": "custom_models\\results\\st_mgprompt_codex_verify\\codex_resume_verify2\\STMGPrompt_FairFull\\best_checkpoint.pt"
+    },
+    {
+      "stage": "FINAL_VALIDATION_STARTED",
+      "time": "2026-07-15T22:15:30"
+    },
+    {
+      "stage": "FINAL_VALIDATION_FINISHED",
+      "time": "2026-07-15T22:15:30"
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-15T22:15:30",
+      "skip_test": true
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-15T22:15:30"
+    },
+    {
+      "stage": "TRAIN_STARTED",
+      "time": "2026-07-15T22:15:50"
+    },
+    {
+      "stage": "PROCESS_EXCEPTION",
+      "time": "2026-07-15T22:15:52",
+      "failure_stage": "PROCESS_EXCEPTION",
+      "last_completed_epoch": "4",
+      "best_checkpoint_exists": true,
+      "last_checkpoint_exists": true,
+      "train_complete_exists": true,
+      "evaluation_complete_exists": true,
+      "num_workers": 0,
+      "persistent_workers": false,
+      "amp_enabled": false,
+      "cuda_memory_allocated": 526336,
+      "cuda_memory_reserved": 2097152,
+      "error_type": "RuntimeError",
+      "error": "Strict resume rejected because checkpoint config differs from current config."
+    }
+  ],
+  "current_stage": "PROCESS_EXCEPTION",
+  "updated_at": "2026-07-15T22:15:52",
+  "checkpoint": "custom_models\\results\\st_mgprompt_codex_verify\\codex_resume_verify2\\STMGPrompt_FairFull\\best_checkpoint.pt",
+  "last_completed_epoch": "4",
+  "skip_test": true,
+  "failure_stage": "PROCESS_EXCEPTION",
+  "best_checkpoint_exists": true,
+  "last_checkpoint_exists": true,
+  "train_complete_exists": true,
+  "evaluation_complete_exists": true,
+  "num_workers": 0,
+  "persistent_workers": false,
+  "amp_enabled": false,
+  "cuda_memory_allocated": 526336,
+  "cuda_memory_reserved": 2097152,
+  "error_type": "RuntimeError",
+  "error": "Strict resume rejected because checkpoint config differs from current config."
+}

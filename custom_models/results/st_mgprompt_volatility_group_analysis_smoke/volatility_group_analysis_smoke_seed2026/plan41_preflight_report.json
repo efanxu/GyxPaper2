@@ -1,0 +1,8 @@
+{
+  "preflight_status": "passed",
+  "smoke": true,
+  "formal_checkpoint_used": false,
+  "training_performed": false,
+  "a0_dynamic_gate": true,
+  "a1_fixed_dual_gate": 0.5
+}

@@ -1,0 +1,43 @@
+{
+  "model_id": "moving_average",
+  "baseline_rule": "repeat_physical_trailing_mean_Patv_clean_for_input",
+  "ma_window": 144,
+  "node_semantics": "node_shared",
+  "cross_node_interaction": false,
+  "optimizer": null,
+  "scheduler": null,
+  "epochs": null,
+  "early_stopping": null,
+  "run_mode": "smoke",
+  "horizon": 10,
+  "lookback": 144,
+  "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "experiment_profile_id": "e5_common_loss_architecture_v1",
+  "loss": {
+    "id": "masked_score_aligned_hybrid",
+    "source_hash": "f90b99df342de7b1b1ee6ea39bbf30cc84eceb11663b38dfc7070d3905afc32b",
+    "profile_hash": "0fc1fca238d7161d3a0257d639a11df8cc92ad2a1c4d61eab234338fa24b59fa"
+  },
+  "run_id": null,
+  "output_root": null,
+  "preflight_identity": null,
+  "provenance": {
+    "base_model_id": "moving_average",
+    "base_model_config_hash": "2cadb7ff357946f0a31ae3b4482d169544acd743bb188a15613a6d57703aa1ba",
+    "base_model_source_closure_hash": null,
+    "e5_common_loss_protocol_hash": "a7c5b5a5b15b5ab70d08bf926b9de351f05740940f16409c801eed419287141a"
+  },
+  "experiment_config_hash": "005b8b41cc0f1835f8cb9ae2877bd9caa3d4f895f6bc591dac7c2582943cfd7e",
+  "base_benchmark_protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "training_batch_profile_id": "uniform_train_batch4_v1",
+  "training_batch_profile_hash": "f58bbc161dfba0f00774879fdf2f78ec7c59a7faff9ef28a1733a2ed6835fe66",
+  "train_batch_size": 4,
+  "val_batch_size": 4,
+  "test_batch_size": 4,
+  "gradient_accumulation_steps": 1,
+  "effective_train_batch_size": 4,
+  "amp_enabled": true,
+  "artifact_profile": "NON_TRAINABLE",
+  "formal_registry_entry": true,
+  "formal_training": false
+}

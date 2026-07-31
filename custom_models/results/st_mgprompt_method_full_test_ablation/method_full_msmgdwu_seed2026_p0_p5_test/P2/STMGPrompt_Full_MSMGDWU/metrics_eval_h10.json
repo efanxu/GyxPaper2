@@ -1,0 +1,18 @@
+{
+  "horizon": 10,
+  "MAE": 132.07800891229334,
+  "RMSE": 189.2051680907776,
+  "R2": 0.7946845608916985,
+  "SMAPE": 0.5964227953901955,
+  "MAPE": 1.6707876094387106,
+  "official_align_score": 14.217939228934911,
+  "score": 14.217939228934911,
+  "Score": 14.217939228934911,
+  "valid_target_count": 4186848,
+  "total_target_count": 6839360,
+  "valid_target_ratio": 0.6121695597248865,
+  "num_valid_points": 4186848,
+  "score_compute_unit": "MW_after_kW_to_MW_conversion",
+  "score_lower_is_better": true,
+  "physical_clip_applied": true
+}

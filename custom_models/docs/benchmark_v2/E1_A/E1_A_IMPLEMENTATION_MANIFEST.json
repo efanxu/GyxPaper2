@@ -1,0 +1,137 @@
+{
+  "task": "E1-A",
+  "formal_training_started": false,
+  "formal_evaluation_started": false,
+  "formal_runs": [],
+  "implemented_models": [
+    "persistence",
+    "moving_average",
+    "gru"
+  ],
+  "registry_model_count": 28,
+  "runtime_available_count": 3,
+  "runtime_unavailable_count": 25,
+  "trainable_count": 1,
+  "non_trainable_count": 2,
+  "protocol_hash_before": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "protocol_hash_after": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "canonical_sha256_before": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+  "canonical_sha256_after": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+  "st_mgprompt_modified": false,
+  "tslib_modified": false,
+  "p0_p5_modified": false,
+  "a0_a8_modified": false,
+  "dependencies_changed": false,
+  "files_created": [
+    "custom_models/src/benchmark_v2/models/__init__.py",
+    "custom_models/src/benchmark_v2/models/persistence.py",
+    "custom_models/src/benchmark_v2/models/moving_average.py",
+    "custom_models/src/benchmark_v2/models/gru.py",
+    "custom_models/src/benchmark_v2/configs/__init__.py",
+    "custom_models/src/benchmark_v2/configs/persistence.py",
+    "custom_models/src/benchmark_v2/configs/moving_average.py",
+    "custom_models/src/benchmark_v2/configs/gru.py",
+    "custom_models/src/benchmark_v2/adapters/statistical_baselines.py",
+    "custom_models/src/benchmark_v2/adapters/gru.py",
+    "custom_models/src/benchmark_v2/model_runtime.py",
+    "custom_models/src/benchmark_v2/model_cli.py",
+    "custom_models/tests/benchmark_v2/test_e1_a_models.py",
+    "custom_models/tests/benchmark_v2/test_e1_a_registry_cli.py",
+    "custom_models/docs/benchmark_v2/E1_A/E1_A_MODEL_SPECIFICATIONS.md",
+    "custom_models/docs/benchmark_v2/E1_A/E1_A_IMPLEMENTATION_REPORT.md",
+    "custom_models/docs/benchmark_v2/E1_A/E1_A_RUNBOOK.md",
+    "custom_models/docs/benchmark_v2/E1_A/E1_A_IMPLEMENTATION_MANIFEST.json",
+    "custom_models/docs/benchmark_v2/E1_A/HANDOFF_E1_A.md",
+    "custom_models/docs/benchmark_v2/E1_A/test_results.json",
+    "custom_models/docs/benchmark_v2/E1_A/model_smoke_results.json",
+    "custom_models/docs/benchmark_v2/E1_A/full_shape_model_smoke_results.json",
+    "custom_models/docs/benchmark_v2/E1_A/real_data_smoke_results.json",
+    "custom_models/docs/benchmark_v2/E1_A/protected_core_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E1_A/protected_core_hashes_after.json",
+    "custom_models/docs/benchmark_v2/E1_A/protected_tslib_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E1_A/protected_tslib_hashes_after.json",
+    "custom_models/docs/benchmark_v2/E1_A/protected_benchmark_frozen_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E1_A/protected_benchmark_frozen_hashes_after.json"
+  ],
+  "files_modified": [
+    "custom_models/src/benchmark_v2/adapters/__init__.py",
+    "custom_models/src/benchmark_v2/registry/benchmark_registry.json",
+    "custom_models/src/benchmark_v2/registry/registry.py",
+    "custom_models/src/benchmark_v2/engine.py",
+    "custom_models/src/benchmark_v2/runtime.py",
+    "custom_models/src/benchmark_v2/cli.py",
+    "custom_models/src/benchmark_v2/run_benchmark.py",
+    "custom_models/src/benchmark_v2/metrics.py",
+    "custom_models/tests/benchmark_v2/test_losses_metrics.py"
+  ],
+  "files_deleted": [],
+  "generated_smoke_artifacts": {
+    "root": "custom_models/results_smoke/benchmark_v2/e1_a",
+    "file_count": 114,
+    "accepted_run_artifacts": 6,
+    "full_shape_result_files": 3,
+    "failed_attempts_retained": 2
+  },
+  "commands_executed": [
+    "D:/Apps/Miniconda3/envs/env_tslib/python.exe -m compileall -q custom_models/src/benchmark_v2 custom_models/tests/benchmark_v2",
+    "D:/Apps/Miniconda3/envs/env_tslib/python.exe -m unittest discover -s custom_models/tests/benchmark_v2 -p test_*.py",
+    "D:/Apps/Miniconda3/envs/env_tslib/python.exe -m benchmark_v2.cli protocol-check",
+    "D:/Apps/Miniconda3/envs/env_tslib/python.exe -m benchmark_v2.cli model-smoke --model <persistence|moving_average|gru>",
+    "D:/Apps/Miniconda3/envs/env_tslib/python.exe -m benchmark_v2.cli full-shape-model-smoke --model <persistence|moving_average|gru>",
+    "D:/Apps/Miniconda3/envs/env_tslib/python.exe -m benchmark_v2.cli real-data-model-smoke --model <persistence|moving_average|gru>",
+    "D:/Apps/Miniconda3/envs/env_tslib/python.exe custom_models/src/benchmark_v2/run_benchmark.py registry-show --model persistence",
+    "SHA256 before/after tree protection and final artifact validation checks"
+  ],
+  "tests": [
+    {
+      "name": "benchmark_v2 unittest suite",
+      "status": "PASS",
+      "tests_run": 30
+    },
+    {
+      "name": "formal protocol check",
+      "status": "PASS"
+    },
+    {
+      "name": "accepted artifact validation",
+      "status": "PASS",
+      "artifacts_checked": 6
+    },
+    {
+      "name": "masked raw NaN official Score regression",
+      "status": "PASS_AFTER_MINIMAL_FRAMEWORK_FIX",
+      "pre_fix_status": "FAIL"
+    }
+  ],
+  "smoke_runs": [
+    {"name": "Persistence ordinary", "status": "PASS"},
+    {"name": "MovingAverage ordinary", "status": "PASS"},
+    {"name": "GRU ordinary", "status": "PASS"},
+    {"name": "Persistence full-shape", "status": "PASS"},
+    {"name": "MovingAverage full-shape", "status": "PASS"},
+    {"name": "GRU full-shape AMP backward", "status": "PASS"},
+    {"name": "Persistence limited real data retry2", "status": "PASS"},
+    {"name": "MovingAverage limited real data", "status": "PASS"},
+    {"name": "GRU limited real data", "status": "PASS"},
+    {"name": "Persistence limited real data initial", "status": "FAIL"},
+    {"name": "Persistence limited real data retry1", "status": "FAIL"}
+  ],
+  "framework_defect_fixes": [
+    {
+      "file": "custom_models/src/benchmark_v2/metrics.py",
+      "failure_test": "test_official_score_ignores_masked_nan_targets",
+      "pre_fix_result": "FAIL: nan != 0.0",
+      "post_fix_result": "PASS",
+      "protocol_semantics_changed": false
+    }
+  ],
+  "formal_output_root_existed_before": false,
+  "formal_output_root_created": false,
+  "task_start_existing_changes": "UNKNOWN_NO_GIT_METADATA",
+  "warnings": [
+    "Project has no Git metadata; unrelated pre-existing changes cannot be classified by Git.",
+    "CUDA allocator warned that expandable_segments is unsupported on this Windows platform; all required CUDA smokes still passed.",
+    "Two failed real-data Persistence attempts are retained and explicitly marked FAIL.",
+    "Smoke metrics are diagnostic only and are not formal paper results."
+  ]
+}

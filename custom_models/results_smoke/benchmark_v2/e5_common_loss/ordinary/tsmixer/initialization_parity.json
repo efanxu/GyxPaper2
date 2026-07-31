@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "state_dict_keys_equal": true,
+  "base_state_dict_hash": "7b3bb772fa0be4d5dbfe7c1fb820ef57d9d523309b6f0a2bd41f8602766043ad",
+  "e5_state_dict_hash": "7b3bb772fa0be4d5dbfe7c1fb820ef57d9d523309b6f0a2bd41f8602766043ad",
+  "parameter_count_equal": true,
+  "trainable_parameter_count_equal": true,
+  "forward_equal": true,
+  "optimizer_param_groups_equal": true
+}

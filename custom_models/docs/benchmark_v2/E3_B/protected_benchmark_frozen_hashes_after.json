@@ -1,0 +1,144 @@
+{
+  "task": "E3-B",
+  "snapshot": "E3-B task after",
+  "algorithm": "SHA256; directory digest is SHA256 of sorted relative_path:sha256 newline records; __pycache__ excluded",
+  "paths": [
+    {
+      "path": "custom_models/src/benchmark_v2/protocol/benchmark_protocol_v1.json",
+      "exists": true,
+      "kind": "file",
+      "sha256": "a250a476a03683c7ed62c77685d8b878b0fb5e2d371b694aba308d6df62e2492",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/data",
+      "exists": true,
+      "kind": "directory",
+      "file_count": 5,
+      "tree_sha256": "f0b9f63affe57bd39bb7fa0038199b63a24aaa8152729ce9eff4b0d2e9fdca6e",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/schemas",
+      "exists": true,
+      "kind": "directory",
+      "file_count": 8,
+      "tree_sha256": "d8e36f1ca35daf8db2edf6ce0eedc8028a2958f55717f33514d0c1dd8be789c5",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/contracts",
+      "exists": true,
+      "kind": "directory",
+      "file_count": 5,
+      "tree_sha256": "0b6c820b70b0ebc3e019172ce4c591e9d619d8ae40b9aea449bdcc2337a9ebb5",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/losses.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "89a6e5636bc3a15b0b2385837256cccb0bc8c5c3d68b6c0d63b7f559f0874dce",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/metrics.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "0afefe18e64d02f535b7e09b6f72cda3e7c7bb384de603f1831da5352af7bfcf",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/checkpointing.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "b5415a92fbcb615619561be1925877dbc47a537c71da61d1aea47bbab6aeb35b",
+      "matches_before": false
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/artifacts.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "ae03b761863db131120f0561e71cc55c689fcf4dcad97e62a4cb890d1aacdf8e",
+      "matches_before": false
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/engine.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "713e48bb1d1fb89ab8d545e420e74f87d6914d00c379c3158d9747f9ba7ca3c9",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/hardware_preflight.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "5d34314c2ad18433878d676d75843696ae4158bc12a3e5bce7dc4b0ca9b9b0ce",
+      "matches_before": false
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/model_runtime.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "6dfcbcabda9bea7ace70aad4e0323918b099fe4e502adb2c69627767a26e995c",
+      "matches_before": false
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/model_cli.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "98d4b97eadab9d02b90df7f4a9b7f527304be810c8b6390ef42674bd92d4c7f8",
+      "matches_before": false
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/cli.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "45c3eb4f1684a6e63cbd13f4eeeb1c026fe281a2cf55065f3967eac5e84009b0",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/runtime.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "f60671a619fab41b7773c2d8f1765a4631f70973292fa74023cd35717d29ec08",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/run_benchmark.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "f18a250a5426538547292ddd921bf45bfa5a2e18abb07bf619396b64e88dcce4",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/registry",
+      "exists": true,
+      "kind": "directory",
+      "file_count": 4,
+      "tree_sha256": "0862fcfafed55ccc62e326d26ae818671673320ab9c537b01603de2df6927317",
+      "matches_before": false
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9",
+      "matches_before": true
+    }
+  ],
+  "protocol_file_sha256": "a250a476a03683c7ed62c77685d8b878b0fb5e2d371b694aba308d6df62e2492",
+  "canonical_checkpoint_sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+  "formal_output_root_existed": false,
+  "mismatches": [
+    "custom_models/src/benchmark_v2/checkpointing.py",
+    "custom_models/src/benchmark_v2/artifacts.py",
+    "custom_models/src/benchmark_v2/hardware_preflight.py",
+    "custom_models/src/benchmark_v2/model_runtime.py",
+    "custom_models/src/benchmark_v2/model_cli.py",
+    "custom_models/src/benchmark_v2/registry"
+  ],
+  "protocol_matches_before": true,
+  "canonical_matches_before": true,
+  "formal_output_root_matches_before": true
+}

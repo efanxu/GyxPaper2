@@ -1,0 +1,32 @@
+{
+  "schema_version": "current_batch4_scope_exclusions_v1",
+  "benchmark_scope_id": "benchmark_v2_batch4_scope26_seed2026",
+  "e5_scope_id": "e5_batch4_scope27_seed2026",
+  "status": "ACTIVE",
+  "exclusions": [
+    {
+      "model_id": "segrnn",
+      "display_name": "SegRNN",
+      "status": "EXCLUDED_FROM_CURRENT_FORMAL_SCOPE",
+      "reason": "RESOURCE_REQUIREMENT_EXCEEDS_AVAILABLE_FORMAL_HARDWARE",
+      "source_code_retained": true,
+      "historical_evidence_retained": true
+    },
+    {
+      "model_id": "msgnet",
+      "display_name": "MSGNet",
+      "status": "EXCLUDED_FROM_CURRENT_FORMAL_SCOPE",
+      "reason": "RESOURCE_REQUIREMENT_EXCEEDS_AVAILABLE_FORMAL_HARDWARE",
+      "source_code_retained": true,
+      "historical_evidence_retained": true
+    }
+  ],
+  "forbidden_statuses_for_exclusions": [
+    "MISSING",
+    "FAILED",
+    "BLOCKED",
+    "PENDING",
+    "REQUIRED",
+    "NOT_READY"
+  ]
+}

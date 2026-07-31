@@ -1,0 +1,29 @@
+{
+  "task": "E2-D",
+  "status": "PASS",
+  "shared_tests_run": 9,
+  "e2_d_model_specific_tests_run": 2,
+  "test_only_dummy_process_runner": true,
+  "exact_shape": {
+    "B": 32,
+    "T": 144,
+    "N": 134,
+    "C": 16,
+    "H": 10
+  },
+  "verified": {
+    "identity_contains_model_config_protocol_source_and_exact_shape": true,
+    "crossformer_local_pass_does_not_require_formal_preflight": true,
+    "msgnet_and_timefilter_local_oom_require_preflight": true,
+    "missing_pass_spawns_preflight": true,
+    "matching_pass_spawns_formal_worker_only_after_preflight_exit": true,
+    "preflight_pid_differs_from_formal_pid": true,
+    "fail_oom_creates_no_formal_run": true,
+    "fail_non_oom_creates_no_formal_run": true,
+    "config_mismatch_not_reused": true,
+    "source_hash_mismatch_not_reused": true,
+    "shape_mismatch_not_reused": true,
+    "parent_launcher_imports_no_torch_and_constructs_no_cuda_tensor": true
+  },
+  "target_high_memory_hardware_preflight": "NOT_RUN"
+}

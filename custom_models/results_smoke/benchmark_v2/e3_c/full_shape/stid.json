@@ -1,0 +1,71 @@
+{
+  "model_id": "stid",
+  "run_mode": "smoke",
+  "formal_registry_entry": true,
+  "formal_training": false,
+  "requested_shape": {
+    "B": 32,
+    "T": 144,
+    "N": 134,
+    "C": 16,
+    "H": 10
+  },
+  "device": "cuda",
+  "cuda_available": true,
+  "amp_enabled": true,
+  "status": "PASS",
+  "output_shape": [
+    32,
+    134,
+    10
+  ],
+  "loss": 6.265101909637451,
+  "elapsed_seconds": 1.4932181000476703,
+  "peak_gpu_memory_bytes": 133265920,
+  "peak_allocated_memory": 133265920,
+  "peak_reserved_memory": 150994944,
+  "gpu_name": "NVIDIA GeForce GTX 1060",
+  "gpu_total_memory": 6442319872,
+  "parameter_count": 183242,
+  "trainable_parameter_count": 183242,
+  "backward_completed": true,
+  "forward_completed": true,
+  "inverse_transform_parity": null,
+  "identity_diagnostic": {
+    "learned_graph": null,
+    "identity_type": "node_embedding_not_adjacency",
+    "node_embedding_shape": [
+      134,
+      32
+    ],
+    "node_embedding_hash": "87976094afbca93a186093b6569964441085fd695203084603632bce698ffa63",
+    "cosine_similarity_diagnostic_only": {
+      "shape": [
+        134,
+        134
+      ],
+      "min": -0.5980290174484253,
+      "max": 1.000000238418579,
+      "mean": 0.008058927021920681
+    }
+  },
+  "graph_id": "sdwpf_physical_knn_v1",
+  "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
+  "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
+  "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
+  "location_source_hash": "233a120f4db2b52402bf4dc7c90631ac9301d6af236a56c6a245e46beec1f236",
+  "selected_k": 4,
+  "graph_support_names": [],
+  "graph_support_hashes": [],
+  "graph_runtime_dtype": "torch.float32",
+  "graph_frozen_dtype": "numpy.float64",
+  "graph_support_persistent": false,
+  "graph_context_id": "sdwpf_physical_knn_v1",
+  "uses_physical_support": false,
+  "physical_support_names": [],
+  "physical_support_hashes": [],
+  "adaptive_graph_policy": "none",
+  "node_identity_policy": "learned_node_embedding",
+  "temporal_identity_policy": "historical_anchor_time_only",
+  "adaptive_initialization_policy": "not_applicable"
+}

@@ -1,0 +1,154 @@
+{
+  "task": "E3-C exact full-shape engineering smoke",
+  "formal_training": false,
+  "selection_use": false,
+  "exact_shape": {
+    "B": 32,
+    "T": 144,
+    "N": 134,
+    "C": 16,
+    "H": 10
+  },
+  "results": [
+    {
+      "model_id": "graph_wavenet",
+      "status": "PASS",
+      "requested_shape": {
+        "B": 32,
+        "T": 144,
+        "N": 134,
+        "C": 16,
+        "H": 10
+      },
+      "output_shape": [
+        32,
+        134,
+        10
+      ],
+      "device": "cuda",
+      "cuda_available": true,
+      "amp_enabled": true,
+      "loss": 5.349752426147461,
+      "elapsed_seconds": 7.26021049998235,
+      "peak_allocated_memory": 6827258368,
+      "peak_reserved_memory": 7669284864,
+      "gpu_name": "NVIDIA GeForce GTX 1060",
+      "gpu_total_memory": 6442319872,
+      "parameter_count": 307362,
+      "forward_completed": true,
+      "backward_completed": true,
+      "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
+      "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
+      "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
+      "uses_physical_support": true,
+      "adaptive_graph_policy": "learned_softmax_relu_low_rank",
+      "node_identity_policy": "adaptive_low_rank_node_parameters",
+      "temporal_identity_policy": "none"
+    },
+    {
+      "model_id": "mtgnn",
+      "status": "PASS",
+      "requested_shape": {
+        "B": 32,
+        "T": 144,
+        "N": 134,
+        "C": 16,
+        "H": 10
+      },
+      "output_shape": [
+        32,
+        134,
+        10
+      ],
+      "device": "cuda",
+      "cuda_available": true,
+      "amp_enabled": true,
+      "loss": 5.9419355392456055,
+      "elapsed_seconds": 1.9114873999496922,
+      "peak_allocated_memory": 3305245184,
+      "peak_reserved_memory": 4452253696,
+      "gpu_name": "NVIDIA GeForce GTX 1060",
+      "gpu_total_memory": 6442319872,
+      "parameter_count": 4686714,
+      "forward_completed": true,
+      "backward_completed": true,
+      "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
+      "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
+      "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
+      "uses_physical_support": false,
+      "adaptive_graph_policy": "directed_topk_graph_constructor",
+      "node_identity_policy": "learned_directed_graph_node_embeddings",
+      "temporal_identity_policy": "none"
+    },
+    {
+      "model_id": "agcrn",
+      "status": "PASS",
+      "requested_shape": {
+        "B": 32,
+        "T": 144,
+        "N": 134,
+        "C": 16,
+        "H": 10
+      },
+      "output_shape": [
+        32,
+        134,
+        10
+      ],
+      "device": "cuda",
+      "cuda_available": true,
+      "amp_enabled": true,
+      "loss": 5.349662780761719,
+      "elapsed_seconds": 11.732836700044572,
+      "peak_allocated_memory": 6256342528,
+      "peak_reserved_memory": 6371147776,
+      "gpu_name": "NVIDIA GeForce GTX 1060",
+      "gpu_total_memory": 6442319872,
+      "parameter_count": 804550,
+      "forward_completed": true,
+      "backward_completed": true,
+      "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
+      "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
+      "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
+      "uses_physical_support": false,
+      "adaptive_graph_policy": "DAGG_from_node_embeddings",
+      "node_identity_policy": "NAPL_shared_learned_node_embeddings",
+      "temporal_identity_policy": "none"
+    },
+    {
+      "model_id": "stid",
+      "status": "PASS",
+      "requested_shape": {
+        "B": 32,
+        "T": 144,
+        "N": 134,
+        "C": 16,
+        "H": 10
+      },
+      "output_shape": [
+        32,
+        134,
+        10
+      ],
+      "device": "cuda",
+      "cuda_available": true,
+      "amp_enabled": true,
+      "loss": 6.265101909637451,
+      "elapsed_seconds": 1.4932181000476703,
+      "peak_allocated_memory": 133265920,
+      "peak_reserved_memory": 150994944,
+      "gpu_name": "NVIDIA GeForce GTX 1060",
+      "gpu_total_memory": 6442319872,
+      "parameter_count": 183242,
+      "forward_completed": true,
+      "backward_completed": true,
+      "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
+      "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
+      "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
+      "uses_physical_support": false,
+      "adaptive_graph_policy": "none",
+      "node_identity_policy": "learned_node_embedding",
+      "temporal_identity_policy": "historical_anchor_time_only"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "simulated_failure": "P0 validation OOM with best_val_Score_H10=None",
+  "p0_status": "failed",
+  "blocked_variants": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5"
+  ],
+  "resume_p0_would_run": true,
+  "completed_variant_would_be_skipped": true,
+  "val_summary_written": true,
+  "failure_summary_written": true
+}

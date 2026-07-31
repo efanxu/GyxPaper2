@@ -1,0 +1,6 @@
+﻿variant_id,trained_variant_id,granularity_weight_mode,site_weight_mode,loss_function,diagnostics_path,ema_alpha,final_granularity_weight_h10,final_granularity_weight_h3,final_granularity_weight_h6,lambda_site
+L0_FULL_MSMGDWU,S0_FULL_A0,,,,D:\PaperProject\GyxPaper2\custom_models\results\st_mgprompt_supplementary_ablation_smoke\scheduler_smoke_seed2026\S0_FULL_A0\diagnostics\loss_diagnostics_summary.json,,,,,
+L1_STATIC_MG,L1_STATIC_MG,,,,D:\PaperProject\GyxPaper2\custom_models\results\st_mgprompt_supplementary_ablation_smoke\scheduler_smoke_seed2026\L1_STATIC_MG\diagnostics\loss_diagnostics_summary.json,,,,,
+L2_HORIZON_DWU_ONLY,L2_HORIZON_DWU_ONLY,,,,D:\PaperProject\GyxPaper2\custom_models\results\st_mgprompt_supplementary_ablation_smoke\scheduler_smoke_seed2026\L2_HORIZON_DWU_ONLY\diagnostics\loss_diagnostics_summary.json,,,,,
+L3_SITE_DWU_ONLY,L3_SITE_DWU_ONLY,,,,D:\PaperProject\GyxPaper2\custom_models\results\st_mgprompt_supplementary_ablation_smoke\scheduler_smoke_seed2026\L3_SITE_DWU_ONLY\diagnostics\loss_diagnostics_summary.json,,,,,
+L4_MASKED_SCORE_HYBRID_REFERENCE,L4_MASKED_SCORE_HYBRID_REFERENCE,,,,D:\PaperProject\GyxPaper2\custom_models\results\st_mgprompt_supplementary_ablation_smoke\scheduler_smoke_seed2026\L4_MASKED_SCORE_HYBRID_REFERENCE\diagnostics\loss_diagnostics_summary.json,,,,,

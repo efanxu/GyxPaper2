@@ -1,0 +1,10 @@
+﻿a0_mae,a0_rmse,a0_score,a0_win_rate,a1_mae,a1_rmse,a1_score,delta_direction,delta_mae_a1_minus_a0,delta_rmse_a1_minus_a0,delta_score_a1_minus_a0,event_type,horizon,num_valid_points,num_windows,post_hoc_true_power_label,score_lower_is_better,threshold,threshold_source
+38.64033092151988,44.19508860941388,0.16869220576115368,1.0,41.9688720703125,49.560322512578765,0.18495661057121457,positive_means_A0_better,3.328541148792617,5.365233903164885,0.01626440481006089,ramp_any,3,11,1,True,True,128.22077911376954,formal_train_future_target_windows
+,,,,,,,positive_means_A0_better,,,,ramp_up,3,0,0,True,True,128.22077911376954,formal_train_future_target_windows
+38.64033092151988,44.19508860941388,0.16869220576115368,1.0,41.9688720703125,49.560322512578765,0.18495661057121457,positive_means_A0_better,3.328541148792617,5.365233903164885,0.01626440481006089,ramp_down,3,11,1,True,True,128.22077911376954,formal_train_future_target_windows
+30.831095819887906,38.89655271212059,0.13621784521951924,1.0,38.774788234544836,48.02243819734229,0.17109365845052849,positive_means_A0_better,7.94369241465693,9.125885485221701,0.034875813231009245,ramp_any,6,23,1,True,True,130.10342163085937,formal_train_future_target_windows
+30.831095819887906,38.89655271212059,0.13621784521951924,1.0,38.774788234544836,48.02243819734229,0.17109365845052849,positive_means_A0_better,7.94369241465693,9.125885485221701,0.034875813231009245,ramp_up,6,23,1,True,True,130.10342163085937,formal_train_future_target_windows
+,,,,,,,positive_means_A0_better,,,,ramp_down,6,0,0,True,True,130.10342163085937,formal_train_future_target_windows
+,,,,,,,positive_means_A0_better,,,,ramp_any,10,0,0,True,True,127.68475219726562,formal_train_future_target_windows
+,,,,,,,positive_means_A0_better,,,,ramp_up,10,0,0,True,True,127.68475219726562,formal_train_future_target_windows
+,,,,,,,positive_means_A0_better,,,,ramp_down,10,0,0,True,True,127.68475219726562,formal_train_future_target_windows

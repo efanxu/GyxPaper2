@@ -1,0 +1,62 @@
+{
+  "analysis_status": "completed",
+  "completed_stages": {
+    "PREFLIGHT_COMPLETED": {
+      "completed_at": "2026-07-22T20:09:31.087507+08:00",
+      "input_hash": "synthetic_smoke_seed2026",
+      "artifacts": []
+    },
+    "TRAIN_THRESHOLDS_COMPLETED": {
+      "completed_at": "2026-07-22T20:09:31.088561+08:00",
+      "input_hash": "synthetic_smoke_seed2026",
+      "artifacts": []
+    },
+    "A0_TEST_COMPLETED": {
+      "completed_at": "2026-07-22T20:09:31.089718+08:00",
+      "input_hash": "synthetic_smoke_seed2026",
+      "artifacts": []
+    },
+    "A1_TEST_COMPLETED": {
+      "completed_at": "2026-07-22T20:09:31.091881+08:00",
+      "input_hash": "synthetic_smoke_seed2026",
+      "artifacts": []
+    },
+    "ALIGNMENT_COMPLETED": {
+      "completed_at": "2026-07-22T20:09:31.093123+08:00",
+      "input_hash": "synthetic_smoke_seed2026",
+      "artifacts": []
+    },
+    "GROUP_METRICS_COMPLETED": {
+      "completed_at": "2026-07-22T20:09:31.093874+08:00",
+      "input_hash": "synthetic_smoke_seed2026",
+      "artifacts": []
+    },
+    "GATE_ANALYSIS_COMPLETED": {
+      "completed_at": "2026-07-22T20:09:31.095299+08:00",
+      "input_hash": "synthetic_smoke_seed2026",
+      "artifacts": []
+    },
+    "RAMP_ANALYSIS_COMPLETED": {
+      "completed_at": "2026-07-22T20:09:31.096308+08:00",
+      "input_hash": "synthetic_smoke_seed2026",
+      "artifacts": []
+    },
+    "SUMMARY_COMPLETED": {
+      "completed_at": "2026-07-22T20:09:31.097331+08:00",
+      "input_hash": "synthetic_smoke_seed2026",
+      "artifacts": []
+    }
+  },
+  "stage_order": [
+    "PREFLIGHT_COMPLETED",
+    "TRAIN_THRESHOLDS_COMPLETED",
+    "A0_TEST_COMPLETED",
+    "A1_TEST_COMPLETED",
+    "ALIGNMENT_COMPLETED",
+    "GROUP_METRICS_COMPLETED",
+    "GATE_ANALYSIS_COMPLETED",
+    "RAMP_ANALYSIS_COMPLETED",
+    "SUMMARY_COMPLETED"
+  ],
+  "current_stage": "SUMMARY_COMPLETED"
+}

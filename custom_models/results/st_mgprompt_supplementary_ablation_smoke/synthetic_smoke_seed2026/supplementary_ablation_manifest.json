@@ -1,0 +1,456 @@
+{
+  "generated_at": "2026-07-21T16:38:16",
+  "scope": [
+    "VADSP Mechanism Ablation",
+    "MS-MG-DWU Loss Decomposition"
+  ],
+  "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke\\synthetic_smoke_seed2026",
+  "mode": "smoke",
+  "suite": "all",
+  "selected_training_variants": [
+    "S0_FULL_A0",
+    "V1_FINE_ONLY",
+    "V2_COARSE_ONLY",
+    "V3_FIXED_DUAL",
+    "V4_RANDOM_GATE",
+    "V5_SHUFFLED_VOLATILITY",
+    "L1_STATIC_MG",
+    "L2_HORIZON_DWU_ONLY",
+    "L3_SITE_DWU_ONLY",
+    "L4_MASKED_SCORE_HYBRID_REFERENCE"
+  ],
+  "actual_training_variant_count": 10,
+  "full_protocol_training_variant_count": 10,
+  "shared_baseline": {
+    "shared_variant_id": "S0_FULL_A0",
+    "vadsp_alias": "V0_FULL_DYNAMIC",
+    "loss_alias": "L0_FULL_MSMGDWU",
+    "single_training_task": true
+  },
+  "s0_architecture_equals_formal_a0": false,
+  "variants": [
+    {
+      "id": "S0_FULL_A0",
+      "suite": "shared",
+      "name": "Shared full A0 baseline",
+      "definition": "Formal A0: Dynamic VADSP + full architecture + difficulty-rate MS-MG-DWU + dynamic site weighting",
+      "selected": true,
+      "architecture": {
+        "model_name": "STMGPrompt_ComponentAblation",
+        "hidden_dim": 16,
+        "num_coupling_layers": 1,
+        "use_vadsp": true,
+        "use_trend_prior_graph": true,
+        "use_adaptive_graph": true,
+        "use_graph_temporal_encoder": true,
+        "use_graph_in_temporal_encoder": true,
+        "use_stmg_coupling_block": true,
+        "use_macro_prompt": true,
+        "use_cross_fusion": true,
+        "use_st_prompt": true,
+        "disable_reverse_cross": false,
+        "fusion_mode": "cross",
+        "graph_operator": "bidirectional_diffusion",
+        "decoder_context_mode": "last_state",
+        "decoder_input_strategy": "direct_multi_output_prompt_query"
+      },
+      "vadsp_gate_mode": "dynamic",
+      "granularity_weight_mode": "difficulty_rate",
+      "site_weight_mode": "dynamic",
+      "use_msmg_dwu": true,
+      "loss_function": "msmg_dwu_loss",
+      "changed_from_s0": {},
+      "seed": 2026,
+      "checkpoint_selection_metric": "val_official_score_h10",
+      "selection_uses_test_metrics": false
+    },
+    {
+      "id": "V1_FINE_ONLY",
+      "suite": "vadsp",
+      "name": "Fine only",
+      "definition": "Fine gate=1; coarse gate=0",
+      "selected": true,
+      "architecture": {
+        "model_name": "STMGPrompt_ComponentAblation",
+        "hidden_dim": 16,
+        "num_coupling_layers": 1,
+        "use_vadsp": true,
+        "use_trend_prior_graph": true,
+        "use_adaptive_graph": true,
+        "use_graph_temporal_encoder": true,
+        "use_graph_in_temporal_encoder": true,
+        "use_stmg_coupling_block": true,
+        "use_macro_prompt": true,
+        "use_cross_fusion": true,
+        "use_st_prompt": true,
+        "disable_reverse_cross": false,
+        "fusion_mode": "cross",
+        "graph_operator": "bidirectional_diffusion",
+        "decoder_context_mode": "last_state",
+        "decoder_input_strategy": "direct_multi_output_prompt_query"
+      },
+      "vadsp_gate_mode": "fine_only",
+      "granularity_weight_mode": "difficulty_rate",
+      "site_weight_mode": "dynamic",
+      "use_msmg_dwu": true,
+      "loss_function": "msmg_dwu_loss",
+      "changed_from_s0": {
+        "vadsp_gate_mode": {
+          "S0_FULL_A0": "dynamic",
+          "V1_FINE_ONLY": "fine_only"
+        }
+      },
+      "seed": 2026,
+      "checkpoint_selection_metric": "val_official_score_h10",
+      "selection_uses_test_metrics": false
+    },
+    {
+      "id": "V2_COARSE_ONLY",
+      "suite": "vadsp",
+      "name": "Coarse only",
+      "definition": "Fine gate=0; coarse gate=1",
+      "selected": true,
+      "architecture": {
+        "model_name": "STMGPrompt_ComponentAblation",
+        "hidden_dim": 16,
+        "num_coupling_layers": 1,
+        "use_vadsp": true,
+        "use_trend_prior_graph": true,
+        "use_adaptive_graph": true,
+        "use_graph_temporal_encoder": true,
+        "use_graph_in_temporal_encoder": true,
+        "use_stmg_coupling_block": true,
+        "use_macro_prompt": true,
+        "use_cross_fusion": true,
+        "use_st_prompt": true,
+        "disable_reverse_cross": false,
+        "fusion_mode": "cross",
+        "graph_operator": "bidirectional_diffusion",
+        "decoder_context_mode": "last_state",
+        "decoder_input_strategy": "direct_multi_output_prompt_query"
+      },
+      "vadsp_gate_mode": "coarse_only",
+      "granularity_weight_mode": "difficulty_rate",
+      "site_weight_mode": "dynamic",
+      "use_msmg_dwu": true,
+      "loss_function": "msmg_dwu_loss",
+      "changed_from_s0": {
+        "vadsp_gate_mode": {
+          "S0_FULL_A0": "dynamic",
+          "V2_COARSE_ONLY": "coarse_only"
+        }
+      },
+      "seed": 2026,
+      "checkpoint_selection_metric": "val_official_score_h10",
+      "selection_uses_test_metrics": false
+    },
+    {
+      "id": "V3_FIXED_DUAL",
+      "suite": "vadsp",
+      "name": "Fixed dual",
+      "definition": "Fixed fine/coarse gate=0.5/0.5",
+      "selected": true,
+      "architecture": {
+        "model_name": "STMGPrompt_ComponentAblation",
+        "hidden_dim": 16,
+        "num_coupling_layers": 1,
+        "use_vadsp": true,
+        "use_trend_prior_graph": true,
+        "use_adaptive_graph": true,
+        "use_graph_temporal_encoder": true,
+        "use_graph_in_temporal_encoder": true,
+        "use_stmg_coupling_block": true,
+        "use_macro_prompt": true,
+        "use_cross_fusion": true,
+        "use_st_prompt": true,
+        "disable_reverse_cross": false,
+        "fusion_mode": "cross",
+        "graph_operator": "bidirectional_diffusion",
+        "decoder_context_mode": "last_state",
+        "decoder_input_strategy": "direct_multi_output_prompt_query"
+      },
+      "vadsp_gate_mode": "fixed_dual",
+      "granularity_weight_mode": "difficulty_rate",
+      "site_weight_mode": "dynamic",
+      "use_msmg_dwu": true,
+      "loss_function": "msmg_dwu_loss",
+      "changed_from_s0": {
+        "vadsp_gate_mode": {
+          "S0_FULL_A0": "dynamic",
+          "V3_FIXED_DUAL": "fixed_dual"
+        }
+      },
+      "seed": 2026,
+      "checkpoint_selection_metric": "val_official_score_h10",
+      "selection_uses_test_metrics": false
+    },
+    {
+      "id": "V4_RANDOM_GATE",
+      "suite": "vadsp",
+      "name": "Random gate",
+      "definition": "Fixed-seed permutation of dynamic gate values; exact per-batch marginal gate distribution",
+      "selected": true,
+      "architecture": {
+        "model_name": "STMGPrompt_ComponentAblation",
+        "hidden_dim": 16,
+        "num_coupling_layers": 1,
+        "use_vadsp": true,
+        "use_trend_prior_graph": true,
+        "use_adaptive_graph": true,
+        "use_graph_temporal_encoder": true,
+        "use_graph_in_temporal_encoder": true,
+        "use_stmg_coupling_block": true,
+        "use_macro_prompt": true,
+        "use_cross_fusion": true,
+        "use_st_prompt": true,
+        "disable_reverse_cross": false,
+        "fusion_mode": "cross",
+        "graph_operator": "bidirectional_diffusion",
+        "decoder_context_mode": "last_state",
+        "decoder_input_strategy": "direct_multi_output_prompt_query"
+      },
+      "vadsp_gate_mode": "random_gate",
+      "granularity_weight_mode": "difficulty_rate",
+      "site_weight_mode": "dynamic",
+      "use_msmg_dwu": true,
+      "loss_function": "msmg_dwu_loss",
+      "changed_from_s0": {
+        "vadsp_gate_mode": {
+          "S0_FULL_A0": "dynamic",
+          "V4_RANDOM_GATE": "random_gate"
+        }
+      },
+      "seed": 2026,
+      "checkpoint_selection_metric": "val_official_score_h10",
+      "selection_uses_test_metrics": false
+    },
+    {
+      "id": "V5_SHUFFLED_VOLATILITY",
+      "suite": "vadsp",
+      "name": "Shuffled volatility",
+      "definition": "Sample-shuffled volatility/rolling-std conditions the unchanged dynamic gate network",
+      "selected": true,
+      "architecture": {
+        "model_name": "STMGPrompt_ComponentAblation",
+        "hidden_dim": 16,
+        "num_coupling_layers": 1,
+        "use_vadsp": true,
+        "use_trend_prior_graph": true,
+        "use_adaptive_graph": true,
+        "use_graph_temporal_encoder": true,
+        "use_graph_in_temporal_encoder": true,
+        "use_stmg_coupling_block": true,
+        "use_macro_prompt": true,
+        "use_cross_fusion": true,
+        "use_st_prompt": true,
+        "disable_reverse_cross": false,
+        "fusion_mode": "cross",
+        "graph_operator": "bidirectional_diffusion",
+        "decoder_context_mode": "last_state",
+        "decoder_input_strategy": "direct_multi_output_prompt_query"
+      },
+      "vadsp_gate_mode": "shuffled_volatility",
+      "granularity_weight_mode": "difficulty_rate",
+      "site_weight_mode": "dynamic",
+      "use_msmg_dwu": true,
+      "loss_function": "msmg_dwu_loss",
+      "changed_from_s0": {
+        "vadsp_gate_mode": {
+          "S0_FULL_A0": "dynamic",
+          "V5_SHUFFLED_VOLATILITY": "shuffled_volatility"
+        }
+      },
+      "seed": 2026,
+      "checkpoint_selection_metric": "val_official_score_h10",
+      "selection_uses_test_metrics": false
+    },
+    {
+      "id": "L1_STATIC_MG",
+      "suite": "loss",
+      "name": "Static-MG",
+      "definition": "static granularity weights + static site weights",
+      "selected": true,
+      "architecture": {
+        "model_name": "STMGPrompt_ComponentAblation",
+        "hidden_dim": 16,
+        "num_coupling_layers": 1,
+        "use_vadsp": true,
+        "use_trend_prior_graph": true,
+        "use_adaptive_graph": true,
+        "use_graph_temporal_encoder": true,
+        "use_graph_in_temporal_encoder": true,
+        "use_stmg_coupling_block": true,
+        "use_macro_prompt": true,
+        "use_cross_fusion": true,
+        "use_st_prompt": true,
+        "disable_reverse_cross": false,
+        "fusion_mode": "cross",
+        "graph_operator": "bidirectional_diffusion",
+        "decoder_context_mode": "last_state",
+        "decoder_input_strategy": "direct_multi_output_prompt_query"
+      },
+      "vadsp_gate_mode": "dynamic",
+      "granularity_weight_mode": "static",
+      "site_weight_mode": "static",
+      "use_msmg_dwu": true,
+      "loss_function": "msmg_dwu_loss",
+      "changed_from_s0": {
+        "granularity_weight_mode": {
+          "S0_FULL_A0": "difficulty_rate",
+          "L1_STATIC_MG": "static"
+        },
+        "site_weight_mode": {
+          "S0_FULL_A0": "dynamic",
+          "L1_STATIC_MG": "static"
+        }
+      },
+      "seed": 2026,
+      "checkpoint_selection_metric": "val_official_score_h10",
+      "selection_uses_test_metrics": false
+    },
+    {
+      "id": "L2_HORIZON_DWU_ONLY",
+      "suite": "loss",
+      "name": "Horizon-DWU only",
+      "definition": "difficulty-rate granularity weights + static site weights",
+      "selected": true,
+      "architecture": {
+        "model_name": "STMGPrompt_ComponentAblation",
+        "hidden_dim": 16,
+        "num_coupling_layers": 1,
+        "use_vadsp": true,
+        "use_trend_prior_graph": true,
+        "use_adaptive_graph": true,
+        "use_graph_temporal_encoder": true,
+        "use_graph_in_temporal_encoder": true,
+        "use_stmg_coupling_block": true,
+        "use_macro_prompt": true,
+        "use_cross_fusion": true,
+        "use_st_prompt": true,
+        "disable_reverse_cross": false,
+        "fusion_mode": "cross",
+        "graph_operator": "bidirectional_diffusion",
+        "decoder_context_mode": "last_state",
+        "decoder_input_strategy": "direct_multi_output_prompt_query"
+      },
+      "vadsp_gate_mode": "dynamic",
+      "granularity_weight_mode": "difficulty_rate",
+      "site_weight_mode": "static",
+      "use_msmg_dwu": true,
+      "loss_function": "msmg_dwu_loss",
+      "changed_from_s0": {
+        "site_weight_mode": {
+          "S0_FULL_A0": "dynamic",
+          "L2_HORIZON_DWU_ONLY": "static"
+        }
+      },
+      "seed": 2026,
+      "checkpoint_selection_metric": "val_official_score_h10",
+      "selection_uses_test_metrics": false
+    },
+    {
+      "id": "L3_SITE_DWU_ONLY",
+      "suite": "loss",
+      "name": "Site-DWU only",
+      "definition": "static granularity weights + dynamic site weights",
+      "selected": true,
+      "architecture": {
+        "model_name": "STMGPrompt_ComponentAblation",
+        "hidden_dim": 16,
+        "num_coupling_layers": 1,
+        "use_vadsp": true,
+        "use_trend_prior_graph": true,
+        "use_adaptive_graph": true,
+        "use_graph_temporal_encoder": true,
+        "use_graph_in_temporal_encoder": true,
+        "use_stmg_coupling_block": true,
+        "use_macro_prompt": true,
+        "use_cross_fusion": true,
+        "use_st_prompt": true,
+        "disable_reverse_cross": false,
+        "fusion_mode": "cross",
+        "graph_operator": "bidirectional_diffusion",
+        "decoder_context_mode": "last_state",
+        "decoder_input_strategy": "direct_multi_output_prompt_query"
+      },
+      "vadsp_gate_mode": "dynamic",
+      "granularity_weight_mode": "static",
+      "site_weight_mode": "dynamic",
+      "use_msmg_dwu": true,
+      "loss_function": "msmg_dwu_loss",
+      "changed_from_s0": {
+        "granularity_weight_mode": {
+          "S0_FULL_A0": "difficulty_rate",
+          "L3_SITE_DWU_ONLY": "static"
+        }
+      },
+      "seed": 2026,
+      "checkpoint_selection_metric": "val_official_score_h10",
+      "selection_uses_test_metrics": false
+    },
+    {
+      "id": "L4_MASKED_SCORE_HYBRID_REFERENCE",
+      "suite": "loss",
+      "name": "Masked-score hybrid reference",
+      "definition": "existing masked_score_aligned_hybrid with static granularity/site modes marked not active",
+      "selected": true,
+      "architecture": {
+        "model_name": "STMGPrompt_ComponentAblation",
+        "hidden_dim": 16,
+        "num_coupling_layers": 1,
+        "use_vadsp": true,
+        "use_trend_prior_graph": true,
+        "use_adaptive_graph": true,
+        "use_graph_temporal_encoder": true,
+        "use_graph_in_temporal_encoder": true,
+        "use_stmg_coupling_block": true,
+        "use_macro_prompt": true,
+        "use_cross_fusion": true,
+        "use_st_prompt": true,
+        "disable_reverse_cross": false,
+        "fusion_mode": "cross",
+        "graph_operator": "bidirectional_diffusion",
+        "decoder_context_mode": "last_state",
+        "decoder_input_strategy": "direct_multi_output_prompt_query"
+      },
+      "vadsp_gate_mode": "dynamic",
+      "granularity_weight_mode": "static",
+      "site_weight_mode": "static",
+      "use_msmg_dwu": false,
+      "loss_function": "masked_score_aligned_hybrid",
+      "changed_from_s0": {
+        "granularity_weight_mode": {
+          "S0_FULL_A0": "difficulty_rate",
+          "L4_MASKED_SCORE_HYBRID_REFERENCE": "static"
+        },
+        "site_weight_mode": {
+          "S0_FULL_A0": "dynamic",
+          "L4_MASKED_SCORE_HYBRID_REFERENCE": "static"
+        },
+        "use_msmg_dwu": {
+          "S0_FULL_A0": true,
+          "L4_MASKED_SCORE_HYBRID_REFERENCE": false
+        },
+        "loss_function": {
+          "S0_FULL_A0": "msmg_dwu_loss",
+          "L4_MASKED_SCORE_HYBRID_REFERENCE": "masked_score_aligned_hybrid"
+        }
+      },
+      "seed": 2026,
+      "checkpoint_selection_metric": "val_official_score_h10",
+      "selection_uses_test_metrics": false
+    }
+  ],
+  "excluded_experiments": [
+    "A0-A10 rerun",
+    "P0-P5 rerun",
+    "other benchmarks",
+    "multi-seed",
+    "missing-input robustness",
+    "noise robustness",
+    "compression",
+    "parameter sensitivity",
+    "hyperparameter search",
+    "ramp event"
+  ]
+}

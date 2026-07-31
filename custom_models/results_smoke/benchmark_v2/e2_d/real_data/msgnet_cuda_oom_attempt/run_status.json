@@ -1,0 +1,33 @@
+{
+  "status": "FAILED",
+  "run_mode": "smoke",
+  "artifact_profile": "SMOKE",
+  "started_at": "2026-07-28T05:27:58.244941+00:00",
+  "finished_at": "2026-07-28T05:28:33.677017+00:00",
+  "exit_code": 1,
+  "failure_stage": "fit",
+  "error_type": "OutOfMemoryError",
+  "error_message": "CUDA out of memory. Tried to allocate 2.00 MiB. GPU 0 has a total capacity of 6.00 GiB of which 0 bytes is free. Of the allocated memory 12.59 GiB is allocated by PyTorch, and 228.82 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+  "traceback_tail": [
+    "                              ^^^^^^^^^^^^^^^^^^^^^^",
+    "  File \"D:\\Apps\\Miniconda3\\envs\\env_tslib\\Lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1751, in _wrapped_call_impl",
+    "    return self._call_impl(*args, **kwargs)",
+    "           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "  File \"D:\\Apps\\Miniconda3\\envs\\env_tslib\\Lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1762, in _call_impl",
+    "    return forward_call(*args, **kwargs)",
+    "           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "  File \"D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\MSGNet.py\", line 61, in forward",
+    "    out = self.norm(self.att0(out))",
+    "                    ^^^^^^^^^^^^^^",
+    "  File \"D:\\Apps\\Miniconda3\\envs\\env_tslib\\Lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1751, in _wrapped_call_impl",
+    "    return self._call_impl(*args, **kwargs)",
+    "           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "  File \"D:\\Apps\\Miniconda3\\envs\\env_tslib\\Lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1762, in _call_impl",
+    "    return forward_call(*args, **kwargs)",
+    "           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "  File \"D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\layers\\MSGBlock.py\", line 63, in forward",
+    "    y = self.dropout(self.activation(self.conv1(y.transpose(-1, 1))))",
+    "                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.00 MiB. GPU 0 has a total capacity of 6.00 GiB of which 0 bytes is free. Of the allocated memory 12.59 GiB is allocated by PyTorch, and 228.82 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)"
+  ]
+}

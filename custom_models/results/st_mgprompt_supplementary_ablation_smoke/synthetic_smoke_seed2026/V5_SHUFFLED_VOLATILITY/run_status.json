@@ -1,0 +1,33 @@
+{
+  "events": [
+    {
+      "stage": "TRAIN_STARTED",
+      "time": "2026-07-21T16:35:33",
+      "supplementary_variant": "V5_SHUFFLED_VOLATILITY"
+    },
+    {
+      "stage": "TRAIN_FINISHED",
+      "time": "2026-07-21T16:35:40",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke\\synthetic_smoke_seed2026\\V5_SHUFFLED_VOLATILITY\\best_checkpoint.pt"
+    },
+    {
+      "stage": "TEST_STARTED",
+      "time": "2026-07-21T16:35:40",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke\\synthetic_smoke_seed2026\\V5_SHUFFLED_VOLATILITY\\best_checkpoint.pt",
+      "model_rebuilt_before_test": true,
+      "strict_load": true
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-21T16:35:43",
+      "protocol_passed": true
+    }
+  ],
+  "current_stage": "PROCESS_FINISHED",
+  "updated_at": "2026-07-21T16:35:43",
+  "supplementary_variant": "V5_SHUFFLED_VOLATILITY",
+  "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke\\synthetic_smoke_seed2026\\V5_SHUFFLED_VOLATILITY\\best_checkpoint.pt",
+  "model_rebuilt_before_test": true,
+  "strict_load": true,
+  "protocol_passed": true
+}

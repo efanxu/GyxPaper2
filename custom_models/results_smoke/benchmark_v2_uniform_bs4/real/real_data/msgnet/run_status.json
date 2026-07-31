@@ -1,0 +1,12 @@
+{
+  "status": "RUNNING",
+  "run_mode": "smoke",
+  "artifact_profile": "SMOKE",
+  "started_at": "2026-07-29T11:52:03.214445+00:00",
+  "finished_at": null,
+  "exit_code": null,
+  "failure_stage": null,
+  "error_type": null,
+  "error_message": null,
+  "traceback_tail": null
+}

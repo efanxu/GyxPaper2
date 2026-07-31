@@ -1,0 +1,62 @@
+{
+  "events": [
+    {
+      "stage": "TRAIN_STARTED",
+      "time": "2026-07-15T22:14:19"
+    },
+    {
+      "stage": "TRAIN_FINISHED",
+      "time": "2026-07-15T22:14:23",
+      "checkpoint": "custom_models\\results\\st_mgprompt_codex_verify_precision\\codex_parent_resume\\P0\\STMGPrompt_FairFull\\best_checkpoint.pt",
+      "last_completed_epoch": 1
+    },
+    {
+      "stage": "BEST_CHECKPOINT_SAVED",
+      "time": "2026-07-15T22:14:23",
+      "checkpoint": "custom_models\\results\\st_mgprompt_codex_verify_precision\\codex_parent_resume\\P0\\STMGPrompt_FairFull\\best_checkpoint.pt"
+    },
+    {
+      "stage": "FINAL_VALIDATION_STARTED",
+      "time": "2026-07-15T22:14:23"
+    },
+    {
+      "stage": "FINAL_VALIDATION_FINISHED",
+      "time": "2026-07-15T22:14:23"
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-15T22:14:23",
+      "skip_test": true
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-15T22:14:23"
+    },
+    {
+      "stage": "TEST_STARTED",
+      "time": "2026-07-15T22:15:05",
+      "checkpoint": "custom_models\\results\\st_mgprompt_codex_verify_precision\\codex_parent_resume\\P0\\STMGPrompt_FairFull\\best_checkpoint.pt"
+    },
+    {
+      "stage": "FINAL_VALIDATION_STARTED",
+      "time": "2026-07-15T22:15:05"
+    },
+    {
+      "stage": "FINAL_VALIDATION_FINISHED",
+      "time": "2026-07-15T22:15:06"
+    },
+    {
+      "stage": "TEST_FINISHED",
+      "time": "2026-07-15T22:15:06"
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-15T22:15:06"
+    }
+  ],
+  "current_stage": "PROCESS_FINISHED",
+  "updated_at": "2026-07-15T22:15:06",
+  "checkpoint": "custom_models\\results\\st_mgprompt_codex_verify_precision\\codex_parent_resume\\P0\\STMGPrompt_FairFull\\best_checkpoint.pt",
+  "last_completed_epoch": 1,
+  "skip_test": true
+}

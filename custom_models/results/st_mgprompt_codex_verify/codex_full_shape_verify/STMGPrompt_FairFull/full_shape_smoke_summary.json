@@ -1,0 +1,91 @@
+{
+  "mode": "full_shape_smoke",
+  "sys_executable": "C:\\Users\\12811\\.conda\\envs\\tslib\\python.exe",
+  "python_version": "3.11.15 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:12:53) [MSC v.1942 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "torch_version": "2.5.1+cu124",
+  "torch_cuda_version": "12.4",
+  "cuda_available": true,
+  "gpu_name": "NVIDIA GeForce GTX 1060",
+  "device": "cuda",
+  "input_shape": [
+    32,
+    144,
+    134,
+    16
+  ],
+  "target_shape": [
+    32,
+    10,
+    134
+  ],
+  "mask_shape": [
+    32,
+    10,
+    134
+  ],
+  "prediction_shape": [
+    32,
+    10,
+    134
+  ],
+  "hidden_dim": 64,
+  "num_coupling_layers": 1,
+  "graph_operator": "simple",
+  "decoder_context_mode": "last_state",
+  "granularity_weight_mode": "uncertainty_precision",
+  "parameter_count": 245382,
+  "loss_value": 0.964066207408905,
+  "val_loss_value": 0.7756020426750183,
+  "loss_finite": true,
+  "gradient_checks": {
+    "model_any_grad_finite": true,
+    "vadsp_grad_finite": true,
+    "coupling_grad_finite": true,
+    "decoder_grad_finite": true,
+    "loss_backward_compatible": true
+  },
+  "peak_cuda_memory_allocated_mb": 12136.28369140625,
+  "peak_cuda_memory_reserved_mb": 12796.0,
+  "forward_time_sec": 26.394739600131288,
+  "backward_time_sec": 31.82015369995497,
+  "vadsp_robust_statistics_metadata": {
+    "fit_split": "train",
+    "fit_source": "unique_train_timeline",
+    "exact": true,
+    "device": "cpu",
+    "mode": "per_node",
+    "source_cols": [
+      "Wspd",
+      "Patv_clean_for_input"
+    ],
+    "num_time_points": 42047,
+    "num_time_deltas": 42046,
+    "shape": {
+      "q25": [
+        134,
+        2
+      ],
+      "median": [
+        134,
+        2
+      ],
+      "q75": [
+        134,
+        2
+      ],
+      "center": [
+        134,
+        2
+      ],
+      "scale": [
+        134,
+        2
+      ]
+    },
+    "nonfinite_filtered": 0,
+    "degenerate_iqr_count": 0,
+    "depends_on_window_stride": false,
+    "feature_space": "model_input_scaled"
+  }
+}

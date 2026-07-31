@@ -1,0 +1,25 @@
+{
+  "task": "E2-A",
+  "status": "PASS",
+  "tests_run": 7,
+  "test_only_dummy_process_runner": true,
+  "exact_shape": {
+    "B": 32,
+    "T": 144,
+    "N": 134,
+    "C": 16,
+    "H": 10
+  },
+  "verified": {
+    "historical_oom_does_not_directly_reject_train": true,
+    "missing_pass_spawns_preflight": true,
+    "matching_pass_spawns_formal_train": true,
+    "preflight_exits_before_formal_train_starts": true,
+    "preflight_pid_differs_from_formal_pid": true,
+    "fail_oom_stops_before_formal_train": true,
+    "fail_non_oom_stops_before_formal_train": true,
+    "config_or_shape_mismatch_not_reused": true,
+    "suite_models_are_sequential": true
+  },
+  "rtx4060_hardware_preflight": "NOT_RUN"
+}

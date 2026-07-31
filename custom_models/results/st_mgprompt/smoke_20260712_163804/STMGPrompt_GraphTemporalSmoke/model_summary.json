@@ -1,0 +1,201 @@
+{
+  "trainable_parameters": 10075,
+  "input_dim": 16,
+  "num_nodes": 8,
+  "feature_cols": [
+    "Wspd",
+    "Wdir",
+    "Etmp",
+    "Itmp",
+    "Ndir",
+    "Pab1",
+    "Pab2",
+    "Pab3",
+    "Prtv",
+    "T2m",
+    "Sp",
+    "RelH",
+    "Wspd_w",
+    "Wdir_w",
+    "Tp",
+    "Patv_clean_for_input"
+  ],
+  "window_counts": {
+    "train": 86,
+    "val": 3,
+    "test": 3
+  },
+  "valid_target_ratio": {
+    "train": 0.9928385615348816,
+    "val": 0.9947916865348816,
+    "test": 0.9947916865348816
+  },
+  "model_name": "STMGPrompt_GraphTemporalSmoke",
+  "run_id": "smoke_20260712_163804",
+  "checkpoint": "custom_models\\results\\st_mgprompt\\smoke_20260712_163804\\STMGPrompt_GraphTemporalSmoke\\best_checkpoint.pt",
+  "loss_function": "masked_score_aligned_hybrid",
+  "eligible_for_fair_main_table": true,
+  "skipped_all_invalid_batches": 0,
+  "registry": [
+    {
+      "name": "STMGPrompt_TemporalOnly",
+      "implemented": true,
+      "eligible_for_fair_main_table": true,
+      "uses_msmg_dwu": false,
+      "requires_coupling_block": false,
+      "description": "Step-0 shared-parameter GRU temporal-only baseline."
+    },
+    {
+      "name": "STMGPrompt_TemporalOnly_VADSP",
+      "implemented": true,
+      "eligible_for_fair_main_table": true,
+      "uses_msmg_dwu": false,
+      "requires_coupling_block": false,
+      "description": "Step-1 VADSP + TemporalOnly smoke path; not the FairFull coupled architecture."
+    },
+    {
+      "name": "STMGPrompt_FairFull",
+      "implemented": false,
+      "eligible_for_fair_main_table": true,
+      "uses_msmg_dwu": false,
+      "requires_coupling_block": true,
+      "description": "VADSP + TrendPriorDualGraph + ST-MG Coupling Block + ST-Prompt decoder."
+    },
+    {
+      "name": "STMGPrompt_Full_MSMGDWU",
+      "implemented": false,
+      "eligible_for_fair_main_table": false,
+      "uses_msmg_dwu": true,
+      "requires_coupling_block": true,
+      "description": "Method-full model with MS-MG-DWU, not eligible for fair main table."
+    },
+    {
+      "name": "STMGPrompt_SerialGraphThenFusion",
+      "implemented": false,
+      "eligible_for_fair_main_table": false,
+      "uses_msmg_dwu": false,
+      "requires_coupling_block": false,
+      "description": "Serial ablation only; never the FairFull default."
+    },
+    {
+      "name": "STMGPrompt_TrendPriorGraph",
+      "implemented": true,
+      "eligible_for_fair_main_table": false,
+      "uses_msmg_dwu": false,
+      "requires_coupling_block": false,
+      "description": "Step-2 VADSP + Trend-Prior Adaptive Dual Graph smoke ablation; not the FairFull model."
+    },
+    {
+      "name": "STMGPrompt_GraphTemporalSmoke",
+      "implemented": true,
+      "eligible_for_fair_main_table": false,
+      "uses_msmg_dwu": false,
+      "requires_coupling_block": false,
+      "description": "Step-3 VADSP + adaptive dual graph + Graph-Temporal Encoder smoke ablation."
+    }
+  ],
+  "metadata": {
+    "input_feature_set": "base_official_scada_era5",
+    "feature_names": [
+      "Wspd",
+      "Wdir",
+      "Etmp",
+      "Itmp",
+      "Ndir",
+      "Pab1",
+      "Pab2",
+      "Pab3",
+      "Prtv",
+      "T2m",
+      "Sp",
+      "RelH",
+      "Wspd_w",
+      "Wdir_w",
+      "Tp",
+      "Patv_clean_for_input"
+    ],
+    "num_features": 16,
+    "target_col": "Patv_raw",
+    "target_mask_col": "valid_target_mask",
+    "target_mask_used_as_model_input": false,
+    "final_prediction_target_is_power": true,
+    "split_indices": {
+      "train": [
+        0,
+        192
+      ],
+      "val": [
+        192,
+        216
+      ],
+      "test": [
+        216,
+        240
+      ]
+    },
+    "window_counts": {
+      "train": 86,
+      "val": 3,
+      "test": 3
+    },
+    "valid_target_ratio": {
+      "train": 0.9928385615348816,
+      "val": 0.9947916865348816,
+      "test": 0.9947916865348816
+    },
+    "input_scaler_fit_split": "train_only",
+    "target_scaler_fit_split": "train_only",
+    "target_scaler_fit_mask": "valid_target_mask",
+    "window_rule": "[t-lookback,t)->[t,t+max_pred_len)",
+    "sample_stride_is_prediction_start_stride": true,
+    "uses_on_the_fly_features": true,
+    "on_the_fly_feature_names": [
+      "volatility",
+      "rolling_std",
+      "dynamic_patch_gate",
+      "x_fine",
+      "x_coarse"
+    ],
+    "on_the_fly_features_history_only": true
+  },
+  "vadsp_summary": {
+    "volatility_mean": 0.12530732154846191,
+    "volatility_std": 0.08583687990903854,
+    "rolling_std_mean": 0.07386767119169235,
+    "rolling_std_std": 0.03399166837334633,
+    "gate_mean": 0.5664780735969543,
+    "gate_std": 0.004265948198735714,
+    "gate_min": 0.5590097904205322,
+    "gate_max": 0.576549232006073,
+    "corr_gate_abs_delta_source": 0.984124458571516,
+    "volatility_source_cols": [
+      "Wspd",
+      "Patv_clean_for_input"
+    ],
+    "history_only": true,
+    "uses_target_mask": false,
+    "uses_future_inputs": false,
+    "plot_error": "No module named 'matplotlib'"
+  },
+  "graph_temporal_summary": {
+    "h_fine_norm_mean": 3.923652172088623,
+    "h_fine_norm_std": 0.0009515460697002709,
+    "h_coarse_norm_mean": 3.983043670654297,
+    "h_coarse_norm_std": 0.0091083450242877,
+    "h_fine_spatial_delta_norm": 2.1015355587005615,
+    "h_coarse_spatial_delta_norm": 2.6435399055480957,
+    "num_batches": 1,
+    "use_graph": true,
+    "use_temporal_attention": false,
+    "fine_tcn_dilations": [
+      1,
+      2
+    ],
+    "coarse_tcn_dilations": [
+      1,
+      2,
+      4,
+      8
+    ]
+  }
+}

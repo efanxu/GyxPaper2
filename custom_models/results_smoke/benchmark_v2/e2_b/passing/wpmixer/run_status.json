@@ -1,0 +1,33 @@
+{
+  "status": "FAILED",
+  "run_mode": "smoke",
+  "artifact_profile": "SMOKE",
+  "started_at": "2026-07-28T03:20:28.280001+00:00",
+  "finished_at": "2026-07-28T03:20:28.686374+00:00",
+  "exit_code": 1,
+  "failure_stage": "fit",
+  "error_type": "RuntimeError",
+  "error_message": "Input type (torch.cuda.HalfTensor) and weight type (torch.cuda.FloatTensor) should be the same",
+  "traceback_tail": [
+    "Traceback (most recent call last):",
+    "  File \"D:\\PaperProject\\GyxPaper2\\custom_models\\src\\benchmark_v2\\engine.py\", line 73, in fit",
+    "    self.amp_scaler.scale(loss).backward()",
+    "  File \"D:\\Apps\\Miniconda3\\envs\\env_tslib\\Lib\\site-packages\\torch\\_tensor.py\", line 648, in backward",
+    "    torch.autograd.backward(",
+    "  File \"D:\\Apps\\Miniconda3\\envs\\env_tslib\\Lib\\site-packages\\torch\\autograd\\__init__.py\", line 353, in backward",
+    "    _engine_run_backward(",
+    "  File \"D:\\Apps\\Miniconda3\\envs\\env_tslib\\Lib\\site-packages\\torch\\autograd\\graph.py\", line 824, in _engine_run_backward",
+    "    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass",
+    "           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "  File \"D:\\Apps\\Miniconda3\\envs\\env_tslib\\Lib\\site-packages\\torch\\autograd\\function.py\", line 307, in apply",
+    "    return user_fn(self, *args)",
+    "           ^^^^^^^^^^^^^^^^^^^^",
+    "  File \"D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\layers\\DWT_Decomposition.py\", line 1012, in backward",
+    "    dx = afb1d(dy, g0, g1, use_amp, mode=mode, dim=3)",
+    "         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "  File \"D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\layers\\DWT_Decomposition.py\", line 415, in afb1d",
+    "    lohi = F.conv2d(x, h, padding=pad, stride=s, groups=C)",
+    "           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "RuntimeError: Input type (torch.cuda.HalfTensor) and weight type (torch.cuda.FloatTensor) should be the same"
+  ]
+}

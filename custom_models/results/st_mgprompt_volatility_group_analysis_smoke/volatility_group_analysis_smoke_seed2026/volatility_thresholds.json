@@ -1,0 +1,23 @@
+{
+  "q33": 0.771225418345156,
+  "q67": 0.8296276720268934,
+  "q90": 0.9347460725852711,
+  "num_windows": 72,
+  "threshold_source": "A0_formal_train_windows",
+  "threshold_train_stride": 6,
+  "aggregation": "mean_over_history_excluding_first_step_and_all_nodes",
+  "feature_space": "model_input_scaled",
+  "volatility_source_cols": [
+    "Wspd",
+    "Patv_clean_for_input"
+  ],
+  "volatility_mode": "per_node",
+  "source_weights": [
+    0.45,
+    0.55
+  ],
+  "robust_statistics_metadata": {
+    "fit_split": "synthetic_train"
+  },
+  "checkpoint_sha256": "synthetic_smoke_no_checkpoint"
+}

@@ -1,0 +1,11 @@
+{
+  "status": "completed",
+  "last_epoch": 1,
+  "best_epoch": 1,
+  "best_val_score_h10": 12.17853599296401,
+  "best_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results_smoke\\st_mgprompt_uniform_bs4\\ordinary_a8_bs4\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+  "last_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results_smoke\\st_mgprompt_uniform_bs4\\ordinary_a8_bs4\\STMGPrompt_ComponentAblation\\last_checkpoint.pt",
+  "amp_enabled": true,
+  "amp_dtype": "float16",
+  "config_hash": "c68537a4cb7bf9b8fb4735d1ac0fe5d0cc1a86a8d9a879bb0242cbce53ec5264"
+}

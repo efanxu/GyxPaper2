@@ -1,0 +1,59 @@
+{
+  "q33": 0.10653205120098604,
+  "q67": 0.3392951541568664,
+  "q90": 0.5083455500282054,
+  "num_windows": 6983,
+  "threshold_source": "A0_formal_train_windows",
+  "threshold_train_stride": 6,
+  "aggregation": "mean_over_history_excluding_first_step_and_all_nodes",
+  "feature_space": "model_input_scaled",
+  "volatility_source_cols": [
+    "Wspd",
+    "Patv_clean_for_input"
+  ],
+  "volatility_mode": "per_node",
+  "source_weights": [
+    0.29885411262512207,
+    0.7011459469795227
+  ],
+  "robust_statistics_metadata": {
+    "fit_split": "train",
+    "fit_source": "unique_train_timeline",
+    "exact": true,
+    "device": "cpu",
+    "mode": "per_node",
+    "source_cols": [
+      "Wspd",
+      "Patv_clean_for_input"
+    ],
+    "num_time_points": 42047,
+    "num_time_deltas": 42046,
+    "shape": {
+      "q25": [
+        134,
+        2
+      ],
+      "median": [
+        134,
+        2
+      ],
+      "q75": [
+        134,
+        2
+      ],
+      "center": [
+        134,
+        2
+      ],
+      "scale": [
+        134,
+        2
+      ]
+    },
+    "nonfinite_filtered": 0,
+    "degenerate_iqr_count": 0,
+    "depends_on_window_stride": false,
+    "feature_space": "model_input_scaled"
+  },
+  "checkpoint_sha256": "918db536f3680a039b554150db2b7b72a7aa54ccf94259c759e975ac8f6094bc"
+}

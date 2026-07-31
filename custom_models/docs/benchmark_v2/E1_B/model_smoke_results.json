@@ -1,0 +1,98 @@
+{
+  "task": "E1-B",
+  "run_mode": "smoke",
+  "formal_training": false,
+  "shape": {
+    "B": 2,
+    "T": 144,
+    "N": 4,
+    "C": 16,
+    "H": 10
+  },
+  "results": {
+    "dlinear": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e1_b/dlinear",
+      "prediction_shape": [
+        2,
+        4,
+        10
+      ],
+      "loss": 513.3558349609375,
+      "validation_score_h10": 4.2891406044033715,
+      "evaluation_score_h10": 4.2891406044033715,
+      "evaluation_r2_h10": -13.209944852264641,
+      "parameter_count": 2900,
+      "trainable_parameter_count": 2900,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\DLinear.py",
+      "upstream_source_sha256": "e03acaf97e70c85ea6bda6776b3a62550f84470afa7bc53dffccb6121626e7eb"
+    },
+    "lightts": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e1_b/lightts",
+      "prediction_shape": [
+        2,
+        4,
+        10
+      ],
+      "loss": 155.99424743652344,
+      "validation_score_h10": 2.271544365461585,
+      "evaluation_score_h10": 2.2716208712013146,
+      "evaluation_r2_h10": -3.752974782080843,
+      "parameter_count": 104342,
+      "trainable_parameter_count": 104342,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\LightTS.py",
+      "upstream_source_sha256": "1de1583c4ee0bbfa0764fa9b158f09ac8bcd7ddf7f2d9f1b58ab1a03a7d13989"
+    },
+    "tide": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e1_b/tide",
+      "prediction_shape": [
+        2,
+        4,
+        10
+      ],
+      "loss": 631.6253051757812,
+      "validation_score_h10": 4.206971211680413,
+      "evaluation_score_h10": 4.207011170591426,
+      "evaluation_r2_h10": -12.806043753809043,
+      "parameter_count": 1804777,
+      "trainable_parameter_count": 1804777,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\TiDE.py",
+      "upstream_source_sha256": "4ab07dec4ae85f8b7c3062ff7d2fec00be342968d41cf09e48d599d8e40f6143"
+    },
+    "segrnn": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e1_b/segrnn",
+      "prediction_shape": [
+        2,
+        4,
+        10
+      ],
+      "loss": 967.853759765625,
+      "validation_score_h10": 3.8908756835714198,
+      "evaluation_score_h10": 3.890877439365876,
+      "evaluation_r2_h10": -11.49399223369947,
+      "parameter_count": 1583874,
+      "trainable_parameter_count": 1583874,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\SegRNN.py",
+      "upstream_source_sha256": "764d4ad950ee65162c70746248754942cfb4ba661162d515caab0a4eedd12252"
+    }
+  }
+}

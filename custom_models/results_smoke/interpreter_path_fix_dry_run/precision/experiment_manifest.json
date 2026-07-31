@@ -1,0 +1,96 @@
+{
+  "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+  "experiment_family": "precision",
+  "run_id": "precision",
+  "selection_uses_test_metrics": false,
+  "variants": [
+    {
+      "variant_id": "P0",
+      "display_name": "Bi-Diffusion + Last-State + H64 + C1",
+      "experiment_family": "precision",
+      "trainable": false,
+      "canonical_reference": "full_fixed_dual_keep_msmgdwu_seed2026",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {},
+      "expected_unique_diff": []
+    },
+    {
+      "variant_id": "P1",
+      "display_name": "Simple + Last-State + H64 + C1",
+      "experiment_family": "precision",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "graph_operator": "simple"
+      },
+      "expected_unique_diff": [
+        "graph_operator"
+      ]
+    },
+    {
+      "variant_id": "P2",
+      "display_name": "Simple + Full-History Cross-Attn + H64 + C1",
+      "experiment_family": "precision",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "graph_operator": "simple",
+        "decoder_context_mode": "full_history_cross_attention"
+      },
+      "expected_unique_diff": [
+        "graph_operator",
+        "decoder_context_mode"
+      ]
+    },
+    {
+      "variant_id": "P3",
+      "display_name": "Bi-Diffusion + Full-History Cross-Attn + H64 + C1",
+      "experiment_family": "precision",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "decoder_context_mode": "full_history_cross_attention"
+      },
+      "expected_unique_diff": [
+        "decoder_context_mode"
+      ]
+    },
+    {
+      "variant_id": "P4",
+      "display_name": "Bi-Diffusion + Full-History Cross-Attn + H96 + C1",
+      "experiment_family": "precision",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "decoder_context_mode": "full_history_cross_attention",
+        "hidden_dim": 96
+      },
+      "expected_unique_diff": [
+        "decoder_context_mode",
+        "hidden_dim"
+      ]
+    },
+    {
+      "variant_id": "P5",
+      "display_name": "Bi-Diffusion + Full-History Cross-Attn + H96 + C2",
+      "experiment_family": "precision",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "decoder_context_mode": "full_history_cross_attention",
+        "hidden_dim": 96,
+        "num_coupling_layers": 2
+      },
+      "expected_unique_diff": [
+        "decoder_context_mode",
+        "hidden_dim",
+        "num_coupling_layers"
+      ]
+    }
+  ]
+}

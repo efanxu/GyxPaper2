@@ -1,0 +1,22 @@
+{
+  "threshold_source": "formal_train_future_target_windows",
+  "label_definition": "post_hoc_from_true_Patv_raw_not_available_at_prediction_time",
+  "adjacent_pair_rule": "both_target_points_must_be_valid",
+  "horizons": {
+    "h3": {
+      "q90": 330.00199340820313,
+      "num_train_windows": 6983,
+      "num_valid_adjacent_pairs": 1272925
+    },
+    "h6": {
+      "q90": 343.3433837890625,
+      "num_train_windows": 6983,
+      "num_valid_adjacent_pairs": 3176624
+    },
+    "h10": {
+      "q90": 349.21518066406264,
+      "num_train_windows": 6983,
+      "num_valid_adjacent_pairs": 5718460
+    }
+  }
+}

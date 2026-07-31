@@ -1,0 +1,74 @@
+{
+  "task": "E3-C",
+  "snapshot": "E3-C task after",
+  "algorithm": "SHA256; directory digest is SHA256 of sorted relative_path:sha256 newline records; __pycache__ excluded",
+  "paths": [
+    {
+      "path": "custom_models/src/benchmark_v2/models/graph_models",
+      "exists": true,
+      "kind": "directory",
+      "file_count": 10,
+      "tree_sha256": "3caf05a98ba321f02d4e036ed4860a1d28351c04e9e57828d218464978fa86f7",
+      "matches_before": false
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/graph_common.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "a0c2ef852b967f2fc7e0dc08446680e9d093d9f2e11f40ea4fb0997a3f1a6468",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/gcn.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "7889ff899f1a53aff396c27b4088f2cf2aa1e1f0684163e3751e7ba2468d54b7",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/stgcn.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "5215169e6507b88df262bb6e50ed97f8e52b27e5845124a68f4446d1dfd82334",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/dcrnn.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "1aa5a7fbdc097ae415cbed984ecbe2a36a047590e2cd45648f7911eca3e41d5e",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/adapters/e3_b.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "09f48204b3fe5c4b7d713c82842cf5dd70d8d3581530076402abc9f004115fcb",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/tests/benchmark_v2/test_e3_b_graph_models.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "021611d8fb818d141fb88c5d77c9a543daf9dbfa0b69787e79c95a38c6057d64",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/docs/benchmark_v2/E3_B",
+      "exists": true,
+      "kind": "directory",
+      "file_count": 44,
+      "tree_sha256": "2b64437ed9bf8ce9514b3f7afa1ff9a1f2ba89e8839f777f097be469518fdb2c",
+      "matches_before": true
+    }
+  ],
+  "protocol_file_sha256": "a250a476a03683c7ed62c77685d8b878b0fb5e2d371b694aba308d6df62e2492",
+  "canonical_checkpoint_sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+  "formal_output_root_existed": false,
+  "mismatches": [
+    "custom_models/src/benchmark_v2/models/graph_models"
+  ],
+  "protocol_matches_before": true,
+  "canonical_matches_before": true,
+  "formal_output_root_matches_before": true
+}

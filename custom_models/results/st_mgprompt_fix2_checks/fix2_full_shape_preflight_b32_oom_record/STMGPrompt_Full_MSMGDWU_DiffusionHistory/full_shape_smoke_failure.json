@@ -1,0 +1,13 @@
+{
+  "mode": "full_shape_smoke",
+  "sys_executable": "C:\\Users\\12811\\.conda\\envs\\tsl\\python.exe",
+  "python_version": "3.11.15 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:12:53) [MSC v.1942 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "torch_version": "2.5.1+cu124",
+  "torch_cuda_version": "12.4",
+  "cuda_available": true,
+  "gpu_name": "NVIDIA GeForce GTX 1060",
+  "run_dir": "custom_models\\results\\st_mgprompt_fix2_checks\\fix2_full_shape_preflight_b32_oom_record\\STMGPrompt_Full_MSMGDWU_DiffusionHistory",
+  "error_type": "OutOfMemoryError",
+  "error": "CUDA out of memory. Tried to allocate 152.00 MiB. GPU 0 has a total capacity of 6.00 GiB of which 0 bytes is free. Of the allocated memory 12.62 GiB is allocated by PyTorch, and 128.67 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)"
+}

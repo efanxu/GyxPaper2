@@ -1,0 +1,63 @@
+{
+  "task": "E1-A",
+  "run_mode": "smoke",
+  "limited": true,
+  "formal_training": false,
+  "formal_evaluation": false,
+  "dataset_shape": [52559, 134, 16],
+  "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "results": {
+    "persistence": {
+      "status": "PASS",
+      "accepted_attempt": "retry2",
+      "prediction_shape": [4, 134, 10],
+      "artifact_validation": "PASS",
+      "score_h10": 0.0,
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e1_a/real_data/persistence_retry2"
+    },
+    "moving_average": {
+      "status": "PASS",
+      "prediction_shape": [4, 134, 10],
+      "artifact_validation": "PASS",
+      "score_h10": 5.80815259361267,
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e1_a/real_data/moving_average"
+    },
+    "gru": {
+      "status": "PASS",
+      "prediction_shape": [1, 134, 10],
+      "train_batch_limit": 2,
+      "validation_batch_limit": 1,
+      "evaluation_batch_limit": 1,
+      "loss": 1.3364107608795166,
+      "validation_score_h10": 86.69853080488011,
+      "evaluation_score_h10": 68.79572538271067,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e1_a/real_data/gru"
+    }
+  },
+  "failed_attempts": [
+    {
+      "model_id": "persistence",
+      "attempt": "initial",
+      "status": "FAIL",
+      "error": "ValueError: Out of range float values are not JSON compliant: nan",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e1_a/real_data/persistence"
+    },
+    {
+      "model_id": "persistence",
+      "attempt": "retry1",
+      "status": "FAIL",
+      "error": "official_score returned NaN despite valid masked targets",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e1_a/real_data/persistence_retry1"
+    }
+  ],
+  "framework_defect_fix": {
+    "file": "custom_models/src/benchmark_v2/metrics.py",
+    "cause": "NumPy NaN multiplied by a false mask remains NaN.",
+    "fix": "Use np.where(mask, error, 0.0) before official Score aggregation.",
+    "protocol_semantics_changed": false
+  }
+}

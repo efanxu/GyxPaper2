@@ -1,0 +1,28 @@
+{
+  "status": "failed_baseline",
+  "failed_variant": "P0",
+  "blocked_variants": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5"
+  ],
+  "failure_stage": "validation",
+  "error_type": "OutOfMemoryError",
+  "error": "simulated CUDA out of memory",
+  "last_completed_epoch": null,
+  "best_checkpoint_exists": false,
+  "last_checkpoint_exists": false,
+  "train_complete_exists": false,
+  "evaluation_complete_exists": false,
+  "run_command": [
+    "D:\\Apps\\Miniconda3\\envs\\env_tslib\\python.exe",
+    "run_st_mgprompt.py",
+    "--train-only"
+  ],
+  "run_command_text": "D:\\Apps\\Miniconda3\\envs\\env_tslib\\python.exe run_st_mgprompt.py --train-only",
+  "manifest": "custom_models\\results\\st_mgprompt_oom_fix_smoke\\oom_fix_scheduler_smoke_20260715\\precision_ablation_manifest.json",
+  "status_file": "custom_models\\results\\st_mgprompt_oom_fix_smoke\\oom_fix_scheduler_smoke_20260715\\precision_ablation_status.json",
+  "val_summary": "custom_models\\results\\st_mgprompt_oom_fix_smoke\\oom_fix_scheduler_smoke_20260715\\precision_ablation_val_summary.csv"
+}

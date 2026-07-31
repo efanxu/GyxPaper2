@@ -1,0 +1,163 @@
+{
+  "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke\\full_shape_smoke_seed2026\\STMGPrompt_ComponentAblation",
+  "full_shape_smoke_passed": true,
+  "summary": {
+    "mode": "full_shape_smoke",
+    "sys_executable": "D:\\Apps\\Miniconda\\python.exe",
+    "python_version": "3.11.15 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:12:53) [MSC v.1942 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "torch_version": "2.5.1+cu124",
+    "torch_cuda_version": "12.4",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce GTX 1060",
+    "device": "cuda",
+    "batch_shape": {
+      "train_x": [
+        32,
+        144,
+        134,
+        16
+      ],
+      "train_y": [
+        32,
+        10,
+        134
+      ],
+      "train_mask": [
+        32,
+        10,
+        134
+      ],
+      "num_nodes": 134,
+      "input_dim": 16,
+      "lookback": 144,
+      "max_pred_len": 10,
+      "train_batch_size": 32,
+      "val_batch_size": 64,
+      "test_batch_size": 64
+    },
+    "input_dtype": "torch.float32",
+    "amp_enabled": true,
+    "diagnostics_level": "minimal",
+    "hidden_dim": 64,
+    "num_coupling_layers": 1,
+    "graph_operator": "bidirectional_diffusion",
+    "decoder_context_mode": "last_state",
+    "granularity_weight_mode": "difficulty_rate",
+    "parameter_count": 278534,
+    "loss_value": 0.32621052861213684,
+    "val_loss_value": 0.4135521203279495,
+    "loss_finite": true,
+    "gradient_checks": {
+      "model_any_grad_finite": true,
+      "vadsp_grad_finite": true,
+      "coupling_grad_finite": true,
+      "decoder_grad_finite": true,
+      "loss_backward_compatible": true,
+      "micro_diffusion_grad_finite": true,
+      "macro_diffusion_grad_finite": true
+    },
+    "train_forward_peak_mib": 10274.39990234375,
+    "train_backward_peak_mib": 9087.86279296875,
+    "validation_peak_mib": 4304.3486328125,
+    "train_forward_memory_mib": {
+      "current_allocated": 8644.77880859375,
+      "current_reserved": 10422.0,
+      "peak_allocated": 10274.39990234375,
+      "peak_reserved": 10422.0
+    },
+    "train_backward_memory_mib": {
+      "current_allocated": 57.00634765625,
+      "current_reserved": 11228.0,
+      "peak_allocated": 9087.86279296875,
+      "peak_reserved": 11228.0
+    },
+    "validation_memory_mib": {
+      "current_allocated": 19.5361328125,
+      "current_reserved": 6924.0,
+      "peak_allocated": 4304.3486328125,
+      "peak_reserved": 6924.0
+    },
+    "validation_grad_enabled": false,
+    "validation_grad_enabled_by_batch": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "attention_shapes": {
+      "macro_attention_output_shape": [
+        8576,
+        144,
+        64
+      ],
+      "macro_attention_weights_shape": null,
+      "fine_attention_output_shape": [
+        8576,
+        144,
+        64
+      ],
+      "fine_attention_weights_shape": null
+    },
+    "attention_dtypes": {
+      "macro_attention_output_dtype": "torch.float16",
+      "macro_attention_weights_dtype": null,
+      "fine_attention_output_dtype": "torch.float16",
+      "fine_attention_weights_dtype": null
+    },
+    "attention_weights_requested": false,
+    "entropy_called": false,
+    "cuda_tensors_in_validation_details": [],
+    "memory_growth_across_validation_batches_mib": [
+      19.5361328125,
+      19.5361328125,
+      19.5361328125,
+      19.5361328125,
+      19.5361328125
+    ],
+    "validation_batches": 5,
+    "forward_time_sec": 10.979535999998916,
+    "backward_time_sec": 12.918426499993075,
+    "vadsp_robust_statistics_metadata": {
+      "fit_split": "train",
+      "fit_source": "unique_train_timeline",
+      "exact": true,
+      "device": "cpu",
+      "mode": "per_node",
+      "source_cols": [
+        "Wspd",
+        "Patv_clean_for_input"
+      ],
+      "num_time_points": 42047,
+      "num_time_deltas": 42046,
+      "shape": {
+        "q25": [
+          134,
+          2
+        ],
+        "median": [
+          134,
+          2
+        ],
+        "q75": [
+          134,
+          2
+        ],
+        "center": [
+          134,
+          2
+        ],
+        "scale": [
+          134,
+          2
+        ]
+      },
+      "nonfinite_filtered": 0,
+      "degenerate_iqr_count": 0,
+      "depends_on_window_stride": false,
+      "feature_space": "model_input_scaled"
+    },
+    "status": "passed"
+  }
+}

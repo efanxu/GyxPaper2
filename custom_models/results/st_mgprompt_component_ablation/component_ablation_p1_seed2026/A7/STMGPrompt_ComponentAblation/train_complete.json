@@ -1,0 +1,11 @@
+{
+  "status": "completed",
+  "last_epoch": 13,
+  "best_epoch": 7,
+  "best_val_score_h10": 14.156269199102898,
+  "best_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A7\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+  "last_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A7\\STMGPrompt_ComponentAblation\\last_checkpoint.pt",
+  "amp_enabled": true,
+  "amp_dtype": "float16",
+  "config_hash": "d7d8cbae4b52e9510abca5a6726dbeec37acbb618b9630c91276ac332d6ae2d8"
+}

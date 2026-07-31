@@ -1,0 +1,182 @@
+{
+  "task": "E2-B",
+  "formal_training_started": false,
+  "formal_evaluation_started": false,
+  "formal_runs": [],
+  "e2_c_started": false,
+  "target_models": [
+    "timesnet",
+    "micn",
+    "wpmixer",
+    "multipatchformer"
+  ],
+  "implemented_models": [
+    "timesnet",
+    "micn",
+    "wpmixer",
+    "multipatchformer"
+  ],
+  "locally_full_shape_verified_models": [
+    "timesnet",
+    "micn"
+  ],
+  "hardware_preflight_required_models": [
+    "wpmixer",
+    "multipatchformer"
+  ],
+  "blocked_non_oom_models": [],
+  "historical_failures_reproduced": {
+    "micn": true,
+    "multipatchformer": true
+  },
+  "registry_counts": {
+    "total_entries": 28,
+    "formal_runnable_trainable": 13,
+    "locally_full_shape_verified": 7,
+    "hardware_preflight_required": 6,
+    "non_trainable_available": 2,
+    "true_blocked_or_unavailable": 13
+  },
+  "protocol_hash_before": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "protocol_hash_after": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "canonical_sha256_before": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+  "canonical_sha256_after": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+  "tslib_modified": false,
+  "st_mgprompt_modified": false,
+  "prior_models_modified": false,
+  "dependencies_changed": false,
+  "files_created": [
+    "custom_models/src/benchmark_v2/models/timesnet.py",
+    "custom_models/src/benchmark_v2/models/micn.py",
+    "custom_models/src/benchmark_v2/models/wpmixer.py",
+    "custom_models/src/benchmark_v2/models/multipatchformer.py",
+    "custom_models/src/benchmark_v2/configs/timesnet.py",
+    "custom_models/src/benchmark_v2/configs/micn.py",
+    "custom_models/src/benchmark_v2/configs/wpmixer.py",
+    "custom_models/src/benchmark_v2/configs/multipatchformer.py",
+    "custom_models/src/benchmark_v2/adapters/e2_b.py",
+    "custom_models/tests/benchmark_v2/test_e2_b_models.py",
+    "custom_models/docs/benchmark_v2/E2_B/generate_protection_snapshots.py",
+    "custom_models/docs/benchmark_v2/E2_B/collect_e2_b_results.py",
+    "custom_models/docs/benchmark_v2/E2_B/E2_B_TSLIB_SOURCE_AUDIT.md",
+    "custom_models/docs/benchmark_v2/E2_B/E2_B_CONFIG_RESOLUTION.md",
+    "custom_models/docs/benchmark_v2/E2_B/E2_B_MODEL_SPECIFICATIONS.md",
+    "custom_models/docs/benchmark_v2/E2_B/E2_B_MULTISCALE_FAIRNESS_AUDIT.md",
+    "custom_models/docs/benchmark_v2/E2_B/E2_B_MICN_SHAPE_TRACE.md",
+    "custom_models/docs/benchmark_v2/E2_B/E2_B_MULTIPATCHFORMER_SHAPE_TRACE.md",
+    "custom_models/docs/benchmark_v2/E2_B/E2_B_IMPLEMENTATION_REPORT.md",
+    "custom_models/docs/benchmark_v2/E2_B/E2_B_RUNBOOK.md",
+    "custom_models/docs/benchmark_v2/E2_B/HANDOFF_E2_B.md",
+    "custom_models/docs/benchmark_v2/E2_B/test_results.json",
+    "custom_models/docs/benchmark_v2/E2_B/model_smoke_results.json",
+    "custom_models/docs/benchmark_v2/E2_B/full_shape_model_smoke_results.json",
+    "custom_models/docs/benchmark_v2/E2_B/real_data_smoke_results.json",
+    "custom_models/docs/benchmark_v2/E2_B/hardware_preflight_test_results.json",
+    "custom_models/docs/benchmark_v2/E2_B/protected_core_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E2_B/protected_core_hashes_after.json",
+    "custom_models/docs/benchmark_v2/E2_B/protected_tslib_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E2_B/protected_tslib_hashes_after.json",
+    "custom_models/docs/benchmark_v2/E2_B/protected_benchmark_frozen_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E2_B/protected_benchmark_frozen_hashes_after.json",
+    "custom_models/docs/benchmark_v2/E2_B/protected_e1_a_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E2_B/protected_e1_a_hashes_after.json",
+    "custom_models/docs/benchmark_v2/E2_B/protected_e1_b_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E2_B/protected_e1_b_hashes_after.json",
+    "custom_models/docs/benchmark_v2/E2_B/protected_e2_a_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E2_B/protected_e2_a_hashes_after.json",
+    "custom_models/docs/benchmark_v2/E2_B/E2_B_IMPLEMENTATION_MANIFEST.json"
+  ],
+  "files_modified": [
+    "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+    "custom_models/src/benchmark_v2/configs/__init__.py",
+    "custom_models/src/benchmark_v2/adapters/__init__.py",
+    "custom_models/src/benchmark_v2/model_runtime.py",
+    "custom_models/src/benchmark_v2/model_cli.py",
+    "custom_models/src/benchmark_v2/hardware_preflight.py",
+    "custom_models/src/benchmark_v2/registry/benchmark_registry.json",
+    "custom_models/tests/benchmark_v2/test_e1_a_registry_cli.py",
+    "custom_models/tests/benchmark_v2/test_e1_b_loader.py",
+    "custom_models/tests/benchmark_v2/test_e1_b_registry_cli.py",
+    "custom_models/tests/benchmark_v2/test_e2_a_models.py",
+    "custom_models/tests/benchmark_v2/test_registry.py"
+  ],
+  "files_deleted": [],
+  "task_start_existing_changes": "UNKNOWN: project root has no Git metadata",
+  "commands_executed": [
+    "UTF-8 read of attached pasted-text.txt and E0-A through E2-A evidence",
+    "SHA256 before snapshots for core, TSLib, frozen benchmark, E1-A, E1-B, E2-A",
+    "read-only source audit of four model files and imported layers/run/exp/license",
+    "isolated MICN E0-A 154/58 failure reproduction",
+    "isolated MultiPatchFormer E0-A 18/19 failure reproduction",
+    "python -m compileall -q custom_models/src/benchmark_v2",
+    "python -m unittest custom_models.tests.benchmark_v2.test_e2_b_models -v",
+    "python -m unittest discover -s custom_models/tests/benchmark_v2 -p test_*.py",
+    "run_benchmark.py protocol-check",
+    "independent model-smoke process for each E2-B model",
+    "independent full-shape-model-smoke process for each E2-B model",
+    "independent real-data-model-smoke process for each E2-B model",
+    "collector for E2-B smoke/test JSON",
+    "SHA256 after snapshots for core, TSLib, frozen benchmark, E1-A, E1-B, E2-A"
+  ],
+  "tests": [
+    {
+      "name": "benchmark_v2 unittest suite",
+      "status": "PASS",
+      "tests_run": 71,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "name": "protocol check",
+      "status": "PASS"
+    },
+    {
+      "name": "MICN historical failure regression",
+      "status": "PASS"
+    },
+    {
+      "name": "MultiPatchFormer historical failure regression",
+      "status": "PASS"
+    }
+  ],
+  "smoke_runs": [
+    {"model": "timesnet", "ordinary": "PASS", "real_data": "PASS"},
+    {"model": "micn", "ordinary": "PASS", "real_data": "PASS"},
+    {"model": "wpmixer", "ordinary": "PASS", "real_data": "PASS"},
+    {"model": "multipatchformer", "ordinary": "PASS", "real_data": "PASS"}
+  ],
+  "full_shape_results": [
+    {
+      "model": "timesnet",
+      "status": "PASS",
+      "peak_allocated_memory_bytes": 5414120960,
+      "backward_completed": true
+    },
+    {
+      "model": "micn",
+      "status": "PASS",
+      "peak_allocated_memory_bytes": 1956011520,
+      "backward_completed": true
+    },
+    {
+      "model": "wpmixer",
+      "status": "FAIL_OOM",
+      "peak_allocated_memory_bytes": 12459016192,
+      "backward_completed": false
+    },
+    {
+      "model": "multipatchformer",
+      "status": "FAIL_OOM",
+      "peak_allocated_memory_bytes": 12657478144,
+      "backward_completed": false
+    }
+  ],
+  "formal_output_root_created": false,
+  "warnings": [
+    "Project root has no Git metadata; task-start uncommitted changes cannot be classified.",
+    "rg.exe was unavailable with Access Denied; UTF-8 PowerShell/Python reads were used.",
+    "The legacy full-shape smoke helper records peak allocated but not peak reserved; reserved is reported null, not invented. The hardware-preflight worker records both.",
+    "TimesNet and WPMixer initial FAIL_NON_OOM smoke directories are retained and documented.",
+    "No formal training, formal evaluation, target high-memory preflight, dependency change, deletion, or E2-C work occurred."
+  ]
+}

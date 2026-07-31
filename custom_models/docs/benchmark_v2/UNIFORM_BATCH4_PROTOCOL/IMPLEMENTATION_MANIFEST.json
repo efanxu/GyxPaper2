@@ -1,0 +1,170 @@
+{
+  "task": "统一训练 Batch=4 降显存协议重构、全模型可行性预检与正式重训准备",
+  "scope": "engineering preparation only; no formal training or aggregation",
+  "status": "READY_FOR_TARGET_MACHINE_VALIDATION",
+  "LOCAL_DEVELOPMENT_MACHINE_STATUS": "BLOCKED_MACHINE_OOM",
+  "LOCAL_DEVELOPMENT_MACHINE_ID": "GTX1060_WINDOWS",
+  "TARGET_MACHINE_STATUS": "PENDING_TARGET_MACHINE_PREFLIGHT",
+  "GLOBAL_ENGINEERING_STATUS": "READY_FOR_TARGET_MACHINE_VALIDATION",
+  "profile_id": "uniform_train_batch4_v1",
+  "profile_hash": "f58bbc161dfba0f00774879fdf2f78ec7c59a7faff9ef28a1733a2ed6835fe66",
+  "train_batch_size": 4,
+  "val_batch_size": 4,
+  "test_batch_size": 4,
+  "gradient_accumulation_steps": 1,
+  "effective_train_batch_size": 4,
+  "known_oom6_pass": 4,
+  "known_oom6_oom": 2,
+  "known_oom6_non_oom": 0,
+  "all26_pass": 0,
+  "all26_oom": 0,
+  "all26_non_oom": 0,
+  "all26_not_run": 26,
+  "full_preflight_status": "NOT_RUN_BLOCKED_BY_KNOWN_OOM6",
+  "a8_preflight_status": "NOT_RUN_BLOCKED_BY_KNOWN_OOM6",
+  "registry_before": 28,
+  "registry_after": 28,
+  "tslib_allowlist_before": 18,
+  "tslib_allowlist_after": 18,
+  "benchmark_protocol_hash_before": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "benchmark_protocol_hash_after": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "canonical_hash_before": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+  "canonical_hash_after": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+  "graph_protocol_hash_before": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
+  "graph_protocol_hash_after": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
+  "model_sources_modified": false,
+  "model_configs_modified": false,
+  "loss_modified": false,
+  "graph_protocol_modified": false,
+  "st_mgprompt_architecture_modified": false,
+  "dependencies_changed": false,
+  "formal_original28_started": false,
+  "formal_full_started": false,
+  "formal_a8_started": false,
+  "formal_e5_started": false,
+  "e4_aggregation_started": false,
+  "e5_aggregation_started": false,
+  "ordinary_smoke": {
+    "original28": {
+      "PASS": 28,
+      "FAIL": 0
+    },
+    "e5_28": {
+      "PASS": 28,
+      "FAIL": 0
+    },
+    "st_full_a8": {
+      "PASS": 2,
+      "FAIL": 0
+    }
+  },
+  "real_data_smoke": {
+    "PASS": 24,
+    "FAIL_OOM": 1,
+    "FAIL_NON_OOM": 1
+  },
+  "sample_and_batch_inventory": {
+    "time_steps": 52559,
+    "train_samples_per_epoch": 6983,
+    "train_batches_per_epoch": 1746,
+    "optimizer_steps_per_epoch": 1746,
+    "validation_samples": 1701,
+    "validation_batches": 426,
+    "test_samples": 5104,
+    "test_batches": 1276,
+    "calculation": "chronological 0.8/0.1/0.1 split; lookback=144, horizon=10; strides train/val/test=6/3/1; ceil(samples/4)"
+  },
+  "files_created": [
+    "scripts/uniform_batch4_snapshot.py",
+    "scripts/uniform_batch4_generate.py",
+    "scripts/uniform_batch4_smoke.py",
+    "scripts/uniform_batch4_finalize.py",
+    "scripts/uniform_batch4_restore_graph.py",
+    "custom_models/src/benchmark_v2/training_profiles/__init__.py",
+    "custom_models/src/benchmark_v2/training_profiles/uniform_train_batch4_v1.json",
+    "custom_models/tests/benchmark_v2/test_uniform_batch4.py",
+    "custom_models/docs/benchmark_v2/UNIFORM_BATCH4_PROTOCOL/"
+  ],
+  "files_modified": [
+    "custom_models/src/benchmark_v2/model_cli.py",
+    "custom_models/src/benchmark_v2/hardware_preflight.py",
+    "custom_models/src/benchmark_v2/cli.py",
+    "custom_models/src/benchmark_v2/checkpointing.py",
+    "custom_models/src/benchmark_v2/artifacts.py",
+    "custom_models/src/benchmark_v2/experiments/e5_common_loss/contracts.py",
+    "custom_models/src/benchmark_v2/experiments/e5_common_loss/variant_manifest.py",
+    "custom_models/src/benchmark_v2/experiments/e5_common_loss/a8_reference.py",
+    "custom_models/src/benchmark_v2/experiments/e5_common_loss/readiness.py",
+    "custom_models/src/benchmark_v2/experiments/e5_common_loss/aggregation.py",
+    "custom_models/src/st_mgprompt/run_st_mgprompt.py",
+    "custom_models/src/st_mgprompt/train.py"
+  ],
+  "files_deleted": [],
+  "files_moved": [],
+  "tests": {
+    "status": "PASS_WITH_TARGETED_RERUNS",
+    "interpreter": "D:/Apps/Miniconda3/envs/env_tslib/python.exe",
+    "pytest_available": false,
+    "suites": [
+      {
+        "suite": "existing benchmark_v2 unittest discovery",
+        "tests_run": 164,
+        "initial_pass": 162,
+        "initial_fail": 2,
+        "targeted_rerun_pass": 2,
+        "notes": [
+          "E5 identity regression was corrected and its targeted test passed.",
+          "MTGNN zero-gradient assertion passed on isolated rerun without a model change."
+        ]
+      },
+      {
+        "suite": "test_uniform_batch4.py",
+        "tests_run": 8,
+        "passed": 8,
+        "failed": 0
+      }
+    ],
+    "coverage": [
+      "profile schema/hash/allowlist/fixed batches",
+      "DataLoader batch4 and unchanged sample collection",
+      "gradient accumulation/effective batch",
+      "initialization/forward/optimizer param-group invariance",
+      "preflight identity mismatch rejection for batch32/16/8 and hashes",
+      "artifact/checkpoint batch identity",
+      "readiness/aggregation mixed-batch rejection",
+      "old A8 rejection and new batch4 A8 acceptance",
+      "backward compatibility, registry=28, TSLib allowlist=18"
+    ]
+  },
+  "protection_snapshot_matches": {
+    "protected_core_hashes": true,
+    "protected_model_sources": true,
+    "protected_model_configs": true,
+    "protected_tslib_hashes": true,
+    "protected_graph_hashes": true,
+    "protected_st_mgprompt_hashes": true,
+    "protected_a0_a8_hashes": true,
+    "protected_e5_a_hashes": true,
+    "protected_formal_results_inventory": true
+  },
+  "warnings": [
+    "Exact preflight ran on NVIDIA GeForce GTX 1060 6 GiB, not the intended approximately 48 GiB formal GPU.",
+    "Windows/WDDM CUDA peak counters in the artifacts can exceed physical VRAM because of virtual-memory accounting.",
+    "Real-data smoke had SegRNN OOM and an abnormal MSGNet process exit; these are smoke diagnostics, not performance results.",
+    "ST synthetic smoke initially rewrote the shared trend-prior files. The 134-node arrays and metadata were deterministically restored to all three frozen SHA256 values; their filesystem mtimes changed. Smoke graph output is now isolated per smoke run.",
+    "Optimizer steps per epoch increase from the old batch32 protocol; no claim of equal update counts is made."
+  ],
+  "blocked_reasons": [
+    "GTX1060_WINDOWS: BLOCKED_MACHINE_OOM",
+    "known-OOM6 SegRNN backward OOM",
+    "known-OOM6 MSGNet forward OOM"
+  ],
+  "machine_gate_revision": {
+    "historical_status_interpretation": "The legacy BLOCKED_BATCH4_STILL_OOM value is retained only inside historical GTX 1060 evidence.",
+    "target_preflight_required": true,
+    "target_pass_releases_matching_formal_suite": true,
+    "original_and_e5_preflight_are_independent": true,
+    "e5_core_may_run_before_base28_or_a8_completion": true,
+    "e5_finalize_requires_base28_and_new_batch4_a8": true
+  }
+}

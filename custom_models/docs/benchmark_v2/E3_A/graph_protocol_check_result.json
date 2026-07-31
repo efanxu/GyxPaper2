@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "schema_version": "graph_protocol_v1",
+  "graph_id": "sdwpf_physical_knn_v1",
+  "node_count": 134,
+  "selected_k": 4,
+  "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
+  "node_metadata_hash": "c7b631159b900d3d51f125e9a4f01a4e432cda2cdd75f1ec6f14d7868850c727",
+  "location_source_hash": "233a120f4db2b52402bf4dc7c90631ac9301d6af236a56c6a245e46beec1f236",
+  "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
+  "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
+  "all_matrix_hashes_valid": true,
+  "all_matrix_properties_valid": true,
+  "location_source_hash_valid": true,
+  "cuda_context_created": false,
+  "model_constructed": false,
+  "formal_result_directory_created": false
+}

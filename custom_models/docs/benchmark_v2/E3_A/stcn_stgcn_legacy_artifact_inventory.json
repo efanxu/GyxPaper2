@@ -1,0 +1,25 @@
+{
+  "task": "E3-A",
+  "searched_roots": [
+    "custom_models/results",
+    "custom_models/results_smoke"
+  ],
+  "search_terms": [
+    "STCN",
+    "STGCN",
+    "stcn",
+    "stgcn"
+  ],
+  "artifacts": [],
+  "classification_counts": {
+    "legacy_smoke": 0,
+    "legacy_formal": 0,
+    "unknown_protocol": 0,
+    "unverified_implementation": 0
+  },
+  "result": "NO_MATCHING_LEGACY_ARTIFACT_FOUND",
+  "files_deleted": [],
+  "files_moved": [],
+  "metrics_reused": false,
+  "checkpoints_reused": false
+}

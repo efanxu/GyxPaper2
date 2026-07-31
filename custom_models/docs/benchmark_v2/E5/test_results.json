@@ -1,0 +1,49 @@
+{
+  "status": "PASS_WITH_KNOWN_FLAKE",
+  "e5_focused": {
+    "status": "PASS",
+    "tests_run": 13,
+    "failures": 0,
+    "errors": 0
+  },
+  "benchmark_v2_full_suite": {
+    "status": "KNOWN_FLAKE",
+    "attempts": 2,
+    "tests_run_per_attempt": 164,
+    "passed_per_attempt": 163,
+    "failures_per_attempt": 1,
+    "failure": {
+      "test": "test_e3_c_graph_models.TestMTGNN.test_constructor_inception_mixhop_and_gradients",
+      "assertion": "emb1 gradient sum must be greater than zero",
+      "relationship_to_e5": "existing E3-C test; E5 overlay is not invoked by this test"
+    },
+    "isolated_rechecks": {
+      "attempts": 3,
+      "passed": 3,
+      "failed": 0
+    }
+  },
+  "compileall": "PASS",
+  "protocol_check": {
+    "status": "PASS",
+    "logical_sha256": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b"
+  },
+  "graph_protocol_check": {
+    "status": "PASS",
+    "logical_sha256": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef"
+  },
+  "loss_profile_check": {
+    "status": "PASS",
+    "loss_profile_hash": "0fc1fca238d7161d3a0257d639a11df8cc92ad2a1c4d61eab234338fa24b59fa"
+  },
+  "windows_script_syntax": {
+    "status": "PASS",
+    "scripts_checked": 4,
+    "checker": "PowerShell AST parser"
+  },
+  "linux_script_syntax": {
+    "status": "NOT_RUN_NO_LOCAL_BASH",
+    "scripts_generated": 5,
+    "line_endings": "LF"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "run_mode": "smoke",
+  "model_id": "__framework_test_only__",
+  "formal_registry_entry": false,
+  "requested_shape": {
+    "B": 32,
+    "T": 144,
+    "N": 134,
+    "C": 16,
+    "H": 10
+  },
+  "device": "cuda",
+  "cuda_available": true,
+  "status": "PASS",
+  "output_shape": [
+    32,
+    134,
+    10
+  ],
+  "loss": 530312.8125,
+  "elapsed_seconds": 0.5364146999781951,
+  "peak_gpu_memory_bytes": 97464320
+}

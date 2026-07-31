@@ -1,0 +1,75 @@
+# Python and test caches
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Local environments and secrets
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+env/
+ENV/
+*.pem
+*.key
+*.p12
+*.pfx
+
+# IDE and machine-local state
+.idea/*
+!.idea/.gitignore
+!.idea/inspectionProfiles/
+.vscode/*
+!.vscode/settings.json
+
+# Raw/processed dataset bodies; metadata and schema files stay trackable
+dataset/*.parquet
+dataset/*.feather
+dataset/*.pkl
+dataset/*.pickle
+dataset/*.h5
+dataset/*.hdf5
+dataset/*.npy
+dataset/*.npz
+
+# Experiment outputs that are reproducible or too large for normal Git
+custom_models/logs/
+custom_models/results_smoke/**/*.pt
+custom_models/results_smoke/**/*.pth
+custom_models/results_smoke/**/*.ckpt
+custom_models/results_smoke/**/*.npy
+custom_models/results_smoke/**/*.npz
+custom_models/results_smoke/**/*.h5
+custom_models/results_smoke/**/*.hdf5
+custom_models/results_smoke/**/*.log
+custom_models/results_smoke/**/*.out
+custom_models/results/**/*.pt
+custom_models/results/**/*.pth
+custom_models/results/**/*.ckpt
+custom_models/results/**/*.npy
+custom_models/results/**/*.npz
+custom_models/results/**/*.h5
+custom_models/results/**/*.hdf5
+custom_models/results/**/*.log
+custom_models/results/**/*.out
+
+# Root-level duplicate/source archives
+tsl.zip
+
+# Generated result archives exceed GitHub's single-file limit
+custom_models/results/**/*.zip
+
+# Other generated artifacts
+*.egg-info/
+build/
+dist/
+*.whl
+*.msi
+*.exe
+*.tmp
+*.bak

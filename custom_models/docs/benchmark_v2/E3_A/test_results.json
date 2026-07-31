@@ -1,0 +1,38 @@
+{
+  "task": "E3-A",
+  "status": "PASS",
+  "interpreter": "D:/Apps/Miniconda3/envs/env_tslib/python.exe",
+  "compileall": "PASS",
+  "focused_e3_a": {
+    "status": "PASS",
+    "tests_run": 25,
+    "failures": 0,
+    "errors": 0
+  },
+  "full_suite": {
+    "status": "PASS",
+    "tests_run": 121,
+    "failures": 0,
+    "errors": 0
+  },
+  "prior_registry_cli_regression": {
+    "status": "PASS",
+    "tests_run": 10,
+    "failures": 0,
+    "errors": 0
+  },
+  "protocol_check": {
+    "status": "PASS",
+    "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b"
+  },
+  "graph_protocol_check": {
+    "status": "PASS",
+    "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef"
+  },
+  "double_rebuild_hash_verification": "PASS",
+  "frozen_graph_overwrite_fail_closed": "PASS",
+  "dummy_graph_contract_smoke": "PASS",
+  "formal_training": "NOT_RUN",
+  "formal_evaluation": "NOT_RUN",
+  "target_machine_preflight": "NOT_RUN"
+}

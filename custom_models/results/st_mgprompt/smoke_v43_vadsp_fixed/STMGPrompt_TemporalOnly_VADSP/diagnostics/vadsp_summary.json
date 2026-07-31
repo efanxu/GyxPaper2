@@ -1,0 +1,52 @@
+{
+  "volatility_mean": 0.09492063522338867,
+  "volatility_std": 0.5869872570037842,
+  "rolling_std_mean": 0.5168478488922119,
+  "rolling_std_std": 0.2451532781124115,
+  "gate_mean": 0.6005810499191284,
+  "gate_std": 0.12691453099250793,
+  "gate_min": 0.29505014419555664,
+  "gate_max": 0.8475655317306519,
+  "gate_p01": 0.29505014419555664,
+  "gate_p10": 0.44592714905738834,
+  "gate_p25": 0.5318891555070877,
+  "gate_p50": 0.6224075555801392,
+  "gate_p75": 0.6894082129001617,
+  "gate_p90": 0.7370798587799072,
+  "gate_p99": 0.8166708797216415,
+  "gate_inter_quantile_range": 0.15751905739307404,
+  "gate_p99_minus_p01": 0.5216207355260849,
+  "gate_mean_lowest_10pct_volatility": 0.3225560784339905,
+  "gate_mean_middle_volatility": 0.6127983927726746,
+  "gate_mean_highest_10pct_volatility": 0.7708123326301575,
+  "gate_high_minus_low": 0.448256254196167,
+  "corr_gate_volatility": 0.9645819689835982,
+  "corr_gate_rolling_std": 0.738018125810116,
+  "corr_gate_abs_delta_source": 0.9645819689835982,
+  "fine_feature_norm": 2.55172061920166,
+  "coarse_feature_norm": 2.810222864151001,
+  "weighted_fine_norm": 1.5346516370773315,
+  "weighted_coarse_norm": 1.1198333501815796,
+  "fine_to_coarse_weighted_norm_ratio": 1.3704285881720613,
+  "source_weights": [
+    0.5051766037940979,
+    0.4948233664035797
+  ],
+  "temperature": 1.3231250047683716,
+  "beta_fine": 0.05017499253153801,
+  "beta_coarse": 0.0671253427863121,
+  "coarse_scale_weight_mean_per_scale": [
+    0.47875329852104187,
+    0.17328721284866333,
+    0.3479596674442291
+  ],
+  "volatility_source_cols": [
+    "Wspd",
+    "Patv_clean_for_input"
+  ],
+  "statistics_fit_split": "train_only",
+  "history_only": true,
+  "uses_target_mask": false,
+  "uses_future_inputs": false,
+  "plot_error": "No module named 'matplotlib'"
+}

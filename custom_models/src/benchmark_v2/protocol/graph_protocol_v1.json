@@ -1,0 +1,162 @@
+{
+  "schema_version": "graph_protocol_v1",
+  "graph_protocol_status": "FROZEN",
+  "graph_id": "sdwpf_physical_knn_v1",
+  "dataset": "SDWPF",
+  "node_count": 134,
+  "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
+  "node_metadata_hash": "c7b631159b900d3d51f125e9a4f01a4e432cda2cdd75f1ec6f14d7868850c727",
+  "location_source_sha256": "233a120f4db2b52402bf4dc7c90631ac9301d6af236a56c6a245e46beec1f236",
+  "input_source_hash": "bb5a5b9a6cfb175c68def21a5190feaa4561c418c8e02fd2ffb446c308a3e018",
+  "target_source_hash": "98e540b90e9eaa2f94d990817e5f8fc5a8f76b0ccd7e3c3abe93e3d792f9e90f",
+  "source_hash_semantics": {
+    "location_source_sha256": "full file bytes; identity-bearing",
+    "input_source_hash": "node schema only; feature values excluded",
+    "target_source_hash": "node schema only; target/mask values excluded"
+  },
+  "coordinate_system": "cartesian_xy",
+  "coordinate_columns": [
+    "x",
+    "y"
+  ],
+  "coordinate_units": "SOURCE_UNIT_UNSPECIFIED",
+  "coordinate_semantics_evidence": [
+    "dataset/clean_sdwpf_data.py: build_knn_neighbors uses Euclidean sqrt over x/y",
+    "custom_models/src/st_mgprompt/graph_prior.py: build_distance_prior_graph uses squared Euclidean x/y"
+  ],
+  "distance_metric": "euclidean_2d",
+  "elevation_policy": {
+    "column": "Ele",
+    "semantics": "elevation",
+    "units": "SOURCE_UNIT_UNSPECIFIED",
+    "stored_as_metadata": true,
+    "used_in_edge_distance": false
+  },
+  "k_selection_rule": "minimum k in 1..20 whose maximum-symmetrized kNN graph has one connected component; exact distance ties break by canonical node-order index",
+  "selected_k": 4,
+  "directedness": {
+    "base": "directed kNN",
+    "undirected": "elementwise maximum of A_directed and transpose"
+  },
+  "self_loop_policy": {
+    "A_directed": false,
+    "A_undirected": false,
+    "A_gcn": "explicit A_undirected + I before normalization",
+    "diffusion_supports": false
+  },
+  "weight_formula": "sigma=median(selected positive directed distances); exp(-(distance/sigma)^2)",
+  "sigma": 921.5755719183301,
+  "normalization_formulas": {
+    "A_gcn": "D^(-1/2) (A_undirected + I) D^(-1/2)",
+    "P_forward": "D_out^(-1) A_directed",
+    "P_reverse": "D_out_reverse^(-1) A_directed.T",
+    "L_sym": "I - D^(-1/2) A_undirected D^(-1/2)",
+    "L_tilde": "L_sym - I; lambda_max fixed to 2.0 theoretical bound"
+  },
+  "numeric_canonicalization": {
+    "build_device": "cpu",
+    "calculation_dtype": "float64",
+    "storage_identity_dtype": "little-endian float64",
+    "c_contiguous": true,
+    "negative_zero_normalized": true,
+    "finite_required": true,
+    "round_decimals": 12,
+    "npy_container_bytes_identity_bearing": false
+  },
+  "matrix_files": {
+    "A_binary_directed": {
+      "filename": "adjacency_binary_directed_v1.npy",
+      "shape": [
+        134,
+        134
+      ],
+      "canonical_matrix_hash": "5101e2cd5affbde633b9d0a7c3193f475150b16cf5a285799070873f2db2290f"
+    },
+    "A_binary_undirected": {
+      "filename": "adjacency_binary_undirected_v1.npy",
+      "shape": [
+        134,
+        134
+      ],
+      "canonical_matrix_hash": "6bdc5819e68396f6e61bd0306bfcc05ad8f08f2798031cc026ee8065b795019f"
+    },
+    "A_directed": {
+      "filename": "adjacency_directed_v1.npy",
+      "shape": [
+        134,
+        134
+      ],
+      "canonical_matrix_hash": "c07e3844092537f58dbd99363b60378c9e4ff64981437957506e818273dc69bf"
+    },
+    "A_undirected": {
+      "filename": "adjacency_undirected_v1.npy",
+      "shape": [
+        134,
+        134
+      ],
+      "canonical_matrix_hash": "70a0c736d7bfe875e75f1f6279efb412db1b5f72248b34fc4f9bb5c7c9a19811"
+    },
+    "A_gcn": {
+      "filename": "adjacency_gcn_v1.npy",
+      "shape": [
+        134,
+        134
+      ],
+      "canonical_matrix_hash": "cb4e1b36e3200073425c2c263953a03e732007b5daff468992bc3783bc95a7f5"
+    },
+    "P_forward": {
+      "filename": "random_walk_forward_v1.npy",
+      "shape": [
+        134,
+        134
+      ],
+      "canonical_matrix_hash": "59b39f001b3118557b55b88041b27b4ce7a743a85c0bc7948210945f7e3b8c03"
+    },
+    "P_reverse": {
+      "filename": "random_walk_reverse_v1.npy",
+      "shape": [
+        134,
+        134
+      ],
+      "canonical_matrix_hash": "89f09d41a8cae126c5668d4fe55934819c0a7489797b8e09fc0def0cc05da4fe"
+    },
+    "L_sym": {
+      "filename": "laplacian_symmetric_v1.npy",
+      "shape": [
+        134,
+        134
+      ],
+      "canonical_matrix_hash": "300b77b20a0848bae9a1791ccd98a47ee2354c8fda4133870d7ca246bb6ad17a"
+    },
+    "L_tilde": {
+      "filename": "laplacian_scaled_v1.npy",
+      "shape": [
+        134,
+        134
+      ],
+      "canonical_matrix_hash": "c62790b9032d130389d356069f81ec3f819460e216cc9afb371d4a3b16b1f227"
+    }
+  },
+  "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
+  "runtime_policy": {
+    "load_frozen_only": true,
+    "automatic_rebuild": false,
+    "automatic_overwrite": false,
+    "node_order_mismatch": "FAIL_CLOSED",
+    "hash_mismatch": "FAIL_CLOSED"
+  },
+  "leakage_policy": {
+    "edge_inputs": [
+      "canonical node ID",
+      "x",
+      "y",
+      "protocol constants"
+    ],
+    "elevation_edge_input": false,
+    "feature_values_used": false,
+    "target_values_used": false,
+    "mask_values_used": false,
+    "split_used": false
+  },
+  "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef"
+}

@@ -1,0 +1,77 @@
+{
+  "task": "E3-B",
+  "snapshot": "E3-B task before",
+  "algorithm": "SHA256; directory digest is SHA256 of sorted relative_path:sha256 newline records; __pycache__ excluded",
+  "paths": [
+    {
+      "path": "custom_models/src/benchmark_v2/models/timesnet.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "95bd735cca819ee750af34d705db82b9b45216cec3a39b8805e5bda9f8c52896"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/micn.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "e836b131b003ef4082660902414046e7d7d36a2a8d5f4ea0dba458234bdf22c3"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/wpmixer.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "b2e18a70b973f2d512ccd46908ee251d0a28566a800b6e875cf7a36eb1ec9f17"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/multipatchformer.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "ad4db5bf41f7315c1dbae809e8ccb5e4d5dd7b18a0408fecdc06a36bc6ca71b0"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/timesnet.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "8827368d682f80ec96b9693564a778315591d09f77057b157dc29929508986ce"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/micn.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "4c46c0c63574d869bab48607db3e2443278de55a30628016ffa70dddac071ae7"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/wpmixer.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "432aadc9a3df0b0965afa7a1c8ec990710dbe7793d3f8cbe2b1b10ee51c1e42c"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/multipatchformer.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "94ada0c3ef441dc75d2a0b7baef670a0f29fc14c698dbe5d543845067bbfb9f8"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/adapters/e2_b.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "4e002b7cc250695d25f6b041f1ce03e9493e98d247d05601d4d6026571d78d72"
+    },
+    {
+      "path": "custom_models/tests/benchmark_v2/test_e2_b_models.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "cc2c92380223c560f2057c7c77ec69790fbff2ea458e69b8ed44ec80fcc38934"
+    },
+    {
+      "path": "custom_models/docs/benchmark_v2/E2_B",
+      "exists": true,
+      "kind": "directory",
+      "file_count": 29,
+      "tree_sha256": "a7e6c126d6fdbd702c7357b043f3b2b8ed8ea2cc88aba7d2fca1208453c228eb"
+    }
+  ],
+  "protocol_file_sha256": "a250a476a03683c7ed62c77685d8b878b0fb5e2d371b694aba308d6df62e2492",
+  "canonical_checkpoint_sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+  "formal_output_root_existed": false
+}

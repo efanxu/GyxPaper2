@@ -1,0 +1,36 @@
+{
+  "model_id": "timesnet",
+  "run_mode": "smoke",
+  "formal_registry_entry": true,
+  "formal_training": false,
+  "requested_shape": {
+    "B": 32,
+    "T": 144,
+    "N": 134,
+    "C": 16,
+    "H": 10
+  },
+  "device": "cuda",
+  "cuda_available": true,
+  "amp_enabled": true,
+  "experiment_profile": "e5_common_loss_v1",
+  "status": "PASS",
+  "output_shape": [
+    32,
+    134,
+    10
+  ],
+  "loss": 18.87948989868164,
+  "elapsed_seconds": 115.88808760000393,
+  "peak_gpu_memory_bytes": 5414120960,
+  "peak_allocated_memory": 5414120960,
+  "peak_reserved_memory": 5989466112,
+  "gpu_name": "NVIDIA GeForce GTX 1060",
+  "gpu_total_memory": 6442319872,
+  "parameter_count": 1196810,
+  "trainable_parameter_count": 1196810,
+  "backward_completed": true,
+  "forward_completed": true,
+  "inverse_transform_parity": null,
+  "identity_diagnostic": null
+}

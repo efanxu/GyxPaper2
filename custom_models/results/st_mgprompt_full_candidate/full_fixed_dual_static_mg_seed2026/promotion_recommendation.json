@@ -1,0 +1,11 @@
+{
+  "candidate_id": "FULL_FIXED_DUAL_STATIC_MG",
+  "promotion_recommended": false,
+  "condition": "H3, H6, and H10 Score must each be lower than current Full",
+  "horizon_score_improved": {
+    "H3": false,
+    "H6": false,
+    "H10": false
+  },
+  "automatic_promotion_performed": false
+}

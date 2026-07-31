@@ -1,0 +1,13 @@
+{
+  "status": "completed",
+  "completed_at": "2026-07-25T20:54:42",
+  "checkpoint": "best_checkpoint.pt",
+  "eval_horizons": [
+    3,
+    6,
+    10
+  ],
+  "diagnostics_level": "minimal",
+  "prediction_accumulation": "streaming",
+  "amp_enabled": true
+}

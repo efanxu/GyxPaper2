@@ -1,0 +1,11 @@
+{
+  "status": "completed",
+  "last_epoch": 1,
+  "best_epoch": 1,
+  "best_val_score_h10": 14.117679222934077,
+  "best_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke\\synthetic_smoke_seed2026\\V2_COARSE_ONLY\\best_checkpoint.pt",
+  "last_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke\\synthetic_smoke_seed2026\\V2_COARSE_ONLY\\last_checkpoint.pt",
+  "amp_enabled": false,
+  "amp_dtype": null,
+  "config_hash": "1470122b4d1461624916869a62d8c9584baa9950e0bce0228f91f8e26a8c8db3"
+}

@@ -1,0 +1,268 @@
+{
+  "task": "E0-A",
+  "audit_only": true,
+  "formal_training_started": false,
+  "model_core_modified": false,
+  "registry_modified": false,
+  "adapter_implemented": false,
+  "artifact_schema_implemented": false,
+  "canonical_checkpoint_modified": false,
+  "files_created": [
+    "BENCHMARK_IMPLEMENTATION_AUDIT.md",
+    "BENCHMARK_PROTOCOL_GAP_AUDIT.md",
+    "E0_A_AUDIT_MANIFEST.json",
+    "HANDOFF_E0_A.md",
+    "STCN_STGCN_NAMING_AUDIT.md",
+    "audit_commands.txt",
+    "audit_import_results.json",
+    "audit_smoke_results.json",
+    "benchmark_dependency_report.md",
+    "benchmark_implementation_matrix.csv",
+    "benchmark_registry_inventory.json",
+    "generate_e0_a_artifacts.py",
+    "old_result_audit.json",
+    "protected_core_hashes_before.json",
+    "run_e0_a_smoke.py"
+  ],
+  "files_modified": [],
+  "commands_executed": [
+    "git rev-parse --show-toplevel / --show-current / HEAD / status --short (failed: not a git repository)",
+    "D:\\Apps\\Miniconda3\\envs\\env_tslib\\python.exe environment/version/import checks",
+    "UTF-8 PowerShell/Python source/config/result enumeration and keyword search",
+    "AST parse of custom_models/src/st_mgprompt and relevant Time-Series-Library Python files",
+    "D:\\Apps\\Miniconda3\\envs\\env_tslib\\python.exe custom_models/docs/benchmark_v2/E0_A/run_e0_a_smoke.py"
+  ],
+  "tests": [
+    {
+      "name": "st_mgprompt import",
+      "status": "PASS",
+      "details": "11 modules import successfully"
+    },
+    {
+      "name": "TSLib model import",
+      "status": "PASS",
+      "details": "18 requested source modules import successfully"
+    },
+    {
+      "name": "synthetic forward smoke",
+      "status": "PARTIAL",
+      "details": "14 SMOKE_OK; SegRNN/MICN/MultiPatchFormer/TimeMixer recorded SMOKE_ERROR; no training/data/formal writes"
+    },
+    {
+      "name": "syntax AST parse",
+      "status": "PASS",
+      "details": {
+        "files_checked": 106,
+        "parse_errors": [],
+        "placeholder_or_todo_hits": [
+          {
+            "path": "custom_models/src/st_mgprompt/diagnostics.py",
+            "line": 83,
+            "text": "pass"
+          },
+          {
+            "path": "custom_models/src/st_mgprompt/graph_prior.py",
+            "line": 89,
+            "text": "raise NotImplementedError(\"almon_smooth is reserved for ablation and is not a Step 2 default.\")"
+          },
+          {
+            "path": "custom_models/src/st_mgprompt/graph_prior.py",
+            "line": 280,
+            "text": "raise NotImplementedError(\"Wake/delay prior graph is not implemented in Step 2.\")"
+          },
+          {
+            "path": "custom_models/src/st_mgprompt/registry.py",
+            "line": 176,
+            "text": "raise NotImplementedError("
+          },
+          {
+            "path": "custom_models/src/st_mgprompt/registry.py",
+            "line": 196,
+            "text": "raise NotImplementedError(f\"No builder for {config.model_name}.\")"
+          },
+          {
+            "path": "custom_models/src/st_mgprompt/run_st_mgprompt.py",
+            "line": 563,
+            "text": "pass"
+          },
+          {
+            "path": "custom_models/src/st_mgprompt/summarize_results.py",
+            "line": 55,
+            "text": "pass"
+          },
+          {
+            "path": "Time-Series-Library/models/__init__.py",
+            "line": 1,
+            "text": "pass"
+          },
+          {
+            "path": "Time-Series-Library/models/KANAD.py",
+            "line": 88,
+            "text": "raise NotImplementedError("
+          },
+          {
+            "path": "Time-Series-Library/models/KANAD.py",
+            "line": 92,
+            "text": "raise NotImplementedError("
+          },
+          {
+            "path": "Time-Series-Library/models/KANAD.py",
+            "line": 99,
+            "text": "raise NotImplementedError("
+          },
+          {
+            "path": "Time-Series-Library/models/Koopa.py",
+            "line": 48,
+            "text": "raise NotImplementedError"
+          },
+          {
+            "path": "Time-Series-Library/models/Mamba.py",
+            "line": 19,
+            "text": "self.dt_rank = math.ceil(configs.d_model / 16) # TODO implement \"auto\""
+          },
+          {
+            "path": "Time-Series-Library/models/MultiPatchFormer.py",
+            "line": 354,
+            "text": "raise NotImplementedError("
+          },
+          {
+            "path": "Time-Series-Library/models/MultiPatchFormer.py",
+            "line": 358,
+            "text": "raise NotImplementedError("
+          },
+          {
+            "path": "Time-Series-Library/models/MultiPatchFormer.py",
+            "line": 362,
+            "text": "raise NotImplementedError("
+          },
+          {
+            "path": "Time-Series-Library/models/TiDE.py",
+            "line": 137,
+            "text": "raise NotImplementedError(\"Task anomaly_detection for Tide is temporarily not supported\")"
+          },
+          {
+            "path": "Time-Series-Library/models/TiDE.py",
+            "line": 139,
+            "text": "raise NotImplementedError(\"Task classification for Tide is temporarily not supported\")"
+          },
+          {
+            "path": "Time-Series-Library/models/WPMixer.py",
+            "line": 314,
+            "text": "raise NotImplementedError(\"Task imputation for WPMixer is temporarily not supported\")"
+          },
+          {
+            "path": "Time-Series-Library/models/WPMixer.py",
+            "line": 316,
+            "text": "raise NotImplementedError(\"Task anomaly_detection for WPMixer is temporarily not supported\")"
+          },
+          {
+            "path": "Time-Series-Library/models/WPMixer.py",
+            "line": 318,
+            "text": "raise NotImplementedError(\"Task classification for WPMixer is temporarily not supported\")"
+          },
+          {
+            "path": "Time-Series-Library/layers/MambaBlock.py",
+            "line": 122,
+            "text": "raise NotImplementedError"
+          },
+          {
+            "path": "Time-Series-Library/layers/MambaBlock.py",
+            "line": 384,
+            "text": "# TODO: What if batch size changes between generation, and we reuse the same states?"
+          },
+          {
+            "path": "Time-Series-Library/layers/StandardNorm.py",
+            "line": 28,
+            "text": "raise NotImplementedError"
+          },
+          {
+            "path": "Time-Series-Library/exp/exp_basic.py",
+            "line": 49,
+            "text": "raise NotImplementedError"
+          },
+          {
+            "path": "Time-Series-Library/exp/exp_basic.py",
+            "line": 67,
+            "text": "pass"
+          },
+          {
+            "path": "Time-Series-Library/exp/exp_basic.py",
+            "line": 70,
+            "text": "pass"
+          },
+          {
+            "path": "Time-Series-Library/exp/exp_basic.py",
+            "line": 73,
+            "text": "pass"
+          },
+          {
+            "path": "Time-Series-Library/exp/exp_basic.py",
+            "line": 76,
+            "text": "pass"
+          },
+          {
+            "path": "Time-Series-Library/exp/exp_basic.py",
+            "line": 92,
+            "text": "raise NotImplementedError(f\"Model [{key}] not found in 'models' directory.\")"
+          }
+        ],
+        "hardcoded_old_python_path_hits": [],
+        "compile_policy": "AST syntax parse used; no compileall over data/results/venv."
+      }
+    },
+    {
+      "name": "Canonical hash",
+      "status": "PASS",
+      "details": {
+        "before": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+        "after": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a"
+      }
+    }
+  ],
+  "warnings": [
+    "Project root has no Git metadata; pre-existing uncommitted changes cannot be distinguished from this snapshot.",
+    "rg.exe returned Access Denied; UTF-8 PowerShell/Python search was used.",
+    "No formal benchmark_v2 training or validation-only tuning was run.",
+    "The smoke helper itself was corrected once for a duplicate argument before the successful smoke run."
+  ],
+  "canonical_checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\best_checkpoint.pt",
+  "canonical_sha256_before": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+  "canonical_sha256_after": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+  "protected_core_hashes_equal": true,
+  "protected_core_hashes_before": {
+    "custom_models/src/st_mgprompt/registry.py": "a75323ce2ed0c3c05dc985ca1d7106449715d114166a8ad1f227173e68c9f862",
+    "custom_models/src/st_mgprompt/experiment_protocol.py": "dd5d7fe196abfa005b5e7a753a2a3341ac0be9d7e65d7521aa369eaf1c324272",
+    "custom_models/src/st_mgprompt/config.py": "2719c6fb3a086401c279aac8bf78e4bd5b9cc5ce5a8ea63277d10de65b4b09af",
+    "custom_models/src/st_mgprompt/data.py": "5460e6d81c27279f942c41849d63ddc3f730f1008a8309988b2990b9f9fcd3a5",
+    "custom_models/src/st_mgprompt/losses.py": "f90b99df342de7b1b1ee6ea39bbf30cc84eceb11663b38dfc7070d3905afc32b",
+    "custom_models/src/st_mgprompt/metrics.py": "64d8452ee90815c111ff038864b726f8587ae59cf2243e3b5e5210701a88e42a",
+    "custom_models/src/st_mgprompt/evaluate.py": "9632fcf965d6bf705318de0366c240972081ce73939d5d10ef10c232fa719b15",
+    "custom_models/src/st_mgprompt/train.py": "9275df21443a3182686c5633c3396d8423473be3c4279893504a4c817d24346f",
+    "custom_models/src/st_mgprompt/run_st_mgprompt.py": "e99937406fd14c3aacd0a27ea9bc333dc0aa7ec69c0dd1c7b7adb35754f055be",
+    "custom_models/src/st_mgprompt/formal_runner.py": "7f91cdbd5ab8edd4a53cb06f66c742f7c47aeb00facd3a51fec231816341f1ef",
+    "custom_models/src/st_mgprompt/run_ablation.py": "539d074a899c7dc315cc5fd5f1bb58bd3c7792815bedc98c4aeb08c4bb29b2d6",
+    "custom_models/src/st_mgprompt/run_precision_ablation.py": "184100088ed0c93402b70ab496e8d3c96b1b802d13d0e7e416e3be640e000dcc",
+    "custom_models/src/st_mgprompt/canonical_artifact.py": "f228d60f413246e72914500c6b9e6769c8f97be6fb4308163038c4c3659d51d4",
+    "custom_models/graphs/trend_prior_v4_2/metadata.json": "c3b0a90d1e73c39b14058d0405ecb42f547f233fed5e4b89d18e117669eb4cd2",
+    "custom_models/results/st_mgprompt_canonical/full_fixed_dual_keep_msmgdwu_seed2026/best_checkpoint.pt": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a"
+  },
+  "protected_core_hashes_after": {
+    "custom_models/src/st_mgprompt/registry.py": "a75323ce2ed0c3c05dc985ca1d7106449715d114166a8ad1f227173e68c9f862",
+    "custom_models/src/st_mgprompt/experiment_protocol.py": "dd5d7fe196abfa005b5e7a753a2a3341ac0be9d7e65d7521aa369eaf1c324272",
+    "custom_models/src/st_mgprompt/config.py": "2719c6fb3a086401c279aac8bf78e4bd5b9cc5ce5a8ea63277d10de65b4b09af",
+    "custom_models/src/st_mgprompt/data.py": "5460e6d81c27279f942c41849d63ddc3f730f1008a8309988b2990b9f9fcd3a5",
+    "custom_models/src/st_mgprompt/losses.py": "f90b99df342de7b1b1ee6ea39bbf30cc84eceb11663b38dfc7070d3905afc32b",
+    "custom_models/src/st_mgprompt/metrics.py": "64d8452ee90815c111ff038864b726f8587ae59cf2243e3b5e5210701a88e42a",
+    "custom_models/src/st_mgprompt/evaluate.py": "9632fcf965d6bf705318de0366c240972081ce73939d5d10ef10c232fa719b15",
+    "custom_models/src/st_mgprompt/train.py": "9275df21443a3182686c5633c3396d8423473be3c4279893504a4c817d24346f",
+    "custom_models/src/st_mgprompt/run_st_mgprompt.py": "e99937406fd14c3aacd0a27ea9bc333dc0aa7ec69c0dd1c7b7adb35754f055be",
+    "custom_models/src/st_mgprompt/formal_runner.py": "7f91cdbd5ab8edd4a53cb06f66c742f7c47aeb00facd3a51fec231816341f1ef",
+    "custom_models/src/st_mgprompt/run_ablation.py": "539d074a899c7dc315cc5fd5f1bb58bd3c7792815bedc98c4aeb08c4bb29b2d6",
+    "custom_models/src/st_mgprompt/run_precision_ablation.py": "184100088ed0c93402b70ab496e8d3c96b1b802d13d0e7e416e3be640e000dcc",
+    "custom_models/src/st_mgprompt/canonical_artifact.py": "f228d60f413246e72914500c6b9e6769c8f97be6fb4308163038c4c3659d51d4",
+    "custom_models/graphs/trend_prior_v4_2/metadata.json": "c3b0a90d1e73c39b14058d0405ecb42f547f233fed5e4b89d18e117669eb4cd2",
+    "custom_models/results/st_mgprompt_canonical/full_fixed_dual_keep_msmgdwu_seed2026/best_checkpoint.pt": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a"
+  },
+  "git_head_before": null,
+  "git_head_after": null
+}

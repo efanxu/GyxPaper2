@@ -1,0 +1,30 @@
+{
+  "model_id": "moving_average",
+  "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "feature_order_hash": "b9878a5091618737ca8c126dcee80d5b70f122ff3901960a620cb6bc10e7f853",
+  "baseline_rule": "repeat_physical_trailing_mean_Patv_clean_for_input",
+  "ma_window": 144,
+  "optimizer": null,
+  "scheduler": null,
+  "epochs": null,
+  "early_stopping": null,
+  "scaler_context": {
+    "power_feature_index": 15,
+    "input_power_mean": 160.0,
+    "input_power_std": 16.0,
+    "target_mean": 500.0,
+    "target_std": 125.0,
+    "input_scaler_hash": "f1c65a20cf1885b51be15ccb78de817d9afaeaa0ed7586c15c88383dde43ecd5",
+    "target_scaler_hash": "ed220cdd0d76d84ac5a02cc25e7528617f1123d3605a881dae8dd87862bfcd56",
+    "feature_order_hash": "b9878a5091618737ca8c126dcee80d5b70f122ff3901960a620cb6bc10e7f853",
+    "conversion": "input normalized -> physical kW -> target normalized"
+  },
+  "training_mode": "EVALUATE_ONLY",
+  "training_loss": "NOT_APPLICABLE",
+  "trained_with_common_loss": false,
+  "common_loss_evaluation_applied": true,
+  "diagnostic_loss": "masked_score_aligned_hybrid",
+  "best_checkpoint": null,
+  "best_epoch": null,
+  "comparison_role": "NON_TRAINABLE_REFERENCE"
+}

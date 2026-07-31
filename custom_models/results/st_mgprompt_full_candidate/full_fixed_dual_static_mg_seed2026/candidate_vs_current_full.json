@@ -1,0 +1,68 @@
+{
+  "candidate_id": "FULL_FIXED_DUAL_STATIC_MG",
+  "candidate_run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_full_candidate\\full_fixed_dual_static_mg_seed2026",
+  "reference_full_run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A0\\STMGPrompt_ComponentAblation",
+  "delta_definition": "candidate - current_full; delta_score < 0 is better",
+  "horizons": [
+    {
+      "horizon": 3,
+      "candidate_MAE": 82.422,
+      "current_full_MAE": 78.468,
+      "delta_MAE": 3.9539999999999935,
+      "candidate_RMSE": 123.189,
+      "current_full_RMSE": 119.242,
+      "delta_RMSE": 3.9469999999999885,
+      "candidate_R2": 0.913,
+      "current_full_R2": 0.918,
+      "delta_R2": -0.0050000000000000044,
+      "candidate_Score": 8.285,
+      "current_full_Score": 7.957,
+      "delta_Score": 0.3280000000000003,
+      "score_improved": false
+    },
+    {
+      "horizon": 6,
+      "candidate_MAE": 94.465,
+      "current_full_MAE": 92.69,
+      "delta_MAE": 1.7750000000000057,
+      "candidate_RMSE": 142.998,
+      "current_full_RMSE": 140.741,
+      "delta_RMSE": 2.2569999999999766,
+      "candidate_R2": 0.883,
+      "current_full_R2": 0.886,
+      "delta_R2": -0.0030000000000000027,
+      "candidate_Score": 9.997,
+      "current_full_Score": 9.751,
+      "delta_Score": 0.24600000000000044,
+      "score_improved": false
+    },
+    {
+      "horizon": 10,
+      "candidate_MAE": 108.289,
+      "current_full_MAE": 107.571,
+      "delta_MAE": 0.7180000000000035,
+      "candidate_RMSE": 162.924,
+      "current_full_RMSE": 161.109,
+      "delta_RMSE": 1.8149999999999977,
+      "candidate_R2": 0.848,
+      "current_full_R2": 0.851,
+      "delta_R2": -0.0030000000000000027,
+      "candidate_Score": 11.942,
+      "current_full_Score": 11.739,
+      "delta_Score": 0.2029999999999994,
+      "score_improved": false
+    }
+  ],
+  "aggregate": {
+    "candidate_average_score": 10.074666666666667,
+    "current_full_average_score": 9.815666666666667,
+    "delta_average_score": 0.25900000000000006,
+    "candidate_parameters": 278534,
+    "current_full_parameters": 278534,
+    "candidate_train_time_sec": 1854.806829500012,
+    "current_full_train_time_sec": 2322.3737797999347,
+    "candidate_inference_time_sec": 38.17210979992524,
+    "current_full_inference_time_sec": 42.862185300007695
+  },
+  "promotion_recommended": false
+}

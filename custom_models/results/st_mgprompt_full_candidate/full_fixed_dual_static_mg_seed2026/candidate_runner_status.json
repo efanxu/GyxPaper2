@@ -1,0 +1,12 @@
+{
+  "status": "completed",
+  "candidate_id": "FULL_FIXED_DUAL_STATIC_MG",
+  "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_full_candidate\\full_fixed_dual_static_mg_seed2026",
+  "reference_full_run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A0\\STMGPrompt_ComponentAblation",
+  "resume": true,
+  "retry_failed": false,
+  "started_at": "2026-07-25T14:53:18",
+  "finished_at": "2026-07-25T15:26:52",
+  "protocol_passed": true,
+  "promotion_recommended": false
+}

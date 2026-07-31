@@ -1,0 +1,16 @@
+{
+  "P0": {
+    "source": "train_complete.json",
+    "best_checkpoint": "custom_models\\results\\st_mgprompt_codex_verify_precision\\codex_parent_resume\\P0\\STMGPrompt_FairFull\\best_checkpoint.pt",
+    "last_checkpoint": "custom_models\\results\\st_mgprompt_codex_verify_precision\\codex_parent_resume\\P0\\STMGPrompt_FairFull\\last_checkpoint.pt",
+    "updated_at": "2026-07-15T22:15:07",
+    "train_status": "completed",
+    "last_returncode": 0,
+    "best_epoch": 1,
+    "best_val_score_h10": 13.356164253820788,
+    "evaluation_status": "completed",
+    "failure_kind": null,
+    "evaluation_complete_exists": true
+  },
+  "updated_at": "2026-07-15T22:15:07"
+}

@@ -1,0 +1,72 @@
+{
+  "manifest_version": 1,
+  "project_root": "D:\\PaperProject\\GyxPaper2",
+  "safety_rule": "Delete one explicit file path at a time; no wildcard or recursive deletion.",
+  "entry_count": 8,
+  "entries": [
+    {
+      "absolute_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\__pycache__\\fixed_dual_static_mg_candidate.cpython-311.pyc",
+      "file_type": "python_bytecode",
+      "old_experiment": "supplementary_only_code",
+      "deletion_reason": "Orphaned bytecode for retired Static-MG candidate helper.",
+      "migrated": false,
+      "sha256": "cc815deeca1200a3d40576e717511a4952aaa4918f26907f03447599c6e24f46"
+    },
+    {
+      "absolute_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\__pycache__\\run_fixed_dual_static_mg_candidate.cpython-311.pyc",
+      "file_type": "python_bytecode",
+      "old_experiment": "supplementary_only_code",
+      "deletion_reason": "Orphaned bytecode for retired Static-MG candidate runner.",
+      "migrated": false,
+      "sha256": "d74b1a8969ec0334252aba2334497a59323c2c656725b4208acd4e7177cdccb4"
+    },
+    {
+      "absolute_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\__pycache__\\run_supplementary_ablation.cpython-311.pyc",
+      "file_type": "python_bytecode",
+      "old_experiment": "supplementary_only_code",
+      "deletion_reason": "Orphaned bytecode for retired supplementary runner.",
+      "migrated": false,
+      "sha256": "a2f53aaabdc04e4b5f185ec5dc55b39337123a2cc1b0128779dc2ec249bf2f69"
+    },
+    {
+      "absolute_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\__pycache__\\run_volatility_group_analysis.cpython-311.pyc",
+      "file_type": "python_bytecode",
+      "old_experiment": "supplementary_only_code",
+      "deletion_reason": "Orphaned bytecode for retired volatility analysis runner.",
+      "migrated": false,
+      "sha256": "7c79c54794356031512564618f904f0254a7c7fce022914d9c4609a30e929b91"
+    },
+    {
+      "absolute_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\__pycache__\\test_fixed_dual_static_mg_candidate.cpython-311.pyc",
+      "file_type": "python_bytecode",
+      "old_experiment": "supplementary_only_code",
+      "deletion_reason": "Orphaned bytecode for retired Static-MG candidate tests.",
+      "migrated": false,
+      "sha256": "dcccfd9b08b28cd6edd6e530d98b3f0f65063e1a849b8315adfe0718217aa8bc"
+    },
+    {
+      "absolute_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\__pycache__\\test_supplementary_ablation.cpython-311.pyc",
+      "file_type": "python_bytecode",
+      "old_experiment": "supplementary_only_code",
+      "deletion_reason": "Orphaned bytecode for retired supplementary tests.",
+      "migrated": false,
+      "sha256": "9707a77d8936a8919f3b365d6fee7e2b44291b3fe1552cde64781ba7c7d1d123"
+    },
+    {
+      "absolute_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\__pycache__\\test_volatility_group_analysis.cpython-311.pyc",
+      "file_type": "python_bytecode",
+      "old_experiment": "supplementary_only_code",
+      "deletion_reason": "Orphaned bytecode for retired volatility analysis tests.",
+      "migrated": false,
+      "sha256": "2687e9ce0ecf7dc49573f39e52eabc3a69d2e7b483588613de42be50f8e7c73d"
+    },
+    {
+      "absolute_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\__pycache__\\volatility_group_analysis.cpython-311.pyc",
+      "file_type": "python_bytecode",
+      "old_experiment": "supplementary_only_code",
+      "deletion_reason": "Orphaned bytecode for retired volatility analysis implementation.",
+      "migrated": false,
+      "sha256": "2d895594220db34c28dd36547ca6b97280970690a839a408bb13915643f7621c"
+    }
+  ]
+}

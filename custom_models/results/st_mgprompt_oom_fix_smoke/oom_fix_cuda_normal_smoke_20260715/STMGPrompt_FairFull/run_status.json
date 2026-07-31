@@ -1,0 +1,41 @@
+{
+  "events": [
+    {
+      "stage": "TRAIN_STARTED",
+      "time": "2026-07-15T23:46:32"
+    },
+    {
+      "stage": "TRAIN_FINISHED",
+      "time": "2026-07-15T23:46:35",
+      "checkpoint": "custom_models\\results\\st_mgprompt_oom_fix_smoke\\oom_fix_cuda_normal_smoke_20260715\\STMGPrompt_FairFull\\best_checkpoint.pt",
+      "last_completed_epoch": 1
+    },
+    {
+      "stage": "BEST_CHECKPOINT_SAVED",
+      "time": "2026-07-15T23:46:35",
+      "checkpoint": "custom_models\\results\\st_mgprompt_oom_fix_smoke\\oom_fix_cuda_normal_smoke_20260715\\STMGPrompt_FairFull\\best_checkpoint.pt"
+    },
+    {
+      "stage": "FINAL_VALIDATION_STARTED",
+      "time": "2026-07-15T23:46:35"
+    },
+    {
+      "stage": "FINAL_VALIDATION_FINISHED",
+      "time": "2026-07-15T23:46:36"
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-15T23:46:36",
+      "skip_test": true
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-15T23:46:36"
+    }
+  ],
+  "current_stage": "PROCESS_FINISHED",
+  "updated_at": "2026-07-15T23:46:36",
+  "checkpoint": "custom_models\\results\\st_mgprompt_oom_fix_smoke\\oom_fix_cuda_normal_smoke_20260715\\STMGPrompt_FairFull\\best_checkpoint.pt",
+  "last_completed_epoch": 1,
+  "skip_test": true
+}

@@ -1,0 +1,98 @@
+{
+  "task": "E2-A",
+  "run_mode": "smoke",
+  "formal_training": false,
+  "shape": {
+    "B": 2,
+    "T": 144,
+    "N": 4,
+    "C": 16,
+    "H": 10
+  },
+  "results": {
+    "transformer": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e2_a/transformer",
+      "prediction_shape": [
+        2,
+        4,
+        10
+      ],
+      "loss": 5.790923118591309,
+      "validation_score_h10": 1.108427079757111,
+      "evaluation_score_h10": 1.1083720668393933,
+      "evaluation_r2_h10": -0.08112175109232855,
+      "parameter_count": 10564609,
+      "trainable_parameter_count": 10564609,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\Transformer.py",
+      "upstream_source_sha256": "46ded6c516fd03951bce0a82c3f4245f0247efd01fb5bde775145cfbb6d8435d"
+    },
+    "patchtst": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e2_a/patchtst",
+      "prediction_shape": [
+        2,
+        4,
+        10
+      ],
+      "loss": 704.2537841796875,
+      "validation_score_h10": 4.20233250781283,
+      "evaluation_score_h10": 4.202439171783139,
+      "evaluation_r2_h10": -12.738428644095492,
+      "parameter_count": 6406154,
+      "trainable_parameter_count": 6406154,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\PatchTST.py",
+      "upstream_source_sha256": "29835d4fedddd3cbee26cc60d6a54c04513f5a9ca32e4a0d08de2c9e059084e5"
+    },
+    "itransformer": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e2_a/itransformer",
+      "prediction_shape": [
+        2,
+        4,
+        10
+      ],
+      "loss": 687.674072265625,
+      "validation_score_h10": 4.138531422613298,
+      "evaluation_score_h10": 4.1384482584308575,
+      "evaluation_r2_h10": -12.448689580789507,
+      "parameter_count": 6385162,
+      "trainable_parameter_count": 6385162,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\iTransformer.py",
+      "upstream_source_sha256": "7fdc721d041b0f8f63be8fa794ecd68422fd958c7c8d449026320fd9f368788e"
+    },
+    "timexer": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e2_a/timexer",
+      "prediction_shape": [
+        2,
+        4,
+        10
+      ],
+      "loss": 510.2105407714844,
+      "validation_score_h10": 3.855691528241376,
+      "evaluation_score_h10": 3.8558746450986137,
+      "evaluation_r2_h10": -11.1744006271551,
+      "parameter_count": 8543242,
+      "trainable_parameter_count": 8543242,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\TimeXer.py",
+      "upstream_source_sha256": "b334d7869544d0a5de7a35501d0342d7bd0be4ebda06ccc045855a42819728c0"
+    }
+  }
+}

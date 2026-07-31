@@ -1,0 +1,21 @@
+{
+  "learned_graph": null,
+  "identity_type": "node_embedding_not_adjacency",
+  "node_embedding_shape": [
+    134,
+    32
+  ],
+  "node_embedding_hash": "900c637ab337e79a0f9be11ceb3a34832075243ad1808d57acfabb06e9611b5a",
+  "cosine_similarity_diagnostic_only": {
+    "shape": [
+      134,
+      134
+    ],
+    "min": -0.6006584763526917,
+    "max": 1.000000238418579,
+    "mean": 0.008124679327011108
+  },
+  "checkpoint_reload_hash_before": "900c637ab337e79a0f9be11ceb3a34832075243ad1808d57acfabb06e9611b5a",
+  "checkpoint_reload_hash_after": "900c637ab337e79a0f9be11ceb3a34832075243ad1808d57acfabb06e9611b5a",
+  "checkpoint_reload_hash_matches": true
+}

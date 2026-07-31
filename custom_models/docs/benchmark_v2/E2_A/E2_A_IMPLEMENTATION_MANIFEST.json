@@ -1,0 +1,33 @@
+{
+  "task": "E2-A",
+  "formal_training_started": false,
+  "formal_evaluation_started": false,
+  "formal_runs": [],
+  "e2_b_started": false,
+  "implemented_models": ["transformer", "patchtst", "itransformer", "timexer"],
+  "local_full_shape_pass": ["itransformer", "timexer"],
+  "local_full_shape_fail_oom": ["transformer", "patchtst"],
+  "local_full_shape_fail_non_oom": [],
+  "hardware_preflight_required": ["tide", "segrnn", "transformer", "patchtst"],
+  "ordinary_smoke": {"transformer": "PASS", "patchtst": "PASS", "itransformer": "PASS", "timexer": "PASS"},
+  "real_data_smoke": {"transformer": "PASS", "patchtst": "PASS", "itransformer": "PASS", "timexer": "PASS"},
+  "registry_counts": {
+    "total_entries": 28,
+    "available_locally_verified": 5,
+    "available_with_hardware_preflight": 4,
+    "non_trainable_available": 2,
+    "true_blocked_or_unavailable": 17
+  },
+  "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "canonical_checkpoint_sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+  "tslib_modified": false,
+  "st_mgprompt_modified": false,
+  "e1_a_modified": false,
+  "tide_segrnn_model_config_adapter_modified": false,
+  "dependencies_changed": false,
+  "files_deleted": [],
+  "rtx4060_preflight": "NOT_RUN",
+  "e1_b_formal_full": "NOT_RUN",
+  "e2_a_formal_full": "NOT_RUN",
+  "e2_b": "NOT_STARTED"
+}

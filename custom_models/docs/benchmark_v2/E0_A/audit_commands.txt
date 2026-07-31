@@ -1,0 +1,5 @@
+git rev-parse --show-toplevel / --show-current / HEAD / status --short (failed: not a git repository)
+D:\Apps\Miniconda3\envs\env_tslib\python.exe environment/version/import checks
+UTF-8 PowerShell/Python source/config/result enumeration and keyword search
+AST parse of custom_models/src/st_mgprompt and relevant Time-Series-Library Python files
+D:\Apps\Miniconda3\envs\env_tslib\python.exe custom_models/docs/benchmark_v2/E0_A/run_e0_a_smoke.py

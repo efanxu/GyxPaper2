@@ -1,0 +1,89 @@
+{
+  "volatility_mean": 0.07643149793148041,
+  "volatility_std": 0.592656672000885,
+  "rolling_std_mean": 0.5179128646850586,
+  "rolling_std_std": 0.2440454065799713,
+  "gate_mean": 0.6020596623420715,
+  "gate_std": 0.1269892454147339,
+  "gate_min": 0.2632593810558319,
+  "gate_max": 0.8319916129112244,
+  "gate_p01": 0.2743032658100128,
+  "gate_p10": 0.4469370931386948,
+  "gate_p25": 0.5420167744159698,
+  "gate_p50": 0.6243191361427307,
+  "gate_p75": 0.6885528564453125,
+  "gate_p90": 0.7403922080993652,
+  "gate_p99": 0.8188138324022293,
+  "gate_inter_quantile_range": 0.14653608202934265,
+  "gate_p99_minus_p01": 0.5445105665922165,
+  "gate_mean_lowest_10pct_volatility": 0.3248884081840515,
+  "gate_mean_middle_volatility": 0.6168096661567688,
+  "gate_mean_highest_10pct_volatility": 0.7622822523117065,
+  "gate_high_minus_low": 0.43739384412765503,
+  "corr_gate_volatility": 0.9632956596637084,
+  "corr_gate_rolling_std": 0.734146618300859,
+  "corr_gate_abs_delta_source": 0.9632956596637084,
+  "fine_feature_norm": 2.7279956340789795,
+  "coarse_feature_norm": 2.9069416522979736,
+  "weighted_fine_norm": 1.6442713737487793,
+  "weighted_coarse_norm": 1.1545246839523315,
+  "fine_to_coarse_weighted_norm_ratio": 1.4241976777143281,
+  "source_weights": [
+    0.5071091651916504,
+    0.492890864610672
+  ],
+  "temperature": 1.3176361322402954,
+  "beta_fine": 0.05268412083387375,
+  "beta_coarse": 0.04864855855703354,
+  "coarse_scale_weight_mean_per_scale": [
+    0.4707224667072296,
+    0.1769734025001526,
+    0.3523041009902954
+  ],
+  "volatility_source_cols": [
+    "Wspd",
+    "Patv_clean_for_input"
+  ],
+  "statistics_fit_split": "train_only",
+  "history_only": true,
+  "uses_target_mask": false,
+  "uses_future_inputs": false,
+  "vadsp_robust_statistics_enabled": true,
+  "vadsp_statistics_fit_split": "train",
+  "vadsp_statistics_source": "unique_train_timeline",
+  "vadsp_statistics_exact": true,
+  "vadsp_statistics_device": "cpu",
+  "vadsp_statistics_mode": "per_node",
+  "vadsp_statistics_source_cols": [
+    "Wspd",
+    "Patv_clean_for_input"
+  ],
+  "vadsp_statistics_num_time_points": 192,
+  "vadsp_statistics_num_deltas": 191,
+  "vadsp_statistics_shape": {
+    "q25": [
+      8,
+      2
+    ],
+    "median": [
+      8,
+      2
+    ],
+    "q75": [
+      8,
+      2
+    ],
+    "center": [
+      8,
+      2
+    ],
+    "scale": [
+      8,
+      2
+    ]
+  },
+  "vadsp_statistics_nonfinite_filtered": 0,
+  "vadsp_statistics_degenerate_iqr_count": 0,
+  "vadsp_statistics_depends_on_window_stride": false,
+  "vadsp_statistics_feature_space": "model_input_scaled"
+}

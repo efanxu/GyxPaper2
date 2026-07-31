@@ -1,0 +1,56 @@
+{
+  "task": "E3-C",
+  "status": "PASS",
+  "compileall": {
+    "status": "PASS",
+    "command": "python -m compileall -q custom_models/src/benchmark_v2 custom_models/tests/benchmark_v2"
+  },
+  "focused_e3_c": {
+    "status": "PASS",
+    "tests_passed": 13,
+    "tests_run": 13,
+    "elapsed_seconds": 174.194,
+    "command": "PYTHONPATH=custom_models/src python -m unittest custom_models.tests.benchmark_v2.test_e3_c_graph_models -v"
+  },
+  "full_suite": {
+    "status": "PASS",
+    "tests_passed": 151,
+    "tests_run": 151,
+    "elapsed_seconds": 457.161,
+    "command": "PYTHONPATH=custom_models/src python -m unittest discover -s custom_models/tests/benchmark_v2 -v"
+  },
+  "registry_regression": {
+    "status": "PASS",
+    "tests_passed": 10,
+    "tests_run": 10
+  },
+  "hardware_preflight_launcher_regression": {
+    "status": "PASS",
+    "tests_passed": 9,
+    "tests_run": 9,
+    "elapsed_seconds": 0.197
+  },
+  "protocol_check": {
+    "status": "PASS",
+    "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b"
+  },
+  "graph_protocol_check": {
+    "status": "PASS",
+    "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
+    "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
+    "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35"
+  },
+  "coverage": [
+    "frozen config and registry policy",
+    "exact model shape and finite output",
+    "all required trainable branch gradients",
+    "target and mask invariance",
+    "future observed/calendar input rejection",
+    "canonical node identity failure modes",
+    "batch companion isolation",
+    "STID cross-node isolation and historical timestamp anchoring",
+    "strict checkpoint learned identity reproduction",
+    "preflight identity mismatch rejection",
+    "prior E1/E2/E3-A/E3-B regression"
+  ]
+}

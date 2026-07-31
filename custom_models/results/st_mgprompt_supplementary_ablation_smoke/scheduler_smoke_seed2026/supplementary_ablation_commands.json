@@ -1,0 +1,202 @@
+{
+  "S0_FULL_A0": {
+    "argv": [
+      "D:\\Apps\\Miniconda\\python.exe",
+      "D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\run_supplementary_ablation.py",
+      "--_execute-variant",
+      "S0_FULL_A0",
+      "--run-full",
+      "--suite",
+      "all",
+      "--run-id",
+      "scheduler_smoke_seed2026",
+      "--output-root",
+      "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke",
+      "--python",
+      "D:\\Apps\\Miniconda\\python.exe",
+      "--seed",
+      "2026"
+    ],
+    "command_text": "D:\\Apps\\Miniconda\\python.exe D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\run_supplementary_ablation.py --_execute-variant S0_FULL_A0 --run-full --suite all --run-id scheduler_smoke_seed2026 --output-root D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke --python D:\\Apps\\Miniconda\\python.exe --seed 2026"
+  },
+  "V1_FINE_ONLY": {
+    "argv": [
+      "D:\\Apps\\Miniconda\\python.exe",
+      "D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\run_supplementary_ablation.py",
+      "--_execute-variant",
+      "V1_FINE_ONLY",
+      "--run-full",
+      "--suite",
+      "all",
+      "--run-id",
+      "scheduler_smoke_seed2026",
+      "--output-root",
+      "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke",
+      "--python",
+      "D:\\Apps\\Miniconda\\python.exe",
+      "--seed",
+      "2026"
+    ],
+    "command_text": "D:\\Apps\\Miniconda\\python.exe D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\run_supplementary_ablation.py --_execute-variant V1_FINE_ONLY --run-full --suite all --run-id scheduler_smoke_seed2026 --output-root D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke --python D:\\Apps\\Miniconda\\python.exe --seed 2026"
+  },
+  "V2_COARSE_ONLY": {
+    "argv": [
+      "D:\\Apps\\Miniconda\\python.exe",
+      "D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\run_supplementary_ablation.py",
+      "--_execute-variant",
+      "V2_COARSE_ONLY",
+      "--run-full",
+      "--suite",
+      "all",
+      "--run-id",
+      "scheduler_smoke_seed2026",
+      "--output-root",
+      "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke",
+      "--python",
+      "D:\\Apps\\Miniconda\\python.exe",
+      "--seed",
+      "2026"
+    ],
+    "command_text": "D:\\Apps\\Miniconda\\python.exe D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\run_supplementary_ablation.py --_execute-variant V2_COARSE_ONLY --run-full --suite all --run-id scheduler_smoke_seed2026 --output-root D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke --python D:\\Apps\\Miniconda\\python.exe --seed 2026"
+  },
+  "V3_FIXED_DUAL": {
+    "argv": [
+      "D:\\Apps\\Miniconda\\python.exe",
+      "D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\run_supplementary_ablation.py",
+      "--_execute-variant",
+      "V3_FIXED_DUAL",
+      "--run-full",
+      "--suite",
+      "all",
+      "--run-id",
+      "scheduler_smoke_seed2026",
+      "--output-root",
+      "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke",
+      "--python",
+      "D:\\Apps\\Miniconda\\python.exe",
+      "--seed",
+      "2026"
+    ],
+    "command_text": "D:\\Apps\\Miniconda\\python.exe D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\run_supplementary_ablation.py --_execute-variant V3_FIXED_DUAL --run-full --suite all --run-id scheduler_smoke_seed2026 --output-root D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke --python D:\\Apps\\Miniconda\\python.exe --seed 2026"
+  },
+  "V4_RANDOM_GATE": {
+    "argv": [
+      "D:\\Apps\\Miniconda\\python.exe",
+      "D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\run_supplementary_ablation.py",
+      "--_execute-variant",
+      "V4_RANDOM_GATE",
+      "--run-full",
+      "--suite",
+      "all",
+      "--run-id",
+      "scheduler_smoke_seed2026",
+      "--output-root",
+      "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke",
+      "--python",
+      "D:\\Apps\\Miniconda\\python.exe",
+      "--seed",
+      "2026"
+    ],
+    "command_text": "D:\\Apps\\Miniconda\\python.exe D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\run_supplementary_ablation.py --_execute-variant V4_RANDOM_GATE --run-full --suite all --run-id scheduler_smoke_seed2026 --output-root D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke --python D:\\Apps\\Miniconda\\python.exe --seed 2026"
+  },
+  "V5_SHUFFLED_VOLATILITY": {
+    "argv": [
+      "D:\\Apps\\Miniconda\\python.exe",
+      "D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\run_supplementary_ablation.py",
+      "--_execute-variant",
+      "V5_SHUFFLED_VOLATILITY",
+      "--run-full",
+      "--suite",
+      "all",
+      "--run-id",
+      "scheduler_smoke_seed2026",
+      "--output-root",
+      "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke",
+      "--python",
+      "D:\\Apps\\Miniconda\\python.exe",
+      "--seed",
+      "2026"
+    ],
+    "command_text": "D:\\Apps\\Miniconda\\python.exe D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\run_supplementary_ablation.py --_execute-variant V5_SHUFFLED_VOLATILITY --run-full --suite all --run-id scheduler_smoke_seed2026 --output-root D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke --python D:\\Apps\\Miniconda\\python.exe --seed 2026"
+  },
+  "L1_STATIC_MG": {
+    "argv": [
+      "D:\\Apps\\Miniconda\\python.exe",
+      "D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\run_supplementary_ablation.py",
+      "--_execute-variant",
+      "L1_STATIC_MG",
+      "--run-full",
+      "--suite",
+      "all",
+      "--run-id",
+      "scheduler_smoke_seed2026",
+      "--output-root",
+      "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke",
+      "--python",
+      "D:\\Apps\\Miniconda\\python.exe",
+      "--seed",
+      "2026"
+    ],
+    "command_text": "D:\\Apps\\Miniconda\\python.exe D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\run_supplementary_ablation.py --_execute-variant L1_STATIC_MG --run-full --suite all --run-id scheduler_smoke_seed2026 --output-root D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke --python D:\\Apps\\Miniconda\\python.exe --seed 2026"
+  },
+  "L2_HORIZON_DWU_ONLY": {
+    "argv": [
+      "D:\\Apps\\Miniconda\\python.exe",
+      "D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\run_supplementary_ablation.py",
+      "--_execute-variant",
+      "L2_HORIZON_DWU_ONLY",
+      "--run-full",
+      "--suite",
+      "all",
+      "--run-id",
+      "scheduler_smoke_seed2026",
+      "--output-root",
+      "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke",
+      "--python",
+      "D:\\Apps\\Miniconda\\python.exe",
+      "--seed",
+      "2026"
+    ],
+    "command_text": "D:\\Apps\\Miniconda\\python.exe D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\run_supplementary_ablation.py --_execute-variant L2_HORIZON_DWU_ONLY --run-full --suite all --run-id scheduler_smoke_seed2026 --output-root D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke --python D:\\Apps\\Miniconda\\python.exe --seed 2026"
+  },
+  "L3_SITE_DWU_ONLY": {
+    "argv": [
+      "D:\\Apps\\Miniconda\\python.exe",
+      "D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\run_supplementary_ablation.py",
+      "--_execute-variant",
+      "L3_SITE_DWU_ONLY",
+      "--run-full",
+      "--suite",
+      "all",
+      "--run-id",
+      "scheduler_smoke_seed2026",
+      "--output-root",
+      "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke",
+      "--python",
+      "D:\\Apps\\Miniconda\\python.exe",
+      "--seed",
+      "2026"
+    ],
+    "command_text": "D:\\Apps\\Miniconda\\python.exe D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\run_supplementary_ablation.py --_execute-variant L3_SITE_DWU_ONLY --run-full --suite all --run-id scheduler_smoke_seed2026 --output-root D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke --python D:\\Apps\\Miniconda\\python.exe --seed 2026"
+  },
+  "L4_MASKED_SCORE_HYBRID_REFERENCE": {
+    "argv": [
+      "D:\\Apps\\Miniconda\\python.exe",
+      "D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\run_supplementary_ablation.py",
+      "--_execute-variant",
+      "L4_MASKED_SCORE_HYBRID_REFERENCE",
+      "--run-full",
+      "--suite",
+      "all",
+      "--run-id",
+      "scheduler_smoke_seed2026",
+      "--output-root",
+      "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke",
+      "--python",
+      "D:\\Apps\\Miniconda\\python.exe",
+      "--seed",
+      "2026"
+    ],
+    "command_text": "D:\\Apps\\Miniconda\\python.exe D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\run_supplementary_ablation.py --_execute-variant L4_MASKED_SCORE_HYBRID_REFERENCE --run-full --suite all --run-id scheduler_smoke_seed2026 --output-root D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke --python D:\\Apps\\Miniconda\\python.exe --seed 2026"
+  }
+}

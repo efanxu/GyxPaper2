@@ -1,0 +1,41 @@
+{
+  "events": [
+    {
+      "stage": "TRAIN_STARTED",
+      "time": "2026-07-15T23:39:28"
+    },
+    {
+      "stage": "TRAIN_FINISHED",
+      "time": "2026-07-15T23:39:31",
+      "checkpoint": "custom_models\\results\\st_mgprompt_oom_fix_smoke\\oom_fix_normal_smoke_20260715\\STMGPrompt_FairFull\\best_checkpoint.pt",
+      "last_completed_epoch": 1
+    },
+    {
+      "stage": "BEST_CHECKPOINT_SAVED",
+      "time": "2026-07-15T23:39:31",
+      "checkpoint": "custom_models\\results\\st_mgprompt_oom_fix_smoke\\oom_fix_normal_smoke_20260715\\STMGPrompt_FairFull\\best_checkpoint.pt"
+    },
+    {
+      "stage": "FINAL_VALIDATION_STARTED",
+      "time": "2026-07-15T23:39:31"
+    },
+    {
+      "stage": "FINAL_VALIDATION_FINISHED",
+      "time": "2026-07-15T23:39:31"
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-15T23:39:31",
+      "skip_test": true
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-15T23:39:31"
+    }
+  ],
+  "current_stage": "PROCESS_FINISHED",
+  "updated_at": "2026-07-15T23:39:31",
+  "checkpoint": "custom_models\\results\\st_mgprompt_oom_fix_smoke\\oom_fix_normal_smoke_20260715\\STMGPrompt_FairFull\\best_checkpoint.pt",
+  "last_completed_epoch": 1,
+  "skip_test": true
+}

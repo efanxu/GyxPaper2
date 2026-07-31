@@ -1,0 +1,11 @@
+{
+  "status": "completed",
+  "last_epoch": 4,
+  "best_epoch": 4,
+  "best_val_score_h10": 6.5663946723194035,
+  "best_checkpoint": "custom_models\\results\\st_mgprompt_codex_verify\\codex_resume_verify2\\STMGPrompt_FairFull\\best_checkpoint.pt",
+  "last_checkpoint": "custom_models\\results\\st_mgprompt_codex_verify\\codex_resume_verify2\\STMGPrompt_FairFull\\last_checkpoint.pt",
+  "amp_enabled": false,
+  "amp_dtype": null,
+  "config_hash": "594429d992b7fab0b71941d1d1d9500e0196dc5a86b1b9ae4f15054566167197"
+}

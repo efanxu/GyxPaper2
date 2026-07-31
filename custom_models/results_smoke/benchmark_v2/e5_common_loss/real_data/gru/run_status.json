@@ -1,0 +1,13 @@
+{
+  "status": "COMPLETED",
+  "run_mode": "smoke",
+  "artifact_profile": "SMOKE",
+  "started_at": "2026-07-28T13:42:31.492144+00:00",
+  "finished_at": "2026-07-28T13:42:31.942216+00:00",
+  "exit_code": 0,
+  "failure_stage": null,
+  "error_type": null,
+  "error_message": null,
+  "traceback_tail": null,
+  "formal_training": false
+}

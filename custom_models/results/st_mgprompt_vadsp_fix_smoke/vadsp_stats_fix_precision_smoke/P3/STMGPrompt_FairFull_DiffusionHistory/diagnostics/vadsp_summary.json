@@ -1,0 +1,90 @@
+{
+  "volatility_mean": 0.07476446032524109,
+  "volatility_std": 0.5938001275062561,
+  "rolling_std_mean": 0.5190174579620361,
+  "rolling_std_std": 0.2437785118818283,
+  "gate_mean": 0.6024792790412903,
+  "gate_std": 0.12657666206359863,
+  "gate_min": 0.2655086815357208,
+  "gate_max": 0.8325285911560059,
+  "gate_p01": 0.27638237476348876,
+  "gate_p10": 0.44858899414539344,
+  "gate_p25": 0.5407673269510269,
+  "gate_p50": 0.6243526041507721,
+  "gate_p75": 0.6888541132211685,
+  "gate_p90": 0.7401554048061371,
+  "gate_p99": 0.8187477988004684,
+  "gate_inter_quantile_range": 0.1480867862701416,
+  "gate_p99_minus_p01": 0.5423654240369797,
+  "gate_mean_lowest_10pct_volatility": 0.32675522565841675,
+  "gate_mean_middle_volatility": 0.6162513494491577,
+  "gate_mean_highest_10pct_volatility": 0.7684621214866638,
+  "gate_high_minus_low": 0.44170689582824707,
+  "corr_gate_volatility": 0.9631424422728269,
+  "corr_gate_rolling_std": 0.7367019889290346,
+  "corr_gate_abs_delta_source": 0.9631424422728269,
+  "fine_feature_norm": 2.590406656265259,
+  "coarse_feature_norm": 2.730820894241333,
+  "weighted_fine_norm": 1.562705159187317,
+  "weighted_coarse_norm": 1.0829771757125854,
+  "fine_to_coarse_weighted_norm_ratio": 1.442971462587913,
+  "source_weights": [
+    0.49873068928718567,
+    0.5012692809104919
+  ],
+  "temperature": 1.3186804056167603,
+  "beta_fine": 0.05257900059223175,
+  "beta_coarse": 0.03823718801140785,
+  "coarse_scale_weight_mean_per_scale": [
+    0.47474637627601624,
+    0.1757359504699707,
+    0.34951770305633545
+  ],
+  "volatility_source_cols": [
+    "Wspd",
+    "Patv_clean_for_input"
+  ],
+  "statistics_fit_split": "train_only",
+  "history_only": true,
+  "uses_target_mask": false,
+  "uses_future_inputs": false,
+  "vadsp_robust_statistics_enabled": true,
+  "vadsp_statistics_fit_split": "train",
+  "vadsp_statistics_source": "unique_train_timeline",
+  "vadsp_statistics_exact": true,
+  "vadsp_statistics_device": "cpu",
+  "vadsp_statistics_mode": "per_node",
+  "vadsp_statistics_source_cols": [
+    "Wspd",
+    "Patv_clean_for_input"
+  ],
+  "vadsp_statistics_num_time_points": 192,
+  "vadsp_statistics_num_deltas": 191,
+  "vadsp_statistics_shape": {
+    "q25": [
+      8,
+      2
+    ],
+    "median": [
+      8,
+      2
+    ],
+    "q75": [
+      8,
+      2
+    ],
+    "center": [
+      8,
+      2
+    ],
+    "scale": [
+      8,
+      2
+    ]
+  },
+  "vadsp_statistics_nonfinite_filtered": 0,
+  "vadsp_statistics_degenerate_iqr_count": 0,
+  "vadsp_statistics_depends_on_window_stride": false,
+  "vadsp_statistics_feature_space": "model_input_scaled",
+  "plot_error": "No module named 'matplotlib'"
+}

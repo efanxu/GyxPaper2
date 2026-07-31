@@ -1,0 +1,353 @@
+{
+  "static": {
+    "files_checked": 106,
+    "parse_errors": [],
+    "placeholder_or_todo_hits": [
+      {
+        "path": "custom_models/src/st_mgprompt/diagnostics.py",
+        "line": 83,
+        "text": "pass"
+      },
+      {
+        "path": "custom_models/src/st_mgprompt/graph_prior.py",
+        "line": 89,
+        "text": "raise NotImplementedError(\"almon_smooth is reserved for ablation and is not a Step 2 default.\")"
+      },
+      {
+        "path": "custom_models/src/st_mgprompt/graph_prior.py",
+        "line": 280,
+        "text": "raise NotImplementedError(\"Wake/delay prior graph is not implemented in Step 2.\")"
+      },
+      {
+        "path": "custom_models/src/st_mgprompt/registry.py",
+        "line": 176,
+        "text": "raise NotImplementedError("
+      },
+      {
+        "path": "custom_models/src/st_mgprompt/registry.py",
+        "line": 196,
+        "text": "raise NotImplementedError(f\"No builder for {config.model_name}.\")"
+      },
+      {
+        "path": "custom_models/src/st_mgprompt/run_st_mgprompt.py",
+        "line": 563,
+        "text": "pass"
+      },
+      {
+        "path": "custom_models/src/st_mgprompt/summarize_results.py",
+        "line": 55,
+        "text": "pass"
+      },
+      {
+        "path": "Time-Series-Library/models/__init__.py",
+        "line": 1,
+        "text": "pass"
+      },
+      {
+        "path": "Time-Series-Library/models/KANAD.py",
+        "line": 88,
+        "text": "raise NotImplementedError("
+      },
+      {
+        "path": "Time-Series-Library/models/KANAD.py",
+        "line": 92,
+        "text": "raise NotImplementedError("
+      },
+      {
+        "path": "Time-Series-Library/models/KANAD.py",
+        "line": 99,
+        "text": "raise NotImplementedError("
+      },
+      {
+        "path": "Time-Series-Library/models/Koopa.py",
+        "line": 48,
+        "text": "raise NotImplementedError"
+      },
+      {
+        "path": "Time-Series-Library/models/Mamba.py",
+        "line": 19,
+        "text": "self.dt_rank = math.ceil(configs.d_model / 16) # TODO implement \"auto\""
+      },
+      {
+        "path": "Time-Series-Library/models/MultiPatchFormer.py",
+        "line": 354,
+        "text": "raise NotImplementedError("
+      },
+      {
+        "path": "Time-Series-Library/models/MultiPatchFormer.py",
+        "line": 358,
+        "text": "raise NotImplementedError("
+      },
+      {
+        "path": "Time-Series-Library/models/MultiPatchFormer.py",
+        "line": 362,
+        "text": "raise NotImplementedError("
+      },
+      {
+        "path": "Time-Series-Library/models/TiDE.py",
+        "line": 137,
+        "text": "raise NotImplementedError(\"Task anomaly_detection for Tide is temporarily not supported\")"
+      },
+      {
+        "path": "Time-Series-Library/models/TiDE.py",
+        "line": 139,
+        "text": "raise NotImplementedError(\"Task classification for Tide is temporarily not supported\")"
+      },
+      {
+        "path": "Time-Series-Library/models/WPMixer.py",
+        "line": 314,
+        "text": "raise NotImplementedError(\"Task imputation for WPMixer is temporarily not supported\")"
+      },
+      {
+        "path": "Time-Series-Library/models/WPMixer.py",
+        "line": 316,
+        "text": "raise NotImplementedError(\"Task anomaly_detection for WPMixer is temporarily not supported\")"
+      },
+      {
+        "path": "Time-Series-Library/models/WPMixer.py",
+        "line": 318,
+        "text": "raise NotImplementedError(\"Task classification for WPMixer is temporarily not supported\")"
+      },
+      {
+        "path": "Time-Series-Library/layers/MambaBlock.py",
+        "line": 122,
+        "text": "raise NotImplementedError"
+      },
+      {
+        "path": "Time-Series-Library/layers/MambaBlock.py",
+        "line": 384,
+        "text": "# TODO: What if batch size changes between generation, and we reuse the same states?"
+      },
+      {
+        "path": "Time-Series-Library/layers/StandardNorm.py",
+        "line": 28,
+        "text": "raise NotImplementedError"
+      },
+      {
+        "path": "Time-Series-Library/exp/exp_basic.py",
+        "line": 49,
+        "text": "raise NotImplementedError"
+      },
+      {
+        "path": "Time-Series-Library/exp/exp_basic.py",
+        "line": 67,
+        "text": "pass"
+      },
+      {
+        "path": "Time-Series-Library/exp/exp_basic.py",
+        "line": 70,
+        "text": "pass"
+      },
+      {
+        "path": "Time-Series-Library/exp/exp_basic.py",
+        "line": 73,
+        "text": "pass"
+      },
+      {
+        "path": "Time-Series-Library/exp/exp_basic.py",
+        "line": 76,
+        "text": "pass"
+      },
+      {
+        "path": "Time-Series-Library/exp/exp_basic.py",
+        "line": 92,
+        "text": "raise NotImplementedError(f\"Model [{key}] not found in 'models' directory.\")"
+      }
+    ],
+    "hardcoded_old_python_path_hits": [],
+    "compile_policy": "AST syntax parse used; no compileall over data/results/venv."
+  },
+  "imports": {
+    "python": "D:\\Apps\\Miniconda3\\envs\\env_tslib\\python.exe",
+    "st_mgprompt": [
+      {
+        "module": "st_mgprompt.registry",
+        "status": "IMPORT_OK"
+      },
+      {
+        "module": "st_mgprompt.config",
+        "status": "IMPORT_OK"
+      },
+      {
+        "module": "st_mgprompt.data",
+        "status": "IMPORT_OK"
+      },
+      {
+        "module": "st_mgprompt.losses",
+        "status": "IMPORT_OK"
+      },
+      {
+        "module": "st_mgprompt.metrics",
+        "status": "IMPORT_OK"
+      },
+      {
+        "module": "st_mgprompt.evaluate",
+        "status": "IMPORT_OK"
+      },
+      {
+        "module": "st_mgprompt.train",
+        "status": "IMPORT_OK"
+      },
+      {
+        "module": "st_mgprompt.formal_runner",
+        "status": "IMPORT_OK"
+      },
+      {
+        "module": "st_mgprompt.run_ablation",
+        "status": "IMPORT_OK"
+      },
+      {
+        "module": "st_mgprompt.run_precision_ablation",
+        "status": "IMPORT_OK"
+      },
+      {
+        "module": "st_mgprompt.canonical_artifact",
+        "status": "IMPORT_OK"
+      }
+    ],
+    "tslib_models": [
+      {
+        "model": "DLinear",
+        "status": "IMPORT_OK",
+        "module": "models.DLinear"
+      },
+      {
+        "model": "LightTS",
+        "status": "IMPORT_OK",
+        "module": "models.LightTS"
+      },
+      {
+        "model": "TiDE",
+        "status": "IMPORT_OK",
+        "module": "models.TiDE"
+      },
+      {
+        "model": "SegRNN",
+        "status": "IMPORT_OK",
+        "module": "models.SegRNN"
+      },
+      {
+        "model": "Transformer",
+        "status": "IMPORT_OK",
+        "module": "models.Transformer"
+      },
+      {
+        "model": "PatchTST",
+        "status": "IMPORT_OK",
+        "module": "models.PatchTST"
+      },
+      {
+        "model": "iTransformer",
+        "status": "IMPORT_OK",
+        "module": "models.iTransformer"
+      },
+      {
+        "model": "TimeXer",
+        "status": "IMPORT_OK",
+        "module": "models.TimeXer"
+      },
+      {
+        "model": "TimesNet",
+        "status": "IMPORT_OK",
+        "module": "models.TimesNet"
+      },
+      {
+        "model": "MICN",
+        "status": "IMPORT_OK",
+        "module": "models.MICN"
+      },
+      {
+        "model": "WPMixer",
+        "status": "IMPORT_OK",
+        "module": "models.WPMixer"
+      },
+      {
+        "model": "MultiPatchFormer",
+        "status": "IMPORT_OK",
+        "module": "models.MultiPatchFormer"
+      },
+      {
+        "model": "TimeMixer",
+        "status": "IMPORT_OK",
+        "module": "models.TimeMixer"
+      },
+      {
+        "model": "TSMixer",
+        "status": "IMPORT_OK",
+        "module": "models.TSMixer"
+      },
+      {
+        "model": "FreTS",
+        "status": "IMPORT_OK",
+        "module": "models.FreTS"
+      },
+      {
+        "model": "Crossformer",
+        "status": "IMPORT_OK",
+        "module": "models.Crossformer"
+      },
+      {
+        "model": "MSGNet",
+        "status": "IMPORT_OK",
+        "module": "models.MSGNet"
+      },
+      {
+        "model": "TimeFilter",
+        "status": "IMPORT_OK",
+        "module": "models.TimeFilter"
+      }
+    ],
+    "third_party": [
+      {
+        "package": "torch",
+        "status": "IMPORT_OK",
+        "version": "2.7.1+cu128"
+      },
+      {
+        "package": "numpy",
+        "status": "IMPORT_OK",
+        "version": "2.1.2"
+      },
+      {
+        "package": "pandas",
+        "status": "IMPORT_OK",
+        "version": "2.3.3"
+      },
+      {
+        "package": "sklearn",
+        "status": "IMPORT_OK",
+        "version": "1.7.2"
+      },
+      {
+        "package": "einops",
+        "status": "IMPORT_OK",
+        "version": "0.8.1"
+      },
+      {
+        "package": "pywt",
+        "status": "IMPORT_OK",
+        "version": "1.8.0"
+      },
+      {
+        "package": "sktime",
+        "status": "IMPORT_OK",
+        "version": "0.40.1"
+      },
+      {
+        "package": "datasets",
+        "status": "IMPORT_OK",
+        "version": "4.5.0"
+      },
+      {
+        "package": "huggingface_hub",
+        "status": "IMPORT_OK",
+        "version": "0.36.0"
+      },
+      {
+        "package": "scipy",
+        "status": "IMPORT_OK",
+        "version": "1.16.3"
+      }
+    ]
+  }
+}

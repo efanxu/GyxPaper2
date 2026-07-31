@@ -1,0 +1,2 @@
+﻿variant,display_name,experiment_family,trainable,canonical_reference,vadsp_gate_mode,graph_operator,decoder_context_mode,hidden_dim,num_coupling_layers,spatial_graph,adaptive_graph,diffusion,macro_prompt,reverse_cross,cross_fusion,st_prompt,loss_name,granularity_weight_mode,site_weight_mode,seed
+P5,Bi-Diffusion + Full-History Cross-Attn + H96 + C2,precision,True,,fixed_dual,bi_diffusion,full_history_cross_attention,96,2,True,True,True,True,True,True,True,msmg_dwu_loss,difficulty_rate,dynamic,2026

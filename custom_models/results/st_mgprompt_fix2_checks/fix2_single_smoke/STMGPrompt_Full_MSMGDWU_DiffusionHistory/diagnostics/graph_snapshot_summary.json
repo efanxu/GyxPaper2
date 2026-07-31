@@ -1,0 +1,11 @@
+{
+  "artifact_source_checkpoint": "best_checkpoint.pt",
+  "macro_micro_prior_support_jaccard": 0.9821428571428571,
+  "macro_micro_final_support_jaccard": 0.9821428571428571,
+  "macro_micro_prior_weight_correlation": 0.8948365962056251,
+  "macro_micro_final_weight_correlation": 0.86912883181843,
+  "macro_topology_edge_count": 56,
+  "micro_topology_edge_count": 55,
+  "macro_self_weight_mean": 0.0,
+  "micro_self_weight_mean": 0.0
+}

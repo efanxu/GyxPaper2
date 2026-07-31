@@ -1,0 +1,154 @@
+{
+  "task": "E2-D",
+  "run_mode": "smoke",
+  "limited": true,
+  "formal_training": false,
+  "formal_evaluation": false,
+  "independent_process_per_model": true,
+  "batch_limits": {
+    "train": 2,
+    "validation": 1,
+    "evaluation": 1
+  },
+  "results": {
+    "crossformer": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e2_d/real_data/crossformer",
+      "prediction_shape": [
+        1,
+        134,
+        10
+      ],
+      "raw_output_shape": [
+        134,
+        10,
+        16
+      ],
+      "loss": 1.6292231678962708,
+      "validation_score_h10": 126.59651668062268,
+      "parameter_count": 117668,
+      "trainable_parameter_count": 117668,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\Crossformer.py",
+      "upstream_source_sha256": "f5892f70eb3fc320f69fa0a9b2019b68537cc5a5e5aa2ec544c15127b19e36f0",
+      "effective_config": {
+        "d_model": 32,
+        "d_ff": 32,
+        "e_layers": 2,
+        "n_heads": 8,
+        "factor": 3,
+        "dropout": 0.1
+      },
+      "config_resolution_reason": "local Crossformer Weather script fixes e_layers=2,factor=3,d_model=32,d_ff=32; n_heads/dropout use local run.py defaults",
+      "validation_search_performed": false,
+      "test_result_used": false,
+      "smoke_result_used_for_selection": false,
+      "oom_driven_capacity_reduction": false
+    },
+    "msgnet": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e2_d/real_data/msgnet",
+      "prediction_shape": [
+        1,
+        134,
+        10
+      ],
+      "raw_output_shape": [
+        134,
+        10,
+        16
+      ],
+      "loss": 0.14940987527370453,
+      "validation_score_h10": 80.87828600871123,
+      "parameter_count": 13294292,
+      "trainable_parameter_count": 13294292,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\MSGNet.py",
+      "upstream_source_sha256": "e6f8f3fbd4e0bc9d77c78e2409969c4fe4b2fc6560e7c1f5cced2a809d8e9e59",
+      "effective_config": {
+        "label_len": 48,
+        "c_out": 16,
+        "d_model": 512,
+        "d_ff": 2048,
+        "e_layers": 2,
+        "n_heads": 8,
+        "top_k": 5,
+        "dropout": 0.1,
+        "embed": "timeF",
+        "freq": "h",
+        "conv_channel": 32,
+        "skip_channel": 32,
+        "gcn_depth": 2,
+        "propalpha": 0.3,
+        "node_dim": 10,
+        "individual": false
+      },
+      "config_resolution_reason": "no local MSGNet task script exists; fields use local run.py defaults plus source-required graph fields, frozen before smoke",
+      "validation_search_performed": false,
+      "test_result_used": false,
+      "smoke_result_used_for_selection": false,
+      "oom_driven_capacity_reduction": false
+    },
+    "timefilter": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e2_d/real_data/timefilter",
+      "prediction_shape": [
+        1,
+        134,
+        10
+      ],
+      "raw_output_shape": [
+        134,
+        10,
+        16
+      ],
+      "loss": 0.25831812620162964,
+      "validation_score_h10": 152.48837621702376,
+      "parameter_count": 4801994,
+      "trainable_parameter_count": 4801994,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\TimeFilter.py",
+      "upstream_source_sha256": "6cbce92f112a9907fe6117ea23527bf1864c0ea00721a812d786e86e0a1b0724",
+      "effective_config": {
+        "c_out": 16,
+        "d_model": 512,
+        "d_ff": 2048,
+        "e_layers": 2,
+        "n_heads": 8,
+        "dropout": 0.1,
+        "patch_len": 16,
+        "alpha": 0.1,
+        "top_p": 0.5,
+        "pos": 1
+      },
+      "config_resolution_reason": "no local TimeFilter task script exists; local run.py defaults and source patch/filter fields frozen before smoke",
+      "validation_search_performed": false,
+      "test_result_used": false,
+      "smoke_result_used_for_selection": false,
+      "oom_driven_capacity_reduction": false
+    }
+  },
+  "retained_development_evidence": [
+    {
+      "model": "msgnet",
+      "artifact": "custom_models/results_smoke/benchmark_v2/e2_d/real_data/msgnet_cuda_oom_attempt",
+      "status": "FAIL_OOM",
+      "used_for_final_routing": false
+    },
+    {
+      "model": "msgnet",
+      "artifact": "custom_models/results_smoke/benchmark_v2/e2_d/real_data/msgnet_cpu_default_threads_interrupted",
+      "status": "INTERRUPTED",
+      "used_for_selection": false
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "events": [
+    {
+      "stage": "TRAIN_STARTED",
+      "time": "2026-07-15T22:18:21"
+    },
+    {
+      "stage": "TRAIN_FINISHED",
+      "time": "2026-07-15T22:18:25",
+      "checkpoint": "custom_models\\results\\st_mgprompt_codex_verify_precision\\codex_parent_eval_fail\\P0\\STMGPrompt_FairFull\\best_checkpoint.pt",
+      "last_completed_epoch": 1
+    },
+    {
+      "stage": "BEST_CHECKPOINT_SAVED",
+      "time": "2026-07-15T22:18:25",
+      "checkpoint": "custom_models\\results\\st_mgprompt_codex_verify_precision\\codex_parent_eval_fail\\P0\\STMGPrompt_FairFull\\best_checkpoint.pt"
+    },
+    {
+      "stage": "FINAL_VALIDATION_STARTED",
+      "time": "2026-07-15T22:18:25"
+    },
+    {
+      "stage": "FINAL_VALIDATION_FINISHED",
+      "time": "2026-07-15T22:18:25"
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-15T22:18:25",
+      "skip_test": true
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-15T22:18:25"
+    },
+    {
+      "stage": "PROCESS_EXCEPTION",
+      "time": "2026-07-15T22:18:45",
+      "failure_stage": "PROCESS_EXCEPTION",
+      "last_completed_epoch": "1",
+      "best_checkpoint_exists": true,
+      "last_checkpoint_exists": true,
+      "train_complete_exists": true,
+      "evaluation_complete_exists": false,
+      "num_workers": 0,
+      "persistent_workers": false,
+      "amp_enabled": false,
+      "cuda_memory_allocated": 0,
+      "cuda_memory_reserved": 0,
+      "error_type": "ValueError",
+      "error": "eval_batch_size must be positive."
+    }
+  ],
+  "current_stage": "PROCESS_EXCEPTION",
+  "updated_at": "2026-07-15T22:18:45",
+  "checkpoint": "custom_models\\results\\st_mgprompt_codex_verify_precision\\codex_parent_eval_fail\\P0\\STMGPrompt_FairFull\\best_checkpoint.pt",
+  "last_completed_epoch": "1",
+  "skip_test": true,
+  "failure_stage": "PROCESS_EXCEPTION",
+  "best_checkpoint_exists": true,
+  "last_checkpoint_exists": true,
+  "train_complete_exists": true,
+  "evaluation_complete_exists": false,
+  "num_workers": 0,
+  "persistent_workers": false,
+  "amp_enabled": false,
+  "cuda_memory_allocated": 0,
+  "cuda_memory_reserved": 0,
+  "error_type": "ValueError",
+  "error": "eval_batch_size must be positive."
+}

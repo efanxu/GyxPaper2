@@ -1,0 +1,39 @@
+{
+  "task": "E1-A",
+  "run_mode": "smoke",
+  "formal_training": false,
+  "requested_shape": {"B": 32, "T": 144, "N": 134, "C": 16, "H": 10},
+  "device": "cuda",
+  "cuda_available": true,
+  "amp_enabled": true,
+  "results": {
+    "persistence": {
+      "status": "PASS",
+      "output_shape": [32, 134, 10],
+      "inverse_transform_parity": true,
+      "elapsed_seconds": 0.4409759999252856,
+      "peak_gpu_memory_bytes": 85017600,
+      "parameter_count": 0,
+      "backward_completed": false
+    },
+    "moving_average": {
+      "status": "PASS",
+      "output_shape": [32, 134, 10],
+      "inverse_transform_parity": true,
+      "elapsed_seconds": 0.43740399996750057,
+      "peak_gpu_memory_bytes": 85017600,
+      "parameter_count": 0,
+      "backward_completed": false
+    },
+    "gru": {
+      "status": "PASS",
+      "output_shape": [32, 134, 10],
+      "loss": 5.408382415771484,
+      "elapsed_seconds": 0.726019199937582,
+      "peak_gpu_memory_bytes": 2305106944,
+      "parameter_count": 16394,
+      "trainable_parameter_count": 16394,
+      "backward_completed": true
+    }
+  }
+}

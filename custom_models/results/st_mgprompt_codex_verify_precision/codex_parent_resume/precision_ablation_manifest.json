@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-07-15T22:15:00",
+  "selection_metric": "val_official_score_h10",
+  "selection_uses_test_metrics": false,
+  "variants": [
+    {
+      "variant": "P0",
+      "description": "Corrected FairFull baseline",
+      "model_name": "STMGPrompt_FairFull",
+      "graph_operator": "simple",
+      "decoder_context_mode": "last_state",
+      "hidden_dim": 64,
+      "num_coupling_layers": 1,
+      "diffusion_order_micro": 2,
+      "diffusion_order_macro": 2,
+      "diffusion_use_bidirectional": true,
+      "diffusion_beta_init": 0.05,
+      "decoder_history_len": null,
+      "eligible_for_fair_main_table": true,
+      "loss_protocol": "fair_main",
+      "loss_function": "masked_score_aligned_hybrid",
+      "selection_policy": "validation_only_val_official_score_h10",
+      "test_metrics_used_for_selection": false,
+      "seed": 2026,
+      "amp_enabled": false,
+      "amp_dtype": null
+    }
+  ]
+}

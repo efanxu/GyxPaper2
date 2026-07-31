@@ -1,0 +1,264 @@
+{
+  "task": "E2-C",
+  "target_models": [
+    "timemixer",
+    "tsmixer",
+    "frets"
+  ],
+  "implemented_models": [
+    "timemixer",
+    "tsmixer",
+    "frets"
+  ],
+  "locally_full_shape_verified_models": [
+    "tsmixer"
+  ],
+  "hardware_preflight_required_models": [
+    "timemixer",
+    "frets"
+  ],
+  "blocked_non_oom_models": [],
+  "formal_training_started": false,
+  "formal_evaluation_started": false,
+  "target_high_memory_preflight_started": false,
+  "e2_d_started": false,
+  "formal_output_root_created": false,
+  "formal_output_root": "D:/PaperProject/GyxPaper2/custom_models/results/benchmark_v2/e2_c_seed2026",
+  "registry_counts_before": {
+    "total_entries": 28,
+    "formal_runnable_trainable": 13,
+    "locally_full_shape_verified": 7,
+    "hardware_preflight_required": 6,
+    "non_trainable_available": 2,
+    "true_blocked_or_unavailable": 13
+  },
+  "registry_counts_after": {
+    "total_entries": 28,
+    "formal_runnable_trainable": 16,
+    "locally_full_shape_verified": 8,
+    "hardware_preflight_required": 8,
+    "non_trainable_available": 2,
+    "true_blocked_or_unavailable": 10
+  },
+  "allowlist_before": [
+    "dlinear",
+    "lightts",
+    "tide",
+    "segrnn",
+    "transformer",
+    "patchtst",
+    "itransformer",
+    "timexer",
+    "timesnet",
+    "micn",
+    "wpmixer",
+    "multipatchformer"
+  ],
+  "allowlist_after": [
+    "dlinear",
+    "lightts",
+    "tide",
+    "segrnn",
+    "transformer",
+    "patchtst",
+    "itransformer",
+    "timexer",
+    "timesnet",
+    "micn",
+    "wpmixer",
+    "multipatchformer",
+    "timemixer",
+    "tsmixer",
+    "frets"
+  ],
+  "protocol_hash_before": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "protocol_hash_after": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "protocol_file_sha256_before": "a250a476a03683c7ed62c77685d8b878b0fb5e2d371b694aba308d6df62e2492",
+  "protocol_file_sha256_after": "a250a476a03683c7ed62c77685d8b878b0fb5e2d371b694aba308d6df62e2492",
+  "canonical_sha256_before": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+  "canonical_sha256_after": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+  "tslib_modified": false,
+  "st_mgprompt_modified": false,
+  "prior_models_modified": false,
+  "dependencies_changed": false,
+  "files_created_count": 40,
+  "documentation_files_created_count": 32,
+  "smoke_artifact_files_created_count": 133,
+  "files_created": [
+    "custom_models/src/benchmark_v2/models/timemixer.py",
+    "custom_models/src/benchmark_v2/models/tsmixer.py",
+    "custom_models/src/benchmark_v2/models/frets.py",
+    "custom_models/src/benchmark_v2/configs/timemixer.py",
+    "custom_models/src/benchmark_v2/configs/tsmixer.py",
+    "custom_models/src/benchmark_v2/configs/frets.py",
+    "custom_models/src/benchmark_v2/adapters/e2_c.py",
+    "custom_models/tests/benchmark_v2/test_e2_c_models.py",
+    "custom_models/docs/benchmark_v2/E2_C/generate_protection_snapshots.py",
+    "custom_models/docs/benchmark_v2/E2_C/collect_e2_c_results.py",
+    "custom_models/docs/benchmark_v2/E2_C/run_frets_diagnostics.py",
+    "custom_models/docs/benchmark_v2/E2_C/E2_C_TSLIB_SOURCE_AUDIT.md",
+    "custom_models/docs/benchmark_v2/E2_C/E2_C_CONFIG_RESOLUTION.md",
+    "custom_models/docs/benchmark_v2/E2_C/E2_C_MODEL_SPECIFICATIONS.md",
+    "custom_models/docs/benchmark_v2/E2_C/E2_C_MIXER_FREQUENCY_FAIRNESS_AUDIT.md",
+    "custom_models/docs/benchmark_v2/E2_C/E2_C_TIMEMIXER_SCALE_TRACE.md",
+    "custom_models/docs/benchmark_v2/E2_C/E2_C_FRETS_BRANCH_PRECISION_TRACE.md",
+    "custom_models/docs/benchmark_v2/E2_C/E2_C_IMPLEMENTATION_REPORT.md",
+    "custom_models/docs/benchmark_v2/E2_C/E2_C_RUNBOOK.md",
+    "custom_models/docs/benchmark_v2/E2_C/HANDOFF_E2_C.md",
+    "custom_models/docs/benchmark_v2/E2_C/E2_C_IMPLEMENTATION_MANIFEST.json",
+    "custom_models/docs/benchmark_v2/E2_C/test_results.json",
+    "custom_models/docs/benchmark_v2/E2_C/model_smoke_results.json",
+    "custom_models/docs/benchmark_v2/E2_C/full_shape_model_smoke_results.json",
+    "custom_models/docs/benchmark_v2/E2_C/real_data_smoke_results.json",
+    "custom_models/docs/benchmark_v2/E2_C/hardware_preflight_test_results.json",
+    "custom_models/docs/benchmark_v2/E2_C/protected_core_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E2_C/protected_core_hashes_after.json",
+    "custom_models/docs/benchmark_v2/E2_C/protected_tslib_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E2_C/protected_tslib_hashes_after.json",
+    "custom_models/docs/benchmark_v2/E2_C/protected_benchmark_frozen_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E2_C/protected_benchmark_frozen_hashes_after.json",
+    "custom_models/docs/benchmark_v2/E2_C/protected_e1_a_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E2_C/protected_e1_a_hashes_after.json",
+    "custom_models/docs/benchmark_v2/E2_C/protected_e1_b_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E2_C/protected_e1_b_hashes_after.json",
+    "custom_models/docs/benchmark_v2/E2_C/protected_e2_a_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E2_C/protected_e2_a_hashes_after.json",
+    "custom_models/docs/benchmark_v2/E2_C/protected_e2_b_hashes_before.json",
+    "custom_models/docs/benchmark_v2/E2_C/protected_e2_b_hashes_after.json"
+  ],
+  "files_modified_count": 14,
+  "files_modified": [
+    "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+    "custom_models/src/benchmark_v2/configs/__init__.py",
+    "custom_models/src/benchmark_v2/adapters/__init__.py",
+    "custom_models/src/benchmark_v2/model_runtime.py",
+    "custom_models/src/benchmark_v2/model_cli.py",
+    "custom_models/src/benchmark_v2/hardware_preflight.py",
+    "custom_models/src/benchmark_v2/registry/benchmark_registry.json",
+    "custom_models/tests/benchmark_v2/test_e1_a_registry_cli.py",
+    "custom_models/tests/benchmark_v2/test_e1_b_registry_cli.py",
+    "custom_models/tests/benchmark_v2/test_e1_b_loader.py",
+    "custom_models/tests/benchmark_v2/test_e2_a_models.py",
+    "custom_models/tests/benchmark_v2/test_e2_b_models.py",
+    "custom_models/tests/benchmark_v2/test_registry.py",
+    "custom_models/tests/benchmark_v2/test_hardware_preflight.py"
+  ],
+  "files_moved": [
+    {
+      "from": "custom_models/results_smoke/benchmark_v2/e2_c/ordinary/frets",
+      "to": "custom_models/results_smoke/benchmark_v2/e2_c/ordinary/frets_fp32_boundary_attempt",
+      "reason": "retain superseded preventive FP32 attempt before native-AMP rerun"
+    },
+    {
+      "from": "custom_models/results_smoke/benchmark_v2/e2_c/real_data/frets",
+      "to": "custom_models/results_smoke/benchmark_v2/e2_c/real_data/frets_fp32_boundary_attempt",
+      "reason": "retain superseded preventive FP32 attempt before native-AMP rerun"
+    }
+  ],
+  "files_deleted": [],
+  "smoke_artifact_roots": [
+    "custom_models/results_smoke/benchmark_v2/e2_c/ordinary",
+    "custom_models/results_smoke/benchmark_v2/e2_c/full_shape",
+    "custom_models/results_smoke/benchmark_v2/e2_c/real_data",
+    "custom_models/results_smoke/benchmark_v2/e2_c/diagnostics"
+  ],
+  "task_start_existing_changes": "UNKNOWN: project root has no Git metadata",
+  "commands_executed": [
+    "UTF-8 read of attached prompt and all available required E2-A/E2-B evidence",
+    "E2-B six-pair snapshot validation",
+    "E2-C seven-group before and after protection snapshots",
+    "read-only local TSLib source, layer, script, README, run.py, and license audit",
+    "isolated FreTS 0/1/'0'/'1' branch and raw-source CUDA AMP diagnostics",
+    "python -m compileall -q custom_models/src/benchmark_v2",
+    "python -m unittest custom_models.tests.benchmark_v2.test_e2_c_models -v",
+    "python -m unittest custom_models.tests.benchmark_v2.test_hardware_preflight -v",
+    "python -m unittest discover -s custom_models/tests/benchmark_v2 -p test_*.py",
+    "run_benchmark.py protocol-check",
+    "three independent model-smoke processes",
+    "three independent exact full-shape-model-smoke processes",
+    "three independent limited real-data-model-smoke processes"
+  ],
+  "tests": {
+    "compileall": "PASS",
+    "focused_e2_c": {
+      "status": "PASS",
+      "tests_run": 11
+    },
+    "hardware_preflight_dummy_process_runner": {
+      "status": "PASS",
+      "tests_run": 9
+    },
+    "full_suite": {
+      "status": "PASS",
+      "tests_run": 84,
+      "failures": 0,
+      "errors": 0
+    },
+    "protocol_check": "PASS"
+  },
+  "smoke_runs": {
+    "ordinary": {
+      "timemixer": "PASS",
+      "tsmixer": "PASS",
+      "frets": "PASS"
+    },
+    "limited_real_data": {
+      "timemixer": "PASS",
+      "tsmixer": "PASS",
+      "frets": "PASS"
+    },
+    "strict_reload_all_final_runs": true,
+    "artifact_validation_all_final_runs": true
+  },
+  "full_shape_results": {
+    "timemixer": {
+      "status": "FAIL_OOM",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory_bytes": 13546065408,
+      "peak_reserved_memory_bytes": null,
+      "gpu_name": "NVIDIA GeForce GTX 1060",
+      "gpu_total_memory_bytes": 6442319872
+    },
+    "tsmixer": {
+      "status": "PASS",
+      "forward_completed": true,
+      "backward_completed": true,
+      "peak_allocated_memory_bytes": 435061248,
+      "peak_reserved_memory_bytes": null,
+      "gpu_name": "NVIDIA GeForce GTX 1060",
+      "gpu_total_memory_bytes": 6442319872
+    },
+    "frets": {
+      "status": "FAIL_OOM",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory_bytes": 10849229824,
+      "peak_reserved_memory_bytes": null,
+      "gpu_name": "NVIDIA GeForce GTX 1060",
+      "gpu_total_memory_bytes": 6442319872
+    }
+  },
+  "protection": {
+    "all_seven_groups_zero_mismatch": true,
+    "protocol_matches_before": true,
+    "canonical_matches_before": true,
+    "formal_output_root_matches_before": true
+  },
+  "warnings": [
+    "实验总Plan.md and HANDOFF.md were absent from the entire workspace and were not reconstructed or guessed.",
+    "The project root has no Git metadata; no Git repository was initialized.",
+    "Windows PyTorch reported expandable_segments unsupported on this platform; exact shapes and capacity were unchanged.",
+    "The full-shape helper did not reliably record peak reserved memory; values are null.",
+    "A preventive FreTS FP32 attempt was superseded after raw-source CUDA AMP passed; all artifacts were retained and final native-AMP runs were repeated.",
+    "Shared stage-acceptance tests were updated only for the 15-entry allowlist and final Registry counts; protected prior model/config/adapter behavior is unchanged."
+  ],
+  "not_run": {
+    "target_high_memory_machine_preflight": "NOT_RUN",
+    "timemixer_formal_full": "NOT_RUN",
+    "tsmixer_formal_full": "NOT_RUN",
+    "frets_formal_full": "NOT_RUN",
+    "formal_evaluation": "NOT_RUN",
+    "e2_d": "NOT_STARTED"
+  }
+}

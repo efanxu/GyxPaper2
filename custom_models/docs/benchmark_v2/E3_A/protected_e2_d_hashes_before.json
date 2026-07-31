@@ -1,0 +1,65 @@
+{
+  "task": "E3-A",
+  "snapshot": "E3-A task before",
+  "algorithm": "SHA256; directory digest is SHA256 of sorted relative_path:sha256 newline records; __pycache__ excluded",
+  "paths": [
+    {
+      "path": "custom_models/src/benchmark_v2/models/crossformer.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "54ec419f57ef347af7190745b4189373025f4aa4e259bd666891a54173b60c6e"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/msgnet.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "1feed9c326d0120da072a777b1d28cf3330f7e3ea4d2105e6df50ef301e6ee4e"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/timefilter.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "4064adc709f0f0d2adf6598ec6e1b0f64b516fac9ebdee2b61041fc6688db61e"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/crossformer.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "7699784fc9ee46e945f46bf7b090ff40ceb29c1a80ceb05a3e5afa47e94e4b7e"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/msgnet.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "4b31f295f2162086404f4c7138f02537bf5ed6b24ea6a7d8e0a7103d3d305105"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/timefilter.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "ccd239dcda50c5bd13c188c0ebcd0e9d22f340fa8f71a134c12480a1412dac83"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/adapters/e2_d.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "f08010df10b8169be729c2c5f260c4a589124e7759992bfedc9ef2b9f0752980"
+    },
+    {
+      "path": "custom_models/tests/benchmark_v2/test_e2_d_models.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "16e0f9c4a09de29f51155c3c9629bb74b2ae627e3c015e1610b54de5e6f349ae"
+    },
+    {
+      "path": "custom_models/docs/benchmark_v2/E2_D",
+      "exists": true,
+      "kind": "directory",
+      "file_count": 36,
+      "tree_sha256": "f2e40ca0d42d8dcbec78957d012cc8df08ae3f9874d12240f9c7fe8f0d15abb9"
+    }
+  ],
+  "protocol_file_sha256": "a250a476a03683c7ed62c77685d8b878b0fb5e2d371b694aba308d6df62e2492",
+  "canonical_checkpoint_sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+  "formal_output_root_existed": false
+}

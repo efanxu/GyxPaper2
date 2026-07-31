@@ -1,0 +1,93 @@
+{
+  "mode": "full_shape_smoke",
+  "sys_executable": "C:\\Users\\12811\\.conda\\envs\\tsl\\python.exe",
+  "python_version": "3.11.15 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:12:53) [MSC v.1942 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "torch_version": "2.5.1+cu124",
+  "torch_cuda_version": "12.4",
+  "cuda_available": true,
+  "gpu_name": "NVIDIA GeForce GTX 1060",
+  "device": "cuda",
+  "input_shape": [
+    1,
+    144,
+    134,
+    16
+  ],
+  "target_shape": [
+    1,
+    10,
+    134
+  ],
+  "mask_shape": [
+    1,
+    10,
+    134
+  ],
+  "prediction_shape": [
+    1,
+    10,
+    134
+  ],
+  "hidden_dim": 64,
+  "num_coupling_layers": 1,
+  "graph_operator": "bidirectional_diffusion",
+  "decoder_context_mode": "full_history_cross_attention",
+  "granularity_weight_mode": "difficulty_rate",
+  "parameter_count": 333577,
+  "loss_value": 1.094247579574585,
+  "val_loss_value": 0.9931915998458862,
+  "loss_finite": true,
+  "gradient_checks": {
+    "model_any_grad_finite": true,
+    "vadsp_grad_finite": true,
+    "coupling_grad_finite": true,
+    "decoder_grad_finite": true,
+    "loss_backward_compatible": true,
+    "micro_diffusion_grad_finite": true,
+    "macro_diffusion_grad_finite": true
+  },
+  "peak_cuda_memory_allocated_mb": 491.07373046875,
+  "peak_cuda_memory_reserved_mb": 560.0,
+  "forward_time_sec": 0.5311726999934763,
+  "backward_time_sec": 0.17360049998387694,
+  "vadsp_robust_statistics_metadata": {
+    "fit_split": "train",
+    "fit_source": "unique_train_timeline",
+    "exact": true,
+    "device": "cpu",
+    "mode": "per_node",
+    "source_cols": [
+      "Wspd",
+      "Patv_clean_for_input"
+    ],
+    "num_time_points": 42047,
+    "num_time_deltas": 42046,
+    "shape": {
+      "q25": [
+        134,
+        2
+      ],
+      "median": [
+        134,
+        2
+      ],
+      "q75": [
+        134,
+        2
+      ],
+      "center": [
+        134,
+        2
+      ],
+      "scale": [
+        134,
+        2
+      ]
+    },
+    "nonfinite_filtered": 0,
+    "degenerate_iqr_count": 0,
+    "depends_on_window_stride": false,
+    "feature_space": "model_input_scaled"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "task": "E3-A",
+  "canonical_benchmark_name": "STGCN",
+  "canonical_id": "stgcn",
+  "display_name": "STGCN",
+  "registry_compatibility_aliases": [
+    "stcn_stgcn_unresolved"
+  ],
+  "legacy_inventory_aliases": [
+    "STCN"
+  ],
+  "identity_status": "RESOLVED_CANONICAL_TARGET_STGCN_SOURCE_MISSING",
+  "implementation_status": "MISSING_IMPLEMENTATION",
+  "runtime_status": "BLOCKED_UNIMPLEMENTED",
+  "legacy_stcn_status": "UNVERIFIED_OR_DISTINCT_LEGACY",
+  "e3_b_access": "ALLOWED_FOR_SOURCE_SELECTION_AND_IMPLEMENTATION_DECISION_ONLY",
+  "train_allowed": false,
+  "evaluate_allowed": false,
+  "local_implementations_found": [],
+  "source_evidence": [
+    {
+      "path": "custom_models/docs/benchmark_v2/E0_A/STCN_STGCN_NAMING_AUDIT.md",
+      "sha256": "58c2e096f80e0266394c1d672aca23757c1039f3d70fdb384c4ef236572bde92",
+      "finding": "No trusted STCN.py/STGCN.py, class, adjacency provider, temporal graph block, configuration, citation, or old result metadata."
+    },
+    {
+      "path": "Time-Series-Library/run.py",
+      "sha256": "db6dfa215520ba193fe7095380f9005949a958efa9526975410cb5d97afe3fc4",
+      "finding": "Generic graph flags only; no STCN/STGCN constructor or implementation."
+    }
+  ],
+  "decision_basis": "The single STCN/STGCN benchmark slot is assigned to classic, source-verifiable STGCN by E3-A policy. No implementation identity is inferred from the historical STCN label.",
+  "historical_artifact_policy": "Preserve in place; never promote, rename, copy metrics, or reuse checkpoint as STGCN."
+}

@@ -1,0 +1,41 @@
+{
+  "events": [
+    {
+      "stage": "TRAIN_STARTED",
+      "time": "2026-07-15T22:07:40"
+    },
+    {
+      "stage": "TRAIN_FINISHED",
+      "time": "2026-07-15T22:08:01",
+      "checkpoint": "custom_models\\results\\st_mgprompt_codex_verify\\codex_smoke_verify\\STMGPrompt_FairFull\\best_checkpoint.pt",
+      "last_completed_epoch": 1
+    },
+    {
+      "stage": "BEST_CHECKPOINT_SAVED",
+      "time": "2026-07-15T22:08:01",
+      "checkpoint": "custom_models\\results\\st_mgprompt_codex_verify\\codex_smoke_verify\\STMGPrompt_FairFull\\best_checkpoint.pt"
+    },
+    {
+      "stage": "FINAL_VALIDATION_STARTED",
+      "time": "2026-07-15T22:08:01"
+    },
+    {
+      "stage": "FINAL_VALIDATION_FINISHED",
+      "time": "2026-07-15T22:08:01"
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-15T22:08:01",
+      "skip_test": true
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-15T22:08:01"
+    }
+  ],
+  "current_stage": "PROCESS_FINISHED",
+  "updated_at": "2026-07-15T22:08:01",
+  "checkpoint": "custom_models\\results\\st_mgprompt_codex_verify\\codex_smoke_verify\\STMGPrompt_FairFull\\best_checkpoint.pt",
+  "last_completed_epoch": 1,
+  "skip_test": true
+}

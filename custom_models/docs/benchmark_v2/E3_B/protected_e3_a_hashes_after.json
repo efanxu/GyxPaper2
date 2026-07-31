@@ -1,0 +1,31 @@
+{
+  "task": "E3-B",
+  "snapshot": "E3-B task after",
+  "algorithm": "SHA256; directory digest is SHA256 of sorted relative_path:sha256 newline records; __pycache__ excluded",
+  "paths": [
+    {
+      "path": "custom_models/tests/benchmark_v2/test_e3_a_graph_protocol.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "86d2c0c85643e9f3a859a1d84700ae7b61db3f19dbad00d2660fcb82eccbd3b2",
+      "matches_before": false
+    },
+    {
+      "path": "custom_models/docs/benchmark_v2/E3_A",
+      "exists": true,
+      "kind": "directory",
+      "file_count": 45,
+      "tree_sha256": "f345172eebb9cebe58e9c2d7d8621aa068f4202023efae3ccfa254a356492362",
+      "matches_before": true
+    }
+  ],
+  "protocol_file_sha256": "a250a476a03683c7ed62c77685d8b878b0fb5e2d371b694aba308d6df62e2492",
+  "canonical_checkpoint_sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+  "formal_output_root_existed": false,
+  "mismatches": [
+    "custom_models/tests/benchmark_v2/test_e3_a_graph_protocol.py"
+  ],
+  "protocol_matches_before": true,
+  "canonical_matches_before": true,
+  "formal_output_root_matches_before": true
+}

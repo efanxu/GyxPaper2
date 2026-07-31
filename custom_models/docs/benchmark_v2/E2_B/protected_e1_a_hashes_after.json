@@ -1,0 +1,91 @@
+{
+  "task": "E2-B",
+  "snapshot": "E2-B task after",
+  "algorithm": "SHA256; directory digest is SHA256 of sorted relative_path:sha256 newline records; __pycache__ excluded",
+  "paths": [
+    {
+      "path": "custom_models/src/benchmark_v2/models/persistence.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "209ec06fb0e11c06bc0c7f0b38f0f8fff6738c95acfc05fc7d1af4f82c8ff623",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/moving_average.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "25b4126d84bddd7d61eecd650eb5261c3df5de448f18b8c5fe13526793e30a1b",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/gru.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "dcad941a20a3d96869955e46df53be2256497aec1050e9614e0d1912455f061e",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/persistence.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "663f684613b339ed7bc92f0de52d8ac3aac0fe675b18a514c68ead25efe41d02",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/moving_average.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "26bc694d345d268f2dfe66ffdcd5a02bcd13cfc9a138f6d6fa143171b6797d92",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/gru.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "e6707e76f3b9f122c0786a363dd009bc52cb6697019c25a803b14dfd302c3bac",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/adapters/statistical_baselines.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "653381543b3bb27c29176c18a1633a3b0f4662d74a60bcbb77432a42e5efbdd7",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/adapters/gru.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "9f6c2311e6d15a68058aaa3d2ae25de5e8e67c59806165d52aa67e8d53f604c2",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/docs/benchmark_v2/E1_A/model_smoke_results.json",
+      "exists": true,
+      "kind": "file",
+      "sha256": "aa0dc0679daf0b24051f963b2aa42b8c9d61a7c1f11e0ec524884f74a79868c9",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/docs/benchmark_v2/E1_A/full_shape_model_smoke_results.json",
+      "exists": true,
+      "kind": "file",
+      "sha256": "c739b4f2113307887f66b23ff3f805f74cddeddffbfec661d84a8f6962d4e8d6",
+      "matches_before": true
+    },
+    {
+      "path": "custom_models/docs/benchmark_v2/E1_A/real_data_smoke_results.json",
+      "exists": true,
+      "kind": "file",
+      "sha256": "8a13198b45214c8adbf82138a7e00cf0751d9841f9308315dd9fd151cd0c890d",
+      "matches_before": true
+    }
+  ],
+  "protocol_file_sha256": "a250a476a03683c7ed62c77685d8b878b0fb5e2d371b694aba308d6df62e2492",
+  "canonical_checkpoint_sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+  "formal_output_root_existed": false,
+  "mismatches": [],
+  "protocol_matches_before": true,
+  "canonical_matches_before": true,
+  "formal_output_root_matches_before": true
+}

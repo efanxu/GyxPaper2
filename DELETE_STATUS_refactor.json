@@ -1,0 +1,15 @@
+{
+  "status_version": 1,
+  "main_manifest": "D:\\PaperProject\\GyxPaper2\\DELETE_MANIFEST_refactor.json",
+  "bytecode_manifest": "D:\\PaperProject\\GyxPaper2\\DELETE_MANIFEST_refactor_bytecode.json",
+  "main_manifest_entry_count": 996,
+  "deleted_main_manifest_entries": 8,
+  "deleted_bytecode_entries": 8,
+  "total_deleted_files": 16,
+  "remaining_main_manifest_entries": 988,
+  "remaining_scope": "Old result artifacts only.",
+  "remaining_action": "User must delete the remaining explicit paths manually because repository instructions prohibit automated batch deletion.",
+  "recursive_or_wildcard_delete_used": false,
+  "formal_training_artifacts_deleted": false,
+  "canonical_artifact_deleted": false
+}

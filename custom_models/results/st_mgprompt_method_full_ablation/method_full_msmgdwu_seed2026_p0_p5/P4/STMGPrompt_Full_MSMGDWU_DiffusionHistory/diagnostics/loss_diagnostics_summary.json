@@ -1,0 +1,28 @@
+{
+  "loss_function": "msmg_dwu_loss",
+  "base_loss": "smooth_l1",
+  "lambda_site": 0.2,
+  "ema_alpha": 0.9,
+  "node_weight_clip": [
+    0.5,
+    3.0
+  ],
+  "granularity_weight_mode": "difficulty_rate",
+  "eval_horizons": [
+    3,
+    6,
+    10
+  ],
+  "final_granularity_weight": {
+    "h3": 0.7060500979423523,
+    "h6": 0.9574247002601624,
+    "h10": 1.3365252017974854
+  },
+  "final_log_sigma_g": {
+    "h3": 0.0,
+    "h6": 0.0,
+    "h10": 0.0
+  },
+  "artifact_source_checkpoint": "best_checkpoint.pt",
+  "granularity_weight_curve_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_method_full_ablation\\method_full_msmgdwu_seed2026_p0_p5\\P4\\STMGPrompt_Full_MSMGDWU_DiffusionHistory\\diagnostics\\granularity_weight_curve.png"
+}

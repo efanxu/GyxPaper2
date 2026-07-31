@@ -1,0 +1,28 @@
+{
+  "task": "E2-B",
+  "interpreter": "D:/Apps/Miniconda3/envs/env_tslib/python.exe",
+  "framework": "unittest",
+  "final_suite": {
+    "command": "python -m unittest discover -s custom_models/tests/benchmark_v2 -p test_*.py",
+    "status": "PASS",
+    "tests_run": 71,
+    "failures": 0,
+    "errors": 0
+  },
+  "e2_a_test_baseline_retained": 60,
+  "e2_b_tests_added": 11,
+  "protocol_check": {
+    "status": "PASS",
+    "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b"
+  },
+  "focused_checks": [
+    "12-entry explicit TSLib allowlist and lazy local source loading",
+    "four node-shared model output, backward and strict reload",
+    "target/mask invariance and future-input rejection",
+    "TimesNet node-isolated FFT scope and legal top_k",
+    "MICN exact 154/58 regression and fixed 154-step zero marks",
+    "WPMixer approximation/detail branch participation",
+    "MultiPatchFormer exact 18/19 regression and four 18-token branches",
+    "exact hardware preflight identities for all four models"
+  ]
+}

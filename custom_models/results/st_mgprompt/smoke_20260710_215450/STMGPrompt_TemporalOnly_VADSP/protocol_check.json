@@ -1,0 +1,173 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "model_input_path_exists",
+      "passed": true,
+      "details": "smoke synthetic mode; file existence not required"
+    },
+    {
+      "name": "eval_target_path_exists",
+      "passed": true,
+      "details": "smoke synthetic mode; file existence not required"
+    },
+    {
+      "name": "location_path_exists",
+      "passed": true,
+      "details": "dataset\\sdwpf_turb_location_elevation.csv"
+    },
+    {
+      "name": "target_is_patv_raw",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "target_mask_is_valid_target_mask",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "default_16_features",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "no_forbidden_input_features",
+      "passed": true,
+      "details": "[]"
+    },
+    {
+      "name": "fair_loss_name",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "msmg_dwu_disabled_for_step0",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "test_uses_full_windows",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "direct_decoder_strategy",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "step0_no_fake_coupling_block",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_sources_in_base_features",
+      "passed": true,
+      "details": "['Wspd', 'Patv_clean_for_input']"
+    },
+    {
+      "name": "split_contained_windows",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "prediction_start_stride_windows",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "pred_shape_bhn",
+      "passed": true,
+      "details": "torch.Size([4, 10, 8])"
+    },
+    {
+      "name": "pred_convertible_bnh",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "mask_not_model_input",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_aux_has_volatility",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_aux_has_rolling_std",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_aux_has_gate",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_gate_range_0_1",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_x_fine_shape_prefix",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_x_coarse_shape_prefix",
+      "passed": true,
+      "details": ""
+    }
+  ],
+  "data_summary": {
+    "input_dim": 16,
+    "num_nodes": 8,
+    "split_indices": {
+      "train": [
+        0,
+        192
+      ],
+      "val": [
+        192,
+        216
+      ],
+      "test": [
+        216,
+        240
+      ]
+    },
+    "window_counts": {
+      "train": 86,
+      "val": 3,
+      "test": 3
+    },
+    "valid_target_ratio": {
+      "train": 0.9928385615348816,
+      "val": 0.9947916865348816,
+      "test": 0.9947916865348816
+    },
+    "split_checks": [
+      {
+        "split": "train",
+        "contained": true,
+        "matches_builder": true,
+        "num_windows": 86
+      },
+      {
+        "split": "val",
+        "contained": true,
+        "matches_builder": true,
+        "num_windows": 3
+      },
+      {
+        "split": "test",
+        "contained": true,
+        "matches_builder": true,
+        "num_windows": 3
+      }
+    ]
+  }
+}

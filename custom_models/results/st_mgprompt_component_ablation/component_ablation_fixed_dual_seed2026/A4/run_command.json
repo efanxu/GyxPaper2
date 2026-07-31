@@ -1,0 +1,13 @@
+[
+  "D:\\Apps\\Miniconda3\\envs\\env_tslib\\python.exe",
+  "D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\run_st_mgprompt.py",
+  "--full",
+  "--experiment-variant",
+  "A4",
+  "--run-id",
+  "component_ablation_fixed_dual_seed2026/A4",
+  "--output-root",
+  "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation",
+  "--device",
+  "auto"
+]

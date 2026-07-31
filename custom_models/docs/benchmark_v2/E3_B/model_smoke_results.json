@@ -1,0 +1,92 @@
+{
+  "task": "E3-B ordinary smoke",
+  "selection_use": false,
+  "attempts": [
+    {
+      "model_id": "gcn",
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e3_b/ordinary/gcn",
+      "prediction_shape": [
+        2,
+        134,
+        10
+      ],
+      "loss": 5.503353595733643,
+      "validation_score_h10": 36.34478566473523,
+      "parameter_count": 6763,
+      "trainable_parameter_count": 6763,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "graph_id": "sdwpf_physical_knn_v1",
+      "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
+      "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
+      "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
+      "graph_support_names": [
+        "A_gcn"
+      ],
+      "graph_support_hashes": [
+        "cb4e1b36e3200073425c2c263953a03e732007b5daff468992bc3783bc95a7f5"
+      ]
+    },
+    {
+      "model_id": "stgcn",
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e3_b/ordinary/stgcn",
+      "prediction_shape": [
+        2,
+        134,
+        10
+      ],
+      "loss": 5.645904541015625,
+      "validation_score_h10": 37.74123055593434,
+      "parameter_count": 1169002,
+      "trainable_parameter_count": 1169002,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "graph_id": "sdwpf_physical_knn_v1",
+      "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
+      "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
+      "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
+      "graph_support_names": [
+        "L_tilde"
+      ],
+      "graph_support_hashes": [
+        "c62790b9032d130389d356069f81ec3f819460e216cc9afb371d4a3b16b1f227"
+      ]
+    },
+    {
+      "model_id": "dcrnn",
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e3_b/ordinary/dcrnn",
+      "prediction_shape": [
+        2,
+        134,
+        10
+      ],
+      "loss": 5.4856390953063965,
+      "validation_score_h10": 37.12293465141457,
+      "parameter_count": 385793,
+      "trainable_parameter_count": 385793,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "graph_id": "sdwpf_physical_knn_v1",
+      "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
+      "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
+      "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
+      "graph_support_names": [
+        "P_forward",
+        "P_reverse"
+      ],
+      "graph_support_hashes": [
+        "59b39f001b3118557b55b88041b27b4ce7a743a85c0bc7948210945f7e3b8c03",
+        "89f09d41a8cae126c5668d4fe55934819c0a7489797b8e09fc0def0cc05da4fe"
+      ]
+    }
+  ]
+}

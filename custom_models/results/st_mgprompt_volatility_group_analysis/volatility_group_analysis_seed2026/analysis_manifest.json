@@ -1,0 +1,99 @@
+{
+  "analysis": "Plan 4.1",
+  "analysis_mode": "evaluate_only",
+  "run_id": "volatility_group_analysis_seed2026",
+  "created_at": "2026-07-23T17:42:15.338011+08:00",
+  "source_hashes_before": {
+    "a0_config_sha256": "1e34cba849abe3f7ab2db9e9e4b34646c83969acdc18e2415e013397023ba4c4",
+    "a0_checkpoint_sha256": "918db536f3680a039b554150db2b7b72a7aa54ccf94259c759e975ac8f6094bc",
+    "a1_config_sha256": "19e3926e3c55f4ccaaf9f3d786807c706b26cd57050443521d42598854a18e56",
+    "a1_checkpoint_sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+    "a0_metrics_eval_h3_sha256": "2c8e004b63dc69600f81b6b2ebba74df96d76efe3f4b365ce88522824da0cb13",
+    "a0_metrics_eval_h6_sha256": "b9bf63faa3f2a636b09017a342ab561295ea5c03e1cdeef35888b230a5854942",
+    "a0_metrics_eval_h10_sha256": "56395772a866cfdb6b46a53eb4c83ce76ba7b8c6c523ba8add9b263323698718",
+    "a1_metrics_eval_h3_sha256": "881be8f8b56d7d1aa4515ec717b6d2ad591516062fbf31d9ec405bae354d0225",
+    "a1_metrics_eval_h6_sha256": "87f6b70246f1d9e97db10b638b164ef92f9d14f502da8d2829c94faf398bc633",
+    "a1_metrics_eval_h10_sha256": "c0f47960bdee49dbf92727a463784943c00c917cf6d00a18c3651f78df5a9c13"
+  },
+  "source_hashes_after": {
+    "a0_config_sha256": "1e34cba849abe3f7ab2db9e9e4b34646c83969acdc18e2415e013397023ba4c4",
+    "a0_checkpoint_sha256": "918db536f3680a039b554150db2b7b72a7aa54ccf94259c759e975ac8f6094bc",
+    "a1_config_sha256": "19e3926e3c55f4ccaaf9f3d786807c706b26cd57050443521d42598854a18e56",
+    "a1_checkpoint_sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+    "a0_metrics_eval_h3_sha256": "2c8e004b63dc69600f81b6b2ebba74df96d76efe3f4b365ce88522824da0cb13",
+    "a0_metrics_eval_h6_sha256": "b9bf63faa3f2a636b09017a342ab561295ea5c03e1cdeef35888b230a5854942",
+    "a0_metrics_eval_h10_sha256": "56395772a866cfdb6b46a53eb4c83ce76ba7b8c6c523ba8add9b263323698718",
+    "a1_metrics_eval_h3_sha256": "881be8f8b56d7d1aa4515ec717b6d2ad591516062fbf31d9ec405bae354d0225",
+    "a1_metrics_eval_h6_sha256": "87f6b70246f1d9e97db10b638b164ef92f9d14f502da8d2829c94faf398bc633",
+    "a1_metrics_eval_h10_sha256": "c0f47960bdee49dbf92727a463784943c00c917cf6d00a18c3651f78df5a9c13"
+  },
+  "source_artifacts_unchanged": true,
+  "summary": {
+    "reproduction_passed": true,
+    "num_test_windows": 5104,
+    "train_group_counts": {
+      "Low": 4125,
+      "Medium": 875,
+      "High": 104
+    },
+    "test_equal_frequency_thresholds": {
+      "q33": -0.18130910396575928,
+      "q67": -0.004378721583634615
+    },
+    "sensitivity_direction_consistency": {
+      "all_same_direction": false,
+      "comparisons": [
+        {
+          "group": "Low",
+          "horizon": 3,
+          "same_direction": true
+        },
+        {
+          "group": "Low",
+          "horizon": 6,
+          "same_direction": true
+        },
+        {
+          "group": "Low",
+          "horizon": 10,
+          "same_direction": true
+        },
+        {
+          "group": "Medium",
+          "horizon": 3,
+          "same_direction": true
+        },
+        {
+          "group": "Medium",
+          "horizon": 6,
+          "same_direction": true
+        },
+        {
+          "group": "Medium",
+          "horizon": 10,
+          "same_direction": true
+        },
+        {
+          "group": "High",
+          "horizon": 3,
+          "same_direction": false
+        },
+        {
+          "group": "High",
+          "horizon": 6,
+          "same_direction": true
+        },
+        {
+          "group": "High",
+          "horizon": 10,
+          "same_direction": true
+        }
+      ]
+    }
+  },
+  "bootstrap_reps": 1000,
+  "point_sample_size": 200000,
+  "save_full_aux": false,
+  "full_aux_estimated_uncompressed_gib": 2.2013511657714844,
+  "training_performed": false
+}

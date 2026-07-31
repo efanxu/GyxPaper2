@@ -1,0 +1,2661 @@
+{
+  "schema_version": "e5_protection_snapshot_v1",
+  "category": "ablation_hashes",
+  "phase": "after",
+  "created_at": "2026-07-28T14:34:41.445237+00:00",
+  "project_root": "D:\\PaperProject\\GyxPaper2",
+  "file_count": 530,
+  "logical_hash": "48ec376eefc83b44681fb9302dcf92ea9eea6c7cdc2f4aa4bc57faeafc5c0cd0",
+  "files": [
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A0/effective_config.json",
+      "size": 5298,
+      "sha256": "c9e06dbd5db3e564f270d11a9b2fc7bae711a6787a045723849e9ee74460c963"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A0/effective_config_diff.json",
+      "size": 327,
+      "sha256": "1a6c6a9532e10cd42b9805250141f60cbb80ace74fff8b8158516cf46ec31782"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A0/reference.json",
+      "size": 835,
+      "sha256": "c132b67c7552d200787bb2d19f0fd1e6afd4069e697edb208839b3d7366132b4"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/effective_config.json",
+      "size": 5299,
+      "sha256": "90bbe424f53a1494ca0bee3cee686517754cc2642b0910b7473c35319687469a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/effective_config_diff.json",
+      "size": 512,
+      "sha256": "f7feccf69d2b40981c361d340a532286c745ed893c46ed999229e2fc743f5927"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/run_command.json",
+      "size": 394,
+      "sha256": "5b0c9a45172fbd6a732d0a81e1339d730537ed3b81a576f8552d15b0bc9a633d"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/active_config.json",
+      "size": 5400,
+      "sha256": "4db5a5857ffa290cf1dc92433fdb1bcb3daef997a6fecc54119ad9bafe1f02e8"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/best_checkpoint.pt",
+      "size": 2848804,
+      "sha256": "f21d63286c88d26fa5e918efcd13fb06ccceb7aa30da3a44a979195942771221"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/config.json",
+      "size": 5388,
+      "sha256": "46f06e63479a242188220576fec589057234d39b32d8b2d8accbb27a4fe73e37"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/diagnostics/granularity_weight_curve.png",
+      "size": 33972,
+      "sha256": "490ed7d539b2a64d681d5a65d68f00f9f2da02d6893a5bd68e9a2179f4469655"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/diagnostics/loss_diagnostics_summary.json",
+      "size": 805,
+      "sha256": "65e7771436b150b2b788173a789858118e2df9be8f239cb5e11b7289511dcbc2"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/diagnostics/loss_weights.csv",
+      "size": 9275,
+      "sha256": "3c1de79bf20e5fa2e693be2b439d5c304bc0a459606f18ede6e982311de670d3"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/diagnostics/site_weight_final.csv",
+      "size": 5783,
+      "sha256": "5e8a5649562f2d4c1f2d0e71c2946880202b5fee364ef8301d231151719e7a71"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/effective_config_diff.json",
+      "size": 767,
+      "sha256": "173ce2b993e6d1c0d2299ed61eabec8720157ac2f5ea664bf01628ac8271696c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/evaluation_complete.json",
+      "size": 264,
+      "sha256": "2e6cc1315320375e357f853340a50b4e8f4a61bd057437aab0b94129ba39fe98"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/last_checkpoint.pt",
+      "size": 2848804,
+      "sha256": "13b45d14aff455810a457510bca5fc07e2fde8721a1dd6a2bcd87c5f2e637a48"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/metrics.csv",
+      "size": 579,
+      "sha256": "3363889cb9ef33b98eb899b2369bbe15c418af45d0fe820c744d8b0dd6187ee2"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
+      "size": 554,
+      "sha256": "4fa634d6af544b6fb780d772ed7b8c6d765e82e26b6a7225f28da14d4dce1ef7"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
+      "size": 549,
+      "sha256": "2c951346d2fa7a0c4d1c596b0ff4b1d07dca824cd919845e40900873a0d52223"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
+      "size": 553,
+      "sha256": "14c57d7573348c2ff95be6c9b315032b4fe7af330d7946c302a0b8cd9a29dd2e"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/model_summary.json",
+      "size": 12902,
+      "sha256": "a20cb9892491511fef1e184933ddbb5d80b55b7fa5b53f49b77df20b74eff33a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/prediction_metadata.json",
+      "size": 615,
+      "sha256": "3bfca9f9a4144d73943b963ce76838462d344a0384858f939e85acd0db1e6c2b"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/protocol_check.json",
+      "size": 9641,
+      "sha256": "f6385d9389357e539b10f8fe7ef9dce6eb3c82b910394a6024f36989aa273074"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/requested_config.json",
+      "size": 5400,
+      "sha256": "4db5a5857ffa290cf1dc92433fdb1bcb3daef997a6fecc54119ad9bafe1f02e8"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/run_status.json",
+      "size": 4479,
+      "sha256": "59c952f54d5edbdd192f7053aa1d2d3e64deb88a0f0c662779fc604b73365de5"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/train_complete.json",
+      "size": 659,
+      "sha256": "70b8f6b8b55029fc8118f327852b4b9aa8d4d89e778d217dd1704b42e0c5e6a7"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/train_log.csv",
+      "size": 25554,
+      "sha256": "8500959d8debda3670feef9ef71eb5929222578b833ec3f51a25866da863fbde"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/effective_config.json",
+      "size": 5299,
+      "sha256": "4c573e5ae83319edbf12a576856eeb37f2780e670c83da85dc82634fe371e98a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/effective_config_diff.json",
+      "size": 479,
+      "sha256": "6d7c3916a23aff922b045e321c6e728b4324e032cbd091bb67f2dcad648c9086"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/run_command.json",
+      "size": 394,
+      "sha256": "4ee770e616fdce262b774eefb149b4c4ec8814adebab5cb7b33bb45a8f0b7294"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/active_config.json",
+      "size": 5388,
+      "sha256": "23e95114ea8f3028b218802fcab9aa6ae11cf92ede43c99ca6949c7c76c5e5c5"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/best_checkpoint.pt",
+      "size": 3441336,
+      "sha256": "5ed8d49d15e8cd54628dc562826f39af50f6f9f0e3dfc0c256e33e08c3acddfe"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/config.json",
+      "size": 5388,
+      "sha256": "23e95114ea8f3028b218802fcab9aa6ae11cf92ede43c99ca6949c7c76c5e5c5"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/diagnostics/granularity_weight_curve.png",
+      "size": 35471,
+      "sha256": "99f1d08b4808e59f1541c0280bc98d81504f1ea625caf7bb827897a0781715e5"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/diagnostics/loss_diagnostics_summary.json",
+      "size": 805,
+      "sha256": "e3dc16fad9a94e23baf8ce1b36c740f99cb308cf4d77bbeaa7f3ed12f08e9c39"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/diagnostics/loss_weights.csv",
+      "size": 11457,
+      "sha256": "535efc7f5bbe08dc6b83550a89d8d0fd04a97ee909880e1ffcaafa1b94a55463"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/diagnostics/site_weight_final.csv",
+      "size": 5780,
+      "sha256": "08046045fb10cbcd67dd6ce619eff613326b37b27f20ff4fd785babb3847570c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/effective_config_diff.json",
+      "size": 479,
+      "sha256": "6d7c3916a23aff922b045e321c6e728b4324e032cbd091bb67f2dcad648c9086"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/evaluation_complete.json",
+      "size": 264,
+      "sha256": "f5c94908eaa997043f7efb28284ede6b7ba96ef9c24a3c28ec917446c10c7be9"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/last_checkpoint.pt",
+      "size": 3441336,
+      "sha256": "add79397a0e22003970f82416d87d2559c38f51be8e7aea0f396b7a4d1b9c3dc"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/metrics.csv",
+      "size": 579,
+      "sha256": "d7c6d31d5731e3b35a81671fb16fbebdb76d74b7a118d68ef9a45157eb5cff2c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
+      "size": 551,
+      "sha256": "ca393cec2743b6e09b869a2c5057936cee789d6202e276a85af32abce5f3338c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
+      "size": 550,
+      "sha256": "93dcabcdc347f6b543e27d5062173f30bfb4091724b2c344fe5926f6378395b0"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
+      "size": 552,
+      "sha256": "055908a46bb80e0b851af7e6815a6fc202afe140508eee2a0ca160b80c43239e"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/model_summary.json",
+      "size": 12905,
+      "sha256": "68d1611fc4a8813bc878a75bbbbd9ab5839dca8e9dabfed295b2285082c75fa9"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/prediction_metadata.json",
+      "size": 617,
+      "sha256": "9488661fddfdbc83c7d8ddb766e08bcb275e9e537e7fe9f7329f55f2e8444967"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/protocol_check.json",
+      "size": 10185,
+      "sha256": "b1ed1ab913abe07855893bf4f92eab8485c7c652794a7f0430a85c6d5b9ef761"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/run_status.json",
+      "size": 4309,
+      "sha256": "3de01c58b50cbe17682feb3e1dea90d1f4e1e6338e7e19b2cebb3cc850fe9720"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/train_complete.json",
+      "size": 659,
+      "sha256": "ca68e4c5b18dc0f9e7c9cb49f8888d04d0bf2ad6990c0650e268ce837a7d9809"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/train_log.csv",
+      "size": 31551,
+      "sha256": "3a3aa76c759e1c2bb3af0b7244f181e6dfb0635d592ca1159ca66084263feacb"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/effective_config.json",
+      "size": 5281,
+      "sha256": "f0cde3cce8f62564cb6426090e41b912558bfe61bbf7de73c1dac8e0a8d15958"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/effective_config_diff.json",
+      "size": 480,
+      "sha256": "aedbffa57b0d36447e8e259f73eecdc2421e1faf6b250ee46b755fa5f7c55248"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/run_command.json",
+      "size": 394,
+      "sha256": "d4a2929eb1d13715672572910275142c110b9b96b6b3e97bb5e4daf3ad7553a4"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/active_config.json",
+      "size": 5370,
+      "sha256": "640bae8e3826d6828a9ea0ec720faed5f63a79262c5dd983aa82021903f4cfd7"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/best_checkpoint.pt",
+      "size": 3100904,
+      "sha256": "dce09d0b0f81fdf31ca1927fcdbd43ea93a9065664477cfe3a1dfbd52ab8ca6b"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/config.json",
+      "size": 5370,
+      "sha256": "640bae8e3826d6828a9ea0ec720faed5f63a79262c5dd983aa82021903f4cfd7"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/diagnostics/granularity_weight_curve.png",
+      "size": 35047,
+      "sha256": "57ec29dfbf3a9676e5f642ec6f67779f6839e04c52ee22180da24eff9fd3a45a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/diagnostics/loss_diagnostics_summary.json",
+      "size": 805,
+      "sha256": "21680b6a8409a7099f7baaaa406cbcfa34987155e23000bcb8d69bdfa2326600"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/diagnostics/loss_weights.csv",
+      "size": 10362,
+      "sha256": "1860fecae2ebd4d4b262e7c6034e44f558ef1d329cc5c9716b2763a21e13f365"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/diagnostics/site_weight_final.csv",
+      "size": 5781,
+      "sha256": "bafb09b18c2c58a73753969ed0adbb3235da8bb461d5ecfb185364b12491d73c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/effective_config_diff.json",
+      "size": 480,
+      "sha256": "aedbffa57b0d36447e8e259f73eecdc2421e1faf6b250ee46b755fa5f7c55248"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/evaluation_complete.json",
+      "size": 264,
+      "sha256": "4f7421b1d3dab9777119e8a550d403b244b3ee38f94aaced2686366ac9c65fb7"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/last_checkpoint.pt",
+      "size": 3100904,
+      "sha256": "75cbe6904f86cd693a9c4684e1ca593b16c90ccbab811e2adb9549f014159d9f"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/metrics.csv",
+      "size": 579,
+      "sha256": "e94c749f754f70a6a0f927a0c3712aefe2e51af3e22c3efc91dca0384a1d4372"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
+      "size": 554,
+      "sha256": "ee20e0882a55c61c80767e47e83df4cb878ecea5bf0c94bdfb5c7b9f71210946"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
+      "size": 548,
+      "sha256": "5fc5033d9ab7d09d7fa3187b9be1c853e4f6ac40251e01463c1c0066fac6914d"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
+      "size": 550,
+      "sha256": "bb59ca0fc799fe9b4b029efd1c1b51091f071582c5ad51086461a7db94064aec"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/model_summary.json",
+      "size": 12900,
+      "sha256": "e861990996841c5bbb9196f198bb048a7d234231d32838c70d97588a89b12098"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/prediction_metadata.json",
+      "size": 613,
+      "sha256": "c4b4a70bcbd1bb8202f8225bcb73dacb2d602e1eb858e6dbb4fd22c9e64333df"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/protocol_check.json",
+      "size": 9641,
+      "sha256": "f6385d9389357e539b10f8fe7ef9dce6eb3c82b910394a6024f36989aa273074"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/run_status.json",
+      "size": 3042,
+      "sha256": "a8e106f33b0de8d7fb5ebd93f3ec4215d8fce02d15dc81dea785849cd9f4bfd2"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/train_complete.json",
+      "size": 659,
+      "sha256": "317b0881974ebe3e784306abaf9175267a3e84b16e28e9c6e9035278729c55a4"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/train_log.csv",
+      "size": 28554,
+      "sha256": "9cfd24544beda119c33bbf883cbf095585103f7e975d913c012ede7df1bf1197"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/effective_config.json",
+      "size": 5299,
+      "sha256": "7d834b22fbe2e1759ca4097b7f14d0d1c8ec8a64d76fe720d0d39f3fb4c4660f"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/effective_config_diff.json",
+      "size": 473,
+      "sha256": "e93bf805a1993016c54d111e3b946aa773af47366f7aa7a96fcc1626f134f512"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/run_command.json",
+      "size": 394,
+      "sha256": "9a51fc75da99134ea0b0a55c641b4a02bec4592aafe83af032a2d9f43cedf8be"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/active_config.json",
+      "size": 5388,
+      "sha256": "6f3e0318d5b4090c73fe99c14eabcbce02744384176338d0b5376a4f47693add"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/best_checkpoint.pt",
+      "size": 3300208,
+      "sha256": "f05510e1ac97fce9cf13fe9bda4dd58c041e85f0e8c9378687ffc9df62548f9b"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/config.json",
+      "size": 5388,
+      "sha256": "6f3e0318d5b4090c73fe99c14eabcbce02744384176338d0b5376a4f47693add"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/diagnostics/granularity_weight_curve.png",
+      "size": 33584,
+      "sha256": "3441bd6c36dcdd5476f8906cec694efd7311d0c799c7e40705e1d39433766141"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/diagnostics/loss_diagnostics_summary.json",
+      "size": 805,
+      "sha256": "9842bd8bb74e4a77aadf4be932e9bf636fd0a963a2f173ea3915a1f185b37289"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/diagnostics/loss_weights.csv",
+      "size": 8717,
+      "sha256": "501f70e9524fd95e6f20ff9fc115b8b5c9c413dbdfe4f7cf734de9a4f49f7078"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/diagnostics/site_weight_final.csv",
+      "size": 5777,
+      "sha256": "74a742bbf9d0e96fb67000df2f4ed7669d87e4cc670efc165ff53aee3c8e366b"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/effective_config_diff.json",
+      "size": 473,
+      "sha256": "e93bf805a1993016c54d111e3b946aa773af47366f7aa7a96fcc1626f134f512"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/evaluation_complete.json",
+      "size": 264,
+      "sha256": "d972d6a7449459d00dbc75b3c9865b25dcc5e8a140dfc8f93a03611f5f18662e"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/last_checkpoint.pt",
+      "size": 3300208,
+      "sha256": "84a301402525613b604bdd9fef5e9b7e391cf55f6b6aa1cdb613fc9ac11ab617"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/metrics.csv",
+      "size": 579,
+      "sha256": "4ff92fb5c4972bbb2e5fe19339c0c04c45d3c51c6e421b569e6f510042e5114d"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
+      "size": 554,
+      "sha256": "154344b7bb9fe306b84506e327064ec84402b67bca70138925f1f66d97107d19"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
+      "size": 551,
+      "sha256": "94732c94b636da625e77d684edb6822ea932578f572d9a605215cad8729c5573"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
+      "size": 553,
+      "sha256": "ea2962c6f84d42fc4c4bab8c45e738651092426c2c6508ed52d9088e4e0355b6"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/model_summary.json",
+      "size": 12902,
+      "sha256": "e891dece9f1aa2514228df00758ea59ddec886974075345215af73d7f413ecab"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/prediction_metadata.json",
+      "size": 616,
+      "sha256": "cdbd8dd08342599e82bb069113efe6c827fe5c7fb9029d2f02871d443b1ad52c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/protocol_check.json",
+      "size": 10079,
+      "sha256": "cd950553b4e3e56aae430b8575ac277c6bf1c6cc3f899cf0745e8447ef03e1ca"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/run_status.json",
+      "size": 3042,
+      "sha256": "0d67281497068ee284e80cd02c8c15de58886828916b3611bf858838f9c5df48"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/train_complete.json",
+      "size": 658,
+      "sha256": "4e12dd858d8794ed0fdbbb2b24c917284c96d0a64ed6a08b44e5fe6380658ad0"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/train_log.csv",
+      "size": 24071,
+      "sha256": "d3fba02972fef6b258d84f59d0b796cd49e61104e2a375df5002048238a80fd6"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/effective_config.json",
+      "size": 5297,
+      "sha256": "735577c1c04ec3be050b0eda4eb91ca0c823d98e4f04a73f3bf9b29f4297e51a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/effective_config_diff.json",
+      "size": 488,
+      "sha256": "7baf18b1044f353be13f636220ebc43b15960b160fe459a2685976d19b1a3417"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/run_command.json",
+      "size": 394,
+      "sha256": "a4996868ebfa3c9e1c3ce3e054ce82b284b7efb93a97b4544acc00edf041d77e"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/active_config.json",
+      "size": 5386,
+      "sha256": "4616f7bfa4122b6f3a131695c27dc9735c57135e5b2fd8ffd54d1717057079c5"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/best_checkpoint.pt",
+      "size": 3373276,
+      "sha256": "e9c4e0fca17f449e03100900bab5c84f9bbdb3cc054e0a2d5ae9adce7f21d7ef"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/config.json",
+      "size": 5386,
+      "sha256": "4616f7bfa4122b6f3a131695c27dc9735c57135e5b2fd8ffd54d1717057079c5"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/diagnostics/granularity_weight_curve.png",
+      "size": 34155,
+      "sha256": "92c8b282136399dc2db43dff87fdfdf6337f6e99eeb4c6208d05d4945d0eb8e0"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/diagnostics/loss_diagnostics_summary.json",
+      "size": 802,
+      "sha256": "fd3b2dbcca2fa7bff4187ac58176408c0d64119ca852dede50de96eadbe82c5d"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/diagnostics/loss_weights.csv",
+      "size": 9286,
+      "sha256": "18b32b5ae5b53e74d97c2d836015ea7b0439ea0e918e287506063ba5c932ba5d"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/diagnostics/site_weight_final.csv",
+      "size": 5782,
+      "sha256": "355d3e18e82bdd0da45c65b9f1ba5124d5a260b6f3f3aead05833f468e3ee76e"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/effective_config_diff.json",
+      "size": 488,
+      "sha256": "7baf18b1044f353be13f636220ebc43b15960b160fe459a2685976d19b1a3417"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/evaluation_complete.json",
+      "size": 264,
+      "sha256": "b0b61ded0ba2ed6719f8401a610445d01679235274d8fcedae43e4d0f167e039"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/last_checkpoint.pt",
+      "size": 3373276,
+      "sha256": "70c3e0b4f3e73944e4b739e33d6f63e6e413ea42c364a0894f44afe88ce32d79"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/metrics.csv",
+      "size": 576,
+      "sha256": "08407611faacbe34eed5a8f315e3448475b228f7b508b19c892a97da4a345441"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
+      "size": 556,
+      "sha256": "8a2f888daa579e61b6a163463bc4bd80d3cb56bb663870e5df3275143e12acf8"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
+      "size": 551,
+      "sha256": "50f8c3abcb3e3ea91d6a6a2bf90c553adc160293452cc22b3c5ba2f6b9c8788b"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
+      "size": 551,
+      "sha256": "37ddcfd3ca235a80948b7d29205ce685432d4e429b8048a958f0f9968ac59ca2"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/model_summary.json",
+      "size": 12902,
+      "sha256": "baa9621627f7bc39fd4f1b906b6d024d0e2aaea628e916eb06330bec31506668"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/prediction_metadata.json",
+      "size": 616,
+      "sha256": "efdcce230e776fd3ef1935376c1557bcbed63daac30ab1c01d73e41469c62f1c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/protocol_check.json",
+      "size": 10185,
+      "sha256": "b1ed1ab913abe07855893bf4f92eab8485c7c652794a7f0430a85c6d5b9ef761"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/run_status.json",
+      "size": 3042,
+      "sha256": "f6e135de4114e7074f5002b1e2106882aa38177db976bab47bb12980ec846356"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/train_complete.json",
+      "size": 658,
+      "sha256": "784db0b5380e728b43bf89f2ac909faca7f9963a9f9f8d523dab07909d44c030"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/train_log.csv",
+      "size": 25546,
+      "sha256": "ecf2217002b2dd60027713488529701596eb9a826f387931a676ab6766b89cea"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/effective_config.json",
+      "size": 5299,
+      "sha256": "445f80247e151ecb7749b1b9b0d49cf8cb98d389afca28c2151aa900018399a3"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/effective_config_diff.json",
+      "size": 473,
+      "sha256": "1c29a251fa86c491834534d77e5dc34936b83da75c05f7b430b13d035cdcb762"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/run_command.json",
+      "size": 394,
+      "sha256": "1735c1aa18078d4a9f6665e86d334eee96fed37844ba86e732879febc34e1799"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/active_config.json",
+      "size": 5388,
+      "sha256": "44cee64dd0ce827d4a996b6b684e21842eb0bf456ddd3553cf6d799864b6f09f"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/best_checkpoint.pt",
+      "size": 2821028,
+      "sha256": "8003725dd3609e7d91c23c1ced0c3574ccb7ba0369f7781c567edee631cf8151"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/config.json",
+      "size": 5388,
+      "sha256": "44cee64dd0ce827d4a996b6b684e21842eb0bf456ddd3553cf6d799864b6f09f"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/diagnostics/granularity_weight_curve.png",
+      "size": 35182,
+      "sha256": "eb94c5a4fe33aa07c1329716a4d18aad70f0305b0b2c09143bd5e6d5ca70b14a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/diagnostics/loss_diagnostics_summary.json",
+      "size": 805,
+      "sha256": "9a6615160a93fe217e3e5edb9be88d18e79cdfb8376e82c0f963c52c59fb0910"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/diagnostics/loss_weights.csv",
+      "size": 11469,
+      "sha256": "003e0ae15ebdb9a79fb405a6a82c6bc841ca44d2a2371666e143242561bf853f"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/diagnostics/site_weight_final.csv",
+      "size": 5755,
+      "sha256": "46a75fc8376a49102aaf3a3f65edea23a0fa682cc7706da7dac12ca3cc147d36"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/effective_config_diff.json",
+      "size": 473,
+      "sha256": "1c29a251fa86c491834534d77e5dc34936b83da75c05f7b430b13d035cdcb762"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/evaluation_complete.json",
+      "size": 264,
+      "sha256": "7a496d10f80db0c83007ccc802a0f5de6582b54fc4e79f2578068a61b12a2ed9"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/last_checkpoint.pt",
+      "size": 2821028,
+      "sha256": "3809e965f828bc2ae8effb2ddca9cc0e88989ace6be6b30b475ac76e54ae1c55"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/metrics.csv",
+      "size": 576,
+      "sha256": "846327c19859dcb534bb763138d619cbf431ccadae0974ef0e9111accdd53458"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
+      "size": 555,
+      "sha256": "fb1b5b86d06e4f15a357e477b8c3bc8fb61991f9a3ed343696ef631c9901c2fb"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
+      "size": 553,
+      "sha256": "503a73b1788beac704359f1421a8673257f650cee59b6f937b6b47fa74816adc"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
+      "size": 549,
+      "sha256": "7eb2df937ed2ba37b900d00667bdce6d894d9a056d8ec97066cc221214dd3fa8"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/model_summary.json",
+      "size": 12901,
+      "sha256": "cb2d9b0a4ec65b6de185602b37b7fe5ef6ed55faee59e95b1ecb364b5c66a18c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/prediction_metadata.json",
+      "size": 615,
+      "sha256": "1ecc55086745bd48c952949792376f8b55036b233543bc6359a226719181fbfc"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/protocol_check.json",
+      "size": 10201,
+      "sha256": "ee19462e364c460693dc074edd1895007cc7c9413aa69532a5cd31ae1f3f9e9c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/run_status.json",
+      "size": 3042,
+      "sha256": "5433918c3e1f8a31932be59d9e4130bd9a0ac4d6d985f644da892a71db2f28e9"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/train_complete.json",
+      "size": 659,
+      "sha256": "dac3053f85ce89db3d0f2c30ac09d0f7c28a53100df9263f9e87fa8160675c0d"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/train_log.csv",
+      "size": 31537,
+      "sha256": "a527324e0c0e40283293954a54a6232e248d366bd2bee2afc64862dcfcdde365"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/effective_config.json",
+      "size": 5299,
+      "sha256": "40164264f28ea123c60e8fab47da7cf972ed8e47d088c93b08ed39384ff9ab99"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/effective_config_diff.json",
+      "size": 678,
+      "sha256": "d917bdb99c7d013a43e924bb84d9dd55639ece3ecfdc7ab2ff2ac6f0c23cda58"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/run_command.json",
+      "size": 394,
+      "sha256": "66fb4ee2669ecf446af34e2cb572c842d1356f71a8351f474399e20cc6956fa8"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/active_config.json",
+      "size": 5388,
+      "sha256": "6a442d52cfb4274011993433448cec6e14e645456a4644c906f97141458b781c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/best_checkpoint.pt",
+      "size": 3396820,
+      "sha256": "fab9fb7e1de1ef8bc4ca5c802583b8ebc8f5183a84f1a862225aa051e25870d5"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/config.json",
+      "size": 5388,
+      "sha256": "6a442d52cfb4274011993433448cec6e14e645456a4644c906f97141458b781c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/diagnostics/granularity_weight_curve.png",
+      "size": 34202,
+      "sha256": "e7a0eba25f3876df7317268088161975b0b783eaf48eeb279b980aeb99db8ef7"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/diagnostics/loss_diagnostics_summary.json",
+      "size": 805,
+      "sha256": "c63ffc9c5d119a41a04cb105c23e2158697c19bf70bebb057d7dedefd729d6ae"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/diagnostics/loss_weights.csv",
+      "size": 11464,
+      "sha256": "1e31e015f44552c4c40570d18534746bc87d49b74f62975e0ee5ec6708f94637"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/diagnostics/site_weight_final.csv",
+      "size": 5780,
+      "sha256": "5fac53174a4974577ab182621eb1b47fa4533726c749674f4c32e6c18561c271"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/effective_config_diff.json",
+      "size": 678,
+      "sha256": "d917bdb99c7d013a43e924bb84d9dd55639ece3ecfdc7ab2ff2ac6f0c23cda58"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/evaluation_complete.json",
+      "size": 264,
+      "sha256": "35160005c6f53427141370c96d71f50765e87fb575ebf987206ce5ac5ae4ead3"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/last_checkpoint.pt",
+      "size": 3396820,
+      "sha256": "ecd4bc800782dab0b33495167a85e64d19b14262b7b6462476ef0acb6dbcaddc"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/metrics.csv",
+      "size": 576,
+      "sha256": "2ea47812d186b712f428020e00528922fa92f39f040afa6b4249b978b862528e"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
+      "size": 554,
+      "sha256": "fe0d99df8dcfab103136f6a0af7dedc5687c6b90eca7d39f8fbd670d88776c91"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
+      "size": 550,
+      "sha256": "f7a0c5f32f091ed8393a591e942e0d0a9242280e611d50bb7b4216f397f612d2"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
+      "size": 548,
+      "sha256": "35394d3e15be21b502d6fc2350dd8a0bd7a5799e18222c65130ad95712256656"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/model_summary.json",
+      "size": 12899,
+      "sha256": "9c33554f29ccbe20fd3d45708692b6097a9508db5afaaf1385366414564eaa2a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/prediction_metadata.json",
+      "size": 615,
+      "sha256": "25e49e88c7e4072d0bb9218aeafbd24cbcad1aa099f4885404bd0ffa1b7e786a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/protocol_check.json",
+      "size": 10088,
+      "sha256": "6ed61fc60deaea573ac3fc301677664727db7a58b1214d362fc56d6fc444f494"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/run_status.json",
+      "size": 3042,
+      "sha256": "c5fbb4fd1f5e926a7cd98e5d7c76cd0c3477e6ae05f6fa73a25535c91ef88795"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/train_complete.json",
+      "size": 658,
+      "sha256": "a06115cbc4cecc18053f984bc4a8e264232c9719751db14a15511b6abcb3f8e0"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/train_log.csv",
+      "size": 31590,
+      "sha256": "1172dd1c80f0a746df83eb51a22447cc2140bd33a5446a42301332e9bb235f56"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/effective_config.json",
+      "size": 5311,
+      "sha256": "fb706f09d302122f528d4ec9af6ccb807a720a2e90e979c59d2632ff872b1f14"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/effective_config_diff.json",
+      "size": 767,
+      "sha256": "173ce2b993e6d1c0d2299ed61eabec8720157ac2f5ea664bf01628ac8271696c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/run_command.json",
+      "size": 394,
+      "sha256": "671cf9668825817a50c5b32a7456990dbbea603fa4b66ae9478b5b16d57936df"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/active_config.json",
+      "size": 5400,
+      "sha256": "e6cc50a8ee58662c9ae51e6f37d6a473454e3eec4bd6065501a643a62ce7022a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/best_checkpoint.pt",
+      "size": 3506898,
+      "sha256": "b0aca910b34dc5df86d6ed8bbefcaddac3d97e94ebd4aa54280223a69e56033c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/config.json",
+      "size": 5400,
+      "sha256": "e6cc50a8ee58662c9ae51e6f37d6a473454e3eec4bd6065501a643a62ce7022a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/effective_config_diff.json",
+      "size": 767,
+      "sha256": "173ce2b993e6d1c0d2299ed61eabec8720157ac2f5ea664bf01628ac8271696c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/evaluation_complete.json",
+      "size": 264,
+      "sha256": "e597b45b596fa5bf2c37ee7634215c7417e027fa27316e3bd708ed153fbda529"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/last_checkpoint.pt",
+      "size": 3506898,
+      "sha256": "471994825a542009ab7d60bba33d58d2d2dede2b952022eade420bfd3c1325db"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/metrics.csv",
+      "size": 580,
+      "sha256": "e5a5da3ae9aa622e5b7910fe828ddca4fdb03f941095b849e737435f5dd914aa"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
+      "size": 555,
+      "sha256": "4855d4a84f7414e59ce33353c8288474ee7b951f527e8dc4e7c1f2a5b55c99e9"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
+      "size": 550,
+      "sha256": "0602b0d40d840852d6a320d66091c952015b8d7b86065b5d8310b9ecae7bb18a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
+      "size": 554,
+      "sha256": "ca0ead25f4aa3bc18078eb86eb60ef1a401d2dd290a09cdc7174453c78ab45d6"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/model_summary.json",
+      "size": 12879,
+      "sha256": "50343656a35be5c3b47c653298211ee2871af2fd73b93f80a463f9d62a36f2fe"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/prediction_metadata.json",
+      "size": 615,
+      "sha256": "ea692e7e4b1fd48bf5149161a4cb9c5d716a973a9123c492d99281847772be9f"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/protocol_check.json",
+      "size": 9446,
+      "sha256": "ab3bbe0debfa2a916469d3aa25f9e9b3470e171083d963137b52ec050eb70471"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/run_status.json",
+      "size": 3042,
+      "sha256": "7c890ecaafe42166ab42a7d8db6655be74fcf5297c8545fdf07abc5878da0fdc"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/train_complete.json",
+      "size": 659,
+      "sha256": "2ba009f2825f92daf222753ba8ee92c5d4268a8a81dc376989735acb80b1cb28"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/train_log.csv",
+      "size": 7316,
+      "sha256": "eeb94ea282b8f52e1e7288bbaa8ca0ac9fb9e721038876cfbf617e8f80ff406c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/experiment_manifest.json",
+      "size": 3884,
+      "sha256": "1634fd5ad79edd77f6e97bae93b9638f794c4efc1b90d4df55f34613f2415249"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/experiment_status.json",
+      "size": 746,
+      "sha256": "06afa4c5215ea58694a19a574e9bd19eee690b7055b883f0390266e4424dc879"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/metrics_summary.csv",
+      "size": 11906,
+      "sha256": "3c6913892b09405abd963ad02c62768d4d6bb6e43ebcac2e84b1eed18feaa68c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/metrics_summary.json",
+      "size": 24700,
+      "sha256": "b39a0ac3b7ecb6f36c9ee7cbc5b3636f3183ec69456ae4a79ff6ba69ca1494b7"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/variant_config_matrix.csv",
+      "size": 1824,
+      "sha256": "ffa99fd36b856856cd680e25e93a8898566420ba0410dade9c4ad1bea90f351c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A0/STMGPrompt_ComponentAblation/active_config.json",
+      "size": 5280,
+      "sha256": "1e34cba849abe3f7ab2db9e9e4b34646c83969acdc18e2415e013397023ba4c4"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A0/STMGPrompt_ComponentAblation/best_checkpoint.pt",
+      "size": 3529713,
+      "sha256": "918db536f3680a039b554150db2b7b72a7aa54ccf94259c759e975ac8f6094bc"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A0/STMGPrompt_ComponentAblation/config.json",
+      "size": 5280,
+      "sha256": "1e34cba849abe3f7ab2db9e9e4b34646c83969acdc18e2415e013397023ba4c4"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A0/STMGPrompt_ComponentAblation/diagnostics/granularity_weight_curve.png",
+      "size": 35309,
+      "sha256": "e2845c2c9794a5c7d3b8167a1d94fabddd4e236bf38c9a9cb6bfae5787e249f0"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A0/STMGPrompt_ComponentAblation/diagnostics/loss_diagnostics_summary.json",
+      "size": 762,
+      "sha256": "1e49d698248c17519bf19925e53594c846900353087e7f8ac1c17390ef53f919"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A0/STMGPrompt_ComponentAblation/diagnostics/loss_weights.csv",
+      "size": 10869,
+      "sha256": "9864c76da520436a1b8e0131e2be06767272a7a9916daf4372d69d314d845bdc"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A0/STMGPrompt_ComponentAblation/diagnostics/site_weight_final.csv",
+      "size": 5787,
+      "sha256": "f3a510db1b26c232cdb73e91478df0c91ad12453f5432ae7f9ac0c7774f8f278"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A0/STMGPrompt_ComponentAblation/evaluation_complete.json",
+      "size": 264,
+      "sha256": "8bcc819f9b04199bb28a19cdb23484d6f8a560c2d9b685ffbca716f96cd87e89"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A0/STMGPrompt_ComponentAblation/last_checkpoint.pt",
+      "size": 3529713,
+      "sha256": "c22963d07ef2e15d884b8c39e66c39354a75e295bc06565561ccad5fbd0836d4"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A0/STMGPrompt_ComponentAblation/metrics.csv",
+      "size": 576,
+      "sha256": "cf32ac047269268b65c971a64d4bffb943c5cd0836ec5ef150da570660602b03"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A0/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
+      "size": 553,
+      "sha256": "56395772a866cfdb6b46a53eb4c83ce76ba7b8c6c523ba8add9b263323698718"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A0/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
+      "size": 550,
+      "sha256": "2c8e004b63dc69600f81b6b2ebba74df96d76efe3f4b365ce88522824da0cb13"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A0/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
+      "size": 550,
+      "sha256": "b9bf63faa3f2a636b09017a342ab561295ea5c03e1cdeef35888b230a5854942"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A0/STMGPrompt_ComponentAblation/model_summary.json",
+      "size": 12880,
+      "sha256": "3a30f3f3f2af27b06c51c39189818d0a704c960f629da49a76bf91f58467b0d3"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A0/STMGPrompt_ComponentAblation/prediction_metadata.json",
+      "size": 616,
+      "sha256": "e647150551c72d1d650798a1bbb1c04d943e58c3093bc649c9a74b758ce44801"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A0/STMGPrompt_ComponentAblation/protocol_check.json",
+      "size": 9771,
+      "sha256": "6d19438adac149977df499e89662ce312db85b70b62498275b10ab4dc7d9e011"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A0/STMGPrompt_ComponentAblation/run_status.json",
+      "size": 1655,
+      "sha256": "109dedd1a054724809803dd17f9fc13ebd8e51b503cc918a37653cbac1f45d09"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A0/STMGPrompt_ComponentAblation/train_complete.json",
+      "size": 643,
+      "sha256": "2df82ca47484d8ed60ed2cbbbfba884efc157cf8f8c9f350533c6b06041d49a7"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A0/STMGPrompt_ComponentAblation/train_log.csv",
+      "size": 29977,
+      "sha256": "5c54eced85d5513dc0cf9ae8ae0f241d58faa34ae9373e774aa7caa49f2bda1f"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A1/STMGPrompt_ComponentAblation/active_config.json",
+      "size": 5281,
+      "sha256": "19e3926e3c55f4ccaaf9f3d786807c706b26cd57050443521d42598854a18e56"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A1/STMGPrompt_ComponentAblation/best_checkpoint.pt",
+      "size": 3509704,
+      "sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A1/STMGPrompt_ComponentAblation/config.json",
+      "size": 5281,
+      "sha256": "19e3926e3c55f4ccaaf9f3d786807c706b26cd57050443521d42598854a18e56"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A1/STMGPrompt_ComponentAblation/diagnostics/granularity_weight_curve.png",
+      "size": 35281,
+      "sha256": "0f2e41c67628695ad1eb109fe4893df1579be756254b0c43ab538cf15a5d7dc2"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A1/STMGPrompt_ComponentAblation/diagnostics/loss_diagnostics_summary.json",
+      "size": 763,
+      "sha256": "fa5d714d04c9145353ce85c2af5037efe5d204f59b08011b25b145c10c79a01a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A1/STMGPrompt_ComponentAblation/diagnostics/loss_weights.csv",
+      "size": 10340,
+      "sha256": "038fc4c4156419bedc811493782a8c3ead00aae94345013eb2060ddae58e0b13"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A1/STMGPrompt_ComponentAblation/diagnostics/site_weight_final.csv",
+      "size": 5778,
+      "sha256": "381259ef7e41dbf13760ea7cab38636892fee392fb27843c99f8a934aa50ad7d"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A1/STMGPrompt_ComponentAblation/evaluation_complete.json",
+      "size": 264,
+      "sha256": "8d3e6b00f33f0ef2286487fcfdc44364a5a10d3dbceed6e841ce0783a6627ea3"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A1/STMGPrompt_ComponentAblation/last_checkpoint.pt",
+      "size": 3509704,
+      "sha256": "37ce6873d91ad5edff3a60d0fa5d1b716d53a4eae4e8b3eb5a6fb9a69721b9bc"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A1/STMGPrompt_ComponentAblation/metrics.csv",
+      "size": 576,
+      "sha256": "ffc0d804e17a21a686038ed2d256af1cf74795c0aa81a05b16a57d91839506ea"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A1/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
+      "size": 553,
+      "sha256": "c0f47960bdee49dbf92727a463784943c00c917cf6d00a18c3651f78df5a9c13"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A1/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
+      "size": 551,
+      "sha256": "881be8f8b56d7d1aa4515ec717b6d2ad591516062fbf31d9ec405bae354d0225"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A1/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
+      "size": 550,
+      "sha256": "87f6b70246f1d9e97db10b638b164ef92f9d14f502da8d2829c94faf398bc633"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A1/STMGPrompt_ComponentAblation/model_summary.json",
+      "size": 11849,
+      "sha256": "8cb5af49ae1b9a5f693d501e139e0e47cc0e49fbd8523310977869eb516d55ce"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A1/STMGPrompt_ComponentAblation/prediction_metadata.json",
+      "size": 614,
+      "sha256": "388c819fa56f78268ed3663f9b052aab451e17375b52dd499cd66ee26caa72db"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A1/STMGPrompt_ComponentAblation/protocol_check.json",
+      "size": 8902,
+      "sha256": "9b482bfc7b0e5f0f994da51494c035f7279a94c413a44c52a2722048ef487b3d"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A1/STMGPrompt_ComponentAblation/run_status.json",
+      "size": 1655,
+      "sha256": "0226c59d6ec885defd3a059e73939ca042f3e012eac83e3ae5e74dc0f1da7228"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A1/STMGPrompt_ComponentAblation/train_complete.json",
+      "size": 643,
+      "sha256": "8c08ab3f36f009039381c1b492b5a2fa7ef18ba35f58fb80145b09a72981fb44"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A1/STMGPrompt_ComponentAblation/train_log.csv",
+      "size": 28478,
+      "sha256": "ccf44f6d63166f5aa1b4c7dc96b3079a164fae97da8b9c76d46aa903e89c90d6"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A10/STMGPrompt_ComponentAblation/active_config.json",
+      "size": 5297,
+      "sha256": "444d9a511170e8c2d18ea3db84b418fd1bf74b80e3740dddc7ec4cfde5d376e7"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A10/STMGPrompt_ComponentAblation/best_checkpoint.pt",
+      "size": 3526779,
+      "sha256": "947bb099586e8c3e1445caf8867606cb641add90de1877e51bd90407dbf85b21"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A10/STMGPrompt_ComponentAblation/config.json",
+      "size": 5297,
+      "sha256": "444d9a511170e8c2d18ea3db84b418fd1bf74b80e3740dddc7ec4cfde5d376e7"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A10/STMGPrompt_ComponentAblation/evaluation_complete.json",
+      "size": 264,
+      "sha256": "5b57ef563e2c2a8fa36f0f9dee45dd6679f06bd2d7255ba6da74299c67494d22"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A10/STMGPrompt_ComponentAblation/last_checkpoint.pt",
+      "size": 3526779,
+      "sha256": "909d2f4769655b7819f61f61de38e787c12e659bf9e4aae3e43a1742474d4a58"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A10/STMGPrompt_ComponentAblation/metrics.csv",
+      "size": 576,
+      "sha256": "ea4d8c2f2adab6ec69aa6831bb685c0b991455a3df0fdd8b825e186fce8dea61"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A10/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
+      "size": 549,
+      "sha256": "17899fb200cc47fe500a9f40c925d2a56a8eae7820e834db13794a7fb358e21c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A10/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
+      "size": 549,
+      "sha256": "ec1496c5c3f4b75004f41d07b76962dc4f9c7f380533bf675004119e0beefbea"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A10/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
+      "size": 549,
+      "sha256": "5b9d6b5aebeb0551e25ed5099f2b673265ebefa54255edbe60e01eee03711ef7"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A10/STMGPrompt_ComponentAblation/model_summary.json",
+      "size": 12857,
+      "sha256": "876d91e8122170c997384153ede089676a10a10ae8380abec91642ce66843f91"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A10/STMGPrompt_ComponentAblation/prediction_metadata.json",
+      "size": 614,
+      "sha256": "d0fec2d53cc566710860e18c14b8e857bb1a6ae008a8478a161780b5a1b4d7db"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A10/STMGPrompt_ComponentAblation/protocol_check.json",
+      "size": 9032,
+      "sha256": "c4c02e229844cb5f96a228a10d74b677627f50f1ddbc8a7d0e0ca5da8d27334f"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A10/STMGPrompt_ComponentAblation/run_status.json",
+      "size": 1659,
+      "sha256": "6fb00d6f9b2b715c9b260ee83359f8a224ee036f281ad65bd5c76e25bac5dc21"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A10/STMGPrompt_ComponentAblation/train_complete.json",
+      "size": 645,
+      "sha256": "7bb827e68f0e06a5088bd6402db6ae92de5d7b05675ff8088e2929137e7d0c39"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A10/STMGPrompt_ComponentAblation/train_log.csv",
+      "size": 8989,
+      "sha256": "225acf011e1a7976abafa7df1792ccd498d6135156efe093c94a09481eff683b"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A2/STMGPrompt_ComponentAblation/active_config.json",
+      "size": 5281,
+      "sha256": "3de9b9c26d067de5e3088e2d5fec79ecd1ee78c3de0e4d209a2e8440a6398caf"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A2/STMGPrompt_ComponentAblation/best_checkpoint.pt",
+      "size": 2868685,
+      "sha256": "7ec16125a4fe5aaa1588d304d0454efb097589208fb66ece94e0ada277718e9e"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A2/STMGPrompt_ComponentAblation/config.json",
+      "size": 5281,
+      "sha256": "3de9b9c26d067de5e3088e2d5fec79ecd1ee78c3de0e4d209a2e8440a6398caf"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A2/STMGPrompt_ComponentAblation/diagnostics/granularity_weight_curve.png",
+      "size": 30989,
+      "sha256": "691c89220903efb32b8c18b6bedeb1c27ff1965e9e3f9c3d62ecb4b7cbf1ac3a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A2/STMGPrompt_ComponentAblation/diagnostics/loss_diagnostics_summary.json",
+      "size": 762,
+      "sha256": "9a6faa53427132b08999ba88f563ff6955587a3e3bad60f38522f40b6fafcc63"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A2/STMGPrompt_ComponentAblation/diagnostics/loss_weights.csv",
+      "size": 6511,
+      "sha256": "4f22d98e2f41ef87321168ae51b7a42f6fb84280fe59f55f9cfc106048ccd769"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A2/STMGPrompt_ComponentAblation/diagnostics/site_weight_final.csv",
+      "size": 5764,
+      "sha256": "ca50e045c8e196fba3758928fe0070c334cac8b0781b4c3819c60a8a2587ea8c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A2/STMGPrompt_ComponentAblation/evaluation_complete.json",
+      "size": 264,
+      "sha256": "81c668c0aa256f1529e1b05a499ede03aacdec6a8f88fedd27a5a26b720825e9"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A2/STMGPrompt_ComponentAblation/last_checkpoint.pt",
+      "size": 2868685,
+      "sha256": "90b252a3bd376861cb5aa24386a48f6d4353d8f0a462558a59289c5118320b70"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A2/STMGPrompt_ComponentAblation/metrics.csv",
+      "size": 579,
+      "sha256": "4d2d9a086be4d7312ccbaa1cb6843e6abb80ffa79726552c7b3e536e7484ef6c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A2/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
+      "size": 554,
+      "sha256": "43faf3bb31a8cda7b7a4f8961ca84bbc1d50e13f815d0e6e0b69d2fe057e4950"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A2/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
+      "size": 551,
+      "sha256": "9fdcca6dde09e1556528dd1e07b82b62e98999ddcc5c5bfc3e9534ef4727a6bc"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A2/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
+      "size": 552,
+      "sha256": "7109e4751fe3356511739912b3776ee1cd5d66d28fb958a075ce0e250b3402a5"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A2/STMGPrompt_ComponentAblation/model_summary.json",
+      "size": 12876,
+      "sha256": "17393b852080e6c0ea7039582ac527eb452b6e9364d1ce27e176738aa9e2e17f"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A2/STMGPrompt_ComponentAblation/prediction_metadata.json",
+      "size": 614,
+      "sha256": "b0a1adc7283eba33ac4f2578f30b55e025044938d1359b58a6e1ef252bee9242"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A2/STMGPrompt_ComponentAblation/protocol_check.json",
+      "size": 9227,
+      "sha256": "0ce21a2f48f6aea3d070cbe73c7f8645456bf6ef3abb9e760c23e2f157ceb43e"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A2/STMGPrompt_ComponentAblation/run_status.json",
+      "size": 1655,
+      "sha256": "e7712905c8fffcef39c0bb1a32f99295ae64261028465082d87220b11d33454e"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A2/STMGPrompt_ComponentAblation/train_complete.json",
+      "size": 642,
+      "sha256": "9681cb9b2a1c81c845a176d065edeb50422d569eb69b0c34d4c231b9aff8fe1e"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A2/STMGPrompt_ComponentAblation/train_log.csv",
+      "size": 18028,
+      "sha256": "14bcf060a0e5495b04311986bf8222e2579cd627bb8391ad8197ea157199a129"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A3/STMGPrompt_ComponentAblation/active_config.json",
+      "size": 5281,
+      "sha256": "097e079800676856b62981739b0519caf36ed13bcad6469a3946f062ab6b4342"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A3/STMGPrompt_ComponentAblation/best_checkpoint.pt",
+      "size": 3461153,
+      "sha256": "7584ee21862facb5f0171234fe12524de8dfcae6696637f169f7df256ed5c717"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A3/STMGPrompt_ComponentAblation/config.json",
+      "size": 5281,
+      "sha256": "097e079800676856b62981739b0519caf36ed13bcad6469a3946f062ab6b4342"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A3/STMGPrompt_ComponentAblation/diagnostics/granularity_weight_curve.png",
+      "size": 33075,
+      "sha256": "95cfe47c09466ef184fe2aba7317624f3125e3bc4cacb93b2cd48d11d99c16e0"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A3/STMGPrompt_ComponentAblation/diagnostics/loss_diagnostics_summary.json",
+      "size": 762,
+      "sha256": "10ae74e13af40247ea5694b3a0ae6b695d45997f39625ade05b590ca85993040"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A3/STMGPrompt_ComponentAblation/diagnostics/loss_weights.csv",
+      "size": 8691,
+      "sha256": "bcd50b3cb3617cb5a94a5fac13937028390c1ea71b7bd14933c42b9b514d5088"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A3/STMGPrompt_ComponentAblation/diagnostics/site_weight_final.csv",
+      "size": 5780,
+      "sha256": "b409816afd7f2d78e969cbdca00ec26b445147a670405158628b54fa6c4c00f9"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A3/STMGPrompt_ComponentAblation/evaluation_complete.json",
+      "size": 264,
+      "sha256": "52a092ac925b859605fad0889ee9fb556e7c66e83a88f785cd28963b71e8f5d4"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A3/STMGPrompt_ComponentAblation/last_checkpoint.pt",
+      "size": 3461153,
+      "sha256": "b272df91cdc74f8ba217886fc5b0641e37a67a02131d6017cb475c7a7e835dbf"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A3/STMGPrompt_ComponentAblation/metrics.csv",
+      "size": 579,
+      "sha256": "66f8c2318e9a89e8cd3051c0c6edb726ceee676a272caf061daadcc786a5fd35"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A3/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
+      "size": 554,
+      "sha256": "a6530a30b57e22a58e19f37f9b9c1d17f1971cdb0180d0c1beae65eb1e25fb70"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A3/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
+      "size": 549,
+      "sha256": "5fe90a9d860f06a48800f054803e6a01b3c3decb838df3b9b85d0e3ada6e1430"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A3/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
+      "size": 553,
+      "sha256": "156bbe1e7bbac8d7c10fa2eb3e1f641ec32e616ea63983f13a938026c8a292a4"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A3/STMGPrompt_ComponentAblation/model_summary.json",
+      "size": 12874,
+      "sha256": "d594d0c6b609333ed75ddb848f5755e8f52d0285e1b9cf3f6bab9f4653a718fc"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A3/STMGPrompt_ComponentAblation/prediction_metadata.json",
+      "size": 614,
+      "sha256": "a19fec620d94189ccbf9feac5a5116238416289079575e934655dd349858aff4"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A3/STMGPrompt_ComponentAblation/protocol_check.json",
+      "size": 9771,
+      "sha256": "6d19438adac149977df499e89662ce312db85b70b62498275b10ab4dc7d9e011"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A3/STMGPrompt_ComponentAblation/run_status.json",
+      "size": 1655,
+      "sha256": "360be0f62bab3a7ea46c90561d457fdbf4861a0ed2271534089277fa6bc1b7a8"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A3/STMGPrompt_ComponentAblation/train_complete.json",
+      "size": 641,
+      "sha256": "bfc72a5413f6ba25deab68e83bf0f5183a1b94d6c7766da4a5b7284de42470cb"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A3/STMGPrompt_ComponentAblation/train_log.csv",
+      "size": 24027,
+      "sha256": "f6ab4ffb3442d758bd4e629062501ab70581d5ecaf0ea0b76ff6535f056717c3"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A4/STMGPrompt_ComponentAblation/active_config.json",
+      "size": 5281,
+      "sha256": "d6c2a017ae37b3d98669f983f4970fff69ee409e68c8155b19580fa34fd80691"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A4/STMGPrompt_ComponentAblation/best_checkpoint.pt",
+      "size": 3529073,
+      "sha256": "fa3f5bcb8fdbb6c9ba1c43392f3e5a30e1a7f4c59a71edb270324fba1d33fbe0"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A4/STMGPrompt_ComponentAblation/config.json",
+      "size": 5281,
+      "sha256": "d6c2a017ae37b3d98669f983f4970fff69ee409e68c8155b19580fa34fd80691"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A4/STMGPrompt_ComponentAblation/diagnostics/granularity_weight_curve.png",
+      "size": 36426,
+      "sha256": "39ffb72570cf653d470d1c6ddf1434bcaef3253f16fd3cfd631168780c8a71a6"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A4/STMGPrompt_ComponentAblation/diagnostics/loss_diagnostics_summary.json",
+      "size": 763,
+      "sha256": "92e79353b576114a01385cc27e77a82f7c3e0bfd65536bb32eb271f0db293436"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A4/STMGPrompt_ComponentAblation/diagnostics/loss_weights.csv",
+      "size": 10888,
+      "sha256": "b893d1265f78b8e815424e7e33e9c0ec47549adc4db9a59a3e03aeacb0df491c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A4/STMGPrompt_ComponentAblation/diagnostics/site_weight_final.csv",
+      "size": 5781,
+      "sha256": "3096e31cc0fc933ece14f1200f67df9e5cfc46aa5f17667e22d3a6e4a3e478e5"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A4/STMGPrompt_ComponentAblation/evaluation_complete.json",
+      "size": 264,
+      "sha256": "f7bb421d486e360791bf9797ee35067466c4141c38b8339ede7010f531b36575"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A4/STMGPrompt_ComponentAblation/last_checkpoint.pt",
+      "size": 3529073,
+      "sha256": "a8a721ed22171377d2e275ed3f77f0bc42609a4ecfc4e9f9a8716f0ee65ed633"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A4/STMGPrompt_ComponentAblation/metrics.csv",
+      "size": 576,
+      "sha256": "d2b081811bd3cb78a6f70cd0950a5b20d6b46478367cfd1cfb8d85ce6fb021b6"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A4/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
+      "size": 555,
+      "sha256": "3211a8306993741cbb53f7e9fa37f3b01ec80878fb1a1f12dca934aebba294ed"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A4/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
+      "size": 550,
+      "sha256": "3ed6c3be0aa406595127c41f8251efe6e7c985e6984a628b3cd20dd256d6e63e"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A4/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
+      "size": 549,
+      "sha256": "8507e1faea26c8795469b52070bc52fcf04187e88ec2fd764cff3ddd6ce54f0d"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A4/STMGPrompt_ComponentAblation/model_summary.json",
+      "size": 12880,
+      "sha256": "ceba565a5b91df1084d795fa7995734c80dc868b58c4d0ab447cc8b418434777"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A4/STMGPrompt_ComponentAblation/prediction_metadata.json",
+      "size": 615,
+      "sha256": "046d4aa20c680f7cdf5198173d7b27f3e383152109889303d490ef0615be8044"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A4/STMGPrompt_ComponentAblation/protocol_check.json",
+      "size": 9771,
+      "sha256": "6d19438adac149977df499e89662ce312db85b70b62498275b10ab4dc7d9e011"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A4/STMGPrompt_ComponentAblation/run_status.json",
+      "size": 1655,
+      "sha256": "1ca08ec2d5554ed368cb311b4e4e74c1e72612a1e4eb33d31d0f7967054ada57"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A4/STMGPrompt_ComponentAblation/train_complete.json",
+      "size": 643,
+      "sha256": "3cc090232fe3357f07bb3687aa33ffc792f8ab0ffc30a338dd00563db3316f23"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A4/STMGPrompt_ComponentAblation/train_log.csv",
+      "size": 29978,
+      "sha256": "b8fbc8404d38f1905ba5d01cb0f05cee945a44300be51212063c28ba73681737"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A5/STMGPrompt_ComponentAblation/active_config.json",
+      "size": 5263,
+      "sha256": "4e264648652c2a1bf8973f9b44ca9c47a7991088e78041219d0aebba46612986"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A5/STMGPrompt_ComponentAblation/best_checkpoint.pt",
+      "size": 3120721,
+      "sha256": "b9b21b4b0958ede6a00bb1a87cce0ee30e080530ba59858c805fecfedbe90f24"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A5/STMGPrompt_ComponentAblation/config.json",
+      "size": 5263,
+      "sha256": "4e264648652c2a1bf8973f9b44ca9c47a7991088e78041219d0aebba46612986"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A5/STMGPrompt_ComponentAblation/diagnostics/granularity_weight_curve.png",
+      "size": 32620,
+      "sha256": "240a0979b8e9fee318d9d7e77e23e237bd3618d7810be67fcc4af6c14ca586a3"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A5/STMGPrompt_ComponentAblation/diagnostics/loss_diagnostics_summary.json",
+      "size": 762,
+      "sha256": "1602bcc50db2e57e752d54a442286aad98f730f38508e3bae30fdd9baed20244"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A5/STMGPrompt_ComponentAblation/diagnostics/loss_weights.csv",
+      "size": 7627,
+      "sha256": "ebebc30d703aa9cb814f799865c8dd15df9599bd68320482cd21efb67ac21771"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A5/STMGPrompt_ComponentAblation/diagnostics/site_weight_final.csv",
+      "size": 5772,
+      "sha256": "4b9095bf806555633b04f081b465d47a021f33dd8a947606fb93d22771f7b4d7"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A5/STMGPrompt_ComponentAblation/evaluation_complete.json",
+      "size": 264,
+      "sha256": "37dab25f8e847a3ba03bda8f9b163c6e88767f7e9c619e5d928d4f8a86f94dd1"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A5/STMGPrompt_ComponentAblation/last_checkpoint.pt",
+      "size": 3120721,
+      "sha256": "bf0549efecec7323cbd0651cdaf450b98b8e9e82731d94fad717d1fdbe578b14"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A5/STMGPrompt_ComponentAblation/metrics.csv",
+      "size": 579,
+      "sha256": "972bf1ec060e72f1dccde328454d37f9d36b14e1c8af5de43606526982200c4c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A5/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
+      "size": 555,
+      "sha256": "1da8564f3043c913452d045a7b8572659f720e35f12180fd8087b0eebab9d1e2"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A5/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
+      "size": 547,
+      "sha256": "0ed34216aeaa00522df840652314fe2a5b9c29a486857f83bd6d3d80e6aaef09"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A5/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
+      "size": 552,
+      "sha256": "0fdc1db3c6d42c0046c543e7232d23a8ae07efd49714aba8154b5984473dab5a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A5/STMGPrompt_ComponentAblation/model_summary.json",
+      "size": 12877,
+      "sha256": "d5fea715017c88772144868fc612bcab3ef0ad016b08bef4dd0734abc4bf608c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A5/STMGPrompt_ComponentAblation/prediction_metadata.json",
+      "size": 615,
+      "sha256": "6c5d646b58962882006dcfacb3e8777a8b89aa86f5b0054d6f7c42a76185a3aa"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A5/STMGPrompt_ComponentAblation/protocol_check.json",
+      "size": 9227,
+      "sha256": "0ce21a2f48f6aea3d070cbe73c7f8645456bf6ef3abb9e760c23e2f157ceb43e"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A5/STMGPrompt_ComponentAblation/run_status.json",
+      "size": 1655,
+      "sha256": "f92cf60a29b068069429c6076a0f53aad577257fce2f88c67d13f6cf6ec64ad7"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A5/STMGPrompt_ComponentAblation/train_complete.json",
+      "size": 642,
+      "sha256": "5d7dcf41e0357efcc628f9d408a84d96ba62a7e56074441141da9cc2489f355a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A5/STMGPrompt_ComponentAblation/train_log.csv",
+      "size": 21062,
+      "sha256": "837ed233ad98b92a19ea8b5d07df60a5ff883e0ea7ec56549d052c86b7b3daf8"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A6/STMGPrompt_ComponentAblation/active_config.json",
+      "size": 5281,
+      "sha256": "ecd1efe800e21b89a841cf50b7f05c32b06d10afea38ea2c265065ee81a82f2c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A6/STMGPrompt_ComponentAblation/best_checkpoint.pt",
+      "size": 3320089,
+      "sha256": "ce70db3fdabecc93a1a02367de9666d6a39c9d063156768d98291e550cfccda1"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A6/STMGPrompt_ComponentAblation/config.json",
+      "size": 5281,
+      "sha256": "ecd1efe800e21b89a841cf50b7f05c32b06d10afea38ea2c265065ee81a82f2c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A6/STMGPrompt_ComponentAblation/diagnostics/granularity_weight_curve.png",
+      "size": 35737,
+      "sha256": "c983de45d4bf9ea2581744540e21e5840e078910781ff09d78cf67e344e43cbe"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A6/STMGPrompt_ComponentAblation/diagnostics/loss_diagnostics_summary.json",
+      "size": 763,
+      "sha256": "fdee3c8692a634675ebea20b1f1d1b483049862e63b1b65c96289138f41b2bf7"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A6/STMGPrompt_ComponentAblation/diagnostics/loss_weights.csv",
+      "size": 11454,
+      "sha256": "19ab8a4597267ba5ecc9b67297e9ee6bb2bf323120c671c5b458dbf520cbf594"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A6/STMGPrompt_ComponentAblation/diagnostics/site_weight_final.csv",
+      "size": 5778,
+      "sha256": "cb20a8f0f4d70866b7e5600b055a62cde681e548bdd925d329bfa63422b677e6"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A6/STMGPrompt_ComponentAblation/evaluation_complete.json",
+      "size": 264,
+      "sha256": "a1cb15242ba43abfcfc2668433ecb09574bbedc5cc59890873278e1d7c8a1c4a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A6/STMGPrompt_ComponentAblation/last_checkpoint.pt",
+      "size": 3320089,
+      "sha256": "3b72c58c4f26a258921082fdbb187856909ebcf3b44256d291508a587ca96d37"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A6/STMGPrompt_ComponentAblation/metrics.csv",
+      "size": 576,
+      "sha256": "9a84b28b687fe95a58b2ccafbf1db592429f17ceccae9a412b74ce643679ebf0"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A6/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
+      "size": 555,
+      "sha256": "3fbd91789b5af417ea3e6b6c809323a1bbdd6d9904ee7549cd30bbf5061ca86f"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A6/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
+      "size": 551,
+      "sha256": "4d9384d409f4a48fe5ad8047eb1dfb455b47cc612b23965b26735cae3340469c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A6/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
+      "size": 549,
+      "sha256": "06d6d96c534a1af8add8b55226f404a6ccb094bc7908419d9647a58944f92583"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A6/STMGPrompt_ComponentAblation/model_summary.json",
+      "size": 12878,
+      "sha256": "18b6c57c9308469776eacfbe1eff659a7ca5d63b2140a2002da631a4186d8d97"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A6/STMGPrompt_ComponentAblation/prediction_metadata.json",
+      "size": 615,
+      "sha256": "51f0a593a4076eaca7f9c2fee11ab9eb16bc8dd033c9f485bc40d7c99ddbdddf"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A6/STMGPrompt_ComponentAblation/protocol_check.json",
+      "size": 9665,
+      "sha256": "ff5cd352bbf64803d6550882861efe7d469635e3fe69e7304992be33526249eb"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A6/STMGPrompt_ComponentAblation/run_status.json",
+      "size": 1655,
+      "sha256": "ad38bd638bbf0a300a952a1208e8d61546f86680ccc1e1bca569c712d1b75eed"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A6/STMGPrompt_ComponentAblation/train_complete.json",
+      "size": 643,
+      "sha256": "bc1ab179610910f8e61fde4c1ee573b3ef70ab6a4612c82b0fea79dd5f17c3ab"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A6/STMGPrompt_ComponentAblation/train_log.csv",
+      "size": 31646,
+      "sha256": "5f642187462eebda56ef80b9f479e0ff44f4ec10c5e3cf1f681403b10d2eb58e"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A7/STMGPrompt_ComponentAblation/active_config.json",
+      "size": 5279,
+      "sha256": "c68a138c49794c44fb5908ed6d553db911940c8efa55824dbd7535a3360e63d2"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A7/STMGPrompt_ComponentAblation/best_checkpoint.pt",
+      "size": 3393093,
+      "sha256": "b53b611ed38363575fd6e33ab432ec3fdd9d7563c97303e78dd9a5a0eeac5b56"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A7/STMGPrompt_ComponentAblation/config.json",
+      "size": 5279,
+      "sha256": "c68a138c49794c44fb5908ed6d553db911940c8efa55824dbd7535a3360e63d2"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A7/STMGPrompt_ComponentAblation/diagnostics/granularity_weight_curve.png",
+      "size": 31810,
+      "sha256": "5bba068f99c6865677379b95003de181a4840a1bbe290ee752ad0d3851b46724"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A7/STMGPrompt_ComponentAblation/diagnostics/loss_diagnostics_summary.json",
+      "size": 764,
+      "sha256": "08c0cb0e9522d8b3c86db71603ada9a3b41308a43001cfcae560e5ff852f9c35"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A7/STMGPrompt_ComponentAblation/diagnostics/loss_weights.csv",
+      "size": 7613,
+      "sha256": "72ebda3834d2730d0c360e9efc0bc11989110d8d68319468db806c04a326064c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A7/STMGPrompt_ComponentAblation/diagnostics/site_weight_final.csv",
+      "size": 5772,
+      "sha256": "e96287ddb4a88bfc558dce0446ae8bd7a52416751d4c807cc342ac8d42d6e2ea"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A7/STMGPrompt_ComponentAblation/evaluation_complete.json",
+      "size": 264,
+      "sha256": "4bc1b80c11a294af02c96a03844c28423043c9a22a4164e028ce6ddc8cd19e24"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A7/STMGPrompt_ComponentAblation/last_checkpoint.pt",
+      "size": 3393093,
+      "sha256": "2c7485f528bc05ceb54aca8e2266948521f70e60789e7c6608aaf7ff65c5988b"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A7/STMGPrompt_ComponentAblation/metrics.csv",
+      "size": 576,
+      "sha256": "e2a59e133adf3cb2c32a668b9476b4cc77ea310bc53b222a08986ea8e2b821ea"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A7/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
+      "size": 555,
+      "sha256": "035ec838cbe3a59971a719dc8def0b99bec63eda45f41cd5ef32853995cb75e9"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A7/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
+      "size": 550,
+      "sha256": "7cb66e7ace89083b73e6cfd371aee3f4753edbd4fd21e41772e13ac3c129e273"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A7/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
+      "size": 550,
+      "sha256": "9da6e4ec4d71e0968a8265dc2112a4f8a7f2492989badd282669a10d26b7e324"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A7/STMGPrompt_ComponentAblation/model_summary.json",
+      "size": 12877,
+      "sha256": "314d3567f251f81ac3424b1286c221953c6caed635cae23f309a6fcdb069fc66"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A7/STMGPrompt_ComponentAblation/prediction_metadata.json",
+      "size": 613,
+      "sha256": "346011cdcf9cdb70aecfcfc4ec222ab993bc1fed16415dedb7586a22c7a60a5d"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A7/STMGPrompt_ComponentAblation/protocol_check.json",
+      "size": 9771,
+      "sha256": "6d19438adac149977df499e89662ce312db85b70b62498275b10ab4dc7d9e011"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A7/STMGPrompt_ComponentAblation/run_status.json",
+      "size": 1655,
+      "sha256": "cca281dda1b5679499752e5a57486fbeeb36f8bb24ed51b2d3edfb143b079a17"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A7/STMGPrompt_ComponentAblation/train_complete.json",
+      "size": 642,
+      "sha256": "d45d2042d2f869905257d27ceb297dc12c230b2fbe7509ddc680741ba4bdeba0"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A7/STMGPrompt_ComponentAblation/train_log.csv",
+      "size": 21074,
+      "sha256": "c6a93d68ab2877656b575c5681e231b3a5a5dc66bae48df997954ff6cc1aeb3a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A8/STMGPrompt_ComponentAblation/active_config.json",
+      "size": 5281,
+      "sha256": "52bd2ec2130f57ee3f29603361d8e041c87d1c6f76479ec5475e6834b5c602f4"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A8/STMGPrompt_ComponentAblation/best_checkpoint.pt",
+      "size": 2840845,
+      "sha256": "4d0de5e9114f2bf7836751b9e5778f7c8a573729150919f08addfb30b57be18c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A8/STMGPrompt_ComponentAblation/config.json",
+      "size": 5281,
+      "sha256": "52bd2ec2130f57ee3f29603361d8e041c87d1c6f76479ec5475e6834b5c602f4"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A8/STMGPrompt_ComponentAblation/diagnostics/granularity_weight_curve.png",
+      "size": 35776,
+      "sha256": "40c0ec23e9c231b2c4f7784fef71a6f364b44bffbeda99beac2de560085aa9dc"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A8/STMGPrompt_ComponentAblation/diagnostics/loss_diagnostics_summary.json",
+      "size": 763,
+      "sha256": "c75102153dac1a22b78e70379f6a527dcfd163b5c9647cd6fa5ff58b1f1d5100"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A8/STMGPrompt_ComponentAblation/diagnostics/loss_weights.csv",
+      "size": 11458,
+      "sha256": "482be155ca188bd2d73bae8ec7c03124471e1cbafc0b611758aae5f711aaba09"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A8/STMGPrompt_ComponentAblation/diagnostics/site_weight_final.csv",
+      "size": 5789,
+      "sha256": "6f7e86b43fe5195d380f9edc809e41bb3d6f1b2906a45c1940aaef40cb452595"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A8/STMGPrompt_ComponentAblation/evaluation_complete.json",
+      "size": 264,
+      "sha256": "e0cf31c3271fa3c95f075ede39a4ca88e47ce4d130b7c41475647f04bc6b0783"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A8/STMGPrompt_ComponentAblation/last_checkpoint.pt",
+      "size": 2840845,
+      "sha256": "69240898ea93dac32ff4aa1d4105430abd68814832f35bf30043def62e6369bf"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A8/STMGPrompt_ComponentAblation/metrics.csv",
+      "size": 579,
+      "sha256": "4a42ddd84cf308297446208eaf7a89b847f1f6040ad347a68d392bf00611df13"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A8/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
+      "size": 556,
+      "sha256": "8c6a511fa881125cfe1535cd5701de2b9bfdf3b2386cb65ef72b85fde385adc8"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A8/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
+      "size": 547,
+      "sha256": "6fb2c624a8903ec2f670709845f3283d0069dedd18d393f3827e8447fa301a30"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A8/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
+      "size": 554,
+      "sha256": "53cd26c4b2727b55de158a55cbe79f70f56a498509d416971b06cd1a6fe45588"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A8/STMGPrompt_ComponentAblation/model_summary.json",
+      "size": 12877,
+      "sha256": "f14d509efd0cf3d576cf1ab507f1b78dbf794a7ae4d2497d602d06c84c9f02af"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A8/STMGPrompt_ComponentAblation/prediction_metadata.json",
+      "size": 614,
+      "sha256": "98ff75395bcea476090f428a6390431ebc12c11ceb07f52dadce914350e4a3be"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A8/STMGPrompt_ComponentAblation/protocol_check.json",
+      "size": 9787,
+      "sha256": "cd6ce208c35b9c6f937361058a5054271f343e71d2d0c0d5341a274dccc9bc42"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A8/STMGPrompt_ComponentAblation/run_status.json",
+      "size": 1655,
+      "sha256": "5fe5b8d9a2f56db253a3eb03c170075cf43943b18d1e942275c13ea377bff502"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A8/STMGPrompt_ComponentAblation/train_complete.json",
+      "size": 643,
+      "sha256": "ef59b28e060bb224b720f3acc7eeaaa09549d81d85ea78b52293d24d339d94dc"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A8/STMGPrompt_ComponentAblation/train_log.csv",
+      "size": 31540,
+      "sha256": "11dd9f9cad133c70d06e7400072ef1df23493085f0ef3b7559a16e983dcd8a21"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A9/STMGPrompt_ComponentAblation/active_config.json",
+      "size": 5281,
+      "sha256": "ea6ffd4320695b8029e377634623ac39cd7516ddf97ad3aa3fa2fab15b2978bc"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A9/STMGPrompt_ComponentAblation/best_checkpoint.pt",
+      "size": 3416701,
+      "sha256": "2643a4a5d0e9a6d5163194074cd1b42244bff14e664c87b00297a80b89efb427"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A9/STMGPrompt_ComponentAblation/config.json",
+      "size": 5281,
+      "sha256": "ea6ffd4320695b8029e377634623ac39cd7516ddf97ad3aa3fa2fab15b2978bc"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A9/STMGPrompt_ComponentAblation/diagnostics/granularity_weight_curve.png",
+      "size": 32198,
+      "sha256": "83d70cbab30f0cf8bb0bd7616f3a2aaf0b63b6365e47a5dbafe1c9424d540259"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A9/STMGPrompt_ComponentAblation/diagnostics/loss_diagnostics_summary.json",
+      "size": 763,
+      "sha256": "9576b6277dc01eee9b89905cd410ed3a9668cc5b94c779b1b209d7e941141c41"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A9/STMGPrompt_ComponentAblation/diagnostics/loss_weights.csv",
+      "size": 8737,
+      "sha256": "1c6e0e5fe06e8ae71bb39a81bfbc736102c3f3190d6cdbc353f21853aaf562d5"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A9/STMGPrompt_ComponentAblation/diagnostics/site_weight_final.csv",
+      "size": 5764,
+      "sha256": "1c711146e600736d13bc4c570a92a0a564fa6cb2ced97907da39e62050f96d38"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A9/STMGPrompt_ComponentAblation/evaluation_complete.json",
+      "size": 264,
+      "sha256": "5e87c5de0ab3c48be2914b8ee667f5c806640208b500efa086fd957a37c155e1"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A9/STMGPrompt_ComponentAblation/last_checkpoint.pt",
+      "size": 3416701,
+      "sha256": "ed29efbc178d4ef0b2991903fe8cd42bfc2494a67f132cb10a601382fafe264a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A9/STMGPrompt_ComponentAblation/metrics.csv",
+      "size": 579,
+      "sha256": "e41e21b8570c2624617d299b960efb5d061fda7fdd7411c5e73a6e2eaf539bb0"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A9/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
+      "size": 551,
+      "sha256": "383ddc39cbc13d496219a97f87e51b313bc10f10ac8dd333183861a7af5ebb8c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A9/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
+      "size": 550,
+      "sha256": "0668bff48b5135fb862f4cf2e0919225b89996021c7b7ec18e52bbf8ff2a8755"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A9/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
+      "size": 552,
+      "sha256": "a651bcec58119ea875b7e010f204882d0abffaaf87a133c4a643ec0030c232cf"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A9/STMGPrompt_ComponentAblation/model_summary.json",
+      "size": 12878,
+      "sha256": "e962062799ea12e74e11c6658287dd82c9eeeeb59e868fad5e7172050a1047a3"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A9/STMGPrompt_ComponentAblation/prediction_metadata.json",
+      "size": 615,
+      "sha256": "a0f4061227d94fecccabc18402b550e5cd4e3e3de77407e223b0a877b9a2a99a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A9/STMGPrompt_ComponentAblation/protocol_check.json",
+      "size": 9674,
+      "sha256": "de3f2ffa47e79038ee1ce42c7a4827162ecb83f990687b748037228a7742701b"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A9/STMGPrompt_ComponentAblation/run_status.json",
+      "size": 1655,
+      "sha256": "0785e57a3d78ff67b509beae07c5d994cf81b238af81a5cf825495a6729d8730"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A9/STMGPrompt_ComponentAblation/train_complete.json",
+      "size": 642,
+      "sha256": "d74a23d7ebe3913a186193cdc697172c8e0aa6d41c0997e18cea15f80ce5a0e6"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/A9/STMGPrompt_ComponentAblation/train_log.csv",
+      "size": 24071,
+      "sha256": "4064fcabb91be28087557b3662fc3bc2da6b281f89bf973833f3fd8c64e5aa79"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/component_ablation_commands.json",
+      "size": 6771,
+      "sha256": "9902a63c5ec1b848ace639b57c951d01ac28e6c538a9872c61b92cf15de97b45"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/component_ablation_manifest.json",
+      "size": 12769,
+      "sha256": "2de4a4322312e2f45f989864d8bce9d61f93bee151caee18737cf155fcc411ae"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/component_ablation_status.json",
+      "size": 21767,
+      "sha256": "3d17f4ba8e4135a3e206e3f3c7ed3c816c1ac3882f467f21ddb7a5165cc42b46"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026/component_ablation_summary.csv",
+      "size": 9978,
+      "sha256": "8a5c1a9a6f3988e9bf7cfbe03be03928f9be7b6559a986280c04b7491719c8d5"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P0/STMGPrompt_Full_MSMGDWU/active_config.json",
+      "size": 5205,
+      "sha256": "6c662b50a2789749979eb4f4385ec99bcbf389025b8bda41a097f80bce9303e8"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P0/STMGPrompt_Full_MSMGDWU/best_checkpoint.pt",
+      "size": 3120593,
+      "sha256": "8d568ab797e35dbd77d579b4b5fcb10606557fc018f2e1183d4e0368b6922cfa"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P0/STMGPrompt_Full_MSMGDWU/config.json",
+      "size": 5205,
+      "sha256": "6c662b50a2789749979eb4f4385ec99bcbf389025b8bda41a097f80bce9303e8"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P0/STMGPrompt_Full_MSMGDWU/diagnostics/granularity_weight_curve.png",
+      "size": 32620,
+      "sha256": "240a0979b8e9fee318d9d7e77e23e237bd3618d7810be67fcc4af6c14ca586a3"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P0/STMGPrompt_Full_MSMGDWU/diagnostics/loss_diagnostics_summary.json",
+      "size": 763,
+      "sha256": "a193d87f1048468c9901cc41b0e9a87db037697f42858bb80d36b8cf3a7d3bd8"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P0/STMGPrompt_Full_MSMGDWU/diagnostics/loss_weights.csv",
+      "size": 7627,
+      "sha256": "ebebc30d703aa9cb814f799865c8dd15df9599bd68320482cd21efb67ac21771"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P0/STMGPrompt_Full_MSMGDWU/diagnostics/site_weight_final.csv",
+      "size": 5772,
+      "sha256": "4b9095bf806555633b04f081b465d47a021f33dd8a947606fb93d22771f7b4d7"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P0/STMGPrompt_Full_MSMGDWU/last_checkpoint.pt",
+      "size": 3120593,
+      "sha256": "8ef79ac28c2aa07521dc4214ad97e114f20f7f095e1c39f4d3bdb25ff330c049"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P0/STMGPrompt_Full_MSMGDWU/model_summary.json",
+      "size": 12045,
+      "sha256": "aa320dc07ac63ce8dd15a116c2069f956c4fb9735c32d7f6f09ffb95e102f62d"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P0/STMGPrompt_Full_MSMGDWU/run_status.json",
+      "size": 1431,
+      "sha256": "6f6bbb7ff664ead25bbdb31f1ca4d4946b95e8148fa77b5adfb864407bf1993b"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P0/STMGPrompt_Full_MSMGDWU/train_complete.json",
+      "size": 644,
+      "sha256": "ff9fc729ada43a3d9d49c8ff2d1d279770b414ccfcf76d67c8afdf1a024d0364"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P0/STMGPrompt_Full_MSMGDWU/train_log.csv",
+      "size": 21063,
+      "sha256": "1f8002275516a4aa731b1075716ad82cd2f6fbf166353a0113f55a957eeec428"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P1/STMGPrompt_Full_MSMGDWU/active_config.json",
+      "size": 5222,
+      "sha256": "0d5650fb1be42c77e542503a53664da65ffa6217eee2edf46d729449376d13fd"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P1/STMGPrompt_Full_MSMGDWU/best_checkpoint.pt",
+      "size": 3529521,
+      "sha256": "f2b6b2cbb3dae02c7ea044dda06f1e5500ed5cd09977185687e365fa3c346b95"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P1/STMGPrompt_Full_MSMGDWU/config.json",
+      "size": 5222,
+      "sha256": "0d5650fb1be42c77e542503a53664da65ffa6217eee2edf46d729449376d13fd"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P1/STMGPrompt_Full_MSMGDWU/diagnostics/granularity_weight_curve.png",
+      "size": 35309,
+      "sha256": "e2845c2c9794a5c7d3b8167a1d94fabddd4e236bf38c9a9cb6bfae5787e249f0"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P1/STMGPrompt_Full_MSMGDWU/diagnostics/loss_diagnostics_summary.json",
+      "size": 763,
+      "sha256": "c5842442fffd87a6a5f77e02e74da1ad48607b3d5bad47690de4df6c66a8d853"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P1/STMGPrompt_Full_MSMGDWU/diagnostics/loss_weights.csv",
+      "size": 10869,
+      "sha256": "9864c76da520436a1b8e0131e2be06767272a7a9916daf4372d69d314d845bdc"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P1/STMGPrompt_Full_MSMGDWU/diagnostics/site_weight_final.csv",
+      "size": 5787,
+      "sha256": "f3a510db1b26c232cdb73e91478df0c91ad12453f5432ae7f9ac0c7774f8f278"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P1/STMGPrompt_Full_MSMGDWU/last_checkpoint.pt",
+      "size": 3529521,
+      "sha256": "363fc83ce189075fb254ac2287a9f494b280983ecfabd21cc095cc629a95b548"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P1/STMGPrompt_Full_MSMGDWU/model_summary.json",
+      "size": 12047,
+      "sha256": "aa8308d3684eb3ba7ef0765831208d6107ccfbddd3f83af78477d9cc45e7b5ba"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P1/STMGPrompt_Full_MSMGDWU/run_status.json",
+      "size": 1431,
+      "sha256": "999deacd90fb5da3d184701de5962f853a61f141684a7a1ac1f1e9edaad9bc5e"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P1/STMGPrompt_Full_MSMGDWU/train_complete.json",
+      "size": 645,
+      "sha256": "226b271bf70010c08a77ad7c1f74c8213c521ba6e3054f19ac2608c873e7ab43"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P1/STMGPrompt_Full_MSMGDWU/train_log.csv",
+      "size": 29975,
+      "sha256": "d9808b7270ed292330d36a0ba299cd8083832e8dd0f8be8da9848ab7f260e903"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P2/STMGPrompt_Full_MSMGDWU/active_config.json",
+      "size": 5223,
+      "sha256": "3b8aefc05a0d32bc44170ca2289ddc2ec7f27686c8084e68ed5f483b37e7ef93"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P2/STMGPrompt_Full_MSMGDWU/best_checkpoint.pt",
+      "size": 3803353,
+      "sha256": "141ff0aa4614d6e996ffff6057754d8c8e37da51bf43ee37661438810ce02904"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P2/STMGPrompt_Full_MSMGDWU/config.json",
+      "size": 5223,
+      "sha256": "3b8aefc05a0d32bc44170ca2289ddc2ec7f27686c8084e68ed5f483b37e7ef93"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P2/STMGPrompt_Full_MSMGDWU/diagnostics/granularity_weight_curve.png",
+      "size": 38577,
+      "sha256": "eee3b257f62914ac2133a3389065bd4193d8b9c61017d7a606477dd1dfede0c1"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P2/STMGPrompt_Full_MSMGDWU/diagnostics/loss_diagnostics_summary.json",
+      "size": 764,
+      "sha256": "051a8b1f9a970df0605de023be95d7b0b47587b1c1e235715999c4d3d705786c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P2/STMGPrompt_Full_MSMGDWU/diagnostics/loss_weights.csv",
+      "size": 7613,
+      "sha256": "69962ea3fbdff5cc7778d7ceab37d0eca01dd34286b2433f3b32720db689bec2"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P2/STMGPrompt_Full_MSMGDWU/diagnostics/site_weight_final.csv",
+      "size": 5764,
+      "sha256": "c6f546df56fc015e15a17b9ec4c46231084768d23e49a0554b90103d7558c549"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P2/STMGPrompt_Full_MSMGDWU/last_checkpoint.pt",
+      "size": 3803353,
+      "sha256": "2e27d68502febc6e0248bc2e175c0bb134a2d1ba720f7418663a6ab0e6bc4dc2"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P2/STMGPrompt_Full_MSMGDWU/model_summary.json",
+      "size": 12047,
+      "sha256": "88aea7e57595c5344a70a625e92a434ca4df5fb08b7ef7b71862aa8f7cd5287c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P2/STMGPrompt_Full_MSMGDWU/run_status.json",
+      "size": 1431,
+      "sha256": "18652580e18c3a5997a93165329cb048bec8502f7c72228617ef88e039324bc2"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P2/STMGPrompt_Full_MSMGDWU/train_complete.json",
+      "size": 644,
+      "sha256": "d38d11b3b9e92e7615fc4b93b738a464bc3adc7de86a877862acdd6829251d5d"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P2/STMGPrompt_Full_MSMGDWU/train_log.csv",
+      "size": 21062,
+      "sha256": "e9998eac5f8342c16d20c03219a5ce7390afbe9a5abc3d3d7e4db9f963d464ff"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P3/STMGPrompt_Full_MSMGDWU_DiffusionHistory/active_config.json",
+      "size": 5257,
+      "sha256": "df7e8326278f4207d38f5f84ac1ff132afa25c78b61bce62dd893458cb93f389"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P3/STMGPrompt_Full_MSMGDWU_DiffusionHistory/best_checkpoint.pt",
+      "size": 4212345,
+      "sha256": "0f021c89f6b1b8101f67509e14c9469074798045f9287f3907989fdf2cfffbe1"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P3/STMGPrompt_Full_MSMGDWU_DiffusionHistory/config.json",
+      "size": 5257,
+      "sha256": "df7e8326278f4207d38f5f84ac1ff132afa25c78b61bce62dd893458cb93f389"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P3/STMGPrompt_Full_MSMGDWU_DiffusionHistory/diagnostics/granularity_weight_curve.png",
+      "size": 40283,
+      "sha256": "3c7a64157144388f6a2f02fb0d961ed0e750d646c1db475e7f7440155331ef8b"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P3/STMGPrompt_Full_MSMGDWU_DiffusionHistory/diagnostics/loss_diagnostics_summary.json",
+      "size": 781,
+      "sha256": "fec71ee174e2ebb951b252df114f06840f12e388cb1042dc9d071f92957a5a79"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P3/STMGPrompt_Full_MSMGDWU_DiffusionHistory/diagnostics/loss_weights.csv",
+      "size": 11430,
+      "sha256": "c48c4c244b39a2992ce9c27294c84bde18b6b82f62d953b9113056e399dfa21b"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P3/STMGPrompt_Full_MSMGDWU_DiffusionHistory/diagnostics/site_weight_final.csv",
+      "size": 5772,
+      "sha256": "78f68a8cffaab7947f2f2ced50d63e6995037a52a00cc8543fdccba7916dbe0e"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P3/STMGPrompt_Full_MSMGDWU_DiffusionHistory/last_checkpoint.pt",
+      "size": 4212345,
+      "sha256": "782038428aeb6bd03235511d475a31707bb0ea526444f8090757ab463c40737a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P3/STMGPrompt_Full_MSMGDWU_DiffusionHistory/model_summary.json",
+      "size": 12083,
+      "sha256": "7dfe88f9890ea86fdd79228cd23ef4e7ad1523fe5588c0107b7b3fb0505257bc"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P3/STMGPrompt_Full_MSMGDWU_DiffusionHistory/run_status.json",
+      "size": 1482,
+      "sha256": "63ed25f06f3556afc07b651dd449c3c4722169a66d0e31f5ce47f4cfa4bcef96"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P3/STMGPrompt_Full_MSMGDWU_DiffusionHistory/train_complete.json",
+      "size": 679,
+      "sha256": "f78490b57d9246781f7fb1c0382475b24fb2bfccdf2a03ee3c9894c11fea45f9"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P3/STMGPrompt_Full_MSMGDWU_DiffusionHistory/train_log.csv",
+      "size": 31463,
+      "sha256": "fb4d7de4b96c1f2648bc677d95631e76cc222850a20e40bb04c20b692ed94f3e"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P4/STMGPrompt_Full_MSMGDWU_DiffusionHistory/active_config.json",
+      "size": 5257,
+      "sha256": "b10c91730f63d5c7408e1ffab1281ed93a35ae010a0e58832499e1758bef2377"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P4/STMGPrompt_Full_MSMGDWU_DiffusionHistory/best_checkpoint.pt",
+      "size": 8818873,
+      "sha256": "3fa3a5dfe3e0c5421d4c45e3caee84d78757a981c8971f95ae6780433c136cbb"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P4/STMGPrompt_Full_MSMGDWU_DiffusionHistory/config.json",
+      "size": 5257,
+      "sha256": "b10c91730f63d5c7408e1ffab1281ed93a35ae010a0e58832499e1758bef2377"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P4/STMGPrompt_Full_MSMGDWU_DiffusionHistory/diagnostics/granularity_weight_curve.png",
+      "size": 38315,
+      "sha256": "55c234f94f28b19faf80cd101a1e5ede91f49543cd754267cc6651aeb1025f73"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P4/STMGPrompt_Full_MSMGDWU_DiffusionHistory/diagnostics/loss_diagnostics_summary.json",
+      "size": 781,
+      "sha256": "a342679f1d0adc1735b2120332c41aa602169e0ab67042b01e36350aa41b520e"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P4/STMGPrompt_Full_MSMGDWU_DiffusionHistory/diagnostics/loss_weights.csv",
+      "size": 8158,
+      "sha256": "6be273acdd247e0fea60d08e1f6584fef151728a5e99cd554bd2a234c172885b"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P4/STMGPrompt_Full_MSMGDWU_DiffusionHistory/diagnostics/site_weight_final.csv",
+      "size": 5743,
+      "sha256": "45b0995b2cd054a4739ec51b2779c6c8059f3bb9bdb04ef154099051e885bb32"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P4/STMGPrompt_Full_MSMGDWU_DiffusionHistory/last_checkpoint.pt",
+      "size": 8818873,
+      "sha256": "32ea3d044dba0e00656728959f24864d894aa71d8e8dd6a7765553e67ef693ef"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P4/STMGPrompt_Full_MSMGDWU_DiffusionHistory/model_summary.json",
+      "size": 12081,
+      "sha256": "70d27207f8db9fe9b651a8cccb9e77551c3e152373e6e2c2f1d5ed7abe72a610"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P4/STMGPrompt_Full_MSMGDWU_DiffusionHistory/run_status.json",
+      "size": 1482,
+      "sha256": "ad763dd1653afb5b4e3f0a1cf2121cb9de3e7c96d1208df65d1f5960b3626c46"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P4/STMGPrompt_Full_MSMGDWU_DiffusionHistory/train_complete.json",
+      "size": 678,
+      "sha256": "c86cb9652f23400ef4e090510319e63a7f4086a2aba90039791b66fe04531b64"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P4/STMGPrompt_Full_MSMGDWU_DiffusionHistory/train_log.csv",
+      "size": 22524,
+      "sha256": "d60b971ed9459f7656e72354a33a81b62b10c4d15aaee57cc967f1ffac901d41"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P5/STMGPrompt_Full_MSMGDWU_DiffusionHistory/active_config.json",
+      "size": 5257,
+      "sha256": "5c39f1da32cbd5d5098cec1fb85e65edced23ef8873f4990dc1526e849c9e441"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P5/STMGPrompt_Full_MSMGDWU_DiffusionHistory/best_checkpoint.pt",
+      "size": 15086045,
+      "sha256": "6fef719061867c93c055f57008d2fc1ef5689d3ea090297b2c9bcb5089764ce6"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P5/STMGPrompt_Full_MSMGDWU_DiffusionHistory/config.json",
+      "size": 5257,
+      "sha256": "5c39f1da32cbd5d5098cec1fb85e65edced23ef8873f4990dc1526e849c9e441"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P5/STMGPrompt_Full_MSMGDWU_DiffusionHistory/diagnostics/granularity_weight_curve.png",
+      "size": 39802,
+      "sha256": "82df39ecd65096ddb4afa03d0a680320c936e18571ab318713f8d2d853439488"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P5/STMGPrompt_Full_MSMGDWU_DiffusionHistory/diagnostics/loss_diagnostics_summary.json",
+      "size": 780,
+      "sha256": "b0de0d0ae4d9589e45131deba6e019d5a143d51414afe2ae05e94d32d4e9f843"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P5/STMGPrompt_Full_MSMGDWU_DiffusionHistory/diagnostics/loss_weights.csv",
+      "size": 7047,
+      "sha256": "adb1b16428e5eeb8e1bbc8865f231636b2e4a923100d888d44d00ad954a547a5"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P5/STMGPrompt_Full_MSMGDWU_DiffusionHistory/diagnostics/site_weight_final.csv",
+      "size": 5770,
+      "sha256": "0d861dc00af370608bb897b58008ac0f8cbaca4c848e90c64bdc6d05a67076f8"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P5/STMGPrompt_Full_MSMGDWU_DiffusionHistory/last_checkpoint.pt",
+      "size": 15086045,
+      "sha256": "9a488ee7ee1e4345bf696573d1b92fed06b6fa9b7570ba9db4849122e87ce8ed"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P5/STMGPrompt_Full_MSMGDWU_DiffusionHistory/model_summary.json",
+      "size": 12078,
+      "sha256": "a7e7c1e4a07e4c2ae76bf578bb8f4410b0722f944001a11bb3f92143d1f5f089"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P5/STMGPrompt_Full_MSMGDWU_DiffusionHistory/run_status.json",
+      "size": 1482,
+      "sha256": "0d6ceb6631b2fda1bebf0aa1c2ba1243f3888d9d89413adbf443c44969163ffd"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P5/STMGPrompt_Full_MSMGDWU_DiffusionHistory/train_complete.json",
+      "size": 677,
+      "sha256": "98a8db1e89b56df7691e9a31f8b8e862ecd53d48d1c59057dcb12a2b11daaf6e"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_ablation/method_full_msmgdwu_seed2026_p0_p5/P5/STMGPrompt_Full_MSMGDWU_DiffusionHistory/train_log.csv",
+      "size": 19518,
+      "sha256": "8d9bb3098ad5e2b9b224fa58cfee2126af7329af6bb7a11c19fe485ce6aadbb3"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P0/STMGPrompt_Full_MSMGDWU/active_config.json",
+      "size": 5215,
+      "sha256": "6b1615243453ade1232e9f46f33ca66d36eb06404217d987a988eb5620e0ae8f"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P0/STMGPrompt_Full_MSMGDWU/config.json",
+      "size": 5215,
+      "sha256": "6b1615243453ade1232e9f46f33ca66d36eb06404217d987a988eb5620e0ae8f"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P0/STMGPrompt_Full_MSMGDWU/evaluation_complete.json",
+      "size": 264,
+      "sha256": "1aa2c8217abed519c854819335dd4707e064ed6eed11f428e4d7b970fe0b3dd5"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P0/STMGPrompt_Full_MSMGDWU/metrics.csv",
+      "size": 579,
+      "sha256": "972bf1ec060e72f1dccde328454d37f9d36b14e1c8af5de43606526982200c4c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P0/STMGPrompt_Full_MSMGDWU/metrics_eval_h10.json",
+      "size": 555,
+      "sha256": "1da8564f3043c913452d045a7b8572659f720e35f12180fd8087b0eebab9d1e2"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P0/STMGPrompt_Full_MSMGDWU/metrics_eval_h3.json",
+      "size": 547,
+      "sha256": "0ed34216aeaa00522df840652314fe2a5b9c29a486857f83bd6d3d80e6aaef09"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P0/STMGPrompt_Full_MSMGDWU/metrics_eval_h6.json",
+      "size": 552,
+      "sha256": "0fdc1db3c6d42c0046c543e7232d23a8ae07efd49714aba8154b5984473dab5a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P0/STMGPrompt_Full_MSMGDWU/model_summary.json",
+      "size": 12260,
+      "sha256": "ca763edd1d714ea88781e66e048ed66b42d2dcab2bfe8b35604489108b3a49e5"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P0/STMGPrompt_Full_MSMGDWU/prediction_metadata.json",
+      "size": 616,
+      "sha256": "eb0cca39851b357024f6f3bf64589708d921806cece051261d8e9542b45bae7d"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P0/STMGPrompt_Full_MSMGDWU/run_status.json",
+      "size": 939,
+      "sha256": "b73b2cfba11c4987914176fb00197fd3d105703a1f8002fb858fb187deb6c6f4"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P1/STMGPrompt_Full_MSMGDWU/active_config.json",
+      "size": 5232,
+      "sha256": "7a4dfad2392517ef31265ec1ca921d2e075aa7ba960601058a8c75d29de70f0e"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P1/STMGPrompt_Full_MSMGDWU/config.json",
+      "size": 5232,
+      "sha256": "7a4dfad2392517ef31265ec1ca921d2e075aa7ba960601058a8c75d29de70f0e"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P1/STMGPrompt_Full_MSMGDWU/evaluation_complete.json",
+      "size": 264,
+      "sha256": "5f35c106dd5704d2366d98ba75ee2059ba20a2669c8371dd684240ba694ee60a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P1/STMGPrompt_Full_MSMGDWU/metrics.csv",
+      "size": 576,
+      "sha256": "cf32ac047269268b65c971a64d4bffb943c5cd0836ec5ef150da570660602b03"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P1/STMGPrompt_Full_MSMGDWU/metrics_eval_h10.json",
+      "size": 553,
+      "sha256": "56395772a866cfdb6b46a53eb4c83ce76ba7b8c6c523ba8add9b263323698718"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P1/STMGPrompt_Full_MSMGDWU/metrics_eval_h3.json",
+      "size": 550,
+      "sha256": "2c8e004b63dc69600f81b6b2ebba74df96d76efe3f4b365ce88522824da0cb13"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P1/STMGPrompt_Full_MSMGDWU/metrics_eval_h6.json",
+      "size": 550,
+      "sha256": "b9bf63faa3f2a636b09017a342ab561295ea5c03e1cdeef35888b230a5854942"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P1/STMGPrompt_Full_MSMGDWU/model_summary.json",
+      "size": 12261,
+      "sha256": "1b85557426e1b90441cd914310a0e62eeafc160bab93406d40675845a7fba464"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P1/STMGPrompt_Full_MSMGDWU/prediction_metadata.json",
+      "size": 616,
+      "sha256": "9171d4394436c4e7b4605d6094fa83495ff2973291f52b731467dab39cbe2305"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P1/STMGPrompt_Full_MSMGDWU/run_status.json",
+      "size": 939,
+      "sha256": "dea21800d8eedc5bdc55e7fe8d8d1549498008efe56dca11f642db89d4891e26"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P2/STMGPrompt_Full_MSMGDWU/active_config.json",
+      "size": 5233,
+      "sha256": "20bfcf7cc5bd6a6d5a8b7dd086e6a7de679155d21e20b244c4b6e720b9b0ea84"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P2/STMGPrompt_Full_MSMGDWU/config.json",
+      "size": 5233,
+      "sha256": "20bfcf7cc5bd6a6d5a8b7dd086e6a7de679155d21e20b244c4b6e720b9b0ea84"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P2/STMGPrompt_Full_MSMGDWU/evaluation_complete.json",
+      "size": 264,
+      "sha256": "fab26754593ebd1f6d0de2084193097491acc18f2d5a1ce07fa42df596f7a32e"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P2/STMGPrompt_Full_MSMGDWU/metrics.csv",
+      "size": 584,
+      "sha256": "61a97e3586f7a4b926acad339c73480119a0e677af7d644265dbb2c95588a045"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P2/STMGPrompt_Full_MSMGDWU/metrics_eval_h10.json",
+      "size": 554,
+      "sha256": "f0290292c5be969ec102349d3c0b05bbd48e06ec2b3b9c0d57202b8b05cd679a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P2/STMGPrompt_Full_MSMGDWU/metrics_eval_h3.json",
+      "size": 550,
+      "sha256": "08ae43e04c0d493882e2beeb7cf463b678c755827151e55956044de38d3aba55"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P2/STMGPrompt_Full_MSMGDWU/metrics_eval_h6.json",
+      "size": 554,
+      "sha256": "bd4f41deaf81639707a8117f42834225e71a752df995f4a113745efd60304275"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P2/STMGPrompt_Full_MSMGDWU/model_summary.json",
+      "size": 12262,
+      "sha256": "32126678b69e46a88c2e8512c34eb2b23bf6bd29d4915c055dcaeca6f7058a90"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P2/STMGPrompt_Full_MSMGDWU/prediction_metadata.json",
+      "size": 616,
+      "sha256": "db7ed378570158bcd33dc1fd9c8a77dc7155d0cf912c6713c311210b1d1bad43"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P2/STMGPrompt_Full_MSMGDWU/run_status.json",
+      "size": 939,
+      "sha256": "565aabdeef884a3c1c11efee1cba38e44a190beb0e802c0f99c87bd48724665a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P3/STMGPrompt_Full_MSMGDWU_DiffusionHistory/active_config.json",
+      "size": 5267,
+      "sha256": "cf1d8d7f3fa3dceed70c643e8b80a8caa308a7ee6f59052089b47b22eb23fcad"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P3/STMGPrompt_Full_MSMGDWU_DiffusionHistory/config.json",
+      "size": 5267,
+      "sha256": "cf1d8d7f3fa3dceed70c643e8b80a8caa308a7ee6f59052089b47b22eb23fcad"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P3/STMGPrompt_Full_MSMGDWU_DiffusionHistory/evaluation_complete.json",
+      "size": 264,
+      "sha256": "a0c997e08a267c58242ca2395c08f7f532bbbec87e0dab8b605ec561452eea32"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P3/STMGPrompt_Full_MSMGDWU_DiffusionHistory/metrics.csv",
+      "size": 584,
+      "sha256": "94ec376bc4d491f7a513c6741c0929057af79e9f1eb655dd26a81d4a0b6be910"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P3/STMGPrompt_Full_MSMGDWU_DiffusionHistory/metrics_eval_h10.json",
+      "size": 555,
+      "sha256": "cf2d266272c13a9601dc5bb35512914a9a9cd28fe926f51b42d6406ce75efcf9"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P3/STMGPrompt_Full_MSMGDWU_DiffusionHistory/metrics_eval_h3.json",
+      "size": 552,
+      "sha256": "851f6c888ef097fbc79711e3e590831725414e5de953c9efd89df83663ea6c94"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P3/STMGPrompt_Full_MSMGDWU_DiffusionHistory/metrics_eval_h6.json",
+      "size": 553,
+      "sha256": "974bdcd27611a6d6982782bcdf06d9311a5b4d42e5f491533c637ef2cee86e0c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P3/STMGPrompt_Full_MSMGDWU_DiffusionHistory/model_summary.json",
+      "size": 12296,
+      "sha256": "3591e9d085ef7801480ee6662562b5c6b7e9f913df0b70234fd8d9619bd883c6"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P3/STMGPrompt_Full_MSMGDWU_DiffusionHistory/prediction_metadata.json",
+      "size": 615,
+      "sha256": "8e0c905d08a33910e319c9a0fe97ec0aec293433f2e2ac8bcf126d9e1212da8a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P3/STMGPrompt_Full_MSMGDWU_DiffusionHistory/run_status.json",
+      "size": 973,
+      "sha256": "a92359e9f2e90e55a1bfd9110516d1489017d8a9d73616e434c7a280f55ffce7"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P4/STMGPrompt_Full_MSMGDWU_DiffusionHistory/active_config.json",
+      "size": 5267,
+      "sha256": "95e913a73e226b795a5a2dcf03f90302d28b8a325d6772c7f9def34f32b49d57"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P4/STMGPrompt_Full_MSMGDWU_DiffusionHistory/config.json",
+      "size": 5267,
+      "sha256": "95e913a73e226b795a5a2dcf03f90302d28b8a325d6772c7f9def34f32b49d57"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P4/STMGPrompt_Full_MSMGDWU_DiffusionHistory/evaluation_complete.json",
+      "size": 264,
+      "sha256": "fcc816c1b185752763456f0cce074b7805d75a16bb93b33cf9611fffd1d30418"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P4/STMGPrompt_Full_MSMGDWU_DiffusionHistory/metrics.csv",
+      "size": 584,
+      "sha256": "577f19bbf478bc2fc79888ccb01e94ab212366bdd3baac710d5d4d92a6754f86"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P4/STMGPrompt_Full_MSMGDWU_DiffusionHistory/metrics_eval_h10.json",
+      "size": 555,
+      "sha256": "6f1e0bc1c97b4b72fa2b7aabaf2eb2eedb91f8b6403aee99a681399dff3e84b5"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P4/STMGPrompt_Full_MSMGDWU_DiffusionHistory/metrics_eval_h3.json",
+      "size": 552,
+      "sha256": "af91519becc84b10facee6a5965e5c2aedc722a5f64f873f978ca35969d537f7"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P4/STMGPrompt_Full_MSMGDWU_DiffusionHistory/metrics_eval_h6.json",
+      "size": 553,
+      "sha256": "c1fdb0d6869011d3f7f3c1343dd09d062ab233aa6132fee1b1f5fe9a34103867"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P4/STMGPrompt_Full_MSMGDWU_DiffusionHistory/model_summary.json",
+      "size": 12296,
+      "sha256": "9144ab524aab545f079ba923dc94683579934672cec9cdfcb913ea500a3123c9"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P4/STMGPrompt_Full_MSMGDWU_DiffusionHistory/prediction_metadata.json",
+      "size": 616,
+      "sha256": "19bd52b5d6b6d32fe74126a65866306a8a9f463cbcf8e96babfb20061dce93a4"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P4/STMGPrompt_Full_MSMGDWU_DiffusionHistory/run_status.json",
+      "size": 973,
+      "sha256": "b71f736269015c18093ebd5b124ac8c455d97e8ca4b35058cd0c34a695ee55db"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P5/STMGPrompt_Full_MSMGDWU_DiffusionHistory/active_config.json",
+      "size": 5267,
+      "sha256": "3f99f1564d61e26d21e1880b70e66eb6da889c3e93bbbaa636bb4a1c84db762d"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P5/STMGPrompt_Full_MSMGDWU_DiffusionHistory/config.json",
+      "size": 5267,
+      "sha256": "3f99f1564d61e26d21e1880b70e66eb6da889c3e93bbbaa636bb4a1c84db762d"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P5/STMGPrompt_Full_MSMGDWU_DiffusionHistory/evaluation_complete.json",
+      "size": 264,
+      "sha256": "6116d9cc3c896c0e4ab1db9f5eb6e547f9421e7341d693b679244d143d00b09a"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P5/STMGPrompt_Full_MSMGDWU_DiffusionHistory/metrics.csv",
+      "size": 584,
+      "sha256": "192207855aec37c2baad81c2e831aa0847a0f27c9fa0864c0c72007b8ae4340f"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P5/STMGPrompt_Full_MSMGDWU_DiffusionHistory/metrics_eval_h10.json",
+      "size": 552,
+      "sha256": "c722d52f125839107b478b2197f923498f248234d4e6b0df9c538b4e6a44d315"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P5/STMGPrompt_Full_MSMGDWU_DiffusionHistory/metrics_eval_h3.json",
+      "size": 553,
+      "sha256": "eecceb530b3f03a06bac5ac056cd933ab2bb1247932b9c51f1fce5f16957734c"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P5/STMGPrompt_Full_MSMGDWU_DiffusionHistory/metrics_eval_h6.json",
+      "size": 553,
+      "sha256": "cac6855367b41dbbd57b964934cc96a677179c9f2c18bace2136b6b09d114353"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P5/STMGPrompt_Full_MSMGDWU_DiffusionHistory/model_summary.json",
+      "size": 12294,
+      "sha256": "57f833f8f7d3e4fe489b55f325c54c391c8f50bf09187eb1ad8b6cfe5504ad76"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P5/STMGPrompt_Full_MSMGDWU_DiffusionHistory/prediction_metadata.json",
+      "size": 614,
+      "sha256": "f6902cee775d8461b8370b7b7097f09a9f3f47e1eddb66302898143f8310a252"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_method_full_test_ablation/method_full_msmgdwu_seed2026_p0_p5_test/P5/STMGPrompt_Full_MSMGDWU_DiffusionHistory/run_status.json",
+      "size": 973,
+      "sha256": "c67208bc5a4d45968b1af0a1dfe0f218f38290923a6ee5c4169f9c2a8ee14bd2"
+    }
+  ]
+}

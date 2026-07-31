@@ -1,0 +1,33 @@
+{
+  "events": [
+    {
+      "stage": "TRAIN_STARTED",
+      "time": "2026-07-21T16:36:07",
+      "supplementary_variant": "L2_HORIZON_DWU_ONLY"
+    },
+    {
+      "stage": "TRAIN_FINISHED",
+      "time": "2026-07-21T16:36:16",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke\\synthetic_smoke_seed2026\\L2_HORIZON_DWU_ONLY\\best_checkpoint.pt"
+    },
+    {
+      "stage": "TEST_STARTED",
+      "time": "2026-07-21T16:36:16",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke\\synthetic_smoke_seed2026\\L2_HORIZON_DWU_ONLY\\best_checkpoint.pt",
+      "model_rebuilt_before_test": true,
+      "strict_load": true
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-21T16:36:19",
+      "protocol_passed": true
+    }
+  ],
+  "current_stage": "PROCESS_FINISHED",
+  "updated_at": "2026-07-21T16:36:19",
+  "supplementary_variant": "L2_HORIZON_DWU_ONLY",
+  "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke\\synthetic_smoke_seed2026\\L2_HORIZON_DWU_ONLY\\best_checkpoint.pt",
+  "model_rebuilt_before_test": true,
+  "strict_load": true,
+  "protocol_passed": true
+}

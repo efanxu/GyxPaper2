@@ -1,0 +1,15 @@
+{
+  "failure_stage": "PROCESS_EXCEPTION",
+  "last_completed_epoch": "4",
+  "best_checkpoint_exists": true,
+  "last_checkpoint_exists": true,
+  "train_complete_exists": true,
+  "evaluation_complete_exists": true,
+  "num_workers": 0,
+  "persistent_workers": false,
+  "amp_enabled": false,
+  "cuda_memory_allocated": 526336,
+  "cuda_memory_reserved": 2097152,
+  "error_type": "RuntimeError",
+  "error": "Strict resume rejected because checkpoint config differs from current config."
+}

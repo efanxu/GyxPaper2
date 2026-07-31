@@ -1,0 +1,18 @@
+{
+  "run_root": "custom_models\\results\\st_mgprompt_fix2_checks\\full_model_multiseed_smoke",
+  "model_name": "STMGPrompt_Full_MSMGDWU_DiffusionHistory",
+  "seeds": [
+    {
+      "seed": 2026,
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_fix2_checks\\full_model_multiseed_smoke\\seed_2026\\STMGPrompt_Full_MSMGDWU_DiffusionHistory",
+      "best_epoch": 1,
+      "best_val_score": 16.354854079334064
+    },
+    {
+      "seed": 2027,
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_fix2_checks\\full_model_multiseed_smoke\\seed_2027\\STMGPrompt_Full_MSMGDWU_DiffusionHistory",
+      "best_epoch": 1,
+      "best_val_score": 24.19653079961508
+    }
+  ]
+}

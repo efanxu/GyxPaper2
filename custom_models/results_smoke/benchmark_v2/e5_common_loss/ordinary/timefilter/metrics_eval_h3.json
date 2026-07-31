@@ -1,0 +1,15 @@
+{
+  "horizon": 3,
+  "valid_target_count": 22,
+  "total_target_count": 24,
+  "valid_target_ratio": 0.9166666666666666,
+  "physical_clip_applied": true,
+  "score_lower_is_better": true,
+  "MAE": 944.6743091236461,
+  "RMSE": 996.0972800878941,
+  "R2": -9.736561021613834,
+  "Score": 3.843168920673607,
+  "score": 3.843168920673607,
+  "status": "OK",
+  "score_compute_unit": "MW_after_kW_to_MW_conversion"
+}

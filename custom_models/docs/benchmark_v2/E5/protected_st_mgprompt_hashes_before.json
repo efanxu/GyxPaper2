@@ -1,0 +1,176 @@
+{
+  "schema_version": "e5_protection_snapshot_v1",
+  "category": "st_mgprompt_hashes",
+  "phase": "before",
+  "created_at": "2026-07-28T13:07:55.365571+00:00",
+  "project_root": "D:\\PaperProject\\GyxPaper2",
+  "file_count": 33,
+  "logical_hash": "246c47e2ed9a10b67891651c64e10888c369347cac5e56b264ae14191080f410",
+  "files": [
+    {
+      "path": "custom_models/src/st_mgprompt/__init__.py",
+      "size": 1826,
+      "sha256": "0a4d87f3f64c74a2362defb3b517ab6308b56ba56847830575ccebbd2fbd2d61"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/artifact_status.py",
+      "size": 11619,
+      "sha256": "1e4bffa81a9201157d7540ab3a4eadcf8d085efbf252ff71e196907952c20931"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/canonical_artifact.py",
+      "size": 7311,
+      "sha256": "f228d60f413246e72914500c6b9e6769c8f97be6fb4308163038c4c3659d51d4"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/check_protocol.py",
+      "size": 35925,
+      "sha256": "469e5c165830827b7f0386425912b2cd0db1e9cd1bc966ad3fbe2537c289736f"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/config.py",
+      "size": 24543,
+      "sha256": "2719c6fb3a086401c279aac8bf78e4bd5b9cc5ce5a8ea63277d10de65b4b09af"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/coupling_block.py",
+      "size": 7807,
+      "sha256": "ea66a4b7a118682c88cd46f27aaccaba69446082e4eeb266fce42b367bccd057"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/cross_fusion.py",
+      "size": 8616,
+      "sha256": "36d0028f8d56ef34d458ad22c68790a8d830084cf62d2ec3ea63eda7c56122e4"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/data.py",
+      "size": 18777,
+      "sha256": "5460e6d81c27279f942c41849d63ddc3f730f1008a8309988b2990b9f9fcd3a5"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/decoder.py",
+      "size": 18499,
+      "sha256": "4d9b9c3b2a8ff8cc23cec0dadeb728c0e5fe3198f8642183e4e6aa4759ffdd87"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/diagnostics.py",
+      "size": 41327,
+      "sha256": "fbcf2d861a5e909462daf804c126d8e1f98a5e37ecbca4808c535067b4e8273b"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/evaluate.py",
+      "size": 20847,
+      "sha256": "9632fcf965d6bf705318de0366c240972081ce73939d5d10ef10c232fa719b15"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/experiment_protocol.py",
+      "size": 16759,
+      "sha256": "dd5d7fe196abfa005b5e7a753a2a3341ac0be9d7e65d7521aa369eaf1c324272"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/formal_runner.py",
+      "size": 17422,
+      "sha256": "7f91cdbd5ab8edd4a53cb06f66c742f7c47aeb00facd3a51fec231816341f1ef"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/full_shape_matrix_smoke.py",
+      "size": 8272,
+      "sha256": "70108453c1ebadca15c5f4f6055e846206d55b2bc2a6138b768450d57943665c"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/generate_delete_manifest.py",
+      "size": 5185,
+      "sha256": "0584f1889129cae12911070d13b643b4674058ea3a27f16a9049324ed461d809"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/graph_layers.py",
+      "size": 8093,
+      "sha256": "ee02a6a5726f5f02c5ad5456936bca40906968d42d062fb4562336976cd419e0"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/graph_prior.py",
+      "size": 17122,
+      "sha256": "97f3e95cc3f3d3e1a44ad1264bd6ebf69996f875d8ba82b6660a695300565917"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/losses.py",
+      "size": 17371,
+      "sha256": "f90b99df342de7b1b1ee6ea39bbf30cc84eceb11663b38dfc7070d3905afc32b"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/metrics.py",
+      "size": 10326,
+      "sha256": "64d8452ee90815c111ff038864b726f8587ae59cf2243e3b5e5210701a88e42a"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/model.py",
+      "size": 31381,
+      "sha256": "9e24562bf28ae0dfc562232f08436e8533f993440865cf07ec37e14e3280d816"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/prompt_alignment.py",
+      "size": 4823,
+      "sha256": "192a2c9f2393d7477f6291bdc5116841d34ff8ebb1c4ca30167e3450fd56b860"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/registry.py",
+      "size": 7971,
+      "sha256": "a75323ce2ed0c3c05dc985ca1d7106449715d114166a8ad1f227173e68c9f862"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/run_ablation.py",
+      "size": 498,
+      "sha256": "539d074a899c7dc315cc5fd5f1bb58bd3c7792815bedc98c4aeb08c4bb29b2d6"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/run_precision_ablation.py",
+      "size": 2634,
+      "sha256": "184100088ed0c93402b70ab496e8d3c96b1b802d13d0e7e416e3be640e000dcc"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/run_st_mgprompt.py",
+      "size": 52564,
+      "sha256": "e99937406fd14c3aacd0a27ea9bc333dc0aa7ec69c0dd1c7b7adb35754f055be"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/summarize_results.py",
+      "size": 8706,
+      "sha256": "a0c45b0176064e155fae904697b4b7b6609888a28fd9b9d9dfc0234181f491dc"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/temporal_layers.py",
+      "size": 11483,
+      "sha256": "747f8327b1555b602e86b95a14322557927da76a4bef1818b1d6155ca550f954"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/test_artifact_status.py",
+      "size": 6111,
+      "sha256": "adab0ad499ca81e4dd2130b66b9ef38ac4405519cd23482d91f9422a22eef8c1"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/test_component_ablation.py",
+      "size": 3858,
+      "sha256": "a43a76ff1e4575e18ed37eacb1988a215b2dad67203a0ff1cbd2496f3c9881d2"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/test_oom_regressions.py",
+      "size": 9498,
+      "sha256": "ef57332d40e277019d0a05411e8d5db0c546b0e6d8abd479d86d37c46588a800"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/train.py",
+      "size": 25023,
+      "sha256": "9275df21443a3182686c5633c3396d8423473be3c4279893504a4c817d24346f"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/v4_3_tests.py",
+      "size": 27123,
+      "sha256": "8cb5736d27501240f56d16b074a17bc8b2c50471039efe822c84f15fedcee167"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/volatility_patching.py",
+      "size": 40326,
+      "sha256": "c9bf4ff7c0a7d0dcc4fe7374c3dd0b4b69cdb04cd680a96762b7b998af96a231"
+    }
+  ]
+}

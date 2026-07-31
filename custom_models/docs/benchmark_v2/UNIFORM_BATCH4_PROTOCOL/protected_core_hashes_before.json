@@ -1,0 +1,52 @@
+{
+  "schema_version": "uniform_batch4_protection_snapshot_v1",
+  "phase": "before",
+  "created_at": "2026-07-29T11:04:07.534714+00:00",
+  "project_root": "D:\\PaperProject\\GyxPaper2",
+  "files": [
+    {
+      "path": "custom_models/results/st_mgprompt_canonical/full_fixed_dual_keep_msmgdwu_seed2026/best_checkpoint.pt",
+      "exists": true,
+      "size": 3509704,
+      "mtime_ns": 1784556404000000000,
+      "sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/experiments/e5_common_loss/e5_common_loss_protocol_v1.json",
+      "exists": true,
+      "size": 963,
+      "mtime_ns": 1785244282676977900,
+      "sha256": "fa0c7981d13d1b418d7ccb8cac2269ff64f852c7beca9843663b20af709c2f82"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/protocol/benchmark_protocol_v1.json",
+      "exists": true,
+      "size": 2249,
+      "mtime_ns": 1785141333400342700,
+      "sha256": "a250a476a03683c7ed62c77685d8b878b0fb5e2d371b694aba308d6df62e2492"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/protocol/graph_protocol_v1.json",
+      "exists": true,
+      "size": 5581,
+      "mtime_ns": 1785224150394349600,
+      "sha256": "6045202248645e8e84e76b13dedc8f49e2d02fa790008531dae26c13d00df215"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/protocol/graph_v1/graph_bundle_manifest_v1.json",
+      "exists": true,
+      "size": 3621,
+      "mtime_ns": 1785224150392570200,
+      "sha256": "75421fd68245cc439d0188dbb340c0d09ed48f40e64b56415335a2d211892f21"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/protocol/graph_v1/node_order_v1.json",
+      "exists": true,
+      "size": 2065,
+      "mtime_ns": 1785224150383065700,
+      "sha256": "2fb259959a7c56552ae38b0a1a924a00221ba74f7237475174aa53debe8ab3fa"
+    }
+  ],
+  "expected_benchmark_protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "expected_canonical_checkpoint_sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a"
+}

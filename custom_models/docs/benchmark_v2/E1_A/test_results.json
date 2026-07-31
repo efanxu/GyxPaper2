@@ -1,0 +1,39 @@
+{
+  "task": "E1-A",
+  "interpreter": "D:/Apps/Miniconda3/envs/env_tslib/python.exe",
+  "framework": "unittest",
+  "final_suite": {
+    "command": "python -m unittest discover -s custom_models/tests/benchmark_v2 -p test_*.py",
+    "status": "PASS",
+    "tests_run": 30,
+    "failures": 0,
+    "errors": 0,
+    "elapsed_seconds": 1.892
+  },
+  "e0_b_regression_tests_retained": 17,
+  "e1_a_tests_added": 13,
+  "protocol_check": {
+    "status": "PASS",
+    "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b"
+  },
+  "registry_check": {
+    "status": "PASS",
+    "total": 28,
+    "available": 3,
+    "unavailable": 25,
+    "trainable": 1,
+    "non_trainable": 2
+  },
+  "framework_defect_regression": {
+    "test": "test_official_score_ignores_masked_nan_targets",
+    "pre_fix_status": "FAIL",
+    "pre_fix_error": "AssertionError: nan != 0.0",
+    "post_fix_status": "PASS",
+    "fix_scope": "custom_models/src/benchmark_v2/metrics.py only"
+  },
+  "development_iteration": {
+    "initial_29_test_run": "FAIL",
+    "reason": "One new CLI test expected the non-trainable wording for DLinear; corrected to the frozen unavailable-model wording.",
+    "implementation_failure": false
+  }
+}

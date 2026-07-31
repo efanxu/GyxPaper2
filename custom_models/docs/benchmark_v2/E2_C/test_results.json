@@ -1,0 +1,37 @@
+{
+  "task": "E2-C",
+  "interpreter": "D:/Apps/Miniconda3/envs/env_tslib/python.exe",
+  "framework": "unittest",
+  "compileall": {
+    "status": "PASS",
+    "command": "python -m compileall -q custom_models/src/benchmark_v2"
+  },
+  "focused_suite": {
+    "status": "PASS",
+    "tests_run": 11,
+    "failures": 0,
+    "errors": 0
+  },
+  "hardware_preflight_suite": {
+    "status": "PASS",
+    "tests_run": 9,
+    "test_only_dummy_process_runner": true
+  },
+  "final_suite": {
+    "status": "PASS",
+    "tests_run": 84,
+    "failures": 0,
+    "errors": 0,
+    "command": "python -m unittest discover -s custom_models/tests/benchmark_v2 -p test_*.py"
+  },
+  "retained_development_test_failure": {
+    "status": "FIXED",
+    "suite": "test_e2_c_models",
+    "failure": "calendar-mark rejection assertion initially supplied an invalid x_mark B/T/N shape and was rejected by BenchmarkBatch contract before the Adapter",
+    "resolution": "test fixture changed to valid (B,T,N,4); Adapter fail-closed assertion then passed"
+  },
+  "protocol_check": {
+    "status": "PASS",
+    "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "task": "E2-D",
+  "snapshot": "E2-D task before",
+  "algorithm": "SHA256; directory digest is SHA256 of sorted relative_path:sha256 newline records; __pycache__ excluded",
+  "paths": [
+    {
+      "path": "custom_models/src/benchmark_v2/models/timemixer.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "0613aba593d8109cfb2b8a527ae0d21b30aad838c85d6063813844ee58f9aafa"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/tsmixer.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "15f6bb75509266f202a3eb4e3a9dcc7f587a0fc2fbbfa78bf1599b3eb4130725"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/frets.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "8694d9f95a33b65a664b52f7006295c7d55a3f1334df49a4c3376bfec543738f"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/timemixer.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "669f5bbd017b23982ec75af6372a5ab88767a32b8a7ed999a5fb5d21627c674d"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/tsmixer.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "f99d834b1d75f6595489e6c9cd275eb9ca92fcb9e5026f9031a2d2d46e64a994"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/frets.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "ec99846bb07fccbd9d4ca67571fc408ac4ff60c83f3751be9d333ac9325efd0a"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/adapters/e2_c.py",
+      "exists": true,
+      "kind": "file",
+      "sha256": "d6dcd02402ac48c7ea40bb8de196b402f4fd465ab7a3da58c840ce3c7d070e36"
+    },
+    {
+      "path": "custom_models/docs/benchmark_v2/E2_C",
+      "exists": true,
+      "kind": "directory",
+      "file_count": 32,
+      "tree_sha256": "e009986c2b8102cf9143d5a2a6098e8f228f2b5d45bc779dc4068b25f4b316ef"
+    }
+  ],
+  "protocol_file_sha256": "a250a476a03683c7ed62c77685d8b878b0fb5e2d371b694aba308d6df62e2492",
+  "canonical_checkpoint_sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+  "formal_output_root_existed": false
+}

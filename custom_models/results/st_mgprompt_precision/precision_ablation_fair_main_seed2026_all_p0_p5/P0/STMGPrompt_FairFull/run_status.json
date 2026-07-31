@@ -1,0 +1,74 @@
+{
+  "events": [
+    {
+      "stage": "TRAIN_STARTED",
+      "time": "2026-07-15T23:08:03"
+    },
+    {
+      "stage": "PROCESS_EXCEPTION",
+      "time": "2026-07-15T23:10:00",
+      "failure_stage": "PROCESS_EXCEPTION",
+      "last_completed_epoch": null,
+      "best_checkpoint_exists": false,
+      "last_checkpoint_exists": false,
+      "train_complete_exists": false,
+      "evaluation_complete_exists": false,
+      "num_workers": 0,
+      "persistent_workers": false,
+      "amp_enabled": true,
+      "cuda_memory_allocated": 30438380032,
+      "cuda_memory_reserved": 31610372096,
+      "error_type": "OutOfMemoryError",
+      "error": "CUDA out of memory. Tried to allocate 454.00 MiB. GPU 0 has a total capacity of 15.99 GiB of which 0 bytes is free. Of the allocated memory 28.35 GiB is allocated by PyTorch, and 1.09 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)"
+    },
+    {
+      "stage": "TRAIN_STARTED",
+      "time": "2026-07-16T14:40:07"
+    },
+    {
+      "stage": "TRAIN_FINISHED",
+      "time": "2026-07-16T14:58:48",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_precision\\precision_ablation_fair_main_seed2026_all_p0_p5\\P0\\STMGPrompt_FairFull\\best_checkpoint.pt",
+      "last_completed_epoch": 14
+    },
+    {
+      "stage": "BEST_CHECKPOINT_SAVED",
+      "time": "2026-07-16T14:58:48",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_precision\\precision_ablation_fair_main_seed2026_all_p0_p5\\P0\\STMGPrompt_FairFull\\best_checkpoint.pt"
+    },
+    {
+      "stage": "FINAL_VALIDATION_STARTED",
+      "time": "2026-07-16T14:58:48"
+    },
+    {
+      "stage": "FINAL_VALIDATION_FINISHED",
+      "time": "2026-07-16T14:58:48"
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-16T14:58:48",
+      "skip_test": true
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-16T14:58:48"
+    }
+  ],
+  "current_stage": "PROCESS_FINISHED",
+  "updated_at": "2026-07-16T14:58:48",
+  "failure_stage": "PROCESS_EXCEPTION",
+  "last_completed_epoch": 14,
+  "best_checkpoint_exists": false,
+  "last_checkpoint_exists": false,
+  "train_complete_exists": false,
+  "evaluation_complete_exists": false,
+  "num_workers": 0,
+  "persistent_workers": false,
+  "amp_enabled": true,
+  "cuda_memory_allocated": 30438380032,
+  "cuda_memory_reserved": 31610372096,
+  "error_type": "OutOfMemoryError",
+  "error": "CUDA out of memory. Tried to allocate 454.00 MiB. GPU 0 has a total capacity of 15.99 GiB of which 0 bytes is free. Of the allocated memory 28.35 GiB is allocated by PyTorch, and 1.09 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+  "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_precision\\precision_ablation_fair_main_seed2026_all_p0_p5\\P0\\STMGPrompt_FairFull\\best_checkpoint.pt",
+  "skip_test": true
+}

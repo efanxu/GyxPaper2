@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "benchmark_v2/registry_schema_v1",
+  "type": "object",
+  "required": ["registry_version", "automatic_scanning", "remote_download", "models"],
+  "properties": {
+    "registry_version": {"const": "benchmark_registry_v1"},
+    "automatic_scanning": {"const": false},
+    "remote_download": {"const": false},
+    "models": {"type": "array", "minItems": 28, "maxItems": 28, "uniqueItems": true}
+  },
+  "additionalProperties": true
+}

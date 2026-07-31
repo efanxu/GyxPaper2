@@ -1,0 +1,86 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "model_input_path_exists",
+      "passed": true,
+      "details": "smoke synthetic mode; file existence not required"
+    },
+    {
+      "name": "eval_target_path_exists",
+      "passed": true,
+      "details": "smoke synthetic mode; file existence not required"
+    },
+    {
+      "name": "location_path_exists",
+      "passed": true,
+      "details": "D:\\PaperProject\\GyxPaper2\\dataset\\sdwpf_turb_location_elevation.csv"
+    },
+    {
+      "name": "target_is_patv_raw",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "target_mask_is_valid_target_mask",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "default_16_features",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "no_forbidden_input_features",
+      "passed": true,
+      "details": "[]"
+    },
+    {
+      "name": "fair_loss_name",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "msmg_dwu_disabled_for_fair_protocol",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "test_uses_full_windows",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "direct_decoder_strategy",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "no_fake_coupling_block_for_non_coupled_models",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_sources_in_base_features",
+      "passed": true,
+      "details": "['Wspd', 'Patv_clean_for_input']"
+    },
+    {
+      "name": "physical_clip_eval_enabled",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "physical_clip_uniform_protocol",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "checkpoint_metric_declared",
+      "passed": true,
+      "details": ""
+    }
+  ],
+  "data_summary": null
+}

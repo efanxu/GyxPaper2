@@ -1,0 +1,60 @@
+{
+  "task": "E1-B",
+  "interpreter": "D:/Apps/Miniconda3/envs/env_tslib/python.exe",
+  "framework": "unittest",
+  "final_suite": {
+    "command": "python -m unittest discover -s custom_models/tests/benchmark_v2 -p test_*.py",
+    "status": "PASS",
+    "tests_run": 46,
+    "failures": 0,
+    "errors": 0,
+    "elapsed_seconds": 6.094
+  },
+  "e0_b_regression_tests_retained": 17,
+  "e1_a_test_baseline_retained": 30,
+  "e1_b_tests_added": 16,
+  "protocol_check": {
+    "status": "PASS",
+    "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b"
+  },
+  "registry_check": {
+    "status": "PASS",
+    "total": 28,
+    "available": 5,
+    "unavailable_or_blocked": 23,
+    "trainable": 3,
+    "non_trainable": 2,
+    "blocked_full_shape_oom": [
+      "tide",
+      "segrnn"
+    ]
+  },
+  "focused_checks": [
+    {
+      "name": "TSLib explicit allowlist/lazy local source loader",
+      "status": "PASS"
+    },
+    {
+      "name": "four-model shape, semantics, node independence, backward and strict reload",
+      "status": "PASS"
+    },
+    {
+      "name": "TiDE target/mask independence, zero placeholders and non-zero future covariate rejection",
+      "status": "PASS"
+    },
+    {
+      "name": "SegRNN original dimension mismatch reproduction and seg_len=2 regression",
+      "status": "PASS"
+    },
+    {
+      "name": "masked raw NaN official Score regression",
+      "status": "PASS"
+    }
+  ],
+  "full_shape_acceptance": {
+    "dlinear": "PASS",
+    "lightts": "PASS",
+    "tide": "FAIL_OOM",
+    "segrnn": "FAIL_OOM"
+  }
+}

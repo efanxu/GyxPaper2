@@ -1,0 +1,8 @@
+{
+  "loss_id": "masked_score_aligned_hybrid",
+  "loss_space": "normalized Patv_raw",
+  "value": 2.2042758464813232,
+  "training_loss": "NOT_APPLICABLE",
+  "trained_with_common_loss": false,
+  "common_loss_evaluation_applied": true
+}

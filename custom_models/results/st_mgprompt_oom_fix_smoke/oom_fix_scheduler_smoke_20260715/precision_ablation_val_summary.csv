@@ -1,0 +1,7 @@
+variant,status,train_status,evaluation_status,skip_reason,graph_operator,decoder_context_mode,hidden_dim,num_coupling_layers,trainable_parameters,best_epoch,best_val_Score_H3,best_val_Score_H6,best_val_Score_H10,best_val_MAE_H3,best_val_MAE_H6,best_val_MAE_H10,best_val_RMSE_H3,best_val_RMSE_H6,best_val_RMSE_H10,relative_improvement_vs_P0_H10
+P0,failed,failed,not_started,,simple,last_state,64,1,,,,,,,,,,,,
+P1,blocked_by_failed_baseline,blocked_by_failed_baseline,blocked_by_failed_baseline,P0 baseline failed,bidirectional_diffusion,last_state,64,1,,,,,,,,,,,,
+P2,blocked_by_failed_baseline,blocked_by_failed_baseline,blocked_by_failed_baseline,P0 baseline failed,simple,full_history_cross_attention,64,1,,,,,,,,,,,,
+P3,blocked_by_failed_baseline,blocked_by_failed_baseline,blocked_by_failed_baseline,P0 baseline failed,bidirectional_diffusion,full_history_cross_attention,64,1,,,,,,,,,,,,
+P4,blocked_by_failed_baseline,blocked_by_failed_baseline,blocked_by_failed_baseline,P0 baseline failed,bidirectional_diffusion,full_history_cross_attention,96,1,,,,,,,,,,,,
+P5,blocked_by_failed_baseline,blocked_by_failed_baseline,blocked_by_failed_baseline,P0 baseline failed,bidirectional_diffusion,full_history_cross_attention,96,2,,,,,,,,,,,,

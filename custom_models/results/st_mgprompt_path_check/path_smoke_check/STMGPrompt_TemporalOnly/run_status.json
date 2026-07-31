@@ -1,0 +1,41 @@
+{
+  "events": [
+    {
+      "stage": "TRAIN_STARTED",
+      "time": "2026-07-19T17:19:54"
+    },
+    {
+      "stage": "TRAIN_FINISHED",
+      "time": "2026-07-19T17:20:13",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_path_check\\path_smoke_check\\STMGPrompt_TemporalOnly\\best_checkpoint.pt",
+      "last_completed_epoch": 1
+    },
+    {
+      "stage": "BEST_CHECKPOINT_SAVED",
+      "time": "2026-07-19T17:20:13",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_path_check\\path_smoke_check\\STMGPrompt_TemporalOnly\\best_checkpoint.pt"
+    },
+    {
+      "stage": "FINAL_VALIDATION_STARTED",
+      "time": "2026-07-19T17:20:13"
+    },
+    {
+      "stage": "FINAL_VALIDATION_FINISHED",
+      "time": "2026-07-19T17:20:13"
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-19T17:20:13",
+      "skip_test": true
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-19T17:20:13"
+    }
+  ],
+  "current_stage": "PROCESS_FINISHED",
+  "updated_at": "2026-07-19T17:20:13",
+  "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_path_check\\path_smoke_check\\STMGPrompt_TemporalOnly\\best_checkpoint.pt",
+  "last_completed_epoch": 1,
+  "skip_test": true
+}

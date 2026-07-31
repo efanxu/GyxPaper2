@@ -1,0 +1,93 @@
+{
+  "schema_version": "uniform_batch4_protection_snapshot_v1",
+  "phase": "after",
+  "created_at": "2026-07-29T12:43:27.690548+00:00",
+  "project_root": "D:\\PaperProject\\GyxPaper2",
+  "files": [
+    {
+      "path": "custom_models/src/st_mgprompt/__init__.py",
+      "exists": true,
+      "size": 1826,
+      "mtime_ns": 1784542280000000000,
+      "sha256": "0a4d87f3f64c74a2362defb3b517ab6308b56ba56847830575ccebbd2fbd2d61"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/config.py",
+      "exists": true,
+      "size": 24543,
+      "mtime_ns": 1784983419735234900,
+      "sha256": "2719c6fb3a086401c279aac8bf78e4bd5b9cc5ce5a8ea63277d10de65b4b09af"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/coupling_block.py",
+      "exists": true,
+      "size": 7807,
+      "mtime_ns": 1784540882000000000,
+      "sha256": "ea66a4b7a118682c88cd46f27aaccaba69446082e4eeb266fce42b367bccd057"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/cross_fusion.py",
+      "exists": true,
+      "size": 8616,
+      "mtime_ns": 1784540852000000000,
+      "sha256": "36d0028f8d56ef34d458ad22c68790a8d830084cf62d2ec3ea63eda7c56122e4"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/decoder.py",
+      "exists": true,
+      "size": 18499,
+      "mtime_ns": 1784540912000000000,
+      "sha256": "4d9b9c3b2a8ff8cc23cec0dadeb728c0e5fe3198f8642183e4e6aa4759ffdd87"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/graph_layers.py",
+      "exists": true,
+      "size": 8093,
+      "mtime_ns": 1784540792000000000,
+      "sha256": "ee02a6a5726f5f02c5ad5456936bca40906968d42d062fb4562336976cd419e0"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/graph_prior.py",
+      "exists": true,
+      "size": 17122,
+      "mtime_ns": 1784541248000000000,
+      "sha256": "97f3e95cc3f3d3e1a44ad1264bd6ebf69996f875d8ba82b6660a695300565917"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/losses.py",
+      "exists": true,
+      "size": 17371,
+      "mtime_ns": 1784902934411438000,
+      "sha256": "f90b99df342de7b1b1ee6ea39bbf30cc84eceb11663b38dfc7070d3905afc32b"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/model.py",
+      "exists": true,
+      "size": 31381,
+      "mtime_ns": 1784621970000000000,
+      "sha256": "9e24562bf28ae0dfc562232f08436e8533f993440865cf07ec37e14e3280d816"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/prompt_alignment.py",
+      "exists": true,
+      "size": 4823,
+      "mtime_ns": 1784130898000000000,
+      "sha256": "192a2c9f2393d7477f6291bdc5116841d34ff8ebb1c4ca30167e3450fd56b860"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/temporal_layers.py",
+      "exists": true,
+      "size": 11483,
+      "mtime_ns": 1784032044000000000,
+      "sha256": "747f8327b1555b602e86b95a14322557927da76a4bef1818b1d6155ca550f954"
+    },
+    {
+      "path": "custom_models/src/st_mgprompt/volatility_patching.py",
+      "exists": true,
+      "size": 40326,
+      "mtime_ns": 1784621806000000000,
+      "sha256": "c9bf4ff7c0a7d0dcc4fe7374c3dd0b4b69cdb04cd680a96762b7b998af96a231"
+    }
+  ],
+  "scope": "architecture_config_loss_only"
+}

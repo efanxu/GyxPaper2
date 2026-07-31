@@ -1,0 +1,11 @@
+{
+  "status": "completed",
+  "last_epoch": 1,
+  "best_epoch": 1,
+  "best_val_score_h10": 12.888198202488567,
+  "best_checkpoint": "custom_models\\results\\st_mgprompt_oom_fix_smoke\\oom_fix_normal_smoke_v2_20260715\\STMGPrompt_FairFull\\best_checkpoint.pt",
+  "last_checkpoint": "custom_models\\results\\st_mgprompt_oom_fix_smoke\\oom_fix_normal_smoke_v2_20260715\\STMGPrompt_FairFull\\last_checkpoint.pt",
+  "amp_enabled": false,
+  "amp_dtype": null,
+  "config_hash": "a3ad73a0e62ff1551bcbfe1151240b20829865936f9701d5a037ff70e1922abe"
+}

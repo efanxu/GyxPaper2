@@ -1,0 +1,272 @@
+{
+  "trainable_parameters": 2556,
+  "non_trainable_parameters": 0,
+  "total_parameters": 2556,
+  "parameter_memory_mb": 0.0097503662109375,
+  "input_dim": 16,
+  "num_nodes": 8,
+  "feature_cols": [
+    "Wspd",
+    "Wdir",
+    "Etmp",
+    "Itmp",
+    "Ndir",
+    "Pab1",
+    "Pab2",
+    "Pab3",
+    "Prtv",
+    "T2m",
+    "Sp",
+    "RelH",
+    "Wspd_w",
+    "Wdir_w",
+    "Tp",
+    "Patv_clean_for_input"
+  ],
+  "window_counts": {
+    "train": 86,
+    "val": 3,
+    "test": 3
+  },
+  "raw_split_valid_ratio": {
+    "train": 0.9928385615348816,
+    "val": 0.9947916865348816,
+    "test": 0.9947916865348816
+  },
+  "window_expanded_valid_ratio": {
+    "train": 0.9934593023255814,
+    "val": 0.9875,
+    "test": 0.9958333333333333
+  },
+  "model_name": "STMGPrompt_TemporalOnly_VADSP",
+  "run_id": "smoke_v43_vadsp_fixed",
+  "seed": 2026,
+  "checkpoint": "custom_models\\results\\st_mgprompt\\smoke_v43_vadsp_fixed\\STMGPrompt_TemporalOnly_VADSP\\best_checkpoint.pt",
+  "loss_function": "masked_score_aligned_hybrid",
+  "eligible_for_fair_main_table": true,
+  "loss_changed_from_fair_protocol": false,
+  "eligible_for_method_full_table": false,
+  "fair_loss_comparison": true,
+  "skipped_all_invalid_batches": 0,
+  "registry": [
+    {
+      "name": "STMGPrompt_TemporalOnly",
+      "implemented": true,
+      "eligible_for_fair_main_table": true,
+      "uses_msmg_dwu": false,
+      "requires_coupling_block": false,
+      "description": "Step-0 shared-parameter GRU temporal-only baseline."
+    },
+    {
+      "name": "STMGPrompt_TemporalOnly_VADSP",
+      "implemented": true,
+      "eligible_for_fair_main_table": true,
+      "uses_msmg_dwu": false,
+      "requires_coupling_block": false,
+      "description": "Step-1 VADSP + TemporalOnly smoke path; not the FairFull coupled architecture."
+    },
+    {
+      "name": "STMGPrompt_DynamicPatching",
+      "implemented": true,
+      "eligible_for_fair_main_table": false,
+      "uses_msmg_dwu": false,
+      "requires_coupling_block": false,
+      "description": "Step-1 dynamic patching ablation alias for the VADSP smoke path."
+    },
+    {
+      "name": "STMGPrompt_FairFull",
+      "implemented": true,
+      "eligible_for_fair_main_table": true,
+      "uses_msmg_dwu": false,
+      "requires_coupling_block": true,
+      "description": "Step-4 VADSP + TrendPriorDualGraph + ST-MG Coupling Block + direct ST-prompt head."
+    },
+    {
+      "name": "STMGPrompt_Full_MSMGDWU",
+      "implemented": true,
+      "eligible_for_fair_main_table": false,
+      "uses_msmg_dwu": true,
+      "requires_coupling_block": true,
+      "description": "Method-full model with MS-MG-DWU, not eligible for fair main table."
+    },
+    {
+      "name": "STMGPrompt_SerialGraphThenFusion",
+      "implemented": false,
+      "eligible_for_fair_main_table": false,
+      "uses_msmg_dwu": false,
+      "requires_coupling_block": false,
+      "description": "Serial ablation only; never the FairFull default."
+    },
+    {
+      "name": "STMGPrompt_CouplingCrossFusion",
+      "implemented": true,
+      "eligible_for_fair_main_table": false,
+      "uses_msmg_dwu": false,
+      "requires_coupling_block": true,
+      "description": "Step-4/5 coupling and cross-fusion ablation using the ST-Prompt direct decoder."
+    },
+    {
+      "name": "STMGPrompt_TrendPriorGraph",
+      "implemented": true,
+      "eligible_for_fair_main_table": false,
+      "uses_msmg_dwu": false,
+      "requires_coupling_block": false,
+      "description": "Step-2 VADSP + Trend-Prior Adaptive Dual Graph smoke ablation; not the FairFull model."
+    },
+    {
+      "name": "STMGPrompt_GraphTemporalSmoke",
+      "implemented": true,
+      "eligible_for_fair_main_table": false,
+      "uses_msmg_dwu": false,
+      "requires_coupling_block": false,
+      "description": "Step-3 VADSP + adaptive dual graph + Graph-Temporal Encoder smoke ablation."
+    }
+  ],
+  "metadata": {
+    "input_feature_set": "base_official_scada_era5",
+    "feature_names": [
+      "Wspd",
+      "Wdir",
+      "Etmp",
+      "Itmp",
+      "Ndir",
+      "Pab1",
+      "Pab2",
+      "Pab3",
+      "Prtv",
+      "T2m",
+      "Sp",
+      "RelH",
+      "Wspd_w",
+      "Wdir_w",
+      "Tp",
+      "Patv_clean_for_input"
+    ],
+    "num_features": 16,
+    "target_col": "Patv_raw",
+    "target_mask_col": "valid_target_mask",
+    "target_mask_used_as_model_input": false,
+    "final_prediction_target_is_power": true,
+    "split_indices": {
+      "train": [
+        0,
+        192
+      ],
+      "val": [
+        192,
+        216
+      ],
+      "test": [
+        216,
+        240
+      ]
+    },
+    "window_counts": {
+      "train": 86,
+      "val": 3,
+      "test": 3
+    },
+    "valid_target_ratio": {
+      "train": 0.9928385615348816,
+      "val": 0.9947916865348816,
+      "test": 0.9947916865348816
+    },
+    "raw_split_valid_ratio": {
+      "train": 0.9928385615348816,
+      "val": 0.9947916865348816,
+      "test": 0.9947916865348816
+    },
+    "raw_split_valid_count": {
+      "train": 1525,
+      "val": 191,
+      "test": 191
+    },
+    "raw_split_total_count": {
+      "train": 1536,
+      "val": 192,
+      "test": 192
+    },
+    "window_expanded_valid_ratio": {
+      "train": 0.9934593023255814,
+      "val": 0.9875,
+      "test": 0.9958333333333333
+    },
+    "window_expanded_valid_count": {
+      "train": 6835,
+      "val": 237,
+      "test": 239
+    },
+    "window_expanded_total_count": {
+      "train": 6880,
+      "val": 240,
+      "test": 240
+    },
+    "input_scaler_fit_split": "train_only",
+    "target_scaler_fit_split": "train_only",
+    "target_scaler_fit_mask": "valid_target_mask",
+    "window_rule": "[t-lookback,t)->[t,t+max_pred_len)",
+    "sample_stride_is_prediction_start_stride": true,
+    "uses_on_the_fly_features": true,
+    "on_the_fly_feature_names": [
+      "volatility",
+      "rolling_std",
+      "dynamic_patch_gate",
+      "x_fine",
+      "x_coarse"
+    ],
+    "on_the_fly_features_history_only": true
+  },
+  "graph_snapshot_summary": null,
+  "vadsp_summary": {
+    "volatility_mean": 0.09492063522338867,
+    "volatility_std": 0.5869872570037842,
+    "rolling_std_mean": 0.5168478488922119,
+    "rolling_std_std": 0.2451532781124115,
+    "gate_mean": 0.6005810499191284,
+    "gate_std": 0.12691453099250793,
+    "gate_min": 0.29505014419555664,
+    "gate_max": 0.8475655317306519,
+    "gate_p01": 0.29505014419555664,
+    "gate_p10": 0.44592714905738834,
+    "gate_p25": 0.5318891555070877,
+    "gate_p50": 0.6224075555801392,
+    "gate_p75": 0.6894082129001617,
+    "gate_p90": 0.7370798587799072,
+    "gate_p99": 0.8166708797216415,
+    "gate_inter_quantile_range": 0.15751905739307404,
+    "gate_p99_minus_p01": 0.5216207355260849,
+    "gate_mean_lowest_10pct_volatility": 0.3225560784339905,
+    "gate_mean_middle_volatility": 0.6127983927726746,
+    "gate_mean_highest_10pct_volatility": 0.7708123326301575,
+    "gate_high_minus_low": 0.448256254196167,
+    "corr_gate_volatility": 0.9645819689835982,
+    "corr_gate_rolling_std": 0.738018125810116,
+    "corr_gate_abs_delta_source": 0.9645819689835982,
+    "fine_feature_norm": 2.55172061920166,
+    "coarse_feature_norm": 2.810222864151001,
+    "weighted_fine_norm": 1.5346516370773315,
+    "weighted_coarse_norm": 1.1198333501815796,
+    "fine_to_coarse_weighted_norm_ratio": 1.3704285881720613,
+    "source_weights": [
+      0.5051766037940979,
+      0.4948233664035797
+    ],
+    "temperature": 1.3231250047683716,
+    "beta_fine": 0.05017499253153801,
+    "beta_coarse": 0.0671253427863121,
+    "coarse_scale_weight_mean_per_scale": [
+      0.47875329852104187,
+      0.17328721284866333,
+      0.3479596674442291
+    ],
+    "volatility_source_cols": [
+      "Wspd",
+      "Patv_clean_for_input"
+    ],
+    "statistics_fit_split": "train_only",
+    "history_only": true,
+    "uses_target_mask": false,
+    "uses_future_inputs": false,
+    "plot_error": "No module named 'matplotlib'"
+  }
+}

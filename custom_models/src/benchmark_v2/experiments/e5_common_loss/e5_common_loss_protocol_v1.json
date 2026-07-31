@@ -1,0 +1,18 @@
+{
+  "profile_id": "e5_common_loss_architecture_v1",
+  "cli_profile_id": "e5_common_loss_v1",
+  "base_benchmark_protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "loss_id": "masked_score_aligned_hybrid",
+  "loss_source_hash": "f90b99df342de7b1b1ee6ea39bbf30cc84eceb11663b38dfc7070d3905afc32b",
+  "loss_profile_hash": "0fc1fca238d7161d3a0257d639a11df8cc92ad2a1c4d61eab234338fa24b59fa",
+  "loss_space": "normalized Patv_raw",
+  "mask_semantics": "A8 mask.float; per-B,N valid-horizon normalization; invalid B,N rows excluded",
+  "reduction_semantics": "0.5*MAE+0.5*RMSE per valid B,N row, then mean",
+  "checkpoint_selection": "validation official Score H10, lower is better",
+  "seed": 2026,
+  "expected_trainable_models": 26,
+  "expected_nontrainable_models": 2,
+  "expected_a8_reference": 1,
+  "expected_total_entries": 29,
+  "e5_common_loss_protocol_hash": "a7c5b5a5b15b5ab70d08bf926b9de351f05740940f16409c801eed419287141a"
+}

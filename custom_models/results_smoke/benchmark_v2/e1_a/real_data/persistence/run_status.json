@@ -1,0 +1,16 @@
+{
+  "status": "FAILED",
+  "run_mode": "smoke",
+  "artifact_profile": "NON_TRAINABLE",
+  "started_at": "2026-07-27T09:31:17.933786+00:00",
+  "finished_at": "2026-07-27T09:36:31.3572026Z",
+  "exit_code": 1,
+  "failure_stage": "metrics_artifact_serialization",
+  "error_type": "ValueError",
+  "error_message": "Out of range float values are not JSON compliant: nan",
+  "traceback_tail": [
+    "Initial limited real-data Persistence smoke exposed masked NaN propagation in official_score.",
+    "This attempt is retained as FAIL; retry2 is the accepted post-fix smoke."
+  ],
+  "formal_training": false
+}

@@ -1,0 +1,2 @@
+batch,macro_prompt_norm_mean,st_prompt_norm_mean,macro_prompt_token_cosine_mean,macro_prompt_token_cosine_max,macro_prompt_node_variance,macro_prompt_batch_variance,st_prompt_node_variance
+0,4.019906044006348,3.9765312671661377,,,,,

@@ -1,0 +1,36 @@
+{
+  "dataset_id": "SYNTHETIC_E1_A_SMOKE",
+  "shape": [
+    4,
+    144,
+    134,
+    16
+  ],
+  "feature_names": [
+    "Wspd",
+    "Wdir",
+    "Etmp",
+    "Itmp",
+    "Ndir",
+    "Pab1",
+    "Pab2",
+    "Pab3",
+    "Prtv",
+    "T2m",
+    "Sp",
+    "RelH",
+    "Wspd_w",
+    "Wdir_w",
+    "Tp",
+    "Patv_clean_for_input"
+  ],
+  "feature_order_hash": "b9878a5091618737ca8c126dcee80d5b70f122ff3901960a620cb6bc10e7f853",
+  "node_count": 134,
+  "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
+  "timestamp_count": 144,
+  "normalization_fit_scope": "synthetic_explicit_no_fit",
+  "graph_id": "sdwpf_physical_knn_v1",
+  "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
+  "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
+  "location_source_hash": "233a120f4db2b52402bf4dc7c90631ac9301d6af236a56c6a245e46beec1f236"
+}

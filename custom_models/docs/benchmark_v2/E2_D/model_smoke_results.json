@@ -1,0 +1,133 @@
+{
+  "task": "E2-D",
+  "run_mode": "smoke",
+  "formal_training": false,
+  "independent_process_per_model": true,
+  "results": {
+    "crossformer": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e2_d/ordinary/crossformer",
+      "prediction_shape": [
+        2,
+        4,
+        10
+      ],
+      "raw_output_shape": [
+        8,
+        10,
+        16
+      ],
+      "loss": 6.664812088012695,
+      "validation_score_h10": 1.164566172514937,
+      "parameter_count": 117668,
+      "trainable_parameter_count": 117668,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\Crossformer.py",
+      "upstream_source_sha256": "f5892f70eb3fc320f69fa0a9b2019b68537cc5a5e5aa2ec544c15127b19e36f0",
+      "effective_config": {
+        "d_model": 32,
+        "d_ff": 32,
+        "e_layers": 2,
+        "n_heads": 8,
+        "factor": 3,
+        "dropout": 0.1
+      },
+      "config_resolution_reason": "local Crossformer Weather script fixes e_layers=2,factor=3,d_model=32,d_ff=32; n_heads/dropout use local run.py defaults",
+      "validation_search_performed": false,
+      "test_result_used": false,
+      "smoke_result_used_for_selection": false,
+      "oom_driven_capacity_reduction": false
+    },
+    "msgnet": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e2_d/ordinary/msgnet",
+      "prediction_shape": [
+        2,
+        4,
+        10
+      ],
+      "raw_output_shape": [
+        8,
+        10,
+        16
+      ],
+      "loss": 449.10345458984375,
+      "validation_score_h10": 4.272407015382425,
+      "parameter_count": 13294292,
+      "trainable_parameter_count": 13294292,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\MSGNet.py",
+      "upstream_source_sha256": "e6f8f3fbd4e0bc9d77c78e2409969c4fe4b2fc6560e7c1f5cced2a809d8e9e59",
+      "effective_config": {
+        "label_len": 48,
+        "c_out": 16,
+        "d_model": 512,
+        "d_ff": 2048,
+        "e_layers": 2,
+        "n_heads": 8,
+        "top_k": 5,
+        "dropout": 0.1,
+        "embed": "timeF",
+        "freq": "h",
+        "conv_channel": 32,
+        "skip_channel": 32,
+        "gcn_depth": 2,
+        "propalpha": 0.3,
+        "node_dim": 10,
+        "individual": false
+      },
+      "config_resolution_reason": "no local MSGNet task script exists; fields use local run.py defaults plus source-required graph fields, frozen before smoke",
+      "validation_search_performed": false,
+      "test_result_used": false,
+      "smoke_result_used_for_selection": false,
+      "oom_driven_capacity_reduction": false
+    },
+    "timefilter": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e2_d/ordinary/timefilter",
+      "prediction_shape": [
+        2,
+        4,
+        10
+      ],
+      "raw_output_shape": [
+        8,
+        10,
+        16
+      ],
+      "loss": 626.307373046875,
+      "validation_score_h10": 3.962284383881747,
+      "parameter_count": 4801994,
+      "trainable_parameter_count": 4801994,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\TimeFilter.py",
+      "upstream_source_sha256": "6cbce92f112a9907fe6117ea23527bf1864c0ea00721a812d786e86e0a1b0724",
+      "effective_config": {
+        "c_out": 16,
+        "d_model": 512,
+        "d_ff": 2048,
+        "e_layers": 2,
+        "n_heads": 8,
+        "dropout": 0.1,
+        "patch_len": 16,
+        "alpha": 0.1,
+        "top_p": 0.5,
+        "pos": 1
+      },
+      "config_resolution_reason": "no local TimeFilter task script exists; local run.py defaults and source patch/filter fields frozen before smoke",
+      "validation_search_performed": false,
+      "test_result_used": false,
+      "smoke_result_used_for_selection": false,
+      "oom_driven_capacity_reduction": false
+    }
+  }
+}

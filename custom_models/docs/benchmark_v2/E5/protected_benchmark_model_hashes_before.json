@@ -1,0 +1,446 @@
+{
+  "schema_version": "e5_protection_snapshot_v1",
+  "category": "benchmark_model_hashes",
+  "phase": "before",
+  "created_at": "2026-07-28T13:07:59.427295+00:00",
+  "project_root": "D:\\PaperProject\\GyxPaper2",
+  "file_count": 87,
+  "logical_hash": "61f85cf2a13b7a005abaf55db681a719bb6cd37ebbef105f19e88a4a01a8875a",
+  "files": [
+    {
+      "path": "custom_models/src/benchmark_v2/adapters/__init__.py",
+      "size": 1500,
+      "sha256": "6eccb3964742b470a0f1656b5091995b484fc39cfeae0875760bb9acbeef7208"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/adapters/base.py",
+      "size": 263,
+      "sha256": "b25383b73e30d83be40e5e49c36fd277ef05b7a5b53fb55f2e6d16c9b5a03945"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/adapters/dlinear.py",
+      "size": 163,
+      "sha256": "ad0b1a703a6ebc5f70b5b26ad74aa456fd433f94e13bfc005bf88725960b84ee"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/adapters/e2_a.py",
+      "size": 8128,
+      "sha256": "645089703cbaf34ca7331aa714e6eff638a5dd3356d5a4569ee97fd69ef7b892"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/adapters/e2_b.py",
+      "size": 7545,
+      "sha256": "4e002b7cc250695d25f6b041f1ce03e9493e98d247d05601d4d6026571d78d72"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/adapters/e2_c.py",
+      "size": 3820,
+      "sha256": "d6dcd02402ac48c7ea40bb8de196b402f4fd465ab7a3da58c840ce3c7d070e36"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/adapters/e2_d.py",
+      "size": 5087,
+      "sha256": "f08010df10b8169be729c2c5f260c4a589124e7759992bfedc9ef2b9f0752980"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/adapters/e3_b.py",
+      "size": 3627,
+      "sha256": "09f48204b3fe5c4b7d713c82842cf5dd70d8d3581530076402abc9f004115fcb"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/adapters/e3_c.py",
+      "size": 6641,
+      "sha256": "f84e44d6205dabdc0c5cb1dc5aee22823edb904dd3c8e5728cf91bb2016d7b38"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/adapters/gru.py",
+      "size": 740,
+      "sha256": "9f6c2311e6d15a68058aaa3d2ae25de5e8e67c59806165d52aa67e8d53f604c2"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/adapters/lightts.py",
+      "size": 163,
+      "sha256": "061cc4ba03445bd495962e72070dfad0582e951decc05b77ea7908bf6f9e0052"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/adapters/native_spatiotemporal.py",
+      "size": 2416,
+      "sha256": "944d126d65277d781f7656f66b1da536612934d4e532faa91920811eceae6654"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+      "size": 2390,
+      "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/adapters/segrnn.py",
+      "size": 562,
+      "sha256": "ac362d8d09791af56441c70467dabeacc8c9cfcb094f794a9ef8de75d57a7e4b"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/adapters/statistical_baselines.py",
+      "size": 4896,
+      "sha256": "653381543b3bb27c29176c18a1633a3b0f4662d74a60bcbb77432a42e5efbdd7"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/adapters/tide.py",
+      "size": 3125,
+      "sha256": "3057c0a03513fa7ec2292c784a5599d717eb79f59fbd5b4b9faf98bea6be31a9"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/adapters/tslib_channel.py",
+      "size": 3494,
+      "sha256": "ee615be94e84efd4ee7891bf675f4822d8ed442bf567e34f512774013c4c9fce"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/__init__.py",
+      "size": 3262,
+      "sha256": "54711bd421c2b16564d7fa10d76b16e86ff57a6e1b6f2f25ea12cf9d43ef24d3"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/agcrn.py",
+      "size": 1327,
+      "sha256": "b50932ec8ef52bc1c6b08947c3a887d44bab524d85b480a638432d8824c3a7f6"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/crossformer.py",
+      "size": 1307,
+      "sha256": "7699784fc9ee46e945f46bf7b090ff40ceb29c1a80ceb05a3e5afa47e94e4b7e"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/dcrnn.py",
+      "size": 1541,
+      "sha256": "1aa5a7fbdc097ae415cbed984ecbe2a36a047590e2cd45648f7911eca3e41d5e"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/dlinear.py",
+      "size": 847,
+      "sha256": "6339f2263e48eaa641579d7f824146eb355a8aed7fbd85af92b00b041608a742"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/e3_c_common.py",
+      "size": 3327,
+      "sha256": "cdf5ff39b7a43f212524b9a63a184d1752f5846302e2e73b7da2ae6d3ff4a2fc"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/frets.py",
+      "size": 1829,
+      "sha256": "ec99846bb07fccbd9d4ca67571fc408ac4ff60c83f3751be9d333ac9325efd0a"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/gcn.py",
+      "size": 1238,
+      "sha256": "7889ff899f1a53aff396c27b4088f2cf2aa1e1f0684163e3751e7ba2468d54b7"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/graph_common.py",
+      "size": 2417,
+      "sha256": "a0c2ef852b967f2fc7e0dc08446680e9d093d9f2e11f40ea4fb0997a3f1a6468"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/graph_wavenet.py",
+      "size": 1718,
+      "sha256": "5ec26c3f1f52905e226bfbe8c11136f2b0ee0c7a48f6c991362cc4f39560ab5a"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/gru.py",
+      "size": 1532,
+      "sha256": "e6707e76f3b9f122c0786a363dd009bc52cb6697019c25a803b14dfd302c3bac"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/itransformer.py",
+      "size": 1042,
+      "sha256": "4f084adfc39987b4140ed6c7cff3835cf35ce5396fa823b1625373e7c5f4efd6"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/lightts.py",
+      "size": 1248,
+      "sha256": "ff18cf1bf035a119779c567ef2a2e52a562bf6251d18d088972f8af2872d0250"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/micn.py",
+      "size": 1943,
+      "sha256": "4c46c0c63574d869bab48607db3e2443278de55a30628016ffa70dddac071ae7"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/moving_average.py",
+      "size": 1279,
+      "sha256": "26bc694d345d268f2dfe66ffdcd5a02bcd13cfc9a138f6d6fa143171b6797d92"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/msgnet.py",
+      "size": 1780,
+      "sha256": "4b31f295f2162086404f4c7138f02537bf5ed6b24ea6a7d8e0a7103d3d305105"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/mtgnn.py",
+      "size": 1771,
+      "sha256": "eed1cd968011fecb8ef507c05cf5a217bee7aff4b96994706e4f73d3f57895c3"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/multipatchformer.py",
+      "size": 2343,
+      "sha256": "94ada0c3ef441dc75d2a0b7baef670a0f29fc14c698dbe5d543845067bbfb9f8"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/patchtst.py",
+      "size": 1414,
+      "sha256": "c1f618a53e23fc44ae5f3313ff9c42c956cbc165469c81729c74e72d61534715"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/persistence.py",
+      "size": 703,
+      "sha256": "663f684613b339ed7bc92f0de52d8ac3aac0fe675b18a514c68ead25efe41d02"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/segrnn.py",
+      "size": 1414,
+      "sha256": "55ca07e5f067cfc377ec3667fe0a1871284b9877b9337bd2e1e4e2592631bb6e"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/stgcn.py",
+      "size": 1556,
+      "sha256": "5215169e6507b88df262bb6e50ed97f8e52b27e5845124a68f4446d1dfd82334"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/stid.py",
+      "size": 1636,
+      "sha256": "c0d17eb866e0a7194d58435a34b87f0e725bb758fea849fda43f1157167f60ea"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/tide.py",
+      "size": 1189,
+      "sha256": "aea5f0f61010a09136feb6ce194f9c2e34eb44da14ab5f11a8bde8fc7600c07d"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/timefilter.py",
+      "size": 1766,
+      "sha256": "ccd239dcda50c5bd13c188c0ebcd0e9d22f340fa8f71a134c12480a1412dac83"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/timemixer.py",
+      "size": 1817,
+      "sha256": "669f5bbd017b23982ec75af6372a5ab88767a32b8a7ed999a5fb5d21627c674d"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/timesnet.py",
+      "size": 1376,
+      "sha256": "8827368d682f80ec96b9693564a778315591d09f77057b157dc29929508986ce"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/timexer.py",
+      "size": 1740,
+      "sha256": "02aed571aa772289d1f44e36400f0552425f92d91a407af481acbb9b35b96ee3"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/transformer.py",
+      "size": 1156,
+      "sha256": "039cef9b46c2f6bbef71301c64db89366a52d628dc5d5193932ec7ff05e18a43"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/tslib_common.py",
+      "size": 2582,
+      "sha256": "a1d3557d64e66a16ddd9a9b229d148c3a578f6b9b61b85a092e9d7cfac1a7571"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/tsmixer.py",
+      "size": 1225,
+      "sha256": "f99d834b1d75f6595489e6c9cd275eb9ca92fcb9e5026f9031a2d2d46e64a994"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/configs/wpmixer.py",
+      "size": 1345,
+      "sha256": "432aadc9a3df0b0965afa7a1c8ec990710dbe7793d3f8cbe2b1b10ee51c1e42c"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/__init__.py",
+      "size": 504,
+      "sha256": "ecf5d5a2aeb035b2b2eca186bf653ba001bea5232d6e7756488853cccb539773"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/crossformer.py",
+      "size": 432,
+      "sha256": "54ec419f57ef347af7190745b4189373025f4aa4e259bd666891a54173b60c6e"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/dlinear.py",
+      "size": 540,
+      "sha256": "141c83d3ffa7e0e13897380b9feff704a3295851add216575a7a2af1de512a95"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/frets.py",
+      "size": 798,
+      "sha256": "8694d9f95a33b65a664b52f7006295c7d55a3f1334df49a4c3376bfec543738f"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/graph_models/__init__.py",
+      "size": 1272,
+      "sha256": "0b092f873041c1617dcb29c11f7b9ba6601de132f9be6c65373c31129a320f70"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/graph_models/adaptive_common.py",
+      "size": 6724,
+      "sha256": "6d26ecbf3234f4050753dc0159ad90130a0972d6c4d76dce7eca6f750e3f49eb"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/graph_models/agcrn.py",
+      "size": 5903,
+      "sha256": "27d5ca80e349fb5d28acb5ee6bcc3baf683ef72cf3726e8c65ad3c04578aea32"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/graph_models/common.py",
+      "size": 2115,
+      "sha256": "d2699d65c513ffc66603a9fbae3502ff711376e431c71b94cfba58bd3cab2b44"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/graph_models/dcrnn.py",
+      "size": 8765,
+      "sha256": "4b5aaea22158b04981d7ebfbd559e1530beccab51da1978b824f50317e970e8b"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/graph_models/gcn.py",
+      "size": 3246,
+      "sha256": "e81a418c750a397fc564a22242504fe0113c25ccbad338cdd788f89990448a3c"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/graph_models/graph_wavenet.py",
+      "size": 8352,
+      "sha256": "31f74c8b866820e56b91bcc9f26609af2e4bb476d9a0a93fd8926fd9160040d1"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/graph_models/mtgnn.py",
+      "size": 9909,
+      "sha256": "48982ea65352afe6bec97dda15cd11eff86d5fee07106af69327daaef051ae13"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/graph_models/stgcn.py",
+      "size": 8424,
+      "sha256": "41f7d70a3e388a0f5a4e6ffcbddc7177e51f0f6e3ce2b899d64415d6f72d47d2"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/graph_models/stid.py",
+      "size": 4268,
+      "sha256": "94bfb6fe5d8091c92d59a6c593a27761c53c50749f9eae6d669c27db997061e9"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/gru.py",
+      "size": 2489,
+      "sha256": "dcad941a20a3d96869955e46df53be2256497aec1050e9614e0d1912455f061e"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/itransformer.py",
+      "size": 433,
+      "sha256": "c76644cc1c0cd458b23d33c99fcc288536d693be751d8991f05325c5cb32653c"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/lightts.py",
+      "size": 539,
+      "sha256": "bac41b0be71ab18178e3eaf8a562f03e726725d6ee4bcba51d18ab34d5f264b9"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/micn.py",
+      "size": 509,
+      "sha256": "e836b131b003ef4082660902414046e7d7d36a2a8d5f4ea0dba458234bdf22c3"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/moving_average.py",
+      "size": 2605,
+      "sha256": "25b4126d84bddd7d61eecd650eb5261c3df5de448f18b8c5fe13526793e30a1b"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/msgnet.py",
+      "size": 2019,
+      "sha256": "1feed9c326d0120da072a777b1d28cf3330f7e3ea4d2105e6df50ef301e6ee4e"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/multipatchformer.py",
+      "size": 1273,
+      "sha256": "ad4db5bf41f7315c1dbae809e8ccb5e4d5dd7b18a0408fecdc06a36bc6ca71b0"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/patchtst.py",
+      "size": 546,
+      "sha256": "13aed0bdd024b33e5b412ee672325f7e2064dad5d6f8f256b365f7eec1bc2989"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/persistence.py",
+      "size": 1428,
+      "sha256": "209ec06fb0e11c06bc0c7f0b38f0f8fff6738c95acfc05fc7d1af4f82c8ff623"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/segrnn.py",
+      "size": 486,
+      "sha256": "d1371b6dd16df5a632a7ce5bed25348d2e0b2fffe3dec5a1a6a01690a89c8fc4"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/tide.py",
+      "size": 596,
+      "sha256": "f016a1e4c4e6fad6c8bae75722c9c2458ef6dd14acb9c042b75411f863ca1db6"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/timefilter.py",
+      "size": 2480,
+      "sha256": "4064adc709f0f0d2adf6598ec6e1b0f64b516fac9ebdee2b61041fc6688db61e"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/timemixer.py",
+      "size": 430,
+      "sha256": "0613aba593d8109cfb2b8a527ae0d21b30aad838c85d6063813844ee58f9aafa"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/timesnet.py",
+      "size": 1063,
+      "sha256": "95bd735cca819ee750af34d705db82b9b45216cec3a39b8805e5bda9f8c52896"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/timexer.py",
+      "size": 428,
+      "sha256": "f8d3a12acc7d81191a764658abb06a888956b24ab0e72876a3df146126a119c6"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/transformer.py",
+      "size": 432,
+      "sha256": "90c30196305a0573ecb0f70f3d800bf0a23d95090ec05d494dc8e7b03a254463"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/tsmixer.py",
+      "size": 428,
+      "sha256": "15f6bb75509266f202a3eb4e3a9dcc7f587a0fc2fbbfa78bf1599b3eb4130725"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/models/wpmixer.py",
+      "size": 1615,
+      "sha256": "b2e18a70b973f2d512ccd46908ee251d0a28566a800b6e875cf7a36eb1ec9f17"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/registry/__init__.py",
+      "size": 106,
+      "sha256": "d1e3c099ebb3c5de22b9d017185efb27cd0ac3226739ccf37d3ef0c242e447f5"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/registry/benchmark_registry.json",
+      "size": 59589,
+      "sha256": "d43184e5473192cf44ef9d1a42a15d7dfd331291a4111827dae2ba8e81440b4b"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/registry/registry.py",
+      "size": 5360,
+      "sha256": "caff510d58e9849c9efd93bc338412f96418fe05c8bb9dfc056f8a9b3638efa7"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/registry/registry_schema.json",
+      "size": 500,
+      "sha256": "23e64d81e4e0ea664dc5238d3b2cc4209901ae4baeca63abe484ef6001a8892e"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/upstream/__init__.py",
+      "size": 247,
+      "sha256": "64f21ae3da1938045f3902aecb48b581171286d09303177be369f7544a47b42d"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+      "size": 5103,
+      "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9"
+    }
+  ]
+}

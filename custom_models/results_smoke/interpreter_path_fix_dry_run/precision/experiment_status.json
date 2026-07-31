@@ -1,0 +1,32 @@
+[
+  {
+    "variant": "P0",
+    "status": "REFERENCE_ONLY",
+    "returncode": 0
+  },
+  {
+    "variant": "P1",
+    "status": "DRY_RUN",
+    "returncode": null
+  },
+  {
+    "variant": "P2",
+    "status": "DRY_RUN",
+    "returncode": null
+  },
+  {
+    "variant": "P3",
+    "status": "DRY_RUN",
+    "returncode": null
+  },
+  {
+    "variant": "P4",
+    "status": "DRY_RUN",
+    "returncode": null
+  },
+  {
+    "variant": "P5",
+    "status": "DRY_RUN",
+    "returncode": null
+  }
+]

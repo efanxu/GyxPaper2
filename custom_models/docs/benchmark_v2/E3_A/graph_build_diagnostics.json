@@ -1,0 +1,421 @@
+{
+  "node_count": 134,
+  "coordinate_ranges": {
+    "x": [
+      0.0,
+      5501.4529
+    ],
+    "y": [
+      0.0,
+      12121.00426
+    ],
+    "elevation": [
+      1391.2000732421875,
+      1469.800048828125
+    ]
+  },
+  "coordinate_units": "SOURCE_UNIT_UNSPECIFIED",
+  "selected_k": 4,
+  "candidate_k_component_counts": [
+    {
+      "k": 1,
+      "component_count": 48,
+      "component_sizes": [
+        6,
+        5,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "degree_min": 1,
+      "degree_mean": 1.2835820895522387,
+      "degree_max": 2
+    },
+    {
+      "k": 2,
+      "component_count": 7,
+      "component_sizes": [
+        44,
+        22,
+        20,
+        18,
+        15,
+        11,
+        4
+      ],
+      "degree_min": 2,
+      "degree_mean": 2.1343283582089554,
+      "degree_max": 4
+    },
+    {
+      "k": 3,
+      "component_count": 2,
+      "component_sizes": [
+        68,
+        66
+      ],
+      "degree_min": 3,
+      "degree_mean": 3.4328358208955225,
+      "degree_max": 6
+    },
+    {
+      "k": 4,
+      "component_count": 1,
+      "component_sizes": [
+        134
+      ],
+      "degree_min": 4,
+      "degree_mean": 4.447761194029851,
+      "degree_max": 8
+    },
+    {
+      "k": 5,
+      "component_count": 1,
+      "component_sizes": [
+        134
+      ],
+      "degree_min": 5,
+      "degree_mean": 5.6716417910447765,
+      "degree_max": 9
+    },
+    {
+      "k": 6,
+      "component_count": 1,
+      "component_sizes": [
+        134
+      ],
+      "degree_min": 6,
+      "degree_mean": 6.895522388059701,
+      "degree_max": 10
+    },
+    {
+      "k": 7,
+      "component_count": 1,
+      "component_sizes": [
+        134
+      ],
+      "degree_min": 7,
+      "degree_mean": 8.134328358208956,
+      "degree_max": 14
+    },
+    {
+      "k": 8,
+      "component_count": 1,
+      "component_sizes": [
+        134
+      ],
+      "degree_min": 8,
+      "degree_mean": 9.462686567164178,
+      "degree_max": 15
+    },
+    {
+      "k": 9,
+      "component_count": 1,
+      "component_sizes": [
+        134
+      ],
+      "degree_min": 9,
+      "degree_mean": 10.402985074626866,
+      "degree_max": 15
+    },
+    {
+      "k": 10,
+      "component_count": 1,
+      "component_sizes": [
+        134
+      ],
+      "degree_min": 10,
+      "degree_mean": 11.208955223880597,
+      "degree_max": 17
+    },
+    {
+      "k": 11,
+      "component_count": 1,
+      "component_sizes": [
+        134
+      ],
+      "degree_min": 11,
+      "degree_mean": 12.328358208955224,
+      "degree_max": 18
+    },
+    {
+      "k": 12,
+      "component_count": 1,
+      "component_sizes": [
+        134
+      ],
+      "degree_min": 12,
+      "degree_mean": 13.343283582089553,
+      "degree_max": 19
+    },
+    {
+      "k": 13,
+      "component_count": 1,
+      "component_sizes": [
+        134
+      ],
+      "degree_min": 13,
+      "degree_mean": 14.611940298507463,
+      "degree_max": 20
+    },
+    {
+      "k": 14,
+      "component_count": 1,
+      "component_sizes": [
+        134
+      ],
+      "degree_min": 14,
+      "degree_mean": 15.73134328358209,
+      "degree_max": 23
+    },
+    {
+      "k": 15,
+      "component_count": 1,
+      "component_sizes": [
+        134
+      ],
+      "degree_min": 15,
+      "degree_mean": 16.776119402985074,
+      "degree_max": 25
+    },
+    {
+      "k": 16,
+      "component_count": 1,
+      "component_sizes": [
+        134
+      ],
+      "degree_min": 16,
+      "degree_mean": 18.059701492537314,
+      "degree_max": 26
+    },
+    {
+      "k": 17,
+      "component_count": 1,
+      "component_sizes": [
+        134
+      ],
+      "degree_min": 17,
+      "degree_mean": 19.253731343283583,
+      "degree_max": 27
+    },
+    {
+      "k": 18,
+      "component_count": 1,
+      "component_sizes": [
+        134
+      ],
+      "degree_min": 18,
+      "degree_mean": 20.417910447761194,
+      "degree_max": 28
+    },
+    {
+      "k": 19,
+      "component_count": 1,
+      "component_sizes": [
+        134
+      ],
+      "degree_min": 19,
+      "degree_mean": 21.73134328358209,
+      "degree_max": 31
+    },
+    {
+      "k": 20,
+      "component_count": 1,
+      "component_sizes": [
+        134
+      ],
+      "degree_min": 20,
+      "degree_mean": 22.91044776119403,
+      "degree_max": 34
+    }
+  ],
+  "directed_edge_count": 536,
+  "undirected_edge_count": 298,
+  "density": 0.033441813488946245,
+  "connected_component_count": 1,
+  "isolated_node_count": 0,
+  "degree": {
+    "min": 4,
+    "mean": 4.447761194029851,
+    "median": 4.0,
+    "max": 8
+  },
+  "weighted_degree": {
+    "min": 1.3038744458385731,
+    "mean": 2.2672332343059085,
+    "max": 3.3781495997391238
+  },
+  "edge_distance": {
+    "min": 406.61614106035626,
+    "median": 941.417705134962,
+    "max": 1471.454675902081
+  },
+  "sigma": 921.5755719183301,
+  "weight": {
+    "min": 0.07813133204144455,
+    "median": 0.3678802494536223,
+    "max": 0.8231031792613007
+  },
+  "matrix_diagnostics": {
+    "A_binary_directed": {
+      "shape": [
+        134,
+        134
+      ],
+      "finite": true,
+      "min": 0.0,
+      "max": 1.0,
+      "self_loop_count": 0,
+      "symmetry_error": 1.0,
+      "row_sum_min": 4.0,
+      "row_sum_max": 4.0
+    },
+    "A_binary_undirected": {
+      "shape": [
+        134,
+        134
+      ],
+      "finite": true,
+      "min": 0.0,
+      "max": 1.0,
+      "self_loop_count": 0,
+      "symmetry_error": 0.0,
+      "row_sum_min": 4.0,
+      "row_sum_max": 8.0
+    },
+    "A_directed": {
+      "shape": [
+        134,
+        134
+      ],
+      "finite": true,
+      "min": 0.0,
+      "max": 0.823103179261,
+      "self_loop_count": 0,
+      "symmetry_error": 0.346877207325,
+      "row_sum_min": 1.303874445837,
+      "row_sum_max": 2.281523331093
+    },
+    "A_undirected": {
+      "shape": [
+        134,
+        134
+      ],
+      "finite": true,
+      "min": 0.0,
+      "max": 0.823103179261,
+      "self_loop_count": 0,
+      "symmetry_error": 0.0,
+      "row_sum_min": 1.303874445837,
+      "row_sum_max": 3.378149599739
+    },
+    "A_gcn": {
+      "shape": [
+        134,
+        134
+      ],
+      "finite": true,
+      "min": 0.0,
+      "max": 0.434051430974,
+      "self_loop_count": 134,
+      "symmetry_error": 0.0,
+      "row_sum_min": 0.9180947456779999,
+      "row_sum_max": 1.15275041487
+    },
+    "P_forward": {
+      "shape": [
+        134,
+        134
+      ],
+      "finite": true,
+      "min": 0.0,
+      "max": 0.585446994928,
+      "self_loop_count": 0,
+      "symmetry_error": 0.21672116868500002,
+      "row_sum_min": 0.9999999999989999,
+      "row_sum_max": 1.000000000001
+    },
+    "P_reverse": {
+      "shape": [
+        134,
+        134
+      ],
+      "finite": true,
+      "min": 0.0,
+      "max": 0.689829019263,
+      "self_loop_count": 0,
+      "symmetry_error": 0.288148931011,
+      "row_sum_min": 0.9999999999989998,
+      "row_sum_max": 1.000000000002
+    },
+    "L_sym": {
+      "shape": [
+        134,
+        134
+      ],
+      "finite": true,
+      "min": -0.464617506048,
+      "max": 1.0,
+      "self_loop_count": 134,
+      "symmetry_error": 0.0,
+      "row_sum_min": -0.28641439695500004,
+      "row_sum_max": 0.22086633278599999
+    },
+    "L_tilde": {
+      "shape": [
+        134,
+        134
+      ],
+      "finite": true,
+      "min": -0.464617506048,
+      "max": 0.0,
+      "self_loop_count": 0,
+      "symmetry_error": 0.0,
+      "row_sum_min": -1.2864143969550002,
+      "row_sum_max": -0.779133667214
+    }
+  }
+}

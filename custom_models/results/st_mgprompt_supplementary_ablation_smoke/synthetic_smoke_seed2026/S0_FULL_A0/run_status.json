@@ -1,0 +1,33 @@
+{
+  "events": [
+    {
+      "stage": "TRAIN_STARTED",
+      "time": "2026-07-21T16:33:47",
+      "supplementary_variant": "S0_FULL_A0"
+    },
+    {
+      "stage": "TRAIN_FINISHED",
+      "time": "2026-07-21T16:34:10",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke\\synthetic_smoke_seed2026\\S0_FULL_A0\\best_checkpoint.pt"
+    },
+    {
+      "stage": "TEST_STARTED",
+      "time": "2026-07-21T16:34:10",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke\\synthetic_smoke_seed2026\\S0_FULL_A0\\best_checkpoint.pt",
+      "model_rebuilt_before_test": true,
+      "strict_load": true
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-21T16:34:14",
+      "protocol_passed": true
+    }
+  ],
+  "current_stage": "PROCESS_FINISHED",
+  "updated_at": "2026-07-21T16:34:14",
+  "supplementary_variant": "S0_FULL_A0",
+  "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke\\synthetic_smoke_seed2026\\S0_FULL_A0\\best_checkpoint.pt",
+  "model_rebuilt_before_test": true,
+  "strict_load": true,
+  "protocol_passed": true
+}

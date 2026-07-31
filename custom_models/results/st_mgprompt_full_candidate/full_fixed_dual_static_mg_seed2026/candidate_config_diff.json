@@ -1,0 +1,78 @@
+{
+  "candidate_id": "FULL_FIXED_DUAL_STATIC_MG",
+  "allowed_diff_fields": [
+    "granularity_weight_mode",
+    "model_name",
+    "output_root",
+    "run_id",
+    "site_weight_mode",
+    "use_vadsp",
+    "vadsp_gate_mode"
+  ],
+  "effective_allowed_diff_fields": [
+    "granularity_weight_mode",
+    "site_weight_mode",
+    "use_vadsp",
+    "vadsp_gate_mode"
+  ],
+  "differences": {
+    "granularity_weight_mode": {
+      "current_full": "difficulty_rate",
+      "candidate": "static"
+    },
+    "output_root": {
+      "current_full": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation",
+      "candidate": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_full_candidate"
+    },
+    "run_id": {
+      "current_full": "component_ablation_p1_seed2026/A0",
+      "candidate": "full_fixed_dual_static_mg_seed2026"
+    },
+    "site_weight_mode": {
+      "current_full": "dynamic",
+      "candidate": "static"
+    },
+    "vadsp_gate_mode": {
+      "current_full": "dynamic",
+      "candidate": "fixed_dual"
+    }
+  },
+  "allowed_differences": {
+    "granularity_weight_mode": {
+      "current_full": "difficulty_rate",
+      "candidate": "static"
+    },
+    "output_root": {
+      "current_full": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation",
+      "candidate": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_full_candidate"
+    },
+    "run_id": {
+      "current_full": "component_ablation_p1_seed2026/A0",
+      "candidate": "full_fixed_dual_static_mg_seed2026"
+    },
+    "site_weight_mode": {
+      "current_full": "dynamic",
+      "candidate": "static"
+    },
+    "vadsp_gate_mode": {
+      "current_full": "dynamic",
+      "candidate": "fixed_dual"
+    }
+  },
+  "effective_differences": {
+    "granularity_weight_mode": {
+      "current_full": "difficulty_rate",
+      "candidate": "static"
+    },
+    "site_weight_mode": {
+      "current_full": "dynamic",
+      "candidate": "static"
+    },
+    "vadsp_gate_mode": {
+      "current_full": "dynamic",
+      "candidate": "fixed_dual"
+    }
+  },
+  "unexpected_effective_differences": {},
+  "unexpected_effective_diff_count": 0
+}

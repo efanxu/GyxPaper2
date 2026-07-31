@@ -1,0 +1,22 @@
+{
+  "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+  "experiment_family": "precision",
+  "run_id": "full_shape_p1_retry",
+  "selection_uses_test_metrics": false,
+  "variants": [
+    {
+      "variant_id": "P1",
+      "display_name": "Simple + Last-State + H64 + C1",
+      "experiment_family": "precision",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "graph_operator": "simple"
+      },
+      "expected_unique_diff": [
+        "graph_operator"
+      ]
+    }
+  ]
+}

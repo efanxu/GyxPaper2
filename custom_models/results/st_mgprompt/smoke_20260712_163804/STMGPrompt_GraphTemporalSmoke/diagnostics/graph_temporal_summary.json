@@ -1,0 +1,21 @@
+{
+  "h_fine_norm_mean": 3.923652172088623,
+  "h_fine_norm_std": 0.0009515460697002709,
+  "h_coarse_norm_mean": 3.983043670654297,
+  "h_coarse_norm_std": 0.0091083450242877,
+  "h_fine_spatial_delta_norm": 2.1015355587005615,
+  "h_coarse_spatial_delta_norm": 2.6435399055480957,
+  "num_batches": 1,
+  "use_graph": true,
+  "use_temporal_attention": false,
+  "fine_tcn_dilations": [
+    1,
+    2
+  ],
+  "coarse_tcn_dilations": [
+    1,
+    2,
+    4,
+    8
+  ]
+}

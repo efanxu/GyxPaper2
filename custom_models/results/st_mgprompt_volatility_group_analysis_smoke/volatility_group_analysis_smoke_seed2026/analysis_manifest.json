@@ -1,0 +1,70 @@
+{
+  "analysis": "Plan 4.1 synthetic smoke",
+  "run_id": "volatility_group_analysis_smoke_seed2026",
+  "summary": {
+    "reproduction_passed": true,
+    "num_test_windows": 60,
+    "train_group_counts": {
+      "Low": 22,
+      "Medium": 22,
+      "High": 16
+    },
+    "test_equal_frequency_thresholds": {
+      "q33": 0.7645159669001728,
+      "q67": 0.8199258719881376
+    },
+    "sensitivity_direction_consistency": {
+      "all_same_direction": true,
+      "comparisons": [
+        {
+          "group": "Low",
+          "horizon": 3,
+          "same_direction": true
+        },
+        {
+          "group": "Low",
+          "horizon": 6,
+          "same_direction": true
+        },
+        {
+          "group": "Low",
+          "horizon": 10,
+          "same_direction": true
+        },
+        {
+          "group": "Medium",
+          "horizon": 3,
+          "same_direction": true
+        },
+        {
+          "group": "Medium",
+          "horizon": 6,
+          "same_direction": true
+        },
+        {
+          "group": "Medium",
+          "horizon": 10,
+          "same_direction": true
+        },
+        {
+          "group": "High",
+          "horizon": 3,
+          "same_direction": true
+        },
+        {
+          "group": "High",
+          "horizon": 6,
+          "same_direction": true
+        },
+        {
+          "group": "High",
+          "horizon": 10,
+          "same_direction": true
+        }
+      ]
+    }
+  },
+  "formal_checkpoint_used": false,
+  "training_performed": false,
+  "bootstrap_reps": 20
+}

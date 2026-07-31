@@ -1,0 +1,26 @@
+{
+  "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+  "experiment_family": "precision",
+  "run_id": "precision_ablation_fixed_dual_seed2026",
+  "selection_uses_test_metrics": false,
+  "variants": [
+    {
+      "variant_id": "P5",
+      "display_name": "Bi-Diffusion + Full-History Cross-Attn + H96 + C2",
+      "experiment_family": "precision",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "decoder_context_mode": "full_history_cross_attention",
+        "hidden_dim": 96,
+        "num_coupling_layers": 2
+      },
+      "expected_unique_diff": [
+        "decoder_context_mode",
+        "hidden_dim",
+        "num_coupling_layers"
+      ]
+    }
+  ]
+}

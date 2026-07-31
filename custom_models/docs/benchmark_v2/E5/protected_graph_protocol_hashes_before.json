@@ -1,0 +1,61 @@
+{
+  "schema_version": "e5_protection_snapshot_v1",
+  "category": "graph_protocol_hashes",
+  "phase": "before",
+  "created_at": "2026-07-28T13:07:59.132034+00:00",
+  "project_root": "D:\\PaperProject\\GyxPaper2",
+  "file_count": 10,
+  "logical_hash": "d16b0a8cae06ec716cbd3c322baced33c18a2442102c27dbfce5139dca1558d9",
+  "files": [
+    {
+      "path": "custom_models/graphs/trend_prior_v4_2/macro_trend_adjacency.npy",
+      "size": 71952,
+      "sha256": "1ec6a0e06156f7a9a6b750b239e8f3dd21ade09aa354a006d18f5df59d677ff4"
+    },
+    {
+      "path": "custom_models/graphs/trend_prior_v4_2/metadata.json",
+      "size": 1650,
+      "sha256": "c3b0a90d1e73c39b14058d0405ecb42f547f233fed5e4b89d18e117669eb4cd2"
+    },
+    {
+      "path": "custom_models/graphs/trend_prior_v4_2/micro_local_adjacency.npy",
+      "size": 71952,
+      "sha256": "415931db3133b844c693a20e317f5b5facb5d57305eed8eeb2639f6ebc498f9d"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/graph/__init__.py",
+      "size": 989,
+      "sha256": "25118742b7a71e4c4bd14e98b0a2a4ed551c3274e5e3243d207bb540c17f1e3d"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/graph/builder.py",
+      "size": 15218,
+      "sha256": "5dade0276c30e2a3cf44121fd3495f12dcc9babb6d5e3c18c8a5acc7310be02c"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/graph/contracts.py",
+      "size": 6862,
+      "sha256": "8dc2387fa38efb1015ab76131eaa58e673dcfff7d5a848b1349e98647202efca"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/graph/hashing.py",
+      "size": 2794,
+      "sha256": "f9b52961423e29217456b187880c41b5b5d57f580b2a1d39cf874b1de0e918b5"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/graph/provider.py",
+      "size": 6718,
+      "sha256": "8837f17118fd72a4d569dc7782da699044d76e2b984058f3704fe330f2cccfe5"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/graph/transforms.py",
+      "size": 1535,
+      "sha256": "1d1f04d4e540c88adc6fc2572b52dec9dd4db5e3e5fcff095262bdb95db4bdee"
+    },
+    {
+      "path": "custom_models/src/benchmark_v2/graph/validation.py",
+      "size": 4167,
+      "sha256": "c890f0557ea0a25f4e02d34a032a274353e0602556464783d60c704e58eaf359"
+    }
+  ]
+}

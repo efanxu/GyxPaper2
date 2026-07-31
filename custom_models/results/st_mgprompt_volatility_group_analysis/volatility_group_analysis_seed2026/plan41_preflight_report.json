@@ -1,0 +1,109 @@
+{
+  "analysis": "Plan 4.1 A0 Dynamic VADSP vs A1 Fixed Dual by volatility",
+  "evaluate_only": true,
+  "source_directories_read_only": [
+    "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A0\\STMGPrompt_ComponentAblation",
+    "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A1\\STMGPrompt_ComponentAblation"
+  ],
+  "required_artifacts": [
+    "config.json",
+    "best_checkpoint.pt",
+    "metrics_eval_h3.json",
+    "metrics_eval_h6.json",
+    "metrics_eval_h10.json"
+  ],
+  "missing_artifacts": [],
+  "training_safety": {
+    "optimizer_created": false,
+    "gradient_computation": false,
+    "parameter_update": false,
+    "training_entry_invoked": false,
+    "inference_mode_required": true
+  },
+  "source_hashes": {
+    "a0_config_sha256": "1e34cba849abe3f7ab2db9e9e4b34646c83969acdc18e2415e013397023ba4c4",
+    "a0_checkpoint_sha256": "918db536f3680a039b554150db2b7b72a7aa54ccf94259c759e975ac8f6094bc",
+    "a1_config_sha256": "19e3926e3c55f4ccaaf9f3d786807c706b26cd57050443521d42598854a18e56",
+    "a1_checkpoint_sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+    "a0_metrics_eval_h3_sha256": "2c8e004b63dc69600f81b6b2ebba74df96d76efe3f4b365ce88522824da0cb13",
+    "a0_metrics_eval_h6_sha256": "b9bf63faa3f2a636b09017a342ab561295ea5c03e1cdeef35888b230a5854942",
+    "a0_metrics_eval_h10_sha256": "56395772a866cfdb6b46a53eb4c83ce76ba7b8c6c523ba8add9b263323698718",
+    "a1_metrics_eval_h3_sha256": "881be8f8b56d7d1aa4515ec717b6d2ad591516062fbf31d9ec405bae354d0225",
+    "a1_metrics_eval_h6_sha256": "87f6b70246f1d9e97db10b638b164ef92f9d14f502da8d2829c94faf398bc633",
+    "a1_metrics_eval_h10_sha256": "c0f47960bdee49dbf92727a463784943c00c917cf6d00a18c3651f78df5a9c13"
+  },
+  "protocol_comparison": {
+    "status": "passed",
+    "checks": {
+      "model_input_path": true,
+      "eval_target_path": true,
+      "target_col": true,
+      "target_mask_col": true,
+      "feature_cols": true,
+      "lookback": true,
+      "max_pred_len": true,
+      "eval_horizons": true,
+      "split_ratios": true,
+      "train_sample_stride": true,
+      "val_sample_stride": true,
+      "test_sample_stride": true,
+      "train_batch_size": true,
+      "val_batch_size": true,
+      "test_batch_size": true,
+      "seed": true,
+      "input_scaler_type": true,
+      "target_scaler_type": true,
+      "enable_physical_clip_eval": true,
+      "physical_power_min_kw": true,
+      "physical_power_max_kw": true,
+      "physical_clip_protocol": true,
+      "num_nodes": true,
+      "checkpoint_selection_metric": true,
+      "checkpoint_selection_mode": true,
+      "primary_val_horizon": true,
+      "result_protocol": true,
+      "amp_enabled": true,
+      "amp_dtype": true
+    },
+    "allowed_identity_differences": [
+      "component_ablation",
+      "use_vadsp",
+      "vadsp_gate_mode",
+      "run_id",
+      "output_root",
+      "identity_metadata"
+    ]
+  },
+  "model_checks": {
+    "a0_state_dict_strict_load": true,
+    "a1_state_dict_strict_load": true,
+    "a0_eval_mode": true,
+    "a1_eval_mode": true,
+    "a0_dynamic_vadsp": true,
+    "a1_fixed_dual": true,
+    "a1_expected_fine_gate": 0.5,
+    "a1_expected_coarse_gate": 0.5,
+    "a1_forward_check": {
+      "dynamic_patch_gate_all_exactly_0_5": true,
+      "fine_gate": 0.5,
+      "coarse_gate": 0.5,
+      "volatility_all_zero": true,
+      "rolling_std_all_zero": true
+    },
+    "models_have_optimizer_attribute": false
+  },
+  "preflight_status": "passed",
+  "alignment": {
+    "status": "passed",
+    "checks": {
+      "prediction_start_index": true,
+      "test_window_count": true,
+      "target_shape": true,
+      "target_values": true,
+      "valid_target_mask": true,
+      "turbine_ids": true,
+      "target_timestamps": true
+    },
+    "alignment_key": "prediction_start_index"
+  }
+}

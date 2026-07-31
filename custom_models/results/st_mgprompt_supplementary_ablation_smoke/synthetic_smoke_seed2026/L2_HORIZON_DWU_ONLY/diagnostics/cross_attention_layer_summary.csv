@@ -1,0 +1,2 @@
+batch,layer,macro_attn_entropy,fine_attn_entropy,fusion_gate_mean,fusion_gate_std,macro_prompt_norm_mean,h_fine_spatial_delta_norm,h_coarse_spatial_delta_norm,h_fine_spatial_delta_ratio,h_coarse_spatial_delta_ratio
+0,0,1.3768980503082275,2.4845268726348877,0.4957084655761719,0.04590609669685364,4.019906044006348,2.6304781436920166,3.039510488510132,1.6001193523406982,2.633395195007324

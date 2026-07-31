@@ -1,0 +1,1 @@
+{"type":"object","required":["status","mode","protocol_hash"],"additionalProperties":true}

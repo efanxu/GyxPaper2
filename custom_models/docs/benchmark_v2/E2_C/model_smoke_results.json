@@ -1,0 +1,140 @@
+{
+  "task": "E2-C",
+  "run_mode": "smoke",
+  "formal_training": false,
+  "shape": {
+    "B": 2,
+    "T": 144,
+    "N": 4,
+    "C": 16,
+    "H": 10
+  },
+  "independent_process_per_model": true,
+  "results": {
+    "timemixer": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e2_c/ordinary/timemixer",
+      "prediction_shape": [
+        2,
+        4,
+        10
+      ],
+      "raw_output_shape": null,
+      "loss": 1821.2686767578125,
+      "validation_score_h10": 4.0645480303566375,
+      "evaluation_score_h10": 4.064302690504853,
+      "evaluation_r2_h10": -11.990329921403392,
+      "parameter_count": 192285,
+      "trainable_parameter_count": 192285,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\TimeMixer.py",
+      "upstream_source_sha256": "bbf378cab03d16d3e7ae907f7b3cefbac89ae1504e036270578d5d496ffbd133",
+      "effective_config": {
+        "label_len": 0,
+        "enc_in": 16,
+        "dec_in": 16,
+        "c_out": 16,
+        "d_model": 16,
+        "d_ff": 32,
+        "e_layers": 3,
+        "dropout": 0.1,
+        "down_sampling_layers": 3,
+        "down_sampling_window": 2,
+        "down_sampling_method": "avg",
+        "decomp_method": "moving_avg",
+        "moving_avg": 25,
+        "channel_independence": 1,
+        "use_norm": 1,
+        "embed": "timeF",
+        "freq": "h"
+      },
+      "config_resolution_reason": "local TimeMixer source shape requirements and local official Weather long-term forecasting script; benchmark dimensions override only dataset-dependent seq_len/pred_len/enc_in",
+      "validation_search_performed": false,
+      "test_result_used": false,
+      "smoke_result_used_for_selection": false,
+      "oom_driven_capacity_reduction": false
+    },
+    "tsmixer": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e2_c/ordinary/tsmixer",
+      "prediction_shape": [
+        2,
+        4,
+        10
+      ],
+      "raw_output_shape": null,
+      "loss": 193.5760498046875,
+      "validation_score_h10": 2.7828316753333433,
+      "evaluation_score_h10": 2.7823595131270613,
+      "evaluation_r2_h10": -5.863666587001828,
+      "parameter_count": 22378,
+      "trainable_parameter_count": 22378,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\TSMixer.py",
+      "upstream_source_sha256": "a82942ddc22cba59f4161f3ea480eb0e474eba6f0ab2d13f2bd949f100b2ce87",
+      "effective_config": {
+        "e_layers": 2,
+        "d_model": 32,
+        "dropout": 0.1
+      },
+      "config_resolution_reason": "local TSMixer source fields plus local official Weather long-term forecasting e_layers=2,d_model=32; unused unified CLI fields excluded",
+      "validation_search_performed": false,
+      "test_result_used": false,
+      "smoke_result_used_for_selection": false,
+      "oom_driven_capacity_reduction": false
+    },
+    "frets": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e2_c/ordinary/frets",
+      "prediction_shape": [
+        2,
+        4,
+        10
+      ],
+      "raw_output_shape": null,
+      "loss": 57.2380256652832,
+      "validation_score_h10": 2.504250335023343,
+      "evaluation_score_h10": 2.5042702994095407,
+      "evaluation_r2_h10": -4.5574503141252825,
+      "parameter_count": 4787594,
+      "trainable_parameter_count": 4787594,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\FreTS.py",
+      "upstream_source_sha256": "2b6c9e0cd3d4f42bc74736343147812db94f029f1a8b13b098b9841705de5c18",
+      "effective_config": {
+        "channel_independence": "0",
+        "embed_size": 128,
+        "hidden_size": 256,
+        "sparsity_threshold": 0.01,
+        "scale": 0.02
+      },
+      "config_resolution_reason": "local FreTS source hard-coded capacity and explicit correction of source string comparison channel_independence == '0'",
+      "validation_search_performed": false,
+      "test_result_used": false,
+      "smoke_result_used_for_selection": false,
+      "oom_driven_capacity_reduction": false
+    }
+  },
+  "retained_development_evidence": [
+    {
+      "model": "frets",
+      "artifact": "custom_models/results_smoke/benchmark_v2/e2_c/diagnostics/frets_branch_amp_diagnostics.json",
+      "finding": "int 0 skips channel branch; string '0' activates it; raw-source CUDA AMP passed"
+    },
+    {
+      "model": "frets",
+      "artifact": "custom_models/results_smoke/benchmark_v2/e2_c/ordinary/frets_fp32_boundary_attempt",
+      "status": "PASS_SUPERSEDED",
+      "reason": "Preventive full-forward FP32 boundary was removed after raw-source CUDA AMP passed; retained without use for selection"
+    }
+  ]
+}

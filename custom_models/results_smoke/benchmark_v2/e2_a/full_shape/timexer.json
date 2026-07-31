@@ -1,0 +1,29 @@
+{
+  "model_id": "timexer",
+  "run_mode": "smoke",
+  "formal_registry_entry": true,
+  "formal_training": false,
+  "requested_shape": {
+    "B": 32,
+    "T": 144,
+    "N": 134,
+    "C": 16,
+    "H": 10
+  },
+  "device": "cuda",
+  "cuda_available": true,
+  "amp_enabled": true,
+  "status": "PASS",
+  "output_shape": [
+    32,
+    134,
+    10
+  ],
+  "loss": 508.14825439453125,
+  "elapsed_seconds": 4.809005399933085,
+  "peak_gpu_memory_bytes": 3224407552,
+  "parameter_count": 8543242,
+  "trainable_parameter_count": 8543242,
+  "backward_completed": true,
+  "inverse_transform_parity": null
+}

@@ -1,0 +1,63 @@
+{
+  "schema_version": "current_batch4_benchmark_scope_v1",
+  "scope_id": "benchmark_v2_batch4_scope26_seed2026",
+  "status": "ACTIVE",
+  "training_profile_id": "uniform_train_batch4_v1",
+  "training_profile_hash": "f58bbc161dfba0f00774879fdf2f78ec7c59a7faff9ef28a1733a2ed6835fe66",
+  "batch_identity": {
+    "train_batch_size": 4,
+    "val_batch_size": 4,
+    "test_batch_size": 4,
+    "gradient_accumulation_steps": 1,
+    "effective_train_batch_size": 4
+  },
+  "counts": {
+    "total": 26,
+    "trainable": 24,
+    "non_trainable": 2,
+    "excluded_from_current_formal_scope": 2
+  },
+  "readiness_denominator": {
+    "active_total": 26,
+    "trainable": 24,
+    "non_trainable": 2
+  },
+  "aggregate_denominator": {
+    "require_complete_active_total": 26,
+    "trainable": 24,
+    "non_trainable": 2
+  },
+  "groups": [
+    {
+      "group_id": "basic_lightweight_seed2026",
+      "models": ["Persistence", "MovingAverage", "GRU", "DLinear", "LightTS", "TiDE"]
+    },
+    {
+      "group_id": "e2_a_seed2026",
+      "models": ["Transformer", "PatchTST", "iTransformer", "TimeXer"]
+    },
+    {
+      "group_id": "e2_b_seed2026",
+      "models": ["TimesNet", "MICN", "WPMixer", "MultiPatchFormer"]
+    },
+    {
+      "group_id": "e2_c_seed2026",
+      "models": ["TimeMixer", "TSMixer", "FreTS"]
+    },
+    {
+      "group_id": "e2_d_seed2026",
+      "models": ["Crossformer", "TimeFilter"]
+    },
+    {
+      "group_id": "e3_b_seed2026",
+      "models": ["GCN", "STGCN", "DCRNN"]
+    },
+    {
+      "group_id": "e3_c_seed2026",
+      "models": ["Graph WaveNet", "MTGNN", "AGCRN", "STID"]
+    }
+  ],
+  "count_assertion": "6 + 4 + 4 + 3 + 2 + 3 + 4 = 26",
+  "excluded_model_ids": ["segrnn", "msgnet"],
+  "history_policy": "Historical batch32 and batch4 artifacts remain read-only and are outside this active denominator."
+}

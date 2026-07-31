@@ -1,0 +1,83 @@
+{
+  "events": [
+    {
+      "stage": "TRAIN_STARTED",
+      "time": "2026-07-15T22:16:10"
+    },
+    {
+      "stage": "TRAIN_FINISHED",
+      "time": "2026-07-15T22:16:14",
+      "checkpoint": "custom_models\\results\\st_mgprompt_codex_verify\\codex_amp_verify\\STMGPrompt_FairFull\\best_checkpoint.pt",
+      "last_completed_epoch": 1
+    },
+    {
+      "stage": "BEST_CHECKPOINT_SAVED",
+      "time": "2026-07-15T22:16:14",
+      "checkpoint": "custom_models\\results\\st_mgprompt_codex_verify\\codex_amp_verify\\STMGPrompt_FairFull\\best_checkpoint.pt"
+    },
+    {
+      "stage": "FINAL_VALIDATION_STARTED",
+      "time": "2026-07-15T22:16:14"
+    },
+    {
+      "stage": "FINAL_VALIDATION_FINISHED",
+      "time": "2026-07-15T22:16:14"
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-15T22:16:14",
+      "skip_test": true
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-15T22:16:14"
+    },
+    {
+      "stage": "TEST_STARTED",
+      "time": "2026-07-15T22:16:27",
+      "checkpoint": "custom_models\\results\\st_mgprompt_codex_verify\\codex_amp_verify\\STMGPrompt_FairFull\\best_checkpoint.pt"
+    },
+    {
+      "stage": "FINAL_VALIDATION_STARTED",
+      "time": "2026-07-15T22:16:27"
+    },
+    {
+      "stage": "FINAL_VALIDATION_FINISHED",
+      "time": "2026-07-15T22:16:28"
+    },
+    {
+      "stage": "TEST_FINISHED",
+      "time": "2026-07-15T22:16:28"
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-15T22:16:28"
+    },
+    {
+      "stage": "TEST_STARTED",
+      "time": "2026-07-15T22:20:12",
+      "checkpoint": "custom_models\\results\\st_mgprompt_codex_verify\\codex_amp_verify\\STMGPrompt_FairFull\\best_checkpoint.pt"
+    },
+    {
+      "stage": "FINAL_VALIDATION_STARTED",
+      "time": "2026-07-15T22:20:12"
+    },
+    {
+      "stage": "FINAL_VALIDATION_FINISHED",
+      "time": "2026-07-15T22:20:12"
+    },
+    {
+      "stage": "TEST_FINISHED",
+      "time": "2026-07-15T22:20:12"
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-15T22:20:12"
+    }
+  ],
+  "current_stage": "PROCESS_FINISHED",
+  "updated_at": "2026-07-15T22:20:12",
+  "checkpoint": "custom_models\\results\\st_mgprompt_codex_verify\\codex_amp_verify\\STMGPrompt_FairFull\\best_checkpoint.pt",
+  "last_completed_epoch": 1,
+  "skip_test": true
+}

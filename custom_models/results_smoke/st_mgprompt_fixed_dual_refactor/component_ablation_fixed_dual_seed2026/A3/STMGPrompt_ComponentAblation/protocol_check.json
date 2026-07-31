@@ -1,0 +1,453 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "model_input_path_exists",
+      "passed": true,
+      "details": "smoke synthetic mode; file existence not required"
+    },
+    {
+      "name": "eval_target_path_exists",
+      "passed": true,
+      "details": "smoke synthetic mode; file existence not required"
+    },
+    {
+      "name": "location_path_exists",
+      "passed": true,
+      "details": "D:\\PaperProject\\GyxPaper2\\dataset\\sdwpf_turb_location_elevation.csv"
+    },
+    {
+      "name": "target_is_patv_raw",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "target_mask_is_valid_target_mask",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "default_16_features",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "no_forbidden_input_features",
+      "passed": true,
+      "details": "[]"
+    },
+    {
+      "name": "method_full_loss_name",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "msmg_dwu_model_name",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "msmg_dwu_method_full_protocol",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "msmg_dwu_not_fair_main_table",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "test_uses_full_windows",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "direct_decoder_strategy",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "no_fake_coupling_block_for_non_coupled_models",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_sources_in_base_features",
+      "passed": true,
+      "details": "['Wspd', 'Patv_clean_for_input']"
+    },
+    {
+      "name": "physical_clip_eval_enabled",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "physical_clip_uniform_protocol",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "checkpoint_metric_declared",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_robust_stats_fitted_true",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_stats_center_shape_correct",
+      "passed": true,
+      "details": "[8, 2]"
+    },
+    {
+      "name": "vadsp_stats_scale_shape_correct",
+      "passed": true,
+      "details": "[8, 2]"
+    },
+    {
+      "name": "vadsp_stats_source_unique_train_timeline",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_stats_fit_split_train",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_stats_exact_cpu",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_stats_device_cpu",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_stats_stride_independent",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "split_contained_windows",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "prediction_start_stride_windows",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "pred_shape_bhn",
+      "passed": true,
+      "details": "torch.Size([32, 10, 8])"
+    },
+    {
+      "name": "pred_convertible_bnh",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "mask_not_model_input",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_aux_has_gate_summary",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_gate_range_0_1",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_x_fine_shape_prefix",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_x_coarse_shape_prefix",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "fixed_dual_granularity_used",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "fixed_gate_exactly_half",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "fixed_x_fine_shape_prefix",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "fixed_x_coarse_shape_prefix",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "adaptive_graph_matches_variant",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "trend_prior_matches_variant",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "macro_graph_shape_n_n",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "micro_graph_shape_n_n",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "macro_graph_row_sum_min_1",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "macro_graph_row_sum_max_1",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "micro_graph_row_sum_min_1",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "micro_graph_row_sum_max_1",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "graph_train_only_statistics_matches_prior_mode",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "graph_no_test_statistics",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "adaptive_graph_prior_constraint_matches_variant",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "graph_temporal_encoder_used",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "h_fine_shape_matches_x_fine",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "h_coarse_shape_matches_x_coarse",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "h_fine_shape_bln_prefix",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "h_coarse_shape_bln_prefix",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "h_fine_delta_norm_nonnegative",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "h_coarse_delta_norm_nonnegative",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "graph_temporal_use_graph_config",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "temporal_attention_config",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "coupling_block_used",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "macro_prompt_matches_variant",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "cross_fusion_matches_variant",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "st_prompt_matches_variant",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "macro_prompt_source_matches_variant",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "cross_fusion_source_matches_variant",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "not_serial_graph_then_fusion",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "num_coupling_layers_config",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "fusion_mode_supported",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "direct_decoder_used",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "no_teacher_forcing",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "decoder_no_future_observed_features",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "direct_decoder_strategy_matches_variant",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "macro_prompt_shape_bn_prefix",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "st_prompt_shape_1hn",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "fusion_gate_mean_range",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "full_msmg_dwu_loss_metadata",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "full_loss_changed_from_fair_protocol",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "full_not_fair_main_metadata",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "full_method_table_metadata",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "full_not_fair_loss_comparison",
+      "passed": true,
+      "details": ""
+    }
+  ],
+  "data_summary": {
+    "input_dim": 16,
+    "num_nodes": 8,
+    "split_indices": {
+      "train": [
+        0,
+        192
+      ],
+      "val": [
+        192,
+        216
+      ],
+      "test": [
+        216,
+        240
+      ]
+    },
+    "window_counts": {
+      "train": 86,
+      "val": 3,
+      "test": 3
+    },
+    "valid_target_ratio": {
+      "train": 0.9928385615348816,
+      "val": 0.9947916865348816,
+      "test": 0.9947916865348816
+    },
+    "split_checks": [
+      {
+        "split": "train",
+        "contained": true,
+        "matches_builder": true,
+        "num_windows": 86
+      },
+      {
+        "split": "val",
+        "contained": true,
+        "matches_builder": true,
+        "num_windows": 3
+      },
+      {
+        "split": "test",
+        "contained": true,
+        "matches_builder": true,
+        "num_windows": 3
+      }
+    ]
+  }
+}

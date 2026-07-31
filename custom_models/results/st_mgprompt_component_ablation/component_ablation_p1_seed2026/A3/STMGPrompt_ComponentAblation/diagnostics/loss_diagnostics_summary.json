@@ -1,0 +1,28 @@
+{
+  "loss_function": "msmg_dwu_loss",
+  "base_loss": "smooth_l1",
+  "lambda_site": 0.2,
+  "ema_alpha": 0.9,
+  "node_weight_clip": [
+    0.5,
+    3.0
+  ],
+  "granularity_weight_mode": "difficulty_rate",
+  "eval_horizons": [
+    3,
+    6,
+    10
+  ],
+  "final_granularity_weight": {
+    "h3": 0.5438074469566345,
+    "h6": 0.9409619569778442,
+    "h10": 1.515230655670166
+  },
+  "final_log_sigma_g": {
+    "h3": 0.0,
+    "h6": 0.0,
+    "h10": 0.0
+  },
+  "artifact_source_checkpoint": "best_checkpoint.pt",
+  "granularity_weight_curve_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A3\\STMGPrompt_ComponentAblation\\diagnostics\\granularity_weight_curve.png"
+}

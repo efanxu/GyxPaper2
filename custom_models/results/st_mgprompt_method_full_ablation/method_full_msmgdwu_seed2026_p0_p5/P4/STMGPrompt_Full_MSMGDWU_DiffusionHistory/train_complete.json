@@ -1,0 +1,11 @@
+{
+  "status": "completed",
+  "last_epoch": 14,
+  "best_epoch": 8,
+  "best_val_score_h10": 17.518451296731282,
+  "best_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_method_full_ablation\\method_full_msmgdwu_seed2026_p0_p5\\P4\\STMGPrompt_Full_MSMGDWU_DiffusionHistory\\best_checkpoint.pt",
+  "last_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_method_full_ablation\\method_full_msmgdwu_seed2026_p0_p5\\P4\\STMGPrompt_Full_MSMGDWU_DiffusionHistory\\last_checkpoint.pt",
+  "amp_enabled": true,
+  "amp_dtype": "float16",
+  "config_hash": "05d44e63ab8e9beb4a5519aacf71049b64a0d672bb72543af315b54fffa7584d"
+}

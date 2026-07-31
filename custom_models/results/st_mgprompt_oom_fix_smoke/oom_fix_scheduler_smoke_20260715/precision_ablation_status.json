@@ -1,0 +1,64 @@
+{
+  "P0": {
+    "status": "failed",
+    "train_status": "failed",
+    "evaluation_status": "not_started",
+    "best_val_score_h10": null,
+    "failure_stage": "validation",
+    "error_type": "OutOfMemoryError",
+    "error": "simulated CUDA out of memory",
+    "last_completed_epoch": null,
+    "best_checkpoint": null,
+    "last_checkpoint": null,
+    "train_complete_exists": false,
+    "evaluation_complete_exists": false,
+    "run_command": [
+      "D:\\Apps\\Miniconda3\\envs\\env_tslib\\python.exe",
+      "run_st_mgprompt.py",
+      "--train-only"
+    ],
+    "run_command_text": "D:\\Apps\\Miniconda3\\envs\\env_tslib\\python.exe run_st_mgprompt.py --train-only",
+    "updated_at": "2026-07-15T23:41:06"
+  },
+  "P1": {
+    "status": "blocked_by_failed_baseline",
+    "train_status": "blocked_by_failed_baseline",
+    "evaluation_status": "blocked_by_failed_baseline",
+    "skip_reason": "P0 baseline failed",
+    "blocked_by": "P0",
+    "updated_at": "2026-07-15T23:41:06"
+  },
+  "P2": {
+    "status": "blocked_by_failed_baseline",
+    "train_status": "blocked_by_failed_baseline",
+    "evaluation_status": "blocked_by_failed_baseline",
+    "skip_reason": "P0 baseline failed",
+    "blocked_by": "P0",
+    "updated_at": "2026-07-15T23:41:06"
+  },
+  "P3": {
+    "status": "blocked_by_failed_baseline",
+    "train_status": "blocked_by_failed_baseline",
+    "evaluation_status": "blocked_by_failed_baseline",
+    "skip_reason": "P0 baseline failed",
+    "blocked_by": "P0",
+    "updated_at": "2026-07-15T23:41:06"
+  },
+  "P4": {
+    "status": "blocked_by_failed_baseline",
+    "train_status": "blocked_by_failed_baseline",
+    "evaluation_status": "blocked_by_failed_baseline",
+    "skip_reason": "P0 baseline failed",
+    "blocked_by": "P0",
+    "updated_at": "2026-07-15T23:41:06"
+  },
+  "P5": {
+    "status": "blocked_by_failed_baseline",
+    "train_status": "blocked_by_failed_baseline",
+    "evaluation_status": "blocked_by_failed_baseline",
+    "skip_reason": "P0 baseline failed",
+    "blocked_by": "P0",
+    "updated_at": "2026-07-15T23:41:06"
+  },
+  "updated_at": "2026-07-15T23:41:06"
+}

@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "limited": true,
+  "dataset_signature": {
+    "dataset_id": "SDWPF",
+    "shape": [
+      52559,
+      134,
+      16
+    ],
+    "feature_names": [
+      "Wspd",
+      "Wdir",
+      "Etmp",
+      "Itmp",
+      "Ndir",
+      "Pab1",
+      "Pab2",
+      "Pab3",
+      "Prtv",
+      "T2m",
+      "Sp",
+      "RelH",
+      "Wspd_w",
+      "Wdir_w",
+      "Tp",
+      "Patv_clean_for_input"
+    ],
+    "feature_order_hash": "b9878a5091618737ca8c126dcee80d5b70f122ff3901960a620cb6bc10e7f853",
+    "node_count": 134,
+    "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
+    "timestamp_count": 52559,
+    "first_timestamp": "2021-01-01 00:10:00",
+    "last_timestamp": "2021-12-31 23:50:00",
+    "normalization_fit_scope": "train_only"
+  },
+  "windows_per_split": {
+    "train": 2,
+    "val": 2,
+    "test": 2
+  },
+  "batch_size": 2,
+  "trained": false,
+  "formal_output_written": false
+}

@@ -1,0 +1,115 @@
+{
+  "task": "E2-C",
+  "model_id": "frets",
+  "source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\FreTS.py",
+  "source_sha256": "2b6c9e0cd3d4f42bc74736343147812db94f029f1a8b13b098b9841705de5c18",
+  "type_matrix": [
+    {
+      "input_value": 0,
+      "input_type": "int",
+      "output_shape": [
+        1,
+        10,
+        16
+      ],
+      "channel_frequency_executed": false,
+      "channel_gradient_sums": {
+        "r1": null,
+        "i1": null,
+        "rb1": null,
+        "ib1": null
+      },
+      "temporal_gradient_sums": {
+        "r2": 0.04017047584056854,
+        "i2": 0.028452184051275253,
+        "rb2": 0.0450194887816906,
+        "ib2": 0.033483874052762985
+      }
+    },
+    {
+      "input_value": 1,
+      "input_type": "int",
+      "output_shape": [
+        1,
+        10,
+        16
+      ],
+      "channel_frequency_executed": false,
+      "channel_gradient_sums": {
+        "r1": null,
+        "i1": null,
+        "rb1": null,
+        "ib1": null
+      },
+      "temporal_gradient_sums": {
+        "r2": 0.06994818150997162,
+        "i2": 0.05174681544303894,
+        "rb2": 0.06644126772880554,
+        "ib2": 0.07777449488639832
+      }
+    },
+    {
+      "input_value": "0",
+      "input_type": "str",
+      "output_shape": [
+        1,
+        10,
+        16
+      ],
+      "channel_frequency_executed": true,
+      "channel_gradient_sums": {
+        "r1": 0.00041695439722388983,
+        "i1": 0.0003751913318410516,
+        "rb1": 0.0002661746693775058,
+        "ib1": 0.00028697564266622066
+      },
+      "temporal_gradient_sums": {
+        "r2": 0.0004964851541444659,
+        "i2": 0.0002986578329000622,
+        "rb2": 0.0444859154522419,
+        "ib2": 0.02841721661388874
+      }
+    },
+    {
+      "input_value": "1",
+      "input_type": "str",
+      "output_shape": [
+        1,
+        10,
+        16
+      ],
+      "channel_frequency_executed": false,
+      "channel_gradient_sums": {
+        "r1": null,
+        "i1": null,
+        "rb1": null,
+        "ib1": null
+      },
+      "temporal_gradient_sums": {
+        "r2": 0.06898924708366394,
+        "i2": 0.05126971751451492,
+        "rb2": 0.10874642431735992,
+        "ib2": 0.09544335305690765
+      }
+    }
+  ],
+  "raw_upstream_amp_attempt": {
+    "status": "PASS",
+    "cuda_available": true,
+    "amp_enabled": true,
+    "wrapper_applied": false,
+    "channel_independence": "0",
+    "error_type": null,
+    "error_message": null,
+    "traceback": null,
+    "output_shape": [
+      1,
+      10,
+      16
+    ],
+    "output_dtype": "torch.float16",
+    "backward_completed": true
+  },
+  "final_wrapper_policy": "Native Trainer autocast retained because raw-source CUDA AMP forward/backward passed",
+  "final_channel_independence": "0"
+}

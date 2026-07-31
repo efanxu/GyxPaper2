@@ -1,0 +1,10 @@
+horizon,volatility_group,MAE,RMSE,R2,SMAPE,MAPE,official_align_score,score,Score,valid_target_count,total_target_count,valid_target_ratio,num_valid_points,score_compute_unit,score_lower_is_better,physical_clip_applied,gate_mean
+3,low,48.383,57.066,-0.278,0.054,0.054,6.662,6.662,6.662,24,24,1.000,24,MW_after_kW_to_MW_conversion,True,False,0.572
+6,low,53.047,61.414,-0.401,0.059,0.058,7.382,7.382,7.382,48,48,1.000,48,MW_after_kW_to_MW_conversion,True,False,0.572
+10,low,64.008,75.743,-0.916,0.070,0.068,9.089,9.089,9.089,80,80,1.000,80,MW_after_kW_to_MW_conversion,True,False,0.572
+3,medium,38.184,46.601,-0.127,0.043,0.043,5.388,5.388,5.388,23,24,0.958,23,MW_after_kW_to_MW_conversion,True,False,0.573
+6,medium,44.253,52.951,-0.183,0.050,0.050,6.164,6.164,6.164,47,48,0.979,47,MW_after_kW_to_MW_conversion,True,False,0.573
+10,medium,53.356,64.404,-0.483,0.059,0.058,7.622,7.622,7.622,79,80,0.988,79,MW_after_kW_to_MW_conversion,True,False,0.573
+3,high,41.197,48.667,-0.141,0.047,0.046,5.787,5.787,5.787,24,24,1.000,24,MW_after_kW_to_MW_conversion,True,False,0.575
+6,high,47.101,54.918,-0.240,0.053,0.052,6.591,6.591,6.591,48,48,1.000,48,MW_after_kW_to_MW_conversion,True,False,0.575
+10,high,57.406,68.668,-0.627,0.063,0.061,8.197,8.197,8.197,80,80,1.000,80,MW_after_kW_to_MW_conversion,True,False,0.575

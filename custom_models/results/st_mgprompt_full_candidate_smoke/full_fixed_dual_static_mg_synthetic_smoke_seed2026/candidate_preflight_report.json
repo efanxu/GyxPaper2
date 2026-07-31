@@ -1,0 +1,1730 @@
+{
+  "candidate_id": "FULL_FIXED_DUAL_STATIC_MG",
+  "preflight_status": "passed",
+  "current_full_config_source": {
+    "constructor": "apply_component_ablation(STMGPromptConfig(), \"A0\")",
+    "recorded_final_config": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A0\\STMGPrompt_ComponentAblation\\config.json",
+    "reference_full_run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A0\\STMGPrompt_ComponentAblation",
+    "recorded_config_loaded": true,
+    "full_config_hash": "1f27628900b9f46ef06b70d4d08951a68e862c34bb89356ce255167d0fb872fc"
+  },
+  "current_full_config_hash": "1f27628900b9f46ef06b70d4d08951a68e862c34bb89356ce255167d0fb872fc",
+  "candidate_config_hash": "094abf9f00ffe442e81287d6de10b0f29d70f45a36b0f9caad581c8c44a701c9",
+  "candidate_config_diff": {
+    "candidate_id": "FULL_FIXED_DUAL_STATIC_MG",
+    "allowed_diff_fields": [
+      "granularity_weight_mode",
+      "model_name",
+      "output_root",
+      "run_id",
+      "site_weight_mode",
+      "use_vadsp",
+      "vadsp_gate_mode"
+    ],
+    "effective_allowed_diff_fields": [
+      "granularity_weight_mode",
+      "site_weight_mode",
+      "use_vadsp",
+      "vadsp_gate_mode"
+    ],
+    "differences": {
+      "granularity_weight_mode": {
+        "current_full": "difficulty_rate",
+        "candidate": "static"
+      },
+      "output_root": {
+        "current_full": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation",
+        "candidate": "custom_models/results/st_mgprompt_full_candidate_smoke"
+      },
+      "run_id": {
+        "current_full": "component_ablation_p1_seed2026/A0",
+        "candidate": "full_fixed_dual_static_mg_synthetic_smoke_seed2026"
+      },
+      "site_weight_mode": {
+        "current_full": "dynamic",
+        "candidate": "static"
+      },
+      "vadsp_gate_mode": {
+        "current_full": "dynamic",
+        "candidate": "fixed_dual"
+      }
+    },
+    "allowed_differences": {
+      "granularity_weight_mode": {
+        "current_full": "difficulty_rate",
+        "candidate": "static"
+      },
+      "output_root": {
+        "current_full": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation",
+        "candidate": "custom_models/results/st_mgprompt_full_candidate_smoke"
+      },
+      "run_id": {
+        "current_full": "component_ablation_p1_seed2026/A0",
+        "candidate": "full_fixed_dual_static_mg_synthetic_smoke_seed2026"
+      },
+      "site_weight_mode": {
+        "current_full": "dynamic",
+        "candidate": "static"
+      },
+      "vadsp_gate_mode": {
+        "current_full": "dynamic",
+        "candidate": "fixed_dual"
+      }
+    },
+    "effective_differences": {
+      "granularity_weight_mode": {
+        "current_full": "difficulty_rate",
+        "candidate": "static"
+      },
+      "site_weight_mode": {
+        "current_full": "dynamic",
+        "candidate": "static"
+      },
+      "vadsp_gate_mode": {
+        "current_full": "dynamic",
+        "candidate": "fixed_dual"
+      }
+    },
+    "unexpected_effective_differences": {},
+    "unexpected_effective_diff_count": 0
+  },
+  "unexpected_effective_diff_count": 0,
+  "candidate_gate_mode": "fixed_dual",
+  "candidate_loss_function": "msmg_dwu_loss",
+  "candidate_granularity_weight_mode": "static",
+  "candidate_site_weight_mode": "static",
+  "training_protocol": {
+    "feature_cols": [
+      "Wspd",
+      "Wdir",
+      "Etmp",
+      "Itmp",
+      "Ndir",
+      "Pab1",
+      "Pab2",
+      "Pab3",
+      "Prtv",
+      "T2m",
+      "Sp",
+      "RelH",
+      "Wspd_w",
+      "Wdir_w",
+      "Tp",
+      "Patv_clean_for_input"
+    ],
+    "target_col": "Patv_raw",
+    "target_mask_col": "valid_target_mask",
+    "lookback": 144,
+    "max_pred_len": 10,
+    "eval_horizons": [
+      3,
+      6,
+      10
+    ],
+    "split_ratios": [
+      0.8,
+      0.1,
+      0.1
+    ],
+    "sample_stride": {
+      "train": 6,
+      "val": 3,
+      "test": 1
+    },
+    "batch_size": {
+      "train": 32,
+      "val": 4,
+      "test": 4
+    },
+    "epochs": 20,
+    "patience": 6,
+    "early_stopping_min_delta": 0.01,
+    "optimizer": "Adam",
+    "lr": 0.001,
+    "weight_decay": 0.0,
+    "amp_enabled": true,
+    "windows_safe_mode": true,
+    "pin_memory": true,
+    "prediction_accumulation": "streaming"
+  },
+  "evaluation_protocol": {
+    "result_protocol": "max_pred_len_prefix_eval",
+    "eval_horizons": [
+      3,
+      6,
+      10
+    ],
+    "checkpoint_selection_metric": "val_official_score_h10",
+    "checkpoint_selection_mode": "min",
+    "strict_best_checkpoint_load": true,
+    "metrics": [
+      "MAE",
+      "RMSE",
+      "R2",
+      "Score"
+    ],
+    "valid_target_mask": "valid_target_mask",
+    "physical_clip_kw": [
+      0.0,
+      1500.0
+    ],
+    "test_sample_stride": 1
+  },
+  "environment": {
+    "python": "3.11.15 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:12:53) [MSC v.1942 64 bit (AMD64)]",
+    "python_executable": "D:\\Apps\\Miniconda\\python.exe",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "torch": "2.5.1+cu124",
+    "cuda_available": true,
+    "cuda_device_count": 1,
+    "cuda_device_name": "NVIDIA GeForce GTX 1060"
+  },
+  "current_full_model": {
+    "model_class": "st_mgprompt.model.STMGPrompt_FairFull",
+    "total_parameters": 278534,
+    "trainable_parameters": 278534,
+    "state_dict_key_count": 123,
+    "state_dict_keys": [
+      "A_macro_prior",
+      "A_micro_prior",
+      "input_proj.weight",
+      "input_proj.bias",
+      "vadsp.source_weight_logits",
+      "vadsp.gate_bias",
+      "vadsp.raw_vol_scale",
+      "vadsp.raw_std_scale",
+      "vadsp.raw_temperature",
+      "vadsp.beta_fine",
+      "vadsp.beta_coarse",
+      "vadsp.delta_abs_q25",
+      "vadsp.delta_abs_median",
+      "vadsp.delta_abs_q75",
+      "vadsp.robust_center",
+      "vadsp.robust_scale",
+      "vadsp.delta_abs_iqr",
+      "vadsp.delta_log_median",
+      "vadsp.delta_log_iqr",
+      "vadsp.robust_stats_fitted",
+      "vadsp.robust_stats_num_time_points",
+      "vadsp.robust_stats_num_deltas",
+      "vadsp.robust_stats_nonfinite_filtered",
+      "vadsp.robust_stats_degenerate_iqr_count",
+      "vadsp.residual_mlp.0.weight",
+      "vadsp.residual_mlp.0.bias",
+      "vadsp.residual_mlp.3.weight",
+      "vadsp.residual_mlp.3.bias",
+      "vadsp.scale_gate.weight",
+      "vadsp.scale_gate.bias",
+      "vadsp.fine_conv.depthwise.weight",
+      "vadsp.fine_conv.depthwise.bias",
+      "vadsp.fine_conv.pointwise.weight",
+      "vadsp.fine_conv.pointwise.bias",
+      "vadsp.fine_conv.norm.weight",
+      "vadsp.fine_conv.norm.bias",
+      "vadsp.coarse_norm.weight",
+      "vadsp.coarse_norm.bias",
+      "macro_graph_builder.E1",
+      "macro_graph_builder.E2",
+      "micro_graph_builder.E1",
+      "micro_graph_builder.E2",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.beta_graph",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.0.weight",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.0.bias",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.3.weight",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.3.bias",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.4.weight",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.4.bias",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.weight",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.bias",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.weight",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.bias",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.weight",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.bias",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.weight",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.bias",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.layer_norm.weight",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.layer_norm.bias",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.beta_graph",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.0.weight",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.0.bias",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.3.weight",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.3.bias",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.4.weight",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.4.bias",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.weight",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.bias",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.weight",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.bias",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.weight",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.bias",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.weight",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.bias",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.conv.weight",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.conv.bias",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.norm.weight",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.norm.bias",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.conv.weight",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.conv.bias",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.norm.weight",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.norm.bias",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.layer_norm.weight",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.layer_norm.bias",
+      "coupling_blocks.0.macro_prompt_encoder.score.weight",
+      "coupling_blocks.0.macro_prompt_encoder.score.bias",
+      "coupling_blocks.0.macro_prompt_encoder.project.weight",
+      "coupling_blocks.0.macro_prompt_encoder.project.bias",
+      "coupling_blocks.0.macro_prompt_encoder.norm.weight",
+      "coupling_blocks.0.macro_prompt_encoder.norm.bias",
+      "coupling_blocks.0.symmetric_cross_fusion.macro_to_fine.in_proj_weight",
+      "coupling_blocks.0.symmetric_cross_fusion.macro_to_fine.in_proj_bias",
+      "coupling_blocks.0.symmetric_cross_fusion.macro_to_fine.out_proj.weight",
+      "coupling_blocks.0.symmetric_cross_fusion.macro_to_fine.out_proj.bias",
+      "coupling_blocks.0.symmetric_cross_fusion.fine_to_coarse.in_proj_weight",
+      "coupling_blocks.0.symmetric_cross_fusion.fine_to_coarse.in_proj_bias",
+      "coupling_blocks.0.symmetric_cross_fusion.fine_to_coarse.out_proj.weight",
+      "coupling_blocks.0.symmetric_cross_fusion.fine_to_coarse.out_proj.bias",
+      "coupling_blocks.0.symmetric_cross_fusion.gate.0.weight",
+      "coupling_blocks.0.symmetric_cross_fusion.gate.0.bias",
+      "coupling_blocks.0.symmetric_cross_fusion.gate.2.weight",
+      "coupling_blocks.0.symmetric_cross_fusion.gate.2.bias",
+      "coupling_blocks.0.symmetric_cross_fusion.fine_concat.weight",
+      "coupling_blocks.0.symmetric_cross_fusion.fine_concat.bias",
+      "coupling_blocks.0.symmetric_cross_fusion.coarse_concat.weight",
+      "coupling_blocks.0.symmetric_cross_fusion.coarse_concat.bias",
+      "coupling_blocks.0.symmetric_cross_fusion.fine_norm.weight",
+      "coupling_blocks.0.symmetric_cross_fusion.fine_norm.bias",
+      "coupling_blocks.0.symmetric_cross_fusion.coarse_norm.weight",
+      "coupling_blocks.0.symmetric_cross_fusion.coarse_norm.bias",
+      "st_prompt.node_embedding.weight",
+      "st_prompt.future_step_embedding.weight",
+      "st_prompt.granularity_embedding.weight",
+      "st_prompt.norm.weight",
+      "st_prompt.norm.bias",
+      "direct_decoder.fusion_layer.0.weight",
+      "direct_decoder.fusion_layer.0.bias",
+      "direct_decoder.fusion_layer.3.weight",
+      "direct_decoder.fusion_layer.3.bias",
+      "direct_decoder.predict_head.0.weight",
+      "direct_decoder.predict_head.0.bias",
+      "direct_decoder.predict_head.3.weight",
+      "direct_decoder.predict_head.3.bias"
+    ],
+    "state_dict_shapes": {
+      "A_macro_prior": [
+        134,
+        134
+      ],
+      "A_micro_prior": [
+        134,
+        134
+      ],
+      "input_proj.weight": [
+        64,
+        16
+      ],
+      "input_proj.bias": [
+        64
+      ],
+      "vadsp.source_weight_logits": [
+        2
+      ],
+      "vadsp.gate_bias": [],
+      "vadsp.raw_vol_scale": [],
+      "vadsp.raw_std_scale": [],
+      "vadsp.raw_temperature": [],
+      "vadsp.beta_fine": [],
+      "vadsp.beta_coarse": [],
+      "vadsp.delta_abs_q25": [
+        1,
+        2
+      ],
+      "vadsp.delta_abs_median": [
+        1,
+        2
+      ],
+      "vadsp.delta_abs_q75": [
+        1,
+        2
+      ],
+      "vadsp.robust_center": [
+        1,
+        2
+      ],
+      "vadsp.robust_scale": [
+        1,
+        2
+      ],
+      "vadsp.delta_abs_iqr": [
+        1,
+        2
+      ],
+      "vadsp.delta_log_median": [
+        1,
+        2
+      ],
+      "vadsp.delta_log_iqr": [
+        1,
+        2
+      ],
+      "vadsp.robust_stats_fitted": [],
+      "vadsp.robust_stats_num_time_points": [],
+      "vadsp.robust_stats_num_deltas": [],
+      "vadsp.robust_stats_nonfinite_filtered": [],
+      "vadsp.robust_stats_degenerate_iqr_count": [],
+      "vadsp.residual_mlp.0.weight": [
+        64,
+        2
+      ],
+      "vadsp.residual_mlp.0.bias": [
+        64
+      ],
+      "vadsp.residual_mlp.3.weight": [
+        1,
+        64
+      ],
+      "vadsp.residual_mlp.3.bias": [
+        1
+      ],
+      "vadsp.scale_gate.weight": [
+        3,
+        2
+      ],
+      "vadsp.scale_gate.bias": [
+        3
+      ],
+      "vadsp.fine_conv.depthwise.weight": [
+        64,
+        1,
+        3
+      ],
+      "vadsp.fine_conv.depthwise.bias": [
+        64
+      ],
+      "vadsp.fine_conv.pointwise.weight": [
+        64,
+        64,
+        1
+      ],
+      "vadsp.fine_conv.pointwise.bias": [
+        64
+      ],
+      "vadsp.fine_conv.norm.weight": [
+        64
+      ],
+      "vadsp.fine_conv.norm.bias": [
+        64
+      ],
+      "vadsp.coarse_norm.weight": [
+        64
+      ],
+      "vadsp.coarse_norm.bias": [
+        64
+      ],
+      "macro_graph_builder.E1": [
+        134,
+        10
+      ],
+      "macro_graph_builder.E2": [
+        134,
+        10
+      ],
+      "micro_graph_builder.E1": [
+        134,
+        10
+      ],
+      "micro_graph_builder.E2": [
+        134,
+        10
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.beta_graph": [],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.0.weight": [
+        64,
+        320
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.0.bias": [
+        64
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.3.weight": [
+        64,
+        64
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.3.bias": [
+        64
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.4.weight": [
+        64
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.4.bias": [
+        64
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.weight": [
+        64,
+        64,
+        3
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.bias": [
+        64
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.weight": [
+        64
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.bias": [
+        64
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.weight": [
+        64,
+        64,
+        3
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.bias": [
+        64
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.weight": [
+        64
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.bias": [
+        64
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.layer_norm.weight": [
+        64
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.layer_norm.bias": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.beta_graph": [],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.0.weight": [
+        64,
+        320
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.0.bias": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.3.weight": [
+        64,
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.3.bias": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.4.weight": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.4.bias": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.weight": [
+        64,
+        64,
+        5
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.bias": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.weight": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.bias": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.weight": [
+        64,
+        64,
+        5
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.bias": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.weight": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.bias": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.conv.weight": [
+        64,
+        64,
+        5
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.conv.bias": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.norm.weight": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.norm.bias": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.conv.weight": [
+        64,
+        64,
+        5
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.conv.bias": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.norm.weight": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.norm.bias": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.layer_norm.weight": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.layer_norm.bias": [
+        64
+      ],
+      "coupling_blocks.0.macro_prompt_encoder.score.weight": [
+        1,
+        64
+      ],
+      "coupling_blocks.0.macro_prompt_encoder.score.bias": [
+        1
+      ],
+      "coupling_blocks.0.macro_prompt_encoder.project.weight": [
+        256,
+        64
+      ],
+      "coupling_blocks.0.macro_prompt_encoder.project.bias": [
+        256
+      ],
+      "coupling_blocks.0.macro_prompt_encoder.norm.weight": [
+        64
+      ],
+      "coupling_blocks.0.macro_prompt_encoder.norm.bias": [
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.macro_to_fine.in_proj_weight": [
+        192,
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.macro_to_fine.in_proj_bias": [
+        192
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.macro_to_fine.out_proj.weight": [
+        64,
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.macro_to_fine.out_proj.bias": [
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.fine_to_coarse.in_proj_weight": [
+        192,
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.fine_to_coarse.in_proj_bias": [
+        192
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.fine_to_coarse.out_proj.weight": [
+        64,
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.fine_to_coarse.out_proj.bias": [
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.gate.0.weight": [
+        64,
+        192
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.gate.0.bias": [
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.gate.2.weight": [
+        64,
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.gate.2.bias": [
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.fine_concat.weight": [
+        64,
+        128
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.fine_concat.bias": [
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.coarse_concat.weight": [
+        64,
+        128
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.coarse_concat.bias": [
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.fine_norm.weight": [
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.fine_norm.bias": [
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.coarse_norm.weight": [
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.coarse_norm.bias": [
+        64
+      ],
+      "st_prompt.node_embedding.weight": [
+        134,
+        64
+      ],
+      "st_prompt.future_step_embedding.weight": [
+        10,
+        64
+      ],
+      "st_prompt.granularity_embedding.weight": [
+        2,
+        64
+      ],
+      "st_prompt.norm.weight": [
+        64
+      ],
+      "st_prompt.norm.bias": [
+        64
+      ],
+      "direct_decoder.fusion_layer.0.weight": [
+        64,
+        192
+      ],
+      "direct_decoder.fusion_layer.0.bias": [
+        64
+      ],
+      "direct_decoder.fusion_layer.3.weight": [
+        64
+      ],
+      "direct_decoder.fusion_layer.3.bias": [
+        64
+      ],
+      "direct_decoder.predict_head.0.weight": [
+        64,
+        64
+      ],
+      "direct_decoder.predict_head.0.bias": [
+        64
+      ],
+      "direct_decoder.predict_head.3.weight": [
+        1,
+        64
+      ],
+      "direct_decoder.predict_head.3.bias": [
+        1
+      ]
+    }
+  },
+  "candidate_model": {
+    "model_class": "st_mgprompt.model.STMGPrompt_FairFull",
+    "total_parameters": 278534,
+    "trainable_parameters": 278534,
+    "state_dict_key_count": 123,
+    "state_dict_keys": [
+      "A_macro_prior",
+      "A_micro_prior",
+      "input_proj.weight",
+      "input_proj.bias",
+      "vadsp.source_weight_logits",
+      "vadsp.gate_bias",
+      "vadsp.raw_vol_scale",
+      "vadsp.raw_std_scale",
+      "vadsp.raw_temperature",
+      "vadsp.beta_fine",
+      "vadsp.beta_coarse",
+      "vadsp.delta_abs_q25",
+      "vadsp.delta_abs_median",
+      "vadsp.delta_abs_q75",
+      "vadsp.robust_center",
+      "vadsp.robust_scale",
+      "vadsp.delta_abs_iqr",
+      "vadsp.delta_log_median",
+      "vadsp.delta_log_iqr",
+      "vadsp.robust_stats_fitted",
+      "vadsp.robust_stats_num_time_points",
+      "vadsp.robust_stats_num_deltas",
+      "vadsp.robust_stats_nonfinite_filtered",
+      "vadsp.robust_stats_degenerate_iqr_count",
+      "vadsp.residual_mlp.0.weight",
+      "vadsp.residual_mlp.0.bias",
+      "vadsp.residual_mlp.3.weight",
+      "vadsp.residual_mlp.3.bias",
+      "vadsp.scale_gate.weight",
+      "vadsp.scale_gate.bias",
+      "vadsp.fine_conv.depthwise.weight",
+      "vadsp.fine_conv.depthwise.bias",
+      "vadsp.fine_conv.pointwise.weight",
+      "vadsp.fine_conv.pointwise.bias",
+      "vadsp.fine_conv.norm.weight",
+      "vadsp.fine_conv.norm.bias",
+      "vadsp.coarse_norm.weight",
+      "vadsp.coarse_norm.bias",
+      "macro_graph_builder.E1",
+      "macro_graph_builder.E2",
+      "micro_graph_builder.E1",
+      "micro_graph_builder.E2",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.beta_graph",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.0.weight",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.0.bias",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.3.weight",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.3.bias",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.4.weight",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.4.bias",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.weight",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.bias",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.weight",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.bias",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.weight",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.bias",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.weight",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.bias",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.layer_norm.weight",
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.layer_norm.bias",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.beta_graph",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.0.weight",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.0.bias",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.3.weight",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.3.bias",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.4.weight",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.4.bias",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.weight",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.bias",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.weight",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.bias",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.weight",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.bias",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.weight",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.bias",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.conv.weight",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.conv.bias",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.norm.weight",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.norm.bias",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.conv.weight",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.conv.bias",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.norm.weight",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.norm.bias",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.layer_norm.weight",
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.layer_norm.bias",
+      "coupling_blocks.0.macro_prompt_encoder.score.weight",
+      "coupling_blocks.0.macro_prompt_encoder.score.bias",
+      "coupling_blocks.0.macro_prompt_encoder.project.weight",
+      "coupling_blocks.0.macro_prompt_encoder.project.bias",
+      "coupling_blocks.0.macro_prompt_encoder.norm.weight",
+      "coupling_blocks.0.macro_prompt_encoder.norm.bias",
+      "coupling_blocks.0.symmetric_cross_fusion.macro_to_fine.in_proj_weight",
+      "coupling_blocks.0.symmetric_cross_fusion.macro_to_fine.in_proj_bias",
+      "coupling_blocks.0.symmetric_cross_fusion.macro_to_fine.out_proj.weight",
+      "coupling_blocks.0.symmetric_cross_fusion.macro_to_fine.out_proj.bias",
+      "coupling_blocks.0.symmetric_cross_fusion.fine_to_coarse.in_proj_weight",
+      "coupling_blocks.0.symmetric_cross_fusion.fine_to_coarse.in_proj_bias",
+      "coupling_blocks.0.symmetric_cross_fusion.fine_to_coarse.out_proj.weight",
+      "coupling_blocks.0.symmetric_cross_fusion.fine_to_coarse.out_proj.bias",
+      "coupling_blocks.0.symmetric_cross_fusion.gate.0.weight",
+      "coupling_blocks.0.symmetric_cross_fusion.gate.0.bias",
+      "coupling_blocks.0.symmetric_cross_fusion.gate.2.weight",
+      "coupling_blocks.0.symmetric_cross_fusion.gate.2.bias",
+      "coupling_blocks.0.symmetric_cross_fusion.fine_concat.weight",
+      "coupling_blocks.0.symmetric_cross_fusion.fine_concat.bias",
+      "coupling_blocks.0.symmetric_cross_fusion.coarse_concat.weight",
+      "coupling_blocks.0.symmetric_cross_fusion.coarse_concat.bias",
+      "coupling_blocks.0.symmetric_cross_fusion.fine_norm.weight",
+      "coupling_blocks.0.symmetric_cross_fusion.fine_norm.bias",
+      "coupling_blocks.0.symmetric_cross_fusion.coarse_norm.weight",
+      "coupling_blocks.0.symmetric_cross_fusion.coarse_norm.bias",
+      "st_prompt.node_embedding.weight",
+      "st_prompt.future_step_embedding.weight",
+      "st_prompt.granularity_embedding.weight",
+      "st_prompt.norm.weight",
+      "st_prompt.norm.bias",
+      "direct_decoder.fusion_layer.0.weight",
+      "direct_decoder.fusion_layer.0.bias",
+      "direct_decoder.fusion_layer.3.weight",
+      "direct_decoder.fusion_layer.3.bias",
+      "direct_decoder.predict_head.0.weight",
+      "direct_decoder.predict_head.0.bias",
+      "direct_decoder.predict_head.3.weight",
+      "direct_decoder.predict_head.3.bias"
+    ],
+    "state_dict_shapes": {
+      "A_macro_prior": [
+        134,
+        134
+      ],
+      "A_micro_prior": [
+        134,
+        134
+      ],
+      "input_proj.weight": [
+        64,
+        16
+      ],
+      "input_proj.bias": [
+        64
+      ],
+      "vadsp.source_weight_logits": [
+        2
+      ],
+      "vadsp.gate_bias": [],
+      "vadsp.raw_vol_scale": [],
+      "vadsp.raw_std_scale": [],
+      "vadsp.raw_temperature": [],
+      "vadsp.beta_fine": [],
+      "vadsp.beta_coarse": [],
+      "vadsp.delta_abs_q25": [
+        1,
+        2
+      ],
+      "vadsp.delta_abs_median": [
+        1,
+        2
+      ],
+      "vadsp.delta_abs_q75": [
+        1,
+        2
+      ],
+      "vadsp.robust_center": [
+        1,
+        2
+      ],
+      "vadsp.robust_scale": [
+        1,
+        2
+      ],
+      "vadsp.delta_abs_iqr": [
+        1,
+        2
+      ],
+      "vadsp.delta_log_median": [
+        1,
+        2
+      ],
+      "vadsp.delta_log_iqr": [
+        1,
+        2
+      ],
+      "vadsp.robust_stats_fitted": [],
+      "vadsp.robust_stats_num_time_points": [],
+      "vadsp.robust_stats_num_deltas": [],
+      "vadsp.robust_stats_nonfinite_filtered": [],
+      "vadsp.robust_stats_degenerate_iqr_count": [],
+      "vadsp.residual_mlp.0.weight": [
+        64,
+        2
+      ],
+      "vadsp.residual_mlp.0.bias": [
+        64
+      ],
+      "vadsp.residual_mlp.3.weight": [
+        1,
+        64
+      ],
+      "vadsp.residual_mlp.3.bias": [
+        1
+      ],
+      "vadsp.scale_gate.weight": [
+        3,
+        2
+      ],
+      "vadsp.scale_gate.bias": [
+        3
+      ],
+      "vadsp.fine_conv.depthwise.weight": [
+        64,
+        1,
+        3
+      ],
+      "vadsp.fine_conv.depthwise.bias": [
+        64
+      ],
+      "vadsp.fine_conv.pointwise.weight": [
+        64,
+        64,
+        1
+      ],
+      "vadsp.fine_conv.pointwise.bias": [
+        64
+      ],
+      "vadsp.fine_conv.norm.weight": [
+        64
+      ],
+      "vadsp.fine_conv.norm.bias": [
+        64
+      ],
+      "vadsp.coarse_norm.weight": [
+        64
+      ],
+      "vadsp.coarse_norm.bias": [
+        64
+      ],
+      "macro_graph_builder.E1": [
+        134,
+        10
+      ],
+      "macro_graph_builder.E2": [
+        134,
+        10
+      ],
+      "micro_graph_builder.E1": [
+        134,
+        10
+      ],
+      "micro_graph_builder.E2": [
+        134,
+        10
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.beta_graph": [],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.0.weight": [
+        64,
+        320
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.0.bias": [
+        64
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.3.weight": [
+        64,
+        64
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.3.bias": [
+        64
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.4.weight": [
+        64
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.4.bias": [
+        64
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.weight": [
+        64,
+        64,
+        3
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.bias": [
+        64
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.weight": [
+        64
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.bias": [
+        64
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.weight": [
+        64,
+        64,
+        3
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.bias": [
+        64
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.weight": [
+        64
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.bias": [
+        64
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.layer_norm.weight": [
+        64
+      ],
+      "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.layer_norm.bias": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.beta_graph": [],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.0.weight": [
+        64,
+        320
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.0.bias": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.3.weight": [
+        64,
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.3.bias": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.4.weight": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.4.bias": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.weight": [
+        64,
+        64,
+        5
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.bias": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.weight": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.bias": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.weight": [
+        64,
+        64,
+        5
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.bias": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.weight": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.bias": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.conv.weight": [
+        64,
+        64,
+        5
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.conv.bias": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.norm.weight": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.norm.bias": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.conv.weight": [
+        64,
+        64,
+        5
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.conv.bias": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.norm.weight": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.norm.bias": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.layer_norm.weight": [
+        64
+      ],
+      "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.layer_norm.bias": [
+        64
+      ],
+      "coupling_blocks.0.macro_prompt_encoder.score.weight": [
+        1,
+        64
+      ],
+      "coupling_blocks.0.macro_prompt_encoder.score.bias": [
+        1
+      ],
+      "coupling_blocks.0.macro_prompt_encoder.project.weight": [
+        256,
+        64
+      ],
+      "coupling_blocks.0.macro_prompt_encoder.project.bias": [
+        256
+      ],
+      "coupling_blocks.0.macro_prompt_encoder.norm.weight": [
+        64
+      ],
+      "coupling_blocks.0.macro_prompt_encoder.norm.bias": [
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.macro_to_fine.in_proj_weight": [
+        192,
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.macro_to_fine.in_proj_bias": [
+        192
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.macro_to_fine.out_proj.weight": [
+        64,
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.macro_to_fine.out_proj.bias": [
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.fine_to_coarse.in_proj_weight": [
+        192,
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.fine_to_coarse.in_proj_bias": [
+        192
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.fine_to_coarse.out_proj.weight": [
+        64,
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.fine_to_coarse.out_proj.bias": [
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.gate.0.weight": [
+        64,
+        192
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.gate.0.bias": [
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.gate.2.weight": [
+        64,
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.gate.2.bias": [
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.fine_concat.weight": [
+        64,
+        128
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.fine_concat.bias": [
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.coarse_concat.weight": [
+        64,
+        128
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.coarse_concat.bias": [
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.fine_norm.weight": [
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.fine_norm.bias": [
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.coarse_norm.weight": [
+        64
+      ],
+      "coupling_blocks.0.symmetric_cross_fusion.coarse_norm.bias": [
+        64
+      ],
+      "st_prompt.node_embedding.weight": [
+        134,
+        64
+      ],
+      "st_prompt.future_step_embedding.weight": [
+        10,
+        64
+      ],
+      "st_prompt.granularity_embedding.weight": [
+        2,
+        64
+      ],
+      "st_prompt.norm.weight": [
+        64
+      ],
+      "st_prompt.norm.bias": [
+        64
+      ],
+      "direct_decoder.fusion_layer.0.weight": [
+        64,
+        192
+      ],
+      "direct_decoder.fusion_layer.0.bias": [
+        64
+      ],
+      "direct_decoder.fusion_layer.3.weight": [
+        64
+      ],
+      "direct_decoder.fusion_layer.3.bias": [
+        64
+      ],
+      "direct_decoder.predict_head.0.weight": [
+        64,
+        64
+      ],
+      "direct_decoder.predict_head.0.bias": [
+        64
+      ],
+      "direct_decoder.predict_head.3.weight": [
+        1,
+        64
+      ],
+      "direct_decoder.predict_head.3.bias": [
+        1
+      ]
+    }
+  },
+  "structure_comparison": {
+    "same_model_class": true,
+    "same_state_dict_keys": true,
+    "same_state_dict_shapes": true,
+    "same_total_parameters": true,
+    "same_trainable_parameters": true
+  },
+  "behavior_audit": {
+    "status": "passed",
+    "synthetic_input_shape": [
+      2,
+      12,
+      134,
+      16
+    ],
+    "output_shape": [
+      2,
+      10,
+      134
+    ],
+    "prediction_finite": true,
+    "loss_finite": true,
+    "loss_value": 0.5424186587333679,
+    "backward_succeeded": true,
+    "fixed_dual": {
+      "atol": 1e-07,
+      "fine_gate_min": 0.5,
+      "fine_gate_max": 0.5,
+      "coarse_gate_min": 0.5,
+      "coarse_gate_max": 0.5,
+      "fine_plus_coarse": 1.0,
+      "x_fine_is_half_fine_feature": true,
+      "x_coarse_is_half_coarse_feature": true,
+      "volatility_raw_input_invariant_fine": true,
+      "volatility_raw_input_invariant_coarse": true,
+      "dynamic_gate_stack_bypassed": true
+    },
+    "static_mg": {
+      "loss_function": "msmg_dwu_loss",
+      "horizon_weights": {
+        "H3": 1.0,
+        "H6": 1.0,
+        "H10": 1.0
+      },
+      "site_weight_min": 1.0,
+      "site_weight_max": 1.0,
+      "site_weight_mean": 1.0,
+      "log_sigma_g_requires_grad": false,
+      "log_sigma_g_in_optimizer": false,
+      "valid_target_mask_used": true
+    },
+    "gradient_checks": {
+      "model": {
+        "gradient_tensor_count": 93,
+        "has_gradient": true,
+        "all_finite": true,
+        "parameter_names": [
+          "input_proj.weight",
+          "input_proj.bias",
+          "vadsp.beta_fine",
+          "vadsp.beta_coarse",
+          "vadsp.fine_conv.depthwise.weight",
+          "vadsp.fine_conv.depthwise.bias",
+          "vadsp.fine_conv.pointwise.weight",
+          "vadsp.fine_conv.pointwise.bias",
+          "vadsp.fine_conv.norm.weight",
+          "vadsp.fine_conv.norm.bias",
+          "vadsp.coarse_norm.weight",
+          "vadsp.coarse_norm.bias",
+          "macro_graph_builder.E1",
+          "macro_graph_builder.E2",
+          "micro_graph_builder.E1",
+          "micro_graph_builder.E2",
+          "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.beta_graph",
+          "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.0.weight",
+          "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.0.bias",
+          "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.3.weight",
+          "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.3.bias",
+          "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.4.weight",
+          "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.4.bias",
+          "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.weight",
+          "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.bias",
+          "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.weight",
+          "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.bias",
+          "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.weight",
+          "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.bias",
+          "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.weight",
+          "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.bias",
+          "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.layer_norm.weight",
+          "coupling_blocks.0.fine_micro_graph_temporal_encoder.block.layer_norm.bias",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.beta_graph",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.0.weight",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.0.bias",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.3.weight",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.3.bias",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.4.weight",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.4.bias",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.weight",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.bias",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.weight",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.bias",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.weight",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.bias",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.weight",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.bias",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.conv.weight",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.conv.bias",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.norm.weight",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.norm.bias",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.conv.weight",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.conv.bias",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.norm.weight",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.norm.bias",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.layer_norm.weight",
+          "coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.layer_norm.bias",
+          "coupling_blocks.0.macro_prompt_encoder.score.weight",
+          "coupling_blocks.0.macro_prompt_encoder.score.bias",
+          "coupling_blocks.0.macro_prompt_encoder.project.weight",
+          "coupling_blocks.0.macro_prompt_encoder.project.bias",
+          "coupling_blocks.0.macro_prompt_encoder.norm.weight",
+          "coupling_blocks.0.macro_prompt_encoder.norm.bias",
+          "coupling_blocks.0.symmetric_cross_fusion.macro_to_fine.in_proj_weight",
+          "coupling_blocks.0.symmetric_cross_fusion.macro_to_fine.in_proj_bias",
+          "coupling_blocks.0.symmetric_cross_fusion.macro_to_fine.out_proj.weight",
+          "coupling_blocks.0.symmetric_cross_fusion.macro_to_fine.out_proj.bias",
+          "coupling_blocks.0.symmetric_cross_fusion.fine_to_coarse.in_proj_weight",
+          "coupling_blocks.0.symmetric_cross_fusion.fine_to_coarse.in_proj_bias",
+          "coupling_blocks.0.symmetric_cross_fusion.fine_to_coarse.out_proj.weight",
+          "coupling_blocks.0.symmetric_cross_fusion.fine_to_coarse.out_proj.bias",
+          "coupling_blocks.0.symmetric_cross_fusion.gate.0.weight",
+          "coupling_blocks.0.symmetric_cross_fusion.gate.0.bias",
+          "coupling_blocks.0.symmetric_cross_fusion.gate.2.weight",
+          "coupling_blocks.0.symmetric_cross_fusion.gate.2.bias",
+          "coupling_blocks.0.symmetric_cross_fusion.fine_norm.weight",
+          "coupling_blocks.0.symmetric_cross_fusion.fine_norm.bias",
+          "coupling_blocks.0.symmetric_cross_fusion.coarse_norm.weight",
+          "coupling_blocks.0.symmetric_cross_fusion.coarse_norm.bias",
+          "st_prompt.node_embedding.weight",
+          "st_prompt.future_step_embedding.weight",
+          "st_prompt.granularity_embedding.weight",
+          "st_prompt.norm.weight",
+          "st_prompt.norm.bias",
+          "direct_decoder.fusion_layer.0.weight",
+          "direct_decoder.fusion_layer.0.bias",
+          "direct_decoder.fusion_layer.3.weight",
+          "direct_decoder.fusion_layer.3.bias",
+          "direct_decoder.predict_head.0.weight",
+          "direct_decoder.predict_head.0.bias",
+          "direct_decoder.predict_head.3.weight",
+          "direct_decoder.predict_head.3.bias"
+        ]
+      },
+      "fine_branch": {
+        "gradient_tensor_count": 6,
+        "has_gradient": true,
+        "all_finite": true,
+        "parameter_names": [
+          "depthwise.weight",
+          "depthwise.bias",
+          "pointwise.weight",
+          "pointwise.bias",
+          "norm.weight",
+          "norm.bias"
+        ]
+      },
+      "coarse_branch": {
+        "gradient_tensor_count": 2,
+        "has_gradient": true,
+        "all_finite": true,
+        "parameter_names": [
+          "weight",
+          "bias"
+        ]
+      },
+      "coupling": {
+        "gradient_tensor_count": 64,
+        "has_gradient": true,
+        "all_finite": true,
+        "parameter_names": [
+          "0.fine_micro_graph_temporal_encoder.block.graph_conv.beta_graph",
+          "0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.0.weight",
+          "0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.0.bias",
+          "0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.3.weight",
+          "0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.3.bias",
+          "0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.4.weight",
+          "0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.4.bias",
+          "0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.weight",
+          "0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.bias",
+          "0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.weight",
+          "0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.bias",
+          "0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.weight",
+          "0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.bias",
+          "0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.weight",
+          "0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.bias",
+          "0.fine_micro_graph_temporal_encoder.block.layer_norm.weight",
+          "0.fine_micro_graph_temporal_encoder.block.layer_norm.bias",
+          "0.coarse_macro_graph_temporal_encoder.block.graph_conv.beta_graph",
+          "0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.0.weight",
+          "0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.0.bias",
+          "0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.3.weight",
+          "0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.3.bias",
+          "0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.4.weight",
+          "0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.4.bias",
+          "0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.weight",
+          "0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.bias",
+          "0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.weight",
+          "0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.bias",
+          "0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.weight",
+          "0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.bias",
+          "0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.weight",
+          "0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.bias",
+          "0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.conv.weight",
+          "0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.conv.bias",
+          "0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.norm.weight",
+          "0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.norm.bias",
+          "0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.conv.weight",
+          "0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.conv.bias",
+          "0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.norm.weight",
+          "0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.norm.bias",
+          "0.coarse_macro_graph_temporal_encoder.block.layer_norm.weight",
+          "0.coarse_macro_graph_temporal_encoder.block.layer_norm.bias",
+          "0.macro_prompt_encoder.score.weight",
+          "0.macro_prompt_encoder.score.bias",
+          "0.macro_prompt_encoder.project.weight",
+          "0.macro_prompt_encoder.project.bias",
+          "0.macro_prompt_encoder.norm.weight",
+          "0.macro_prompt_encoder.norm.bias",
+          "0.symmetric_cross_fusion.macro_to_fine.in_proj_weight",
+          "0.symmetric_cross_fusion.macro_to_fine.in_proj_bias",
+          "0.symmetric_cross_fusion.macro_to_fine.out_proj.weight",
+          "0.symmetric_cross_fusion.macro_to_fine.out_proj.bias",
+          "0.symmetric_cross_fusion.fine_to_coarse.in_proj_weight",
+          "0.symmetric_cross_fusion.fine_to_coarse.in_proj_bias",
+          "0.symmetric_cross_fusion.fine_to_coarse.out_proj.weight",
+          "0.symmetric_cross_fusion.fine_to_coarse.out_proj.bias",
+          "0.symmetric_cross_fusion.gate.0.weight",
+          "0.symmetric_cross_fusion.gate.0.bias",
+          "0.symmetric_cross_fusion.gate.2.weight",
+          "0.symmetric_cross_fusion.gate.2.bias",
+          "0.symmetric_cross_fusion.fine_norm.weight",
+          "0.symmetric_cross_fusion.fine_norm.bias",
+          "0.symmetric_cross_fusion.coarse_norm.weight",
+          "0.symmetric_cross_fusion.coarse_norm.bias"
+        ]
+      },
+      "graph_micro": {
+        "gradient_tensor_count": 17,
+        "has_gradient": true,
+        "all_finite": true,
+        "parameter_names": [
+          "block.graph_conv.beta_graph",
+          "block.graph_conv.projection.0.weight",
+          "block.graph_conv.projection.0.bias",
+          "block.graph_conv.projection.3.weight",
+          "block.graph_conv.projection.3.bias",
+          "block.graph_conv.projection.4.weight",
+          "block.graph_conv.projection.4.bias",
+          "block.causal_tcn.blocks.0.conv.weight",
+          "block.causal_tcn.blocks.0.conv.bias",
+          "block.causal_tcn.blocks.0.norm.weight",
+          "block.causal_tcn.blocks.0.norm.bias",
+          "block.causal_tcn.blocks.1.conv.weight",
+          "block.causal_tcn.blocks.1.conv.bias",
+          "block.causal_tcn.blocks.1.norm.weight",
+          "block.causal_tcn.blocks.1.norm.bias",
+          "block.layer_norm.weight",
+          "block.layer_norm.bias"
+        ]
+      },
+      "graph_macro": {
+        "gradient_tensor_count": 25,
+        "has_gradient": true,
+        "all_finite": true,
+        "parameter_names": [
+          "block.graph_conv.beta_graph",
+          "block.graph_conv.projection.0.weight",
+          "block.graph_conv.projection.0.bias",
+          "block.graph_conv.projection.3.weight",
+          "block.graph_conv.projection.3.bias",
+          "block.graph_conv.projection.4.weight",
+          "block.graph_conv.projection.4.bias",
+          "block.causal_tcn.blocks.0.conv.weight",
+          "block.causal_tcn.blocks.0.conv.bias",
+          "block.causal_tcn.blocks.0.norm.weight",
+          "block.causal_tcn.blocks.0.norm.bias",
+          "block.causal_tcn.blocks.1.conv.weight",
+          "block.causal_tcn.blocks.1.conv.bias",
+          "block.causal_tcn.blocks.1.norm.weight",
+          "block.causal_tcn.blocks.1.norm.bias",
+          "block.causal_tcn.blocks.2.conv.weight",
+          "block.causal_tcn.blocks.2.conv.bias",
+          "block.causal_tcn.blocks.2.norm.weight",
+          "block.causal_tcn.blocks.2.norm.bias",
+          "block.causal_tcn.blocks.3.conv.weight",
+          "block.causal_tcn.blocks.3.conv.bias",
+          "block.causal_tcn.blocks.3.norm.weight",
+          "block.causal_tcn.blocks.3.norm.bias",
+          "block.layer_norm.weight",
+          "block.layer_norm.bias"
+        ]
+      },
+      "prompt": {
+        "gradient_tensor_count": 5,
+        "has_gradient": true,
+        "all_finite": true,
+        "parameter_names": [
+          "node_embedding.weight",
+          "future_step_embedding.weight",
+          "granularity_embedding.weight",
+          "norm.weight",
+          "norm.bias"
+        ]
+      },
+      "decoder": {
+        "gradient_tensor_count": 8,
+        "has_gradient": true,
+        "all_finite": true,
+        "parameter_names": [
+          "fusion_layer.0.weight",
+          "fusion_layer.0.bias",
+          "fusion_layer.3.weight",
+          "fusion_layer.3.bias",
+          "predict_head.0.weight",
+          "predict_head.0.bias",
+          "predict_head.3.weight",
+          "predict_head.3.bias"
+        ]
+      }
+    },
+    "idle_dynamic_gate_parameter_names": [
+      "vadsp.source_weight_logits",
+      "vadsp.gate_bias",
+      "vadsp.raw_vol_scale",
+      "vadsp.raw_std_scale",
+      "vadsp.raw_temperature",
+      "vadsp.residual_mlp.0.weight",
+      "vadsp.residual_mlp.0.bias",
+      "vadsp.residual_mlp.3.weight",
+      "vadsp.residual_mlp.3.bias",
+      "vadsp.scale_gate.weight",
+      "vadsp.scale_gate.bias"
+    ],
+    "all_idle_parameter_names": [
+      "vadsp.source_weight_logits",
+      "vadsp.gate_bias",
+      "vadsp.raw_vol_scale",
+      "vadsp.raw_std_scale",
+      "vadsp.raw_temperature",
+      "vadsp.residual_mlp.0.weight",
+      "vadsp.residual_mlp.0.bias",
+      "vadsp.residual_mlp.3.weight",
+      "vadsp.residual_mlp.3.bias",
+      "vadsp.scale_gate.weight",
+      "vadsp.scale_gate.bias",
+      "coupling_blocks.0.symmetric_cross_fusion.fine_concat.weight",
+      "coupling_blocks.0.symmetric_cross_fusion.fine_concat.bias",
+      "coupling_blocks.0.symmetric_cross_fusion.coarse_concat.weight",
+      "coupling_blocks.0.symmetric_cross_fusion.coarse_concat.bias"
+    ],
+    "optimizer_parameter_audit": {
+      "active_parameter_names": [
+        "model.input_proj.weight",
+        "model.input_proj.bias",
+        "model.vadsp.source_weight_logits",
+        "model.vadsp.gate_bias",
+        "model.vadsp.raw_vol_scale",
+        "model.vadsp.raw_std_scale",
+        "model.vadsp.raw_temperature",
+        "model.vadsp.beta_fine",
+        "model.vadsp.beta_coarse",
+        "model.vadsp.residual_mlp.0.weight",
+        "model.vadsp.residual_mlp.0.bias",
+        "model.vadsp.residual_mlp.3.weight",
+        "model.vadsp.residual_mlp.3.bias",
+        "model.vadsp.scale_gate.weight",
+        "model.vadsp.scale_gate.bias",
+        "model.vadsp.fine_conv.depthwise.weight",
+        "model.vadsp.fine_conv.depthwise.bias",
+        "model.vadsp.fine_conv.pointwise.weight",
+        "model.vadsp.fine_conv.pointwise.bias",
+        "model.vadsp.fine_conv.norm.weight",
+        "model.vadsp.fine_conv.norm.bias",
+        "model.vadsp.coarse_norm.weight",
+        "model.vadsp.coarse_norm.bias",
+        "model.macro_graph_builder.E1",
+        "model.macro_graph_builder.E2",
+        "model.micro_graph_builder.E1",
+        "model.micro_graph_builder.E2",
+        "model.coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.beta_graph",
+        "model.coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.0.weight",
+        "model.coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.0.bias",
+        "model.coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.3.weight",
+        "model.coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.3.bias",
+        "model.coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.4.weight",
+        "model.coupling_blocks.0.fine_micro_graph_temporal_encoder.block.graph_conv.projection.4.bias",
+        "model.coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.weight",
+        "model.coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.bias",
+        "model.coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.weight",
+        "model.coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.bias",
+        "model.coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.weight",
+        "model.coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.bias",
+        "model.coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.weight",
+        "model.coupling_blocks.0.fine_micro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.bias",
+        "model.coupling_blocks.0.fine_micro_graph_temporal_encoder.block.layer_norm.weight",
+        "model.coupling_blocks.0.fine_micro_graph_temporal_encoder.block.layer_norm.bias",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.beta_graph",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.0.weight",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.0.bias",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.3.weight",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.3.bias",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.4.weight",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.graph_conv.projection.4.bias",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.weight",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.conv.bias",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.weight",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.0.norm.bias",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.weight",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.conv.bias",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.weight",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.1.norm.bias",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.conv.weight",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.conv.bias",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.norm.weight",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.2.norm.bias",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.conv.weight",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.conv.bias",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.norm.weight",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.causal_tcn.blocks.3.norm.bias",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.layer_norm.weight",
+        "model.coupling_blocks.0.coarse_macro_graph_temporal_encoder.block.layer_norm.bias",
+        "model.coupling_blocks.0.macro_prompt_encoder.score.weight",
+        "model.coupling_blocks.0.macro_prompt_encoder.score.bias",
+        "model.coupling_blocks.0.macro_prompt_encoder.project.weight",
+        "model.coupling_blocks.0.macro_prompt_encoder.project.bias",
+        "model.coupling_blocks.0.macro_prompt_encoder.norm.weight",
+        "model.coupling_blocks.0.macro_prompt_encoder.norm.bias",
+        "model.coupling_blocks.0.symmetric_cross_fusion.macro_to_fine.in_proj_weight",
+        "model.coupling_blocks.0.symmetric_cross_fusion.macro_to_fine.in_proj_bias",
+        "model.coupling_blocks.0.symmetric_cross_fusion.macro_to_fine.out_proj.weight",
+        "model.coupling_blocks.0.symmetric_cross_fusion.macro_to_fine.out_proj.bias",
+        "model.coupling_blocks.0.symmetric_cross_fusion.fine_to_coarse.in_proj_weight",
+        "model.coupling_blocks.0.symmetric_cross_fusion.fine_to_coarse.in_proj_bias",
+        "model.coupling_blocks.0.symmetric_cross_fusion.fine_to_coarse.out_proj.weight",
+        "model.coupling_blocks.0.symmetric_cross_fusion.fine_to_coarse.out_proj.bias",
+        "model.coupling_blocks.0.symmetric_cross_fusion.gate.0.weight",
+        "model.coupling_blocks.0.symmetric_cross_fusion.gate.0.bias",
+        "model.coupling_blocks.0.symmetric_cross_fusion.gate.2.weight",
+        "model.coupling_blocks.0.symmetric_cross_fusion.gate.2.bias",
+        "model.coupling_blocks.0.symmetric_cross_fusion.fine_concat.weight",
+        "model.coupling_blocks.0.symmetric_cross_fusion.fine_concat.bias",
+        "model.coupling_blocks.0.symmetric_cross_fusion.coarse_concat.weight",
+        "model.coupling_blocks.0.symmetric_cross_fusion.coarse_concat.bias",
+        "model.coupling_blocks.0.symmetric_cross_fusion.fine_norm.weight",
+        "model.coupling_blocks.0.symmetric_cross_fusion.fine_norm.bias",
+        "model.coupling_blocks.0.symmetric_cross_fusion.coarse_norm.weight",
+        "model.coupling_blocks.0.symmetric_cross_fusion.coarse_norm.bias",
+        "model.st_prompt.node_embedding.weight",
+        "model.st_prompt.future_step_embedding.weight",
+        "model.st_prompt.granularity_embedding.weight",
+        "model.st_prompt.norm.weight",
+        "model.st_prompt.norm.bias",
+        "model.direct_decoder.fusion_layer.0.weight",
+        "model.direct_decoder.fusion_layer.0.bias",
+        "model.direct_decoder.fusion_layer.3.weight",
+        "model.direct_decoder.fusion_layer.3.bias",
+        "model.direct_decoder.predict_head.0.weight",
+        "model.direct_decoder.predict_head.0.bias",
+        "model.direct_decoder.predict_head.3.weight",
+        "model.direct_decoder.predict_head.3.bias"
+      ],
+      "active_parameter_count": 278534,
+      "optimizer_parameter_tensor_count": 108,
+      "all_active_parameters_in_optimizer": true,
+      "static_loss_parameters_excluded": [
+        "loss.log_sigma_g"
+      ],
+      "log_sigma_g_excluded": true
+    },
+    "forward_path": [
+      "input_projection",
+      "fixed_dual_vadsp_fine_and_coarse",
+      "adaptive_dual_graph",
+      "stmg_coupling",
+      "cross_fusion",
+      "st_prompt",
+      "direct_decoder"
+    ]
+  }
+}

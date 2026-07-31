@@ -1,0 +1,13 @@
+[
+  "D:\\Apps\\Miniconda3\\envs\\env_tslib\\python.exe",
+  "D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\run_st_mgprompt.py",
+  "--full",
+  "--experiment-variant",
+  "P5",
+  "--run-id",
+  "precision_ablation_fixed_dual_seed2026/P5",
+  "--output-root",
+  "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_precision",
+  "--device",
+  "auto"
+]

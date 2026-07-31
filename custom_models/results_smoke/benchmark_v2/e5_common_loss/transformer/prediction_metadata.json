@@ -1,0 +1,16 @@
+{
+  "run_mode": "smoke",
+  "model_id": "transformer",
+  "formal_registry_entry": true,
+  "formal_training": false,
+  "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "prediction_shape": [
+    2,
+    4,
+    10
+  ],
+  "target_column": "Patv_raw",
+  "output_space_before_inverse": "normalized_target_space",
+  "output_space_after_inverse": "physical_kW",
+  "source_checkpoint": "best_checkpoint.pt"
+}

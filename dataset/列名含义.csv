@@ -1,0 +1,20 @@
+﻿序号 (No.),列名 (Column Name),含义(英文),含义(中文),备注(英文),备注(中文)
+1,TurbID,Wind turbine ID,风力涡轮机 ID,,
+2,Day,Day of the record,记录日,,
+3,Tmstamp,Created time of the record,记录创建时间,"e.g., 2021/1/1 0:10:00",例如 2021/1/1 0:10:00
+4,Wspd (m/s),The wind speed at the top of the turbine,风力发电机顶部风速,Recorded by mechanical anemometer,由机械风速计记录
+5,Wdir (°),"Relative wind direction, which is the angle between the wind direction and the turbine nacelle direction",相对风向，即风向与风力发电机机舱方向之间的角度,Wind direction and nacelle direction are in degrees from true north,风向和机舱方向以度数表示，从真北方向测量
+6,Etmp (°C),Temperature of the surrounding environment,周围环境的温度,Measured outer surface of the nacelle,机舱外表面测量值
+7,Itmp (°C),Temperature inside the turbine nacelle,涡轮机舱内温度,,
+8,Ndir (°),"Nacelle direction, the yaw angle of the nacelle",机舱方向，机舱偏航角,In degree from true north,从真北的角度
+9,Pab1 (°),Pitch angle of blade 1,叶片 1 的俯仰角,The angle between the chord line and the rotation plane of the blade,弦线与叶片旋转平面之间的角度
+10,Pab2 (°),Pitch angle of blade 2,叶片 2 的俯仰角,Same as above,同上
+11,Pab3 (°),Pitch angle of blade 3,叶片 3 的倾角,Same as above,同上
+12,Prtv (kW),Reactive power,无功功率,,
+13,T2m (°C),Temperature at 2m above surface (ERA5),地表以上 2 米处温度（ERA5）,,
+14,Sp (Pa),Surface pressure from ERA5,来自 ERA5 的表面压力,,
+15,RelH,Relative humidity,相对湿度,Derived based on 2m dew point temperature and 2m temperature using Python Package metpy,基于 2 米露点温度和 2 米温度，使用 Python 包 metpy 计算得出
+16,Wspd_w (m/s),Wind speed from ERA5,来自 ERA5 的风速,At height of 10m,在 10 米高度
+17,Wdir_w (°),Wind direction from ERA5,来自 ERA5 的风向,At height of 10m,在 10 米高度
+18,Tp (m),Total precipitation from ERA5,ERA5 的总降水量,,
+19,Patv (kW),"Active power, the wind power produced by a wind turbine at a time stamp.",有功功率，风力涡轮机在某个时间戳产生的风能,,

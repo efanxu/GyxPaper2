@@ -1,0 +1,47 @@
+[
+  {
+    "variant": "A0",
+    "status": "REFERENCE_ONLY",
+    "returncode": 0
+  },
+  {
+    "variant": "A1",
+    "status": "COMPLETED",
+    "returncode": 0
+  },
+  {
+    "variant": "A2",
+    "status": "COMPLETED",
+    "returncode": 0
+  },
+  {
+    "variant": "A3",
+    "status": "COMPLETED",
+    "returncode": 0
+  },
+  {
+    "variant": "A4",
+    "status": "COMPLETED",
+    "returncode": 0
+  },
+  {
+    "variant": "A5",
+    "status": "COMPLETED",
+    "returncode": 0
+  },
+  {
+    "variant": "A6",
+    "status": "COMPLETED",
+    "returncode": 0
+  },
+  {
+    "variant": "A7",
+    "status": "COMPLETED",
+    "returncode": 0
+  },
+  {
+    "variant": "A8",
+    "status": "COMPLETED",
+    "returncode": 0
+  }
+]

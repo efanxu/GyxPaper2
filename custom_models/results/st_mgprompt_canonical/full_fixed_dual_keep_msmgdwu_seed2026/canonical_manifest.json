@@ -1,0 +1,130 @@
+{
+  "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+  "canonical_directory": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026",
+  "source_experiment": "old A1",
+  "source_directory": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A1\\STMGPrompt_ComponentAblation",
+  "canonical_is_unique_real_artifact": true,
+  "a0_and_p0_are_reference_only": true,
+  "copied_files": [
+    {
+      "source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A1\\STMGPrompt_ComponentAblation\\config.json",
+      "canonical": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\config.json",
+      "sha256": "19e3926e3c55f4ccaaf9f3d786807c706b26cd57050443521d42598854a18e56",
+      "size_bytes": 5281
+    },
+    {
+      "source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A1\\STMGPrompt_ComponentAblation\\active_config.json",
+      "canonical": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\active_config.json",
+      "sha256": "19e3926e3c55f4ccaaf9f3d786807c706b26cd57050443521d42598854a18e56",
+      "size_bytes": 5281
+    },
+    {
+      "source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A1\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+      "canonical": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\best_checkpoint.pt",
+      "sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+      "size_bytes": 3509704
+    },
+    {
+      "source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A1\\STMGPrompt_ComponentAblation\\metrics.csv",
+      "canonical": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\metrics.csv",
+      "sha256": "ffc0d804e17a21a686038ed2d256af1cf74795c0aa81a05b16a57d91839506ea",
+      "size_bytes": 576
+    },
+    {
+      "source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A1\\STMGPrompt_ComponentAblation\\metrics_eval_h3.json",
+      "canonical": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\metrics_eval_h3.json",
+      "sha256": "881be8f8b56d7d1aa4515ec717b6d2ad591516062fbf31d9ec405bae354d0225",
+      "size_bytes": 551
+    },
+    {
+      "source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A1\\STMGPrompt_ComponentAblation\\metrics_eval_h6.json",
+      "canonical": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\metrics_eval_h6.json",
+      "sha256": "87f6b70246f1d9e97db10b638b164ef92f9d14f502da8d2829c94faf398bc633",
+      "size_bytes": 550
+    },
+    {
+      "source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A1\\STMGPrompt_ComponentAblation\\metrics_eval_h10.json",
+      "canonical": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\metrics_eval_h10.json",
+      "sha256": "c0f47960bdee49dbf92727a463784943c00c917cf6d00a18c3651f78df5a9c13",
+      "size_bytes": 553
+    },
+    {
+      "source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A1\\STMGPrompt_ComponentAblation\\model_summary.json",
+      "canonical": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\model_summary.json",
+      "sha256": "8cb5af49ae1b9a5f693d501e139e0e47cc0e49fbd8523310977869eb516d55ce",
+      "size_bytes": 11849
+    },
+    {
+      "source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A1\\STMGPrompt_ComponentAblation\\prediction_metadata.json",
+      "canonical": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\prediction_metadata.json",
+      "sha256": "388c819fa56f78268ed3663f9b052aab451e17375b52dd499cd66ee26caa72db",
+      "size_bytes": 614
+    },
+    {
+      "source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A1\\STMGPrompt_ComponentAblation\\protocol_check.json",
+      "canonical": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\protocol_check.json",
+      "sha256": "9b482bfc7b0e5f0f994da51494c035f7279a94c413a44c52a2722048ef487b3d",
+      "size_bytes": 8902
+    },
+    {
+      "source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A1\\STMGPrompt_ComponentAblation\\train_log.csv",
+      "canonical": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\train_log.csv",
+      "sha256": "ccf44f6d63166f5aa1b4c7dc96b3079a164fae97da8b9c76d46aa903e89c90d6",
+      "size_bytes": 28478
+    },
+    {
+      "source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A1\\STMGPrompt_ComponentAblation\\train_complete.json",
+      "canonical": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\train_complete.json",
+      "sha256": "8c08ab3f36f009039381c1b492b5a2fa7ef18ba35f58fb80145b09a72981fb44",
+      "size_bytes": 643
+    },
+    {
+      "source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A1\\STMGPrompt_ComponentAblation\\evaluation_complete.json",
+      "canonical": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\evaluation_complete.json",
+      "sha256": "8d3e6b00f33f0ef2286487fcfdc44364a5a10d3dbceed6e841ce0783a6627ea3",
+      "size_bytes": 264
+    },
+    {
+      "source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A1\\STMGPrompt_ComponentAblation\\run_status.json",
+      "canonical": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\run_status.json",
+      "sha256": "0226c59d6ec885defd3a059e73939ca042f3e012eac83e3ae5e74dc0f1da7228",
+      "size_bytes": 1655
+    },
+    {
+      "source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A1\\STMGPrompt_ComponentAblation\\diagnostics\\granularity_weight_curve.png",
+      "canonical": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\diagnostics\\granularity_weight_curve.png",
+      "sha256": "0f2e41c67628695ad1eb109fe4893df1579be756254b0c43ab538cf15a5d7dc2",
+      "size_bytes": 35281
+    },
+    {
+      "source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A1\\STMGPrompt_ComponentAblation\\diagnostics\\loss_diagnostics_summary.json",
+      "canonical": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\diagnostics\\loss_diagnostics_summary.json",
+      "sha256": "fa5d714d04c9145353ce85c2af5037efe5d204f59b08011b25b145c10c79a01a",
+      "size_bytes": 763
+    },
+    {
+      "source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A1\\STMGPrompt_ComponentAblation\\diagnostics\\loss_weights.csv",
+      "canonical": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\diagnostics\\loss_weights.csv",
+      "sha256": "038fc4c4156419bedc811493782a8c3ead00aae94345013eb2060ddae58e0b13",
+      "size_bytes": 10340
+    },
+    {
+      "source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A1\\STMGPrompt_ComponentAblation\\diagnostics\\site_weight_final.csv",
+      "canonical": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\diagnostics\\site_weight_final.csv",
+      "sha256": "381259ef7e41dbf13760ea7cab38636892fee392fb27843c99f8a934aa50ad7d",
+      "size_bytes": 5778
+    }
+  ],
+  "derived_files": [
+    "effective_config.json",
+    "canonical_manifest.json",
+    "artifact_hashes.json",
+    "provenance.json"
+  ],
+  "missing_optional_source_files_not_fabricated": [
+    "predictions.npz",
+    "metrics_val.json",
+    "metrics_test.json",
+    "eval.log"
+  ]
+}

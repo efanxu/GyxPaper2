@@ -1,0 +1,40 @@
+{
+  "task": "E1-A",
+  "run_mode": "smoke",
+  "formal_training": false,
+  "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "shape": {"B": 2, "T": 144, "N": 4, "C": 16, "H": 10},
+  "results": {
+    "persistence": {
+      "status": "PASS",
+      "artifact_profile": "NON_TRAINABLE",
+      "prediction_shape": [2, 4, 10],
+      "parameter_count": 0,
+      "artifact_validation": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e1_a/persistence"
+    },
+    "moving_average": {
+      "status": "PASS",
+      "artifact_profile": "NON_TRAINABLE",
+      "prediction_shape": [2, 4, 10],
+      "parameter_count": 0,
+      "ma_window": 144,
+      "artifact_validation": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e1_a/moving_average"
+    },
+    "gru": {
+      "status": "PASS",
+      "artifact_profile": "SMOKE",
+      "prediction_shape": [2, 4, 10],
+      "loss": 5.884469032287598,
+      "validation_score_h10": 1.116741025659427,
+      "parameter_count": 16394,
+      "trainable_parameter_count": 16394,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e1_a/gru"
+    }
+  }
+}

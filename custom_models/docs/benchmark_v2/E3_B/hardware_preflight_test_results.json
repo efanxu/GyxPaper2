@@ -1,0 +1,27 @@
+{
+  "task": "E3-B graph-aware hardware preflight regression",
+  "status": "PASS",
+  "legacy_launcher_tests": {
+    "tests_run": 9,
+    "failures": 0,
+    "errors": 0
+  },
+  "graph_identity_tests": {
+    "suite": "custom_models.tests.benchmark_v2.test_e3_b_graph_models",
+    "status": "PASS",
+    "verified_mismatch_rejection": [
+      "graph_bundle_hash",
+      "node_order_hash",
+      "graph_support_names",
+      "graph_support_hashes",
+      "source_hash",
+      "model_config_hash"
+    ]
+  },
+  "missing_pass_launches_preflight_then_formal": "PASS_DUMMY",
+  "preflight_pid_differs_from_formal_pid": "PASS_DUMMY",
+  "preflight_exits_before_formal": "PASS_DUMMY",
+  "fail_oom_creates_no_formal_run": "PASS_DUMMY",
+  "fail_non_oom_creates_no_formal_run": "PASS_DUMMY",
+  "target_high_memory_machine_preflight": "NOT_RUN"
+}

@@ -1,0 +1,35 @@
+{
+  "status": "PASS_WITH_TARGETED_RERUNS",
+  "interpreter": "D:/Apps/Miniconda3/envs/env_tslib/python.exe",
+  "pytest_available": false,
+  "suites": [
+    {
+      "suite": "existing benchmark_v2 unittest discovery",
+      "tests_run": 164,
+      "initial_pass": 162,
+      "initial_fail": 2,
+      "targeted_rerun_pass": 2,
+      "notes": [
+        "E5 identity regression was corrected and its targeted test passed.",
+        "MTGNN zero-gradient assertion passed on isolated rerun without a model change."
+      ]
+    },
+    {
+      "suite": "test_uniform_batch4.py",
+      "tests_run": 8,
+      "passed": 8,
+      "failed": 0
+    }
+  ],
+  "coverage": [
+    "profile schema/hash/allowlist/fixed batches",
+    "DataLoader batch4 and unchanged sample collection",
+    "gradient accumulation/effective batch",
+    "initialization/forward/optimizer param-group invariance",
+    "preflight identity mismatch rejection for batch32/16/8 and hashes",
+    "artifact/checkpoint batch identity",
+    "readiness/aggregation mixed-batch rejection",
+    "old A8 rejection and new batch4 A8 acceptance",
+    "backward compatibility, registry=28, TSLib allowlist=18"
+  ]
+}

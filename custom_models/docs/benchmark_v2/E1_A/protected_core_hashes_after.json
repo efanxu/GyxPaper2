@@ -1,0 +1,20 @@
+{
+  "snapshot": "E1-A task end",
+  "algorithm": "sorted relative_path:sha256 tree digest (UTF-8), excluding __pycache__",
+  "paths": [
+    {"path": "custom_models/src/st_mgprompt", "file_count": 33, "tree_sha256": "2c3336553c7ced1928c92e39cba00381daed1adc883f6e1676dc110419a21cbd"},
+    {"path": "custom_models/results/st_mgprompt_canonical/full_fixed_dual_keep_msmgdwu_seed2026", "file_count": 23, "tree_sha256": "b8998c37843ec0fe4505ad2574d96ec6241a628c7f7fc6b9df27a37799c29b8c"},
+    {"path": "custom_models/results/st_mgprompt_precision/precision_ablation_fixed_dual_seed2026", "file_count": 107, "tree_sha256": "cbb0799a3957de92aac3d8624086e2c34d08ce6841f7fa34d1abdafdcef23a7d"},
+    {"path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026", "file_count": 32, "tree_sha256": "558d1bbb00cfad2b848533275d4ade12f973878e3accf90853814de913d7f1bd"}
+  ],
+  "graph_metadata": {
+    "path": "custom_models/graphs/trend_prior_v4_2/metadata.json",
+    "sha256": "c3b0a90d1e73c39b14058d0405ecb42f547f233fed5e4b89d18e117669eb4cd2"
+  },
+  "canonical_checkpoint": {
+    "path": "custom_models/results/st_mgprompt_canonical/full_fixed_dual_keep_msmgdwu_seed2026/best_checkpoint.pt",
+    "sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a"
+  },
+  "formal_output_root_exists": false,
+  "matches_before": true
+}

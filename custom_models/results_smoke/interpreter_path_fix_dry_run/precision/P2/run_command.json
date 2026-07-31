@@ -1,0 +1,13 @@
+[
+  "D:\\Apps\\Miniconda3\\python.exe",
+  "D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\run_st_mgprompt.py",
+  "--full",
+  "--experiment-variant",
+  "P2",
+  "--run-id",
+  "precision/P2",
+  "--output-root",
+  "D:\\PaperProject\\GyxPaper2\\custom_models\\results_smoke\\interpreter_path_fix_dry_run",
+  "--device",
+  "auto"
+]

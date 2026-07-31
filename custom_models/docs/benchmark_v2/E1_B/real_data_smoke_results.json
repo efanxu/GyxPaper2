@@ -1,0 +1,105 @@
+{
+  "task": "E1-B",
+  "run_mode": "smoke",
+  "limited": true,
+  "formal_training": false,
+  "formal_evaluation": false,
+  "results": {
+    "dlinear": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e1_b/real_data/dlinear",
+      "prediction_shape": [
+        1,
+        134,
+        10
+      ],
+      "loss": 0.10862216725945473,
+      "validation_score_h10": 20.46136002607424,
+      "evaluation_score_h10": 11.522687898545708,
+      "evaluation_r2_h10": null,
+      "parameter_count": 2900,
+      "trainable_parameter_count": 2900,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\DLinear.py",
+      "upstream_source_sha256": "e03acaf97e70c85ea6bda6776b3a62550f84470afa7bc53dffccb6121626e7eb",
+      "train_batch_limit": 2,
+      "validation_batch_limit": 1,
+      "evaluation_batch_limit": 1
+    },
+    "lightts": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e1_b/real_data/lightts",
+      "prediction_shape": [
+        1,
+        134,
+        10
+      ],
+      "loss": 1.6169166564941406,
+      "validation_score_h10": 85.63057597877975,
+      "evaluation_score_h10": 55.79740774193077,
+      "evaluation_r2_h10": null,
+      "parameter_count": 104342,
+      "trainable_parameter_count": 104342,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\LightTS.py",
+      "upstream_source_sha256": "1de1583c4ee0bbfa0764fa9b158f09ac8bcd7ddf7f2d9f1b58ab1a03a7d13989",
+      "train_batch_limit": 2,
+      "validation_batch_limit": 1,
+      "evaluation_batch_limit": 1
+    },
+    "tide": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e1_b/real_data/tide",
+      "prediction_shape": [
+        1,
+        134,
+        10
+      ],
+      "loss": 0.12245941162109375,
+      "validation_score_h10": 32.646167894820906,
+      "evaluation_score_h10": 22.010889415268643,
+      "evaluation_r2_h10": null,
+      "parameter_count": 1804777,
+      "trainable_parameter_count": 1804777,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\TiDE.py",
+      "upstream_source_sha256": "4ab07dec4ae85f8b7c3062ff7d2fec00be342968d41cf09e48d599d8e40f6143",
+      "train_batch_limit": 2,
+      "validation_batch_limit": 1,
+      "evaluation_batch_limit": 1
+    },
+    "segrnn": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e1_b/real_data/segrnn",
+      "prediction_shape": [
+        1,
+        134,
+        10
+      ],
+      "loss": 0.8628645837306976,
+      "validation_score_h10": 68.57169612792845,
+      "evaluation_score_h10": 0.0,
+      "evaluation_r2_h10": null,
+      "parameter_count": 1583874,
+      "trainable_parameter_count": 1583874,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\SegRNN.py",
+      "upstream_source_sha256": "764d4ad950ee65162c70746248754942cfb4ba661162d515caab0a4eedd12252",
+      "train_batch_limit": 2,
+      "validation_batch_limit": 1,
+      "evaluation_batch_limit": 1
+    }
+  }
+}

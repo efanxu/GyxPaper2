@@ -1,0 +1,18 @@
+{
+  "shared_variant_id": "S0_FULL_A0",
+  "vadsp_alias": "V0_FULL_DYNAMIC",
+  "loss_alias": "L0_FULL_MSMGDWU",
+  "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke\\synthetic_smoke_seed2026\\S0_FULL_A0\\best_checkpoint.pt",
+  "config_hash": "aef90791c7b59d41afac543860bb5eb26989d5b9458292765814fa40892f0615",
+  "model_state_dict_signature": "sha256:af3b9ac7b1b31cf65f4db863e7d2dd1895cb4ffc6644ad908af6d124b530971e",
+  "test_metrics_paths": [
+    "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke\\synthetic_smoke_seed2026\\S0_FULL_A0\\metrics_eval_h3.json",
+    "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke\\synthetic_smoke_seed2026\\S0_FULL_A0\\metrics_eval_h6.json",
+    "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke\\synthetic_smoke_seed2026\\S0_FULL_A0\\metrics_eval_h10.json"
+  ],
+  "model_summary_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke\\synthetic_smoke_seed2026\\S0_FULL_A0\\model_summary.json",
+  "prediction_metadata_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke\\synthetic_smoke_seed2026\\S0_FULL_A0\\prediction_metadata.json",
+  "trained_once": true,
+  "aliases_share_exact_artifacts": true,
+  "status": "completed"
+}

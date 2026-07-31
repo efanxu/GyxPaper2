@@ -1,0 +1,41 @@
+{
+  "events": [
+    {
+      "stage": "TRAIN_STARTED",
+      "time": "2026-07-16T16:06:20"
+    },
+    {
+      "stage": "TRAIN_FINISHED",
+      "time": "2026-07-16T16:48:21",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_precision\\precision_ablation_fair_main_seed2026_all_p0_p5\\P3\\STMGPrompt_FairFull_DiffusionHistory\\best_checkpoint.pt",
+      "last_completed_epoch": 20
+    },
+    {
+      "stage": "BEST_CHECKPOINT_SAVED",
+      "time": "2026-07-16T16:48:21",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_precision\\precision_ablation_fair_main_seed2026_all_p0_p5\\P3\\STMGPrompt_FairFull_DiffusionHistory\\best_checkpoint.pt"
+    },
+    {
+      "stage": "FINAL_VALIDATION_STARTED",
+      "time": "2026-07-16T16:48:21"
+    },
+    {
+      "stage": "FINAL_VALIDATION_FINISHED",
+      "time": "2026-07-16T16:48:21"
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-16T16:48:21",
+      "skip_test": true
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-07-16T16:48:21"
+    }
+  ],
+  "current_stage": "PROCESS_FINISHED",
+  "updated_at": "2026-07-16T16:48:21",
+  "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_precision\\precision_ablation_fair_main_seed2026_all_p0_p5\\P3\\STMGPrompt_FairFull_DiffusionHistory\\best_checkpoint.pt",
+  "last_completed_epoch": 20,
+  "skip_test": true
+}

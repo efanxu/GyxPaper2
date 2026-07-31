@@ -1,0 +1,257 @@
+{
+  "schema_version": "uniform_batch4_preflight_inventory_v1",
+  "suite": "all26",
+  "status": "NOT_RUN_BLOCKED_BY_KNOWN_OOM6",
+  "base_benchmark_protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "training_batch_profile_id": "uniform_train_batch4_v1",
+  "training_batch_profile_hash": "f58bbc161dfba0f00774879fdf2f78ec7c59a7faff9ef28a1733a2ed6835fe66",
+  "train_batch_size": 4,
+  "val_batch_size": 4,
+  "test_batch_size": 4,
+  "gradient_accumulation_steps": 1,
+  "effective_train_batch_size": 4,
+  "amp_enabled": true,
+  "models": [
+    {
+      "model_id": "gru",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "dlinear",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "lightts",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "tide",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "segrnn",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "transformer",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "patchtst",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "itransformer",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "timexer",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "timesnet",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "micn",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "wpmixer",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "multipatchformer",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "timemixer",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "tsmixer",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "frets",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "crossformer",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "msgnet",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "timefilter",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "gcn",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "stgcn",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "dcrnn",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "graph_wavenet",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "mtgnn",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "agcrn",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    },
+    {
+      "model_id": "stid",
+      "status": "NOT_RUN",
+      "forward_completed": false,
+      "backward_completed": false,
+      "peak_allocated_memory": null,
+      "peak_reserved_memory": null,
+      "failure_stage": null
+    }
+  ],
+  "counts": {
+    "PASS": 0,
+    "FAIL_OOM": 0,
+    "FAIL_NON_OOM": 0,
+    "NOT_RUN": 26
+  },
+  "blocked_reason": "BLOCKED_BATCH4_STILL_OOM"
+}

@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "cpu_only": true,
+  "cuda_used": false,
+  "model_registered": false,
+  "formal_result_created": false,
+  "strict_reload_graph_identity": "PASS",
+  "schema_version": "e3_a_dummy_graph_contract_v1",
+  "formal_registry_entry": false,
+  "benchmark_result": false,
+  "dummy_contract_only": true,
+  "input_shape": [
+    2,
+    144,
+    134,
+    16
+  ],
+  "prediction_shape": [
+    2,
+    134,
+    10
+  ],
+  "target_shape": [
+    2,
+    134,
+    10
+  ],
+  "mask_shape": [
+    2,
+    134,
+    10
+  ],
+  "target_passed_to_forward": false,
+  "mask_passed_to_forward": false,
+  "graph_id": "sdwpf_physical_knn_v1",
+  "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
+  "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
+  "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
+  "location_source_hash": "233a120f4db2b52402bf4dc7c90631ac9301d6af236a56c6a245e46beec1f236",
+  "selected_k": 4,
+  "graph_support_names": [
+    "A_binary_directed",
+    "A_binary_undirected",
+    "A_directed",
+    "A_undirected",
+    "A_gcn",
+    "P_forward",
+    "P_reverse",
+    "L_sym",
+    "L_tilde"
+  ]
+}

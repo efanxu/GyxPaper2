@@ -1,0 +1,19 @@
+{
+  "active_config.json": "19e3926e3c55f4ccaaf9f3d786807c706b26cd57050443521d42598854a18e56",
+  "best_checkpoint.pt": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+  "canonical_manifest.json": "685c72f7a063b9d256f203e1593759669615c4889294dcadc6545478b5813ea4",
+  "config.json": "19e3926e3c55f4ccaaf9f3d786807c706b26cd57050443521d42598854a18e56",
+  "effective_config.json": "11bcfe89c69e43351335ba1543f2a1f8f525800047b93f4e3ffc6c9a8fea8c3b",
+  "evaluation_complete.json": "8d3e6b00f33f0ef2286487fcfdc44364a5a10d3dbceed6e841ce0783a6627ea3",
+  "metrics.csv": "ffc0d804e17a21a686038ed2d256af1cf74795c0aa81a05b16a57d91839506ea",
+  "metrics_eval_h10.json": "c0f47960bdee49dbf92727a463784943c00c917cf6d00a18c3651f78df5a9c13",
+  "metrics_eval_h3.json": "881be8f8b56d7d1aa4515ec717b6d2ad591516062fbf31d9ec405bae354d0225",
+  "metrics_eval_h6.json": "87f6b70246f1d9e97db10b638b164ef92f9d14f502da8d2829c94faf398bc633",
+  "model_summary.json": "8cb5af49ae1b9a5f693d501e139e0e47cc0e49fbd8523310977869eb516d55ce",
+  "prediction_metadata.json": "388c819fa56f78268ed3663f9b052aab451e17375b52dd499cd66ee26caa72db",
+  "protocol_check.json": "9b482bfc7b0e5f0f994da51494c035f7279a94c413a44c52a2722048ef487b3d",
+  "provenance.json": "db9dec7e34650b907140b4d841ce8505f9a9e0aabbbaa0f282ae3e02f9655f39",
+  "run_status.json": "0226c59d6ec885defd3a059e73939ca042f3e012eac83e3ae5e74dc0f1da7228",
+  "train_complete.json": "8c08ab3f36f009039381c1b492b5a2fa7ef18ba35f58fb80145b09a72981fb44",
+  "train_log.csv": "ccf44f6d63166f5aa1b4c7dc96b3079a164fae97da8b9c76d46aa903e89c90d6"
+}

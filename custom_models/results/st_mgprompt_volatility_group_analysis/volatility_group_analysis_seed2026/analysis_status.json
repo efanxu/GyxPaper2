@@ -1,0 +1,77 @@
+{
+  "analysis_status": "completed",
+  "completed_stages": {
+    "PREFLIGHT_COMPLETED": {
+      "completed_at": "2026-07-23T16:32:21.147711+08:00",
+      "input_hash": "a5cf9e2a0f93475387694de468198fd46b569fa888a4b0317ea814cfc41720d3",
+      "artifacts": [
+        "plan41_preflight_report.json"
+      ]
+    },
+    "TRAIN_THRESHOLDS_COMPLETED": {
+      "completed_at": "2026-07-23T16:32:26.607936+08:00",
+      "input_hash": "a5cf9e2a0f93475387694de468198fd46b569fa888a4b0317ea814cfc41720d3",
+      "artifacts": [
+        "volatility_thresholds.json",
+        "logs/train_threshold_stage.npz"
+      ]
+    },
+    "A0_TEST_COMPLETED": {
+      "completed_at": "2026-07-23T16:33:04.939111+08:00",
+      "input_hash": "a5cf9e2a0f93475387694de468198fd46b569fa888a4b0317ea814cfc41720d3",
+      "artifacts": [
+        "logs/a0_test_stage.npz",
+        "volatility_gate_point_sample.npz"
+      ]
+    },
+    "A1_TEST_COMPLETED": {
+      "completed_at": "2026-07-23T16:33:38.748893+08:00",
+      "input_hash": "a5cf9e2a0f93475387694de468198fd46b569fa888a4b0317ea814cfc41720d3",
+      "artifacts": [
+        "logs/a1_test_stage.npz"
+      ]
+    },
+    "ALIGNMENT_COMPLETED": {
+      "completed_at": "2026-07-23T16:33:38.797338+08:00",
+      "input_hash": "a5cf9e2a0f93475387694de468198fd46b569fa888a4b0317ea814cfc41720d3",
+      "artifacts": [
+        "plan41_preflight_report.json"
+      ]
+    },
+    "GROUP_METRICS_COMPLETED": {
+      "completed_at": "2026-07-23T17:42:09.869767+08:00",
+      "input_hash": "a5cf9e2a0f93475387694de468198fd46b569fa888a4b0317ea814cfc41720d3",
+      "artifacts": []
+    },
+    "GATE_ANALYSIS_COMPLETED": {
+      "completed_at": "2026-07-23T17:42:09.870770+08:00",
+      "input_hash": "a5cf9e2a0f93475387694de468198fd46b569fa888a4b0317ea814cfc41720d3",
+      "artifacts": []
+    },
+    "RAMP_ANALYSIS_COMPLETED": {
+      "completed_at": "2026-07-23T17:42:09.871771+08:00",
+      "input_hash": "a5cf9e2a0f93475387694de468198fd46b569fa888a4b0317ea814cfc41720d3",
+      "artifacts": []
+    },
+    "SUMMARY_COMPLETED": {
+      "completed_at": "2026-07-23T17:42:15.339012+08:00",
+      "input_hash": "a5cf9e2a0f93475387694de468198fd46b569fa888a4b0317ea814cfc41720d3",
+      "artifacts": [
+        "analysis_manifest.json",
+        "analysis_arrays.npz"
+      ]
+    }
+  },
+  "stage_order": [
+    "PREFLIGHT_COMPLETED",
+    "TRAIN_THRESHOLDS_COMPLETED",
+    "A0_TEST_COMPLETED",
+    "A1_TEST_COMPLETED",
+    "ALIGNMENT_COMPLETED",
+    "GROUP_METRICS_COMPLETED",
+    "GATE_ANALYSIS_COMPLETED",
+    "RAMP_ANALYSIS_COMPLETED",
+    "SUMMARY_COMPLETED"
+  ],
+  "current_stage": "SUMMARY_COMPLETED"
+}

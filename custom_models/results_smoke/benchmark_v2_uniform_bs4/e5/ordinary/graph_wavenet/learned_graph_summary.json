@@ -1,0 +1,49 @@
+{
+  "shape": [
+    134,
+    134
+  ],
+  "canonical_content_hash": "46f4a235b9c5782f9078268a0b95f6c26be3744a2ad3ea885b012c2511f2934a",
+  "finite": true,
+  "min": 0.007240415550768375,
+  "max": 0.008745425380766392,
+  "mean": 0.007462686393409967,
+  "density": 1.0,
+  "edge_count": 17956,
+  "row_sum": {
+    "min": 0.9999998807907104,
+    "max": 1.0000001192092896,
+    "mean": 1.0
+  },
+  "self_loop": {
+    "count": 134,
+    "mean": 0.007459762040525675
+  },
+  "asymmetry_max_abs": 0.0013973526656627655,
+  "symmetric": false,
+  "out_degree": {
+    "min": 134,
+    "max": 134,
+    "mean": 134.0
+  },
+  "in_degree": {
+    "min": 134,
+    "max": 134,
+    "mean": 134.0
+  },
+  "physical_graph_overlap_diagnostic_only": {
+    "P_forward": {
+      "intersection": 536,
+      "union": 17956,
+      "jaccard": 0.029850746268656716
+    },
+    "P_reverse": {
+      "intersection": 536,
+      "union": 17956,
+      "jaccard": 0.029850746268656716
+    }
+  },
+  "checkpoint_reload_hash_before": "46f4a235b9c5782f9078268a0b95f6c26be3744a2ad3ea885b012c2511f2934a",
+  "checkpoint_reload_hash_after": "46f4a235b9c5782f9078268a0b95f6c26be3744a2ad3ea885b012c2511f2934a",
+  "checkpoint_reload_hash_matches": true
+}

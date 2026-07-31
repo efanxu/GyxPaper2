@@ -1,0 +1,37 @@
+{
+  "shape": [
+    134,
+    134
+  ],
+  "canonical_content_hash": "15170695c7a4096b72e26768f62bc8fefbd341397129b930f32064402c3192d3",
+  "finite": true,
+  "min": 0.007240682374686003,
+  "max": 0.009137206710875034,
+  "mean": 0.007462686393409967,
+  "density": 1.0,
+  "edge_count": 17956,
+  "row_sum": {
+    "min": 0.9999998807907104,
+    "max": 1.0000001192092896,
+    "mean": 1.0
+  },
+  "self_loop": {
+    "count": 134,
+    "mean": 0.008388460613787174
+  },
+  "asymmetry_max_abs": 0.00015133386477828026,
+  "symmetric": false,
+  "out_degree": {
+    "min": 134,
+    "max": 134,
+    "mean": 134.0
+  },
+  "in_degree": {
+    "min": 134,
+    "max": 134,
+    "mean": 134.0
+  },
+  "checkpoint_reload_hash_before": "15170695c7a4096b72e26768f62bc8fefbd341397129b930f32064402c3192d3",
+  "checkpoint_reload_hash_after": "15170695c7a4096b72e26768f62bc8fefbd341397129b930f32064402c3192d3",
+  "checkpoint_reload_hash_matches": true
+}

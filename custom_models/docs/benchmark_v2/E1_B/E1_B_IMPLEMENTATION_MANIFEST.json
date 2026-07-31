@@ -1,0 +1,133 @@
+{
+  "task": "E1-B",
+  "formal_training_started": false,
+  "formal_evaluation_started": false,
+  "formal_runs": [],
+  "target_models": [
+    "dlinear",
+    "lightts",
+    "tide",
+    "segrnn"
+  ],
+  "implemented_models": [
+    "dlinear",
+    "lightts",
+    "tide",
+    "segrnn"
+  ],
+  "available_models": [
+    "dlinear",
+    "lightts"
+  ],
+  "blocked_models": [
+    {
+      "model_id": "tide",
+      "status": "BLOCKED_FULL_SHAPE_OOM"
+    },
+    {
+      "model_id": "segrnn",
+      "status": "BLOCKED_FULL_SHAPE_OOM"
+    }
+  ],
+  "registry_model_count": 28,
+  "runtime_available_count": 5,
+  "runtime_unavailable_count": 23,
+  "trainable_count": 3,
+  "non_trainable_count": 2,
+  "protocol_hash_before": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "protocol_hash_after": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "canonical_sha256_before": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+  "canonical_sha256_after": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+  "tslib_sources_modified": false,
+  "st_mgprompt_modified": false,
+  "e1_a_models_modified": false,
+  "dependencies_changed": false,
+  "files_created": [
+    "custom_models/src/benchmark_v2/upstream/__init__.py",
+    "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+    "custom_models/src/benchmark_v2/configs/tslib_common.py",
+    "custom_models/src/benchmark_v2/configs/dlinear.py",
+    "custom_models/src/benchmark_v2/configs/lightts.py",
+    "custom_models/src/benchmark_v2/configs/tide.py",
+    "custom_models/src/benchmark_v2/configs/segrnn.py",
+    "custom_models/src/benchmark_v2/models/dlinear.py",
+    "custom_models/src/benchmark_v2/models/lightts.py",
+    "custom_models/src/benchmark_v2/models/tide.py",
+    "custom_models/src/benchmark_v2/models/segrnn.py",
+    "custom_models/src/benchmark_v2/adapters/tslib_channel.py",
+    "custom_models/src/benchmark_v2/adapters/dlinear.py",
+    "custom_models/src/benchmark_v2/adapters/lightts.py",
+    "custom_models/src/benchmark_v2/adapters/tide.py",
+    "custom_models/src/benchmark_v2/adapters/segrnn.py",
+    "custom_models/tests/benchmark_v2/test_e1_b_loader.py",
+    "custom_models/tests/benchmark_v2/test_e1_b_models.py",
+    "custom_models/tests/benchmark_v2/test_e1_b_registry_cli.py",
+    "custom_models/docs/benchmark_v2/E1_B"
+  ],
+  "files_modified": [
+    "custom_models/src/benchmark_v2/adapters/__init__.py",
+    "custom_models/src/benchmark_v2/configs/__init__.py",
+    "custom_models/src/benchmark_v2/model_runtime.py",
+    "custom_models/src/benchmark_v2/model_cli.py",
+    "custom_models/src/benchmark_v2/cli.py",
+    "custom_models/src/benchmark_v2/registry/registry.py",
+    "custom_models/src/benchmark_v2/registry/benchmark_registry.json",
+    "custom_models/tests/benchmark_v2/test_e1_a_registry_cli.py",
+    "custom_models/tests/benchmark_v2/test_registry.py"
+  ],
+  "files_deleted": [],
+  "commands_executed": [
+    "fixed interpreter source/config audit and SHA256 checks",
+    "SegRNN original seg_len=96 failure reproduction",
+    "python -m compileall -q custom_models/src/benchmark_v2",
+    "python -m unittest discover -s custom_models/tests/benchmark_v2 -p test_*.py",
+    "python -m benchmark_v2.cli protocol-check",
+    "python -m benchmark_v2.cli model-smoke --model <four E1-B models>",
+    "python -m benchmark_v2.cli full-shape-model-smoke --model <four E1-B models>",
+    "python -m benchmark_v2.cli real-data-model-smoke --model <four E1-B models>",
+    "before/after protected SHA256 snapshots"
+  ],
+  "tests": [
+    {
+      "name": "benchmark_v2 unittest suite",
+      "status": "PASS",
+      "tests_run": 46
+    },
+    {
+      "name": "formal protocol check",
+      "status": "PASS"
+    },
+    {
+      "name": "TiDE leakage tests",
+      "status": "PASS"
+    },
+    {
+      "name": "SegRNN original failure/fixed config regression",
+      "status": "PASS"
+    }
+  ],
+  "smoke_runs": [
+    {"name": "DLinear ordinary", "status": "PASS"},
+    {"name": "LightTS ordinary", "status": "PASS"},
+    {"name": "TiDE ordinary", "status": "PASS"},
+    {"name": "SegRNN ordinary", "status": "PASS"},
+    {"name": "DLinear full-shape AMP backward", "status": "PASS"},
+    {"name": "LightTS full-shape AMP backward", "status": "PASS"},
+    {"name": "TiDE full-shape AMP backward", "status": "FAIL_OOM"},
+    {"name": "SegRNN full-shape AMP backward", "status": "FAIL_OOM"},
+    {"name": "DLinear limited real data", "status": "PASS"},
+    {"name": "LightTS limited real data", "status": "PASS"},
+    {"name": "TiDE limited real data", "status": "PASS"},
+    {"name": "SegRNN limited real data", "status": "PASS"}
+  ],
+  "framework_defect_fixes": [],
+  "formal_output_root_existed_before": false,
+  "formal_output_root_created": false,
+  "task_start_existing_changes": "UNKNOWN_NO_GIT_METADATA",
+  "warnings": [
+    "Project has no Git metadata; unrelated pre-existing changes cannot be classified by Git.",
+    "TiDE and SegRNN exact full-shape AMP runs failed OOM on the available 6 GiB GPU and remain blocked.",
+    "Windows PyTorch reported expandable_segments unsupported; no shape/capacity workaround was applied.",
+    "Smoke metrics are diagnostic only and are not formal paper results."
+  ]
+}

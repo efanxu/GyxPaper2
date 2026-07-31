@@ -1,0 +1,28 @@
+{
+  "macro_prompt_norm_mean": 4.017796516418457,
+  "st_prompt_norm_mean": 3.993525743484497,
+  "macro_attn_entropy": 1.165841817855835,
+  "fine_attn_entropy": 2.483283758163452,
+  "fusion_gate_mean": 0.5127512812614441,
+  "fusion_gate_std": 0.039840515702962875,
+  "h_fine_spatial_delta_norm": 2.314100503921509,
+  "h_coarse_spatial_delta_norm": 2.7760097980499268,
+  "num_batches": 1,
+  "metadata": {
+    "stmg_coupling_block_enabled": true,
+    "num_coupling_layers": 1,
+    "coupling_mode": "graph_then_cross",
+    "macro_prompt_from_spatial_enhanced_coarse": true,
+    "cross_fusion_uses_spatial_enhanced_features": true,
+    "serial_graph_then_fusion": false,
+    "st_prompt_direct_decoder_enabled": true,
+    "decoder_input_strategy": "direct_multi_output_prompt_query",
+    "teacher_forcing": false,
+    "fusion_mode": "cross",
+    "disable_reverse_cross": false,
+    "macro_prompt_len": 4,
+    "cross_fusion_recent_len": 24
+  },
+  "cross_fusion_uses_spatial_enhanced_features": true,
+  "macro_prompt_from_spatial_enhanced_coarse": true
+}

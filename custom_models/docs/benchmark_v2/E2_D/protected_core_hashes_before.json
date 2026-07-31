@@ -1,0 +1,44 @@
+{
+  "task": "E2-D",
+  "snapshot": "E2-D task before",
+  "algorithm": "SHA256; directory digest is SHA256 of sorted relative_path:sha256 newline records; __pycache__ excluded",
+  "paths": [
+    {
+      "path": "custom_models/src/st_mgprompt",
+      "exists": true,
+      "kind": "directory",
+      "file_count": 33,
+      "tree_sha256": "ac386f216beb24aac92c823bbff1748d7051c7b1a5d2d0231173ce17e0019b58"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_canonical",
+      "exists": true,
+      "kind": "directory",
+      "file_count": 23,
+      "tree_sha256": "f22fa4fa0191bd96bff24d483e4ddba241bf44b1250765ed2c1b23d36d77389b"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_precision",
+      "exists": true,
+      "kind": "directory",
+      "file_count": 159,
+      "tree_sha256": "748614aa79f348c354c3756546a4f532012aefabd1242c712b4340bb6ed7efe8"
+    },
+    {
+      "path": "custom_models/results/st_mgprompt_component_ablation",
+      "exists": true,
+      "kind": "directory",
+      "file_count": 241,
+      "tree_sha256": "60dc8958ab4f898a43c63ed9e2ba541fee561124f227db3101ebc9f93fe24a3a"
+    },
+    {
+      "path": "custom_models/graphs/trend_prior_v4_2/metadata.json",
+      "exists": true,
+      "kind": "file",
+      "sha256": "c3b0a90d1e73c39b14058d0405ecb42f547f233fed5e4b89d18e117669eb4cd2"
+    }
+  ],
+  "protocol_file_sha256": "a250a476a03683c7ed62c77685d8b878b0fb5e2d371b694aba308d6df62e2492",
+  "canonical_checkpoint_sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
+  "formal_output_root_existed": false
+}

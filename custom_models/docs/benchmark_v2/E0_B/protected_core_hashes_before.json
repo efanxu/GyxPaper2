@@ -1,0 +1,23 @@
+{
+  "snapshot": "E0-B task start",
+  "paths": {
+    "custom_models/src/st_mgprompt/registry.py": "a75323ce2ed0c3c05dc985ca1d7106449715d114166a8ad1f227173e68c9f862",
+    "custom_models/src/st_mgprompt/experiment_protocol.py": "dd5d7fe196abfa005b5e7a753a2a3341ac0be9d7e65d7521aa369eaf1c324272",
+    "custom_models/src/st_mgprompt/config.py": "2719c6fb3a086401c279aac8bf78e4bd5b9cc5ce5a8ea63277d10de65b4b09af",
+    "custom_models/src/st_mgprompt/data.py": "5460e6d81c27279f942c41849d63ddc3f730f1008a8309988b2990b9f9fcd3a5",
+    "custom_models/src/st_mgprompt/losses.py": "f90b99df342de7b1b1ee6ea39bbf30cc84eceb11663b38dfc7070d3905afc32b",
+    "custom_models/src/st_mgprompt/metrics.py": "64d8452ee90815c111ff038864b726f8587ae59cf2243e3b5e5210701a88e42a",
+    "custom_models/src/st_mgprompt/evaluate.py": "9632fcf965d6bf705318de0366c240972081ce73939d5d10ef10c232fa719b15",
+    "custom_models/src/st_mgprompt/train.py": "9275df21443a3182686c5633c3396d8423473be3c4279893504a4c817d24346f",
+    "custom_models/src/st_mgprompt/run_st_mgprompt.py": "e99937406fd14c3aacd0a27ea9bc333dc0aa7ec69c0dd1c7b7adb35754f055be",
+    "custom_models/src/st_mgprompt/formal_runner.py": "7f91cdbd5ab8edd4a53cb06f66c742f7c47aeb00facd3a51fec231816341f1ef",
+    "custom_models/src/st_mgprompt/run_ablation.py": "539d074a899c7dc315cc5fd5f1bb58bd3c7792815bedc98c4aeb08c4bb29b2d6",
+    "custom_models/src/st_mgprompt/run_precision_ablation.py": "184100088ed0c93402b70ab496e8d3c96b1b802d13d0e7e416e3be640e000dcc",
+    "custom_models/src/st_mgprompt/canonical_artifact.py": "f228d60f413246e72914500c6b9e6769c8f97be6fb4308163038c4c3659d51d4",
+    "custom_models/graphs/trend_prior_v4_2/metadata.json": "c3b0a90d1e73c39b14058d0405ecb42f547f233fed5e4b89d18e117669eb4cd2",
+    "custom_models/results/st_mgprompt_canonical/full_fixed_dual_keep_msmgdwu_seed2026/best_checkpoint.pt": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a"
+  },
+  "task_start_changes_vs_e0_a": [],
+  "canonical_checkpoint": "custom_models/results/st_mgprompt_canonical/full_fixed_dual_keep_msmgdwu_seed2026/best_checkpoint.pt",
+  "canonical_sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a"
+}

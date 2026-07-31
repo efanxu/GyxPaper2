@@ -1,0 +1,7 @@
+﻿horizon,mae_abs_diff,model_id,new_MAE,new_RMSE,new_Score,rmse_abs_diff,score_abs_diff,status,valid_count_match
+3,,A0,34.89667808131168,44.260995105734125,0.14917486962894225,,,smoke_no_formal_reference,True
+6,,A0,35.327467166542476,44.156583039177725,0.15463736562614666,,,smoke_no_formal_reference,True
+10,,A0,35.12666647042035,43.98166113219389,0.1558669934283146,,,smoke_no_formal_reference,True
+3,,A1,41.93951572045348,53.04511139437588,0.1790038644314157,,,smoke_no_formal_reference,True
+6,,A1,42.399812701206805,52.90688119969502,0.1855148716937046,,,smoke_no_formal_reference,True
+10,,A1,42.17621451480033,52.75784917307097,0.18712885427132978,,,smoke_no_formal_reference,True

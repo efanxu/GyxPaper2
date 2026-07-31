@@ -1,0 +1,7 @@
+﻿correlation,method,num_windows,x,y
+0.9967953982140433,Pearson,5104,sample_volatility_mean,fine_gate_mean
+0.9986765628639548,Spearman,5104,sample_volatility_mean,fine_gate_mean
+0.4418636379330719,Pearson,5104,sample_volatility_mean,fine_gate_recent6_mean
+0.4379128260473715,Spearman,5104,sample_volatility_mean,fine_gate_recent6_mean
+0.9987182126960173,Pearson,5104,sample_rolling_std_mean,fine_gate_mean
+0.9992971098640273,Spearman,5104,sample_rolling_std_mean,fine_gate_mean

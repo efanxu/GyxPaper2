@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "tests_run": 17,
+  "failures": [],
+  "errors": [],
+  "output_tail": "----------------------------------------------------------------------\nRan 17 tests in 0.992s\n\nOK\n"
+}

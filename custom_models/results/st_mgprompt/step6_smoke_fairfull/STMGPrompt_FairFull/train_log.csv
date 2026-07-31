@@ -1,0 +1,2 @@
+epoch,train_loss,val_loss,total_loss,granularity_loss_h3,granularity_loss_h6,granularity_loss_h10,granularity_weight_h3,granularity_weight_h6,granularity_weight_h10,site_weight_mean,site_weight_max,site_weight_min,skipped_train_batches,skipped_val_batches,skipped_all_invalid_batches
+1,0.780691608786583,0.8660328984260559,0.780691608786583,,,,,,,,,,0,0,0

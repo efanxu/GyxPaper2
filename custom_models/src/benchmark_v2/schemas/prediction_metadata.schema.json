@@ -1,0 +1,1 @@
+{"type":"object","required":["protocol_hash","prediction_shape"],"additionalProperties":true}

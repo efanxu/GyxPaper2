@@ -1,0 +1,223 @@
+{
+  "task": "E2-B",
+  "run_mode": "smoke",
+  "formal_training": false,
+  "shape": {
+    "B": 2,
+    "T": 144,
+    "N": 4,
+    "C": 16,
+    "H": 10
+  },
+  "results": {
+    "timesnet": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e2_b/passing/timesnet",
+      "prediction_shape": [
+        2,
+        4,
+        10
+      ],
+      "raw_output_shape": null,
+      "loss": 435.6260986328125,
+      "validation_score_h10": 3.9682512926401907,
+      "evaluation_score_h10": 3.9680759194457824,
+      "evaluation_r2_h10": -11.475153997234477,
+      "parameter_count": 1196810,
+      "trainable_parameter_count": 1196810,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\TimesNet.py",
+      "upstream_source_sha256": "f64c4bed1fd7347090044a0163bd4209c9f9ec1c1b19ceff47842df36b64bba7",
+      "effective_config": {
+        "label_len": 48,
+        "c_out": 16,
+        "d_model": 32,
+        "d_ff": 32,
+        "e_layers": 2,
+        "top_k": 5,
+        "num_kernels": 6,
+        "dropout": 0.1,
+        "embed": "timeF",
+        "freq": "h"
+      },
+      "config_resolution_reason": "local official Weather long-term forecasting script; fixed before smoke",
+      "validation_search_performed": false,
+      "test_result_used": false,
+      "oom_driven_capacity_reduction": false
+    },
+    "micn": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e2_b/micn",
+      "prediction_shape": [
+        2,
+        4,
+        10
+      ],
+      "raw_output_shape": null,
+      "loss": 101749.84375,
+      "validation_score_h10": 4.2891406044033715,
+      "evaluation_score_h10": 4.2891406044033715,
+      "evaluation_r2_h10": -13.209944852264641,
+      "parameter_count": 95354,
+      "trainable_parameter_count": 95354,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\MICN.py",
+      "upstream_source_sha256": "a0cb59254e850bfd1d94114a73126c290e6baf2ea700132ede8aade680bbedbf",
+      "effective_config": {
+        "label_len": 144,
+        "c_out": 16,
+        "d_model": 32,
+        "n_heads": 8,
+        "d_layers": 1,
+        "dropout": 0.1,
+        "embed": "timeF",
+        "freq": "h",
+        "conv_kernel": [
+          12,
+          16
+        ],
+        "decomp_kernel": [
+          13,
+          17
+        ],
+        "isometric_kernel": [
+          13,
+          10
+        ]
+      },
+      "config_resolution_reason": "local official Weather long-term forecasting width; full-history decoder mark length is required by MICN source semantics",
+      "validation_search_performed": false,
+      "test_result_used": false,
+      "oom_driven_capacity_reduction": false
+    },
+    "wpmixer": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e2_b/passing_v2/wpmixer",
+      "prediction_shape": [
+        2,
+        4,
+        10
+      ],
+      "raw_output_shape": null,
+      "loss": 799.2372436523438,
+      "validation_score_h10": 4.2891406044033715,
+      "evaluation_score_h10": 4.2891406044033715,
+      "evaluation_r2_h10": -13.209944852264641,
+      "parameter_count": 2667788,
+      "trainable_parameter_count": 2667788,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\WPMixer.py",
+      "upstream_source_sha256": "5b549f5454864d19a230747f0060dc00732fb0de6b50a359173e0d7a6b04ce8f",
+      "effective_config": {
+        "label_len": 0,
+        "c_out": 16,
+        "d_model": 256,
+        "dropout": 0.1,
+        "patch_len": 16,
+        "batch_size": 32,
+        "use_amp": false,
+        "wavelet": "db2",
+        "level": 1,
+        "tfactor": 5,
+        "dfactor": 5,
+        "stride": 8,
+        "no_decomposition": false
+      },
+      "config_resolution_reason": "source constructor defaults for wavelet/mixer factors/stride; official patch_len=16 and Weather first-horizon width",
+      "validation_search_performed": false,
+      "test_result_used": false,
+      "oom_driven_capacity_reduction": false
+    },
+    "multipatchformer": {
+      "status": "PASS",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e2_b/multipatchformer",
+      "prediction_shape": [
+        2,
+        4,
+        10
+      ],
+      "raw_output_shape": null,
+      "loss": 511.3550720214844,
+      "validation_score_h10": 4.167930307082175,
+      "evaluation_score_h10": 4.168012452000216,
+      "evaluation_r2_h10": -12.595873111995912,
+      "parameter_count": 2344900,
+      "trainable_parameter_count": 2344900,
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\MultiPatchFormer.py",
+      "upstream_source_sha256": "e8603a9d8b1e796a822171399a057bd3945cf51b38fb1661d91fe60ad79313b3",
+      "effective_config": {
+        "label_len": 48,
+        "c_out": 16,
+        "d_model": 256,
+        "d_ff": 512,
+        "e_layers": 1,
+        "n_heads": 8,
+        "dropout": 0.1,
+        "patch_lengths": [
+          8,
+          16,
+          24,
+          32
+        ],
+        "patch_strides": [
+          8,
+          8,
+          7,
+          7
+        ],
+        "patch_paddings": [
+          0,
+          8,
+          0,
+          8
+        ],
+        "patch_counts": [
+          18,
+          18,
+          18,
+          18
+        ]
+      },
+      "config_resolution_reason": "official Weather first-horizon capacity plus minimum explicit source-compatible patch geometry for fixed seq_len=144",
+      "validation_search_performed": false,
+      "test_result_used": false,
+      "oom_driven_capacity_reduction": false
+    }
+  },
+  "retained_initial_fail_non_oom_attempts": [
+    {
+      "model": "timesnet",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e2_b/timesnet",
+      "status": "FAIL_NON_OOM",
+      "error": "RuntimeError: cuFFT only supports power-of-two signal sizes in half precision; signal size was 154",
+      "resolution": "FFT only runs FP32; convolution/backward retain AMP"
+    },
+    {
+      "model": "wpmixer",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e2_b/wpmixer",
+      "status": "FAIL_NON_OOM",
+      "error": "RuntimeError: evaluation DWT output Half versus Float linear weights",
+      "resolution": "DWT/IDWT FP32; resolution mixers retain Trainer AMP"
+    },
+    {
+      "model": "wpmixer",
+      "run_dir": "custom_models/results_smoke/benchmark_v2/e2_b/passing/wpmixer",
+      "status": "FAIL_NON_OOM",
+      "error": "RuntimeError: custom DWT backward Half input versus Float wavelet filters",
+      "resolution": "DWT/IDWT FP32; resolution mixers retain Trainer AMP"
+    }
+  ]
+}

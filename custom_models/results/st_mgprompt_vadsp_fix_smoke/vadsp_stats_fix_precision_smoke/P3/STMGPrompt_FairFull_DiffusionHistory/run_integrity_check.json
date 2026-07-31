@@ -1,0 +1,187 @@
+{
+  "passed": true,
+  "num_failed": 0,
+  "num_warnings": 0,
+  "checks": [
+    {
+      "name": "config_present",
+      "status": "passed",
+      "passed": true,
+      "details": "custom_models\\results\\st_mgprompt_vadsp_fix_smoke\\vadsp_stats_fix_precision_smoke\\P3\\STMGPrompt_FairFull_DiffusionHistory\\config.json"
+    },
+    {
+      "name": "metrics_present",
+      "status": "passed",
+      "passed": true,
+      "details": "custom_models\\results\\st_mgprompt_vadsp_fix_smoke\\vadsp_stats_fix_precision_smoke\\P3\\STMGPrompt_FairFull_DiffusionHistory\\metrics.csv"
+    },
+    {
+      "name": "predictions_present",
+      "status": "passed",
+      "passed": true,
+      "details": "custom_models\\results\\st_mgprompt_vadsp_fix_smoke\\vadsp_stats_fix_precision_smoke\\P3\\STMGPrompt_FairFull_DiffusionHistory\\predictions.npz"
+    },
+    {
+      "name": "recompute_metrics_from_predictions",
+      "status": "passed",
+      "passed": true,
+      "details": "[]"
+    },
+    {
+      "name": "score_alias_equality_check",
+      "status": "passed",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "score_unit_mw_check",
+      "status": "passed",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "clipped_prediction_range_check",
+      "status": "passed",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "raw_prediction_range_diagnostic",
+      "status": "passed",
+      "passed": true,
+      "details": "raw_out_of_range=False"
+    },
+    {
+      "name": "best_checkpoint_metric_check",
+      "status": "passed",
+      "passed": true,
+      "details": "val_official_score_h10"
+    },
+    {
+      "name": "single_checkpoint_for_all_horizons_check",
+      "status": "passed",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "final_adaptive_graph_saved_check",
+      "status": "passed",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_gate_dynamic_range_check",
+      "status": "passed",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_gate_physical_direction_check",
+      "status": "passed",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_gate_dynamic_range_warning",
+      "status": "passed",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_statistics_unique_train_timeline",
+      "status": "passed",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_statistics_train_only",
+      "status": "passed",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_statistics_exact_cpu",
+      "status": "passed",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_statistics_stride_independent",
+      "status": "passed",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "prompt_diagnostic_present",
+      "status": "passed",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "cross_attention_duplicate_row_check",
+      "status": "passed",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "diffusion_oversmoothing_diagnostic_present",
+      "status": "passed",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "diffusion_output_shape_check",
+      "status": "passed",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "diffusion_graph_operator_used",
+      "status": "passed",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "diffusion_order_matches_config",
+      "status": "passed",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "full_history_decoder_used",
+      "status": "passed",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "decoder_output_shape_check",
+      "status": "passed",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "decoder_uses_complete_history_when_none",
+      "status": "passed",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "artifact_epoch_provenance_check",
+      "status": "passed",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "efficiency_fields_present",
+      "status": "passed",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "seed_aggregate_completeness_check",
+      "status": "passed",
+      "passed": true,
+      "details": ""
+    }
+  ]
+}

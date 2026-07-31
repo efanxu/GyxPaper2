@@ -1,0 +1,9 @@
+{
+  "graph_operator": "bidirectional_diffusion",
+  "diffusion_order_micro": 2,
+  "diffusion_order_macro": 2,
+  "diffusion_use_bidirectional": true,
+  "mean_graph_delta_ratio": 2.828245759010315,
+  "mean_beta_graph": 0.05156654678285122,
+  "oversmoothing_warning": false
+}

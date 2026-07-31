@@ -1,0 +1,36 @@
+{
+  "model_id": "itransformer",
+  "run_mode": "smoke",
+  "formal_registry_entry": true,
+  "formal_training": false,
+  "requested_shape": {
+    "B": 32,
+    "T": 144,
+    "N": 134,
+    "C": 16,
+    "H": 10
+  },
+  "device": "cuda",
+  "cuda_available": true,
+  "amp_enabled": true,
+  "experiment_profile": "e5_common_loss_v1",
+  "status": "PASS",
+  "output_shape": [
+    32,
+    134,
+    10
+  ],
+  "loss": 22.10687828063965,
+  "elapsed_seconds": 5.151253399904817,
+  "peak_gpu_memory_bytes": 4015753728,
+  "peak_allocated_memory": 4015753728,
+  "peak_reserved_memory": 4229955584,
+  "gpu_name": "NVIDIA GeForce GTX 1060",
+  "gpu_total_memory": 6442319872,
+  "parameter_count": 6385162,
+  "trainable_parameter_count": 6385162,
+  "backward_completed": true,
+  "forward_completed": true,
+  "inverse_transform_parity": null,
+  "identity_diagnostic": null
+}

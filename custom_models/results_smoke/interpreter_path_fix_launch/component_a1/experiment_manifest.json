@@ -1,0 +1,22 @@
+{
+  "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+  "experiment_family": "component_ablation",
+  "run_id": "component_a1",
+  "selection_uses_test_metrics": false,
+  "variants": [
+    {
+      "variant_id": "A1",
+      "display_name": "w/o Spatial Graph",
+      "experiment_family": "component_ablation",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "use_graph_in_temporal_encoder": false
+      },
+      "expected_unique_diff": [
+        "use_graph_in_temporal_encoder"
+      ]
+    }
+  ]
+}

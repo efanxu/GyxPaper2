@@ -1,0 +1,149 @@
+{
+  "task": "E3-C",
+  "scope": "Graph WaveNet, MTGNN, AGCRN, and STID engineering integration only",
+  "target_models": ["graph_wavenet", "mtgnn", "agcrn", "stid"],
+  "implemented_models": ["graph_wavenet", "mtgnn", "agcrn", "stid"],
+  "blocked_source_identity_models": [],
+  "blocked_non_oom_models": [],
+  "locally_full_shape_verified_models": ["graph_wavenet", "mtgnn", "agcrn", "stid"],
+  "hardware_preflight_required_models": [],
+  "task_start_existing_changes": "UNKNOWN: project root has no Git metadata",
+  "missing_prerequisite_files": ["实验总Plan.md", "HANDOFF.md"],
+  "source_closure_hashes": {
+    "graph_wavenet": "cf401b35cd1f9455eb9653e2e04ef28f02c2e1673812dd4abb4a19bca7366eb8",
+    "mtgnn": "99ce4ec1be02f20d3f580ecdd363a3bc336d2d4f1a180d7f517cf9e91fe2c7d3",
+    "agcrn": "638bbfd5e7a451df556b458a98ae87b35490bcf15b38a0152b0faf6a2a67a7be",
+    "stid": "34dc11ac13ade13d3eb83cfb8cde98acfacf5ad4b18d3e79d653d5486dbe4bb9"
+  },
+  "protocol_identity": {
+    "benchmark_protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+    "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
+    "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
+    "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
+    "location_source_hash": "233a120f4db2b52402bf4dc7c90631ac9301d6af236a56c6a245e46beec1f236",
+    "canonical_checkpoint_sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a"
+  },
+  "registry_counts_before": {
+    "total_entries": 28,
+    "formal_runnable_trainable": 22,
+    "locally_full_shape_verified": 12,
+    "hardware_preflight_required": 10,
+    "non_trainable_available": 2,
+    "true_blocked_or_unavailable": 4
+  },
+  "registry_counts_after": {
+    "total_entries": 28,
+    "formal_runnable_trainable": 26,
+    "locally_full_shape_verified": 16,
+    "hardware_preflight_required": 10,
+    "non_trainable_available": 2,
+    "true_blocked_or_unavailable": 0
+  },
+  "allowlist_before": 18,
+  "allowlist_after": 18,
+  "formal_training_started": false,
+  "formal_evaluation_started": false,
+  "target_high_memory_preflight_started": false,
+  "e4_started": false,
+  "formal_output_root_created": false,
+  "tests": {
+    "status": "PASS",
+    "compileall": "PASS",
+    "focused_e3_c": "13/13 PASS",
+    "full_suite": "151/151 PASS",
+    "hardware_preflight_regression": "9/9 PASS",
+    "protocol_check": "PASS",
+    "graph_protocol_check": "PASS"
+  },
+  "smoke_runs": {
+    "ordinary": "4/4 PASS",
+    "exact_full_shape": "4/4 PASS",
+    "limited_real_sdwpf": "4/4 PASS",
+    "historical_failures": []
+  },
+  "full_shape_results": {
+    "graph_wavenet": {"status": "PASS", "peak_allocated_memory": 6827258368, "peak_reserved_memory": 7669284864},
+    "mtgnn": {"status": "PASS", "peak_allocated_memory": 3305245184, "peak_reserved_memory": 4452253696},
+    "agcrn": {"status": "PASS", "peak_allocated_memory": 6256342528, "peak_reserved_memory": 6371147776},
+    "stid": {"status": "PASS", "peak_allocated_memory": 133265920, "peak_reserved_memory": 150994944}
+  },
+  "protection": {
+    "core_mismatches": [],
+    "tslib_mismatches": [],
+    "graph_protocol_mismatches": [],
+    "benchmark_compatible_extensions": [
+      "custom_models/src/benchmark_v2/data/sdwpf.py",
+      "custom_models/src/benchmark_v2/checkpointing.py",
+      "custom_models/src/benchmark_v2/artifacts.py",
+      "custom_models/src/benchmark_v2/hardware_preflight.py",
+      "custom_models/src/benchmark_v2/model_runtime.py",
+      "custom_models/src/benchmark_v2/model_cli.py",
+      "custom_models/src/benchmark_v2/registry/benchmark_registry.json"
+    ],
+    "prior_registry_count_test_updates": [
+      "test_e1_a_registry_cli.py",
+      "test_e1_b_registry_cli.py",
+      "test_e2_b_models.py",
+      "test_e2_d_models.py",
+      "test_e3_a_graph_protocol.py",
+      "test_registry.py"
+    ],
+    "e3_b_directory_digest_reason": "E3-C files and exports were added under the shared graph_models directory; the historical aggregate E3-B closure is expected to change through shared wiring, while common.py, gcn.py, stgcn.py, dcrnn.py hashes and regression behavior remain unchanged"
+  },
+  "files_created_count": 200,
+  "files_created": {
+    "custom_models/docs/benchmark_v2/E3_C": 48,
+    "custom_models/results_smoke/benchmark_v2/e3_c": 140,
+    "new_source_and_test_files": [
+      "custom_models/src/benchmark_v2/models/graph_models/adaptive_common.py",
+      "custom_models/src/benchmark_v2/models/graph_models/graph_wavenet.py",
+      "custom_models/src/benchmark_v2/models/graph_models/mtgnn.py",
+      "custom_models/src/benchmark_v2/models/graph_models/agcrn.py",
+      "custom_models/src/benchmark_v2/models/graph_models/stid.py",
+      "custom_models/src/benchmark_v2/configs/e3_c_common.py",
+      "custom_models/src/benchmark_v2/configs/graph_wavenet.py",
+      "custom_models/src/benchmark_v2/configs/mtgnn.py",
+      "custom_models/src/benchmark_v2/configs/agcrn.py",
+      "custom_models/src/benchmark_v2/configs/stid.py",
+      "custom_models/src/benchmark_v2/adapters/e3_c.py",
+      "custom_models/tests/benchmark_v2/test_e3_c_graph_models.py"
+    ]
+  },
+  "files_modified_count": 17,
+  "files_modified": [
+    "custom_models/src/benchmark_v2/models/graph_models/__init__.py",
+    "custom_models/src/benchmark_v2/models/__init__.py",
+    "custom_models/src/benchmark_v2/configs/__init__.py",
+    "custom_models/src/benchmark_v2/adapters/__init__.py",
+    "custom_models/src/benchmark_v2/model_runtime.py",
+    "custom_models/src/benchmark_v2/data/sdwpf.py",
+    "custom_models/src/benchmark_v2/model_cli.py",
+    "custom_models/src/benchmark_v2/checkpointing.py",
+    "custom_models/src/benchmark_v2/artifacts.py",
+    "custom_models/src/benchmark_v2/hardware_preflight.py",
+    "custom_models/src/benchmark_v2/registry/benchmark_registry.json",
+    "custom_models/tests/benchmark_v2/test_e1_a_registry_cli.py",
+    "custom_models/tests/benchmark_v2/test_e1_b_registry_cli.py",
+    "custom_models/tests/benchmark_v2/test_e2_b_models.py",
+    "custom_models/tests/benchmark_v2/test_e2_d_models.py",
+    "custom_models/tests/benchmark_v2/test_e3_a_graph_protocol.py",
+    "custom_models/tests/benchmark_v2/test_registry.py"
+  ],
+  "files_deleted": [],
+  "files_moved": [],
+  "dependencies_changed": false,
+  "not_run": {
+    "target_high_memory_machine_preflight": "NOT_RUN",
+    "graph_wavenet_formal_full": "NOT_RUN",
+    "mtgnn_formal_full": "NOT_RUN",
+    "agcrn_formal_full": "NOT_RUN",
+    "stid_formal_full": "NOT_RUN",
+    "formal_evaluation": "NOT_RUN",
+    "E4": "NOT_STARTED"
+  },
+  "warnings": [
+    "Smoke losses and learned graph diagnostics are engineering evidence only and were not used for selection.",
+    "PyTorch CUDA counters are recorded exactly; Graph WaveNet peak counters exceed the device total reported by PyTorch.",
+    "Two early test invocations omitted PYTHONPATH and two early protocol invocations used a nonexistent script path; they exited before product test logic and were rerun correctly."
+  ]
+}

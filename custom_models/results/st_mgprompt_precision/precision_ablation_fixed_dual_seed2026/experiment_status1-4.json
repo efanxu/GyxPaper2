@@ -1,0 +1,27 @@
+[
+  {
+    "variant": "P0",
+    "status": "REFERENCE_ONLY",
+    "returncode": 0
+  },
+  {
+    "variant": "P1",
+    "status": "COMPLETED",
+    "returncode": 0
+  },
+  {
+    "variant": "P2",
+    "status": "COMPLETED",
+    "returncode": 0
+  },
+  {
+    "variant": "P3",
+    "status": "COMPLETED",
+    "returncode": 0
+  },
+  {
+    "variant": "P4",
+    "status": "FAILED",
+    "returncode": 3221225477
+  }
+]

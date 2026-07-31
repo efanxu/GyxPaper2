@@ -1,0 +1,6 @@
+{
+  "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_supplementary_ablation_smoke\\synthetic_smoke_seed2026\\V5_SHUFFLED_VOLATILITY\\best_checkpoint.pt",
+  "model_rebuilt": true,
+  "strict": true,
+  "test_uses_rebuilt_model": true
+}

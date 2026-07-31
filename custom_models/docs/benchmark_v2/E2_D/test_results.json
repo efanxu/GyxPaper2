@@ -1,0 +1,39 @@
+{
+  "task": "E2-D",
+  "status": "PASS",
+  "interpreter": "D:/Apps/Miniconda3/envs/env_tslib/python.exe",
+  "compileall": "PASS",
+  "protocol_check": {
+    "status": "PASS",
+    "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b"
+  },
+  "focused_e2_d": {
+    "status": "PASS",
+    "tests_run": 12,
+    "failures": 0,
+    "errors": 0
+  },
+  "hardware_preflight_shared": {
+    "status": "PASS",
+    "tests_run": 9,
+    "failures": 0,
+    "errors": 0
+  },
+  "full_suite": {
+    "status": "PASS",
+    "tests_run": 96,
+    "failures": 0,
+    "errors": 0
+  },
+  "model_regressions": {
+    "crossformer_segment_attention_decoder_gradients": "PASS",
+    "msgnet_fft_batch_isolation_period_graph_gradients": "PASS",
+    "timefilter_patch_masks_determinism_gate_graph_gradients": "PASS",
+    "batch_companion_invariance": "PASS",
+    "batch_permutation_invariance": "PASS",
+    "single_item_equivalence": "PASS",
+    "cross_node_isolation": "PASS",
+    "future_input_fail_closed": "PASS",
+    "strict_reload": "PASS"
+  }
+}

@@ -1,0 +1,459 @@
+{
+  "schema_version": "uniform_batch4_real_data_smoke_inventory_v1",
+  "status": "PARTIAL_FAILURE",
+  "profile_id": "uniform_train_batch4_v1",
+  "profile_hash": "f58bbc161dfba0f00774879fdf2f78ec7c59a7faff9ef28a1733a2ed6835fe66",
+  "dataset_input": "dataset/sdwpf_model_input_base.parquet",
+  "dataset_target": "dataset/sdwpf_eval_target.parquet",
+  "limits": {
+    "train_batches": 2,
+    "validation_batches": 1,
+    "evaluation_batches": 1
+  },
+  "rows": [
+    {
+      "model_id": "gru",
+      "status": "PASS",
+      "prediction_shape": [
+        4,
+        134,
+        10
+      ],
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "failure_stage": null,
+      "error_type": null,
+      "error_message": null,
+      "log": "custom_models/logs/uniform_bs4/smoke_real/gru.log"
+    },
+    {
+      "model_id": "dlinear",
+      "status": "PASS",
+      "prediction_shape": [
+        4,
+        134,
+        10
+      ],
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "failure_stage": null,
+      "error_type": null,
+      "error_message": null,
+      "log": "custom_models/logs/uniform_bs4/smoke_real/dlinear.log"
+    },
+    {
+      "model_id": "lightts",
+      "status": "PASS",
+      "prediction_shape": [
+        4,
+        134,
+        10
+      ],
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "failure_stage": null,
+      "error_type": null,
+      "error_message": null,
+      "log": "custom_models/logs/uniform_bs4/smoke_real/lightts.log"
+    },
+    {
+      "model_id": "tide",
+      "status": "PASS",
+      "prediction_shape": [
+        4,
+        134,
+        10
+      ],
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "failure_stage": null,
+      "error_type": null,
+      "error_message": null,
+      "log": "custom_models/logs/uniform_bs4/smoke_real/tide.log"
+    },
+    {
+      "model_id": "segrnn",
+      "status": "FAIL_OOM",
+      "prediction_shape": null,
+      "backward_completed": false,
+      "optimizer_step_completed": false,
+      "strict_reload_completed": false,
+      "artifact_validation": null,
+      "failure_stage": "backward",
+      "error_type": "OutOfMemoryError",
+      "error_message": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 3.59 GiB. GPU 0 has a total capacity of 6.00 GiB of which 0 bytes is free. Of the allocated memory 7.13 GiB is allocated by PyTorch, and 2.39 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+      "log": "custom_models/logs/uniform_bs4/smoke_real/segrnn.log"
+    },
+    {
+      "model_id": "transformer",
+      "status": "PASS",
+      "prediction_shape": [
+        4,
+        134,
+        10
+      ],
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "failure_stage": null,
+      "error_type": null,
+      "error_message": null,
+      "log": "custom_models/logs/uniform_bs4/smoke_real/transformer.log"
+    },
+    {
+      "model_id": "patchtst",
+      "status": "PASS",
+      "prediction_shape": [
+        4,
+        134,
+        10
+      ],
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "failure_stage": null,
+      "error_type": null,
+      "error_message": null,
+      "log": "custom_models/logs/uniform_bs4/smoke_real/patchtst.log"
+    },
+    {
+      "model_id": "itransformer",
+      "status": "PASS",
+      "prediction_shape": [
+        4,
+        134,
+        10
+      ],
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "failure_stage": null,
+      "error_type": null,
+      "error_message": null,
+      "log": "custom_models/logs/uniform_bs4/smoke_real/itransformer.log"
+    },
+    {
+      "model_id": "timexer",
+      "status": "PASS",
+      "prediction_shape": [
+        4,
+        134,
+        10
+      ],
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "failure_stage": null,
+      "error_type": null,
+      "error_message": null,
+      "log": "custom_models/logs/uniform_bs4/smoke_real/timexer.log"
+    },
+    {
+      "model_id": "timesnet",
+      "status": "PASS",
+      "prediction_shape": [
+        4,
+        134,
+        10
+      ],
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "failure_stage": null,
+      "error_type": null,
+      "error_message": null,
+      "log": "custom_models/logs/uniform_bs4/smoke_real/timesnet.log"
+    },
+    {
+      "model_id": "micn",
+      "status": "PASS",
+      "prediction_shape": [
+        4,
+        134,
+        10
+      ],
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "failure_stage": null,
+      "error_type": null,
+      "error_message": null,
+      "log": "custom_models/logs/uniform_bs4/smoke_real/micn.log"
+    },
+    {
+      "model_id": "wpmixer",
+      "status": "PASS",
+      "prediction_shape": [
+        4,
+        134,
+        10
+      ],
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "failure_stage": null,
+      "error_type": null,
+      "error_message": null,
+      "log": "custom_models/logs/uniform_bs4/smoke_real/wpmixer.log"
+    },
+    {
+      "model_id": "multipatchformer",
+      "status": "PASS",
+      "prediction_shape": [
+        4,
+        134,
+        10
+      ],
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "failure_stage": null,
+      "error_type": null,
+      "error_message": null,
+      "log": "custom_models/logs/uniform_bs4/smoke_real/multipatchformer.log"
+    },
+    {
+      "model_id": "timemixer",
+      "status": "PASS",
+      "prediction_shape": [
+        4,
+        134,
+        10
+      ],
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "failure_stage": null,
+      "error_type": null,
+      "error_message": null,
+      "log": "custom_models/logs/uniform_bs4/smoke_real/timemixer.log"
+    },
+    {
+      "model_id": "tsmixer",
+      "status": "PASS",
+      "prediction_shape": [
+        4,
+        134,
+        10
+      ],
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "failure_stage": null,
+      "error_type": null,
+      "error_message": null,
+      "log": "custom_models/logs/uniform_bs4/smoke_real/tsmixer.log"
+    },
+    {
+      "model_id": "frets",
+      "status": "PASS",
+      "prediction_shape": [
+        4,
+        134,
+        10
+      ],
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "failure_stage": null,
+      "error_type": null,
+      "error_message": null,
+      "log": "custom_models/logs/uniform_bs4/smoke_real/frets.log"
+    },
+    {
+      "model_id": "crossformer",
+      "status": "PASS",
+      "prediction_shape": [
+        4,
+        134,
+        10
+      ],
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "failure_stage": null,
+      "error_type": null,
+      "error_message": null,
+      "log": "custom_models/logs/uniform_bs4/smoke_real/crossformer.log"
+    },
+    {
+      "model_id": "msgnet",
+      "status": "FAIL_NON_OOM",
+      "prediction_shape": null,
+      "backward_completed": false,
+      "optimizer_step_completed": false,
+      "strict_reload_completed": false,
+      "artifact_validation": null,
+      "failure_stage": "process",
+      "error_type": "AbnormalProcessExit",
+      "error_message": "Child process exited without a JSON result; empty stderr was preserved in the retry log.",
+      "log": "custom_models/logs/uniform_bs4/smoke_real_retry1/msgnet.log"
+    },
+    {
+      "model_id": "timefilter",
+      "status": "PASS",
+      "prediction_shape": [
+        4,
+        134,
+        10
+      ],
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "failure_stage": null,
+      "error_type": null,
+      "error_message": null,
+      "log": "custom_models/logs/uniform_bs4/smoke_real_retry1/timefilter.log"
+    },
+    {
+      "model_id": "gcn",
+      "status": "PASS",
+      "prediction_shape": [
+        4,
+        134,
+        10
+      ],
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "failure_stage": null,
+      "error_type": null,
+      "error_message": null,
+      "log": "custom_models/logs/uniform_bs4/smoke_real_retry1/gcn.log"
+    },
+    {
+      "model_id": "stgcn",
+      "status": "PASS",
+      "prediction_shape": [
+        4,
+        134,
+        10
+      ],
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "failure_stage": null,
+      "error_type": null,
+      "error_message": null,
+      "log": "custom_models/logs/uniform_bs4/smoke_real_retry1/stgcn.log"
+    },
+    {
+      "model_id": "dcrnn",
+      "status": "PASS",
+      "prediction_shape": [
+        4,
+        134,
+        10
+      ],
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "failure_stage": null,
+      "error_type": null,
+      "error_message": null,
+      "log": "custom_models/logs/uniform_bs4/smoke_real_retry2/dcrnn.log"
+    },
+    {
+      "model_id": "graph_wavenet",
+      "status": "PASS",
+      "prediction_shape": [
+        4,
+        134,
+        10
+      ],
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "failure_stage": null,
+      "error_type": null,
+      "error_message": null,
+      "log": "custom_models/logs/uniform_bs4/smoke_real_retry2/graph_wavenet.log"
+    },
+    {
+      "model_id": "mtgnn",
+      "status": "PASS",
+      "prediction_shape": [
+        4,
+        134,
+        10
+      ],
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "failure_stage": null,
+      "error_type": null,
+      "error_message": null,
+      "log": "custom_models/logs/uniform_bs4/smoke_real_retry2/mtgnn.log"
+    },
+    {
+      "model_id": "agcrn",
+      "status": "PASS",
+      "prediction_shape": [
+        4,
+        134,
+        10
+      ],
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "failure_stage": null,
+      "error_type": null,
+      "error_message": null,
+      "log": "custom_models/logs/uniform_bs4/smoke_real_retry2/agcrn.log"
+    },
+    {
+      "model_id": "stid",
+      "status": "PASS",
+      "prediction_shape": [
+        4,
+        134,
+        10
+      ],
+      "backward_completed": true,
+      "optimizer_step_completed": true,
+      "strict_reload_completed": true,
+      "artifact_validation": "PASS",
+      "failure_stage": null,
+      "error_type": null,
+      "error_message": null,
+      "log": "custom_models/logs/uniform_bs4/smoke_real_retry2/stid.log"
+    }
+  ],
+  "counts": {
+    "PASS": 24,
+    "FAIL_OOM": 1,
+    "FAIL_NON_OOM": 1
+  },
+  "notes": [
+    "Interrupted attempts are preserved; successful retry2 results are used for DCRNN and the remaining graph models.",
+    "MSGNet retry1 produced an empty stderr/stdout result after high host-memory use; exact preflight separately classified MSGNet as OOM."
+  ],
+  "created_at": "2026-07-29T12:44:04.619386+00:00"
+}

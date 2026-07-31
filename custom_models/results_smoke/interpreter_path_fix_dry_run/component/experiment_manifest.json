@@ -1,0 +1,136 @@
+{
+  "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+  "experiment_family": "component_ablation",
+  "run_id": "component",
+  "selection_uses_test_metrics": false,
+  "variants": [
+    {
+      "variant_id": "A0",
+      "display_name": "Canonical Full",
+      "experiment_family": "component_ablation",
+      "trainable": false,
+      "canonical_reference": "full_fixed_dual_keep_msmgdwu_seed2026",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {},
+      "expected_unique_diff": []
+    },
+    {
+      "variant_id": "A1",
+      "display_name": "w/o Spatial Graph",
+      "experiment_family": "component_ablation",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "use_graph_in_temporal_encoder": false
+      },
+      "expected_unique_diff": [
+        "use_graph_in_temporal_encoder"
+      ]
+    },
+    {
+      "variant_id": "A2",
+      "display_name": "w/o Adaptive Graph",
+      "experiment_family": "component_ablation",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "use_adaptive_graph": false
+      },
+      "expected_unique_diff": [
+        "use_adaptive_graph"
+      ]
+    },
+    {
+      "variant_id": "A3",
+      "display_name": "w/o Diffusion",
+      "experiment_family": "component_ablation",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "graph_operator": "simple"
+      },
+      "expected_unique_diff": [
+        "graph_operator"
+      ]
+    },
+    {
+      "variant_id": "A4",
+      "display_name": "w/o Macro Prompt",
+      "experiment_family": "component_ablation",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "use_macro_prompt": false
+      },
+      "expected_unique_diff": [
+        "use_macro_prompt"
+      ]
+    },
+    {
+      "variant_id": "A5",
+      "display_name": "w/o Reverse Cross",
+      "experiment_family": "component_ablation",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "disable_reverse_cross": true
+      },
+      "expected_unique_diff": [
+        "disable_reverse_cross"
+      ]
+    },
+    {
+      "variant_id": "A6",
+      "display_name": "w/o Cross Fusion",
+      "experiment_family": "component_ablation",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "use_cross_fusion": false
+      },
+      "expected_unique_diff": [
+        "use_cross_fusion"
+      ]
+    },
+    {
+      "variant_id": "A7",
+      "display_name": "w/o ST Prompt",
+      "experiment_family": "component_ablation",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "use_st_prompt": false,
+        "decoder_input_strategy": "direct_multi_output_horizon_head"
+      },
+      "expected_unique_diff": [
+        "use_st_prompt",
+        "decoder_input_strategy"
+      ]
+    },
+    {
+      "variant_id": "A8",
+      "display_name": "w/o MS-MG-DWU",
+      "experiment_family": "component_ablation",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "use_msmg_dwu": false,
+        "loss_function": "masked_score_aligned_hybrid",
+        "loss_protocol": "fair_main"
+      },
+      "expected_unique_diff": [
+        "use_msmg_dwu",
+        "loss_function",
+        "loss_protocol"
+      ]
+    }
+  ]
+}

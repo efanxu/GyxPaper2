@@ -1,0 +1,47 @@
+[
+  {
+    "variant": "A0",
+    "status": "REFERENCE_ONLY",
+    "returncode": 0
+  },
+  {
+    "variant": "A1",
+    "status": "DRY_RUN",
+    "returncode": null
+  },
+  {
+    "variant": "A2",
+    "status": "DRY_RUN",
+    "returncode": null
+  },
+  {
+    "variant": "A3",
+    "status": "DRY_RUN",
+    "returncode": null
+  },
+  {
+    "variant": "A4",
+    "status": "DRY_RUN",
+    "returncode": null
+  },
+  {
+    "variant": "A5",
+    "status": "DRY_RUN",
+    "returncode": null
+  },
+  {
+    "variant": "A6",
+    "status": "DRY_RUN",
+    "returncode": null
+  },
+  {
+    "variant": "A7",
+    "status": "DRY_RUN",
+    "returncode": null
+  },
+  {
+    "variant": "A8",
+    "status": "DRY_RUN",
+    "returncode": null
+  }
+]

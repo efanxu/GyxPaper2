@@ -1,0 +1,11 @@
+step,MAE,RMSE,R2,SMAPE,MAPE,official_align_score,score,Score,bias_kw,valid_target_count,total_target_count,valid_target_ratio,num_valid_points,score_compute_unit,score_lower_is_better,physical_clip_applied,negative_prediction_ratio_raw,above_capacity_ratio_raw
+1,33.254,37.725,0.395,0.038,0.037,4.425,4.425,4.425,-20.622,23,24,0.958,23,MW_after_kW_to_MW_conversion,True,True,0.000,0.000
+2,35.546,40.136,0.382,0.040,0.039,4.763,4.763,4.763,-25.278,24,24,1.000,24,MW_after_kW_to_MW_conversion,True,True,0.000,0.000
+3,52.378,57.959,-0.345,0.059,0.057,7.019,7.019,7.019,-51.491,24,24,1.000,24,MW_after_kW_to_MW_conversion,True,True,0.000,0.000
+4,54.639,60.515,-0.360,0.062,0.059,7.322,7.322,7.322,-52.632,24,24,1.000,24,MW_after_kW_to_MW_conversion,True,True,0.000,0.000
+5,62.115,70.506,-0.870,0.070,0.067,8.323,8.323,8.323,-61.650,24,24,1.000,24,MW_after_kW_to_MW_conversion,True,True,0.000,0.000
+6,61.522,68.544,-0.698,0.068,0.066,8.244,8.244,8.244,-59.087,24,24,1.000,24,MW_after_kW_to_MW_conversion,True,True,0.000,0.000
+7,90.186,93.494,-2.456,0.101,0.096,12.085,12.085,12.085,-90.186,24,24,1.000,24,MW_after_kW_to_MW_conversion,True,True,0.000,0.000
+8,72.012,78.279,-1.212,0.078,0.075,9.650,9.650,9.650,-71.429,24,24,1.000,24,MW_after_kW_to_MW_conversion,True,True,0.000,0.000
+9,115.099,120.614,-4.927,0.128,0.120,15.423,15.423,15.423,-115.099,24,24,1.000,24,MW_after_kW_to_MW_conversion,True,True,0.000,0.000
+10,93.411,98.874,-3.116,0.102,0.096,12.517,12.517,12.517,-93.411,24,24,1.000,24,MW_after_kW_to_MW_conversion,True,True,0.000,0.000

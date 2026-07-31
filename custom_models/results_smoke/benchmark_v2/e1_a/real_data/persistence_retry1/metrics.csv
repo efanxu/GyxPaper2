@@ -1,0 +1,4 @@
+horizon,MAE,RMSE,R2,Score,score,valid_target_count,total_target_count,valid_target_ratio,status
+3,0.0,0.0,nan,nan,nan,96,1608,0.05970149253731343,OK
+6,0.0,0.0,nan,nan,nan,192,3216,0.05970149253731343,OK
+10,0.0,0.0,nan,nan,nan,320,5360,0.05970149253731343,OK

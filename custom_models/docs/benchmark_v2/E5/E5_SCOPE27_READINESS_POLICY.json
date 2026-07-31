@@ -1,0 +1,34 @@
+{
+  "schema_version": "e5_scope27_readiness_policy_v1",
+  "scope_id": "e5_batch4_scope27_seed2026",
+  "status": "ACTIVE_POLICY",
+  "denominators": {
+    "trainable": "24/24",
+    "evaluate_only": "2/2",
+    "a8_reference": "1/1",
+    "full_e5": "27/27"
+  },
+  "require_complete": true,
+  "gate_source": "scripts/e5_batch4_scope27_gate.py",
+  "active_manifest": "custom_models/docs/benchmark_v2/E5/E5_SCOPE27_VARIANT_MANIFEST.json",
+  "required_gates": [
+    "active scope identity",
+    "Benchmark Protocol identity",
+    "E5 protocol and loss identity",
+    "model source and config identity",
+    "dataset identity",
+    "run-id uniqueness",
+    "output directory conflict safety",
+    "completed run identity-safe skip",
+    "artifact completeness",
+    "checkpoint hash",
+    "metrics hash",
+    "run_status",
+    "A8 read-only reference identity",
+    "require-complete aggregate"
+  ],
+  "hardware_artifact_gate": "NOT_REQUIRED_FOR_CURRENT_FORMAL_SCOPE",
+  "excluded_models_are_outside_denominator": true,
+  "resolver_policy": "Only exact formal scope27 run ids under the configured formal output root are eligible; smoke and historical artifacts are never selected.",
+  "null_numeric_policy": "NaN, infinity, null, and missing metrics fail closed and are never replaced with zero."
+}
