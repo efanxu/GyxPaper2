@@ -199,6 +199,56 @@ class OriginalScope26HardeningTests(unittest.TestCase):
             self.assertEqual(action, "BLOCK_EXISTING_IDENTITY_MISMATCH")
             self.assertTrue(source.is_dir())
 
+    def test_archive_retry_after_move_failure_keeps_source_and_records_intent(self):
+        entry = self._entry()
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            source = self._minimal_canonical(root)
+            real_replace = os.replace
+
+            def fail_only_for_canonical_move(source_path, target_path):
+                if Path(source_path).resolve() == source.resolve():
+                    raise OSError("move blocked once")
+                return real_replace(source_path, target_path)
+
+            with patch.object(gate.os, "replace", side_effect=fail_only_for_canonical_move):
+                with self.assertRaises(OSError):
+                    archive_existing_attempt(
+                        self.manifest,
+                        entry,
+                        root,
+                        current_freeze=self.freeze,
+                        current_revision=self.revision,
+                        current_run_map=self.run_map,
+                    )
+            self.assertTrue(source.is_dir())
+            intents = list(
+                (root / gate.ARCHIVE_DIRECTORY / gate.INTENT_DIRECTORY).glob("*.json")
+            )
+            self.assertEqual(len(intents), 1)
+            self.assertEqual(json.loads(intents[0].read_text(encoding="utf-8"))["status"], "FAILED")
+
+            result = archive_existing_attempt(
+                self.manifest,
+                entry,
+                root,
+                current_freeze=self.freeze,
+                current_revision=self.revision,
+                current_run_map=self.run_map,
+            )
+            self.assertEqual(result["status"], "ARCHIVED")
+            self.assertFalse(source.exists())
+            self.assertTrue(Path(result["receipt"]).is_file())
+            statuses = {
+                json.loads(path.read_text(encoding="utf-8"))["status"]
+                for path in intents
+            }
+            statuses.update(
+                json.loads(path.read_text(encoding="utf-8"))["status"]
+                for path in (root / gate.ARCHIVE_DIRECTORY / gate.INTENT_DIRECTORY).glob("*.json")
+            )
+            self.assertEqual(statuses, {"FAILED", "COMPLETED"})
+
     def test_quarantine_requires_apply(self):
         entry = self._entry()
         with tempfile.TemporaryDirectory() as temp:
@@ -338,6 +388,22 @@ class OriginalScope26HardeningTests(unittest.TestCase):
                 "Time-Series-Library/layers/Embed.py",
             }.issubset(paths)
         )
+
+    def test_windows_formal_command_file_is_explicit_and_non_destructive(self):
+        path = (
+            gate.PROJECT_ROOT
+            / "custom_models/docs/benchmark_v2/BATCH4/"
+            "ORIGINAL_SCOPE26_WINDOWS_FORMAL_COMMANDS.ps1"
+        )
+        text = path.read_text(encoding="utf-8")
+        self.assertIn("StaticAudit", text)
+        self.assertIn("Exact Original GPU preflight PASS: 24/24", text)
+        self.assertIn("COMPLETED_READY_26_OF_26", text)
+        self.assertIn("origin/main", text)
+        self.assertNotIn("Remove-Item -Recurse", text)
+        self.assertNotIn("quarantine-existing --model $model --apply", text)
+        self.assertNotIn("shutdown.exe", text.casefold())
+        self.assertNotIn("stop-computer", text.casefold())
 
 
 if __name__ == "__main__":

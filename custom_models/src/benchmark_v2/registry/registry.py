@@ -1,12 +1,12 @@
 from __future__ import annotations
 
 import json
-import importlib
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
 from ..errors import ModelUnavailableError
+from ..model_factories.registry import get_model_factory
 
 
 REGISTRY_PATH = Path(__file__).with_name("benchmark_registry.json")
@@ -102,14 +102,13 @@ class BenchmarkRegistry:
                 f"planned_stage={entry.planned_stage}\n"
                 f"source was audited but no benchmark_v2 adapter is registered"
             )
-        module_name, separator, attribute_name = str(entry.factory).partition(":")
-        if not separator or not module_name or not attribute_name:
+        factory = get_model_factory(entry.canonical_id)
+        create_model = getattr(factory, "create_model", None)
+        if not callable(create_model):
             raise ModelUnavailableError(
-                f"Invalid explicit factory path for model={entry.canonical_id}: {entry.factory}"
+                f"Audited model factory has no create_model function: {entry.canonical_id}"
             )
-        module = importlib.import_module(module_name)
-        factory = getattr(module, attribute_name)
-        return factory(*args, **kwargs)
+        return create_model(*args, **kwargs)
 
 
 def load_registry(path: str | Path | None = None) -> BenchmarkRegistry:

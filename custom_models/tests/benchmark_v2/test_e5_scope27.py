@@ -55,25 +55,29 @@ class E5Scope27Tests(unittest.TestCase):
             row["model_id"] for row in entries
         })
 
-    def test_scope27_launcher_does_not_start_or_read_hardware_artifact(self):
+    def test_scope27_launcher_requires_exact_pass_without_implicit_preflight(self):
         calls = []
 
         def runner(argv, check=False):
             calls.append(tuple(argv))
             return SimpleNamespace(returncode=0)
 
-        code = launch_formal_train(
-            "gru",
-            input_path="input.parquet",
-            target_path="target.parquet",
-            output_root="formal-root",
-            run_id="gru-scope27",
-            device="cuda",
-            experiment_profile="e5_common_loss_v1",
-            training_profile=TRAINING_PROFILE_ID,
-            formal_scope_id=E5_SCOPE27_ID,
-            runner=runner,
-        )
+        with patch(
+            "benchmark_v2.hardware_preflight.read_matching_pass",
+            return_value={"status": "PASS"},
+        ):
+            code = launch_formal_train(
+                "gru",
+                input_path="input.parquet",
+                target_path="target.parquet",
+                output_root="formal-root",
+                run_id="gru-scope27",
+                device="cuda",
+                experiment_profile="e5_common_loss_v1",
+                training_profile=TRAINING_PROFILE_ID,
+                formal_scope_id=E5_SCOPE27_ID,
+                runner=runner,
+            )
         self.assertEqual(code, 0)
         self.assertEqual(len(calls), 1)
         self.assertIn("_formal-train-worker", calls[0])
@@ -123,7 +127,7 @@ class E5Scope27Tests(unittest.TestCase):
             patch.object(gate, "inspect_a8", side_effect=fake_a8),
         ):
             report = gate.build_readiness(manifest, PROJECT_ROOT / "fixture")
-        self.assertEqual(report["status"], "READY")
+        self.assertEqual(report["status"], "COMPLETED_READY_27_OF_27")
         self.assertEqual(
             report["counts"]["total_evidence"],
             {"ready": 27, "expected": 27},
@@ -133,7 +137,7 @@ class E5Scope27Tests(unittest.TestCase):
             {"ready": 24, "expected": 24},
         )
 
-    def test_linux_launcher_has_no_excluded_or_hardware_artifact_gate_text(self):
+    def test_linux_launcher_has_exact_preflight_gate_and_no_excluded_models(self):
         text = (
             PROJECT_ROOT
             / "custom_models/docs/benchmark_v2/E5/"
@@ -141,7 +145,8 @@ class E5Scope27Tests(unittest.TestCase):
         ).read_text(encoding="utf-8")
         self.assertNotIn("SegRNN", text)
         self.assertNotIn("MSGNet", text)
-        self.assertNotIn("preflight", text.casefold())
+        self.assertIn("preflight", text.casefold())
+        self.assertIn("24/24", text)
         self.assertIn("--require-complete", text)
         self.assertIn("e5_scope27_readiness.json", text)
 

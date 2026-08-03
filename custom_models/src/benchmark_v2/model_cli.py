@@ -1241,11 +1241,23 @@ def formal_evaluate_only(
         training_profile=training_profile,
         trainable=False,
     )
+    e5_preflight_identity = None
+    if formal_scope_id in {E5_SCOPE27_ID, CURRENT_SCOPE26_ID}:
+        from .hardware_preflight import preflight_identity
+
+        e5_preflight_identity = preflight_identity(
+            model_id,
+            experiment_profile=selected_profile,
+            training_profile=training_profile,
+            formal_scope_id=formal_scope_id,
+            source_revision=source_revision,
+        )
     apply_experiment_profile(
         runtime,
         selected_profile,
         run_id=run_id,
         output_root=output_root,
+        preflight_identity=e5_preflight_identity,
         provenance=(
             {"active_scope_id": E5_SCOPE27_ID}
             if formal_scope_id == E5_SCOPE27_ID
@@ -1323,16 +1335,20 @@ def formal_train(
         training_profile=training_profile,
     )
     scope_request = scope27_request or current_scope26_request
-    if current_scope26_request:
+    exact_scope_request = scope27_request or current_scope26_request
+    if exact_scope_request:
         from .hardware_preflight import read_matching_pass
 
+        exact_scope_id = (
+            E5_SCOPE27_ID if scope27_request else CURRENT_SCOPE26_ID
+        )
         if (
             read_matching_pass(
                 model_id,
                 root=preflight_root,
                 experiment_profile=selected_profile,
                 training_profile=training_profile,
-                formal_scope_id=CURRENT_SCOPE26_ID,
+                formal_scope_id=exact_scope_id,
                 source_revision=source_revision,
             )
             is None
@@ -1380,18 +1396,16 @@ def formal_train(
         run_id=run_id,
         output_root=output_root,
         preflight_identity=(
-            {
-                "status": "NOT_REQUIRED_FOR_CURRENT_FORMAL_SCOPE",
-                "policy_id": PREFLIGHT_POLICY_ID,
-                "active_scope_id": E5_SCOPE27_ID,
-            }
-            if scope27_request
-            else preflight_identity(
+            preflight_identity(
                 model_id,
                 experiment_profile=selected_profile,
                 training_profile=training_profile,
                 formal_scope_id=(
-                    CURRENT_SCOPE26_ID if current_scope26_request else None
+                    E5_SCOPE27_ID
+                    if scope27_request
+                    else CURRENT_SCOPE26_ID
+                    if current_scope26_request
+                    else None
                 ),
                 source_revision=source_revision,
             )

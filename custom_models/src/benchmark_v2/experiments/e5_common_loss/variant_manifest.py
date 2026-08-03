@@ -5,9 +5,8 @@ import re
 from pathlib import Path
 from typing import Any
 
-from ...configs import resolve_moving_average_config, resolve_persistence_config
-from ...hardware_preflight import _RESOLVERS
 from ...model_source_identity import canonical_model_source_identity
+from ...model_factories.registry import get_model_factory
 from ...precision import expected_model_precision_identity
 from ...protocol import load_protocol
 from ...registry import load_registry
@@ -81,11 +80,7 @@ def e5_run_id(
 
 def _base_config(model_id: str) -> dict[str, Any]:
     protocol = load_protocol()
-    if model_id == "persistence":
-        return resolve_persistence_config(protocol, run_mode="formal")
-    if model_id == "moving_average":
-        return resolve_moving_average_config(protocol, run_mode="formal")
-    return _RESOLVERS[model_id](protocol, run_mode="formal")
+    return get_model_factory(model_id).resolve_config(protocol, run_mode="formal")
 
 
 def _source_identity(model_id: str) -> dict[str, Any]:

@@ -8,6 +8,12 @@ The only current Original execution source is
 `scripts/original_batch4_scope26_gate.py` and the Windows entry point is
 `ORIGINAL_RUN_ALL_26_BATCH4_WINDOWS.ps1`.
 
+The copy-pasteable PowerShell 5.1 formal command file is
+`ORIGINAL_SCOPE26_WINDOWS_FORMAL_COMMANDS.ps1`. It defaults to a static audit;
+GPU preflight, formal run, readiness, and aggregate are separate explicit
+actions. It never deletes, clears a stale lock, applies quarantine, or shuts
+down the machine.
+
 ## Scope and frozen identity
 
 - Scope: `benchmark_v2_batch4_scope26_seed2026`
@@ -28,6 +34,12 @@ manifest, current run map, active model/config source closures, protocol,
 Batch4 profile, dataset/graph identities, Original loss, per-model precision,
 and the active gate/launcher revisions. It does not include the E5 manifest,
 legacy E5 run maps, SegRNN, MSGNet, or Batch32 artifacts.
+
+Model construction is closed over the selected fixed factory, wrapper,
+adapter, config, and transitive repository-local imports. The factory and
+graph export boundaries use literal audited maps; unknown model ids and
+non-literal dynamic imports fail closed. Source-closure hashes are generated
+deterministically and are recorded in the active manifest and freeze.
 
 ## Commands
 
@@ -72,6 +84,31 @@ The direct gate commands are equivalent:
 & $python 'D:\PaperProject\GyxPaper2\scripts\original_batch4_scope26_gate.py' quarantine-existing --model transformer --apply
 & $python 'D:\PaperProject\GyxPaper2\scripts\original_batch4_scope26_gate.py' aggregate --require-complete
 ```
+
+The formal command file exposes the same protocol with PowerShell 5.1-safe
+actions. The first command is read-only apart from new audit/log evidence:
+
+```powershell
+Set-Location -LiteralPath 'D:\PaperProject\GyxPaper2'
+$commands = 'D:\PaperProject\GyxPaper2\custom_models\docs\benchmark_v2\BATCH4\ORIGINAL_SCOPE26_WINDOWS_FORMAL_COMMANDS.ps1'
+& $commands -Action StaticAudit
+
+# Explicit same-machine GPU preflight: 24/24 trainable entries.
+& $commands -Action Preflight
+
+# Formal run after the explicit preflight has passed.
+& $commands -Action Run -InputPath 'D:\PaperProject\GyxPaper2\dataset\sdwpf_model_input_base.parquet' -TargetPath 'D:\PaperProject\GyxPaper2\dataset\sdwpf_eval_target.parquet'
+
+# The command file refuses aggregate unless readiness is exactly 26/26.
+& $commands -Action Readiness
+& $commands -Action Aggregate
+```
+
+`StaticAudit` checks `HEAD == origin/main`, tracked-worktree cleanliness,
+manifest/freeze identity, the 24+2 preflight denominator, lock status,
+current-root dry-run, and readiness. Existing identity mismatches are printed
+as manual quarantine templates only. Untracked historical/result evidence is
+not cleaned or rewritten by these commands.
 
 ## Resume and failure behavior
 

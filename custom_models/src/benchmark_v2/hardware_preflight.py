@@ -14,34 +14,6 @@ from pathlib import Path
 from typing import Any, Callable, Mapping, Sequence
 
 from .artifacts import atomic_write_json
-from .configs import (
-    resolve_dlinear_config,
-    resolve_gru_config,
-    resolve_itransformer_config,
-    resolve_lightts_config,
-    resolve_patchtst_config,
-    resolve_segrnn_config,
-    resolve_tide_config,
-    resolve_timexer_config,
-    resolve_transformer_config,
-    resolve_timesnet_config,
-    resolve_micn_config,
-    resolve_wpmixer_config,
-    resolve_multipatchformer_config,
-    resolve_timemixer_config,
-    resolve_tsmixer_config,
-    resolve_frets_config,
-    resolve_crossformer_config,
-    resolve_msgnet_config,
-    resolve_timefilter_config,
-    resolve_gcn_config,
-    resolve_stgcn_config,
-    resolve_dcrnn_config,
-    resolve_graph_wavenet_config,
-    resolve_mtgnn_config,
-    resolve_agcrn_config,
-    resolve_stid_config,
-)
 from .contracts import BenchmarkBatch
 from .errors import ModelUnavailableError
 from .experiments.e5_common_loss.loss_profile import (
@@ -61,8 +33,10 @@ from .experiments.e5_common_loss.scope27_contract import (
     is_scope27_train_request,
     validate_scope27_request,
 )
+from .experiments.e5_common_loss.active_scope import load_active_scope_pointer
 from .losses import get_loss
 from .model_runtime import build_model_runtime
+from .model_factories.registry import get_model_factory
 from .model_source_identity import canonical_model_source_identity
 from .precision import (
     apply_model_precision_policy,
@@ -85,34 +59,6 @@ from .training_profiles import (
 PREFLIGHT_SHAPE = {"B": 32, "T": 144, "N": 134, "C": 16, "H": 10}
 PREFLIGHT_ROOT = SMOKE_ROOT / "hardware_preflight"
 RUNNER_PATH = PROJECT_ROOT / "custom_models/src/benchmark_v2/run_benchmark.py"
-_RESOLVERS = {
-    "gru": resolve_gru_config,
-    "dlinear": resolve_dlinear_config,
-    "lightts": resolve_lightts_config,
-    "tide": resolve_tide_config,
-    "segrnn": resolve_segrnn_config,
-    "transformer": resolve_transformer_config,
-    "patchtst": resolve_patchtst_config,
-    "itransformer": resolve_itransformer_config,
-    "timexer": resolve_timexer_config,
-    "timesnet": resolve_timesnet_config,
-    "micn": resolve_micn_config,
-    "wpmixer": resolve_wpmixer_config,
-    "multipatchformer": resolve_multipatchformer_config,
-    "timemixer": resolve_timemixer_config,
-    "tsmixer": resolve_tsmixer_config,
-    "frets": resolve_frets_config,
-    "crossformer": resolve_crossformer_config,
-    "msgnet": resolve_msgnet_config,
-    "timefilter": resolve_timefilter_config,
-    "gcn": resolve_gcn_config,
-    "stgcn": resolve_stgcn_config,
-    "dcrnn": resolve_dcrnn_config,
-    "graph_wavenet": resolve_graph_wavenet_config,
-    "mtgnn": resolve_mtgnn_config,
-    "agcrn": resolve_agcrn_config,
-    "stid": resolve_stid_config,
-}
 E3_C_MODELS = {"graph_wavenet", "mtgnn", "agcrn", "stid"}
 NATIVE_NODE_MODELS = set(MODEL_SUPPORTS) | E3_C_MODELS
 
@@ -209,6 +155,13 @@ def preflight_shape(
                 "uniform_train_batch4_v1."
             )
         shape["B"] = 4
+    if formal_scope_id == E5_SCOPE27_ID:
+        if training_profile != "uniform_train_batch4_v1":
+            raise ValueError(
+                "Current E5 scope27 exact preflight requires "
+                "uniform_train_batch4_v1."
+            )
+        shape["B"] = 4
     return shape
 
 
@@ -244,11 +197,8 @@ def preflight_identity(
 ) -> dict[str, Any]:
     protocol = load_protocol()
     entry = load_registry().get(model_id)
-    if entry.canonical_id not in _RESOLVERS:
-        raise ModelUnavailableError(
-            f"{entry.display_name} has no trainable hardware preflight configuration."
-        )
-    config = _RESOLVERS[entry.canonical_id](protocol, run_mode="formal")
+    factory = get_model_factory(entry.canonical_id)
+    config = factory.resolve_config(protocol, run_mode="formal")
     source_identity = canonical_model_source_identity(entry.canonical_id)
     source_hash = source_identity["canonical_combined_hash"]
     identity = {
@@ -383,6 +333,69 @@ def preflight_identity(
                 "effective_amp_enabled": precision.get("amp_enabled"),
             }
         )
+    if formal_scope_id == E5_SCOPE27_ID:
+        from scripts.e5_batch4_scope27_gate import (
+            DEFAULT_MANIFEST,
+            _load_run_map,
+            compute_e5_freeze,
+            load_manifest,
+        )
+
+        active = dict(manifest or load_manifest(DEFAULT_MANIFEST))
+        selected_map = dict(run_map or _load_run_map())
+        if freeze is None:
+            freeze = compute_e5_freeze(active, run_map=selected_map)
+        revision = {
+            "git_commit": str(source_revision or freeze["git_commit"]),
+            "source_revision_type": "git",
+        }
+        precision = expected_model_precision_identity(
+            entry.canonical_id, training_profile
+        )
+        entry_manifest = next(
+            row for row in active["entries"] if row["model_id"] == entry.canonical_id
+        )
+        identity.update(
+            {
+                "scope_id": formal_scope_id,
+                "active_scope_id": formal_scope_id,
+                "git_commit": revision["git_commit"],
+                "source_revision_type": revision["source_revision_type"],
+                "active_pointer_hash": stable_hash(load_active_scope_pointer()),
+                "manifest_hash": stable_hash(active),
+                "run_map_hash": stable_hash(selected_map),
+                "freeze_hash": freeze["freeze_hash"],
+                "freeze_schema_version": freeze.get("schema_version"),
+                "model_config_hash": entry_manifest["base_model_config_hash"],
+                "base_model_config_hash": entry_manifest["base_model_config_hash"],
+                "source_hash": entry_manifest["base_model_source_hash"],
+                "source_closure_hash": entry_manifest["base_model_source_hash"],
+                "model_source_closure_hash": entry_manifest[
+                    "base_model_source_hash"
+                ],
+                "precision_identity": precision,
+                "precision_identity_hash": stable_hash(precision),
+                "protocol_hash": active["benchmark_protocol_hash"],
+                "training_profile_id": training_profile,
+                "training_profile_hash": active["training_profile_hash"],
+                "batch4_profile_id": training_profile,
+                "batch4_profile_hash": active["training_profile_hash"],
+                "dataset_identity_hash": stable_hash(active["dataset_identity"]),
+                "graph_identity_hash": stable_hash(active["graph_identity"]),
+                "loss_identity_hash": stable_hash(active["loss_identity"]),
+                "loss_id": active["loss_identity"]["loss_id"],
+                "loss_source_hash": active["loss_identity"]["loss_source_hash"],
+                "loss_profile_hash": active["loss_identity"]["loss_profile_hash"],
+                "e5_common_loss_protocol_hash": active["loss_identity"][
+                    "e5_common_loss_protocol_hash"
+                ],
+                "experiment_profile_id": active["experiment_profile_id"],
+                "training_profile_id": active["training_profile_id"],
+                "exact_shape": dict(preflight_shape(training_profile, formal_scope_id)),
+                "precision_identity_name": precision.get("precision_policy"),
+                "effective_amp_enabled": precision.get("amp_enabled"),
+            }
+        )
     return identity
 
 
@@ -456,6 +469,28 @@ def read_matching_pass(
         or payload.get("backward_completed") is not True
     ):
         return None
+    if formal_scope_id in {CURRENT_SCOPE26_ID, E5_SCOPE27_ID}:
+        required_flags = (
+            "finite_prediction",
+            "finite_loss",
+            "finite_gradients",
+        )
+        if any(payload.get(key) is not True for key in required_flags):
+            return None
+        if payload.get("prediction_shape") != [
+            expected["B"],
+            expected["N"],
+            expected["H"],
+        ]:
+            return None
+        for key in ("peak_allocated_memory", "peak_reserved_memory"):
+            value = payload.get(key)
+            if (
+                isinstance(value, bool)
+                or not isinstance(value, (int, float))
+                or value < 0
+            ):
+                return None
     return payload
 
 
@@ -546,6 +581,9 @@ def run_preflight_worker(
         "preflight_pid": os.getpid(),
         "forward_completed": False,
         "backward_completed": False,
+        "finite_prediction": False,
+        "finite_loss": False,
+        "finite_gradients": False,
         "prediction_shape": None,
         "loss": None,
         "gpu_name": None,
@@ -614,11 +652,15 @@ def run_preflight_worker(
                 raise RuntimeError(
                     f"Prediction shape mismatch: {result['prediction_shape']}"
                 )
+            if not torch.isfinite(output.prediction).all().item():
+                raise RuntimeError("Preflight prediction is not finite.")
+            result["finite_prediction"] = True
             loss = loss_for_profile(selected_profile)(
                 output.prediction, moved.target, moved.mask
             )
         if not torch.isfinite(loss):
             raise RuntimeError("Preflight loss is not finite.")
+        result["finite_loss"] = True
         result["failure_stage"] = "backward"
         loss.backward()
         finite_gradients = all(
@@ -756,14 +798,17 @@ def launch_formal_train(
         training_profile=training_profile,
     )
     scope_request = scope27_request or current_scope26_request
-    if current_scope26_request:
+    if scope27_request or current_scope26_request:
+        exact_scope_id = (
+            E5_SCOPE27_ID if scope27_request else CURRENT_SCOPE26_ID
+        )
         if (
             read_matching_pass(
                 entry.canonical_id,
                 root=preflight_root,
                 experiment_profile=selected_profile,
                 training_profile=training_profile,
-                formal_scope_id=CURRENT_SCOPE26_ID,
+                formal_scope_id=exact_scope_id,
                 source_revision=source_revision,
             )
             is None

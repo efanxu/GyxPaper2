@@ -14,17 +14,13 @@ from .loss_profile import (
 
 
 def canonical_base_model_config_hash(model_id: str) -> str:
-    from ...configs import resolve_moving_average_config, resolve_persistence_config
-    from ...hardware_preflight import _RESOLVERS
+    from ...model_factories.registry import get_model_factory
     from ...protocol import load_protocol
 
     protocol = load_protocol()
-    if model_id == "persistence":
-        config = resolve_persistence_config(protocol, run_mode="formal")
-    elif model_id == "moving_average":
-        config = resolve_moving_average_config(protocol, run_mode="formal")
-    else:
-        config = _RESOLVERS[model_id](protocol, run_mode="formal")
+    config = get_model_factory(model_id).resolve_config(
+        protocol, run_mode="formal"
+    )
     return stable_hash(config)
 
 
@@ -78,6 +74,45 @@ def apply_experiment_profile(
         "run_id": run_id,
         "output_root": None if output_root is None else str(Path(output_root)),
         "preflight_identity": preflight_identity,
+        "active_scope_id": (
+            supplied_provenance.get("active_scope_id")
+            or (preflight_identity or {}).get("active_scope_id")
+            or (preflight_identity or {}).get("scope_id")
+        ),
+        "active_pointer_hash": (preflight_identity or {}).get(
+            "active_pointer_hash"
+        ),
+        "manifest_hash": (preflight_identity or {}).get("manifest_hash"),
+        "run_map_hash": (preflight_identity or {}).get("run_map_hash"),
+        "freeze_hash": (preflight_identity or {}).get("freeze_hash"),
+        "model_config_hash": (preflight_identity or {}).get(
+            "model_config_hash"
+        ),
+        "source_closure_hash": (preflight_identity or {}).get(
+            "source_closure_hash"
+        )
+        or (preflight_identity or {}).get("source_hash"),
+        "precision_identity": (preflight_identity or {}).get(
+            "precision_identity"
+        ),
+        "precision_identity_hash": (preflight_identity or {}).get(
+            "precision_identity_hash"
+        ),
+        "training_batch_profile_id": (preflight_identity or {}).get(
+            "training_profile_id"
+        ),
+        "training_batch_profile_hash": (preflight_identity or {}).get(
+            "training_profile_hash"
+        ),
+        "dataset_identity_hash": (preflight_identity or {}).get(
+            "dataset_identity_hash"
+        ),
+        "graph_identity_hash": (preflight_identity or {}).get(
+            "graph_identity_hash"
+        ),
+        "loss_identity_hash": (preflight_identity or {}).get(
+            "loss_identity_hash"
+        ),
         "provenance": {
             "base_model_id": runtime.model_id,
             "base_model_config_hash": canonical_base_model_config_hash(

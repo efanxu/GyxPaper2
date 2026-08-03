@@ -1,119 +1,74 @@
-# E5 batch4 scope27 Linux Runbook
+# E5 Batch4 scope27 runbook
 
-## Frozen scope
+The active E5 denominator is 24 trainable models, 2 evaluate-only baselines,
+and one read-only formal Batch4 A8 reference: 27 evidence entries. The active
+output root is:
 
-- Project root: `/root/autodl-tmp/GyxPaper2`
-- Python: `/root/miniconda3/envs/env_tslib/bin/python`
-- Training profile: `uniform_train_batch4_v1`
-- Active E5 scope: `e5_batch4_scope27_seed2026`
-- Formal output root:
-  `/root/autodl-tmp/GyxPaper2/custom_models/results/benchmark_v2/common_loss_architecture_seed2026`
-- Evidence denominator: trainable 24/24, evaluate-only 2/2, A8 1/1,
-  total 27/27
+`custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026`
 
-The manifest is the sole execution-order source:
-`custom_models/docs/benchmark_v2/E5/E5_SCOPE27_VARIANT_MANIFEST.json`.
-The launcher contains no duplicate hard-coded model list.
+The legacy root
+`custom_models/results/benchmark_v2/common_loss_architecture_seed2026` is
+`LEGACY_OR_HISTORICAL_READ_ONLY_NOT_CURRENT_BATCH4_OUTPUT`. It is never read as
+current evidence and is never copied, moved, or adopted.
 
-## Safety behavior
+The current manifest, run map, readiness policy, gate, and launchers are bound
+by `E5_ACTIVE_SCOPE.json`. The source identity is per-model: excluded SegRNN
+and MSGNet are not in the active closure or denominator. Batch32 artifacts,
+old scope29 manifests, old A8 artifacts, and Transformer retry2 are historical
+only.
 
-- An absent exact run id is eligible to run.
-- A completed run is skipped only when formal scope, batch profile, benchmark
-  protocol, loss, model/config, dataset, metrics, and artifact identities match.
-- An existing failed, incomplete, or identity-mismatched directory is preserved
-  and blocks only that item; remaining items are still checked.
-- A model failure is recorded and the launcher continues.
-- A8 is validated from its existing read-only formal directory; it is never
-  trained or copied.
-- Final aggregation runs only after readiness is exactly 27/27 and always uses
-  `--require-complete`.
-- Missing, null, NaN, or infinite metrics fail closed and are never filled with
-  zero.
-- Smoke and historical results are not resolver candidates.
-
-## Lock and safe restart procedure
-
-The run-all launcher performs project/Python/input/output checks, imports the
-gate, validates the active manifest, and generates the complete 26-row plan
-before it creates an active lock. The lock is
-`logs/benchmark_v2/e5_batch4_scope27/e5_scope27_lock.json` and records its
-schema version, scope, PID, host, start time, Git commit, Python executable,
-and manifest SHA256.
-
-Inspect the lock without changing it:
+## Required order
 
 ```bash
 cd /root/autodl-tmp/GyxPaper2 || exit 1
 export PYTHON=/root/miniconda3/envs/env_tslib/bin/python
-"$PYTHON" scripts/e5_scope27_lock.py inspect \
-  --path logs/benchmark_v2/e5_batch4_scope27/e5_scope27_lock.json
-```
-
-An `ACTIVE` lock means the recorded PID is alive and a second run is refused.
-An absent PID is reported as `STALE`; the launcher remains fail-closed until
-the following explicit, single-lock cleanup is performed after inspection:
-
-```bash
-"$PYTHON" scripts/e5_scope27_lock.py clear-stale \
-  --path logs/benchmark_v2/e5_batch4_scope27/e5_scope27_lock.json
-```
-
-This command removes only the specified stale lock JSON. It never removes or
-rewrites a model result directory. Existing failed, incomplete, or identity
-mismatched runs remain `BLOCK_EXISTING_PRESERVED`; create a new retry run-id or
-quarantine directory through a separately reviewed change rather than
-overwriting the original evidence.
-
-Never delete result directories, copy checkpoints, relabel smoke output as
-formal output, reuse an old scope29/A8 result, force-push Git, or run formal
-training from the legacy CLI path.
-
-## Full run with automatic shutdown
-
-Paste this into the cloud JupyterLab Terminal:
-
-```bash
-cd /root/autodl-tmp/GyxPaper2 || exit 1
-mkdir -p logs/benchmark_v2/e5_batch4_scope27
-nohup bash -lc '
-cd /root/autodl-tmp/GyxPaper2 || exit 1
-export PYTHON=/root/miniconda3/envs/env_tslib/bin/python
-export PATH="$(dirname "$PYTHON"):$PATH"
 export PYTHONPATH="$PWD/custom_models/src"
 export PYTHONUTF8=1
 export PYTHONIOENCODING=utf-8
-export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
-export CUDA_VISIBLE_DEVICES=0
-set +e
-bash custom_models/docs/benchmark_v2/E5/E5_RUN_ALL_27_BATCH4_LINUX_AUTOSHUTDOWN.sh
-code=$?
-exit "$code"
-' >> logs/benchmark_v2/e5_batch4_scope27/e5_27_batch4_seed2026.launcher.log 2>&1 &
-launcher_pid=$!
-printf "%s\n" "$launcher_pid" > logs/benchmark_v2/e5_batch4_scope27/e5_27_batch4_seed2026.pid
-echo "PID=$launcher_pid"
+
+"$PYTHON" scripts/e5_batch4_scope27_gate.py lock-status
+"$PYTHON" scripts/e5_batch4_scope27_gate.py validate-manifest
+"$PYTHON" scripts/e5_batch4_scope27_gate.py freeze
+"$PYTHON" scripts/e5_batch4_scope27_gate.py preflight-plan
+"$PYTHON" scripts/e5_batch4_scope27_gate.py dry-run
+"$PYTHON" scripts/e5_batch4_scope27_gate.py preflight \
+  --preflight-root custom_models/logs/uniform_bs4/audit/e5_scope27/preflight \
+  --source-revision "$(git rev-parse HEAD)"
+"$PYTHON" scripts/e5_batch4_scope27_gate.py run \
+  --input-path dataset/sdwpf_model_input_base.parquet \
+  --target-path dataset/sdwpf_eval_target.parquet \
+  --preflight-root custom_models/logs/uniform_bs4/audit/e5_scope27/preflight \
+  --source-revision "$(git rev-parse HEAD)"
+"$PYTHON" scripts/e5_batch4_scope27_gate.py readiness
+"$PYTHON" scripts/e5_batch4_scope27_gate.py aggregate --require-complete
 ```
 
-The automatic-shutdown wrapper waits until the run-all script has checked every
-remaining item and completed final readiness/aggregate status handling. It then
-saves the main exit code, calls `sync`, and invokes
-`/usr/bin/shutdown -h now` whether the main run succeeded or failed.
+`preflight` must report exact 24/24 PASS. Formal execution never creates a
+preflight implicitly. `run` uses only exact canonical run IDs and emits one
+execution receipt per successful train/evaluate-only result. Its failure
+artifacts retain the real per-model log tail and classify OOM, nonfinite,
+identity, preflight, collision, archive, and lock failures.
 
-## Monitoring
+`dry-run` actions are `SKIP_COMPLETED_IDENTITY_MATCH`, `RUN_MISSING`,
+`ARCHIVE_INCOMPLETE_THEN_RUN`, `BLOCK_EXISTING_IDENTITY_MISMATCH`, and
+`BLOCK_A8_BATCH4_REFERENCE`. Identity-mismatched or renamed directories are
+never auto-archived. Use `quarantine-existing --model-id ... --apply` only
+after an explicit per-model review. Failed archive moves use external intent
+receipts, so a failed move leaves the canonical source unchanged and can be
+retried safely. Symlinks, path traversal, active workers, and target
+collisions are rejected.
 
-```bash
-tail -f /root/autodl-tmp/GyxPaper2/logs/benchmark_v2/e5_batch4_scope27/e5_27_batch4_seed2026.log
-tail -f /root/autodl-tmp/GyxPaper2/logs/benchmark_v2/e5_batch4_scope27/e5_27_batch4_seed2026.launcher.log
-cat /root/autodl-tmp/GyxPaper2/logs/benchmark_v2/e5_batch4_scope27/e5_27_batch4_seed2026.pid
-cat /root/autodl-tmp/GyxPaper2/logs/benchmark_v2/e5_batch4_scope27/e5_27_batch4_seed2026.exitcode
-ps -ef | grep '[r]un_benchmark.py'
-ps -ef | grep '[E]5_RUN_ALL_27_BATCH4_LINUX'
-watch -n 2 nvidia-smi
-cat /root/autodl-tmp/GyxPaper2/logs/benchmark_v2/e5_batch4_scope27/failed_models.txt
-```
+The A8 reference is strictly read-only and must be
+`STMGPrompt_A8_loss_msa_hybrid_bs4_seed2026_reference`, sourced from
+`custom_models/results/st_mgprompt_uniform_bs4/component_ablation_a8_bs4_seed2026/STMGPrompt_ComponentAblation/`.
+Batch4 config, protocol, nonempty checkpoint, finite H3/H6/H10 metrics,
+JSON/CSV equality, and the three copied/retrained flags are checked. Missing
+or invalid A8 evidence yields `BLOCKED_A8_BATCH4_REFERENCE`; no Batch32
+fallback is allowed.
 
-Additional final state is saved in
-`logs/benchmark_v2/e5_batch4_scope27/e5_scope27_final_status.env`; per-model
-exit codes are saved in `model_exit_codes.tsv`; readiness and evidence hashes
-are saved in `e5_scope27_readiness.json` and
-`e5_scope27_evidence_manifest.json`.
+Readiness must be `COMPLETED_READY_27_OF_27` before aggregation. Otherwise no
+CSV, XLSX, Markdown, or final audit aggregate is produced. Lock states are
+`ABSENT`, `ACTIVE`, `STALE`, `UNKNOWN_REMOTE`, and `MALFORMED`; only an
+explicit `clear-stale-lock` for confirmed `STALE` is permitted. The
+autoshutdown wrapper is optional and must never be used as a substitute for
+the preflight/readiness gates.

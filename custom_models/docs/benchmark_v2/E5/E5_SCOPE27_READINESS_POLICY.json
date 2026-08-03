@@ -1,16 +1,22 @@
 {
-  "schema_version": "e5_scope27_readiness_policy_v2",
-  "scope_id": "e5_batch4_scope27_seed2026",
-  "status": "ACTIVE_POLICY",
-  "denominators": {
-    "trainable": "24/24",
-    "evaluate_only": "2/2",
-    "a8_reference": "1/1",
-    "full_e5": "27/27"
-  },
-  "require_complete": true,
-  "gate_source": "scripts/e5_batch4_scope27_gate.py",
+  "a8_reference_id": "STMGPrompt_A8_loss_msa_hybrid_bs4_seed2026_reference",
   "active_manifest": "custom_models/docs/benchmark_v2/E5/E5_SCOPE27_VARIANT_MANIFEST.json",
+  "denominators": {
+    "a8_reference": "1/1",
+    "evaluate_only": "2/2",
+    "full_e5": "27/27",
+    "trainable": "24/24"
+  },
+  "evaluate_only_checkpoint_policy": "Checkpoint files are not required and are not hashed for EVALUATE_ONLY_COMMON_LOSS_DIAGNOSTIC entries.",
+  "excluded_models_are_outside_denominator": true,
+  "gate_source": "scripts/e5_batch4_scope27_gate.py",
+  "hardware_artifact_gate": "EXACT_PASS_REQUIRED_FOR_24_TRAINABLE",
+  "legacy_output_root": "custom_models/results/benchmark_v2/common_loss_architecture_seed2026",
+  "legacy_policy": "LEGACY_OR_HISTORICAL_READ_ONLY_NOT_CURRENT_BATCH4_OUTPUT",
+  "null_numeric_policy": "NaN, infinity, null, and missing metrics fail closed and are never replaced with zero.",
+  "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
+  "precision_identity_policy": "Manifest-declared; Transformer + uniform_train_batch4_v1 requires fp32 and all other active Batch4 models retain profile AMP.",
+  "require_complete": true,
   "required_gates": [
     "active scope identity",
     "Benchmark Protocol identity",
@@ -25,15 +31,21 @@
     "trainable checkpoint hash",
     "evaluate-only baseline/diagnostic hashes",
     "metrics hash",
+    "metrics JSON/CSV consistency and finite valid target counts",
     "run_status",
+    "independent E5 freeze",
+    "exact hardware preflight PASS for 24 trainable entries",
+    "execution receipt identity",
+    "safe archive intent and explicit quarantine",
     "A8 read-only reference identity",
+    "COMPLETED_READY_27_OF_27 readiness",
     "require-complete aggregate"
   ],
-  "source_identity_schema_version": "model_source_identity_v1",
-  "precision_identity_policy": "Manifest-declared; Transformer + uniform_train_batch4_v1 requires fp32 and all other active Batch4 models retain profile AMP.",
-  "evaluate_only_checkpoint_policy": "Checkpoint files are not required and are not hashed for EVALUATE_ONLY_COMMON_LOSS_DIAGNOSTIC entries.",
-  "hardware_artifact_gate": "NOT_REQUIRED_FOR_CURRENT_FORMAL_SCOPE",
-  "excluded_models_are_outside_denominator": true,
   "resolver_policy": "Only exact formal scope27 run ids under the configured formal output root are eligible; smoke and historical artifacts are never selected.",
-  "null_numeric_policy": "NaN, infinity, null, and missing metrics fail closed and are never replaced with zero."
+  "schema_version": "e5_scope27_readiness_policy_v2",
+  "scope_id": "e5_batch4_scope27_seed2026",
+  "source_identity_schema_version": "model_source_identity_v1",
+  "status": "ACTIVE_POLICY",
+  "training_profile_hash": "f58bbc161dfba0f00774879fdf2f78ec7c59a7faff9ef28a1733a2ed6835fe66",
+  "training_profile_id": "uniform_train_batch4_v1"
 }

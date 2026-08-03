@@ -8,6 +8,7 @@ import re
 from pathlib import Path, PurePosixPath
 from typing import Any, Iterable, Mapping
 
+from .model_factories.registry import factory_module_path
 from .registry import load_registry
 
 
@@ -28,6 +29,12 @@ _DYNAMIC_IMPORT_ALLOWLIST = {
     # resolved at runtime; the registry module itself is part of every model
     # closure, while its dynamic target is audited by the registry contract.
     "custom_models/src/benchmark_v2/registry/registry.py",
+    # The factory module is a closed literal id -> module allowlist.  Its
+    # target is added explicitly below for the selected model, so the generic
+    # AST walker must not expand every factory branch here.
+    "custom_models/src/benchmark_v2/model_factories/registry.py",
+    # Graph compatibility exports use the same fixed name -> module map.
+    "custom_models/src/benchmark_v2/models/graph_models/__init__.py",
 }
 _CLOSURE_PATH_CACHE: dict[tuple[str, str], tuple[list[tuple[str, str]], list[str]]] = {}
 
@@ -390,6 +397,11 @@ def _closure_paths(model_id: str, entry: Any) -> list[tuple[str, str]]:
     add(_module_path(str(entry.implementation_module)), "benchmark model wrapper")
     add(_config_path(str(entry.config_schema)), "model-specific config resolver")
     add(_adapter_path(model_id), "benchmark adapter implementation")
+    factory_module = factory_module_path(model_id)
+    add(
+        _module_path(factory_module),
+        "selected fixed model factory boundary",
+    )
     add(
         "custom_models/src/benchmark_v2/model_runtime.py",
         "explicit model runtime builder",

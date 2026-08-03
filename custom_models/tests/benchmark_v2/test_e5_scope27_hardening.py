@@ -7,6 +7,7 @@ import tempfile
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
+from unittest.mock import patch
 
 from benchmark_v2.experiments.e5_common_loss.active_scope import (
     ActiveScopeError,
@@ -56,10 +57,22 @@ def _make_fixture(root: Path, manifest: dict, model_id: str) -> Path:
     precision = entry["precision_identity"]
     effective = {
         "model_id": model_id,
+        "run_id": entry["e5_run_id"],
+        "output_root": manifest["output_root"],
         "run_mode": "formal",
         "artifact_profile": "NON_TRAINABLE" if evaluate_only else "TRAIN",
         "formal_registry_entry": True,
         "formal_training": not evaluate_only,
+        "experiment_profile_id": manifest["experiment_profile_id"],
+        "active_scope_id": manifest["scope_id"],
+        "active_pointer_hash": None,
+        "manifest_hash": None,
+        "run_map_hash": None,
+        "freeze_hash": None,
+        "model_config_hash": entry["base_model_config_hash"],
+        "source_closure_hash": entry["base_model_source_hash"],
+        "seq_len": 144,
+        "pred_len": 10,
         "experiment_profile_id": manifest["experiment_profile_id"],
         "training_batch_profile_id": manifest["training_profile_id"],
         "training_batch_profile_hash": manifest["training_profile_hash"],
@@ -85,11 +98,23 @@ def _make_fixture(root: Path, manifest: dict, model_id: str) -> Path:
             "base_model_source_closure_files": identity[
                 "source_closure_files"
             ],
-            "e5_common_loss_protocol_hash": manifest["loss_identity"][
+                "e5_common_loss_protocol_hash": manifest["loss_identity"][
                 "e5_common_loss_protocol_hash"
             ],
         },
     }
+    from scripts import e5_batch4_scope27_gate as gate
+
+    run_map = gate._load_run_map()
+    freeze = gate.compute_e5_freeze(manifest, run_map=run_map)
+    effective.update(
+        {
+            "active_pointer_hash": gate.canonical_hash(gate.load_active_scope_pointer()),
+            "manifest_hash": gate.canonical_hash(manifest),
+            "run_map_hash": gate.canonical_hash(run_map),
+            "freeze_hash": freeze["freeze_hash"],
+        }
+    )
     _write_json(run_dir / "resolved_config.json", effective)
     _write_json(run_dir / "effective_config.json", effective)
     _write_json(
@@ -117,6 +142,7 @@ def _make_fixture(root: Path, manifest: dict, model_id: str) -> Path:
             "run_mode": "formal",
             "formal_training": not evaluate_only,
             "model_id": model_id,
+            "run_id": entry["e5_run_id"],
             "training_batch_profile_id": manifest["training_profile_id"],
             "training_batch_profile_hash": manifest["training_profile_hash"],
         },
@@ -130,9 +156,16 @@ def _make_fixture(root: Path, manifest: dict, model_id: str) -> Path:
                 "MAE": 1.0,
                 "RMSE": 1.0,
                 "R2": 1.0,
+                "valid_target_count": 1,
             },
         )
-    (run_dir / "metrics.csv").write_text("horizon,Score,MAE,RMSE,R2\n", encoding="utf-8")
+    (run_dir / "metrics.csv").write_text(
+        "horizon,Score,MAE,RMSE,R2,valid_target_count\n"
+        "3,1.0,1.0,1.0,1.0,1\n"
+        "6,1.0,1.0,1.0,1.0,1\n"
+        "10,1.0,1.0,1.0,1.0,1\n",
+        encoding="utf-8",
+    )
     _write_json(
         run_dir / "prediction_metadata.json",
         {"source_checkpoint": None if evaluate_only else "best_checkpoint.pt"},
@@ -141,6 +174,7 @@ def _make_fixture(root: Path, manifest: dict, model_id: str) -> Path:
         run_dir / "run_status.json",
         {
             "status": "COMPLETED",
+            "exit_code": 0,
             "run_mode": "formal",
             "artifact_profile": effective["artifact_profile"],
             "formal_training": not evaluate_only,
@@ -177,6 +211,15 @@ def _make_fixture(root: Path, manifest: dict, model_id: str) -> Path:
         (run_dir / "best_checkpoint.pt").write_bytes(b"fixture checkpoint")
         (run_dir / "last_checkpoint.pt").write_bytes(b"fixture checkpoint")
         (run_dir / "train_log.csv").write_text("epoch,loss\n", encoding="utf-8")
+    gate._write_execution_receipt(
+        run_dir,
+        entry,
+        command=["fixture"],
+        started_at="2026-08-03T00:00:00+00:00",
+        finished_at="2026-08-03T00:01:00+00:00",
+        exit_code=0,
+        manifest=manifest,
+    )
     return run_dir
 
 
@@ -279,6 +322,68 @@ class E5Scope27HardeningTests(unittest.TestCase):
             canonical_hash_for_records(
                 [{"path": "C:/outside.py", "sha256": "a" * 64}]
             )
+
+    def test_source_closures_do_not_expand_excluded_or_unselected_models(self):
+        expected_absent = {
+            "persistence": ("custom_models/src/benchmark_v2/models/gru.py",),
+            "gru": ("custom_models/src/benchmark_v2/models/segrnn.py",),
+            "transformer": (
+                "Time-Series-Library/models/SegRNN.py",
+                "Time-Series-Library/models/MSGNet.py",
+            ),
+            "crossformer": ("Time-Series-Library/models/MSGNet.py",),
+            "gcn": ("custom_models/src/benchmark_v2/models/graph_models/msgnet.py",),
+        }
+        for model_id, forbidden in expected_absent.items():
+            with self.subTest(model_id=model_id):
+                paths = {
+                    row["path"]
+                    for row in canonical_model_source_identity(model_id)["source_closure_files"]
+                }
+                self.assertTrue(paths)
+                self.assertTrue(set(forbidden).isdisjoint(paths), sorted(paths & set(forbidden)))
+
+    def test_e5_archive_retry_after_move_failure_keeps_source_and_records_intent(self):
+        manifest = _load_manifest()
+        from scripts import e5_batch4_scope27_gate as gate
+
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            source = _make_fixture(root, manifest, "transformer")
+            (source / "best_checkpoint.pt").unlink()
+            entry = _entry(manifest, "transformer")
+            real_replace = os.replace
+
+            def fail_only_for_canonical_move(source_path, target_path):
+                if Path(source_path).resolve() == source.resolve():
+                    raise OSError("move blocked once")
+                return real_replace(source_path, target_path)
+
+            with patch.object(gate.os, "replace", side_effect=fail_only_for_canonical_move):
+                with self.assertRaises(OSError):
+                    gate.archive_or_quarantine(manifest, entry, root, apply=True)
+            self.assertTrue(source.is_dir())
+            intent_dir = root / gate.ARCHIVE_DIRECTORY / gate.INTENT_DIRECTORY
+            intents = list(intent_dir.glob("*.json"))
+            self.assertEqual(len(intents), 1)
+            self.assertEqual(json.loads(intents[0].read_text(encoding="utf-8"))["status"], "FAILED")
+
+            result = gate.archive_or_quarantine(manifest, entry, root, apply=True)
+            self.assertEqual(result["status"], "ARCHIVED")
+            self.assertFalse(source.exists())
+            self.assertTrue(Path(result["receipt"]).is_file())
+            statuses = {
+                json.loads(path.read_text(encoding="utf-8"))["status"]
+                for path in intent_dir.glob("*.json")
+            }
+            self.assertEqual(statuses, {"FAILED", "COMPLETED"})
+
+    def test_e5_legacy_output_root_is_rejected_as_current_scope_root(self):
+        manifest = _load_manifest()
+        from scripts import e5_batch4_scope27_gate as gate
+
+        with self.assertRaises(gate.ScopeGateError):
+            gate.build_readiness(manifest, Path(gate.LEGACY_OUTPUT_ROOT))
 
     def test_source_closure_file_changes_and_missing_files_fail_closed(self):
         from benchmark_v2.model_source_identity import canonical_hash_for_records
@@ -465,7 +570,8 @@ class E5Scope27HardeningTests(unittest.TestCase):
             self.assertNotIn("MSGNet", text)
         self.assertIn("--require-complete", launcher)
         self.assertIn("E5_SCOPE27_VARIANT_MANIFEST.json", launcher)
-        self.assertIn("e5_scope27_lock.json", launcher)
+        self.assertIn("uniform_bs4/audit/e5_scope27", launcher)
+        self.assertIn("preflight", launcher.casefold())
         self.assertIn("--legacy-scope29", cli)
         self.assertIn("_load_active_scope27_gate", cli)
 

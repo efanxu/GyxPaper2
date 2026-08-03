@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
+import csv
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -46,6 +48,81 @@ def _load(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def _validate_batch4_metrics(run_root: Path) -> tuple[bool, list[str], str | None]:
+    paths = [run_root / f"metrics_eval_h{h}.json" for h in (3, 6, 10)]
+    payloads: dict[int, dict[str, Any]] = {}
+    reasons: list[str] = []
+    for path, horizon in zip(paths, (3, 6, 10)):
+        if not path.is_file():
+            reasons.append(f"MISSING:{path.name}")
+            continue
+        try:
+            payload = _load(path)
+        except Exception as exc:
+            reasons.append(f"INVALID:{path.name}:{type(exc).__name__}")
+            continue
+        if not isinstance(payload, dict):
+            reasons.append(f"NOT_OBJECT:{path.name}")
+            continue
+        payloads[horizon] = payload
+        if payload.get("horizon") != horizon:
+            reasons.append(f"HORIZON_MISMATCH:{path.name}")
+        for key in ("MAE", "RMSE", "R2", "Score"):
+            value = payload.get(key)
+            if (
+                isinstance(value, bool)
+                or not isinstance(value, (int, float))
+                or not math.isfinite(float(value))
+            ):
+                reasons.append(f"NONFINITE:{path.name}:{key}")
+        count = payload.get("valid_target_count")
+        if isinstance(count, bool) or not isinstance(count, int) or count <= 0:
+            reasons.append(f"INVALID_VALID_TARGET_COUNT:{path.name}")
+    csv_path = run_root / "metrics.csv"
+    if not csv_path.is_file():
+        reasons.append("MISSING:metrics.csv")
+    else:
+        try:
+            with csv_path.open(encoding="utf-8-sig", newline="") as stream:
+                rows = list(csv.DictReader(stream))
+        except Exception as exc:
+            rows = []
+            reasons.append(f"INVALID:metrics.csv:{type(exc).__name__}")
+        by_horizon = {}
+        for row in rows:
+            try:
+                by_horizon[int(row.get("horizon", ""))] = row
+            except (TypeError, ValueError):
+                continue
+        for horizon, payload in payloads.items():
+            row = by_horizon.get(horizon)
+            if row is None:
+                reasons.append(f"CSV_MISSING_H{horizon}")
+                continue
+            for key in ("MAE", "RMSE", "R2", "Score"):
+                try:
+                    value = float(row.get(key))
+                except (TypeError, ValueError):
+                    value = float("nan")
+                if not math.isfinite(value) or not math.isclose(
+                    value, float(payload[key]), rel_tol=1e-9, abs_tol=1e-9
+                ):
+                    reasons.append(f"JSON_CSV_MISMATCH_H{horizon}_{key}")
+            try:
+                count = int(row.get("valid_target_count"))
+            except (TypeError, ValueError):
+                count = None
+            if count != payload.get("valid_target_count"):
+                reasons.append(f"JSON_CSV_MISMATCH_H{horizon}_valid_target_count")
+            for key in ("MAE", "RMSE", "R2", "Score"):
+                if row.get(key) in {None, ""}:
+                    reasons.append(f"CSV_NONFINITE_H{horizon}_{key}")
+    if not all(path.is_file() for path in paths):
+        return False, reasons, None
+    digest = _combined_hash([*paths, csv_path]) if csv_path.is_file() else None
+    return not reasons, reasons, digest
+
+
 def validate_a8_reference(
     training_profile: str | None = None,
 ) -> dict[str, Any]:
@@ -68,6 +145,7 @@ def validate_a8_reference(
             batch4_run_root / "evaluation_complete.json",
             batch4_run_root / "prediction_metadata.json",
             batch4_run_root / "protocol_check.json",
+            batch4_run_root / "metrics.csv",
             *[
                 batch4_run_root / f"metrics_eval_h{h}.json"
                 for h in (3, 6, 10)
@@ -94,6 +172,8 @@ def validate_a8_reference(
             "seed": 2026,
             "lookback": 144,
             "max_pred_len": 10,
+            "definition": "w/o MS-MG-DWU",
+            "training_profile": "uniform_train_batch4_v1",
             "train_batch_size": 4,
             "val_batch_size": 4,
             "test_batch_size": 4,
@@ -108,22 +188,33 @@ def validate_a8_reference(
             batch4_run_root / f"metrics_eval_h{h}.json"
             for h in (3, 6, 10)
         ]
-        metrics_complete = all(
-            _load(path).get("horizon") == horizon
-            and all(
-                key in _load(path) for key in ("Score", "MAE", "RMSE", "R2")
-            )
-            for path, horizon in zip(metrics_paths, (3, 6, 10))
+        metrics_complete, metric_reasons, metrics_hash = _validate_batch4_metrics(
+            batch4_run_root
         )
+        checkpoint = batch4_run_root / "best_checkpoint.pt"
+        checkpoint_nonempty = checkpoint.is_file() and checkpoint.stat().st_size > 0
+        artifact_manifest = _load(batch4_run_root / "artifact_manifest.json")
+        config_diff = _load(batch4_run_root / "effective_config_diff.json")
         formal_complete = (
-            run_status.get("current_stage") == "PROCESS_FINISHED"
+            run_status.get("status") == "COMPLETED"
+            and run_status.get("exit_code") == 0
+            and run_status.get("current_stage") == "PROCESS_FINISHED"
             and train.get("status") == "completed"
             and evaluation.get("status") == "completed"
             and protocol_check.get("passed") is True
             and metrics_complete
+            and checkpoint_nonempty
+            and config_diff.get("passed") is True
         )
         profile = get_profile_metadata(CLI_PROFILE_ID)
-        passed = formal_complete and not mismatches
+        passed = (
+            formal_complete
+            and not mismatches
+            and not metric_reasons
+            and artifact_manifest.get("retrained_in_e5") is False
+            and artifact_manifest.get("checkpoint_copied") is False
+            and artifact_manifest.get("metrics_copied") is False
+        )
         return {
             "reference_type": "FORMAL_A8_BATCH4_READ_ONLY",
             "reference_id": BATCH4_A8_REFERENCE_ID,
@@ -138,13 +229,11 @@ def validate_a8_reference(
             "source_checkpoint_path": str(
                 (batch4_run_root / "best_checkpoint.pt").resolve()
             ),
-            "source_checkpoint_sha256": _sha256(
-                batch4_run_root / "best_checkpoint.pt"
-            ),
+            "source_checkpoint_sha256": _sha256(checkpoint),
             "source_metrics_paths": [
                 str(path.resolve()) for path in metrics_paths
             ],
-            "source_metrics_sha256": _combined_hash(metrics_paths),
+            "source_metrics_sha256": metrics_hash,
             "source_config_path": str(
                 (batch4_run_root / "effective_config.json").resolve()
             ),
@@ -152,16 +241,25 @@ def validate_a8_reference(
                 batch4_run_root / "effective_config.json"
             ),
             "source_protocol_hash": BENCHMARK_PROTOCOL_HASH,
+            "source_protocol_evidence_path": str(
+                (batch4_run_root / "protocol_check.json").resolve()
+            ),
+            "source_protocol_evidence_sha256": _sha256(
+                batch4_run_root / "protocol_check.json"
+            ),
             "source_loss_id": config.get("loss_function"),
             "source_loss_hash": profile["loss_source_hash"],
             "loss_profile_hash": profile["loss_profile_hash"],
             "trained_with_common_loss": True,
             "formal_complete": formal_complete,
             "metrics_complete": metrics_complete,
+            "metrics_validation_reasons": metric_reasons,
             "protocol_match": not mismatches,
             "config_mismatches": mismatches,
             "checkpoint_copied": False,
             "metrics_copied": False,
+            "retrained_in_e5": artifact_manifest.get("retrained_in_e5"),
+            "checkpoint_sha256": _sha256(checkpoint),
             **batch_profile.identity(),
             "reference_created_at": datetime.now(timezone.utc).isoformat(),
         }

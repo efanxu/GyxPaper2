@@ -311,14 +311,28 @@ class UniformBatch4ProfileTests(unittest.TestCase):
                 "seed": 2026,
                 "lookback": 144,
                 "max_pred_len": 10,
+                "definition": "w/o MS-MG-DWU",
+                "training_profile": PROFILE_ID,
+                "train_batch_size": 4,
+                "val_batch_size": 4,
+                "test_batch_size": 4,
                 **profile.identity(),
             }
             json_files = {
                 "effective_config.json": config,
                 "effective_config_diff.json": {"passed": True},
                 "training_batch_profile.json": profile.identity(),
-                "artifact_manifest.json": profile.identity(),
-                "run_status.json": {"current_stage": "PROCESS_FINISHED"},
+                "artifact_manifest.json": {
+                    **profile.identity(),
+                    "retrained_in_e5": False,
+                    "checkpoint_copied": False,
+                    "metrics_copied": False,
+                },
+                "run_status.json": {
+                    "status": "COMPLETED",
+                    "exit_code": 0,
+                    "current_stage": "PROCESS_FINISHED",
+                },
                 "train_complete.json": {"status": "completed"},
                 "evaluation_complete.json": {"status": "completed"},
                 "prediction_metadata.json": {},
@@ -335,10 +349,18 @@ class UniformBatch4ProfileTests(unittest.TestCase):
                             "MAE": 1.0,
                             "RMSE": 1.0,
                             "R2": 0.0,
+                            "valid_target_count": 1,
                         }
                     ),
                     encoding="utf-8",
                 )
+            (run / "metrics.csv").write_text(
+                "horizon,Score,MAE,RMSE,R2,valid_target_count\n"
+                "3,1.0,1.0,1.0,0.0,1\n"
+                "6,1.0,1.0,1.0,0.0,1\n"
+                "10,1.0,1.0,1.0,0.0,1\n",
+                encoding="utf-8",
+            )
             torch.save({}, run / "best_checkpoint.pt")
             with patch.object(a8_reference, "PROJECT_ROOT", root):
                 accepted = validate_a8_reference(training_profile=PROFILE_ID)

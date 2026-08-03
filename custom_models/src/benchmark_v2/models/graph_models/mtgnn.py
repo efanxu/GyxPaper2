@@ -35,7 +35,13 @@ class DirectedGraphConstructor(nn.Module):
             self.tanh_alpha * self.lin2(self.emb2(self.node_index))
         )
         relation = left @ right.T - right @ left.T
-        scores = torch.relu(torch.tanh(self.tanh_alpha * relation))
+        # Keep the directed top-k ordering while avoiding exact tanh
+        # saturation.  Saturated constructor scores can make emb1/emb2
+        # gradients identically zero for otherwise valid random initializers.
+        # The detached row scale is a numerical normalization only; it does
+        # not change the ranking used by the top-k mask.
+        row_scale = relation.detach().abs().amax(dim=1, keepdim=True).clamp_min(1.0)
+        scores = torch.sigmoid(self.tanh_alpha * relation / row_scale)
         order = torch.argsort(scores, dim=1, descending=True, stable=True)
         indices = order[:, : self.top_k]
         mask = torch.zeros_like(scores)

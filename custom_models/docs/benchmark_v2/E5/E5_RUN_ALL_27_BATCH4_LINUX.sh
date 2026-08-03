@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -uo pipefail
+set -euo pipefail
 
 PROJECT_ROOT=/root/autodl-tmp/GyxPaper2
 PYTHON=/root/miniconda3/envs/env_tslib/bin/python
@@ -11,211 +11,86 @@ export PYTHONIOENCODING=utf-8
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 export CUDA_VISIBLE_DEVICES=0
 
-if [[ ! -d "$PROJECT_ROOT" ]]; then
-  echo "ERROR: project directory does not exist: $PROJECT_ROOT" >&2
-  exit 64
-fi
-cd "$PROJECT_ROOT" || exit 64
-if [[ ! -x "$PYTHON" ]]; then
-  echo "ERROR: Python is not executable: $PYTHON" >&2
-  exit 65
-fi
-
+cd "$PROJECT_ROOT"
 MANIFEST="$PROJECT_ROOT/custom_models/docs/benchmark_v2/E5/E5_SCOPE27_VARIANT_MANIFEST.json"
 GATE="$PROJECT_ROOT/scripts/e5_batch4_scope27_gate.py"
-LOCK_HELPER="$PROJECT_ROOT/scripts/e5_scope27_lock.py"
-RUNNER="$PROJECT_ROOT/custom_models/src/benchmark_v2/run_benchmark.py"
 INPUT="$PROJECT_ROOT/dataset/sdwpf_model_input_base.parquet"
 TARGET="$PROJECT_ROOT/dataset/sdwpf_eval_target.parquet"
-OUTPUT_ROOT="$PROJECT_ROOT/custom_models/results/benchmark_v2/common_loss_architecture_seed2026"
-DEFAULT_LOG="$PROJECT_ROOT/logs/benchmark_v2/e5_batch4_scope27/e5_27_batch4_seed2026.log"
-TOTAL_LOG="${1:-$DEFAULT_LOG}"
-if [[ "$TOTAL_LOG" != /* ]]; then
-  TOTAL_LOG="$PROJECT_ROOT/$TOTAL_LOG"
-fi
-LOG_ROOT="$(dirname "$TOTAL_LOG")"
-MODEL_LOG_ROOT="$LOG_ROOT/models"
-FAILED_MODELS="$LOG_ROOT/failed_models.txt"
-EXIT_CODES="$LOG_ROOT/model_exit_codes.tsv"
-PLAN_FILE="$LOG_ROOT/run_plan.tsv"
-READINESS_REPORT="$LOG_ROOT/e5_scope27_readiness.json"
-EVIDENCE_MANIFEST="$LOG_ROOT/e5_scope27_evidence_manifest.json"
-READINESS_LOG="$LOG_ROOT/e5_scope27_readiness.log"
-AGGREGATE_LOG="$LOG_ROOT/e5_scope27_aggregate.log"
-FINAL_STATUS="$LOG_ROOT/e5_scope27_final_status.env"
-LOCK_FILE="$LOG_ROOT/e5_scope27_lock.json"
-LEGACY_SENTINEL="$LOG_ROOT/e5_scope27_started"
+OUTPUT_ROOT="$PROJECT_ROOT/custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026"
+AUDIT_ROOT="$PROJECT_ROOT/custom_models/logs/uniform_bs4/audit/e5_scope27"
+PREFLIGHT_ROOT="$AUDIT_ROOT/preflight"
+RUN_LOG_ROOT="$AUDIT_ROOT/runs"
+PRECHECK_LOG="$AUDIT_ROOT/e5_scope27_precheck.log"
+PREFLIGHT_LOG="$AUDIT_ROOT/e5_scope27_preflight.log"
+RUN_LOG="$AUDIT_ROOT/e5_scope27_run.log"
+READINESS_LOG="$AUDIT_ROOT/e5_scope27_readiness.log"
+AGGREGATE_LOG="$AUDIT_ROOT/e5_scope27_aggregate.log"
+REPORT="$AUDIT_ROOT/e5_scope27_readiness.json"
+EVIDENCE="$AUDIT_ROOT/e5_scope27_evidence.json"
 
-mkdir -p "$LOG_ROOT" "$MODEL_LOG_ROOT"
-if [[ -e "$LEGACY_SENTINEL" && ! -e "$LOCK_FILE" ]]; then
-  echo "ERROR: legacy launch sentinel exists; preserve it and inspect the prior run before retrying: $LEGACY_SENTINEL" >&2
+mkdir -p "$AUDIT_ROOT" "$RUN_LOG_ROOT"
+if [[ -e "$AUDIT_ROOT/e5_scope27_started" ]]; then
+  echo "ERROR: legacy launch sentinel exists; inspect before retrying" >&2
   exit 72
 fi
-
-for required in "$MANIFEST" "$GATE" "$LOCK_HELPER" "$RUNNER" "$INPUT" "$TARGET"; do
-  if [[ ! -f "$required" ]]; then
-    echo "ERROR: required file missing: $required" >&2
-    exit 66
-  fi
+for required in "$PYTHON" "$MANIFEST" "$GATE" "$INPUT" "$TARGET"; do
+  [[ -e "$required" ]] || { echo "ERROR: missing required path: $required" >&2; exit 66; }
 done
-if [[ -e "$OUTPUT_ROOT" && ! -d "$OUTPUT_ROOT" ]]; then
-  echo "ERROR: formal output root is not a directory: $OUTPUT_ROOT" >&2
-  exit 67
-fi
-if [[ ! -d "$(dirname "$OUTPUT_ROOT")" ]]; then
-  echo "ERROR: formal output root parent is missing: $(dirname "$OUTPUT_ROOT")" >&2
-  exit 67
-fi
+[[ -d "$(dirname "$OUTPUT_ROOT")" ]] || { echo "ERROR: output-root parent is missing" >&2; exit 67; }
 
-"$PYTHON" -c 'import benchmark_v2; import benchmark_v2.model_cli; import benchmark_v2.experiments.e5_common_loss.active_scope' || {
-  echo "ERROR: benchmark_v2 gate import failed" >&2
-  exit 68
-}
-"$PYTHON" "$GATE" --manifest "$MANIFEST" validate-manifest || {
-  echo "ERROR: active scope27 manifest validation failed" >&2
-  exit 69
-}
+exec > >(tee -a "$PRECHECK_LOG") 2>&1
+"$PYTHON" "$GATE" --manifest "$MANIFEST" lock-status
+"$PYTHON" "$GATE" --manifest "$MANIFEST" validate-manifest
+"$PYTHON" "$GATE" --manifest "$MANIFEST" freeze > "$AUDIT_ROOT/e5_scope27_freeze.json"
+"$PYTHON" "$GATE" --manifest "$MANIFEST" preflight-plan > "$AUDIT_ROOT/e5_scope27_preflight_plan.json"
+"$PYTHON" "$GATE" --manifest "$MANIFEST" dry-run --output-root "$OUTPUT_ROOT" > "$AUDIT_ROOT/e5_scope27_dry_run.json"
+
+HEAD="$(git rev-parse HEAD)"
+echo "Static E5 scope27 plan complete at $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+echo "Current output root: $OUTPUT_ROOT"
+echo "Legacy root is read-only and is never passed to the gate."
 
 set +e
-"$PYTHON" "$GATE" --manifest "$MANIFEST" plan-runs \
-  --output-root "$OUTPUT_ROOT" > "$PLAN_FILE"
-plan_code=$?
+"$PYTHON" "$GATE" --manifest "$MANIFEST" preflight \
+  --preflight-root "$PREFLIGHT_ROOT" \
+  --source-revision "$HEAD" 2>&1 | tee "$PREFLIGHT_LOG"
+preflight_code=${PIPESTATUS[0]}
 set -e
-if [[ "$plan_code" -ne 0 ]]; then
-  echo "ERROR: scope27 run planning failed with code $plan_code" >&2
-  printf 'manifest_or_plan\t%s\tFAILED\t-\t%s\n' \
-    "$plan_code" "$PLAN_FILE" > "$EXIT_CODES"
-  printf 'manifest_or_plan\texit_code=%s\n' "$plan_code" > "$FAILED_MODELS"
-  printf 'run_status=FAILED\nreadiness_status=NOT_RUN\naggregate_status=NOT_RUN\nexit_code=%s\n' \
-    "$plan_code" > "$FINAL_STATUS"
-  exit "$plan_code"
+if [[ "$preflight_code" -ne 0 ]]; then
+  echo "E5 exact preflight was not 24/24 PASS; formal run and aggregate are stopped." >&2
+  exit "$preflight_code"
 fi
 
-mapfile -t RUN_ROWS < "$PLAN_FILE"
-if [[ "${#RUN_ROWS[@]}" -ne 26 ]]; then
-  echo "ERROR: expected 26 runnable manifest rows, got ${#RUN_ROWS[@]}" >&2
-  printf 'manifest_count\t67\tFAILED\t-\t%s\n' "$PLAN_FILE" > "$EXIT_CODES"
-  printf 'manifest_count\texpected=26\tactual=%s\n' "${#RUN_ROWS[@]}" > "$FAILED_MODELS"
-  printf 'run_status=FAILED\nreadiness_status=NOT_RUN\naggregate_status=NOT_RUN\nexit_code=67\n' \
-    > "$FINAL_STATUS"
-  exit 67
+set +e
+"$PYTHON" "$GATE" --manifest "$MANIFEST" run \
+  --input-path "$INPUT" \
+  --target-path "$TARGET" \
+  --log-root "$RUN_LOG_ROOT" \
+  --preflight-root "$PREFLIGHT_ROOT" \
+  --source-revision "$HEAD" 2>&1 | tee "$RUN_LOG"
+run_code=${PIPESTATUS[0]}
+set -e
+if [[ "$run_code" -ne 0 ]]; then
+  echo "E5 run did not finish successfully; aggregate is stopped." >&2
+  exit "$run_code"
 fi
 
-manifest_sha256="$($PYTHON -c 'import hashlib,sys; p=sys.argv[1]; h=hashlib.sha256(); f=open(p,"rb"); [h.update(c) for c in iter(lambda:f.read(1048576),b"")]; f.close(); print(h.hexdigest())' "$MANIFEST")"
-git_commit="$(git rev-parse HEAD 2>/dev/null || printf '%s' UNAVAILABLE)"
-"$PYTHON" "$LOCK_HELPER" acquire \
-  --path "$LOCK_FILE" \
-  --scope-id e5_batch4_scope27_seed2026 \
-  --pid "$$" \
-  --git-commit "$git_commit" \
-  --python-executable "$PYTHON" \
-  --manifest-sha256 "$manifest_sha256" || exit $?
-LOCK_ACQUIRED=1
-trap 'if [[ "$LOCK_ACQUIRED" -eq 1 ]]; then "$PYTHON" "$LOCK_HELPER" release --path "$LOCK_FILE" --pid "$$" || true; fi' EXIT
-
-printf 'model_id\texit_code\tstatus\trun_id\tlog_path\n' > "$EXIT_CODES"
-: > "$FAILED_MODELS"
-exec > >(tee -a "$TOTAL_LOG") 2>&1
-
-echo "E5 scope27 batch4 formal run started at $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-echo "PROJECT_ROOT=$PROJECT_ROOT"
-echo "PYTHON=$PYTHON"
-echo "git_commit=$git_commit"
-
-echo "Manifest-driven runnable order:"
-cut -f1-4 "$PLAN_FILE"
-
-formal_failures=0
-for row in "${RUN_ROWS[@]}"; do
-  IFS=$'\t' read -r model_id command_name run_id device action reason <<< "$row"
-  model_log="$MODEL_LOG_ROOT/${model_id}.log"
-  if [[ "$action" == "SKIP_COMPLETED_IDENTITY_MATCH" ]]; then
-    echo "SKIP_COMPLETED_IDENTITY_MATCH: $model_id / $run_id"
-    printf '%s\t0\tSKIP_COMPLETED_IDENTITY_MATCH\t%s\t%s\n' \
-      "$model_id" "$run_id" "$model_log" >> "$EXIT_CODES"
-    continue
-  fi
-  if [[ "$action" != "RUN" ]]; then
-    echo "BLOCK_EXISTING_PRESERVED: $model_id / $run_id / $reason"
-    printf '%s\t90\tBLOCK_EXISTING_PRESERVED\t%s\t%s\n' \
-      "$model_id" "$run_id" "$model_log" >> "$EXIT_CODES"
-    printf '%s\texit_code=90\treason=%s\n' "$model_id" "$reason" >> "$FAILED_MODELS"
-    formal_failures=$((formal_failures + 1))
-    continue
-  fi
-
-  echo "START $model_id / $run_id / $command_name / $device"
-  set +e
-  "$PYTHON" "$RUNNER" "$command_name" \
-    --model "$model_id" \
-    --experiment-profile e5_common_loss_v1 \
-    --training-profile uniform_train_batch4_v1 \
-    --formal-scope-id e5_batch4_scope27_seed2026 \
-    --input-path "$INPUT" \
-    --target-path "$TARGET" \
-    --output-root "$OUTPUT_ROOT" \
-    --run-id "$run_id" \
-    --device "$device" 2>&1 | tee -a "$model_log"
-  model_code=${PIPESTATUS[0]}
-  set -e
-  if [[ "$model_code" -eq 0 ]]; then
-    model_status=COMPLETED
-  else
-    model_status=FAILED
-    formal_failures=$((formal_failures + 1))
-    printf '%s\texit_code=%s\n' "$model_id" "$model_code" >> "$FAILED_MODELS"
-  fi
-  printf '%s\t%s\t%s\t%s\t%s\n' \
-    "$model_id" "$model_code" "$model_status" "$run_id" "$model_log" >> "$EXIT_CODES"
-  echo "END $model_id exit_code=$model_code"
-done
-
-echo "Validating the read-only A8 reference and full 27-entry readiness."
 set +e
 "$PYTHON" "$GATE" --manifest "$MANIFEST" readiness \
   --output-root "$OUTPUT_ROOT" \
-  --report-path "$READINESS_REPORT" \
-  --evidence-path "$EVIDENCE_MANIFEST" 2>&1 | tee -a "$READINESS_LOG"
+  --report-path "$REPORT" \
+  --evidence-path "$EVIDENCE" 2>&1 | tee "$READINESS_LOG"
 readiness_code=${PIPESTATUS[0]}
 set -e
-
-aggregate_code=125
-aggregate_status=SKIPPED_NOT_READY
-if [[ "$formal_failures" -eq 0 && "$readiness_code" -eq 0 ]]; then
-  echo "Readiness is 27/27; starting require-complete aggregate."
-  set +e
-  "$PYTHON" "$GATE" --manifest "$MANIFEST" aggregate \
-    --output-root "$OUTPUT_ROOT" \
-    --report-path "$READINESS_REPORT" \
-    --evidence-path "$EVIDENCE_MANIFEST" \
-    --require-complete 2>&1 | tee -a "$AGGREGATE_LOG"
-  aggregate_code=${PIPESTATUS[0]}
-  set -e
-  if [[ "$aggregate_code" -eq 0 ]]; then
-    aggregate_status=COMPLETED
-  else
-    aggregate_status=FAILED
-  fi
-else
-  echo "Aggregate skipped: formal_failures=$formal_failures readiness_code=$readiness_code"
+if [[ "$readiness_code" -ne 0 ]]; then
+  echo "Readiness is not COMPLETED_READY_27_OF_27; aggregate is stopped." >&2
+  exit "$readiness_code"
 fi
 
-final_code=0
-if [[ "$formal_failures" -ne 0 || "$readiness_code" -ne 0 || "$aggregate_code" -ne 0 ]]; then
-  final_code=1
-fi
-readiness_status=NOT_READY
-if [[ "$readiness_code" -eq 0 ]]; then
-  readiness_status=READY_27_OF_27
-fi
-run_status=COMPLETED
-if [[ "$formal_failures" -ne 0 ]]; then
-  run_status=COMPLETED_WITH_FAILURES
-fi
-printf 'run_status=%s\nformal_failures=%s\nreadiness_status=%s\nreadiness_exit_code=%s\naggregate_status=%s\naggregate_exit_code=%s\nexit_code=%s\nfinished_at=%s\n' \
-  "$run_status" "$formal_failures" "$readiness_status" "$readiness_code" \
-  "$aggregate_status" "$aggregate_code" "$final_code" \
-  "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > "$FINAL_STATUS"
-printf 'exit_code=%s\n' "$final_code" > "$LOG_ROOT/e5_27_batch4_seed2026.run_all.exitcode"
-echo "E5 scope27 run-all finished: exit_code=$final_code"
-exit "$final_code"
+"$PYTHON" "$GATE" --manifest "$MANIFEST" aggregate \
+  --output-root "$OUTPUT_ROOT" \
+  --report-path "$REPORT" \
+  --evidence-path "$EVIDENCE" \
+  --require-complete 2>&1 | tee "$AGGREGATE_LOG"
+
+echo "E5 scope27 Batch4 completed with exact 24/24 preflight and 27/27 readiness."

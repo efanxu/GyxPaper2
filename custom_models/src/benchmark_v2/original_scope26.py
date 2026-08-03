@@ -12,6 +12,7 @@ import subprocess
 from pathlib import Path
 from typing import Any, Mapping
 
+from .errors import ModelUnavailableError
 from .model_source_identity import canonical_model_source_identity
 from .registry import load_registry
 from .training_profiles import stable_hash
@@ -116,22 +117,17 @@ def current_manifest_hash(path: str | Path | None = None) -> str:
 def current_model_config_hash(model_id: str) -> str:
     """Hash the current model resolver without consulting another manifest."""
 
-    from .configs import resolve_moving_average_config, resolve_persistence_config
-    from .hardware_preflight import _RESOLVERS
+    from .model_factories.registry import get_model_factory
     from .protocol import load_protocol
 
     protocol = load_protocol()
-    if model_id == "persistence":
-        config = resolve_persistence_config(protocol, run_mode="formal")
-    elif model_id == "moving_average":
-        config = resolve_moving_average_config(protocol, run_mode="formal")
-    else:
-        try:
-            config = _RESOLVERS[model_id](protocol, run_mode="formal")
-        except KeyError as exc:
-            raise OriginalScope26Error(
-                f"No current model config resolver for {model_id!r}"
-            ) from exc
+    try:
+        factory = get_model_factory(model_id)
+        config = factory.resolve_config(protocol, run_mode="formal")
+    except (KeyError, ValueError, ModelUnavailableError) as exc:
+        raise OriginalScope26Error(
+            f"No current model config resolver for {model_id!r}"
+        ) from exc
     return stable_hash(config)
 
 

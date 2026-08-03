@@ -1,43 +1,33 @@
-# Handoff: E5 batch4 scope27
+# Handoff: E5 Batch4 scope27
 
-Local engineering is complete when the static test report passes. No formal
-training, GPU preflight, git operation, or shutdown is part of local handoff.
+The current E5 scope is `e5_batch4_scope27_seed2026`: 24 trainable, 2
+evaluate-only, and one formal read-only Batch4 A8 reference. Its canonical
+output root is
+`custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026`.
+The old `custom_models/results/benchmark_v2/common_loss_architecture_seed2026`
+root is legacy read-only evidence and cannot satisfy current readiness.
 
-## User actions
+The active A8 ID is
+`STMGPrompt_A8_loss_msa_hybrid_bs4_seed2026_reference`; the source is the
+Batch4 A8 directory under `st_mgprompt_uniform_bs4`, never Batch32. SegRNN,
+MSGNet, old scope29 entries, and Transformer retry2 are excluded from the
+current denominator and source closure.
 
-1. Synchronize the current project to `/root/autodl-tmp/GyxPaper2`.
-2. Confirm the cloud Python exists at
-   `/root/miniconda3/envs/env_tslib/bin/python`.
-3. Use the single background Full + automatic-shutdown command in
-   `E5_SCOPE27_RUNBOOK.md`.
-4. Monitor the main log, launcher log, PID, per-model processes, GPU, and
-   failure list using the commands in the Runbook.
+Before any cloud run, validate the active pointer and manifest, inspect the
+lock, compute the independent E5 freeze, review `dry-run`, and run exact GPU
+preflight for the 24 trainable entries. Formal `run` requires an exact PASS
+artifact and never creates one implicitly. Successful entries receive strict
+E5 execution receipts; readiness recomputes file hashes and validates metrics,
+CSV/JSON equality, checkpoints, baseline diagnostics, source/config/precision,
+loss, graph, dataset, manifest, run-map, and freeze identities.
 
-## Active deliverables
+Safe resume preserves existing evidence. Exact completed runs are skipped;
+missing runs are started; identity-matched incomplete runs are moved through
+external-intent archival; identity mismatches and renamed runs require an
+explicit single-model quarantine command. Symlinks, active workers, path
+traversal, and collisions block the action. A8 is never trained or copied.
 
-- `E5_ACTIVE_SCOPE.json`
-- `E5_SCOPE27_VARIANT_MANIFEST.json`
-- `E5_SCOPE27_RUN_ID_MAP.json`
-- `E5_SCOPE27_READINESS_POLICY.json`
-- `E5_RUN_ALL_27_BATCH4_LINUX.sh`
-- `E5_RUN_ALL_27_BATCH4_LINUX_AUTOSHUTDOWN.sh`
-- `scripts/e5_batch4_scope27_gate.py`
-- `scripts/e5_scope27_lock.py`
-
-## Runtime outputs
-
-- `logs/benchmark_v2/e5_batch4_scope27/failed_models.txt`
-- `logs/benchmark_v2/e5_batch4_scope27/model_exit_codes.tsv`
-- `logs/benchmark_v2/e5_batch4_scope27/e5_scope27_readiness.json`
-- `logs/benchmark_v2/e5_batch4_scope27/e5_scope27_evidence_manifest.json`
-- `logs/benchmark_v2/e5_batch4_scope27/e5_scope27_final_status.env`
-- formal aggregate files under
-  `custom_models/results/benchmark_v2/common_loss_architecture_seed2026`,
-  only when readiness is 27/27.
-
-The legacy E5 scope29 and old uniform batch4 scope28/29 launchers are retained
-as read-only/superseded evidence. Do not use them for the current run.
-
-The current CLI readiness/aggregate commands route through the active scope27
-pointer. A legacy scope29 invocation must be explicitly selected and is never
-the default.
+Aggregate is allowed only for `COMPLETED_READY_27_OF_27` with
+`--require-complete`. Do not use superseded launchers, old manifests, legacy
+roots, or automatic quarantine. The autoshutdown wrapper remains a separate,
+explicit operational choice after all safety gates.

@@ -12,7 +12,7 @@ from ...original_scope26 import (
 E5_SCOPE27_ID = "e5_batch4_scope27_seed2026"
 BENCHMARK_SCOPE26_ID = "benchmark_v2_batch4_scope26_seed2026"
 TRAINING_PROFILE_ID = "uniform_train_batch4_v1"
-PREFLIGHT_POLICY_ID = "e5_scope27_no_preflight_artifact_required_v1"
+PREFLIGHT_POLICY_ID = "e5_scope27_exact_hardware_preflight_required_v1"
 
 E5_SCOPE27_TRAINABLE_MODELS = (
     "gru",

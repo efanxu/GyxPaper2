@@ -18,6 +18,7 @@ import subprocess
 import sys
 import time
 import traceback
+import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
@@ -37,6 +38,7 @@ from benchmark_v2.original_scope26 import (  # noqa: E402
     load_current_scope_manifest,
     resolve_source_revision,
 )
+from benchmark_v2.artifacts import atomic_write_json  # noqa: E402
 from benchmark_v2.precision import expected_model_precision_identity  # noqa: E402
 from benchmark_v2.registry import load_registry  # noqa: E402
 
@@ -55,6 +57,7 @@ AUDIT_ROOT = PROJECT_ROOT / "custom_models/logs/uniform_bs4/audit"
 LOCK_PATH = PROJECT_ROOT / "custom_models/logs/uniform_bs4/original_scope26.lock"
 ARCHIVE_DIRECTORY = ".original_scope26_archived_attempts"
 QUARANTINE_DIRECTORY = ".original_scope26_quarantine"
+INTENT_DIRECTORY = ".intents"
 EXECUTION_RECEIPT_SCHEMA_VERSION = "original_scope26_execution_receipt_v2"
 LOCK_SCHEMA_VERSION = "original_scope26_lock_v1"
 _SELF_PROCESS_START_TIME = time.time()
@@ -1138,15 +1141,23 @@ def _archive_target(
 ) -> Path:
     if kind not in {ARCHIVE_DIRECTORY, QUARANTINE_DIRECTORY}:
         raise Scope26GateError(f"Unsupported archival directory: {kind}")
+    if (
+        not directory_name
+        or directory_name in {".", ".."}
+        or Path(directory_name).name != directory_name
+    ):
+        raise Scope26GateError("Archive directory name must be a single safe path component.")
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
     target_parent = (allowed_root / kind / directory_name).resolve()
-    target = (target_parent / f"{stamp}_{os.getpid()}").resolve()
+    target = (target_parent / f"{stamp}_{os.getpid()}_{uuid.uuid4().hex}").resolve()
     if not _path_within(target_parent, allowed_root) or not _path_within(target, allowed_root):
         raise Scope26GateError("Archive target escapes the allowed result root.")
     if target.exists():
         raise Scope26GateError(f"Archive target already exists: {target}")
     if create_parent:
         target_parent.mkdir(parents=True, exist_ok=True)
+        if target_parent.is_symlink():
+            raise Scope26GateError(f"Archive target parent cannot be a symlink: {target_parent}")
     if target.exists():
         raise Scope26GateError(f"Archive target already exists: {target}")
     return target
@@ -1236,6 +1247,7 @@ def _archive_or_quarantine(
         "current_manifest_hash": _canonical_json_hash(manifest),
         "current_run_map_hash": _canonical_json_hash(current_run_map or _load_run_map()),
         "current_freeze_hash": freeze.get("freeze_hash"),
+        "attempt_id": uuid.uuid4().hex,
         "timestamp": _utc_now(),
     }
     if not apply:
@@ -1246,27 +1258,73 @@ def _archive_or_quarantine(
             "target": str(target),
             "receipt": receipt,
         }
-    receipt_path = source / receipt_name
-    if receipt_path.exists():
-        raise Scope26GateError(f"Refusing to overwrite existing receipt: {receipt_path}")
-    receipt_path.write_text(
-        json.dumps(receipt, ensure_ascii=False, indent=2, allow_nan=False) + "\n",
-        encoding="utf-8",
+    intent_root = (allowed / kind / INTENT_DIRECTORY).resolve()
+    if not _path_within(intent_root, allowed):
+        raise Scope26GateError("Archive intent path escapes the allowed result root.")
+    intent_root.mkdir(parents=True, exist_ok=True)
+    if intent_root.is_symlink():
+        raise Scope26GateError(f"Archive intent directory cannot be a symlink: {intent_root}")
+    intent_path = intent_root / (
+        f"{kind}_{entry['run_id']}_{receipt['attempt_id']}.json"
     )
+    if intent_path.exists():
+        raise Scope26GateError(f"Archive intent already exists: {intent_path}")
+    intent = {
+        "schema_version": "original_scope26_archive_intent_v1",
+        "status": "PENDING",
+        "attempt_id": receipt["attempt_id"],
+        "operation": "ARCHIVE" if kind == ARCHIVE_DIRECTORY else "QUARANTINE",
+        "source": str(source),
+        "target": str(target),
+        "receipt_name": receipt_name,
+        "receipt": receipt,
+        "started_at": _utc_now(),
+    }
+    atomic_write_json(intent_path, intent)
     try:
         os.replace(str(source), str(target))
-    except Exception:
-        # The source remains in place when the atomic move fails.  The receipt
-        # is deliberately retained as evidence of the attempted operation.
+    except Exception as exc:
+        intent.update(
+            {
+                "status": "FAILED",
+                "error_type": type(exc).__name__,
+                "error_message": str(exc),
+                "finished_at": _utc_now(),
+            }
+        )
+        atomic_write_json(intent_path, intent)
+        # The source remains untouched by the failed atomic move.  The intent
+        # is external evidence and never contaminates the canonical source.
         raise
-    if not (target / receipt_name).is_file():
-        raise Scope26GateError("Atomic move completed without its archival receipt.")
+    try:
+        final_receipt_path = target / receipt_name
+        if final_receipt_path.exists():
+            raise Scope26GateError(
+                f"Refusing to overwrite existing archival receipt: {final_receipt_path}"
+            )
+        atomic_write_json(final_receipt_path, receipt)
+        if not final_receipt_path.is_file():
+            raise Scope26GateError("Atomic move completed without its archival receipt.")
+    except Exception as exc:
+        intent.update(
+            {
+                "status": "FAILED_AFTER_MOVE",
+                "error_type": type(exc).__name__,
+                "error_message": str(exc),
+                "finished_at": _utc_now(),
+            }
+        )
+        atomic_write_json(intent_path, intent)
+        raise
+    intent.update({"status": "COMPLETED", "finished_at": _utc_now()})
+    atomic_write_json(intent_path, intent)
     return {
         "status": "ARCHIVED" if kind == ARCHIVE_DIRECTORY else "QUARANTINED",
         "action": "ARCHIVE_INCOMPLETE_THEN_RUN" if kind == ARCHIVE_DIRECTORY else "QUARANTINE_EXISTING",
         "source": str(source),
         "target": str(target),
         "receipt": str(target / receipt_name),
+        "intent": str(intent_path),
     }
 
 
@@ -1836,6 +1894,9 @@ def _failure_diagnostics(
     nonfinite = bool(re.search(r"nan\s*/\s*inf|nan|inf|nonfinite", joined, re.I))
     preflight_failure = bool(re.search(r"preflight|PREFLIGHT_MISSING_OR_MISMATCH", joined, re.I))
     identity_failure = bool(re.search(r"identity|source/config|mismatch", joined, re.I))
+    collision = bool(re.search(r"FileExistsError|already exists|collision", joined, re.I))
+    archive_failure = bool(re.search(r"archive|quarantine|os\.replace|atomic move", joined, re.I))
+    lock_failure = bool(re.search(r"lock|active worker|UNKNOWN_REMOTE|STALE", joined, re.I))
     if exception_type is None:
         exception_type = "ChildProcessError"
     if exception_message is None:
@@ -1848,6 +1909,9 @@ def _failure_diagnostics(
         "nonfinite": nonfinite,
         "preflight_failure": preflight_failure,
         "identity_failure": identity_failure,
+        "collision": collision,
+        "archive_failure": archive_failure,
+        "lock_failure": lock_failure,
     }
 
 
