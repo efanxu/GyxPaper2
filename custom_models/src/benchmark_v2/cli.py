@@ -27,6 +27,7 @@ from .experiments.e5_common_loss.loss_profile import (
 )
 from .experiments.e5_common_loss.readiness import build_readiness
 from .experiments.e5_common_loss.scope27_contract import E5_SCOPE27_ID
+from .original_scope26 import CURRENT_SCOPE26_ID
 from .hardware_preflight import (
     launch_formal_train,
     launch_preflight,
@@ -179,7 +180,7 @@ def main(argv: list[str] | None = None) -> int:
     def add_formal_scope(target) -> None:
         target.add_argument(
             "--formal-scope-id",
-            choices=(E5_SCOPE27_ID,),
+            choices=(E5_SCOPE27_ID, CURRENT_SCOPE26_ID),
             default=None,
         )
 
@@ -208,6 +209,7 @@ def main(argv: list[str] | None = None) -> int:
     evaluate.add_argument("--output-root", default=str(FORMAL_ROOT / "basic_lightweight_seed2026"))
     evaluate.add_argument("--run-id", required=True)
     evaluate.add_argument("--device", default="cpu")
+    evaluate.add_argument("--source-revision")
     add_experiment_profile(evaluate)
     add_training_profile(evaluate)
     add_formal_scope(evaluate)
@@ -219,6 +221,7 @@ def main(argv: list[str] | None = None) -> int:
     train.add_argument("--run-id")
     train.add_argument("--device", default="cuda")
     train.add_argument("--preflight-root")
+    train.add_argument("--source-revision")
     add_experiment_profile(train)
     add_training_profile(train)
     add_formal_scope(train)
@@ -240,6 +243,7 @@ def main(argv: list[str] | None = None) -> int:
     train_worker.add_argument("--run-id", required=True)
     train_worker.add_argument("--device", default="cuda")
     train_worker.add_argument("--preflight-root")
+    train_worker.add_argument("--source-revision")
     add_experiment_profile(train_worker)
     add_training_profile(train_worker)
     add_formal_scope(train_worker)
@@ -327,7 +331,7 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "model-smoke": print(json.dumps(model_smoke(args.model, root=None if args.output_root is None else Path(args.output_root), experiment_profile=args.experiment_profile, training_profile=args.training_profile), ensure_ascii=False, indent=2)); return 0
         if args.command == "full-shape-model-smoke": print(json.dumps(full_shape_model_smoke(args.model, root=None if args.output_root is None else Path(args.output_root), experiment_profile=args.experiment_profile, training_profile=args.training_profile), ensure_ascii=False, indent=2)); return 0
         if args.command == "real-data-model-smoke": print(json.dumps(real_data_model_smoke(args.model, input_path=args.input_path, target_path=args.target_path, root=None if args.output_root is None else Path(args.output_root), attempt_tag=args.attempt_tag, experiment_profile=args.experiment_profile, training_profile=args.training_profile), ensure_ascii=False, indent=2)); return 0
-        if args.command == "evaluate-only": print(json.dumps(formal_evaluate_only(args.model, input_path=args.input_path, target_path=args.target_path, output_root=args.output_root, run_id=args.run_id, device=args.device, experiment_profile=args.experiment_profile, training_profile=args.training_profile, formal_scope_id=args.formal_scope_id), ensure_ascii=False, indent=2)); return 0
+        if args.command == "evaluate-only": print(json.dumps(formal_evaluate_only(args.model, input_path=args.input_path, target_path=args.target_path, output_root=args.output_root, run_id=args.run_id, device=args.device, experiment_profile=args.experiment_profile, training_profile=args.training_profile, formal_scope_id=args.formal_scope_id, source_revision=args.source_revision), ensure_ascii=False, indent=2)); return 0
         if args.command == "loss-profile-check":
             print(json.dumps(check_loss_profile(args.experiment_profile or E5_PROFILE_ID), ensure_ascii=False, indent=2))
             return 0
@@ -404,6 +408,7 @@ def main(argv: list[str] | None = None) -> int:
                 experiment_profile=args.experiment_profile,
                 training_profile=args.training_profile,
                 formal_scope_id=args.formal_scope_id,
+                source_revision=args.source_revision,
             ), ensure_ascii=False, indent=2))
             return 0
         if args.command == "train":
@@ -423,6 +428,7 @@ def main(argv: list[str] | None = None) -> int:
                 experiment_profile=args.experiment_profile,
                 training_profile=args.training_profile,
                 formal_scope_id=args.formal_scope_id,
+                source_revision=args.source_revision,
             )
     except (
         BenchmarkV2Error,

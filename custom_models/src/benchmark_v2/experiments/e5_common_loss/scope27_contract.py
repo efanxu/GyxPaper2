@@ -1,6 +1,12 @@
 from __future__ import annotations
 
 from .loss_profile import CLI_PROFILE_ID
+from ...original_scope26 import (
+    CURRENT_SCOPE26_ID,
+    CURRENT_TRAINING_PROFILE_ID,
+    is_current_scope26_request,
+    validate_current_scope26_request,
+)
 
 
 E5_SCOPE27_ID = "e5_batch4_scope27_seed2026"
@@ -55,6 +61,24 @@ def is_scope27_train_request(
     )
 
 
+def is_current_scope26_train_request(
+    *,
+    model_id: str,
+    formal_scope_id: str | None,
+    experiment_profile: str | None,
+    training_profile: str | None,
+) -> bool:
+    """Return whether a request is bound to the active Original scope26."""
+
+    return is_current_scope26_request(
+        model_id=model_id,
+        formal_scope_id=formal_scope_id,
+        experiment_profile=experiment_profile,
+        training_profile=training_profile,
+        trainable=True,
+    )
+
+
 def validate_scope27_request(
     *,
     model_id: str,
@@ -64,6 +88,15 @@ def validate_scope27_request(
     trainable: bool,
 ) -> None:
     if formal_scope_id is None:
+        return
+    if formal_scope_id == CURRENT_SCOPE26_ID:
+        validate_current_scope26_request(
+            model_id=model_id,
+            formal_scope_id=formal_scope_id,
+            experiment_profile=experiment_profile,
+            training_profile=training_profile,
+            trainable=trainable,
+        )
         return
     allowed = (
         E5_SCOPE27_TRAINABLE_MODELS

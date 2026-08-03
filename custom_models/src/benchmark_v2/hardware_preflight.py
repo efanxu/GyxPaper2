@@ -55,7 +55,9 @@ from .experiments.e5_common_loss.runner import (
     normalize_profile,
 )
 from .experiments.e5_common_loss.scope27_contract import (
+    CURRENT_SCOPE26_ID,
     E5_SCOPE27_ID,
+    is_current_scope26_train_request,
     is_scope27_train_request,
     validate_scope27_request,
 )
@@ -581,6 +583,7 @@ def launch_formal_train(
     experiment_profile: str | None = None,
     training_profile: str | None = None,
     formal_scope_id: str | None = None,
+    source_revision: str | None = None,
     runner: Callable[..., Any] = subprocess.run,
 ) -> int:
     entry = load_registry().get(model_id)
@@ -614,7 +617,14 @@ def launch_formal_train(
         experiment_profile=selected_profile,
         training_profile=training_profile,
     )
-    needs_preflight = not scope27_request and (
+    current_scope26_request = is_current_scope26_train_request(
+        model_id=entry.canonical_id,
+        formal_scope_id=formal_scope_id,
+        experiment_profile=selected_profile,
+        training_profile=training_profile,
+    )
+    scope_request = scope27_request or current_scope26_request
+    needs_preflight = not scope_request and (
         training_profile is not None
         or selected_profile == E5_PROFILE_ID
         or bool(entry.values.get("formal_hardware_preflight_required", False))
@@ -661,8 +671,10 @@ def launch_formal_train(
         worker_args.extend(["--experiment-profile", selected_profile])
     if training_profile is not None:
         worker_args.extend(["--training-profile", training_profile])
-    if formal_scope_id == E5_SCOPE27_ID:
+    if formal_scope_id in (E5_SCOPE27_ID, CURRENT_SCOPE26_ID):
         worker_args.extend(["--formal-scope-id", formal_scope_id])
+    if source_revision is not None:
+        worker_args.extend(["--source-revision", source_revision])
     if preflight_root is not None:
         worker_args.extend(["--preflight-root", str(Path(preflight_root))])
     return _run_child(worker_args, runner=runner)
@@ -673,12 +685,19 @@ def launch_model_suite(
     *,
     launcher: Callable[..., int] = launch_formal_train,
 ) -> list[dict[str, Any]]:
-    """Run one model launcher at a time; the next starts only after exit."""
+    """Run isolated model launchers and continue after individual failures."""
     results: list[dict[str, Any]] = []
     for request in requests:
         model_id = str(request["model_id"])
-        code = int(launcher(**dict(request)))
-        results.append({"model_id": model_id, "exit_code": code})
-        if code != 0:
-            break
+        try:
+            code = int(launcher(**dict(request)))
+            result = {"model_id": model_id, "exit_code": code}
+        except Exception as exc:  # Keep the suite moving; caller gets failure evidence.
+            result = {
+                "model_id": model_id,
+                "exit_code": 1,
+                "error_type": type(exc).__name__,
+                "error_message": str(exc),
+            }
+        results.append(result)
     return results

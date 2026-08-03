@@ -34,8 +34,10 @@ from .experiments.e5_common_loss.runner import (
     runtime_loss,
 )
 from .experiments.e5_common_loss.scope27_contract import (
+    CURRENT_SCOPE26_ID,
     E5_SCOPE27_ID,
     PREFLIGHT_POLICY_ID,
+    is_current_scope26_train_request,
     is_scope27_train_request,
     validate_scope27_request,
 )
@@ -43,6 +45,7 @@ from .losses import get_loss
 from .metrics import evaluate_horizons
 from .model_runtime import ModelRuntime, build_model_runtime
 from .precision import apply_model_precision_policy
+from .original_scope26 import apply_current_scope_identity
 from .models.graph_models.adaptive_common import (
     canonical_tensor_hash,
     learned_graph_summary,
@@ -1208,6 +1211,7 @@ def formal_evaluate_only(
     experiment_profile: str | None = None,
     training_profile: str | None = None,
     formal_scope_id: str | None = None,
+    source_revision: str | None = None,
 ) -> dict[str, Any]:
     entry = load_registry().get(model_id)
     if model_id not in {"persistence", "moving_average"}:
@@ -1247,6 +1251,14 @@ def formal_evaluate_only(
     )
     apply_training_profile(runtime, training_profile)
     apply_model_precision_policy(runtime)
+    if formal_scope_id == CURRENT_SCOPE26_ID:
+        apply_current_scope_identity(
+            runtime,
+            run_id=run_id,
+            output_root=output_root,
+            formal_scope_id=formal_scope_id,
+            source_revision=source_revision,
+        )
     sizes = resolved_batch_sizes(protocol, training_profile)
     run_dir = safe_run_dir(output_root, run_id)
     return _run_non_trainable(
@@ -1274,6 +1286,7 @@ def formal_train(
     experiment_profile: str | None = None,
     training_profile: str | None = None,
     formal_scope_id: str | None = None,
+    source_revision: str | None = None,
 ) -> dict[str, Any]:
     entry = load_registry().get(model_id)
     if model_id in {"persistence", "moving_average"}:
@@ -1300,7 +1313,14 @@ def formal_train(
         experiment_profile=selected_profile,
         training_profile=training_profile,
     )
-    if not scope27_request and (
+    current_scope26_request = is_current_scope26_train_request(
+        model_id=model_id,
+        formal_scope_id=formal_scope_id,
+        experiment_profile=selected_profile,
+        training_profile=training_profile,
+    )
+    scope_request = scope27_request or current_scope26_request
+    if not scope_request and (
         training_profile is not None
         or selected_profile == E5_PROFILE_ID
         or bool(entry.values.get("formal_hardware_preflight_required", False))
@@ -1359,6 +1379,14 @@ def formal_train(
     )
     apply_training_profile(runtime, training_profile)
     apply_model_precision_policy(runtime)
+    if current_scope26_request:
+        apply_current_scope_identity(
+            runtime,
+            run_id=run_id,
+            output_root=output_root,
+            formal_scope_id=formal_scope_id,
+            source_revision=source_revision,
+        )
     sizes = resolved_batch_sizes(protocol, training_profile)
     run_dir = safe_run_dir(output_root, run_id)
     run_dir.mkdir(parents=True, exist_ok=False)

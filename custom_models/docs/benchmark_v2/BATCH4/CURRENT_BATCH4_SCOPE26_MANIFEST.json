@@ -1,9 +1,12 @@
 {
-  "schema_version": "current_batch4_benchmark_scope_v1",
+  "schema_version": "original_batch4_scope26_manifest_v1",
   "scope_id": "benchmark_v2_batch4_scope26_seed2026",
   "status": "ACTIVE",
+  "benchmark_family": "Original",
   "training_profile_id": "uniform_train_batch4_v1",
   "training_profile_hash": "f58bbc161dfba0f00774879fdf2f78ec7c59a7faff9ef28a1733a2ed6835fe66",
+  "benchmark_protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "output_root": "custom_models/results/benchmark_v2_uniform_bs4",
   "batch_identity": {
     "train_batch_size": 4,
     "val_batch_size": 4,
@@ -11,21 +14,29 @@
     "gradient_accumulation_steps": 1,
     "effective_train_batch_size": 4
   },
+  "seed": 2026,
+  "lookback": 144,
+  "prediction_horizon": 10,
+  "evaluation_horizons": [
+    3,
+    6,
+    10
+  ],
   "counts": {
     "total": 26,
     "trainable": 24,
-    "non_trainable": 2,
-    "excluded_from_current_formal_scope": 2
+    "evaluate_only": 2,
+    "excluded": 2
   },
   "readiness_denominator": {
     "active_total": 26,
     "trainable": 24,
-    "non_trainable": 2
+    "evaluate_only": 2
   },
   "aggregate_denominator": {
     "require_complete_active_total": 26,
     "trainable": 24,
-    "non_trainable": 2
+    "evaluate_only": 2
   },
   "groups": [
     {
@@ -57,7 +68,1146 @@
       "models": ["Graph WaveNet", "MTGNN", "AGCRN", "STID"]
     }
   ],
-  "count_assertion": "6 + 4 + 4 + 3 + 2 + 3 + 4 = 26",
-  "excluded_model_ids": ["segrnn", "msgnet"],
-  "history_policy": "Historical batch32 and batch4 artifacts remain read-only and are outside this active denominator."
+  "dataset_identity": {
+    "dataset_id": "SDWPF",
+    "expected_node_count": 134,
+    "feature_order_hash": "b9878a5091618737ca8c126dcee80d5b70f122ff3901960a620cb6bc10e7f853"
+  },
+  "graph_identity": {
+    "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
+    "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
+    "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
+    "identity_policy": "current Original scope26 only"
+  },
+  "loss_identity": {
+    "loss_id": "masked_mse",
+    "loss_space": "normalized_target_space",
+    "source_path": "custom_models/src/benchmark_v2/losses.py",
+    "profile_policy": "Original benchmark loss; no E5 common-loss overlay"
+  },
+  "source_revision_policy": {
+    "source_revision_type": "git",
+    "git_commit": "runtime:git rev-parse HEAD",
+    "no_git_requires_explicit_source_revision": true
+  },
+  "active_gate": {
+    "source_path": "scripts/original_batch4_scope26_gate.py",
+    "revision_policy": "runtime source closure hash"
+  },
+  "active_launcher": {
+    "source_path": "custom_models/docs/benchmark_v2/BATCH4/ORIGINAL_RUN_ALL_26_BATCH4_WINDOWS.ps1",
+    "revision_policy": "runtime source closure hash"
+  },
+  "result_policy": {
+    "completed_trainable_requires": "execution_receipt.json",
+    "completed_evaluate_only_requires": "execution_receipt.json",
+    "preexisting_adoption_requires": "adoption_receipt.json",
+    "retry2_decision": "RERUN_CANONICAL",
+    "read_only_existing_results": true
+  },
+  "exclusions": [
+    {
+      "model_id": "segrnn",
+      "display_name": "SegRNN",
+      "status": "EXCLUDED_FROM_CURRENT_FORMAL_SCOPE",
+      "reason": "RESOURCE_REQUIREMENT_EXCEEDS_AVAILABLE_FORMAL_HARDWARE"
+    },
+    {
+      "model_id": "msgnet",
+      "display_name": "MSGNet",
+      "status": "EXCLUDED_FROM_CURRENT_FORMAL_SCOPE",
+      "reason": "RESOURCE_REQUIREMENT_EXCEEDS_AVAILABLE_FORMAL_HARDWARE"
+    }
+  ],
+  "entries": [
+    {
+      "ordinal": 1,
+      "entry_id": "original_scope26_persistence",
+      "model_id": "persistence",
+      "display_name": "Persistence",
+      "entry_type": "EVALUATE_ONLY",
+      "command": "evaluate-only",
+      "run_id": "Persistence_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/basic_lightweight_seed2026",
+      "output_group": "basic_lightweight_seed2026",
+      "device": "cpu",
+      "artifact_profile": "NON_TRAINABLE",
+      "formal_training": false,
+      "model_config_identity": {
+        "config_hash": "69edc3cf8b39f681acff3a9580b2006aa867609ebb454944f4c68ba6f91f427a"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/adapters/statistical_baselines.py",
+          "custom_models/src/benchmark_v2/configs/persistence.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/persistence.py"
+        ],
+        "canonical_combined_hash": "c2fe4d25d883e47a14e46e52d75f6d5ba573b20a7f41c192358f32f3c99cd630"
+      },
+      "precision_identity": {
+        "amp_enabled": false,
+        "precision_policy": "cpu_baseline",
+        "precision_resolution": {
+          "requested_amp_enabled": false,
+          "effective_amp_enabled": false,
+          "reason": "Evaluate-only statistical baseline is CPU-only and has no AMP state."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 2,
+      "entry_id": "original_scope26_moving_average",
+      "model_id": "moving_average",
+      "display_name": "MovingAverage",
+      "entry_type": "EVALUATE_ONLY",
+      "command": "evaluate-only",
+      "run_id": "MovingAverage_w144_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/basic_lightweight_seed2026",
+      "output_group": "basic_lightweight_seed2026",
+      "device": "cpu",
+      "artifact_profile": "NON_TRAINABLE",
+      "formal_training": false,
+      "model_config_identity": {
+        "config_hash": "2cadb7ff357946f0a31ae3b4482d169544acd743bb188a15613a6d57703aa1ba"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/adapters/statistical_baselines.py",
+          "custom_models/src/benchmark_v2/configs/moving_average.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/moving_average.py"
+        ],
+        "canonical_combined_hash": "efad6861dd4dee52fce102ef396330635194dad85b41a35730c9aaedaba597db"
+      },
+      "precision_identity": {
+        "amp_enabled": false,
+        "precision_policy": "cpu_baseline",
+        "precision_resolution": {
+          "requested_amp_enabled": false,
+          "effective_amp_enabled": false,
+          "reason": "Evaluate-only statistical baseline is CPU-only and has no AMP state."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 3,
+      "entry_id": "original_scope26_gru",
+      "model_id": "gru",
+      "display_name": "GRU",
+      "entry_type": "TRAINABLE",
+      "command": "train",
+      "run_id": "GRU_node_shared_h64_l1_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/basic_lightweight_seed2026",
+      "output_group": "basic_lightweight_seed2026",
+      "device": "cuda",
+      "artifact_profile": "TRAIN",
+      "formal_training": true,
+      "model_config_identity": {
+        "config_hash": "989cf39f2a8d5313b7880b11d3966b548cce5a2c94b50a45976e7f7f70deb57b"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "custom_models/src/benchmark_v2/adapters/gru.py",
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/configs/gru.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/gru.py"
+        ],
+        "canonical_combined_hash": "4a2893cfaaadfb982001c323cbc77fabbe04cebd469ee6e4cc989da0d7fe09fd"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 4,
+      "entry_id": "original_scope26_dlinear",
+      "model_id": "dlinear",
+      "display_name": "DLinear",
+      "entry_type": "TRAINABLE",
+      "command": "train",
+      "run_id": "DLinear_node_shared_ma25_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/basic_lightweight_seed2026",
+      "output_group": "basic_lightweight_seed2026",
+      "device": "cuda",
+      "artifact_profile": "TRAIN",
+      "formal_training": true,
+      "model_config_identity": {
+        "config_hash": "5e9af83b52ce477161d1d672c40954fe946dac9f195af72828b0c3b10599a33c"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "Time-Series-Library/models/DLinear.py",
+          "custom_models/src/benchmark_v2/adapters/dlinear.py",
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/configs/dlinear.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/dlinear.py",
+          "custom_models/src/benchmark_v2/upstream/tslib_loader.py"
+        ],
+        "canonical_combined_hash": "1f388f61addd1466e6e57b1e4817829e0d600dcae2bd1074724faebc0fd43b20"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 5,
+      "entry_id": "original_scope26_lightts",
+      "model_id": "lightts",
+      "display_name": "LightTS",
+      "entry_type": "TRAINABLE",
+      "command": "train",
+      "run_id": "LightTS_node_shared_chunk8_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/basic_lightweight_seed2026",
+      "output_group": "basic_lightweight_seed2026",
+      "device": "cuda",
+      "artifact_profile": "TRAIN",
+      "formal_training": true,
+      "model_config_identity": {
+        "config_hash": "36bcfc99e39c629a40165c6b734185c2518edfd32e6d87a63acfed69e8953f86"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "Time-Series-Library/models/LightTS.py",
+          "custom_models/src/benchmark_v2/adapters/lightts.py",
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/configs/lightts.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/lightts.py",
+          "custom_models/src/benchmark_v2/upstream/tslib_loader.py"
+        ],
+        "canonical_combined_hash": "4de9ca3e97c9cac1efe748bbc0e862a36514a2d6bc0ca5b30e1c3a219bfd0907"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 6,
+      "entry_id": "original_scope26_tide",
+      "model_id": "tide",
+      "display_name": "TiDE",
+      "entry_type": "TRAINABLE",
+      "command": "train",
+      "run_id": "TiDE_node_shared_d512_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/basic_lightweight_seed2026",
+      "output_group": "basic_lightweight_seed2026",
+      "device": "cuda",
+      "artifact_profile": "TRAIN",
+      "formal_training": true,
+      "model_config_identity": {
+        "config_hash": "13c565d1da824a65b03df85f3fa44140e94579b0596aa335ddd9ce195869cf22"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "Time-Series-Library/models/TiDE.py",
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/adapters/tide.py",
+          "custom_models/src/benchmark_v2/configs/tide.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/tide.py",
+          "custom_models/src/benchmark_v2/upstream/tslib_loader.py"
+        ],
+        "canonical_combined_hash": "e8751d1b66170b4317579a4d3c59c551eb316e1d5c165d5ef9a6939cdf387fc4"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 7,
+      "entry_id": "original_scope26_transformer",
+      "model_id": "transformer",
+      "display_name": "Transformer",
+      "entry_type": "TRAINABLE",
+      "command": "train",
+      "run_id": "Transformer_node_shared_d512_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_a_seed2026",
+      "output_group": "e2_a_seed2026",
+      "device": "cuda",
+      "artifact_profile": "TRAIN",
+      "formal_training": true,
+      "model_config_identity": {
+        "config_hash": "cafb75daa57da0fa395645c42b79be1ae4232731914df437d266b1bd9985d4ae"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "Time-Series-Library/models/Transformer.py",
+          "custom_models/src/benchmark_v2/adapters/e2_a.py",
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/configs/transformer.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/transformer.py",
+          "custom_models/src/benchmark_v2/upstream/tslib_loader.py"
+        ],
+        "canonical_combined_hash": "74aaf8651b34d619250540a2bfd333fae3c6aed08e48d630b13d173bd701b6d8"
+      },
+      "precision_identity": {
+        "amp_enabled": false,
+        "precision_policy": "fp32",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": false,
+          "reason": "AMP-only forward overflow reproduced in upstream Transformer attention on benchmark_v2 uniform batch4; keep model-specific FP32 forward policy."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY_RERUN_RETRY2_NOT_ADOPTED",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 8,
+      "entry_id": "original_scope26_patchtst",
+      "model_id": "patchtst",
+      "display_name": "PatchTST",
+      "entry_type": "TRAINABLE",
+      "command": "train",
+      "run_id": "PatchTST_node_shared_p16_s8_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_a_seed2026",
+      "output_group": "e2_a_seed2026",
+      "device": "cuda",
+      "artifact_profile": "TRAIN",
+      "formal_training": true,
+      "model_config_identity": {
+        "config_hash": "9a6db1d307af371ac8eeb906acbd7d7401a3132f3b1dd8b2a721512ff16ef788"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "Time-Series-Library/models/PatchTST.py",
+          "custom_models/src/benchmark_v2/adapters/e2_a.py",
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/configs/patchtst.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/patchtst.py",
+          "custom_models/src/benchmark_v2/upstream/tslib_loader.py"
+        ],
+        "canonical_combined_hash": "63c44892d74230690d264230d34697ef1988809f96c5c41238174b5c4eb8d5f7"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 9,
+      "entry_id": "original_scope26_itransformer",
+      "model_id": "itransformer",
+      "display_name": "iTransformer",
+      "entry_type": "TRAINABLE",
+      "command": "train",
+      "run_id": "iTransformer_node_shared_d512_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_a_seed2026",
+      "output_group": "e2_a_seed2026",
+      "device": "cuda",
+      "artifact_profile": "TRAIN",
+      "formal_training": true,
+      "model_config_identity": {
+        "config_hash": "cd405fd1a593ee7b9a666ae972eadd784c78a404899e30349521667fa36a57e2"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "Time-Series-Library/models/iTransformer.py",
+          "custom_models/src/benchmark_v2/adapters/e2_a.py",
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/configs/itransformer.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/itransformer.py",
+          "custom_models/src/benchmark_v2/upstream/tslib_loader.py"
+        ],
+        "canonical_combined_hash": "252758f020ad3f81c9a4ad28cf8b0d154060584dd34a2e07ec0797ba51d2ba04"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 10,
+      "entry_id": "original_scope26_timexer",
+      "model_id": "timexer",
+      "display_name": "TimeXer",
+      "entry_type": "TRAINABLE",
+      "command": "train",
+      "run_id": "TimeXer_node_shared_ms_d512_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_a_seed2026",
+      "output_group": "e2_a_seed2026",
+      "device": "cuda",
+      "artifact_profile": "TRAIN",
+      "formal_training": true,
+      "model_config_identity": {
+        "config_hash": "3f8e1a0e1d57fdb5e0cc1043bda1b7784c4e11d148a9d7b6be5e460a3dc78eb5"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "Time-Series-Library/models/TimeXer.py",
+          "custom_models/src/benchmark_v2/adapters/e2_a.py",
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/configs/timexer.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/timexer.py",
+          "custom_models/src/benchmark_v2/upstream/tslib_loader.py"
+        ],
+        "canonical_combined_hash": "dc9518b201420ccf5ab1d149badc8406a2518330ad0722d385961fbfa509b45a"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 11,
+      "entry_id": "original_scope26_timesnet",
+      "model_id": "timesnet",
+      "display_name": "TimesNet",
+      "entry_type": "TRAINABLE",
+      "command": "train",
+      "run_id": "TimesNet_node_shared_d32_k5_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_b_seed2026",
+      "output_group": "e2_b_seed2026",
+      "device": "cuda",
+      "artifact_profile": "TRAIN",
+      "formal_training": true,
+      "model_config_identity": {
+        "config_hash": "4ddd96fb22cf66513e8692050cbed0bbb2c3bf0f07dcd3c7deabb8009aebed5e"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "Time-Series-Library/models/TimesNet.py",
+          "custom_models/src/benchmark_v2/adapters/e2_b.py",
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/configs/timesnet.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/timesnet.py",
+          "custom_models/src/benchmark_v2/upstream/tslib_loader.py"
+        ],
+        "canonical_combined_hash": "6a456226bca70a1069a0e6fbc74379aab0c597f4b980cee3020966566cc09c6b"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 12,
+      "entry_id": "original_scope26_micn",
+      "model_id": "micn",
+      "display_name": "MICN",
+      "entry_type": "TRAINABLE",
+      "command": "train",
+      "run_id": "MICN_node_shared_k12_16_d32_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_b_seed2026",
+      "output_group": "e2_b_seed2026",
+      "device": "cuda",
+      "artifact_profile": "TRAIN",
+      "formal_training": true,
+      "model_config_identity": {
+        "config_hash": "04302bbfaff76d1b6a878612cd31e3b3cf6fc3879881be7999ee41a38969d3a2"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "Time-Series-Library/models/MICN.py",
+          "custom_models/src/benchmark_v2/adapters/e2_b.py",
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/configs/micn.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/micn.py",
+          "custom_models/src/benchmark_v2/upstream/tslib_loader.py"
+        ],
+        "canonical_combined_hash": "e0bba1afe93f19f61a8a8b13f3caf67cc46e40c525441522e717dc521303487e"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 13,
+      "entry_id": "original_scope26_wpmixer",
+      "model_id": "wpmixer",
+      "display_name": "WPMixer",
+      "entry_type": "TRAINABLE",
+      "command": "train",
+      "run_id": "WPMixer_node_shared_db2_l1_p16_s8_d256_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_b_seed2026",
+      "output_group": "e2_b_seed2026",
+      "device": "cuda",
+      "artifact_profile": "TRAIN",
+      "formal_training": true,
+      "model_config_identity": {
+        "config_hash": "770d48a7fdabcde7e0eaa823d15716dfe70afc2e9d872b748feab5354b1d9574"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "Time-Series-Library/models/WPMixer.py",
+          "custom_models/src/benchmark_v2/adapters/e2_b.py",
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/configs/wpmixer.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/wpmixer.py",
+          "custom_models/src/benchmark_v2/upstream/tslib_loader.py"
+        ],
+        "canonical_combined_hash": "64c1c0d62b8d2adf3244cfb8a8e8e44a447be6dabd611f755fe319eae6d71190"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 14,
+      "entry_id": "original_scope26_multipatchformer",
+      "model_id": "multipatchformer",
+      "display_name": "MultiPatchFormer",
+      "entry_type": "TRAINABLE",
+      "command": "train",
+      "run_id": "MultiPatchFormer_node_shared_p8_16_24_32_d256_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_b_seed2026",
+      "output_group": "e2_b_seed2026",
+      "device": "cuda",
+      "artifact_profile": "TRAIN",
+      "formal_training": true,
+      "model_config_identity": {
+        "config_hash": "4556636552fafa5816b730506891dcc827c156ef990f3e8e3f8751dc28aa5820"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "Time-Series-Library/models/MultiPatchFormer.py",
+          "custom_models/src/benchmark_v2/adapters/e2_b.py",
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/configs/multipatchformer.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/multipatchformer.py",
+          "custom_models/src/benchmark_v2/upstream/tslib_loader.py"
+        ],
+        "canonical_combined_hash": "cc1f83e8b1dc7c266762486aaef91e7b452ae47f80c77c1adf3d12ca0a09dc13"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 15,
+      "entry_id": "original_scope26_timemixer",
+      "model_id": "timemixer",
+      "display_name": "TimeMixer",
+      "entry_type": "TRAINABLE",
+      "command": "train",
+      "run_id": "TimeMixer_node_shared_ci1_ds3_w2_avg_d16_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_c_seed2026",
+      "output_group": "e2_c_seed2026",
+      "device": "cuda",
+      "artifact_profile": "TRAIN",
+      "formal_training": true,
+      "model_config_identity": {
+        "config_hash": "4f43aa273ee9a5a83a9388926d68ac7944d7622345be1684b231be668998f2a5"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "Time-Series-Library/models/TimeMixer.py",
+          "custom_models/src/benchmark_v2/adapters/e2_c.py",
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/configs/timemixer.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/timemixer.py",
+          "custom_models/src/benchmark_v2/upstream/tslib_loader.py"
+        ],
+        "canonical_combined_hash": "b52934e9193ec25c0339d415e319d0d2e9236023aab740d6fa84a6c34a545b62"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 16,
+      "entry_id": "original_scope26_tsmixer",
+      "model_id": "tsmixer",
+      "display_name": "TSMixer",
+      "entry_type": "TRAINABLE",
+      "command": "train",
+      "run_id": "TSMixer_node_shared_el2_d32_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_c_seed2026",
+      "output_group": "e2_c_seed2026",
+      "device": "cuda",
+      "artifact_profile": "TRAIN",
+      "formal_training": true,
+      "model_config_identity": {
+        "config_hash": "f16bcf10723c79beb615c281acb38d9972ffb7a080f37d73047fc66d5bf21b9a"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "Time-Series-Library/models/TSMixer.py",
+          "custom_models/src/benchmark_v2/adapters/e2_c.py",
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/configs/tsmixer.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/tsmixer.py",
+          "custom_models/src/benchmark_v2/upstream/tslib_loader.py"
+        ],
+        "canonical_combined_hash": "a3090d0b8603e1a0fbc8d4e300d7a6a66938f7faaaaf6df56ba95b5c67a52569"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 17,
+      "entry_id": "original_scope26_frets",
+      "model_id": "frets",
+      "display_name": "FreTS",
+      "entry_type": "TRAINABLE",
+      "command": "train",
+      "run_id": "FreTS_node_shared_tcfft_e128_h256_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_c_seed2026",
+      "output_group": "e2_c_seed2026",
+      "device": "cuda",
+      "artifact_profile": "TRAIN",
+      "formal_training": true,
+      "model_config_identity": {
+        "config_hash": "edfeab50d01fe79d1f69600e84c1f4366dbc8a7a21e04f8984d60dfc75437950"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "Time-Series-Library/models/FreTS.py",
+          "custom_models/src/benchmark_v2/adapters/e2_c.py",
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/configs/frets.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/frets.py",
+          "custom_models/src/benchmark_v2/upstream/tslib_loader.py"
+        ],
+        "canonical_combined_hash": "bb755cc8ac1c2b3fc34a4ae353e5f695f2df6694922f6501f8056c9fc2f4be94"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 18,
+      "entry_id": "original_scope26_crossformer",
+      "model_id": "crossformer",
+      "display_name": "Crossformer",
+      "entry_type": "TRAINABLE",
+      "command": "train",
+      "run_id": "Crossformer_node_shared_seg12_win2_d32_el2_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_d_seed2026",
+      "output_group": "e2_d_seed2026",
+      "device": "cuda",
+      "artifact_profile": "TRAIN",
+      "formal_training": true,
+      "model_config_identity": {
+        "config_hash": "3691106096dcc29a4336ed7b2244be3214bca0306a2d4b4e5abfceea6fcd19ce"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "Time-Series-Library/models/Crossformer.py",
+          "custom_models/src/benchmark_v2/adapters/e2_d.py",
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/configs/crossformer.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/crossformer.py",
+          "custom_models/src/benchmark_v2/upstream/tslib_loader.py"
+        ],
+        "canonical_combined_hash": "1bd66942f9ecde942826cce32e2647a77e646c7b95d705def4a7ec816e302136"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 19,
+      "entry_id": "original_scope26_timefilter",
+      "model_id": "timefilter",
+      "display_name": "TimeFilter",
+      "entry_type": "TRAINABLE",
+      "command": "train",
+      "run_id": "TimeFilter_node_shared_p16_d512_el2_tp0p5_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_d_seed2026",
+      "output_group": "e2_d_seed2026",
+      "device": "cuda",
+      "artifact_profile": "TRAIN",
+      "formal_training": true,
+      "model_config_identity": {
+        "config_hash": "a82ebe446b1cda88359434f383e81e460883b47a01b7fa825078c2174434b533"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "Time-Series-Library/models/TimeFilter.py",
+          "custom_models/src/benchmark_v2/adapters/e2_d.py",
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/configs/timefilter.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/timefilter.py",
+          "custom_models/src/benchmark_v2/upstream/tslib_loader.py"
+        ],
+        "canonical_combined_hash": "18a526bd96943ed142b62f795adba4b12e2d7c1b3dd2b3a2c92e87b45f04418a"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 20,
+      "entry_id": "original_scope26_gcn",
+      "model_id": "gcn",
+      "display_name": "GCN",
+      "entry_type": "TRAINABLE",
+      "command": "train",
+      "run_id": "GCN_native_agcn_h64_l2_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e3_b_seed2026",
+      "output_group": "e3_b_seed2026",
+      "device": "cuda",
+      "artifact_profile": "TRAIN",
+      "formal_training": true,
+      "model_config_identity": {
+        "config_hash": "09c4b45aa89bffa6d2156c5650a9b2f20fd1ff57401e8db1f814df0175f71087"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "custom_models/src/benchmark_v2/adapters/e3_b.py",
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/configs/gcn.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/graph_models/__init__.py",
+          "custom_models/src/benchmark_v2/models/graph_models/common.py",
+          "custom_models/src/benchmark_v2/models/graph_models/gcn.py"
+        ],
+        "canonical_combined_hash": "3fed688fe8f714edf1fb212ada41ca219ca31af7912edb80b80edfcc4f71413e"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 21,
+      "entry_id": "original_scope26_stgcn",
+      "model_id": "stgcn",
+      "display_name": "STGCN",
+      "entry_type": "TRAINABLE",
+      "command": "train",
+      "run_id": "STGCN_native_cheb3_kt3_b2_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e3_b_seed2026",
+      "output_group": "e3_b_seed2026",
+      "device": "cuda",
+      "artifact_profile": "TRAIN",
+      "formal_training": true,
+      "model_config_identity": {
+        "config_hash": "62ba7419df4ec96ed113202e9fbf374014cad675da79cf184eb53418073afd4f"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "custom_models/src/benchmark_v2/adapters/e3_b.py",
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/configs/stgcn.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/graph_models/__init__.py",
+          "custom_models/src/benchmark_v2/models/graph_models/common.py",
+          "custom_models/src/benchmark_v2/models/graph_models/stgcn.py"
+        ],
+        "canonical_combined_hash": "64d4d914809c58dbf6192f379d5d28d6f90362f5cd2cceb318b4dedba9972570"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 22,
+      "entry_id": "original_scope26_dcrnn",
+      "model_id": "dcrnn",
+      "display_name": "DCRNN",
+      "entry_type": "TRAINABLE",
+      "command": "train",
+      "run_id": "DCRNN_native_dualrw_k2_h64_l2_ar_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e3_b_seed2026",
+      "output_group": "e3_b_seed2026",
+      "device": "cuda",
+      "artifact_profile": "TRAIN",
+      "formal_training": true,
+      "model_config_identity": {
+        "config_hash": "b37d4e7046fba29267b147e86725c8f31481d1a8b6fba13bb29adaa41126a7be"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "custom_models/src/benchmark_v2/adapters/e3_b.py",
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/configs/dcrnn.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/graph_models/__init__.py",
+          "custom_models/src/benchmark_v2/models/graph_models/common.py",
+          "custom_models/src/benchmark_v2/models/graph_models/dcrnn.py"
+        ],
+        "canonical_combined_hash": "6d745c045636d38a637c42606b5c06a9d07b51f0196125e7a472841f9b49b4af"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 23,
+      "entry_id": "original_scope26_graph_wavenet",
+      "model_id": "graph_wavenet",
+      "display_name": "Graph WaveNet",
+      "entry_type": "TRAINABLE",
+      "command": "train",
+      "run_id": "GraphWaveNet_native_pfpr_adp10_b4l2_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e3_c_seed2026",
+      "output_group": "e3_c_seed2026",
+      "device": "cuda",
+      "artifact_profile": "TRAIN",
+      "formal_training": true,
+      "model_config_identity": {
+        "config_hash": "37b409a033b8be70d3b45bd9bae484ef08e0941fd38d79bade2041a671e296e4"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "custom_models/src/benchmark_v2/adapters/e3_c.py",
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/configs/graph_wavenet.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/graph_models/adaptive_common.py",
+          "custom_models/src/benchmark_v2/models/graph_models/graph_wavenet.py"
+        ],
+        "canonical_combined_hash": "735ddbe03c4d73bd0d11972de8d1fdf09c374f29c86855823ac0506e2861dc61"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 24,
+      "entry_id": "original_scope26_mtgnn",
+      "model_id": "mtgnn",
+      "display_name": "MTGNN",
+      "entry_type": "TRAINABLE",
+      "command": "train",
+      "run_id": "MTGNN_native_adaptive_k20_gdep2_l3_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e3_c_seed2026",
+      "output_group": "e3_c_seed2026",
+      "device": "cuda",
+      "artifact_profile": "TRAIN",
+      "formal_training": true,
+      "model_config_identity": {
+        "config_hash": "2753d860e5cb1c521fe6e42977318d6f96272e775029c841bc5391ec3be8be9b"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "custom_models/src/benchmark_v2/adapters/e3_c.py",
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/configs/mtgnn.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/graph_models/adaptive_common.py",
+          "custom_models/src/benchmark_v2/models/graph_models/mtgnn.py"
+        ],
+        "canonical_combined_hash": "ef57173244927a0a4c5c6e9e8b469cd8d7643270ff8277b8ad05b5931f4c3988"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 25,
+      "entry_id": "original_scope26_agcrn",
+      "model_id": "agcrn",
+      "display_name": "AGCRN",
+      "entry_type": "TRAINABLE",
+      "command": "train",
+      "run_id": "AGCRN_native_dagg_napl_e10_h64_l2_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e3_c_seed2026",
+      "output_group": "e3_c_seed2026",
+      "device": "cuda",
+      "artifact_profile": "TRAIN",
+      "formal_training": true,
+      "model_config_identity": {
+        "config_hash": "7df20f31c5934775baa8acee016936b5073987926db51f78b25d5b9f6c6621e7"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "custom_models/src/benchmark_v2/adapters/e3_c.py",
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/configs/agcrn.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/graph_models/adaptive_common.py",
+          "custom_models/src/benchmark_v2/models/graph_models/agcrn.py"
+        ],
+        "canonical_combined_hash": "4cc93d60bd4696c8d72538c379902b152f4a8f14c4d36dbe4ba39d1994cdecda"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    },
+    {
+      "ordinal": 26,
+      "entry_id": "original_scope26_stid",
+      "model_id": "stid",
+      "display_name": "STID",
+      "entry_type": "TRAINABLE",
+      "command": "train",
+      "run_id": "STID_native_node32_tid32_diw32_mlp3_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e3_c_seed2026",
+      "output_group": "e3_c_seed2026",
+      "device": "cuda",
+      "artifact_profile": "TRAIN",
+      "formal_training": true,
+      "model_config_identity": {
+        "config_hash": "8ca024046e2f07d433d6d210c2c6f9c531fc3d191da510e32fcec3be9f2a89d5"
+      },
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "source_closure_paths": [
+          "custom_models/src/benchmark_v2/adapters/e3_c.py",
+          "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "custom_models/src/benchmark_v2/configs/stid.py",
+          "custom_models/src/benchmark_v2/model_runtime.py",
+          "custom_models/src/benchmark_v2/models/graph_models/adaptive_common.py",
+          "custom_models/src/benchmark_v2/models/graph_models/stid.py"
+        ],
+        "canonical_combined_hash": "51c2c80ba887bef7e2ec0f0cc753dfa553dd6e7b36526b3e2c9d67db91a557be"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      },
+      "result_adoption_policy": "CANONICAL_ONLY",
+      "execution_receipt_required": true,
+      "adoption_receipt_required": true
+    }
+  ],
+  "count_assertion": "24 trainable + 2 evaluate-only = 26; segrnn/msgnet excluded",
+  "retry2_adoption": {
+    "model_id": "transformer",
+    "run_id": "Transformer_node_shared_d512_fp32_bs4_seed2026_retry2",
+    "decision": "RERUN_CANONICAL",
+    "reason": "Missing current Original source closure identity and execution/adoption receipt; canonical run-id remains required."
+  }
 }

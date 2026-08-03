@@ -1,0 +1,241 @@
+{
+  "schema_version": "original_batch4_scope26_run_id_map_v1",
+  "scope_id": "benchmark_v2_batch4_scope26_seed2026",
+  "output_root": "custom_models/results/benchmark_v2_uniform_bs4",
+  "entries": [
+    {
+      "ordinal": 1,
+      "model_id": "persistence",
+      "run_id": "Persistence_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/basic_lightweight_seed2026",
+      "mode": "EVALUATE_ONLY",
+      "artifact_profile": "NON_TRAINABLE",
+      "device": "cpu"
+    },
+    {
+      "ordinal": 2,
+      "model_id": "moving_average",
+      "run_id": "MovingAverage_w144_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/basic_lightweight_seed2026",
+      "mode": "EVALUATE_ONLY",
+      "artifact_profile": "NON_TRAINABLE",
+      "device": "cpu"
+    },
+    {
+      "ordinal": 3,
+      "model_id": "gru",
+      "run_id": "GRU_node_shared_h64_l1_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/basic_lightweight_seed2026",
+      "mode": "TRAIN",
+      "artifact_profile": "TRAIN",
+      "device": "cuda"
+    },
+    {
+      "ordinal": 4,
+      "model_id": "dlinear",
+      "run_id": "DLinear_node_shared_ma25_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/basic_lightweight_seed2026",
+      "mode": "TRAIN",
+      "artifact_profile": "TRAIN",
+      "device": "cuda"
+    },
+    {
+      "ordinal": 5,
+      "model_id": "lightts",
+      "run_id": "LightTS_node_shared_chunk8_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/basic_lightweight_seed2026",
+      "mode": "TRAIN",
+      "artifact_profile": "TRAIN",
+      "device": "cuda"
+    },
+    {
+      "ordinal": 6,
+      "model_id": "tide",
+      "run_id": "TiDE_node_shared_d512_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/basic_lightweight_seed2026",
+      "mode": "TRAIN",
+      "artifact_profile": "TRAIN",
+      "device": "cuda"
+    },
+    {
+      "ordinal": 7,
+      "model_id": "transformer",
+      "run_id": "Transformer_node_shared_d512_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_a_seed2026",
+      "mode": "TRAIN",
+      "artifact_profile": "TRAIN",
+      "device": "cuda"
+    },
+    {
+      "ordinal": 8,
+      "model_id": "patchtst",
+      "run_id": "PatchTST_node_shared_p16_s8_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_a_seed2026",
+      "mode": "TRAIN",
+      "artifact_profile": "TRAIN",
+      "device": "cuda"
+    },
+    {
+      "ordinal": 9,
+      "model_id": "itransformer",
+      "run_id": "iTransformer_node_shared_d512_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_a_seed2026",
+      "mode": "TRAIN",
+      "artifact_profile": "TRAIN",
+      "device": "cuda"
+    },
+    {
+      "ordinal": 10,
+      "model_id": "timexer",
+      "run_id": "TimeXer_node_shared_ms_d512_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_a_seed2026",
+      "mode": "TRAIN",
+      "artifact_profile": "TRAIN",
+      "device": "cuda"
+    },
+    {
+      "ordinal": 11,
+      "model_id": "timesnet",
+      "run_id": "TimesNet_node_shared_d32_k5_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_b_seed2026",
+      "mode": "TRAIN",
+      "artifact_profile": "TRAIN",
+      "device": "cuda"
+    },
+    {
+      "ordinal": 12,
+      "model_id": "micn",
+      "run_id": "MICN_node_shared_k12_16_d32_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_b_seed2026",
+      "mode": "TRAIN",
+      "artifact_profile": "TRAIN",
+      "device": "cuda"
+    },
+    {
+      "ordinal": 13,
+      "model_id": "wpmixer",
+      "run_id": "WPMixer_node_shared_db2_l1_p16_s8_d256_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_b_seed2026",
+      "mode": "TRAIN",
+      "artifact_profile": "TRAIN",
+      "device": "cuda"
+    },
+    {
+      "ordinal": 14,
+      "model_id": "multipatchformer",
+      "run_id": "MultiPatchFormer_node_shared_p8_16_24_32_d256_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_b_seed2026",
+      "mode": "TRAIN",
+      "artifact_profile": "TRAIN",
+      "device": "cuda"
+    },
+    {
+      "ordinal": 15,
+      "model_id": "timemixer",
+      "run_id": "TimeMixer_node_shared_ci1_ds3_w2_avg_d16_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_c_seed2026",
+      "mode": "TRAIN",
+      "artifact_profile": "TRAIN",
+      "device": "cuda"
+    },
+    {
+      "ordinal": 16,
+      "model_id": "tsmixer",
+      "run_id": "TSMixer_node_shared_el2_d32_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_c_seed2026",
+      "mode": "TRAIN",
+      "artifact_profile": "TRAIN",
+      "device": "cuda"
+    },
+    {
+      "ordinal": 17,
+      "model_id": "frets",
+      "run_id": "FreTS_node_shared_tcfft_e128_h256_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_c_seed2026",
+      "mode": "TRAIN",
+      "artifact_profile": "TRAIN",
+      "device": "cuda"
+    },
+    {
+      "ordinal": 18,
+      "model_id": "crossformer",
+      "run_id": "Crossformer_node_shared_seg12_win2_d32_el2_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_d_seed2026",
+      "mode": "TRAIN",
+      "artifact_profile": "TRAIN",
+      "device": "cuda"
+    },
+    {
+      "ordinal": 19,
+      "model_id": "timefilter",
+      "run_id": "TimeFilter_node_shared_p16_d512_el2_tp0p5_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_d_seed2026",
+      "mode": "TRAIN",
+      "artifact_profile": "TRAIN",
+      "device": "cuda"
+    },
+    {
+      "ordinal": 20,
+      "model_id": "gcn",
+      "run_id": "GCN_native_agcn_h64_l2_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e3_b_seed2026",
+      "mode": "TRAIN",
+      "artifact_profile": "TRAIN",
+      "device": "cuda"
+    },
+    {
+      "ordinal": 21,
+      "model_id": "stgcn",
+      "run_id": "STGCN_native_cheb3_kt3_b2_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e3_b_seed2026",
+      "mode": "TRAIN",
+      "artifact_profile": "TRAIN",
+      "device": "cuda"
+    },
+    {
+      "ordinal": 22,
+      "model_id": "dcrnn",
+      "run_id": "DCRNN_native_dualrw_k2_h64_l2_ar_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e3_b_seed2026",
+      "mode": "TRAIN",
+      "artifact_profile": "TRAIN",
+      "device": "cuda"
+    },
+    {
+      "ordinal": 23,
+      "model_id": "graph_wavenet",
+      "run_id": "GraphWaveNet_native_pfpr_adp10_b4l2_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e3_c_seed2026",
+      "mode": "TRAIN",
+      "artifact_profile": "TRAIN",
+      "device": "cuda"
+    },
+    {
+      "ordinal": 24,
+      "model_id": "mtgnn",
+      "run_id": "MTGNN_native_adaptive_k20_gdep2_l3_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e3_c_seed2026",
+      "mode": "TRAIN",
+      "artifact_profile": "TRAIN",
+      "device": "cuda"
+    },
+    {
+      "ordinal": 25,
+      "model_id": "agcrn",
+      "run_id": "AGCRN_native_dagg_napl_e10_h64_l2_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e3_c_seed2026",
+      "mode": "TRAIN",
+      "artifact_profile": "TRAIN",
+      "device": "cuda"
+    },
+    {
+      "ordinal": 26,
+      "model_id": "stid",
+      "run_id": "STID_native_node32_tid32_diw32_mlp3_bs4_seed2026",
+      "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e3_c_seed2026",
+      "mode": "TRAIN",
+      "artifact_profile": "TRAIN",
+      "device": "cuda"
+    }
+  ]
+}
