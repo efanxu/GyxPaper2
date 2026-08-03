@@ -101,7 +101,7 @@ $commands = 'D:\PaperProject\GyxPaper2\custom_models\docs\benchmark_v2\BATCH4\OR
 
 # The command file refuses aggregate unless readiness is exactly 26/26.
 & $commands -Action Readiness
-& $commands -Action Aggregate
+& $commands -Action Aggregate -RequireComplete
 ```
 
 `StaticAudit` checks `HEAD == origin/main`, tracked-worktree cleanliness,
