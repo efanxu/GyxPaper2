@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import csv
+import hashlib
 import json
 import math
 import tempfile
@@ -13,6 +14,7 @@ from benchmark_v2.original_scope26 import (
     CURRENT_SCOPE26_ID,
     current_model_config_hash,
     load_current_scope_manifest,
+    resolve_source_revision,
 )
 from benchmark_v2.hardware_preflight import launch_model_suite
 from scripts.original_batch4_scope26_gate import (
@@ -22,6 +24,8 @@ from scripts.original_batch4_scope26_gate import (
     REQUIRED_METRICS,
     TRAINABLE_TYPE,
     _plan_action,
+    _canonical_json_hash,
+    _metrics_bundle_hash,
     build_result_inventory,
     compute_original_freeze,
     inspect_run,
@@ -104,12 +108,18 @@ def _fixture_run(root: Path, manifest: dict, model_id: str) -> Path:
             "run_mode": "formal",
             "formal_training": trainable,
             "model_id": model_id,
+            "run_id": entry["run_id"],
+            "output_root": entry["output_root"],
             **precision,
         },
     )
     _write_json(
         run_dir / "prediction_metadata.json",
-        {"source_checkpoint": "best_checkpoint.pt" if trainable else None},
+        {
+            "run_id": entry["run_id"],
+            "model_id": model_id,
+            "source_checkpoint": "best_checkpoint.pt" if trainable else None,
+        },
     )
     for horizon in HORIZONS:
         _write_json(
@@ -159,18 +169,53 @@ def _fixture_run(root: Path, manifest: dict, model_id: str) -> Path:
             run_dir / "baseline_state.json",
             {"model_id": model_id, "training_mode": "EVALUATE_ONLY", "best_checkpoint": None},
         )
+    revision = resolve_source_revision(project_root=PROJECT_ROOT, manifest=manifest)
+    manifest_hash = _canonical_json_hash(manifest)
+    run_map = json.loads(CURRENT_RUN_MAP.read_text(encoding="utf-8"))
+    run_map_hash = _canonical_json_hash(run_map)
+    freeze = compute_original_freeze(manifest, run_map=run_map)
+    effective_path = run_dir / "effective_config.json"
+    effective = json.loads(effective_path.read_text(encoding="utf-8"))
+    effective.update(
+        {
+            "current_scope_manifest_hash": manifest_hash,
+            "current_scope_entry_id": entry["entry_id"],
+            "source_revision": revision,
+        }
+    )
+    _write_json(effective_path, effective)
+    _write_json(run_dir / "resolved_config.json", effective)
+    checkpoint = run_dir / "best_checkpoint.pt"
     _write_json(
         run_dir / "execution_receipt.json",
         {
+            "schema_version": "original_scope26_execution_receipt_v2",
             "status": "SUCCESS",
             "scope_id": CURRENT_SCOPE26_ID,
+            "entry_id": entry["entry_id"],
             "model_id": model_id,
             "run_id": entry["run_id"],
+            "output_root": entry["output_root"],
+            "entry_type": entry["entry_type"],
             "exit_code": 0,
-            "git_commit": "fixture",
-            "source_revision_type": "fixture",
+            "git_commit": revision["git_commit"],
+            "source_revision_type": revision["source_revision_type"],
             "source_closure_hash": entry["source_identity"]["canonical_combined_hash"],
-            "manifest_hash": "fixture",
+            "model_config_hash": entry["model_config_identity"]["config_hash"],
+            "precision_identity_hash": _canonical_json_hash(precision),
+            "protocol_hash": manifest["benchmark_protocol_hash"],
+            "training_profile_id": manifest["training_profile_id"],
+            "training_profile_hash": manifest["training_profile_hash"],
+            "dataset_identity_hash": _canonical_json_hash(manifest["dataset_identity"]),
+            "graph_identity_hash": _canonical_json_hash(manifest["graph_identity"]),
+            "manifest_hash": manifest_hash,
+            "run_map_hash": run_map_hash,
+            "freeze_hash": freeze["freeze_hash"],
+            "checkpoint_sha256": hashlib.sha256(checkpoint.read_bytes()).hexdigest() if checkpoint.is_file() else None,
+            "metrics_bundle_hash": _metrics_bundle_hash(run_dir),
+            "command": ["fixture", model_id],
+            "started_at": "2026-08-03T00:00:00+00:00",
+            "finished_at": "2026-08-03T00:00:01+00:00",
         },
     )
     return run_dir
@@ -271,7 +316,9 @@ class OriginalScope26Tests(unittest.TestCase):
     def test_freeze_is_current_original_only(self):
         freeze = compute_original_freeze(self.manifest)
         self.assertEqual(freeze["scope_id"], CURRENT_SCOPE26_ID)
-        self.assertEqual(freeze["git_commit"], "7a62ee3ab9d2746ef6a3950b96b10cfad660aa7d")
+        revision = resolve_source_revision(project_root=PROJECT_ROOT, manifest=self.manifest)
+        self.assertEqual(freeze["git_commit"], revision["git_commit"])
+        self.assertEqual(freeze["source_revision_type"], revision["source_revision_type"])
         material_text = json.dumps(freeze["freeze_material"], ensure_ascii=False)
         self.assertNotIn("E5_SCOPE27_VARIANT_MANIFEST", material_text)
         self.assertNotIn("segrnn", material_text.casefold())

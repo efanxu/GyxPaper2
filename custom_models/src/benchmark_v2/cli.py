@@ -228,13 +228,17 @@ def main(argv: list[str] | None = None) -> int:
     preflight = sub.add_parser("hardware-preflight")
     preflight.add_argument("--model", required=True)
     preflight.add_argument("--preflight-root")
+    preflight.add_argument("--source-revision")
     add_experiment_profile(preflight)
     add_training_profile(preflight)
+    add_formal_scope(preflight)
     preflight_worker = sub.add_parser("_hardware-preflight-worker")
     preflight_worker.add_argument("--model", required=True)
     preflight_worker.add_argument("--preflight-root")
+    preflight_worker.add_argument("--source-revision")
     add_experiment_profile(preflight_worker)
     add_training_profile(preflight_worker)
+    add_formal_scope(preflight_worker)
     train_worker = sub.add_parser("_formal-train-worker")
     train_worker.add_argument("--model", required=True)
     train_worker.add_argument("--input-path", required=True)
@@ -386,6 +390,8 @@ def main(argv: list[str] | None = None) -> int:
                 root=args.preflight_root,
                 experiment_profile=args.experiment_profile,
                 training_profile=args.training_profile,
+                formal_scope_id=args.formal_scope_id,
+                source_revision=args.source_revision,
             )
         if args.command == "_hardware-preflight-worker":
             result = run_preflight_worker(
@@ -393,6 +399,8 @@ def main(argv: list[str] | None = None) -> int:
                 root=args.preflight_root,
                 experiment_profile=args.experiment_profile,
                 training_profile=args.training_profile,
+                formal_scope_id=args.formal_scope_id,
+                source_revision=args.source_revision,
             )
             print(json.dumps(result, ensure_ascii=False, indent=2))
             return 0 if result["status"] == "PASS" else 3

@@ -64,7 +64,10 @@ from .experiments.e5_common_loss.scope27_contract import (
 from .losses import get_loss
 from .model_runtime import build_model_runtime
 from .model_source_identity import canonical_model_source_identity
-from .precision import apply_model_precision_policy, expected_model_precision_identity
+from .precision import (
+    apply_model_precision_policy,
+    expected_model_precision_identity,
+)
 from .protocol import load_protocol
 from .registry import load_registry
 from .graph import load_graph_bundle
@@ -191,11 +194,21 @@ def stable_hash(payload: Mapping[str, Any]) -> str:
     return hashlib.sha256(material).hexdigest()
 
 
-def preflight_shape(training_profile: str | None = None) -> dict[str, int]:
+def preflight_shape(
+    training_profile: str | None = None,
+    formal_scope_id: str | None = None,
+) -> dict[str, int]:
     profile = load_training_profile(training_profile)
     shape = dict(PREFLIGHT_SHAPE)
     if profile is not None:
         shape["B"] = profile.train_batch_size
+    if formal_scope_id == CURRENT_SCOPE26_ID:
+        if training_profile != "uniform_train_batch4_v1":
+            raise ValueError(
+                "Current Original scope26 exact preflight requires "
+                "uniform_train_batch4_v1."
+            )
+        shape["B"] = 4
     return shape
 
 
@@ -223,6 +236,11 @@ def preflight_identity(
     *,
     experiment_profile: str | None = None,
     training_profile: str | None = None,
+    formal_scope_id: str | None = None,
+    source_revision: str | None = None,
+    manifest: Mapping[str, Any] | None = None,
+    run_map: Mapping[str, Any] | None = None,
+    freeze: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     protocol = load_protocol()
     entry = load_registry().get(model_id)
@@ -243,7 +261,7 @@ def preflight_identity(
             "source_identity_schema_version"
         ],
         "source_closure_files": source_identity["source_closure_files"],
-        **preflight_shape(training_profile),
+        **preflight_shape(training_profile, formal_scope_id),
         "amp": bool(protocol["amp_enabled"]),
     }
     if entry.canonical_id in MODEL_SUPPORTS:
@@ -302,6 +320,69 @@ def preflight_identity(
             entry.canonical_id, training_profile
         )
     )
+    if formal_scope_id == CURRENT_SCOPE26_ID:
+        from .original_scope26 import (
+            current_manifest_hash,
+            current_model_config_hash,
+            load_current_scope_manifest,
+            resolve_source_revision,
+        )
+
+        active = dict(manifest or load_current_scope_manifest())
+        selected_map = dict(run_map or json.loads(
+            (PROJECT_ROOT / "custom_models/docs/benchmark_v2/BATCH4/ORIGINAL_SCOPE26_RUN_ID_MAP.json")
+            .read_text(encoding="utf-8")
+        ))
+        revision = resolve_source_revision(
+            project_root=PROJECT_ROOT,
+            explicit_source_revision=source_revision,
+            manifest=active,
+        )
+        if freeze is None:
+            from scripts.original_batch4_scope26_gate import compute_original_freeze
+
+            freeze = compute_original_freeze(
+                active,
+                project_root=PROJECT_ROOT,
+                run_map=selected_map,
+                source_revision=source_revision,
+            )
+        precision = expected_model_precision_identity(
+            entry.canonical_id, training_profile
+        )
+        identity.update(
+            {
+                "scope_id": formal_scope_id,
+                "git_commit": revision["git_commit"],
+                "source_revision_type": revision["source_revision_type"],
+                "manifest_hash": stable_hash(active),
+                "run_map_hash": stable_hash(selected_map),
+                "freeze_hash": freeze["freeze_hash"],
+                "freeze_schema_version": freeze.get("schema_version"),
+                "source_closure_hash": source_hash,
+                "model_config_hash": current_model_config_hash(entry.canonical_id),
+                "precision_identity": precision,
+                "precision_identity_hash": stable_hash(precision),
+                "protocol_hash": protocol.protocol_hash,
+                "training_profile_id": training_profile,
+                "training_profile_hash": (
+                    load_training_profile(training_profile).profile_hash
+                    if load_training_profile(training_profile) is not None
+                    else None
+                ),
+                "batch4_profile_id": training_profile,
+                "batch4_profile_hash": (
+                    load_training_profile(training_profile).profile_hash
+                    if load_training_profile(training_profile) is not None
+                    else None
+                ),
+                "dataset_identity_hash": stable_hash(active["dataset_identity"]),
+                "graph_identity_hash": stable_hash(active["graph_identity"]),
+                "exact_shape": dict(preflight_shape(training_profile, formal_scope_id)),
+                "precision_identity_name": precision.get("precision_policy"),
+                "effective_amp_enabled": precision.get("amp_enabled"),
+            }
+        )
     return identity
 
 
@@ -311,11 +392,21 @@ def preflight_artifact_path(
     root: str | Path | None = None,
     experiment_profile: str | None = None,
     training_profile: str | None = None,
+    formal_scope_id: str | None = None,
+    source_revision: str | None = None,
+    manifest: Mapping[str, Any] | None = None,
+    run_map: Mapping[str, Any] | None = None,
+    freeze: Mapping[str, Any] | None = None,
 ) -> Path:
     identity = preflight_identity(
         model_id,
         experiment_profile=experiment_profile,
         training_profile=training_profile,
+        formal_scope_id=formal_scope_id,
+        source_revision=source_revision,
+        manifest=manifest,
+        run_map=run_map,
+        freeze=freeze,
     )
     key = stable_hash(identity)[:20]
     return Path(root or PREFLIGHT_ROOT) / identity["model_id"] / key / "hardware_preflight.json"
@@ -327,12 +418,22 @@ def read_matching_pass(
     root: str | Path | None = None,
     experiment_profile: str | None = None,
     training_profile: str | None = None,
+    formal_scope_id: str | None = None,
+    source_revision: str | None = None,
+    manifest: Mapping[str, Any] | None = None,
+    run_map: Mapping[str, Any] | None = None,
+    freeze: Mapping[str, Any] | None = None,
 ) -> dict[str, Any] | None:
     path = preflight_artifact_path(
         model_id,
         root=root,
         experiment_profile=experiment_profile,
         training_profile=training_profile,
+        formal_scope_id=formal_scope_id,
+        source_revision=source_revision,
+        manifest=manifest,
+        run_map=run_map,
+        freeze=freeze,
     )
     if not path.is_file():
         return None
@@ -341,6 +442,11 @@ def read_matching_pass(
         model_id,
         experiment_profile=experiment_profile,
         training_profile=training_profile,
+        formal_scope_id=formal_scope_id,
+        source_revision=source_revision,
+        manifest=manifest,
+        run_map=run_map,
+        freeze=freeze,
     )
     if any(payload.get(key) != value for key, value in expected.items()):
         return None
@@ -354,12 +460,15 @@ def read_matching_pass(
 
 
 def _synthetic_batch(
-    model_id: str, *, training_profile: str | None = None
+    model_id: str,
+    *,
+    training_profile: str | None = None,
+    formal_scope_id: str | None = None,
 ) -> BenchmarkBatch:
     import torch
 
     generator = torch.Generator().manual_seed(2026)
-    shape = preflight_shape(training_profile)
+    shape = preflight_shape(training_profile, formal_scope_id)
     return BenchmarkBatch(
         x=torch.randn(
             shape["B"], shape["T"], shape["N"], shape["C"], generator=generator
@@ -394,6 +503,11 @@ def run_preflight_worker(
     root: str | Path | None = None,
     experiment_profile: str | None = None,
     training_profile: str | None = None,
+    formal_scope_id: str | None = None,
+    source_revision: str | None = None,
+    manifest: Mapping[str, Any] | None = None,
+    run_map: Mapping[str, Any] | None = None,
+    freeze: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     import torch
 
@@ -403,12 +517,22 @@ def run_preflight_worker(
         model_id,
         experiment_profile=selected_profile,
         training_profile=training_profile,
+        formal_scope_id=formal_scope_id,
+        source_revision=source_revision,
+        manifest=manifest,
+        run_map=run_map,
+        freeze=freeze,
     )
     path = preflight_artifact_path(
         model_id,
         root=root,
         experiment_profile=selected_profile,
         training_profile=training_profile,
+        formal_scope_id=formal_scope_id,
+        source_revision=source_revision,
+        manifest=manifest,
+        run_map=run_map,
+        freeze=freeze,
     )
     if path.is_file():
         existing = json.loads(path.read_text(encoding="utf-8"))
@@ -445,7 +569,9 @@ def run_preflight_worker(
         torch.cuda.reset_peak_memory_stats(device)
         seed_everything(int(protocol["default_seed"]))
         batch = _synthetic_batch(
-            model_id, training_profile=training_profile
+            model_id,
+            training_profile=training_profile,
+            formal_scope_id=formal_scope_id,
         )
         runtime = build_model_runtime(model_id, protocol, run_mode="formal")
         apply_experiment_profile(runtime, selected_profile)
@@ -558,6 +684,8 @@ def launch_preflight(
     root: str | Path | None = None,
     experiment_profile: str | None = None,
     training_profile: str | None = None,
+    formal_scope_id: str | None = None,
+    source_revision: str | None = None,
     runner: Callable[..., Any] = subprocess.run,
 ) -> int:
     args = ["_hardware-preflight-worker", "--model", model_id]
@@ -566,6 +694,10 @@ def launch_preflight(
         args.extend(["--experiment-profile", selected_profile])
     if training_profile is not None:
         args.extend(["--training-profile", training_profile])
+    if formal_scope_id is not None:
+        args.extend(["--formal-scope-id", formal_scope_id])
+    if source_revision is not None:
+        args.extend(["--source-revision", source_revision])
     if root is not None:
         args.extend(["--preflight-root", str(Path(root))])
     return _run_child(args, runner=runner)
@@ -624,6 +756,22 @@ def launch_formal_train(
         training_profile=training_profile,
     )
     scope_request = scope27_request or current_scope26_request
+    if current_scope26_request:
+        if (
+            read_matching_pass(
+                entry.canonical_id,
+                root=preflight_root,
+                experiment_profile=selected_profile,
+                training_profile=training_profile,
+                formal_scope_id=CURRENT_SCOPE26_ID,
+                source_revision=source_revision,
+            )
+            is None
+        ):
+            # Current Original formal runs are fail-closed.  The explicit
+            # ``preflight`` command is the only operation that may create the
+            # GPU artifact; a train request never creates one implicitly.
+            return 3
     needs_preflight = not scope_request and (
         training_profile is not None
         or selected_profile == E5_PROFILE_ID

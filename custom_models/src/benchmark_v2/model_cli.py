@@ -200,6 +200,8 @@ def _write_common(
             "run_mode": run_mode,
             "formal_training": bool(formal_training),
             "model_id": runtime.model_id,
+            "run_id": effective.get("run_id"),
+            "output_root": effective.get("output_root"),
             **graph_identity,
         },
     )
@@ -256,6 +258,7 @@ def _write_metrics(
         {
             "run_mode": runtime.effective_config.get("run_mode"),
             "model_id": runtime.model_id,
+            "run_id": runtime.effective_config.get("run_id"),
             "formal_registry_entry": True,
             "formal_training": bool(
                 runtime.effective_config.get("optimizer")
@@ -1320,7 +1323,25 @@ def formal_train(
         training_profile=training_profile,
     )
     scope_request = scope27_request or current_scope26_request
-    if not scope_request and (
+    if current_scope26_request:
+        from .hardware_preflight import read_matching_pass
+
+        if (
+            read_matching_pass(
+                model_id,
+                root=preflight_root,
+                experiment_profile=selected_profile,
+                training_profile=training_profile,
+                formal_scope_id=CURRENT_SCOPE26_ID,
+                source_revision=source_revision,
+            )
+            is None
+        ):
+            raise ModelUnavailableError(
+                f"{entry.display_name} requires an exact matching PASS hardware "
+                "preflight before formal training. No formal run was started."
+            )
+    elif not scope_request and (
         training_profile is not None
         or selected_profile == E5_PROFILE_ID
         or bool(entry.values.get("formal_hardware_preflight_required", False))
@@ -1369,6 +1390,10 @@ def formal_train(
                 model_id,
                 experiment_profile=selected_profile,
                 training_profile=training_profile,
+                formal_scope_id=(
+                    CURRENT_SCOPE26_ID if current_scope26_request else None
+                ),
+                source_revision=source_revision,
             )
         ),
         provenance=(

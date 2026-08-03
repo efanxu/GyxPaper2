@@ -1,12 +1,15 @@
 [CmdletBinding()]
 param(
-    [ValidateSet('DryRun', 'PreflightPlan', 'Run', 'Readiness', 'Aggregate')]
+    [ValidateSet('DryRun', 'PreflightPlan', 'Preflight', 'Run', 'Readiness', 'Aggregate', 'LockStatus', 'ClearStaleLock', 'QuarantineExisting')]
     [string]$Action = 'DryRun',
     [string]$PythonExecutable = 'D:\Apps\Miniconda3\envs\env_tslib\python.exe',
     [string]$InputPath,
     [string]$TargetPath,
     [string]$SourceRevision,
-    [switch]$RequireComplete
+    [string]$PreflightRoot,
+    [string]$Model,
+    [switch]$RequireComplete,
+    [switch]$Apply
 )
 
 $ErrorActionPreference = 'Stop'
@@ -30,11 +33,17 @@ switch ($Action) {
     'PreflightPlan' {
         $arguments += @('preflight-plan')
     }
+    'Preflight' {
+        $arguments += @('preflight')
+        if ($PreflightRoot) { $arguments += @('--preflight-root', $PreflightRoot) }
+        if ($SourceRevision) { $arguments += @('--source-revision', $SourceRevision) }
+    }
     'Run' {
         $arguments += @('run')
         if ($InputPath) { $arguments += @('--input-path', $InputPath) }
         if ($TargetPath) { $arguments += @('--target-path', $TargetPath) }
         if ($SourceRevision) { $arguments += @('--source-revision', $SourceRevision) }
+        if ($PreflightRoot) { $arguments += @('--preflight-root', $PreflightRoot) }
     }
     'Readiness' {
         $arguments += @('readiness', '--output-root', $resultRoot)
@@ -42,6 +51,17 @@ switch ($Action) {
     'Aggregate' {
         $arguments += @('aggregate', '--output-root', $resultRoot)
         if ($RequireComplete) { $arguments += '--require-complete' }
+    }
+    'LockStatus' {
+        $arguments += @('lock-status')
+    }
+    'ClearStaleLock' {
+        $arguments += @('clear-stale-lock')
+    }
+    'QuarantineExisting' {
+        $arguments += @('quarantine-existing', '--output-root', $resultRoot)
+        if ($Model) { $arguments += @('--model', $Model) }
+        if ($Apply) { $arguments += '--apply' }
     }
 }
 

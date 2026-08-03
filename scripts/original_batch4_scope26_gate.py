@@ -12,9 +12,11 @@ import hashlib
 import json
 import math
 import os
-import shutil
+import re
+import socket
 import subprocess
 import sys
+import time
 import traceback
 from datetime import datetime, timezone
 from pathlib import Path
@@ -51,6 +53,13 @@ CURRENT_EXCLUSIONS = (
 RESULT_ROOT = PROJECT_ROOT / "custom_models/results/benchmark_v2_uniform_bs4"
 AUDIT_ROOT = PROJECT_ROOT / "custom_models/logs/uniform_bs4/audit"
 LOCK_PATH = PROJECT_ROOT / "custom_models/logs/uniform_bs4/original_scope26.lock"
+ARCHIVE_DIRECTORY = ".original_scope26_archived_attempts"
+QUARANTINE_DIRECTORY = ".original_scope26_quarantine"
+EXECUTION_RECEIPT_SCHEMA_VERSION = "original_scope26_execution_receipt_v2"
+LOCK_SCHEMA_VERSION = "original_scope26_lock_v1"
+_SELF_PROCESS_START_TIME = time.time()
+_SOURCE_TEXT_HASH_CACHE: dict[tuple[str, int, int], str] = {}
+_RESOLVED_REPO_FILE_CACHE: dict[tuple[str, str], Path] = {}
 HORIZONS = (3, 6, 10)
 REQUIRED_METRICS = ("MAE", "RMSE", "R2", "Score")
 EXCLUDED_IDS = {"segrnn", "msgnet"}
@@ -95,8 +104,148 @@ def _canonical_text_sha256(path: Path) -> str:
     return hashlib.sha256(text.replace("\r\n", "\n").replace("\r", "\n").encode("utf-8")).hexdigest()
 
 
+def _metrics_bundle_hash(run_dir: Path) -> str | None:
+    """Hash the complete required metrics bundle with stable path ordering."""
+
+    records: list[dict[str, str]] = []
+    for path in sorted(
+        [
+            *(run_dir / f"metrics_eval_h{horizon}.json" for horizon in HORIZONS),
+            run_dir / "metrics.csv",
+        ],
+        key=lambda value: value.name,
+    ):
+        if not path.is_file():
+            return None
+        records.append(
+            {
+                "path": path.name,
+                "sha256": _canonical_text_sha256(path)
+                if path.suffix.lower() == ".json"
+                else _sha256_file(path),
+            }
+        )
+    return _canonical_json_hash(records)
+
+
+def _recursive_file_manifest(root: Path) -> list[dict[str, str]]:
+    if not root.is_dir():
+        raise Scope26GateError(f"Archive source directory is missing: {root}")
+    records: list[dict[str, str]] = []
+    for path in sorted((item for item in root.rglob("*") if item.is_file()), key=lambda item: item.as_posix()):
+        if path.is_symlink():
+            raise Scope26GateError(f"Archive source contains an unsafe symlink: {path}")
+        records.append(
+            {
+                "path": path.relative_to(root).as_posix(),
+                "sha256": _sha256_file(path),
+            }
+        )
+    return records
+
+
+def _path_within(path: Path, root: Path) -> bool:
+    try:
+        path.resolve().relative_to(root.resolve())
+    except ValueError:
+        return False
+    return True
+
+
+def _process_start_time(pid: int) -> float | None:
+    if pid <= 0:
+        return None
+    try:
+        import psutil  # type: ignore
+
+        return float(psutil.Process(pid).create_time())
+    except ImportError:
+        pass
+    except (OSError, ValueError, RuntimeError):
+        pass
+    except Exception as exc:  # psutil.NoSuchProcess/AccessDenied are not OSError on Windows.
+        if type(exc).__name__ not in {"NoSuchProcess", "AccessDenied", "ZombieProcess"}:
+            raise
+        pass
+    if pid == os.getpid():
+        return _SELF_PROCESS_START_TIME
+    return None
+
+
+def _pid_alive(pid: int) -> bool:
+    if pid <= 0:
+        return False
+    if os.name == "nt":
+        try:
+            completed = subprocess.run(
+                ["tasklist", "/FI", f"PID eq {pid}", "/NH"],
+                check=False,
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+            )
+        except (OSError, subprocess.SubprocessError):
+            return False
+        return completed.returncode == 0 and re.search(rf"\b{pid}\b", completed.stdout) is not None
+    try:
+        os.kill(pid, 0)
+    except (OSError, ProcessLookupError):
+        return False
+    return True
+
+
+def _lock_status(path: Path = LOCK_PATH) -> dict[str, Any]:
+    if not path.is_file():
+        return {"status": "ABSENT", "path": str(path)}
+    payload, error = _read_json(path)
+    if error or not isinstance(payload, dict):
+        return {
+            "status": "MALFORMED",
+            "path": str(path),
+            "error": error or "LOCK_PAYLOAD_NOT_OBJECT",
+        }
+    required = {
+        "scope_id",
+        "hostname",
+        "pid",
+        "process_start_time",
+        "git_commit",
+        "manifest_hash",
+        "freeze_hash",
+        "created_at",
+    }
+    if not required.issubset(payload):
+        return {
+            "status": "MALFORMED",
+            "path": str(path),
+            "missing": sorted(required - set(payload)),
+            **payload,
+        }
+    try:
+        pid = int(payload["pid"])
+        recorded_start = float(payload["process_start_time"])
+    except (TypeError, ValueError):
+        return {"status": "MALFORMED", "path": str(path), **payload}
+    local_host = socket.gethostname()
+    if str(payload["hostname"]) != local_host:
+        status = "UNKNOWN_REMOTE"
+    else:
+        current_start = _process_start_time(pid)
+        if current_start is None or not _pid_alive(pid):
+            status = "STALE"
+        elif abs(current_start - recorded_start) <= 1e-3:
+            status = "ACTIVE"
+        else:
+            status = "STALE"
+    return {"status": status, "path": str(path), **payload}
+
+
 def _resolve_repo_file(relative_path: str, project_root: Path = PROJECT_ROOT) -> Path:
     root = project_root.resolve()
+    cache_key = (str(root), str(relative_path).replace("\\", "/"))
+    cached = _RESOLVED_REPO_FILE_CACHE.get(cache_key)
+    if cached is not None and cached.is_file():
+        return cached
     candidate = (root / Path(relative_path)).resolve()
     try:
         candidate.relative_to(root)
@@ -104,6 +253,7 @@ def _resolve_repo_file(relative_path: str, project_root: Path = PROJECT_ROOT) ->
         raise Scope26GateError(f"Source path escapes project root: {relative_path}") from exc
     if not candidate.is_file():
         raise Scope26GateError(f"Source closure file is missing: {relative_path}")
+    _RESOLVED_REPO_FILE_CACHE[cache_key] = candidate
     return candidate
 
 
@@ -119,7 +269,13 @@ def _source_identity_from_manifest(
     records = []
     for path in paths:
         resolved = _resolve_repo_file(str(path), project_root)
-        records.append({"path": str(path).replace("\\", "/"), "sha256": _canonical_text_sha256(resolved)})
+        stat = resolved.stat()
+        cache_key = (str(resolved), int(stat.st_mtime_ns), int(stat.st_size))
+        file_hash = _SOURCE_TEXT_HASH_CACHE.get(cache_key)
+        if file_hash is None:
+            file_hash = _canonical_text_sha256(resolved)
+            _SOURCE_TEXT_HASH_CACHE[cache_key] = file_hash
+        records.append({"path": str(path).replace("\\", "/"), "sha256": file_hash})
     records.sort(key=lambda row: row["path"])
     material = json.dumps(
         {"schema_version": source.get("source_identity_schema_version"), "files": records},
@@ -226,6 +382,18 @@ def validate_manifest(
             errors.append(f"EXCLUSION_STATUS_MISMATCH:{item.get('model_id')}")
         if item.get("reason") != "RESOURCE_REQUIREMENT_EXCEEDS_AVAILABLE_FORMAL_HARDWARE":
             errors.append(f"EXCLUSION_REASON_MISMATCH:{item.get('model_id')}")
+    allowlist = active.get("historical_noncanonical_results", [])
+    if not isinstance(allowlist, list):
+        errors.append("HISTORICAL_NONCANONICAL_ALLOWLIST_INVALID")
+    else:
+        for item in allowlist:
+            if not isinstance(item, Mapping):
+                errors.append("HISTORICAL_NONCANONICAL_ALLOWLIST_ENTRY_INVALID")
+                continue
+            if item.get("policy") != "READ_ONLY_NOT_ADOPTED_DO_NOT_BLOCK_CANONICAL_RERUN":
+                errors.append(f"HISTORICAL_NONCANONICAL_POLICY_INVALID:{item.get('run_id')}")
+            if item.get("model_id") not in {entry.get("model_id") for entry in entries}:
+                errors.append(f"HISTORICAL_NONCANONICAL_MODEL_NOT_ACTIVE:{item.get('model_id')}")
 
     registry_ids = {item.canonical_id for item in load_registry().list()}
     for entry in entries:
@@ -479,6 +647,10 @@ def inspect_run(
     manifest: Mapping[str, Any],
     entry: Mapping[str, Any],
     output_root: Path,
+    *,
+    current_freeze: Mapping[str, Any] | None = None,
+    current_revision: Mapping[str, str] | None = None,
+    current_run_map: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Inspect one exact canonical directory without modifying it."""
 
@@ -500,6 +672,30 @@ def inspect_run(
         "checkpoint_present": False,
         "checkpoint_nonempty": False,
     }
+    try:
+        selected_map = dict(current_run_map or _load_run_map())
+        revision = dict(
+            current_revision
+            or resolve_source_revision(project_root=PROJECT_ROOT, manifest=manifest)
+        )
+        freeze = dict(
+            current_freeze
+            or compute_original_freeze(
+                manifest,
+                project_root=PROJECT_ROOT,
+                run_map=selected_map,
+            )
+        )
+    except (OSError, ValueError, KeyError, OriginalScope26Error, Scope26GateError) as exc:
+        selected_map = {}
+        revision = {}
+        freeze = {}
+        result["reasons"].append(f"CURRENT_FREEZE_UNAVAILABLE:{type(exc).__name__}")
+    result["current_manifest_hash"] = _canonical_json_hash(manifest)
+    result["current_run_map_hash"] = _canonical_json_hash(selected_map)
+    result["current_freeze_hash"] = freeze.get("freeze_hash")
+    result["current_git_commit"] = revision.get("git_commit")
+    result["current_source_revision_type"] = revision.get("source_revision_type")
     if not run_dir.is_dir():
         result["reasons"] = ["RUN_DIRECTORY_MISSING"]
         return result
@@ -545,8 +741,8 @@ def inspect_run(
             "protocol_hash": protocol.get("protocol_hash") or effective.get("protocol_hash"),
             "training_profile_id": effective.get("training_batch_profile_id"),
             "training_profile_hash": effective.get("training_batch_profile_hash"),
-            "source_identity": (effective.get("provenance") or {}).get("base_model_source_closure_hash") or effective.get("source_closure_hash"),
-            "model_config_hash": (effective.get("provenance") or {}).get("base_model_config_hash") or effective.get("model_config_hash"),
+            "source_identity": effective.get("source_closure_hash") or (effective.get("provenance") or {}).get("base_model_source_closure_hash"),
+            "model_config_hash": effective.get("model_config_hash") or (effective.get("provenance") or {}).get("base_model_config_hash"),
             "data_signature": data_signature,
             "effective_config": effective,
             "resolved_config": resolved,
@@ -565,7 +761,7 @@ def inspect_run(
         result["reasons"].append(f"STATUS_NOT_COMPLETED:{status.get('status')}")
     if status.get("exit_code") != 0:
         result["reasons"].append(f"EXIT_CODE_NOT_ZERO:{status.get('exit_code')}")
-    if effective.get("run_id") not in (None, entry.get("run_id")):
+    if effective.get("run_id") != entry.get("run_id"):
         result["reasons"].append("RUN_ID_IDENTITY_MISMATCH")
     if not _path_value_matches(effective.get("output_root"), str(entry.get("output_root")), Path(output_root)):
         result["reasons"].append("OUTPUT_ROOT_IDENTITY_MISMATCH")
@@ -579,6 +775,12 @@ def inspect_run(
         result["reasons"].append("TRAINING_PROFILE_ID_MISMATCH")
     if effective.get("training_batch_profile_hash") != "f58bbc161dfba0f00774879fdf2f78ec7c59a7faff9ef28a1733a2ed6835fe66":
         result["reasons"].append("TRAINING_PROFILE_HASH_MISMATCH")
+    if effective.get("current_scope_manifest_hash") != result["current_manifest_hash"]:
+        result["reasons"].append("CURRENT_SCOPE_MANIFEST_HASH_MISMATCH")
+    if effective.get("source_revision") != revision:
+        result["reasons"].append("EFFECTIVE_CONFIG_SOURCE_REVISION_MISMATCH")
+    if effective.get("current_scope_entry_id") != entry.get("entry_id"):
+        result["reasons"].append("CURRENT_SCOPE_ENTRY_ID_MISMATCH")
     if result["protocol_hash"] != manifest.get("benchmark_protocol_hash"):
         result["reasons"].append("PROTOCOL_HASH_MISMATCH")
     if effective.get("seed") != 2026:
@@ -610,6 +812,16 @@ def inspect_run(
         result["reasons"].append("MODEL_CONFIG_IDENTITY_MISMATCH")
     if protocol.get("base_benchmark_protocol_hash") not in (None, manifest.get("benchmark_protocol_hash")):
         result["reasons"].append("PROTOCOL_BASE_HASH_MISMATCH")
+    if artifact.get("run_id") != entry.get("run_id"):
+        result["reasons"].append("ARTIFACT_RUN_ID_MISMATCH")
+    if not _path_value_matches(
+        artifact.get("output_root"), str(entry.get("output_root")), Path(output_root)
+    ):
+        result["reasons"].append("ARTIFACT_OUTPUT_ROOT_MISMATCH")
+    if prediction.get("run_id") != entry.get("run_id"):
+        result["reasons"].append("PREDICTION_RUN_ID_MISMATCH")
+    if prediction.get("model_id") != entry.get("model_id"):
+        result["reasons"].append("PREDICTION_MODEL_ID_MISMATCH")
 
     metrics, metric_reasons = _metric_payloads(run_dir)
     result["metrics"] = metrics
@@ -617,6 +829,9 @@ def inspect_run(
     result["metrics_finite"] = not any("NONFINITE" in reason or "INVALID" in reason for reason in metric_reasons)
     result["metrics_csv_consistent"] = not any("CSV" in reason or "JSON_CSV" in reason for reason in metric_reasons)
     result["reasons"].extend(metric_reasons)
+    result["metrics_bundle_hash"] = _metrics_bundle_hash(run_dir)
+    if result["metrics_bundle_hash"] is None:
+        result["reasons"].append("METRICS_BUNDLE_HASH_UNAVAILABLE")
 
     if expected_formal:
         for filename in ("best_checkpoint.pt", "last_checkpoint.pt", "train_log.csv"):
@@ -645,23 +860,216 @@ def inspect_run(
         result["reasons"].append("EXECUTION_RECEIPT_INVALID")
     else:
         result["execution_receipt_status"] = receipt.get("status")
-        if receipt.get("status") != "SUCCESS":
-            result["reasons"].append("EXECUTION_RECEIPT_NOT_SUCCESS")
-        if receipt.get("model_id") != entry.get("model_id") or receipt.get("run_id") != entry.get("run_id"):
-            result["reasons"].append("EXECUTION_RECEIPT_IDENTITY_MISMATCH")
-        if receipt.get("exit_code") != 0:
-            result["reasons"].append("EXECUTION_RECEIPT_EXIT_CODE_MISMATCH")
         result["git_commit"] = receipt.get("git_commit")
         result["source_revision_type"] = receipt.get("source_revision_type")
         result["source_closure_hash"] = receipt.get("source_closure_hash")
         result["manifest_hash"] = receipt.get("manifest_hash")
-        if not receipt.get("git_commit") or not receipt.get("source_revision_type"):
-            result["reasons"].append("EXECUTION_RECEIPT_SOURCE_REVISION_MISSING")
-        if receipt.get("source_closure_hash") != expected_source:
-            result["reasons"].append("EXECUTION_RECEIPT_SOURCE_CLOSURE_MISMATCH")
+        result["freeze_hash"] = receipt.get("freeze_hash")
+        result["run_map_hash"] = receipt.get("run_map_hash")
+        result["metrics_bundle_hash_receipt"] = receipt.get("metrics_bundle_hash")
+        if receipt.get("status") != "SUCCESS":
+            result["reasons"].append("EXECUTION_RECEIPT_NOT_SUCCESS")
+        expected_receipt = {
+            "schema_version": EXECUTION_RECEIPT_SCHEMA_VERSION,
+            "scope_id": CURRENT_SCOPE26_ID,
+            "entry_id": entry.get("entry_id"),
+            "model_id": entry.get("model_id"),
+            "run_id": entry.get("run_id"),
+            "output_root": entry.get("output_root"),
+            "entry_type": entry.get("entry_type"),
+            "git_commit": revision.get("git_commit"),
+            "source_revision_type": revision.get("source_revision_type"),
+            "manifest_hash": result["current_manifest_hash"],
+            "run_map_hash": result["current_run_map_hash"],
+            "freeze_hash": result["current_freeze_hash"],
+            "source_closure_hash": expected_source,
+            "model_config_hash": expected_config,
+            "precision_identity_hash": _canonical_json_hash(expected_precision),
+            "protocol_hash": manifest.get("benchmark_protocol_hash"),
+            "training_profile_id": "uniform_train_batch4_v1",
+            "training_profile_hash": "f58bbc161dfba0f00774879fdf2f78ec7c59a7faff9ef28a1733a2ed6835fe66",
+            "dataset_identity_hash": _canonical_json_hash(manifest.get("dataset_identity")),
+            "graph_identity_hash": _canonical_json_hash(manifest.get("graph_identity")),
+            "checkpoint_sha256": result["checkpoint_sha256"] if expected_formal else None,
+            "metrics_bundle_hash": result["metrics_bundle_hash"],
+            "exit_code": 0,
+        }
+        required_receipt_fields = {
+            "schema_version",
+            "status",
+            "scope_id",
+            "entry_id",
+            "model_id",
+            "run_id",
+            "output_root",
+            "entry_type",
+            "git_commit",
+            "source_revision_type",
+            "manifest_hash",
+            "run_map_hash",
+            "freeze_hash",
+            "source_closure_hash",
+            "model_config_hash",
+            "precision_identity_hash",
+            "protocol_hash",
+            "training_profile_id",
+            "training_profile_hash",
+            "dataset_identity_hash",
+            "graph_identity_hash",
+            "checkpoint_sha256",
+            "metrics_bundle_hash",
+            "command",
+            "started_at",
+            "finished_at",
+            "exit_code",
+        }
+        missing = sorted(field for field in required_receipt_fields if field not in receipt)
+        for field in missing:
+            result["reasons"].append(f"EXECUTION_RECEIPT_FIELD_MISSING:{field}")
+        for field, expected_value in expected_receipt.items():
+            if field in receipt and receipt.get(field) != expected_value:
+                result["reasons"].append(f"EXECUTION_RECEIPT_{field.upper()}_MISMATCH")
+        if not isinstance(receipt.get("command"), list) or not receipt.get("command"):
+            result["reasons"].append("EXECUTION_RECEIPT_COMMAND_INVALID")
+        for field in ("started_at", "finished_at"):
+            if not isinstance(receipt.get(field), str) or not receipt.get(field):
+                result["reasons"].append(f"EXECUTION_RECEIPT_{field.upper()}_MISSING")
 
     result["ready"] = not result["reasons"]
     return result
+
+
+def _historical_allowlist(manifest: Mapping[str, Any]) -> set[tuple[str, str]]:
+    rows = manifest.get("historical_noncanonical_results", [])
+    if not isinstance(rows, list):
+        return set()
+    return {
+        (str(row.get("model_id")), str(row.get("run_id")))
+        for row in rows
+        if isinstance(row, Mapping)
+        and row.get("model_id")
+        and row.get("run_id")
+        and row.get("policy") == "READ_ONLY_NOT_ADOPTED_DO_NOT_BLOCK_CANONICAL_RERUN"
+    }
+
+
+def _is_identity_reason(reason: str) -> bool:
+    if "METRICS" in reason:
+        return False
+    if reason.startswith("EXECUTION_RECEIPT_"):
+        return any(
+            token in reason
+            for token in (
+                "IDENTITY",
+                "SOURCE_",
+                "MANIFEST_",
+                "RUN_MAP_",
+                "FREEZE_",
+                "MODEL_CONFIG",
+                "PRECISION",
+                "PROTOCOL",
+                "PROFILE",
+                "DATASET",
+                "GRAPH",
+            )
+        )
+    return any(
+        token in reason
+        for token in (
+            "IDENTITY",
+            "SOURCE_CLOSURE",
+            "SOURCE_REVISION",
+            "MODEL_CONFIG",
+            "PRECISION",
+            "PROFILE",
+            "DATASET",
+            "CURRENT_SCOPE",
+            "ARTIFACT_RUN_ID",
+            "ARTIFACT_OUTPUT_ROOT",
+            "PREDICTION_RUN_ID",
+            "PREDICTION_MODEL_ID",
+            "PROTOCOL_HASH",
+            "RUN_ID_",
+            "OUTPUT_ROOT_IDENTITY",
+            "FREEZE",
+        )
+    )
+
+
+def _active_worker(run_dir: Path, inspected: Mapping[str, Any]) -> bool:
+    status, error = _read_json(run_dir / "run_status.json")
+    if error or not isinstance(status, Mapping):
+        return True
+    status_name = str(status.get("status", "")).upper()
+    if status_name in {"RUNNING", "STARTING", "ACTIVE"}:
+        return True
+    for key in ("pid", "process_id", "worker_pid", "formal_worker_pid"):
+        value = status.get(key)
+        if value is None:
+            continue
+        try:
+            if _pid_alive(int(value)):
+                return True
+        except (TypeError, ValueError):
+            return True
+    return False
+
+
+def _canonical_identity_evidence(
+    manifest: Mapping[str, Any], entry: Mapping[str, Any], run_dir: Path
+) -> bool:
+    effective, error = _read_json(run_dir / "effective_config.json")
+    if error or not isinstance(effective, Mapping):
+        return False
+    expected_source = (entry.get("source_identity") or {}).get("canonical_combined_hash")
+    expected_config = (entry.get("model_config_identity") or {}).get("config_hash")
+    provenance = effective.get("provenance") or {}
+    return (
+        effective.get("model_id") == entry.get("model_id")
+        and effective.get("run_id") == entry.get("run_id")
+        and _path_value_matches(
+            effective.get("output_root"),
+            str(entry.get("output_root")),
+            run_dir.parent,
+        )
+        and (
+            effective.get("active_scope_id") == CURRENT_SCOPE26_ID
+            or provenance.get("active_scope_id") == CURRENT_SCOPE26_ID
+        )
+        and (
+            effective.get("source_closure_hash") == expected_source
+            or provenance.get("base_model_source_closure_hash") == expected_source
+        )
+        and (
+            effective.get("model_config_hash") == expected_config
+            or provenance.get("base_model_config_hash") == expected_config
+        )
+        and effective.get("training_batch_profile_id") == "uniform_train_batch4_v1"
+    )
+
+
+def _identity_evidence_readable(entry: Mapping[str, Any], run_dir: Path) -> bool:
+    effective, error = _read_json(run_dir / "effective_config.json")
+    if error or not isinstance(effective, Mapping):
+        return False
+    provenance = effective.get("provenance") or {}
+    return bool(
+        effective.get("model_id") == entry.get("model_id")
+        and effective.get("run_id") == entry.get("run_id")
+        and effective.get("output_root")
+        and (
+            effective.get("active_scope_id") == CURRENT_SCOPE26_ID
+            or provenance.get("active_scope_id") == CURRENT_SCOPE26_ID
+        )
+        and (
+            effective.get("source_closure_hash")
+            or provenance.get("base_model_source_closure_hash")
+        )
+        and (
+            effective.get("model_config_hash")
+            or provenance.get("base_model_config_hash")
+        )
+    )
 
 
 def _find_model_directories(root: Path, model_id: str) -> list[Path]:
@@ -669,6 +1077,8 @@ def _find_model_directories(root: Path, model_id: str) -> list[Path]:
     if not root.is_dir():
         return found
     for path in root.rglob("effective_config.json"):
+        if any(part in {ARCHIVE_DIRECTORY, QUARANTINE_DIRECTORY} for part in path.parts):
+            continue
         payload, error = _read_json(path)
         if not error and isinstance(payload, dict) and payload.get("model_id") == model_id:
             found.append(path.parent)
@@ -679,31 +1089,239 @@ def _plan_action(
     manifest: Mapping[str, Any],
     entry: Mapping[str, Any],
     output_root: Path,
+    *,
+    current_freeze: Mapping[str, Any] | None = None,
+    current_revision: Mapping[str, str] | None = None,
+    current_run_map: Mapping[str, Any] | None = None,
 ) -> tuple[str, dict[str, Any]]:
-    inspected = inspect_run(manifest, entry, output_root)
+    inspected = inspect_run(
+        manifest,
+        entry,
+        output_root,
+        current_freeze=current_freeze,
+        current_revision=current_revision,
+        current_run_map=current_run_map,
+    )
     if inspected["ready"]:
         return "SKIP_COMPLETED_IDENTITY_MATCH", inspected
     if not inspected["found"]:
+        allowlist = _historical_allowlist(manifest)
         other = [
             path
             for path in _find_model_directories(output_root, str(entry["model_id"]))
             if path.name != entry["run_id"]
+            and (str(entry["model_id"]), path.name) not in allowlist
         ]
         if other:
             inspected["found_noncanonical"] = [str(path) for path in other]
             inspected["reasons"].append("RUN_ID_RENAMED_OR_NONCANONICAL")
             return "BLOCK_EXISTING_IDENTITY_MISMATCH", inspected
         return "RUN_MISSING", inspected
-    if any(
-        reason.endswith("MISMATCH")
-        or "IDENTITY" in reason
-        or "PRECISION" in reason
-        or "PROFILE" in reason
-        or "DATASET" in reason
-        for reason in inspected["reasons"]
-    ):
+    if any(_is_identity_reason(reason) for reason in inspected["reasons"]):
         return "BLOCK_EXISTING_IDENTITY_MISMATCH", inspected
-    return "ARCHIVE_INCOMPLETE_THEN_RUN", inspected
+    run_dir = Path(inspected["run_dir"])
+    if (
+        _canonical_identity_evidence(manifest, entry, run_dir)
+        and not _active_worker(run_dir, inspected)
+    ):
+        return "ARCHIVE_INCOMPLETE_THEN_RUN", inspected
+    inspected["reasons"].append("ARCHIVE_NOT_SAFE_OR_ACTIVE_WORKER")
+    return "BLOCK_EXISTING_IDENTITY_MISMATCH", inspected
+
+
+def _archive_target(
+    allowed_root: Path,
+    directory_name: str,
+    *,
+    kind: str,
+    create_parent: bool,
+) -> Path:
+    if kind not in {ARCHIVE_DIRECTORY, QUARANTINE_DIRECTORY}:
+        raise Scope26GateError(f"Unsupported archival directory: {kind}")
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
+    target_parent = (allowed_root / kind / directory_name).resolve()
+    target = (target_parent / f"{stamp}_{os.getpid()}").resolve()
+    if not _path_within(target_parent, allowed_root) or not _path_within(target, allowed_root):
+        raise Scope26GateError("Archive target escapes the allowed result root.")
+    if target.exists():
+        raise Scope26GateError(f"Archive target already exists: {target}")
+    if create_parent:
+        target_parent.mkdir(parents=True, exist_ok=True)
+    if target.exists():
+        raise Scope26GateError(f"Archive target already exists: {target}")
+    return target
+
+
+def _archive_or_quarantine(
+    manifest: Mapping[str, Any],
+    entry: Mapping[str, Any],
+    output_root: Path,
+    *,
+    allowed_root: Path,
+    kind: str,
+    reason: str,
+    apply: bool,
+    current_freeze: Mapping[str, Any] | None = None,
+    current_revision: Mapping[str, str] | None = None,
+    current_run_map: Mapping[str, Any] | None = None,
+) -> dict[str, Any]:
+    source = (Path(output_root) / str(entry["run_id"])).resolve()
+    allowed = Path(allowed_root).resolve()
+    if not _path_within(source, allowed) or source.name != str(entry["run_id"]):
+        raise Scope26GateError("Canonical source path is outside the allowed result root.")
+    if source.is_symlink() or not source.is_dir():
+        raise Scope26GateError(f"Canonical source directory is missing: {source}")
+    inspected = inspect_run(
+        manifest,
+        entry,
+        Path(output_root),
+        current_freeze=current_freeze,
+        current_revision=current_revision,
+        current_run_map=current_run_map,
+    )
+    if any(reason.startswith("CURRENT_FREEZE_UNAVAILABLE") for reason in inspected["reasons"]):
+        raise Scope26GateError("Cannot archive without readable current identity evidence.")
+    if kind == ARCHIVE_DIRECTORY:
+        if any(_is_identity_reason(reason) for reason in inspected["reasons"]):
+            raise Scope26GateError("Identity-mismatch canonical directory cannot be auto-archived.")
+        if not _canonical_identity_evidence(manifest, entry, source):
+            raise Scope26GateError("Canonical identity evidence is incomplete; archive refused.")
+        if _active_worker(source, inspected):
+            raise Scope26GateError("Active worker evidence blocks archive.")
+        classification = (
+            "CURRENT_SCOPE26_FAILED"
+            if inspected.get("status") == "FAILED" or inspected.get("exit_code") not in (None, 0)
+            else "CURRENT_SCOPE26_INCOMPLETE"
+        )
+    else:
+        if not any(_is_identity_reason(reason) for reason in inspected["reasons"]):
+            raise Scope26GateError("Quarantine requires a complete identity-mismatch audit.")
+        if _active_worker(source, inspected):
+            raise Scope26GateError("Active worker evidence blocks quarantine.")
+        if not _identity_evidence_readable(entry, source):
+            raise Scope26GateError("Quarantine identity evidence is incomplete.")
+        classification = "CURRENT_SCOPE26_IDENTITY_MISMATCH"
+    target = _archive_target(
+        allowed,
+        str(entry["run_id"]),
+        kind=kind,
+        create_parent=apply,
+    )
+    receipt_name = "archive_receipt.json" if kind == ARCHIVE_DIRECTORY else "quarantine_receipt.json"
+    manifest_records = _recursive_file_manifest(source)
+    revision = dict(
+        current_revision
+        or resolve_source_revision(project_root=PROJECT_ROOT, manifest=manifest)
+    )
+    freeze = dict(
+        current_freeze
+        or compute_original_freeze(
+            manifest,
+            project_root=PROJECT_ROOT,
+            run_map=current_run_map,
+        )
+    )
+    receipt = {
+        "schema_version": f"original_scope26_{'archive' if kind == ARCHIVE_DIRECTORY else 'quarantine'}_receipt_v1",
+        "scope_id": CURRENT_SCOPE26_ID,
+        "model_id": entry["model_id"],
+        "run_id": entry["run_id"],
+        "original_path": str(source),
+        "archive_path": str(target),
+        "archive_reason": reason,
+        "original_classification": classification,
+        "original_rejection_reasons": list(inspected.get("reasons", [])),
+        "recursive_file_manifest": manifest_records,
+        "current_git_identity": revision,
+        "current_manifest_hash": _canonical_json_hash(manifest),
+        "current_run_map_hash": _canonical_json_hash(current_run_map or _load_run_map()),
+        "current_freeze_hash": freeze.get("freeze_hash"),
+        "timestamp": _utc_now(),
+    }
+    if not apply:
+        return {
+            "status": "READY_TO_APPLY",
+            "action": "QUARANTINE_EXISTING" if kind == QUARANTINE_DIRECTORY else "ARCHIVE_INCOMPLETE_THEN_RUN",
+            "source": str(source),
+            "target": str(target),
+            "receipt": receipt,
+        }
+    receipt_path = source / receipt_name
+    if receipt_path.exists():
+        raise Scope26GateError(f"Refusing to overwrite existing receipt: {receipt_path}")
+    receipt_path.write_text(
+        json.dumps(receipt, ensure_ascii=False, indent=2, allow_nan=False) + "\n",
+        encoding="utf-8",
+    )
+    try:
+        os.replace(str(source), str(target))
+    except Exception:
+        # The source remains in place when the atomic move fails.  The receipt
+        # is deliberately retained as evidence of the attempted operation.
+        raise
+    if not (target / receipt_name).is_file():
+        raise Scope26GateError("Atomic move completed without its archival receipt.")
+    return {
+        "status": "ARCHIVED" if kind == ARCHIVE_DIRECTORY else "QUARANTINED",
+        "action": "ARCHIVE_INCOMPLETE_THEN_RUN" if kind == ARCHIVE_DIRECTORY else "QUARANTINE_EXISTING",
+        "source": str(source),
+        "target": str(target),
+        "receipt": str(target / receipt_name),
+    }
+
+
+def archive_existing_attempt(
+    manifest: Mapping[str, Any],
+    entry: Mapping[str, Any],
+    output_root: Path,
+    *,
+    allowed_root: Path | None = None,
+    reason: str = "identity-matched incomplete canonical attempt",
+    current_freeze: Mapping[str, Any] | None = None,
+    current_revision: Mapping[str, str] | None = None,
+    current_run_map: Mapping[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Atomically archive one audited current canonical attempt."""
+
+    return _archive_or_quarantine(
+        manifest,
+        entry,
+        output_root,
+        allowed_root=Path(allowed_root or output_root),
+        kind=ARCHIVE_DIRECTORY,
+        reason=reason,
+        apply=True,
+        current_freeze=current_freeze,
+        current_revision=current_revision,
+        current_run_map=current_run_map,
+    )
+
+
+def quarantine_existing(
+    manifest: Mapping[str, Any],
+    entry: Mapping[str, Any],
+    output_root: Path,
+    *,
+    allowed_root: Path | None = None,
+    apply: bool = False,
+    current_freeze: Mapping[str, Any] | None = None,
+    current_revision: Mapping[str, str] | None = None,
+    current_run_map: Mapping[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Move an audited identity-mismatch canonical directory only explicitly."""
+
+    return _archive_or_quarantine(
+        manifest,
+        entry,
+        output_root,
+        allowed_root=Path(allowed_root or output_root),
+        kind=QUARANTINE_DIRECTORY,
+        reason="explicit quarantine-existing --apply",
+        apply=apply,
+        current_freeze=current_freeze,
+        current_revision=current_revision,
+        current_run_map=current_run_map,
+    )
 
 
 def _entry_output_root(
@@ -726,6 +1344,9 @@ def build_plan(
     manifest: Mapping[str, Any] | None = None,
     *,
     output_root: Path | None = None,
+    current_freeze: Mapping[str, Any] | None = None,
+    current_revision: Mapping[str, str] | None = None,
+    current_run_map: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     active = dict(manifest or load_current_scope_manifest())
     validation = validate_manifest(active)
@@ -735,7 +1356,12 @@ def build_plan(
     rows = []
     for entry in active["entries"]:
         action, inspected = _plan_action(
-            active, entry, _entry_output_root(active, entry, root)
+            active,
+            entry,
+            _entry_output_root(active, entry, root),
+            current_freeze=current_freeze,
+            current_revision=current_revision,
+            current_run_map=current_run_map,
         )
         rows.append(
             {
@@ -787,6 +1413,11 @@ def build_preflight_plan(
                 if entry["entry_type"] == TRAINABLE_TYPE
                 else "EVALUATE_ONLY_CPU_PRECHECK"
             ),
+            "requires_exact_pass": entry["entry_type"] == TRAINABLE_TYPE,
+            "gpu_preflight_started": False,
+            "exact_shape": {"B": 4, "T": 144, "N": 134, "C": 16, "H": 10}
+            if entry["entry_type"] == TRAINABLE_TYPE
+            else None,
             "precision_identity": entry["precision_identity"],
             "training_profile_id": active["training_profile_id"],
             "training_profile_hash": active["training_profile_hash"],
@@ -1022,7 +1653,14 @@ def write_inventory(
         writer.writerows(rows)
 
 
-def _command_for_entry(entry: Mapping[str, Any], *, input_path: str | None, target_path: str | None) -> list[str]:
+def _command_for_entry(
+    entry: Mapping[str, Any],
+    *,
+    input_path: str | None,
+    target_path: str | None,
+    preflight_root: Path | None = None,
+    source_revision: str | None = None,
+) -> list[str]:
     command = "evaluate-only" if entry["entry_type"] == EVALUATE_ONLY_TYPE else "train"
     args = [
         sys.executable,
@@ -1046,6 +1684,10 @@ def _command_for_entry(entry: Mapping[str, Any], *, input_path: str | None, targ
         args.extend(["--input-path", input_path])
     if target_path:
         args.extend(["--target-path", target_path])
+    if preflight_root is not None and entry["entry_type"] == TRAINABLE_TYPE:
+        args.extend(["--preflight-root", str(Path(preflight_root))])
+    if source_revision is not None:
+        args.extend(["--source-revision", source_revision])
     return args
 
 
@@ -1059,18 +1701,24 @@ def _write_execution_receipt(
     finished_at: str,
     revision: Mapping[str, str],
     manifest_hash: str,
+    run_map_hash: str,
+    freeze: Mapping[str, Any],
+    manifest: Mapping[str, Any],
 ) -> None:
     path = run_dir / "execution_receipt.json"
     if path.exists():
         return
     checkpoint = run_dir / "best_checkpoint.pt"
+    expected_precision = _expected_precision(entry)
     payload = {
-        "schema_version": "original_scope26_execution_receipt_v1",
+        "schema_version": EXECUTION_RECEIPT_SCHEMA_VERSION,
         "status": "SUCCESS" if exit_code == 0 else "FAILED",
         "scope_id": CURRENT_SCOPE26_ID,
+        "entry_id": entry["entry_id"],
         "model_id": entry["model_id"],
         "run_id": entry["run_id"],
         "output_root": entry["output_root"],
+        "entry_type": entry["entry_type"],
         "command": [str(value) for value in command],
         "started_at": started_at,
         "finished_at": finished_at,
@@ -1078,27 +1726,129 @@ def _write_execution_receipt(
         "git_commit": revision["git_commit"],
         "source_revision_type": revision["source_revision_type"],
         "source_closure_hash": entry["source_identity"]["canonical_combined_hash"],
+        "model_config_hash": entry["model_config_identity"]["config_hash"],
+        "precision_identity_hash": _canonical_json_hash(expected_precision),
+        "protocol_hash": manifest["benchmark_protocol_hash"],
+        "training_profile_id": manifest["training_profile_id"],
+        "training_profile_hash": manifest["training_profile_hash"],
+        "dataset_identity_hash": _canonical_json_hash(manifest["dataset_identity"]),
+        "graph_identity_hash": _canonical_json_hash(manifest["graph_identity"]),
+        "run_map_hash": run_map_hash,
+        "freeze_hash": freeze["freeze_hash"],
         "manifest_hash": manifest_hash,
         "checkpoint_sha256": _sha256_file(checkpoint) if checkpoint.is_file() else None,
+        "metrics_bundle_hash": _metrics_bundle_hash(run_dir),
     }
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
 
 
-def _acquire_lock(path: Path = LOCK_PATH) -> None:
+def _acquire_lock(
+    path: Path = LOCK_PATH,
+    *,
+    manifest: Mapping[str, Any],
+    freeze: Mapping[str, Any],
+    revision: Mapping[str, str],
+) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "schema_version": LOCK_SCHEMA_VERSION,
+        "scope_id": CURRENT_SCOPE26_ID,
+        "hostname": socket.gethostname(),
+        "pid": os.getpid(),
+        "process_start_time": _process_start_time(os.getpid()),
+        "git_commit": revision["git_commit"],
+        "manifest_hash": _canonical_json_hash(manifest),
+        "freeze_hash": freeze["freeze_hash"],
+        "created_at": _utc_now(),
+    }
     try:
         handle = path.open("x", encoding="utf-8")
     except FileExistsError as exc:
-        raise Scope26GateError(f"CURRENT_SCOPE26_LOCK_EXISTS:{path}") from exc
-    handle.write(json.dumps({"scope_id": CURRENT_SCOPE26_ID, "pid": os.getpid(), "started_at": _utc_now()}))
+        status = _lock_status(path)
+        raise Scope26GateError(
+            f"CURRENT_SCOPE26_LOCK_EXISTS:{status.get('status', 'UNKNOWN')}:{path}"
+        ) from exc
+    handle.write(json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
     handle.close()
 
 
 def _release_lock(path: Path = LOCK_PATH) -> None:
     try:
+        payload, error = _read_json(path)
+        if error or not isinstance(payload, Mapping):
+            return
+        if int(payload.get("pid", -1)) != os.getpid():
+            return
+        recorded_start = payload.get("process_start_time")
+        current_start = _process_start_time(os.getpid())
+        if recorded_start is not None and current_start is not None and abs(float(recorded_start) - current_start) > 1e-3:
+            return
         path.unlink()
     except FileNotFoundError:
         pass
+    except (OSError, TypeError, ValueError):
+        pass
+
+
+def clear_stale_lock(path: Path = LOCK_PATH) -> dict[str, Any]:
+    status = _lock_status(path)
+    if status["status"] == "ABSENT":
+        return status
+    if status["status"] != "STALE":
+        raise Scope26GateError(
+            f"Only a confirmed STALE lock may be cleared: {status['status']}"
+        )
+    path.unlink()
+    return {"status": "CLEARED", "path": str(path)}
+
+
+def _failure_diagnostics(
+    log_path: Path,
+    *,
+    exit_code: int,
+    error_type: str | None = None,
+    error_message: str | None = None,
+    traceback_tail: list[str] | None = None,
+) -> dict[str, Any]:
+    lines: list[str] = []
+    if log_path.is_file():
+        try:
+            lines = log_path.read_text(encoding="utf-8", errors="replace").splitlines()
+        except OSError:
+            lines = []
+    tail = lines[-80:]
+    if traceback_tail:
+        tail = [*tail, *traceback_tail][-80:]
+    joined = "\n".join(tail)
+    exception_type = error_type
+    exception_message = error_message
+    exception_pattern = re.compile(
+        r"(?P<type>[A-Za-z_][\w.]*(?:Error|Exception|ContractError))(?::\s*(?P<message>.*))?"
+    )
+    for line in reversed(tail):
+        match = exception_pattern.search(line)
+        if match:
+            exception_type = exception_type or match.group("type").split(".")[-1]
+            message = (match.group("message") or "").strip()
+            exception_message = exception_message or message or None
+            break
+    oom = bool(re.search(r"cuda.*out of memory|out of memory|outofmemory", joined, re.I))
+    nonfinite = bool(re.search(r"nan\s*/\s*inf|nan|inf|nonfinite", joined, re.I))
+    preflight_failure = bool(re.search(r"preflight|PREFLIGHT_MISSING_OR_MISMATCH", joined, re.I))
+    identity_failure = bool(re.search(r"identity|source/config|mismatch", joined, re.I))
+    if exception_type is None:
+        exception_type = "ChildProcessError"
+    if exception_message is None:
+        exception_message = f"child exit code {exit_code}"
+    return {
+        "error_type": exception_type,
+        "error_message": exception_message,
+        "traceback_tail": tail,
+        "oom": oom,
+        "nonfinite": nonfinite,
+        "preflight_failure": preflight_failure,
+        "identity_failure": identity_failure,
+    }
 
 
 def run_suite(
@@ -1108,6 +1858,7 @@ def run_suite(
     target_path: str | None = None,
     log_root: Path | None = None,
     source_revision: str | None = None,
+    preflight_root: Path | None = None,
 ) -> tuple[int, dict[str, Any]]:
     """Run a precomputed plan, preserving failures and continuing afterward."""
 
@@ -1115,11 +1866,31 @@ def run_suite(
     validation = validate_manifest(active)
     if validation["errors"]:
         return 74, {"status": "BLOCKED_GLOBAL_IDENTITY", "errors": validation["errors"]}
-    plan = build_plan(active)
     revision = resolve_source_revision(
-        explicit_source_revision=source_revision, manifest=active
+        project_root=PROJECT_ROOT,
+        explicit_source_revision=source_revision,
+        manifest=active,
     )
-    _acquire_lock()
+    run_map = _load_run_map()
+    freeze = compute_original_freeze(
+        active,
+        project_root=PROJECT_ROOT,
+        run_map=run_map,
+        source_revision=source_revision,
+    )
+    overall_root = (PROJECT_ROOT / active["output_root"]).resolve()
+    plan = build_plan(
+        active,
+        output_root=overall_root,
+        current_freeze=freeze,
+        current_revision=revision,
+        current_run_map=run_map,
+    )
+    _acquire_lock(
+        manifest=active,
+        freeze=freeze,
+        revision=revision,
+    )
     logs = Path(log_root or PROJECT_ROOT / "custom_models/logs/uniform_bs4/formal/original_scope26")
     logs.mkdir(parents=True, exist_ok=True)
     failures: list[dict[str, Any]] = []
@@ -1131,11 +1902,110 @@ def run_suite(
             if action == "SKIP_COMPLETED_IDENTITY_MATCH":
                 results.append({"model_id": row["model_id"], "action": action, "exit_code": 0, "readiness": "READY"})
                 continue
+            entry_root = _entry_output_root(active, entry, overall_root)
+            if action == "ARCHIVE_INCOMPLETE_THEN_RUN":
+                try:
+                    archive_result = archive_existing_attempt(
+                        active,
+                        entry,
+                        entry_root,
+                        allowed_root=overall_root,
+                        reason="identity-matched incomplete or FAILED canonical attempt",
+                        current_freeze=freeze,
+                        current_revision=revision,
+                        current_run_map=run_map,
+                    )
+                    row["archive"] = archive_result
+                    action = "RUN_MISSING"
+                except Exception as exc:
+                    diagnostics = _failure_diagnostics(
+                        Path(),
+                        exit_code=74,
+                        error_type=type(exc).__name__,
+                        error_message=str(exc),
+                    )
+                    evidence = {
+                        "failed_model": entry["model_id"],
+                        "model_id": entry["model_id"],
+                        "run_id": entry["run_id"],
+                        "action": "ARCHIVE_INCOMPLETE_THEN_RUN",
+                        "command": [],
+                        "exit_code": 74,
+                        "per_model_log": None,
+                        "run_directory": str(entry_root / entry["run_id"]),
+                        "failure_artifact": None,
+                        "readiness": "BLOCKED",
+                        **diagnostics,
+                    }
+                    failure_path = logs / f"{entry['ordinal']:02d}_{entry['model_id']}.archive.failure.json"
+                    evidence["failure_artifact"] = str(failure_path)
+                    failure_path.write_text(
+                        json.dumps(evidence, ensure_ascii=False, indent=2, allow_nan=False) + "\n",
+                        encoding="utf-8",
+                    )
+                    results.append(evidence)
+                    failures.append(evidence)
+                    continue
             if action != "RUN_MISSING":
                 results.append({"model_id": row["model_id"], "action": action, "exit_code": 74, "readiness": "BLOCKED", "reasons": row["reasons"]})
                 failures.append(results[-1])
                 continue
-            command = _command_for_entry(entry, input_path=input_path, target_path=target_path)
+            command = _command_for_entry(
+                entry,
+                input_path=input_path,
+                target_path=target_path,
+                preflight_root=preflight_root,
+                source_revision=revision["git_commit"],
+            )
+            if entry["entry_type"] == TRAINABLE_TYPE:
+                from benchmark_v2.hardware_preflight import read_matching_pass
+
+                if (
+                    read_matching_pass(
+                        entry["model_id"],
+                        root=preflight_root,
+                        training_profile=active["training_profile_id"],
+                        formal_scope_id=CURRENT_SCOPE26_ID,
+                        source_revision=source_revision,
+                        manifest=active,
+                        run_map=run_map,
+                        freeze=freeze,
+                    )
+                    is None
+                ):
+                    log_path = logs / f"{entry['ordinal']:02d}_{entry['model_id']}.log"
+                    log_path.write_text(
+                        "PREFLIGHT_MISSING_OR_MISMATCH: exact current scope26 PASS is required.\n",
+                        encoding="utf-8",
+                    )
+                    diagnostics = _failure_diagnostics(
+                        log_path,
+                        exit_code=74,
+                        error_type="PREFLIGHT_MISSING_OR_MISMATCH",
+                        error_message="No exact current scope26 preflight PASS; formal run was not started.",
+                    )
+                    evidence = {
+                        "failed_model": entry["model_id"],
+                        "model_id": entry["model_id"],
+                        "run_id": entry["run_id"],
+                        "action": "PREFLIGHT_MISSING_OR_MISMATCH",
+                        "command": command,
+                        "exit_code": 74,
+                        "per_model_log": str(log_path),
+                        "run_directory": str(entry_root / entry["run_id"]),
+                        "failure_artifact": None,
+                        "readiness": "BLOCKED",
+                        **diagnostics,
+                    }
+                    failure_path = logs / f"{entry['ordinal']:02d}_{entry['model_id']}.failure.json"
+                    evidence["failure_artifact"] = str(failure_path)
+                    failure_path.write_text(
+                        json.dumps(evidence, ensure_ascii=False, indent=2, allow_nan=False) + "\n",
+                        encoding="utf-8",
+                    )
+                    results.append(evidence)
+                    failures.append(evidence)
+                    continue
             log_path = logs / f"{entry['ordinal']:02d}_{entry['model_id']}.log"
             started_at = _utc_now()
             exit_code = 1
@@ -1158,8 +2028,8 @@ def run_suite(
                 error_message = str(exc)
                 traceback_tail = traceback.format_exc().splitlines()[-20:]
             finished_at = _utc_now()
-            run_dir = PROJECT_ROOT / entry["output_root"] / entry["run_id"]
-            if exit_code == 0 and run_dir.is_dir():
+            run_dir = entry_root / entry["run_id"]
+            if run_dir.is_dir():
                 _write_execution_receipt(
                     run_dir,
                     entry,
@@ -1169,21 +2039,30 @@ def run_suite(
                     finished_at=finished_at,
                     revision=revision,
                     manifest_hash=validation["manifest_hash"],
+                    run_map_hash=validation["run_map_hash"],
+                    freeze=freeze,
+                    manifest=active,
                 )
+            diagnostics = _failure_diagnostics(
+                log_path,
+                exit_code=exit_code,
+                error_type=error_type,
+                error_message=error_message,
+                traceback_tail=traceback_tail,
+            )
             evidence = {
+                "failed_model": entry["model_id"] if exit_code != 0 else None,
                 "model_id": entry["model_id"],
                 "run_id": entry["run_id"],
                 "action": action,
+                "command": command,
                 "start": started_at,
                 "end": finished_at,
                 "exit_code": exit_code,
                 "per_model_log": str(log_path),
                 "run_directory": str(run_dir),
                 "failure_artifact": None,
-                "traceback_tail": traceback_tail,
-                "error_type": error_type,
-                "error_message": error_message,
-                "oom": bool(error_message and "out of memory" in error_message.casefold()),
+                **diagnostics,
                 "readiness": "READY" if exit_code == 0 else "FAILED",
             }
             if exit_code != 0:
@@ -1197,7 +2076,13 @@ def run_suite(
                     file=sys.stderr,
                 )
             results.append(evidence)
-        readiness = build_readiness(active)
+        readiness = build_readiness(
+            active,
+            output_root=overall_root,
+            current_freeze=freeze,
+            current_revision=revision,
+            current_run_map=run_map,
+        )
         if failures:
             final_status = "COMPLETED_WITH_FAILURES"
             code = 1
@@ -1227,16 +2112,37 @@ def build_readiness(
     manifest: Mapping[str, Any] | None = None,
     *,
     output_root: Path | None = None,
+    current_freeze: Mapping[str, Any] | None = None,
+    current_revision: Mapping[str, str] | None = None,
+    current_run_map: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     active = dict(manifest or load_current_scope_manifest())
     validation = validate_manifest(active)
     if validation["errors"]:
         raise Scope26GateError(";".join(validation["errors"]))
     root = Path(output_root or PROJECT_ROOT / active["output_root"]).resolve()
+    selected_map = dict(current_run_map or _load_run_map())
+    revision = dict(
+        current_revision
+        or resolve_source_revision(project_root=PROJECT_ROOT, manifest=active)
+    )
+    freeze = dict(
+        current_freeze
+        or compute_original_freeze(
+            active,
+            project_root=PROJECT_ROOT,
+            run_map=selected_map,
+        )
+    )
     entries = []
     for entry in active["entries"]:
         action, inspected = _plan_action(
-            active, entry, _entry_output_root(active, entry, root)
+            active,
+            entry,
+            _entry_output_root(active, entry, root),
+            current_freeze=freeze,
+            current_revision=revision,
+            current_run_map=selected_map,
         )
         entries.append(
             {
@@ -1249,18 +2155,28 @@ def build_readiness(
                 "run_dir": inspected.get("run_dir"),
                 "checkpoint_sha256": inspected.get("checkpoint_sha256"),
                 "execution_receipt_status": inspected.get("execution_receipt_status"),
+                "status": inspected.get("status"),
+                "exit_code": inspected.get("exit_code"),
                 "metrics_complete": inspected.get("metrics_complete"),
                 "metrics_finite": inspected.get("metrics_finite"),
             }
         )
     ready = sum(row["ready"] for row in entries)
     blocked = any(row["action"] == "BLOCK_EXISTING_IDENTITY_MISMATCH" for row in entries)
+    failed = any(
+        row.get("status") == "FAILED"
+        or row.get("exit_code") not in (None, 0)
+        or row.get("action") == "ARCHIVE_INCOMPLETE_THEN_RUN"
+        for row in entries
+    )
     if ready == 26:
         status = "COMPLETED_READY_26_OF_26"
     elif blocked:
-        status = "BLOCKED_GLOBAL_IDENTITY"
+        status = "BLOCKED_EXISTING_ARTIFACTS"
+    elif failed:
+        status = "COMPLETED_WITH_FAILURES"
     else:
-        status = "NOT_READY"
+        status = "NOT_READY_MISSING_RESULTS"
     return {
         "schema_version": "original_scope26_readiness_v1",
         "scope_id": CURRENT_SCOPE26_ID,
@@ -1270,6 +2186,10 @@ def build_readiness(
         "excluded_historical": 2,
         "output_root": str(root),
         "generated_at": _utc_now(),
+        "current_manifest_hash": validation["manifest_hash"],
+        "current_run_map_hash": validation["run_map_hash"],
+        "current_freeze_hash": freeze["freeze_hash"],
+        "current_git_identity": revision,
         "entries": entries,
     }
 
@@ -1319,13 +2239,96 @@ def aggregate(
     return 0, {"status": "PASS", "scope_id": CURRENT_SCOPE26_ID, "row_count": len(rows), "path": str(path)}
 
 
+def run_preflight_suite(
+    manifest: Mapping[str, Any] | None = None,
+    *,
+    preflight_root: Path | None = None,
+    source_revision: str | None = None,
+) -> tuple[int, dict[str, Any]]:
+    """Run one isolated exact preflight child per current trainable model."""
+
+    active = dict(manifest or load_current_scope_manifest())
+    validation = validate_manifest(active)
+    if validation["errors"]:
+        return 74, {"status": "BLOCKED_GLOBAL_IDENTITY", "errors": validation["errors"]}
+    selected_map = _load_run_map()
+    revision = resolve_source_revision(
+        project_root=PROJECT_ROOT,
+        explicit_source_revision=source_revision,
+        manifest=active,
+    )
+    freeze = compute_original_freeze(
+        active,
+        project_root=PROJECT_ROOT,
+        run_map=selected_map,
+        source_revision=source_revision,
+    )
+    from benchmark_v2.hardware_preflight import launch_preflight
+
+    results: list[dict[str, Any]] = []
+    for entry in active["entries"]:
+        if entry["entry_type"] != TRAINABLE_TYPE:
+            continue
+        try:
+            code = launch_preflight(
+                entry["model_id"],
+                root=preflight_root,
+                training_profile=active["training_profile_id"],
+                formal_scope_id=CURRENT_SCOPE26_ID,
+                source_revision=source_revision,
+            )
+            result = {
+                "model_id": entry["model_id"],
+                "status": "PASS" if code == 0 else "FAILED",
+                "exit_code": int(code),
+                "scope_id": CURRENT_SCOPE26_ID,
+                "freeze_hash": freeze["freeze_hash"],
+                "manifest_hash": validation["manifest_hash"],
+                "git_commit": revision["git_commit"],
+            }
+        except Exception as exc:
+            result = {
+                "model_id": entry["model_id"],
+                "status": "FAILED",
+                "exit_code": 74,
+                "error_type": type(exc).__name__,
+                "error_message": str(exc),
+                "scope_id": CURRENT_SCOPE26_ID,
+                "freeze_hash": freeze["freeze_hash"],
+                "manifest_hash": validation["manifest_hash"],
+                "git_commit": revision["git_commit"],
+            }
+        results.append(result)
+    code = 0 if all(item["exit_code"] == 0 for item in results) else 1
+    return code, {
+        "schema_version": "original_scope26_preflight_run_v1",
+        "status": "PASS" if code == 0 else "COMPLETED_WITH_FAILURES",
+        "scope_id": CURRENT_SCOPE26_ID,
+        "gpu_preflight_performed": True,
+        "counts": {
+            "trainable": len(results),
+            "expected_trainable": 24,
+            "evaluate_only_skipped": 2,
+            "excluded_skipped": 2,
+        },
+        "freeze_hash": freeze["freeze_hash"],
+        "results": results,
+    }
+
+
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="original_batch4_scope26_gate")
     parser.add_argument("--manifest", default=str(CURRENT_MANIFEST))
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("validate-manifest")
     sub.add_parser("preflight-plan")
+    preflight = sub.add_parser("preflight")
+    preflight.add_argument("--preflight-root")
+    preflight.add_argument("--source-revision")
     sub.add_parser("freeze")
+    sub.add_parser("lock-status")
+    clear_lock = sub.add_parser("clear-stale-lock")
+    clear_lock.add_argument("--lock-path", default=str(LOCK_PATH))
     dry = sub.add_parser("dry-run")
     dry.add_argument("--output-root", default=str(RESULT_ROOT))
     inv = sub.add_parser("inventory")
@@ -1336,6 +2339,10 @@ def _parser() -> argparse.ArgumentParser:
     ready.add_argument("--output-root", default=str(RESULT_ROOT))
     ready.add_argument("--report-path", default=str(AUDIT_ROOT / "original_scope26_readiness.json"))
     ready.add_argument("--evidence-path", default=str(AUDIT_ROOT / "original_scope26_evidence_manifest.json"))
+    quarantine = sub.add_parser("quarantine-existing")
+    quarantine.add_argument("--model")
+    quarantine.add_argument("--output-root", default=str(RESULT_ROOT))
+    quarantine.add_argument("--apply", action="store_true")
     aggregate_parser = sub.add_parser("aggregate")
     aggregate_parser.add_argument("--output-root", default=str(RESULT_ROOT))
     aggregate_parser.add_argument("--require-complete", action="store_true")
@@ -1344,6 +2351,7 @@ def _parser() -> argparse.ArgumentParser:
     run.add_argument("--target-path")
     run.add_argument("--source-revision")
     run.add_argument("--log-root", default=str(PROJECT_ROOT / "custom_models/logs/uniform_bs4/formal/original_scope26"))
+    run.add_argument("--preflight-root")
     return parser
 
 
@@ -1355,6 +2363,20 @@ def main(argv: Sequence[str] | None = None) -> int:
         if args.command == "validate-manifest":
             print(json.dumps(validation, ensure_ascii=False, indent=2))
             return 0 if not validation["errors"] else 74
+        if args.command == "lock-status":
+            status = _lock_status()
+            print(json.dumps(status, ensure_ascii=False, indent=2))
+            return {
+                "ABSENT": 0,
+                "STALE": 74,
+                "ACTIVE": 73,
+                "UNKNOWN_REMOTE": 73,
+                "MALFORMED": 73,
+            }.get(status["status"], 73)
+        if args.command == "clear-stale-lock":
+            result = clear_stale_lock(Path(args.lock_path).resolve())
+            print(json.dumps(result, ensure_ascii=False, indent=2))
+            return 0
         if validation["errors"]:
             print(json.dumps({"status": "BLOCKED_GLOBAL_IDENTITY", "errors": validation["errors"]}, ensure_ascii=False, indent=2), file=sys.stderr)
             return 74
@@ -1364,6 +2386,14 @@ def main(argv: Sequence[str] | None = None) -> int:
         if args.command == "preflight-plan":
             print(json.dumps(build_preflight_plan(manifest), ensure_ascii=False, indent=2))
             return 0
+        if args.command == "preflight":
+            code, report = run_preflight_suite(
+                manifest,
+                preflight_root=Path(args.preflight_root) if args.preflight_root else None,
+                source_revision=args.source_revision,
+            )
+            print(json.dumps(report, ensure_ascii=False, indent=2))
+            return code
         if args.command == "dry-run":
             plan = build_plan(manifest, output_root=Path(args.output_root))
             print(json.dumps(plan, ensure_ascii=False, indent=2))
@@ -1378,12 +2408,46 @@ def main(argv: Sequence[str] | None = None) -> int:
             write_readiness(report, Path(args.report_path), Path(args.evidence_path))
             print(json.dumps(report, ensure_ascii=False, indent=2))
             return 0 if report["status"] == "COMPLETED_READY_26_OF_26" else 4
+        if args.command == "quarantine-existing":
+            root = Path(args.output_root).resolve()
+            selected = [
+                entry
+                for entry in manifest["entries"]
+                if args.model is None or entry["model_id"] == args.model
+            ]
+            if not selected:
+                raise Scope26GateError(f"Unknown current scope26 model: {args.model}")
+            results = []
+            for entry in selected:
+                entry_root = _entry_output_root(manifest, entry, root)
+                action, inspected = _plan_action(manifest, entry, entry_root)
+                if action != "BLOCK_EXISTING_IDENTITY_MISMATCH":
+                    results.append(
+                        {
+                            "model_id": entry["model_id"],
+                            "status": "NOT_SELECTED",
+                            "action": action,
+                            "reasons": inspected.get("reasons", []),
+                        }
+                    )
+                    continue
+                results.append(
+                    quarantine_existing(
+                        manifest,
+                        entry,
+                        entry_root,
+                        allowed_root=root,
+                        apply=args.apply,
+                    )
+                )
+            print(json.dumps({"apply": args.apply, "results": results}, ensure_ascii=False, indent=2))
+            return 0
         if args.command == "aggregate":
             code, report = aggregate(manifest, output_root=Path(args.output_root), require_complete=args.require_complete)
             print(json.dumps(report, ensure_ascii=False, indent=2))
             return code
         if args.command == "run":
-            code, report = run_suite(manifest, input_path=args.input_path, target_path=args.target_path, log_root=Path(args.log_root), source_revision=args.source_revision)
+            code, report = run_suite(manifest, input_path=args.input_path, target_path=args.target_path, log_root=Path(args.log_root), source_revision=args.source_revision, preflight_root=Path(args.preflight_root) if args.preflight_root else None)
             print(json.dumps(report, ensure_ascii=False, indent=2))
             return code
     except (OSError, ValueError, KeyError, OriginalScope26Error, Scope26GateError) as exc:
