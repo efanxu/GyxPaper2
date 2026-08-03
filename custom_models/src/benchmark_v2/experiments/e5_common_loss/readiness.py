@@ -21,7 +21,13 @@ def build_readiness(
     output_root: str | Path | None = None,
     report_path: str | Path | None = None,
     training_profile: str | None = None,
+    legacy_scope29: bool = False,
 ) -> dict[str, Any]:
+    if not legacy_scope29:
+        raise RuntimeError(
+            "SUPERSEDED_E5_SCOPE29_COMMAND: current active scope is "
+            "e5_batch4_scope27_seed2026; use the scope27 gate or active CLI."
+        )
     manifest = build_variant_manifest(training_profile=training_profile)
     root = Path(output_root or (PROJECT_ROOT / FORMAL_OUTPUT_ROOT_RELATIVE))
     a8 = validate_a8_reference(training_profile=training_profile)

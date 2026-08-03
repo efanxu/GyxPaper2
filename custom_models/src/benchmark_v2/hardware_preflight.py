@@ -50,7 +50,10 @@ from .experiments.e5_common_loss.loss_profile import (
     get_profile_metadata,
     loss_for_profile,
 )
-from .experiments.e5_common_loss.runner import normalize_profile
+from .experiments.e5_common_loss.runner import (
+    apply_experiment_profile,
+    normalize_profile,
+)
 from .experiments.e5_common_loss.scope27_contract import (
     E5_SCOPE27_ID,
     is_scope27_train_request,
@@ -58,6 +61,8 @@ from .experiments.e5_common_loss.scope27_contract import (
 )
 from .losses import get_loss
 from .model_runtime import build_model_runtime
+from .model_source_identity import canonical_model_source_identity
+from .precision import apply_model_precision_policy, expected_model_precision_identity
 from .protocol import load_protocol
 from .registry import load_registry
 from .graph import load_graph_bundle
@@ -224,16 +229,18 @@ def preflight_identity(
             f"{entry.display_name} has no trainable hardware preflight configuration."
         )
     config = _RESOLVERS[entry.canonical_id](protocol, run_mode="formal")
-    source_hash = entry.values.get("source_sha256")
-    if not source_hash:
-        source_path = PROJECT_ROOT / str(entry.source_path)
-        source_hash = hashlib.sha256(source_path.read_bytes()).hexdigest()
+    source_identity = canonical_model_source_identity(entry.canonical_id)
+    source_hash = source_identity["canonical_combined_hash"]
     identity = {
         **machine_identity(),
         "model_id": entry.canonical_id,
         "model_config_hash": stable_hash(config),
         "protocol_hash": protocol.protocol_hash,
         "source_hash": source_hash,
+        "source_identity_schema_version": source_identity[
+            "source_identity_schema_version"
+        ],
+        "source_closure_files": source_identity["source_closure_files"],
         **preflight_shape(training_profile),
         "amp": bool(protocol["amp_enabled"]),
     }
@@ -256,9 +263,7 @@ def preflight_identity(
         identity.update(
             {
                 "base_model_config_hash": identity["model_config_hash"],
-                "model_source_closure_hash": identity.get(
-                    "source_closure_hash", identity["source_hash"]
-                ),
+                "model_source_closure_hash": source_hash,
                 "benchmark_protocol_hash": protocol.protocol_hash,
                 "experiment_profile_id": profile["profile_id"],
                 "e5_common_loss_protocol_hash": profile[
@@ -274,9 +279,7 @@ def preflight_identity(
         identity.update(
             {
                 "base_benchmark_protocol_hash": protocol.protocol_hash,
-                "model_source_closure_hash": identity.get(
-                    "source_closure_hash", identity["source_hash"]
-                ),
+                "model_source_closure_hash": source_hash,
                 "graph_protocol_hash": (
                     "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef"
                 ),
@@ -292,6 +295,11 @@ def preflight_identity(
                 **batch_identity(training_profile),
             }
         )
+    identity.update(
+        expected_model_precision_identity(
+            entry.canonical_id, training_profile
+        )
+    )
     return identity
 
 
@@ -438,7 +446,9 @@ def run_preflight_worker(
             model_id, training_profile=training_profile
         )
         runtime = build_model_runtime(model_id, protocol, run_mode="formal")
+        apply_experiment_profile(runtime, selected_profile)
         apply_training_profile(runtime, training_profile)
+        apply_model_precision_policy(runtime)
         runtime.model.to(device)
         result["failure_stage"] = "forward"
         moved = BenchmarkBatch(
@@ -454,7 +464,11 @@ def run_preflight_worker(
         with torch.autocast(
             device_type="cuda",
             dtype=torch.float16,
-            enabled=bool(protocol["amp_enabled"]),
+            enabled=bool(
+                runtime.effective_config.get(
+                    "amp_enabled", protocol["amp_enabled"]
+                )
+            ),
         ):
             output = runtime.adapter(
                 runtime.model,

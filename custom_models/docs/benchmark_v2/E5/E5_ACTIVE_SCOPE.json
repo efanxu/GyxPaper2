@@ -2,6 +2,8 @@
   "schema_version": "e5_active_scope_pointer_v1",
   "status": "ACTIVE",
   "scope_id": "e5_batch4_scope27_seed2026",
+  "active_manifest_schema_version": "e5_scope27_variant_manifest_v2",
+  "source_identity_schema_version": "model_source_identity_v1",
   "manifest": "custom_models/docs/benchmark_v2/E5/E5_SCOPE27_VARIANT_MANIFEST.json",
   "run_id_map": "custom_models/docs/benchmark_v2/E5/E5_SCOPE27_RUN_ID_MAP.json",
   "readiness_policy": "custom_models/docs/benchmark_v2/E5/E5_SCOPE27_READINESS_POLICY.json",

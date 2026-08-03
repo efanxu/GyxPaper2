@@ -267,7 +267,9 @@ class UniformBatch4ProfileTests(unittest.TestCase):
                 return_value={"status": "VALID"},
             ):
                 report = build_readiness(
-                    output_root=td, training_profile=PROFILE_ID
+                    output_root=td,
+                    training_profile=PROFILE_ID,
+                    legacy_scope29=True,
                 )
             self.assertFalse(report["entries"][0]["batch_profile_match"])
             self.assertIn(
@@ -284,6 +286,7 @@ class UniformBatch4ProfileTests(unittest.TestCase):
                     output_root=".",
                     require_complete=True,
                     training_profile=PROFILE_ID,
+                    legacy_scope29=True,
                 )
 
     def test_batch4_a8_rejects_old_and_accepts_matching_new_reference(self):

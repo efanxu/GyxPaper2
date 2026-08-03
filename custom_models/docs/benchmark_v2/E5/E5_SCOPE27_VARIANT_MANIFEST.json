@@ -1,5 +1,5 @@
 {
-  "schema_version": "e5_scope27_variant_manifest_v1",
+  "schema_version": "e5_scope27_variant_manifest_v2",
   "scope_id": "e5_batch4_scope27_seed2026",
   "benchmark_scope_id": "benchmark_v2_batch4_scope26_seed2026",
   "status": "ACTIVE",
@@ -43,38 +43,1646 @@
     "retrain": false
   },
   "entries": [
-    {"ordinal": 1, "entry_id": "e5_gru", "model_id": "gru", "display_name": "GRU", "entry_type": "TRAIN_COMMON_LOSS", "command": "train", "e5_run_id": "GRU_node_shared_h64_l1_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "989cf39f2a8d5313b7880b11d3966b548cce5a2c94b50a45976e7f7f70deb57b", "base_model_source_hash": "dcad941a20a3d96869955e46df53be2256497aec1050e9614e0d1912455f061e", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 2, "entry_id": "e5_dlinear", "model_id": "dlinear", "display_name": "DLinear", "entry_type": "TRAIN_COMMON_LOSS", "command": "train", "e5_run_id": "DLinear_node_shared_ma25_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "5e9af83b52ce477161d1d672c40954fe946dac9f195af72828b0c3b10599a33c", "base_model_source_hash": "e03acaf97e70c85ea6bda6776b3a62550f84470afa7bc53dffccb6121626e7eb", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 3, "entry_id": "e5_lightts", "model_id": "lightts", "display_name": "LightTS", "entry_type": "TRAIN_COMMON_LOSS", "command": "train", "e5_run_id": "LightTS_node_shared_chunk8_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "36bcfc99e39c629a40165c6b734185c2518edfd32e6d87a63acfed69e8953f86", "base_model_source_hash": "1de1583c4ee0bbfa0764fa9b158f09ac8bcd7ddf7f2d9f1b58ab1a03a7d13989", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 4, "entry_id": "e5_tide", "model_id": "tide", "display_name": "TiDE", "entry_type": "TRAIN_COMMON_LOSS", "command": "train", "e5_run_id": "TiDE_node_shared_d512_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "13c565d1da824a65b03df85f3fa44140e94579b0596aa335ddd9ce195869cf22", "base_model_source_hash": "4ab07dec4ae85f8b7c3062ff7d2fec00be342968d41cf09e48d599d8e40f6143", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 5, "entry_id": "e5_transformer", "model_id": "transformer", "display_name": "Transformer", "entry_type": "TRAIN_COMMON_LOSS", "command": "train", "e5_run_id": "Transformer_node_shared_d512_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "cafb75daa57da0fa395645c42b79be1ae4232731914df437d266b1bd9985d4ae", "base_model_source_hash": "46ded6c516fd03951bce0a82c3f4245f0247efd01fb5bde775145cfbb6d8435d", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 6, "entry_id": "e5_patchtst", "model_id": "patchtst", "display_name": "PatchTST", "entry_type": "TRAIN_COMMON_LOSS", "command": "train", "e5_run_id": "PatchTST_node_shared_p16_s8_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "9a6db1d307af371ac8eeb906acbd7d7401a3132f3b1dd8b2a721512ff16ef788", "base_model_source_hash": "29835d4fedddd3cbee26cc60d6a54c04513f5a9ca32e4a0d08de2c9e059084e5", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 7, "entry_id": "e5_itransformer", "model_id": "itransformer", "display_name": "iTransformer", "entry_type": "TRAIN_COMMON_LOSS", "command": "train", "e5_run_id": "iTransformer_node_shared_d512_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "cd405fd1a593ee7b9a666ae972eadd784c78a404899e30349521667fa36a57e2", "base_model_source_hash": "7fdc721d041b0f8f63be8fa794ecd68422fd958c7c8d449026320fd9f368788e", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 8, "entry_id": "e5_timexer", "model_id": "timexer", "display_name": "TimeXer", "entry_type": "TRAIN_COMMON_LOSS", "command": "train", "e5_run_id": "TimeXer_node_shared_ms_d512_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "3f8e1a0e1d57fdb5e0cc1043bda1b7784c4e11d148a9d7b6be5e460a3dc78eb5", "base_model_source_hash": "b334d7869544d0a5de7a35501d0342d7bd0be4ebda06ccc045855a42819728c0", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 9, "entry_id": "e5_timesnet", "model_id": "timesnet", "display_name": "TimesNet", "entry_type": "TRAIN_COMMON_LOSS", "command": "train", "e5_run_id": "TimesNet_node_shared_d32_k5_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "4ddd96fb22cf66513e8692050cbed0bbb2c3bf0f07dcd3c7deabb8009aebed5e", "base_model_source_hash": "f64c4bed1fd7347090044a0163bd4209c9f9ec1c1b19ceff47842df36b64bba7", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 10, "entry_id": "e5_micn", "model_id": "micn", "display_name": "MICN", "entry_type": "TRAIN_COMMON_LOSS", "command": "train", "e5_run_id": "MICN_node_shared_k12_16_d32_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "04302bbfaff76d1b6a878612cd31e3b3cf6fc3879881be7999ee41a38969d3a2", "base_model_source_hash": "a0cb59254e850bfd1d94114a73126c290e6baf2ea700132ede8aade680bbedbf", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 11, "entry_id": "e5_wpmixer", "model_id": "wpmixer", "display_name": "WPMixer", "entry_type": "TRAIN_COMMON_LOSS", "command": "train", "e5_run_id": "WPMixer_node_shared_db2_l1_p16_s8_d256_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "770d48a7fdabcde7e0eaa823d15716dfe70afc2e9d872b748feab5354b1d9574", "base_model_source_hash": "5b549f5454864d19a230747f0060dc00732fb0de6b50a359173e0d7a6b04ce8f", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 12, "entry_id": "e5_multipatchformer", "model_id": "multipatchformer", "display_name": "MultiPatchFormer", "entry_type": "TRAIN_COMMON_LOSS", "command": "train", "e5_run_id": "MultiPatchFormer_node_shared_p8_16_24_32_d256_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "4556636552fafa5816b730506891dcc827c156ef990f3e8e3f8751dc28aa5820", "base_model_source_hash": "e8603a9d8b1e796a822171399a057bd3945cf51b38fb1661d91fe60ad79313b3", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 13, "entry_id": "e5_timemixer", "model_id": "timemixer", "display_name": "TimeMixer", "entry_type": "TRAIN_COMMON_LOSS", "command": "train", "e5_run_id": "TimeMixer_node_shared_ci1_ds3_w2_avg_d16_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "4f43aa273ee9a5a83a9388926d68ac7944d7622345be1684b231be668998f2a5", "base_model_source_hash": "bbf378cab03d16d3e7ae907f7b3cefbac89ae1504e036270578d5d496ffbd133", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 14, "entry_id": "e5_tsmixer", "model_id": "tsmixer", "display_name": "TSMixer", "entry_type": "TRAIN_COMMON_LOSS", "command": "train", "e5_run_id": "TSMixer_node_shared_el2_d32_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "f16bcf10723c79beb615c281acb38d9972ffb7a080f37d73047fc66d5bf21b9a", "base_model_source_hash": "a82942ddc22cba59f4161f3ea480eb0e474eba6f0ab2d13f2bd949f100b2ce87", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 15, "entry_id": "e5_frets", "model_id": "frets", "display_name": "FreTS", "entry_type": "TRAIN_COMMON_LOSS", "command": "train", "e5_run_id": "FreTS_node_shared_tcfft_e128_h256_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "edfeab50d01fe79d1f69600e84c1f4366dbc8a7a21e04f8984d60dfc75437950", "base_model_source_hash": "2b6c9e0cd3d4f42bc74736343147812db94f029f1a8b13b098b9841705de5c18", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 16, "entry_id": "e5_crossformer", "model_id": "crossformer", "display_name": "Crossformer", "entry_type": "TRAIN_COMMON_LOSS", "command": "train", "e5_run_id": "Crossformer_node_shared_seg12_win2_d32_el2_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "3691106096dcc29a4336ed7b2244be3214bca0306a2d4b4e5abfceea6fcd19ce", "base_model_source_hash": "f5892f70eb3fc320f69fa0a9b2019b68537cc5a5e5aa2ec544c15127b19e36f0", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 17, "entry_id": "e5_timefilter", "model_id": "timefilter", "display_name": "TimeFilter", "entry_type": "TRAIN_COMMON_LOSS", "command": "train", "e5_run_id": "TimeFilter_node_shared_p16_d512_el2_tp0p5_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "a82ebe446b1cda88359434f383e81e460883b47a01b7fa825078c2174434b533", "base_model_source_hash": "6cbce92f112a9907fe6117ea23527bf1864c0ea00721a812d786e86e0a1b0724", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 18, "entry_id": "e5_gcn", "model_id": "gcn", "display_name": "GCN", "entry_type": "TRAIN_COMMON_LOSS", "command": "train", "e5_run_id": "GCN_native_agcn_h64_l2_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "09c4b45aa89bffa6d2156c5650a9b2f20fd1ff57401e8db1f814df0175f71087", "base_model_source_hash": "e81a418c750a397fc564a22242504fe0113c25ccbad338cdd788f89990448a3c", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 19, "entry_id": "e5_stgcn", "model_id": "stgcn", "display_name": "STGCN", "entry_type": "TRAIN_COMMON_LOSS", "command": "train", "e5_run_id": "STGCN_native_cheb3_kt3_b2_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "62ba7419df4ec96ed113202e9fbf374014cad675da79cf184eb53418073afd4f", "base_model_source_hash": "41f7d70a3e388a0f5a4e6ffcbddc7177e51f0f6e3ce2b899d64415d6f72d47d2", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 20, "entry_id": "e5_dcrnn", "model_id": "dcrnn", "display_name": "DCRNN", "entry_type": "TRAIN_COMMON_LOSS", "command": "train", "e5_run_id": "DCRNN_native_dualrw_k2_h64_l2_ar_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "b37d4e7046fba29267b147e86725c8f31481d1a8b6fba13bb29adaa41126a7be", "base_model_source_hash": "4b5aaea22158b04981d7ebfbd559e1530beccab51da1978b824f50317e970e8b", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 21, "entry_id": "e5_graph_wavenet", "model_id": "graph_wavenet", "display_name": "Graph WaveNet", "entry_type": "TRAIN_COMMON_LOSS", "command": "train", "e5_run_id": "GraphWaveNet_native_pfpr_adp10_b4l2_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "37b409a033b8be70d3b45bd9bae484ef08e0941fd38d79bade2041a671e296e4", "base_model_source_hash": "31f74c8b866820e56b91bcc9f26609af2e4bb476d9a0a93fd8926fd9160040d1", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 22, "entry_id": "e5_mtgnn", "model_id": "mtgnn", "display_name": "MTGNN", "entry_type": "TRAIN_COMMON_LOSS", "command": "train", "e5_run_id": "MTGNN_native_adaptive_k20_gdep2_l3_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "2753d860e5cb1c521fe6e42977318d6f96272e775029c841bc5391ec3be8be9b", "base_model_source_hash": "48982ea65352afe6bec97dda15cd11eff86d5fee07106af69327daaef051ae13", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 23, "entry_id": "e5_agcrn", "model_id": "agcrn", "display_name": "AGCRN", "entry_type": "TRAIN_COMMON_LOSS", "command": "train", "e5_run_id": "AGCRN_native_dagg_napl_e10_h64_l2_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "7df20f31c5934775baa8acee016936b5073987926db51f78b25d5b9f6c6621e7", "base_model_source_hash": "27d5ca80e349fb5d28acb5ee6bcc3baf683ef72cf3726e8c65ad3c04578aea32", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 24, "entry_id": "e5_stid", "model_id": "stid", "display_name": "STID", "entry_type": "TRAIN_COMMON_LOSS", "command": "train", "e5_run_id": "STID_native_node32_tid32_diw32_mlp3_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "8ca024046e2f07d433d6d210c2c6f9c531fc3d191da510e32fcec3be9f2a89d5", "base_model_source_hash": "94bfb6fe5d8091c92d59a6c593a27761c53c50749f9eae6d669c27db997061e9", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 25, "entry_id": "e5_persistence", "model_id": "persistence", "display_name": "Persistence", "entry_type": "EVALUATE_ONLY_COMMON_LOSS_DIAGNOSTIC", "command": "evaluate-only", "e5_run_id": "Persistence_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "69edc3cf8b39f681acff3a9580b2006aa867609ebb454944f4c68ba6f91f427a", "base_model_source_hash": "209ec06fb0e11c06bc0c7f0b38f0f8fff6738c95acfc05fc7d1af4f82c8ff623", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 26, "entry_id": "e5_moving_average", "model_id": "moving_average", "display_name": "MovingAverage", "entry_type": "EVALUATE_ONLY_COMMON_LOSS_DIAGNOSTIC", "command": "evaluate-only", "e5_run_id": "MovingAverage_w144_loss_msa_hybrid_bs4_seed2026", "base_model_config_hash": "2cadb7ff357946f0a31ae3b4482d169544acd743bb188a15613a6d57703aa1ba", "base_model_source_hash": "25b4126d84bddd7d61eecd650eb5261c3df5de448f18b8c5fe13526793e30a1b", "loss_id": "masked_score_aligned_hybrid"},
-    {"ordinal": 27, "entry_id": "STMGPrompt_A8_loss_msa_hybrid_seed2026_reference", "model_id": "st_mgprompt_a8", "display_name": "ST-MGPrompt A8 (w/o MS-MG-DWU)", "entry_type": "REFERENCE_ONLY_FORMAL_A8", "command": "reference", "e5_run_id": "STMGPrompt_A8_loss_msa_hybrid_seed2026_reference", "base_model_config_hash": null, "base_model_source_hash": null, "loss_id": "masked_score_aligned_hybrid"}
+    {
+      "ordinal": 1,
+      "entry_id": "e5_gru",
+      "model_id": "gru",
+      "display_name": "GRU",
+      "entry_type": "TRAIN_COMMON_LOSS",
+      "command": "train",
+      "e5_run_id": "GRU_node_shared_h64_l1_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "989cf39f2a8d5313b7880b11d3966b548cce5a2c94b50a45976e7f7f70deb57b",
+      "base_model_source_hash": "4a2893cfaaadfb982001c323cbc77fabbe04cebd469ee6e4cc989da0d7fe09fd",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "4a2893cfaaadfb982001c323cbc77fabbe04cebd469ee6e4cc989da0d7fe09fd",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "gru",
+        "source_closure_files": [
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/gru.py",
+            "sha256": "9f6c2311e6d15a68058aaa3d2ae25de5e8e67c59806165d52aa67e8d53f604c2",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/gru.py",
+            "sha256": "e6707e76f3b9f122c0786a363dd009bc52cb6697019c25a803b14dfd302c3bac",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/gru.py",
+            "sha256": "dcad941a20a3d96869955e46df53be2256497aec1050e9614e0d1912455f061e",
+            "role": "model implementation source"
+          }
+        ],
+        "canonical_combined_hash": "4a2893cfaaadfb982001c323cbc77fabbe04cebd469ee6e4cc989da0d7fe09fd"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 2,
+      "entry_id": "e5_dlinear",
+      "model_id": "dlinear",
+      "display_name": "DLinear",
+      "entry_type": "TRAIN_COMMON_LOSS",
+      "command": "train",
+      "e5_run_id": "DLinear_node_shared_ma25_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "5e9af83b52ce477161d1d672c40954fe946dac9f195af72828b0c3b10599a33c",
+      "base_model_source_hash": "1f388f61addd1466e6e57b1e4817829e0d600dcae2bd1074724faebc0fd43b20",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "1f388f61addd1466e6e57b1e4817829e0d600dcae2bd1074724faebc0fd43b20",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "dlinear",
+        "source_closure_files": [
+          {
+            "path": "Time-Series-Library/models/DLinear.py",
+            "sha256": "e03acaf97e70c85ea6bda6776b3a62550f84470afa7bc53dffccb6121626e7eb",
+            "role": "model implementation source"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/dlinear.py",
+            "sha256": "ad0b1a703a6ebc5f70b5b26ad74aa456fd433f94e13bfc005bf88725960b84ee",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/dlinear.py",
+            "sha256": "6339f2263e48eaa641579d7f824146eb355a8aed7fbd85af92b00b041608a742",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/dlinear.py",
+            "sha256": "141c83d3ffa7e0e13897380b9feff704a3295851add216575a7a2af1de512a95",
+            "role": "benchmark model wrapper"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+            "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9",
+            "role": "audited TSLib loader and source resolver"
+          }
+        ],
+        "canonical_combined_hash": "1f388f61addd1466e6e57b1e4817829e0d600dcae2bd1074724faebc0fd43b20"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 3,
+      "entry_id": "e5_lightts",
+      "model_id": "lightts",
+      "display_name": "LightTS",
+      "entry_type": "TRAIN_COMMON_LOSS",
+      "command": "train",
+      "e5_run_id": "LightTS_node_shared_chunk8_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "36bcfc99e39c629a40165c6b734185c2518edfd32e6d87a63acfed69e8953f86",
+      "base_model_source_hash": "4de9ca3e97c9cac1efe748bbc0e862a36514a2d6bc0ca5b30e1c3a219bfd0907",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "4de9ca3e97c9cac1efe748bbc0e862a36514a2d6bc0ca5b30e1c3a219bfd0907",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "lightts",
+        "source_closure_files": [
+          {
+            "path": "Time-Series-Library/models/LightTS.py",
+            "sha256": "1de1583c4ee0bbfa0764fa9b158f09ac8bcd7ddf7f2d9f1b58ab1a03a7d13989",
+            "role": "model implementation source"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/lightts.py",
+            "sha256": "061cc4ba03445bd495962e72070dfad0582e951decc05b77ea7908bf6f9e0052",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/lightts.py",
+            "sha256": "ff18cf1bf035a119779c567ef2a2e52a562bf6251d18d088972f8af2872d0250",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/lightts.py",
+            "sha256": "bac41b0be71ab18178e3eaf8a562f03e726725d6ee4bcba51d18ab34d5f264b9",
+            "role": "benchmark model wrapper"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+            "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9",
+            "role": "audited TSLib loader and source resolver"
+          }
+        ],
+        "canonical_combined_hash": "4de9ca3e97c9cac1efe748bbc0e862a36514a2d6bc0ca5b30e1c3a219bfd0907"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 4,
+      "entry_id": "e5_tide",
+      "model_id": "tide",
+      "display_name": "TiDE",
+      "entry_type": "TRAIN_COMMON_LOSS",
+      "command": "train",
+      "e5_run_id": "TiDE_node_shared_d512_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "13c565d1da824a65b03df85f3fa44140e94579b0596aa335ddd9ce195869cf22",
+      "base_model_source_hash": "e8751d1b66170b4317579a4d3c59c551eb316e1d5c165d5ef9a6939cdf387fc4",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "e8751d1b66170b4317579a4d3c59c551eb316e1d5c165d5ef9a6939cdf387fc4",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "tide",
+        "source_closure_files": [
+          {
+            "path": "Time-Series-Library/models/TiDE.py",
+            "sha256": "4ab07dec4ae85f8b7c3062ff7d2fec00be342968d41cf09e48d599d8e40f6143",
+            "role": "model implementation source"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/tide.py",
+            "sha256": "3057c0a03513fa7ec2292c784a5599d717eb79f59fbd5b4b9faf98bea6be31a9",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/tide.py",
+            "sha256": "aea5f0f61010a09136feb6ce194f9c2e34eb44da14ab5f11a8bde8fc7600c07d",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/tide.py",
+            "sha256": "f016a1e4c4e6fad6c8bae75722c9c2458ef6dd14acb9c042b75411f863ca1db6",
+            "role": "benchmark model wrapper"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+            "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9",
+            "role": "audited TSLib loader and source resolver"
+          }
+        ],
+        "canonical_combined_hash": "e8751d1b66170b4317579a4d3c59c551eb316e1d5c165d5ef9a6939cdf387fc4"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 5,
+      "entry_id": "e5_transformer",
+      "model_id": "transformer",
+      "display_name": "Transformer",
+      "entry_type": "TRAIN_COMMON_LOSS",
+      "command": "train",
+      "e5_run_id": "Transformer_node_shared_d512_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "cafb75daa57da0fa395645c42b79be1ae4232731914df437d266b1bd9985d4ae",
+      "base_model_source_hash": "74aaf8651b34d619250540a2bfd333fae3c6aed08e48d630b13d173bd701b6d8",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "74aaf8651b34d619250540a2bfd333fae3c6aed08e48d630b13d173bd701b6d8",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "transformer",
+        "source_closure_files": [
+          {
+            "path": "Time-Series-Library/models/Transformer.py",
+            "sha256": "46ded6c516fd03951bce0a82c3f4245f0247efd01fb5bde775145cfbb6d8435d",
+            "role": "model implementation source"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/e2_a.py",
+            "sha256": "645089703cbaf34ca7331aa714e6eff638a5dd3356d5a4569ee97fd69ef7b892",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/transformer.py",
+            "sha256": "039cef9b46c2f6bbef71301c64db89366a52d628dc5d5193932ec7ff05e18a43",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/transformer.py",
+            "sha256": "90c30196305a0573ecb0f70f3d800bf0a23d95090ec05d494dc8e7b03a254463",
+            "role": "benchmark model wrapper"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+            "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9",
+            "role": "audited TSLib loader and source resolver"
+          }
+        ],
+        "canonical_combined_hash": "74aaf8651b34d619250540a2bfd333fae3c6aed08e48d630b13d173bd701b6d8"
+      },
+      "precision_identity": {
+        "amp_enabled": false,
+        "precision_policy": "fp32",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": false,
+          "reason": "AMP-only forward overflow reproduced in upstream Transformer attention on benchmark_v2 uniform batch4; keep model-specific FP32 forward policy."
+        }
+      }
+    },
+    {
+      "ordinal": 6,
+      "entry_id": "e5_patchtst",
+      "model_id": "patchtst",
+      "display_name": "PatchTST",
+      "entry_type": "TRAIN_COMMON_LOSS",
+      "command": "train",
+      "e5_run_id": "PatchTST_node_shared_p16_s8_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "9a6db1d307af371ac8eeb906acbd7d7401a3132f3b1dd8b2a721512ff16ef788",
+      "base_model_source_hash": "63c44892d74230690d264230d34697ef1988809f96c5c41238174b5c4eb8d5f7",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "63c44892d74230690d264230d34697ef1988809f96c5c41238174b5c4eb8d5f7",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "patchtst",
+        "source_closure_files": [
+          {
+            "path": "Time-Series-Library/models/PatchTST.py",
+            "sha256": "29835d4fedddd3cbee26cc60d6a54c04513f5a9ca32e4a0d08de2c9e059084e5",
+            "role": "model implementation source"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/e2_a.py",
+            "sha256": "645089703cbaf34ca7331aa714e6eff638a5dd3356d5a4569ee97fd69ef7b892",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/patchtst.py",
+            "sha256": "c1f618a53e23fc44ae5f3313ff9c42c956cbc165469c81729c74e72d61534715",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/patchtst.py",
+            "sha256": "13aed0bdd024b33e5b412ee672325f7e2064dad5d6f8f256b365f7eec1bc2989",
+            "role": "benchmark model wrapper"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+            "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9",
+            "role": "audited TSLib loader and source resolver"
+          }
+        ],
+        "canonical_combined_hash": "63c44892d74230690d264230d34697ef1988809f96c5c41238174b5c4eb8d5f7"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 7,
+      "entry_id": "e5_itransformer",
+      "model_id": "itransformer",
+      "display_name": "iTransformer",
+      "entry_type": "TRAIN_COMMON_LOSS",
+      "command": "train",
+      "e5_run_id": "iTransformer_node_shared_d512_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "cd405fd1a593ee7b9a666ae972eadd784c78a404899e30349521667fa36a57e2",
+      "base_model_source_hash": "252758f020ad3f81c9a4ad28cf8b0d154060584dd34a2e07ec0797ba51d2ba04",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "252758f020ad3f81c9a4ad28cf8b0d154060584dd34a2e07ec0797ba51d2ba04",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "itransformer",
+        "source_closure_files": [
+          {
+            "path": "Time-Series-Library/models/iTransformer.py",
+            "sha256": "7fdc721d041b0f8f63be8fa794ecd68422fd958c7c8d449026320fd9f368788e",
+            "role": "model implementation source"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/e2_a.py",
+            "sha256": "645089703cbaf34ca7331aa714e6eff638a5dd3356d5a4569ee97fd69ef7b892",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/itransformer.py",
+            "sha256": "4f084adfc39987b4140ed6c7cff3835cf35ce5396fa823b1625373e7c5f4efd6",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/itransformer.py",
+            "sha256": "c76644cc1c0cd458b23d33c99fcc288536d693be751d8991f05325c5cb32653c",
+            "role": "benchmark model wrapper"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+            "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9",
+            "role": "audited TSLib loader and source resolver"
+          }
+        ],
+        "canonical_combined_hash": "252758f020ad3f81c9a4ad28cf8b0d154060584dd34a2e07ec0797ba51d2ba04"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 8,
+      "entry_id": "e5_timexer",
+      "model_id": "timexer",
+      "display_name": "TimeXer",
+      "entry_type": "TRAIN_COMMON_LOSS",
+      "command": "train",
+      "e5_run_id": "TimeXer_node_shared_ms_d512_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "3f8e1a0e1d57fdb5e0cc1043bda1b7784c4e11d148a9d7b6be5e460a3dc78eb5",
+      "base_model_source_hash": "dc9518b201420ccf5ab1d149badc8406a2518330ad0722d385961fbfa509b45a",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "dc9518b201420ccf5ab1d149badc8406a2518330ad0722d385961fbfa509b45a",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "timexer",
+        "source_closure_files": [
+          {
+            "path": "Time-Series-Library/models/TimeXer.py",
+            "sha256": "b334d7869544d0a5de7a35501d0342d7bd0be4ebda06ccc045855a42819728c0",
+            "role": "model implementation source"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/e2_a.py",
+            "sha256": "645089703cbaf34ca7331aa714e6eff638a5dd3356d5a4569ee97fd69ef7b892",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/timexer.py",
+            "sha256": "02aed571aa772289d1f44e36400f0552425f92d91a407af481acbb9b35b96ee3",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/timexer.py",
+            "sha256": "f8d3a12acc7d81191a764658abb06a888956b24ab0e72876a3df146126a119c6",
+            "role": "benchmark model wrapper"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+            "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9",
+            "role": "audited TSLib loader and source resolver"
+          }
+        ],
+        "canonical_combined_hash": "dc9518b201420ccf5ab1d149badc8406a2518330ad0722d385961fbfa509b45a"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 9,
+      "entry_id": "e5_timesnet",
+      "model_id": "timesnet",
+      "display_name": "TimesNet",
+      "entry_type": "TRAIN_COMMON_LOSS",
+      "command": "train",
+      "e5_run_id": "TimesNet_node_shared_d32_k5_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "4ddd96fb22cf66513e8692050cbed0bbb2c3bf0f07dcd3c7deabb8009aebed5e",
+      "base_model_source_hash": "6a456226bca70a1069a0e6fbc74379aab0c597f4b980cee3020966566cc09c6b",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "6a456226bca70a1069a0e6fbc74379aab0c597f4b980cee3020966566cc09c6b",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "timesnet",
+        "source_closure_files": [
+          {
+            "path": "Time-Series-Library/models/TimesNet.py",
+            "sha256": "f64c4bed1fd7347090044a0163bd4209c9f9ec1c1b19ceff47842df36b64bba7",
+            "role": "model implementation source"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/e2_b.py",
+            "sha256": "4e002b7cc250695d25f6b041f1ce03e9493e98d247d05601d4d6026571d78d72",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/timesnet.py",
+            "sha256": "8827368d682f80ec96b9693564a778315591d09f77057b157dc29929508986ce",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/timesnet.py",
+            "sha256": "95bd735cca819ee750af34d705db82b9b45216cec3a39b8805e5bda9f8c52896",
+            "role": "benchmark model wrapper"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+            "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9",
+            "role": "audited TSLib loader and source resolver"
+          }
+        ],
+        "canonical_combined_hash": "6a456226bca70a1069a0e6fbc74379aab0c597f4b980cee3020966566cc09c6b"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 10,
+      "entry_id": "e5_micn",
+      "model_id": "micn",
+      "display_name": "MICN",
+      "entry_type": "TRAIN_COMMON_LOSS",
+      "command": "train",
+      "e5_run_id": "MICN_node_shared_k12_16_d32_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "04302bbfaff76d1b6a878612cd31e3b3cf6fc3879881be7999ee41a38969d3a2",
+      "base_model_source_hash": "e0bba1afe93f19f61a8a8b13f3caf67cc46e40c525441522e717dc521303487e",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "e0bba1afe93f19f61a8a8b13f3caf67cc46e40c525441522e717dc521303487e",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "micn",
+        "source_closure_files": [
+          {
+            "path": "Time-Series-Library/models/MICN.py",
+            "sha256": "a0cb59254e850bfd1d94114a73126c290e6baf2ea700132ede8aade680bbedbf",
+            "role": "model implementation source"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/e2_b.py",
+            "sha256": "4e002b7cc250695d25f6b041f1ce03e9493e98d247d05601d4d6026571d78d72",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/micn.py",
+            "sha256": "4c46c0c63574d869bab48607db3e2443278de55a30628016ffa70dddac071ae7",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/micn.py",
+            "sha256": "e836b131b003ef4082660902414046e7d7d36a2a8d5f4ea0dba458234bdf22c3",
+            "role": "benchmark model wrapper"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+            "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9",
+            "role": "audited TSLib loader and source resolver"
+          }
+        ],
+        "canonical_combined_hash": "e0bba1afe93f19f61a8a8b13f3caf67cc46e40c525441522e717dc521303487e"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 11,
+      "entry_id": "e5_wpmixer",
+      "model_id": "wpmixer",
+      "display_name": "WPMixer",
+      "entry_type": "TRAIN_COMMON_LOSS",
+      "command": "train",
+      "e5_run_id": "WPMixer_node_shared_db2_l1_p16_s8_d256_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "770d48a7fdabcde7e0eaa823d15716dfe70afc2e9d872b748feab5354b1d9574",
+      "base_model_source_hash": "64c1c0d62b8d2adf3244cfb8a8e8e44a447be6dabd611f755fe319eae6d71190",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "64c1c0d62b8d2adf3244cfb8a8e8e44a447be6dabd611f755fe319eae6d71190",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "wpmixer",
+        "source_closure_files": [
+          {
+            "path": "Time-Series-Library/models/WPMixer.py",
+            "sha256": "5b549f5454864d19a230747f0060dc00732fb0de6b50a359173e0d7a6b04ce8f",
+            "role": "model implementation source"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/e2_b.py",
+            "sha256": "4e002b7cc250695d25f6b041f1ce03e9493e98d247d05601d4d6026571d78d72",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/wpmixer.py",
+            "sha256": "432aadc9a3df0b0965afa7a1c8ec990710dbe7793d3f8cbe2b1b10ee51c1e42c",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/wpmixer.py",
+            "sha256": "b2e18a70b973f2d512ccd46908ee251d0a28566a800b6e875cf7a36eb1ec9f17",
+            "role": "benchmark model wrapper"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+            "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9",
+            "role": "audited TSLib loader and source resolver"
+          }
+        ],
+        "canonical_combined_hash": "64c1c0d62b8d2adf3244cfb8a8e8e44a447be6dabd611f755fe319eae6d71190"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 12,
+      "entry_id": "e5_multipatchformer",
+      "model_id": "multipatchformer",
+      "display_name": "MultiPatchFormer",
+      "entry_type": "TRAIN_COMMON_LOSS",
+      "command": "train",
+      "e5_run_id": "MultiPatchFormer_node_shared_p8_16_24_32_d256_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "4556636552fafa5816b730506891dcc827c156ef990f3e8e3f8751dc28aa5820",
+      "base_model_source_hash": "cc1f83e8b1dc7c266762486aaef91e7b452ae47f80c77c1adf3d12ca0a09dc13",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "cc1f83e8b1dc7c266762486aaef91e7b452ae47f80c77c1adf3d12ca0a09dc13",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "multipatchformer",
+        "source_closure_files": [
+          {
+            "path": "Time-Series-Library/models/MultiPatchFormer.py",
+            "sha256": "e8603a9d8b1e796a822171399a057bd3945cf51b38fb1661d91fe60ad79313b3",
+            "role": "model implementation source"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/e2_b.py",
+            "sha256": "4e002b7cc250695d25f6b041f1ce03e9493e98d247d05601d4d6026571d78d72",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/multipatchformer.py",
+            "sha256": "94ada0c3ef441dc75d2a0b7baef670a0f29fc14c698dbe5d543845067bbfb9f8",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/multipatchformer.py",
+            "sha256": "ad4db5bf41f7315c1dbae809e8ccb5e4d5dd7b18a0408fecdc06a36bc6ca71b0",
+            "role": "benchmark model wrapper"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+            "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9",
+            "role": "audited TSLib loader and source resolver"
+          }
+        ],
+        "canonical_combined_hash": "cc1f83e8b1dc7c266762486aaef91e7b452ae47f80c77c1adf3d12ca0a09dc13"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 13,
+      "entry_id": "e5_timemixer",
+      "model_id": "timemixer",
+      "display_name": "TimeMixer",
+      "entry_type": "TRAIN_COMMON_LOSS",
+      "command": "train",
+      "e5_run_id": "TimeMixer_node_shared_ci1_ds3_w2_avg_d16_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "4f43aa273ee9a5a83a9388926d68ac7944d7622345be1684b231be668998f2a5",
+      "base_model_source_hash": "b52934e9193ec25c0339d415e319d0d2e9236023aab740d6fa84a6c34a545b62",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "b52934e9193ec25c0339d415e319d0d2e9236023aab740d6fa84a6c34a545b62",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "timemixer",
+        "source_closure_files": [
+          {
+            "path": "Time-Series-Library/models/TimeMixer.py",
+            "sha256": "bbf378cab03d16d3e7ae907f7b3cefbac89ae1504e036270578d5d496ffbd133",
+            "role": "model implementation source"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/e2_c.py",
+            "sha256": "d6dcd02402ac48c7ea40bb8de196b402f4fd465ab7a3da58c840ce3c7d070e36",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/timemixer.py",
+            "sha256": "669f5bbd017b23982ec75af6372a5ab88767a32b8a7ed999a5fb5d21627c674d",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/timemixer.py",
+            "sha256": "0613aba593d8109cfb2b8a527ae0d21b30aad838c85d6063813844ee58f9aafa",
+            "role": "benchmark model wrapper"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+            "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9",
+            "role": "audited TSLib loader and source resolver"
+          }
+        ],
+        "canonical_combined_hash": "b52934e9193ec25c0339d415e319d0d2e9236023aab740d6fa84a6c34a545b62"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 14,
+      "entry_id": "e5_tsmixer",
+      "model_id": "tsmixer",
+      "display_name": "TSMixer",
+      "entry_type": "TRAIN_COMMON_LOSS",
+      "command": "train",
+      "e5_run_id": "TSMixer_node_shared_el2_d32_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "f16bcf10723c79beb615c281acb38d9972ffb7a080f37d73047fc66d5bf21b9a",
+      "base_model_source_hash": "a3090d0b8603e1a0fbc8d4e300d7a6a66938f7faaaaf6df56ba95b5c67a52569",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "a3090d0b8603e1a0fbc8d4e300d7a6a66938f7faaaaf6df56ba95b5c67a52569",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "tsmixer",
+        "source_closure_files": [
+          {
+            "path": "Time-Series-Library/models/TSMixer.py",
+            "sha256": "a82942ddc22cba59f4161f3ea480eb0e474eba6f0ab2d13f2bd949f100b2ce87",
+            "role": "model implementation source"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/e2_c.py",
+            "sha256": "d6dcd02402ac48c7ea40bb8de196b402f4fd465ab7a3da58c840ce3c7d070e36",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/tsmixer.py",
+            "sha256": "f99d834b1d75f6595489e6c9cd275eb9ca92fcb9e5026f9031a2d2d46e64a994",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/tsmixer.py",
+            "sha256": "15f6bb75509266f202a3eb4e3a9dcc7f587a0fc2fbbfa78bf1599b3eb4130725",
+            "role": "benchmark model wrapper"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+            "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9",
+            "role": "audited TSLib loader and source resolver"
+          }
+        ],
+        "canonical_combined_hash": "a3090d0b8603e1a0fbc8d4e300d7a6a66938f7faaaaf6df56ba95b5c67a52569"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 15,
+      "entry_id": "e5_frets",
+      "model_id": "frets",
+      "display_name": "FreTS",
+      "entry_type": "TRAIN_COMMON_LOSS",
+      "command": "train",
+      "e5_run_id": "FreTS_node_shared_tcfft_e128_h256_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "edfeab50d01fe79d1f69600e84c1f4366dbc8a7a21e04f8984d60dfc75437950",
+      "base_model_source_hash": "bb755cc8ac1c2b3fc34a4ae353e5f695f2df6694922f6501f8056c9fc2f4be94",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "bb755cc8ac1c2b3fc34a4ae353e5f695f2df6694922f6501f8056c9fc2f4be94",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "frets",
+        "source_closure_files": [
+          {
+            "path": "Time-Series-Library/models/FreTS.py",
+            "sha256": "2b6c9e0cd3d4f42bc74736343147812db94f029f1a8b13b098b9841705de5c18",
+            "role": "model implementation source"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/e2_c.py",
+            "sha256": "d6dcd02402ac48c7ea40bb8de196b402f4fd465ab7a3da58c840ce3c7d070e36",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/frets.py",
+            "sha256": "ec99846bb07fccbd9d4ca67571fc408ac4ff60c83f3751be9d333ac9325efd0a",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/frets.py",
+            "sha256": "8694d9f95a33b65a664b52f7006295c7d55a3f1334df49a4c3376bfec543738f",
+            "role": "benchmark model wrapper"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+            "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9",
+            "role": "audited TSLib loader and source resolver"
+          }
+        ],
+        "canonical_combined_hash": "bb755cc8ac1c2b3fc34a4ae353e5f695f2df6694922f6501f8056c9fc2f4be94"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 16,
+      "entry_id": "e5_crossformer",
+      "model_id": "crossformer",
+      "display_name": "Crossformer",
+      "entry_type": "TRAIN_COMMON_LOSS",
+      "command": "train",
+      "e5_run_id": "Crossformer_node_shared_seg12_win2_d32_el2_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "3691106096dcc29a4336ed7b2244be3214bca0306a2d4b4e5abfceea6fcd19ce",
+      "base_model_source_hash": "1bd66942f9ecde942826cce32e2647a77e646c7b95d705def4a7ec816e302136",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "1bd66942f9ecde942826cce32e2647a77e646c7b95d705def4a7ec816e302136",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "crossformer",
+        "source_closure_files": [
+          {
+            "path": "Time-Series-Library/models/Crossformer.py",
+            "sha256": "f5892f70eb3fc320f69fa0a9b2019b68537cc5a5e5aa2ec544c15127b19e36f0",
+            "role": "model implementation source"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/e2_d.py",
+            "sha256": "f08010df10b8169be729c2c5f260c4a589124e7759992bfedc9ef2b9f0752980",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/crossformer.py",
+            "sha256": "7699784fc9ee46e945f46bf7b090ff40ceb29c1a80ceb05a3e5afa47e94e4b7e",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/crossformer.py",
+            "sha256": "54ec419f57ef347af7190745b4189373025f4aa4e259bd666891a54173b60c6e",
+            "role": "benchmark model wrapper"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+            "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9",
+            "role": "audited TSLib loader and source resolver"
+          }
+        ],
+        "canonical_combined_hash": "1bd66942f9ecde942826cce32e2647a77e646c7b95d705def4a7ec816e302136"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 17,
+      "entry_id": "e5_timefilter",
+      "model_id": "timefilter",
+      "display_name": "TimeFilter",
+      "entry_type": "TRAIN_COMMON_LOSS",
+      "command": "train",
+      "e5_run_id": "TimeFilter_node_shared_p16_d512_el2_tp0p5_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "a82ebe446b1cda88359434f383e81e460883b47a01b7fa825078c2174434b533",
+      "base_model_source_hash": "18a526bd96943ed142b62f795adba4b12e2d7c1b3dd2b3a2c92e87b45f04418a",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "18a526bd96943ed142b62f795adba4b12e2d7c1b3dd2b3a2c92e87b45f04418a",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "timefilter",
+        "source_closure_files": [
+          {
+            "path": "Time-Series-Library/models/TimeFilter.py",
+            "sha256": "6cbce92f112a9907fe6117ea23527bf1864c0ea00721a812d786e86e0a1b0724",
+            "role": "model implementation source"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/e2_d.py",
+            "sha256": "f08010df10b8169be729c2c5f260c4a589124e7759992bfedc9ef2b9f0752980",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/timefilter.py",
+            "sha256": "ccd239dcda50c5bd13c188c0ebcd0e9d22f340fa8f71a134c12480a1412dac83",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/timefilter.py",
+            "sha256": "4064adc709f0f0d2adf6598ec6e1b0f64b516fac9ebdee2b61041fc6688db61e",
+            "role": "benchmark model wrapper"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+            "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9",
+            "role": "audited TSLib loader and source resolver"
+          }
+        ],
+        "canonical_combined_hash": "18a526bd96943ed142b62f795adba4b12e2d7c1b3dd2b3a2c92e87b45f04418a"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 18,
+      "entry_id": "e5_gcn",
+      "model_id": "gcn",
+      "display_name": "GCN",
+      "entry_type": "TRAIN_COMMON_LOSS",
+      "command": "train",
+      "e5_run_id": "GCN_native_agcn_h64_l2_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "09c4b45aa89bffa6d2156c5650a9b2f20fd1ff57401e8db1f814df0175f71087",
+      "base_model_source_hash": "3fed688fe8f714edf1fb212ada41ca219ca31af7912edb80b80edfcc4f71413e",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "3fed688fe8f714edf1fb212ada41ca219ca31af7912edb80b80edfcc4f71413e",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "gcn",
+        "source_closure_files": [
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/e3_b.py",
+            "sha256": "09f48204b3fe5c4b7d713c82842cf5dd70d8d3581530076402abc9f004115fcb",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/gcn.py",
+            "sha256": "7889ff899f1a53aff396c27b4088f2cf2aa1e1f0684163e3751e7ba2468d54b7",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/graph_models/__init__.py",
+            "sha256": "0b092f873041c1617dcb29c11f7b9ba6601de132f9be6c65373c31129a320f70",
+            "role": "native graph model exports"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/graph_models/common.py",
+            "sha256": "d2699d65c513ffc66603a9fbae3502ff711376e431c71b94cfba58bd3cab2b44",
+            "role": "native graph support and identity boundary"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/graph_models/gcn.py",
+            "sha256": "e81a418c750a397fc564a22242504fe0113c25ccbad338cdd788f89990448a3c",
+            "role": "model implementation source"
+          }
+        ],
+        "canonical_combined_hash": "3fed688fe8f714edf1fb212ada41ca219ca31af7912edb80b80edfcc4f71413e"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 19,
+      "entry_id": "e5_stgcn",
+      "model_id": "stgcn",
+      "display_name": "STGCN",
+      "entry_type": "TRAIN_COMMON_LOSS",
+      "command": "train",
+      "e5_run_id": "STGCN_native_cheb3_kt3_b2_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "62ba7419df4ec96ed113202e9fbf374014cad675da79cf184eb53418073afd4f",
+      "base_model_source_hash": "64d4d914809c58dbf6192f379d5d28d6f90362f5cd2cceb318b4dedba9972570",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "64d4d914809c58dbf6192f379d5d28d6f90362f5cd2cceb318b4dedba9972570",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "stgcn",
+        "source_closure_files": [
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/e3_b.py",
+            "sha256": "09f48204b3fe5c4b7d713c82842cf5dd70d8d3581530076402abc9f004115fcb",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/stgcn.py",
+            "sha256": "5215169e6507b88df262bb6e50ed97f8e52b27e5845124a68f4446d1dfd82334",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/graph_models/__init__.py",
+            "sha256": "0b092f873041c1617dcb29c11f7b9ba6601de132f9be6c65373c31129a320f70",
+            "role": "native graph model exports"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/graph_models/common.py",
+            "sha256": "d2699d65c513ffc66603a9fbae3502ff711376e431c71b94cfba58bd3cab2b44",
+            "role": "native graph support and identity boundary"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/graph_models/stgcn.py",
+            "sha256": "41f7d70a3e388a0f5a4e6ffcbddc7177e51f0f6e3ce2b899d64415d6f72d47d2",
+            "role": "model implementation source"
+          }
+        ],
+        "canonical_combined_hash": "64d4d914809c58dbf6192f379d5d28d6f90362f5cd2cceb318b4dedba9972570"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 20,
+      "entry_id": "e5_dcrnn",
+      "model_id": "dcrnn",
+      "display_name": "DCRNN",
+      "entry_type": "TRAIN_COMMON_LOSS",
+      "command": "train",
+      "e5_run_id": "DCRNN_native_dualrw_k2_h64_l2_ar_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "b37d4e7046fba29267b147e86725c8f31481d1a8b6fba13bb29adaa41126a7be",
+      "base_model_source_hash": "6d745c045636d38a637c42606b5c06a9d07b51f0196125e7a472841f9b49b4af",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "6d745c045636d38a637c42606b5c06a9d07b51f0196125e7a472841f9b49b4af",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "dcrnn",
+        "source_closure_files": [
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/e3_b.py",
+            "sha256": "09f48204b3fe5c4b7d713c82842cf5dd70d8d3581530076402abc9f004115fcb",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/dcrnn.py",
+            "sha256": "1aa5a7fbdc097ae415cbed984ecbe2a36a047590e2cd45648f7911eca3e41d5e",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/graph_models/__init__.py",
+            "sha256": "0b092f873041c1617dcb29c11f7b9ba6601de132f9be6c65373c31129a320f70",
+            "role": "native graph model exports"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/graph_models/common.py",
+            "sha256": "d2699d65c513ffc66603a9fbae3502ff711376e431c71b94cfba58bd3cab2b44",
+            "role": "native graph support and identity boundary"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/graph_models/dcrnn.py",
+            "sha256": "4b5aaea22158b04981d7ebfbd559e1530beccab51da1978b824f50317e970e8b",
+            "role": "model implementation source"
+          }
+        ],
+        "canonical_combined_hash": "6d745c045636d38a637c42606b5c06a9d07b51f0196125e7a472841f9b49b4af"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 21,
+      "entry_id": "e5_graph_wavenet",
+      "model_id": "graph_wavenet",
+      "display_name": "Graph WaveNet",
+      "entry_type": "TRAIN_COMMON_LOSS",
+      "command": "train",
+      "e5_run_id": "GraphWaveNet_native_pfpr_adp10_b4l2_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "37b409a033b8be70d3b45bd9bae484ef08e0941fd38d79bade2041a671e296e4",
+      "base_model_source_hash": "735ddbe03c4d73bd0d11972de8d1fdf09c374f29c86855823ac0506e2861dc61",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "735ddbe03c4d73bd0d11972de8d1fdf09c374f29c86855823ac0506e2861dc61",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "graph_wavenet",
+        "source_closure_files": [
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/e3_c.py",
+            "sha256": "f84e44d6205dabdc0c5cb1dc5aee22823edb904dd3c8e5728cf91bb2016d7b38",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/graph_wavenet.py",
+            "sha256": "5ec26c3f1f52905e226bfbe8c11136f2b0ee0c7a48f6c991362cc4f39560ab5a",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/graph_models/adaptive_common.py",
+            "sha256": "6d26ecbf3234f4050753dc0159ad90130a0972d6c4d76dce7eca6f750e3f49eb",
+            "role": "adaptive graph identity and diagnostics"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/graph_models/graph_wavenet.py",
+            "sha256": "31f74c8b866820e56b91bcc9f26609af2e4bb476d9a0a93fd8926fd9160040d1",
+            "role": "model implementation source"
+          }
+        ],
+        "canonical_combined_hash": "735ddbe03c4d73bd0d11972de8d1fdf09c374f29c86855823ac0506e2861dc61"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 22,
+      "entry_id": "e5_mtgnn",
+      "model_id": "mtgnn",
+      "display_name": "MTGNN",
+      "entry_type": "TRAIN_COMMON_LOSS",
+      "command": "train",
+      "e5_run_id": "MTGNN_native_adaptive_k20_gdep2_l3_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "2753d860e5cb1c521fe6e42977318d6f96272e775029c841bc5391ec3be8be9b",
+      "base_model_source_hash": "ef57173244927a0a4c5c6e9e8b469cd8d7643270ff8277b8ad05b5931f4c3988",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "ef57173244927a0a4c5c6e9e8b469cd8d7643270ff8277b8ad05b5931f4c3988",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "mtgnn",
+        "source_closure_files": [
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/e3_c.py",
+            "sha256": "f84e44d6205dabdc0c5cb1dc5aee22823edb904dd3c8e5728cf91bb2016d7b38",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/mtgnn.py",
+            "sha256": "eed1cd968011fecb8ef507c05cf5a217bee7aff4b96994706e4f73d3f57895c3",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/graph_models/adaptive_common.py",
+            "sha256": "6d26ecbf3234f4050753dc0159ad90130a0972d6c4d76dce7eca6f750e3f49eb",
+            "role": "adaptive graph identity and diagnostics"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/graph_models/mtgnn.py",
+            "sha256": "48982ea65352afe6bec97dda15cd11eff86d5fee07106af69327daaef051ae13",
+            "role": "model implementation source"
+          }
+        ],
+        "canonical_combined_hash": "ef57173244927a0a4c5c6e9e8b469cd8d7643270ff8277b8ad05b5931f4c3988"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 23,
+      "entry_id": "e5_agcrn",
+      "model_id": "agcrn",
+      "display_name": "AGCRN",
+      "entry_type": "TRAIN_COMMON_LOSS",
+      "command": "train",
+      "e5_run_id": "AGCRN_native_dagg_napl_e10_h64_l2_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "7df20f31c5934775baa8acee016936b5073987926db51f78b25d5b9f6c6621e7",
+      "base_model_source_hash": "4cc93d60bd4696c8d72538c379902b152f4a8f14c4d36dbe4ba39d1994cdecda",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "4cc93d60bd4696c8d72538c379902b152f4a8f14c4d36dbe4ba39d1994cdecda",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "agcrn",
+        "source_closure_files": [
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/e3_c.py",
+            "sha256": "f84e44d6205dabdc0c5cb1dc5aee22823edb904dd3c8e5728cf91bb2016d7b38",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/agcrn.py",
+            "sha256": "b50932ec8ef52bc1c6b08947c3a887d44bab524d85b480a638432d8824c3a7f6",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/graph_models/adaptive_common.py",
+            "sha256": "6d26ecbf3234f4050753dc0159ad90130a0972d6c4d76dce7eca6f750e3f49eb",
+            "role": "adaptive graph identity and diagnostics"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/graph_models/agcrn.py",
+            "sha256": "27d5ca80e349fb5d28acb5ee6bcc3baf683ef72cf3726e8c65ad3c04578aea32",
+            "role": "model implementation source"
+          }
+        ],
+        "canonical_combined_hash": "4cc93d60bd4696c8d72538c379902b152f4a8f14c4d36dbe4ba39d1994cdecda"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 24,
+      "entry_id": "e5_stid",
+      "model_id": "stid",
+      "display_name": "STID",
+      "entry_type": "TRAIN_COMMON_LOSS",
+      "command": "train",
+      "e5_run_id": "STID_native_node32_tid32_diw32_mlp3_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "8ca024046e2f07d433d6d210c2c6f9c531fc3d191da510e32fcec3be9f2a89d5",
+      "base_model_source_hash": "51c2c80ba887bef7e2ec0f0cc753dfa553dd6e7b36526b3e2c9d67db91a557be",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "51c2c80ba887bef7e2ec0f0cc753dfa553dd6e7b36526b3e2c9d67db91a557be",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "stid",
+        "source_closure_files": [
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/e3_c.py",
+            "sha256": "f84e44d6205dabdc0c5cb1dc5aee22823edb904dd3c8e5728cf91bb2016d7b38",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/stid.py",
+            "sha256": "c0d17eb866e0a7194d58435a34b87f0e725bb758fea849fda43f1157167f60ea",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/graph_models/adaptive_common.py",
+            "sha256": "6d26ecbf3234f4050753dc0159ad90130a0972d6c4d76dce7eca6f750e3f49eb",
+            "role": "adaptive graph identity and diagnostics"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/graph_models/stid.py",
+            "sha256": "94bfb6fe5d8091c92d59a6c593a27761c53c50749f9eae6d669c27db997061e9",
+            "role": "model implementation source"
+          }
+        ],
+        "canonical_combined_hash": "51c2c80ba887bef7e2ec0f0cc753dfa553dd6e7b36526b3e2c9d67db91a557be"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 25,
+      "entry_id": "e5_persistence",
+      "model_id": "persistence",
+      "display_name": "Persistence",
+      "entry_type": "EVALUATE_ONLY_COMMON_LOSS_DIAGNOSTIC",
+      "command": "evaluate-only",
+      "e5_run_id": "Persistence_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "69edc3cf8b39f681acff3a9580b2006aa867609ebb454944f4c68ba6f91f427a",
+      "base_model_source_hash": "c2fe4d25d883e47a14e46e52d75f6d5ba573b20a7f41c192358f32f3c99cd630",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "c2fe4d25d883e47a14e46e52d75f6d5ba573b20a7f41c192358f32f3c99cd630",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "persistence",
+        "source_closure_files": [
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/statistical_baselines.py",
+            "sha256": "653381543b3bb27c29176c18a1633a3b0f4662d74a60bcbb77432a42e5efbdd7",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/persistence.py",
+            "sha256": "663f684613b339ed7bc92f0de52d8ac3aac0fe675b18a514c68ead25efe41d02",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/persistence.py",
+            "sha256": "209ec06fb0e11c06bc0c7f0b38f0f8fff6738c95acfc05fc7d1af4f82c8ff623",
+            "role": "model implementation source"
+          }
+        ],
+        "canonical_combined_hash": "c2fe4d25d883e47a14e46e52d75f6d5ba573b20a7f41c192358f32f3c99cd630"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 26,
+      "entry_id": "e5_moving_average",
+      "model_id": "moving_average",
+      "display_name": "MovingAverage",
+      "entry_type": "EVALUATE_ONLY_COMMON_LOSS_DIAGNOSTIC",
+      "command": "evaluate-only",
+      "e5_run_id": "MovingAverage_w144_loss_msa_hybrid_bs4_seed2026",
+      "base_model_config_hash": "2cadb7ff357946f0a31ae3b4482d169544acd743bb188a15613a6d57703aa1ba",
+      "base_model_source_hash": "efad6861dd4dee52fce102ef396330635194dad85b41a35730c9aaedaba597db",
+      "loss_id": "masked_score_aligned_hybrid",
+      "base_model_source_closure_hash": "efad6861dd4dee52fce102ef396330635194dad85b41a35730c9aaedaba597db",
+      "source_identity": {
+        "source_identity_schema_version": "model_source_identity_v1",
+        "model_id": "moving_average",
+        "source_closure_files": [
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+            "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+            "role": "shared adapter contract used by the model adapter"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/adapters/statistical_baselines.py",
+            "sha256": "653381543b3bb27c29176c18a1633a3b0f4662d74a60bcbb77432a42e5efbdd7",
+            "role": "benchmark adapter implementation"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/configs/moving_average.py",
+            "sha256": "26bc694d345d268f2dfe66ffdcd5a02bcd13cfc9a138f6d6fa143171b6797d92",
+            "role": "model-specific config resolver"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/model_runtime.py",
+            "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
+            "role": "explicit model runtime builder"
+          },
+          {
+            "path": "custom_models/src/benchmark_v2/models/moving_average.py",
+            "sha256": "25b4126d84bddd7d61eecd650eb5261c3df5de448f18b8c5fe13526793e30a1b",
+            "role": "model implementation source"
+          }
+        ],
+        "canonical_combined_hash": "efad6861dd4dee52fce102ef396330635194dad85b41a35730c9aaedaba597db"
+      },
+      "precision_identity": {
+        "amp_enabled": true,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+          "requested_amp_enabled": true,
+          "effective_amp_enabled": true,
+          "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+        }
+      }
+    },
+    {
+      "ordinal": 27,
+      "entry_id": "STMGPrompt_A8_loss_msa_hybrid_seed2026_reference",
+      "model_id": "st_mgprompt_a8",
+      "display_name": "ST-MGPrompt A8 (w/o MS-MG-DWU)",
+      "entry_type": "REFERENCE_ONLY_FORMAL_A8",
+      "command": "reference",
+      "e5_run_id": "STMGPrompt_A8_loss_msa_hybrid_seed2026_reference",
+      "base_model_config_hash": null,
+      "base_model_source_hash": null,
+      "loss_id": "masked_score_aligned_hybrid"
+    }
   ],
   "exclusions": [
-    {"model_id": "segrnn", "status": "EXCLUDED_FROM_CURRENT_FORMAL_SCOPE", "reason": "RESOURCE_REQUIREMENT_EXCEEDS_AVAILABLE_FORMAL_HARDWARE"},
-    {"model_id": "msgnet", "status": "EXCLUDED_FROM_CURRENT_FORMAL_SCOPE", "reason": "RESOURCE_REQUIREMENT_EXCEEDS_AVAILABLE_FORMAL_HARDWARE"}
+    {
+      "model_id": "segrnn",
+      "status": "EXCLUDED_FROM_CURRENT_FORMAL_SCOPE",
+      "reason": "RESOURCE_REQUIREMENT_EXCEEDS_AVAILABLE_FORMAL_HARDWARE"
+    },
+    {
+      "model_id": "msgnet",
+      "status": "EXCLUDED_FROM_CURRENT_FORMAL_SCOPE",
+      "reason": "RESOURCE_REQUIREMENT_EXCEEDS_AVAILABLE_FORMAL_HARDWARE"
+    }
   ],
   "execution_order_policy": "The entries array is the only active execution order source.",
-  "historical_scope29_manifest": "custom_models/docs/benchmark_v2/E5/E5_VARIANT_MANIFEST.json"
+  "historical_scope29_manifest": "custom_models/docs/benchmark_v2/E5/E5_VARIANT_MANIFEST.json",
+  "source_identity_schema_version": "model_source_identity_v1"
 }

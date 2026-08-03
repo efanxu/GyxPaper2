@@ -22,12 +22,20 @@ def aggregate(
     output_root: str | Path | None = None,
     require_complete: bool = True,
     training_profile: str | None = None,
+    legacy_scope29: bool = False,
 ) -> dict[str, Any]:
+    if not legacy_scope29:
+        raise RuntimeError(
+            "SUPERSEDED_E5_SCOPE29_COMMAND: current active scope is "
+            "e5_batch4_scope27_seed2026; use the scope27 gate or active CLI."
+        )
     if not require_complete:
         raise ValueError("E5 final aggregation requires --require-complete")
     root = Path(output_root or (PROJECT_ROOT / FORMAL_OUTPUT_ROOT_RELATIVE))
     readiness = build_readiness(
-        output_root=root, training_profile=training_profile
+        output_root=root,
+        training_profile=training_profile,
+        legacy_scope29=True,
     )
     if readiness["status"] != "READY":
         raise RuntimeError(

@@ -10,6 +10,37 @@ TRANSFORMER_PRECISION_REASON = (
 TRANSFORMER_BATCH_PROFILE_ID = "uniform_train_batch4_v1"
 
 
+def expected_model_precision_identity(
+    model_id: str, training_batch_profile_id: str | None
+) -> dict[str, Any]:
+    """Return the frozen precision identity for a model/profile pair."""
+
+    if training_batch_profile_id != TRANSFORMER_BATCH_PROFILE_ID:
+        return {
+            "amp_enabled": True,
+            "precision_policy": "profile_default",
+        }
+    if model_id == "transformer":
+        return {
+            "amp_enabled": False,
+            "precision_policy": "fp32",
+            "precision_resolution": {
+                "requested_amp_enabled": True,
+                "effective_amp_enabled": False,
+                "reason": TRANSFORMER_PRECISION_REASON,
+            },
+        }
+    return {
+        "amp_enabled": True,
+        "precision_policy": "profile_default",
+        "precision_resolution": {
+            "requested_amp_enabled": True,
+            "effective_amp_enabled": True,
+            "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+        },
+    }
+
+
 def apply_model_precision_policy(runtime: Any):
     """Apply only audited model-specific precision overrides.
 
@@ -18,12 +49,24 @@ def apply_model_precision_policy(runtime: Any):
     is recorded separately and all other models retain the profile behavior.
     """
 
-    if getattr(runtime, "model_id", None) != "transformer":
-        return runtime
     if (
         runtime.effective_config.get("training_batch_profile_id")
         != TRANSFORMER_BATCH_PROFILE_ID
     ):
+        return runtime
+    if getattr(runtime, "model_id", None) != "transformer":
+        runtime.effective_config.setdefault("precision_policy", "profile_default")
+        runtime.effective_config.setdefault(
+            "precision_resolution",
+            {
+                "requested_amp_enabled": True,
+                "effective_amp_enabled": True,
+                "reason": (
+                    "uniform_train_batch4_v1 profile default; "
+                    "no model-specific override."
+                ),
+            },
+        )
         return runtime
     requested_amp_enabled = bool(
         runtime.effective_config.get("amp_enabled", False)

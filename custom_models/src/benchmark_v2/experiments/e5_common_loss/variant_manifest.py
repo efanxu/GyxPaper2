@@ -7,6 +7,8 @@ from typing import Any
 
 from ...configs import resolve_moving_average_config, resolve_persistence_config
 from ...hardware_preflight import _RESOLVERS
+from ...model_source_identity import canonical_model_source_identity
+from ...precision import expected_model_precision_identity
 from ...protocol import load_protocol
 from ...registry import load_registry
 from ...runtime import PROJECT_ROOT
@@ -86,11 +88,8 @@ def _base_config(model_id: str) -> dict[str, Any]:
     return _RESOLVERS[model_id](protocol, run_mode="formal")
 
 
-def _source_hash(entry) -> str:
-    path = PROJECT_ROOT / str(entry.source_path)
-    if not path.is_file():
-        raise FileNotFoundError(path)
-    return file_sha256(path)
+def _source_identity(model_id: str) -> dict[str, Any]:
+    return canonical_model_source_identity(model_id)
 
 
 def build_variant_manifest(
@@ -114,6 +113,7 @@ def build_variant_manifest(
         base_run_id = base_ids[model_id]["base_run_id"]
         trainable = model_id in TRAINABLE_MODELS
         config = _base_config(model_id)
+        source_identity = _source_identity(model_id)
         entries.append(
             {
                 "entry_id": f"e5_{model_id}",
@@ -129,8 +129,16 @@ def build_variant_manifest(
                 "base_run_id_source": base_ids[model_id]["source_runbook"],
                 "e5_run_id": e5_run_id(base_run_id, training_profile),
                 "base_model_config_hash": stable_hash(config),
-                "base_model_source_hash": _source_hash(entry),
-                "base_model_source_closure_hash": _source_hash(entry),
+                "base_model_source_hash": source_identity[
+                    "canonical_combined_hash"
+                ],
+                "base_model_source_closure_hash": source_identity[
+                    "canonical_combined_hash"
+                ],
+                "source_identity": source_identity,
+                "precision_identity": expected_model_precision_identity(
+                    model_id, training_profile
+                ),
                 "training_mode": "TRAIN" if trainable else "EVALUATE_ONLY",
                 "trained_with_common_loss": bool(trainable),
                 "diagnostic_loss_applied": True,
@@ -221,7 +229,8 @@ def build_variant_manifest(
     if counts != expected_counts:
         raise ValueError(f"E5 variant count mismatch: {counts}")
     return {
-        "schema_version": "e5_variant_manifest_v1",
+        "schema_version": "e5_variant_manifest_v2",
+        "source_identity_schema_version": "model_source_identity_v1",
         "profile_id": profile["profile_id"],
         "cli_profile_id": CLI_PROFILE_ID,
         **profile_identity,

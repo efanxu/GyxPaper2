@@ -42,6 +42,7 @@ from .experiments.e5_common_loss.scope27_contract import (
 from .losses import get_loss
 from .metrics import evaluate_horizons
 from .model_runtime import ModelRuntime, build_model_runtime
+from .precision import apply_model_precision_policy
 from .models.graph_models.adaptive_common import (
     canonical_tensor_hash,
     learned_graph_summary,
@@ -483,20 +484,21 @@ def _write_non_trainable_state(
     assert runtime.scaler_context is not None
     e5 = runtime.effective_config.get("experiment_profile_id") is not None
     payload = {
-            "model_id": runtime.model_id,
-            "protocol_hash": protocol.protocol_hash,
-            "feature_order_hash": protocol["feature_order_hash"],
-            "baseline_rule": runtime.effective_config["baseline_rule"],
-            "ma_window": runtime.effective_config.get("ma_window"),
-            "optimizer": None,
-            "scheduler": None,
-            "epochs": None,
-            "early_stopping": None,
-            "scaler_context": runtime.scaler_context.to_dict(),
-        }
+        "model_id": runtime.model_id,
+        "protocol_hash": protocol.protocol_hash,
+        "feature_order_hash": protocol["feature_order_hash"],
+        "baseline_rule": runtime.effective_config["baseline_rule"],
+        "ma_window": runtime.effective_config.get("ma_window"),
+        "optimizer": None,
+        "scheduler": None,
+        "epochs": None,
+        "early_stopping": None,
+        "scaler_context": runtime.scaler_context.to_dict(),
+    }
     if e5:
         payload.update(
             {
+                "schema_version": "e5_non_trainable_baseline_v1",
                 "training_mode": "EVALUATE_ONLY",
                 "training_loss": "NOT_APPLICABLE",
                 "trained_with_common_loss": False,
@@ -550,6 +552,8 @@ def _run_non_trainable(
         atomic_write_json(
             run_dir / "common_loss_diagnostic.json",
             {
+                "schema_version": "e5_common_loss_diagnostic_v1",
+                "model_id": runtime.model_id,
                 "loss_id": "masked_score_aligned_hybrid",
                 "loss_space": "normalized Patv_raw",
                 "value": diagnostic_loss,
@@ -790,6 +794,7 @@ def model_smoke(
         )
         apply_experiment_profile(runtime, selected_profile)
         apply_training_profile(runtime, training_profile)
+        apply_model_precision_policy(runtime)
         e5_state_hash = state_dict_hash(runtime.model)
         with torch.no_grad():
             e5_prediction = runtime.adapter(
@@ -834,6 +839,7 @@ def model_smoke(
     else:
         apply_experiment_profile(runtime, selected_profile)
         apply_training_profile(runtime, training_profile)
+        apply_model_precision_policy(runtime)
     data_signature = _synthetic_signature(batch)
     if graph_model:
         data_signature.update(
@@ -943,6 +949,16 @@ def full_shape_model_smoke(
         )
         apply_experiment_profile(runtime, selected_profile)
         apply_training_profile(runtime, training_profile)
+        apply_model_precision_policy(runtime)
+        result["amp_enabled"] = bool(
+            runtime.effective_config.get("amp_enabled", protocol["amp_enabled"])
+        )
+        result["precision_policy"] = runtime.effective_config.get(
+            "precision_policy", "profile_default"
+        )
+        result["precision_resolution"] = runtime.effective_config.get(
+            "precision_resolution"
+        )
         if selected_profile == E5_PROFILE_ID:
             result["loss_profile_hash"] = runtime.effective_config["loss"][
                 "profile_hash"
@@ -954,7 +970,12 @@ def full_shape_model_smoke(
         with torch.autocast(
             device_type=device.type,
             dtype=torch.float16,
-            enabled=bool(protocol["amp_enabled"]) and device.type == "cuda",
+            enabled=bool(
+                runtime.effective_config.get(
+                    "amp_enabled", protocol["amp_enabled"]
+                )
+            )
+            and device.type == "cuda",
         ):
             output = runtime.adapter(
                 runtime.model,
@@ -1114,6 +1135,7 @@ def real_data_model_smoke(
     )
     apply_experiment_profile(runtime, selected_profile)
     apply_training_profile(runtime, training_profile)
+    apply_model_precision_policy(runtime)
     run_name = model_id if not attempt_tag else f"{model_id}_{attempt_tag}"
     run_dir = safe_run_dir(root, "real_data", run_name)
     if model_id in {"persistence", "moving_average"}:
@@ -1224,6 +1246,7 @@ def formal_evaluate_only(
         ),
     )
     apply_training_profile(runtime, training_profile)
+    apply_model_precision_policy(runtime)
     sizes = resolved_batch_sizes(protocol, training_profile)
     run_dir = safe_run_dir(output_root, run_id)
     return _run_non_trainable(
@@ -1335,6 +1358,7 @@ def formal_train(
         ),
     )
     apply_training_profile(runtime, training_profile)
+    apply_model_precision_policy(runtime)
     sizes = resolved_batch_sizes(protocol, training_profile)
     run_dir = safe_run_dir(output_root, run_id)
     run_dir.mkdir(parents=True, exist_ok=False)

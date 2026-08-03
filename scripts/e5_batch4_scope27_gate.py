@@ -17,6 +17,11 @@ SRC_ROOT = PROJECT_ROOT / "custom_models" / "src"
 sys.path.insert(0, str(SRC_ROOT))
 
 from benchmark_v2.artifacts import atomic_write_json, validate_run  # noqa: E402
+from benchmark_v2.experiments.e5_common_loss.active_scope import (  # noqa: E402
+    ActiveScopeError,
+    active_scope_path,
+    load_active_scope_pointer,
+)
 from benchmark_v2.experiments.e5_common_loss.a8_reference import (  # noqa: E402
     validate_a8_reference,
 )
@@ -37,6 +42,12 @@ from benchmark_v2.experiments.e5_common_loss.scope27_contract import (  # noqa: 
 )
 from benchmark_v2.protocol import load_protocol  # noqa: E402
 from benchmark_v2.registry import load_registry  # noqa: E402
+from benchmark_v2.model_source_identity import (  # noqa: E402
+    MODEL_SOURCE_IDENTITY_SCHEMA_VERSION,
+    ModelSourceIdentityError,
+    canonical_model_source_identity,
+)
+from benchmark_v2.precision import expected_model_precision_identity  # noqa: E402
 from benchmark_v2.training_profiles import load_training_profile  # noqa: E402
 
 
@@ -57,6 +68,7 @@ EXPECTED_OUTPUT_ROOT = (
 )
 REQUIRED_METRICS = ("Score", "MAE", "RMSE", "R2")
 HORIZONS = (3, 6, 10)
+SOURCE_IDENTITY_SCHEMA_VERSION = MODEL_SOURCE_IDENTITY_SCHEMA_VERSION
 
 
 class ScopeGateError(RuntimeError):
@@ -88,7 +100,14 @@ def load_json(path: Path) -> Any:
 
 
 def load_manifest(path: str | Path) -> dict[str, Any]:
+    pointer = load_active_scope_pointer()
     manifest_path = Path(path).resolve()
+    expected_manifest = active_scope_path(pointer, "manifest").resolve()
+    if manifest_path != expected_manifest:
+        raise ScopeGateError(
+            "The active scope pointer does not authorize this manifest; "
+            "legacy/superseded manifests are not current scope27 inputs."
+        )
     payload = load_json(manifest_path)
     if not isinstance(payload, dict):
         raise ScopeGateError("Manifest root must be a JSON object.")
@@ -128,6 +147,8 @@ def validate_manifest(manifest: Mapping[str, Any]) -> None:
         "custom_models/results/benchmark_v2/common_loss_architecture_seed2026"
     ):
         raise ScopeGateError("Formal output root mismatch.")
+    if manifest.get("source_identity_schema_version") != SOURCE_IDENTITY_SCHEMA_VERSION:
+        raise ScopeGateError("Model source identity schema mismatch.")
     entries = list(manifest.get("entries", []))
     counts = manifest.get("counts", {})
     expected_counts = {
@@ -201,11 +222,37 @@ def validate_manifest(manifest: Mapping[str, Any]) -> None:
     for entry in entries:
         if entry["model_id"] in E5_SCOPE27_REFERENCE_MODELS:
             continue
-        registry_entry = registry.get(entry["model_id"])
-        source_path = PROJECT_ROOT / str(registry_entry.source_path)
-        if sha256_file(source_path) != entry["base_model_source_hash"]:
+        try:
+            source_identity = canonical_model_source_identity(entry["model_id"])
+        except (ModelSourceIdentityError, KeyError, OSError) as exc:
+            raise ScopeGateError(
+                f"Model source closure cannot be validated: {entry['model_id']}: {exc}"
+            ) from exc
+        if (
+            entry.get("base_model_source_hash")
+            != source_identity["canonical_combined_hash"]
+            or entry.get("base_model_source_closure_hash")
+            != source_identity["canonical_combined_hash"]
+        ):
             raise ScopeGateError(
                 f"Model source identity mismatch: {entry['model_id']}"
+            )
+        stored_identity = entry.get("source_identity")
+        if not isinstance(stored_identity, Mapping):
+            raise ScopeGateError(
+                f"Model source closure manifest is missing: {entry['model_id']}"
+            )
+        if stored_identity.get("source_identity_schema_version") != SOURCE_IDENTITY_SCHEMA_VERSION:
+            raise ScopeGateError(
+                f"Model source closure schema mismatch: {entry['model_id']}"
+            )
+        if stored_identity.get("canonical_combined_hash") != source_identity[
+            "canonical_combined_hash"
+        ] or stored_identity.get("source_closure_files") != source_identity[
+            "source_closure_files"
+        ]:
+            raise ScopeGateError(
+                f"Model source closure records mismatch: {entry['model_id']}"
             )
         if (
             canonical_base_model_config_hash(entry["model_id"])
@@ -213,6 +260,12 @@ def validate_manifest(manifest: Mapping[str, Any]) -> None:
         ):
             raise ScopeGateError(
                 f"Model config identity mismatch: {entry['model_id']}"
+            )
+        if entry.get("precision_identity") != expected_model_precision_identity(
+            entry["model_id"], TRAINING_PROFILE_ID
+        ):
+            raise ScopeGateError(
+                f"Precision identity mismatch: {entry['model_id']}"
             )
 
 
@@ -245,30 +298,43 @@ def _metric_payloads(paths: list[Path]) -> tuple[dict[int, dict[str, Any]], list
     return payloads, reasons
 
 
-def inspect_run(
+def _base_run_result(
+    entry: Mapping[str, Any], output_root: Path
+) -> tuple[dict[str, Any], Path]:
+    run_dir = output_root / entry["e5_run_id"]
+    return (
+        {
+            "entry_id": entry["entry_id"],
+            "model_id": entry["model_id"],
+            "entry_type": entry["entry_type"],
+            "run_id": entry["e5_run_id"],
+            "run_dir": str(run_dir),
+            "found": run_dir.is_dir(),
+            "ready": False,
+            "reasons": [],
+        },
+        run_dir,
+    )
+
+
+def _load_common_run(
     manifest: Mapping[str, Any],
     entry: Mapping[str, Any],
     output_root: Path,
-) -> dict[str, Any]:
-    run_dir = output_root / entry["e5_run_id"]
-    result: dict[str, Any] = {
-        "entry_id": entry["entry_id"],
-        "model_id": entry["model_id"],
-        "entry_type": entry["entry_type"],
-        "run_id": entry["e5_run_id"],
-        "run_dir": str(run_dir),
-        "found": run_dir.is_dir(),
-        "ready": False,
-        "reasons": [],
-    }
+    *,
+    expected_artifact_profile: str,
+    expected_formal_training: bool,
+) -> tuple[dict[str, Any], Path, dict[str, Any] | None]:
+    result, run_dir = _base_run_result(entry, output_root)
     if not run_dir.is_dir():
         result["reasons"].append("RUN_NOT_FOUND")
-        return result
+        return result, run_dir, None
     try:
         status = load_json(run_dir / "run_status.json")
         effective = load_json(run_dir / "effective_config.json")
         data_signature = load_json(run_dir / "data_signature.json")
         protocol_check = load_json(run_dir / "protocol_check.json")
+        artifact_manifest = load_json(run_dir / "artifact_manifest.json")
         validate_run(
             run_dir,
             expected_protocol_hash=manifest["benchmark_protocol_hash"],
@@ -281,33 +347,59 @@ def inspect_run(
         result["reasons"].append(
             f"ARTIFACT_INTEGRITY:{type(exc).__name__}:{exc}"
         )
-        return result
+        return result, run_dir, None
 
+    provenance = effective.get("provenance", {})
+    stored_identity = entry.get("source_identity", {})
+    expected_precision = entry.get("precision_identity", {})
     checks = (
         (status.get("status") == "COMPLETED", "NOT_COMPLETED"),
         (status.get("run_mode") == "formal", "NOT_FORMAL"),
+        (
+            status.get("artifact_profile") == expected_artifact_profile,
+            "ARTIFACT_PROFILE_MISMATCH",
+        ),
+        (
+            status.get("formal_training") is expected_formal_training,
+            "FORMAL_TRAINING_FLAG_MISMATCH",
+        ),
         (effective.get("model_id") == entry["model_id"], "MODEL_ID_MISMATCH"),
+        (
+            effective.get("artifact_profile") == expected_artifact_profile,
+            "EFFECTIVE_ARTIFACT_PROFILE_MISMATCH",
+        ),
+        (
+            effective.get("formal_training") is expected_formal_training,
+            "EFFECTIVE_FORMAL_TRAINING_FLAG_MISMATCH",
+        ),
         (
             effective.get("experiment_profile_id")
             == manifest["experiment_profile_id"],
             "E5_PROFILE_MISMATCH",
         ),
         (
-            effective.get("provenance", {}).get("active_scope_id")
-            == E5_SCOPE27_ID,
+            provenance.get("active_scope_id") == E5_SCOPE27_ID,
             "ACTIVE_SCOPE_ID_MISMATCH",
         ),
         (
-            effective.get("provenance", {}).get("base_model_config_hash")
+            provenance.get("base_model_config_hash")
             == entry["base_model_config_hash"],
             "BASE_MODEL_CONFIG_HASH_MISMATCH",
         ),
         (
-            effective.get("provenance", {}).get(
-                "base_model_source_closure_hash"
-            )
+            provenance.get("base_model_source_closure_hash")
             == entry["base_model_source_hash"],
             "BASE_MODEL_SOURCE_HASH_MISMATCH",
+        ),
+        (
+            provenance.get("base_model_source_identity_schema_version")
+            == SOURCE_IDENTITY_SCHEMA_VERSION,
+            "BASE_MODEL_SOURCE_SCHEMA_MISMATCH",
+        ),
+        (
+            provenance.get("base_model_source_closure_files")
+            == stored_identity.get("source_closure_files"),
+            "BASE_MODEL_SOURCE_CLOSURE_MISMATCH",
         ),
         (
             effective.get("loss", {}).get("id")
@@ -325,9 +417,7 @@ def inspect_run(
             "LOSS_PROFILE_HASH_MISMATCH",
         ),
         (
-            effective.get("provenance", {}).get(
-                "e5_common_loss_protocol_hash"
-            )
+            provenance.get("e5_common_loss_protocol_hash")
             == manifest["loss_identity"]["e5_common_loss_protocol_hash"],
             "E5_PROTOCOL_HASH_MISMATCH",
         ),
@@ -336,6 +426,11 @@ def inspect_run(
             == manifest["benchmark_protocol_hash"],
             "BENCHMARK_PROTOCOL_HASH_MISMATCH",
         ),
+        (artifact_manifest.get("model_id") == entry["model_id"], "ARTIFACT_MODEL_ID_MISMATCH"),
+        (
+            artifact_manifest.get("artifact_profile") == expected_artifact_profile,
+            "ARTIFACT_MANIFEST_PROFILE_MISMATCH",
+        ),
         (data_signature.get("dataset_id") == "SDWPF", "DATASET_ID_MISMATCH"),
         (data_signature.get("node_count") == 134, "DATASET_NODE_COUNT_MISMATCH"),
         (
@@ -343,8 +438,38 @@ def inspect_run(
             == manifest["dataset_identity"]["feature_order_hash"],
             "DATASET_FEATURE_ORDER_MISMATCH",
         ),
+        (
+            all(
+                effective.get(key) == value
+                for key, value in expected_precision.items()
+            ),
+            "PRECISION_IDENTITY_MISMATCH",
+        ),
     )
     result["reasons"].extend(reason for passed, reason in checks if not passed)
+    return result, run_dir, {
+        "status": status,
+        "effective": effective,
+        "data_signature": data_signature,
+        "protocol_check": protocol_check,
+        "artifact_manifest": artifact_manifest,
+    }
+
+
+def inspect_trainable_run(
+    manifest: Mapping[str, Any],
+    entry: Mapping[str, Any],
+    output_root: Path,
+) -> dict[str, Any]:
+    result, run_dir, common = _load_common_run(
+        manifest,
+        entry,
+        output_root,
+        expected_artifact_profile="TRAIN",
+        expected_formal_training=True,
+    )
+    if common is None:
+        return result
     metrics_paths = [
         run_dir / f"metrics_eval_h{horizon}.json" for horizon in HORIZONS
     ]
@@ -369,6 +494,113 @@ def inspect_run(
             }
         )
     return result
+
+
+def inspect_evaluate_only_run(
+    manifest: Mapping[str, Any],
+    entry: Mapping[str, Any],
+    output_root: Path,
+) -> dict[str, Any]:
+    result, run_dir, common = _load_common_run(
+        manifest,
+        entry,
+        output_root,
+        expected_artifact_profile="NON_TRAINABLE",
+        expected_formal_training=False,
+    )
+    if common is None:
+        return result
+    baseline_path = run_dir / "baseline_state.json"
+    diagnostic_path = run_dir / "common_loss_diagnostic.json"
+    prediction_path = run_dir / "prediction_metadata.json"
+    try:
+        baseline = load_json(baseline_path)
+        diagnostic = load_json(diagnostic_path)
+        prediction = load_json(prediction_path)
+    except Exception as exc:
+        result["reasons"].append(
+            f"EVALUATE_ONLY_EVIDENCE:{type(exc).__name__}:{exc}"
+        )
+        return result
+    baseline_checks = (
+        (
+            baseline.get("schema_version") == "e5_non_trainable_baseline_v1",
+            "BASELINE_SCHEMA_MISMATCH",
+        ),
+        (baseline.get("model_id") == entry["model_id"], "BASELINE_MODEL_ID_MISMATCH"),
+        (baseline.get("training_mode") == "EVALUATE_ONLY", "BASELINE_MODE_MISMATCH"),
+        (baseline.get("training_loss") == "NOT_APPLICABLE", "BASELINE_TRAINING_LOSS_MISMATCH"),
+        (baseline.get("trained_with_common_loss") is False, "BASELINE_TRAINED_FLAG_MISMATCH"),
+        (baseline.get("common_loss_evaluation_applied") is True, "BASELINE_DIAGNOSTIC_FLAG_MISMATCH"),
+        (baseline.get("best_checkpoint") is None, "BASELINE_CHECKPOINT_NOT_NULL"),
+        (baseline.get("best_epoch") is None, "BASELINE_BEST_EPOCH_NOT_NULL"),
+    )
+    diagnostic_checks = (
+        (
+            diagnostic.get("schema_version") == "e5_common_loss_diagnostic_v1",
+            "DIAGNOSTIC_SCHEMA_MISMATCH",
+        ),
+        (
+            diagnostic.get("model_id") == entry["model_id"],
+            "DIAGNOSTIC_MODEL_ID_MISMATCH",
+        ),
+        (diagnostic.get("loss_id") == "masked_score_aligned_hybrid", "DIAGNOSTIC_LOSS_ID_MISMATCH"),
+        (
+            diagnostic.get("loss_space") == "normalized Patv_raw",
+            "DIAGNOSTIC_LOSS_SPACE_MISMATCH",
+        ),
+        (diagnostic.get("training_loss") == "NOT_APPLICABLE", "DIAGNOSTIC_TRAINING_LOSS_MISMATCH"),
+        (diagnostic.get("trained_with_common_loss") is False, "DIAGNOSTIC_TRAINED_FLAG_MISMATCH"),
+        (diagnostic.get("common_loss_evaluation_applied") is True, "DIAGNOSTIC_APPLIED_FLAG_MISMATCH"),
+        (
+            isinstance(diagnostic.get("value"), (int, float))
+            and not isinstance(diagnostic.get("value"), bool)
+            and math.isfinite(float(diagnostic["value"])),
+            "DIAGNOSTIC_VALUE_NON_FINITE",
+        ),
+    )
+    result["reasons"].extend(
+        reason
+        for passed, reason in (*baseline_checks, *diagnostic_checks)
+        if not passed
+    )
+    if prediction.get("source_checkpoint") is not None:
+        result["reasons"].append("EVALUATE_ONLY_SOURCE_CHECKPOINT_NOT_NULL")
+    metrics_paths = [
+        run_dir / f"metrics_eval_h{horizon}.json" for horizon in HORIZONS
+    ]
+    _, metric_reasons = _metric_payloads(metrics_paths)
+    result["reasons"].extend(metric_reasons)
+    if not result["reasons"]:
+        result.update(
+            {
+                "ready": True,
+                "checkpoint_sha256": None,
+                "baseline_state_sha256": sha256_file(baseline_path),
+                "common_loss_diagnostic_sha256": sha256_file(diagnostic_path),
+                "metrics_sha256": combined_hash(metrics_paths),
+                "run_status_sha256": sha256_file(run_dir / "run_status.json"),
+                "effective_config_sha256": sha256_file(
+                    run_dir / "effective_config.json"
+                ),
+                "artifact_manifest_sha256": sha256_file(
+                    run_dir / "artifact_manifest.json"
+                ),
+            }
+        )
+    return result
+
+
+def inspect_run(
+    manifest: Mapping[str, Any],
+    entry: Mapping[str, Any],
+    output_root: Path,
+) -> dict[str, Any]:
+    if entry["entry_type"] == "TRAIN_COMMON_LOSS":
+        return inspect_trainable_run(manifest, entry, output_root)
+    if entry["entry_type"] == "EVALUATE_ONLY_COMMON_LOSS_DIAGNOSTIC":
+        return inspect_evaluate_only_run(manifest, entry, output_root)
+    raise ScopeGateError(f"Unsupported run entry type: {entry['entry_type']}")
 
 
 def inspect_a8(
@@ -511,6 +743,8 @@ def write_readiness_outputs(
                     "run_dir",
                     "ready",
                     "checkpoint_sha256",
+                    "baseline_state_sha256",
+                    "common_loss_diagnostic_sha256",
                     "metrics_sha256",
                     "run_status_sha256",
                     "effective_config_sha256",
@@ -563,6 +797,11 @@ def _aggregate_rows(
             ),
             "loss_id": entry["loss_id"],
             "training_status": training_status,
+            "checkpoint": (
+                "best_checkpoint.pt"
+                if entry["entry_type"] == "TRAIN_COMMON_LOSS"
+                else None
+            ),
             "best_epoch": effective.get("best_epoch"),
             "parameter_count": effective.get("parameter_count"),
             "trainable_parameter_count": effective.get(
@@ -614,12 +853,13 @@ def aggregate(
     lines = [
         "# E5 common-loss architecture: batch4 scope27 seed2026",
         "",
-        "| model | mode | H3 Score | H6 Score | H10 Score | average Score |",
-        "|---|---:|---:|---:|---:|---:|",
+        "| model | mode | checkpoint | H3 Score | H6 Score | H10 Score | average Score |",
+        "|---|---|---|---:|---:|---:|---:|",
     ]
     for row in rows:
         lines.append(
             f"| {row['model']} | {row['training_mode']} | "
+            f"{row['checkpoint'] or 'null'} | "
             f"{row['H3_Score']:.6f} | {row['H6_Score']:.6f} | "
             f"{row['H10_Score']:.6f} | {row['average_Score']:.6f} |"
         )
@@ -745,13 +985,13 @@ def main(argv: list[str] | None = None) -> int:
                     continue
                 result = inspect_run(manifest, entry, output_root)
                 if result["ready"]:
-                    action = "SKIP_COMPLETED"
+                    action = "SKIP_COMPLETED_IDENTITY_MATCH"
                     reason = "COMPLETED_IDENTITY_MATCH"
                 elif not result["found"]:
                     action = "RUN"
                     reason = "RUN_NOT_FOUND"
                 else:
-                    action = "BLOCK_EXISTING"
+                    action = "BLOCK_EXISTING_PRESERVED"
                     reason = "|".join(result["reasons"])
                 device = "cpu" if entry["command"] == "evaluate-only" else "cuda"
                 print(

@@ -1,6 +1,7 @@
 {
-  "schema_version": "e5_scope27_run_id_map_v1",
+  "schema_version": "e5_scope27_run_id_map_v2",
   "scope_id": "e5_batch4_scope27_seed2026",
+  "source_identity_schema_version": "model_source_identity_v1",
   "training_profile_id": "uniform_train_batch4_v1",
   "output_root": "custom_models/results/benchmark_v2/common_loss_architecture_seed2026",
   "rule": "Use the exact e5_run_id from E5_SCOPE27_VARIANT_MANIFEST.json; train/evaluate entries end in _loss_msa_hybrid_bs4_seed2026.",

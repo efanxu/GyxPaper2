@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import json
+import sys
 import traceback
 from pathlib import Path
 
@@ -12,6 +14,10 @@ from .data import SDWPFDataProvider
 from .engine import Evaluator, Trainer
 from .errors import BenchmarkV2Error, ModelUnavailableError
 from .experiments.e5_common_loss.a8_reference import create_a8_reference
+from .experiments.e5_common_loss.active_scope import (
+    active_scope_path,
+    load_active_scope_pointer,
+)
 from .experiments.e5_common_loss.aggregation import aggregate as e5_aggregate
 from .experiments.e5_common_loss.contracts import FORMAL_OUTPUT_ROOT_RELATIVE
 from .experiments.e5_common_loss.loss_profile import (
@@ -40,6 +46,21 @@ from .protocol import check_protocol, load_protocol
 from .registry import load_registry
 from .runtime import FORMAL_ROOT, PROJECT_ROOT, SMOKE_ROOT, environment_snapshot
 from .training_profiles import PROFILE_ALLOWLIST
+
+
+def _load_active_scope27_gate():
+    pointer = load_active_scope_pointer()
+    gate_path = active_scope_path(pointer, "gate_source")
+    module_name = "_benchmark_v2_active_scope27_gate"
+    module = sys.modules.get(module_name)
+    if module is None:
+        spec = importlib.util.spec_from_file_location(module_name, gate_path)
+        if spec is None or spec.loader is None:
+            raise RuntimeError(f"Cannot load current scope27 gate: {gate_path}")
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[module_name] = module
+        spec.loader.exec_module(module)
+    return pointer, module
 
 
 def _tiny_batch(*, batch_size: int, time_steps: int, nodes: int, features: int, horizon: int, seed: int = 2026) -> BenchmarkBatch:
@@ -234,16 +255,47 @@ def main(argv: list[str] | None = None) -> int:
         "--report-path",
         default=str(
             PROJECT_ROOT
-            / "custom_models/docs/benchmark_v2/E5/E5_RESULT_READINESS.json"
+            / "custom_models/docs/benchmark_v2/E5/E5_SCOPE27_READINESS.json"
         ),
+    )
+    readiness.add_argument(
+        "--evidence-path",
+        default=str(
+            PROJECT_ROOT
+            / "custom_models/docs/benchmark_v2/E5/E5_SCOPE27_EVIDENCE_MANIFEST.json"
+        ),
+    )
+    readiness.add_argument(
+        "--legacy-scope29",
+        action="store_true",
+        help="Explicitly use the superseded 29-entry implementation.",
     )
     aggregate = sub.add_parser("e5-aggregate")
     aggregate.add_argument(
         "--output-root",
         default=str(PROJECT_ROOT / FORMAL_OUTPUT_ROOT_RELATIVE),
     )
+    aggregate.add_argument(
+        "--report-path",
+        default=str(
+            PROJECT_ROOT
+            / "custom_models/docs/benchmark_v2/E5/E5_SCOPE27_READINESS.json"
+        ),
+    )
+    aggregate.add_argument(
+        "--evidence-path",
+        default=str(
+            PROJECT_ROOT
+            / "custom_models/docs/benchmark_v2/E5/E5_SCOPE27_EVIDENCE_MANIFEST.json"
+        ),
+    )
     aggregate.add_argument("--require-complete", action="store_true")
     add_training_profile(aggregate)
+    aggregate.add_argument(
+        "--legacy-scope29",
+        action="store_true",
+        help="Explicitly use the superseded 29-entry implementation.",
+    )
     a8_reference = sub.add_parser("e5-reference-a8")
     a8_reference.add_argument(
         "--output-path",
@@ -280,11 +332,45 @@ def main(argv: list[str] | None = None) -> int:
             print(json.dumps(check_loss_profile(args.experiment_profile or E5_PROFILE_ID), ensure_ascii=False, indent=2))
             return 0
         if args.command == "e5-readiness":
-            report = build_readiness(output_root=args.output_root, report_path=args.report_path, training_profile=args.training_profile)
+            if args.legacy_scope29:
+                report = build_readiness(
+                    output_root=args.output_root,
+                    report_path=args.report_path,
+                    training_profile=args.training_profile,
+                    legacy_scope29=True,
+                )
+            else:
+                pointer, gate = _load_active_scope27_gate()
+                manifest = gate.load_manifest(active_scope_path(pointer, "manifest"))
+                report = gate.build_readiness(
+                    manifest, Path(args.output_root).resolve()
+                )
+                gate.write_readiness_outputs(
+                    report,
+                    Path(args.report_path).resolve(),
+                    Path(args.evidence_path).resolve(),
+                )
             print(json.dumps(report, ensure_ascii=False, indent=2))
-            return 0
+            return 0 if report["status"] == "READY" else 4
         if args.command == "e5-aggregate":
-            print(json.dumps(e5_aggregate(output_root=args.output_root, require_complete=args.require_complete, training_profile=args.training_profile), ensure_ascii=False, indent=2))
+            if args.legacy_scope29:
+                result = e5_aggregate(
+                    output_root=args.output_root,
+                    require_complete=args.require_complete,
+                    training_profile=args.training_profile,
+                    legacy_scope29=True,
+                )
+            else:
+                pointer, gate = _load_active_scope27_gate()
+                manifest = gate.load_manifest(active_scope_path(pointer, "manifest"))
+                result = gate.aggregate(
+                    manifest,
+                    Path(args.output_root).resolve(),
+                    require_complete=args.require_complete,
+                    report_path=Path(args.report_path).resolve(),
+                    evidence_path=Path(args.evidence_path).resolve(),
+                )
+            print(json.dumps(result, ensure_ascii=False, indent=2))
             return 0
         if args.command == "e5-reference-a8":
             reference = create_a8_reference(args.output_path, training_profile=args.training_profile)
@@ -338,7 +424,13 @@ def main(argv: list[str] | None = None) -> int:
                 training_profile=args.training_profile,
                 formal_scope_id=args.formal_scope_id,
             )
-    except (BenchmarkV2Error, ValueError, KeyError, FileNotFoundError) as exc:
+    except (
+        BenchmarkV2Error,
+        RuntimeError,
+        ValueError,
+        KeyError,
+        FileNotFoundError,
+    ) as exc:
         print(f"ERROR: {exc}")
         return 2
     return 2

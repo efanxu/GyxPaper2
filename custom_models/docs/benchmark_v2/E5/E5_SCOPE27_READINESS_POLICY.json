@@ -1,5 +1,5 @@
 {
-  "schema_version": "e5_scope27_readiness_policy_v1",
+  "schema_version": "e5_scope27_readiness_policy_v2",
   "scope_id": "e5_batch4_scope27_seed2026",
   "status": "ACTIVE_POLICY",
   "denominators": {
@@ -21,12 +21,17 @@
     "output directory conflict safety",
     "completed run identity-safe skip",
     "artifact completeness",
-    "checkpoint hash",
+    "entry-type-specific artifact completeness",
+    "trainable checkpoint hash",
+    "evaluate-only baseline/diagnostic hashes",
     "metrics hash",
     "run_status",
     "A8 read-only reference identity",
     "require-complete aggregate"
   ],
+  "source_identity_schema_version": "model_source_identity_v1",
+  "precision_identity_policy": "Manifest-declared; Transformer + uniform_train_batch4_v1 requires fp32 and all other active Batch4 models retain profile AMP.",
+  "evaluate_only_checkpoint_policy": "Checkpoint files are not required and are not hashed for EVALUATE_ONLY_COMMON_LOSS_DIAGNOSTIC entries.",
   "hardware_artifact_gate": "NOT_REQUIRED_FOR_CURRENT_FORMAL_SCOPE",
   "excluded_models_are_outside_denominator": true,
   "resolver_policy": "Only exact formal scope27 run ids under the configured formal output root are eligible; smoke and historical artifacts are never selected.",

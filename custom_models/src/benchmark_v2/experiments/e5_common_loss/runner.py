@@ -3,6 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
+from ...model_source_identity import canonical_model_source_identity
 from .loss_profile import (
     CLI_PROFILE_ID,
     DEFAULT_PROFILE_ID,
@@ -49,6 +50,24 @@ def apply_experiment_profile(
         return runtime
     metadata = get_profile_metadata(selected)
     base = dict(runtime.effective_config)
+    source_identity = canonical_model_source_identity(runtime.model_id)
+    supplied_provenance = dict(provenance or {})
+    protected_identity = {
+        "base_model_source_closure_hash": source_identity[
+            "canonical_combined_hash"
+        ],
+        "base_model_source_identity_schema_version": source_identity[
+            "source_identity_schema_version"
+        ],
+        "base_model_source_closure_files": source_identity[
+            "source_closure_files"
+        ],
+    }
+    for key, expected in protected_identity.items():
+        if key in supplied_provenance and supplied_provenance[key] != expected:
+            raise ValueError(
+                f"Model source identity override is not allowed for {runtime.model_id}: {key}"
+            )
     overlay = {
         "experiment_profile_id": metadata["profile_id"],
         "loss": {
@@ -64,14 +83,11 @@ def apply_experiment_profile(
             "base_model_config_hash": canonical_base_model_config_hash(
                 runtime.model_id
             ),
-            "base_model_source_closure_hash": base.get(
-                "source_closure_hash",
-                base.get("source_hash", base.get("upstream_source_sha256")),
-            ),
+            **protected_identity,
             "e5_common_loss_protocol_hash": metadata[
                 "e5_common_loss_protocol_hash"
             ],
-            **(provenance or {}),
+            **supplied_provenance,
         },
     }
     experiment_material = {**base, **overlay}

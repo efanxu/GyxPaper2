@@ -3,7 +3,7 @@ set -uo pipefail
 
 PROJECT_ROOT=/root/autodl-tmp/GyxPaper2
 PYTHON=/root/miniconda3/envs/env_tslib/bin/python
-export PYTHON=/root/miniconda3/envs/env_tslib/bin/python
+export PYTHON
 export PATH="$(dirname "$PYTHON"):$PATH"
 export PYTHONPATH="$PROJECT_ROOT/custom_models/src"
 export PYTHONUTF8=1
@@ -23,6 +23,7 @@ fi
 
 MANIFEST="$PROJECT_ROOT/custom_models/docs/benchmark_v2/E5/E5_SCOPE27_VARIANT_MANIFEST.json"
 GATE="$PROJECT_ROOT/scripts/e5_batch4_scope27_gate.py"
+LOCK_HELPER="$PROJECT_ROOT/scripts/e5_scope27_lock.py"
 RUNNER="$PROJECT_ROOT/custom_models/src/benchmark_v2/run_benchmark.py"
 INPUT="$PROJECT_ROOT/dataset/sdwpf_model_input_base.parquet"
 TARGET="$PROJECT_ROOT/dataset/sdwpf_eval_target.parquet"
@@ -42,41 +43,38 @@ EVIDENCE_MANIFEST="$LOG_ROOT/e5_scope27_evidence_manifest.json"
 READINESS_LOG="$LOG_ROOT/e5_scope27_readiness.log"
 AGGREGATE_LOG="$LOG_ROOT/e5_scope27_aggregate.log"
 FINAL_STATUS="$LOG_ROOT/e5_scope27_final_status.env"
-STATE_SENTINEL="$LOG_ROOT/e5_scope27_started"
+LOCK_FILE="$LOG_ROOT/e5_scope27_lock.json"
+LEGACY_SENTINEL="$LOG_ROOT/e5_scope27_started"
 
 mkdir -p "$LOG_ROOT" "$MODEL_LOG_ROOT"
-if [[ -e "$STATE_SENTINEL" ]]; then
-  echo "ERROR: refusing to overwrite prior E5 scope27 launch state: $STATE_SENTINEL" >&2
-  exit 73
+if [[ -e "$LEGACY_SENTINEL" && ! -e "$LOCK_FILE" ]]; then
+  echo "ERROR: legacy launch sentinel exists; preserve it and inspect the prior run before retrying: $LEGACY_SENTINEL" >&2
+  exit 72
 fi
-printf 'started_at=%s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > "$STATE_SENTINEL"
-printf 'model_id\texit_code\tstatus\trun_id\tlog_path\n' > "$EXIT_CODES"
-printf '' > "$FAILED_MODELS"
-exec > >(tee -a "$TOTAL_LOG") 2>&1
 
-echo "E5 scope27 batch4 formal run started at $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-echo "PROJECT_ROOT=$PROJECT_ROOT"
-echo "PYTHON=$PYTHON"
-"$PYTHON" - <<'PY'
-import sys
-import torch
-print(f"sys.executable={sys.executable}")
-print(f"torch.__version__={torch.__version__}")
-print(f"torch.cuda.is_available()={torch.cuda.is_available()}")
-print(
-    "torch.cuda.get_device_name(0)="
-    + (torch.cuda.get_device_name(0) if torch.cuda.is_available() else "UNAVAILABLE")
-)
-PY
-printf 'git_commit='
-git rev-parse HEAD 2>/dev/null || printf 'UNAVAILABLE\n'
-
-for required in "$MANIFEST" "$GATE" "$RUNNER" "$INPUT" "$TARGET"; do
+for required in "$MANIFEST" "$GATE" "$LOCK_HELPER" "$RUNNER" "$INPUT" "$TARGET"; do
   if [[ ! -f "$required" ]]; then
     echo "ERROR: required file missing: $required" >&2
     exit 66
   fi
 done
+if [[ -e "$OUTPUT_ROOT" && ! -d "$OUTPUT_ROOT" ]]; then
+  echo "ERROR: formal output root is not a directory: $OUTPUT_ROOT" >&2
+  exit 67
+fi
+if [[ ! -d "$(dirname "$OUTPUT_ROOT")" ]]; then
+  echo "ERROR: formal output root parent is missing: $(dirname "$OUTPUT_ROOT")" >&2
+  exit 67
+fi
+
+"$PYTHON" -c 'import benchmark_v2; import benchmark_v2.model_cli; import benchmark_v2.experiments.e5_common_loss.active_scope' || {
+  echo "ERROR: benchmark_v2 gate import failed" >&2
+  exit 68
+}
+"$PYTHON" "$GATE" --manifest "$MANIFEST" validate-manifest || {
+  echo "ERROR: active scope27 manifest validation failed" >&2
+  exit 69
+}
 
 set +e
 "$PYTHON" "$GATE" --manifest "$MANIFEST" plan-runs \
@@ -84,10 +82,10 @@ set +e
 plan_code=$?
 set -e
 if [[ "$plan_code" -ne 0 ]]; then
-  echo "ERROR: scope27 manifest/run planning failed with code $plan_code" >&2
+  echo "ERROR: scope27 run planning failed with code $plan_code" >&2
   printf 'manifest_or_plan\t%s\tFAILED\t-\t%s\n' \
-    "$plan_code" "$PLAN_FILE" >> "$EXIT_CODES"
-  printf 'manifest_or_plan\texit_code=%s\n' "$plan_code" >> "$FAILED_MODELS"
+    "$plan_code" "$PLAN_FILE" > "$EXIT_CODES"
+  printf 'manifest_or_plan\texit_code=%s\n' "$plan_code" > "$FAILED_MODELS"
   printf 'run_status=FAILED\nreadiness_status=NOT_RUN\naggregate_status=NOT_RUN\nexit_code=%s\n' \
     "$plan_code" > "$FINAL_STATUS"
   exit "$plan_code"
@@ -96,12 +94,33 @@ fi
 mapfile -t RUN_ROWS < "$PLAN_FILE"
 if [[ "${#RUN_ROWS[@]}" -ne 26 ]]; then
   echo "ERROR: expected 26 runnable manifest rows, got ${#RUN_ROWS[@]}" >&2
-  printf 'manifest_count\t67\tFAILED\t-\t%s\n' "$PLAN_FILE" >> "$EXIT_CODES"
-  printf 'manifest_count\texpected=26\tactual=%s\n' "${#RUN_ROWS[@]}" >> "$FAILED_MODELS"
+  printf 'manifest_count\t67\tFAILED\t-\t%s\n' "$PLAN_FILE" > "$EXIT_CODES"
+  printf 'manifest_count\texpected=26\tactual=%s\n' "${#RUN_ROWS[@]}" > "$FAILED_MODELS"
   printf 'run_status=FAILED\nreadiness_status=NOT_RUN\naggregate_status=NOT_RUN\nexit_code=67\n' \
     > "$FINAL_STATUS"
   exit 67
 fi
+
+manifest_sha256="$($PYTHON -c 'import hashlib,sys; p=sys.argv[1]; h=hashlib.sha256(); f=open(p,"rb"); [h.update(c) for c in iter(lambda:f.read(1048576),b"")]; f.close(); print(h.hexdigest())' "$MANIFEST")"
+git_commit="$(git rev-parse HEAD 2>/dev/null || printf '%s' UNAVAILABLE)"
+"$PYTHON" "$LOCK_HELPER" acquire \
+  --path "$LOCK_FILE" \
+  --scope-id e5_batch4_scope27_seed2026 \
+  --pid "$$" \
+  --git-commit "$git_commit" \
+  --python-executable "$PYTHON" \
+  --manifest-sha256 "$manifest_sha256" || exit $?
+LOCK_ACQUIRED=1
+trap 'if [[ "$LOCK_ACQUIRED" -eq 1 ]]; then "$PYTHON" "$LOCK_HELPER" release --path "$LOCK_FILE" --pid "$$" || true; fi' EXIT
+
+printf 'model_id\texit_code\tstatus\trun_id\tlog_path\n' > "$EXIT_CODES"
+: > "$FAILED_MODELS"
+exec > >(tee -a "$TOTAL_LOG") 2>&1
+
+echo "E5 scope27 batch4 formal run started at $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+echo "PROJECT_ROOT=$PROJECT_ROOT"
+echo "PYTHON=$PYTHON"
+echo "git_commit=$git_commit"
 
 echo "Manifest-driven runnable order:"
 cut -f1-4 "$PLAN_FILE"
@@ -110,15 +129,15 @@ formal_failures=0
 for row in "${RUN_ROWS[@]}"; do
   IFS=$'\t' read -r model_id command_name run_id device action reason <<< "$row"
   model_log="$MODEL_LOG_ROOT/${model_id}.log"
-  if [[ "$action" == "SKIP_COMPLETED" ]]; then
-    echo "SKIP completed identity-matching run: $model_id / $run_id"
-    printf '%s\t0\tSKIPPED_COMPLETED_IDENTITY_MATCH\t%s\t%s\n' \
+  if [[ "$action" == "SKIP_COMPLETED_IDENTITY_MATCH" ]]; then
+    echo "SKIP_COMPLETED_IDENTITY_MATCH: $model_id / $run_id"
+    printf '%s\t0\tSKIP_COMPLETED_IDENTITY_MATCH\t%s\t%s\n' \
       "$model_id" "$run_id" "$model_log" >> "$EXIT_CODES"
     continue
   fi
   if [[ "$action" != "RUN" ]]; then
-    echo "BLOCK existing non-reusable run: $model_id / $run_id / $reason"
-    printf '%s\t90\tBLOCKED_EXISTING_PRESERVED\t%s\t%s\n' \
+    echo "BLOCK_EXISTING_PRESERVED: $model_id / $run_id / $reason"
+    printf '%s\t90\tBLOCK_EXISTING_PRESERVED\t%s\t%s\n' \
       "$model_id" "$run_id" "$model_log" >> "$EXIT_CODES"
     printf '%s\texit_code=90\treason=%s\n' "$model_id" "$reason" >> "$FAILED_MODELS"
     formal_failures=$((formal_failures + 1))

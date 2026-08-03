@@ -255,12 +255,16 @@ class E5CommonLossTests(unittest.TestCase):
     def test_readiness_lists_29_and_aggregation_fails_closed(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
-            report = build_readiness(output_root=root)
+            report = build_readiness(output_root=root, legacy_scope29=True)
             self.assertEqual(len(report["entries"]), 29)
             self.assertEqual(report["status"], "NOT_READY")
             self.assertEqual(report["ready_entries"], 1)
             with self.assertRaisesRegex(RuntimeError, "E5_RESULT_NOT_READY"):
-                aggregate(output_root=root, require_complete=True)
+                aggregate(
+                    output_root=root,
+                    require_complete=True,
+                    legacy_scope29=True,
+                )
             for name in (
                 "COMMON_LOSS_ARCHITECTURE_SEED2026.xlsx",
                 "COMMON_LOSS_ARCHITECTURE_SEED2026.md",
@@ -272,7 +276,11 @@ class E5CommonLossTests(unittest.TestCase):
     def test_aggregation_requires_explicit_complete_gate(self):
         with tempfile.TemporaryDirectory() as temp:
             with self.assertRaisesRegex(ValueError, "require"):
-                aggregate(output_root=temp, require_complete=False)
+                aggregate(
+                    output_root=temp,
+                    require_complete=False,
+                    legacy_scope29=True,
+                )
 
 
 if __name__ == "__main__":

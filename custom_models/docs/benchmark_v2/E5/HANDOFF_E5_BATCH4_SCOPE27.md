@@ -22,6 +22,7 @@ training, GPU preflight, git operation, or shutdown is part of local handoff.
 - `E5_RUN_ALL_27_BATCH4_LINUX.sh`
 - `E5_RUN_ALL_27_BATCH4_LINUX_AUTOSHUTDOWN.sh`
 - `scripts/e5_batch4_scope27_gate.py`
+- `scripts/e5_scope27_lock.py`
 
 ## Runtime outputs
 
@@ -36,3 +37,7 @@ training, GPU preflight, git operation, or shutdown is part of local handoff.
 
 The legacy E5 scope29 and old uniform batch4 scope28/29 launchers are retained
 as read-only/superseded evidence. Do not use them for the current run.
+
+The current CLI readiness/aggregate commands route through the active scope27
+pointer. A legacy scope29 invocation must be explicitly selected and is never
+the default.

@@ -31,6 +31,43 @@ The launcher contains no duplicate hard-coded model list.
   zero.
 - Smoke and historical results are not resolver candidates.
 
+## Lock and safe restart procedure
+
+The run-all launcher performs project/Python/input/output checks, imports the
+gate, validates the active manifest, and generates the complete 26-row plan
+before it creates an active lock. The lock is
+`logs/benchmark_v2/e5_batch4_scope27/e5_scope27_lock.json` and records its
+schema version, scope, PID, host, start time, Git commit, Python executable,
+and manifest SHA256.
+
+Inspect the lock without changing it:
+
+```bash
+cd /root/autodl-tmp/GyxPaper2 || exit 1
+export PYTHON=/root/miniconda3/envs/env_tslib/bin/python
+"$PYTHON" scripts/e5_scope27_lock.py inspect \
+  --path logs/benchmark_v2/e5_batch4_scope27/e5_scope27_lock.json
+```
+
+An `ACTIVE` lock means the recorded PID is alive and a second run is refused.
+An absent PID is reported as `STALE`; the launcher remains fail-closed until
+the following explicit, single-lock cleanup is performed after inspection:
+
+```bash
+"$PYTHON" scripts/e5_scope27_lock.py clear-stale \
+  --path logs/benchmark_v2/e5_batch4_scope27/e5_scope27_lock.json
+```
+
+This command removes only the specified stale lock JSON. It never removes or
+rewrites a model result directory. Existing failed, incomplete, or identity
+mismatched runs remain `BLOCK_EXISTING_PRESERVED`; create a new retry run-id or
+quarantine directory through a separately reviewed change rather than
+overwriting the original evidence.
+
+Never delete result directories, copy checkpoints, relabel smoke output as
+formal output, reuse an old scope29/A8 result, force-push Git, or run formal
+training from the legacy CLI path.
+
 ## Full run with automatic shutdown
 
 Paste this into the cloud JupyterLab Terminal:
