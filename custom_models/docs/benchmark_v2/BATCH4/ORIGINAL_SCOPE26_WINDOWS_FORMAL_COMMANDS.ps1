@@ -97,7 +97,7 @@ function Invoke-Gate {
     $textLines = @($lines | ForEach-Object { [string]$_ })
     $text = ($textLines -join [Environment]::NewLine)
     if (-not [string]::IsNullOrWhiteSpace($text)) {
-        $text | Tee-Object -LiteralPath $logPath -Append | ForEach-Object { Write-Host $_ }
+        $text | Tee-Object -FilePath $logPath -Append | ForEach-Object { Write-Host $_ }
     }
     if ($AllowedExitCodes -notcontains $exitCode) {
         throw "$Label failed with exit code $exitCode. See $logPath"
