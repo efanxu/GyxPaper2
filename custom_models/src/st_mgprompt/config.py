@@ -181,6 +181,22 @@ class STMGPromptConfig:
 
     component_ablation: str | None = None
 
+    # Formal Batch4 provenance fields.  They are intentionally data fields in
+    # the config so the runner can write the exact contract it executed; they
+    # do not change model construction or the historical protocol.
+    variant: str | None = None
+    model_id: str | None = None
+    definition: str | None = None
+    training_role: str | None = None
+    training_batch_profile_id: str | None = None
+    training_batch_profile_hash: str | None = None
+    trained_for_e5_scope27: bool = False
+    consumed_read_only_by_e5: bool = False
+    checkpoint_copied: bool = False
+    metrics_copied: bool = False
+    warm_started_from_historical_a8: bool = False
+    precision_policy: str | None = None
+
     model_name: str = "STMGPrompt_TemporalOnly"
     run_id: str | None = None
     output_root: str = "custom_models/results/st_mgprompt"

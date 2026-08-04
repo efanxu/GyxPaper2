@@ -9,6 +9,7 @@ directories.
 from __future__ import annotations
 
 import json
+import hashlib
 from pathlib import Path
 from typing import Any, Mapping
 
@@ -81,6 +82,60 @@ def _config_identity(model_id: str) -> dict[str, str]:
     protocol = load_protocol()
     config = get_model_factory(model_id).resolve_config(protocol, run_mode="formal")
     return {"config_hash": stable_hash(config)}
+
+
+def _sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _current_benchmark_graph_identity() -> dict[str, Any]:
+    """Regenerate the E5 graph declaration from the current frozen graph files."""
+
+    protocol_path = PROJECT_ROOT / "custom_models/src/benchmark_v2/protocol/graph_protocol_v1.json"
+    bundle_path = PROJECT_ROOT / "custom_models/src/benchmark_v2/protocol/graph_v1/graph_bundle_manifest_v1.json"
+    protocol = _load(protocol_path)
+    bundle = _load(bundle_path)
+    resource_paths = [
+        "custom_models/src/benchmark_v2/protocol/graph_protocol_v1.json",
+        "custom_models/src/benchmark_v2/protocol/graph_v1/graph_bundle_manifest_v1.json",
+        "custom_models/src/benchmark_v2/protocol/graph_v1/node_order_v1.json",
+        "custom_models/src/benchmark_v2/protocol/graph_v1/node_metadata_v1.json",
+    ]
+    graph_id = bundle.get("graph_id") or protocol.get("graph_id")
+    node_count = bundle.get("node_count") or protocol.get("node_count")
+    selected_k = protocol.get("selected_k")
+    graph_protocol_hash = bundle.get("graph_protocol_hash") or protocol.get("graph_protocol_hash")
+    graph_bundle_hash = bundle.get("graph_bundle_hash")
+    node_order_hash = bundle.get("node_order_hash") or protocol.get("node_order_hash")
+    if not all(
+        (
+            isinstance(graph_id, str) and graph_id,
+            isinstance(node_count, int) and node_count > 0,
+            isinstance(selected_k, int) and selected_k > 0,
+            isinstance(graph_protocol_hash, str) and graph_protocol_hash,
+            isinstance(graph_bundle_hash, str) and graph_bundle_hash,
+            isinstance(node_order_hash, str) and node_order_hash,
+        )
+    ):
+        raise ValueError("Current benchmark graph identity is incomplete.")
+    return {
+        "graph_id": graph_id,
+        "node_count": int(node_count),
+        "selected_k": int(selected_k),
+        "graph_protocol_hash": graph_protocol_hash,
+        "graph_bundle_hash": graph_bundle_hash,
+        "node_order_hash": node_order_hash,
+        "graph_resource_paths": resource_paths,
+        "graph_resource_sha256": {
+            relative: _sha256_file(PROJECT_ROOT / relative)
+            for relative in resource_paths
+        },
+        "identity_source": "Original scope26 frozen graph protocol/resources",
+    }
 
 
 def generate_original() -> dict[str, Any]:
@@ -162,6 +217,30 @@ def generate_e5() -> dict[str, Any]:
             entry["output_root"] = None
             entry["expected_output_root"] = None
             entry["reference_id"] = E5_A8_REFERENCE_ID
+            entry["variant"] = "A8"
+            entry["definition"] = "w/o MS-MG-DWU"
+            entry["training_role"] = "E5_BATCH4_PREREQUISITE"
+            entry["training_profile_id"] = TRAINING_PROFILE_ID
+            entry["training_profile_hash"] = profile.profile_hash
+            entry["loss_id"] = E5_LOSS_ID
+            entry["expected_formal_status"] = "READY_A8_BATCH4_PREREQUISITE"
+            entry["read_only"] = True
+            entry["checkpoint_copied"] = False
+            entry["metrics_copied"] = False
+            entry["warm_started_from_historical_a8"] = False
+            entry["source_relative_path"] = (
+                "custom_models/results/st_mgprompt_uniform_bs4/"
+                "component_ablation_a8_bs4_seed2026/STMGPrompt_ComponentAblation"
+            )
+            for forbidden in (
+                "checkpoint_sha256",
+                "metrics_sha256",
+                "config_sha256",
+                "protocol_evidence_sha256",
+                "retrain",
+                "retrained_in_e5",
+            ):
+                entry.pop(forbidden, None)
             active_entries.append(entry)
             continue
         if model_id not in set(E5_TRAINABLE) | set(E5_EVALUATE_ONLY):
@@ -203,12 +282,25 @@ def generate_e5() -> dict[str, Any]:
         entry["ordinal"] = ordinal
     payload["entries"] = active_entries
     payload["loss_identity"] = _e5_loss_identity(payload)
-    a8_identity = dict(payload.get("a8_reference_identity") or {})
-    a8_identity["reference_id"] = E5_A8_REFERENCE_ID
-    a8_identity["read_only"] = True
-    a8_identity["retrained_in_e5"] = False
-    a8_identity["checkpoint_copied"] = False
-    a8_identity["metrics_copied"] = False
+    payload["graph_identity"] = _current_benchmark_graph_identity()
+    a8_identity = {
+        "reference_id": E5_A8_REFERENCE_ID,
+        "variant": "A8",
+        "definition": "w/o MS-MG-DWU",
+        "training_role": "E5_BATCH4_PREREQUISITE",
+        "training_profile_id": TRAINING_PROFILE_ID,
+        "training_profile_hash": profile.profile_hash,
+        "loss_id": E5_LOSS_ID,
+        "expected_formal_status": "READY_A8_BATCH4_PREREQUISITE",
+        "read_only": True,
+        "checkpoint_copied": False,
+        "metrics_copied": False,
+        "warm_started_from_historical_a8": False,
+        "source_relative_path": (
+            "custom_models/results/st_mgprompt_uniform_bs4/"
+            "component_ablation_a8_bs4_seed2026/STMGPrompt_ComponentAblation"
+        ),
+    }
     payload["a8_reference_identity"] = a8_identity
 
     run_map = _load(E5_RUN_MAP_PATH)

@@ -309,7 +309,7 @@ def main(argv: list[str] | None = None) -> int:
         "--output-path",
         default=str(
             PROJECT_ROOT
-            / "custom_models/docs/benchmark_v2/E5/E5_A8_REFERENCE.json"
+            / "custom_models/logs/uniform_bs4/audit/e5_scope27/E5_A8_BATCH4_REFERENCE.json"
         ),
     )
     add_training_profile(a8_reference)

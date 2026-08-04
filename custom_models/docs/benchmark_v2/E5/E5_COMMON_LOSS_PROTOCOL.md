@@ -6,7 +6,10 @@
 - Loss: `masked_score_aligned_hybrid`
 - Loss profile hash: `0fc1fca238d7161d3a0257d639a11df8cc92ad2a1c4d61eab234338fa24b59fa`
 - Seed: `2026`
-- Entries: 26 trainable + 2 evaluate-only + 1 A8 reference = 29.
+- Active Batch4 entries: 24 trainable + 2 evaluate-only + 1 independent A8
+  prerequisite reference = 27.
+- The current root is `custom_models/results/benchmark_v2_uniform_bs4/`;
+  the old scope29 root is read-only historical evidence.
 
 The global benchmark default remains `masked_mse`. E5 is an explicit overlay.
 Checkpoint selection remains validation official Score H10, lower is better.

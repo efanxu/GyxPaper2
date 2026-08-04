@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import os
 import json
 import platform
+import subprocess
 import sys
 import time
 from datetime import datetime
@@ -103,6 +105,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--val-sample-stride", type=int, default=None)
     parser.add_argument("--test-sample-stride", type=int, default=None)
     parser.add_argument("--device", default=None)
+    parser.add_argument("--source-revision", default=None)
     parser.add_argument("--output-root", default=None)
     parser.add_argument("--num-workers", type=int, default=None)
     parser.add_argument("--persistent-workers", action="store_true")
@@ -433,6 +436,7 @@ def build_config(args: argparse.Namespace) -> STMGPromptConfig:
             cfg.amp_enabled = True
         if args.diagnostics_level is None:
             cfg.diagnostics_level = "minimal"
+    is_a8_batch4 = str(formal_variant or "").upper() == "A8" and args.training_profile == "uniform_train_batch4_v1"
     batch_profile = load_training_profile(args.training_profile)
     if batch_profile is not None:
         requested_batch_values = {
@@ -451,7 +455,7 @@ def build_config(args: argparse.Namespace) -> STMGPromptConfig:
             raise ValueError(
                 f"{batch_profile.profile_id} rejects conflicting batch flags: {invalid}"
             )
-        if args.amp_enabled is False:
+        if args.amp_enabled is False and not is_a8_batch4:
             raise ValueError(
                 f"{batch_profile.profile_id} requires AMP=true."
             )
@@ -464,6 +468,37 @@ def build_config(args: argparse.Namespace) -> STMGPromptConfig:
         cfg.amp_dtype = "float16"
         for key, value in batch_profile.identity().items():
             setattr(cfg, key, value)
+    if is_a8_batch4:
+        # The shared Batch4 profile fixes the loader batch sizes.  Formal A8
+        # has its own precision identity: fp32, with AMP disabled.  This is
+        # applied after the generic profile so the A8 contract cannot be
+        # accidentally changed by a profile default.
+        from st_mgprompt.a8_batch4_contract import (
+            A8_DEFINITION,
+            A8_MODEL_ID,
+            A8_VARIANT,
+            LOSS_ID,
+            LOSS_PROTOCOL,
+            PRECISION_POLICY,
+            TRAINING_ROLE,
+        )
+
+        cfg.variant = A8_VARIANT
+        cfg.model_id = A8_MODEL_ID
+        cfg.definition = A8_DEFINITION
+        cfg.component_ablation = A8_VARIANT
+        cfg.model_name = "STMGPrompt_ComponentAblation"
+        cfg.use_msmg_dwu = False
+        cfg.loss_function = LOSS_ID
+        cfg.loss_protocol = LOSS_PROTOCOL
+        cfg.amp_enabled = False
+        cfg.precision_policy = PRECISION_POLICY
+        cfg.training_role = TRAINING_ROLE
+        cfg.trained_for_e5_scope27 = True
+        cfg.consumed_read_only_by_e5 = True
+        cfg.checkpoint_copied = False
+        cfg.metrics_copied = False
+        cfg.warm_started_from_historical_a8 = False
     if cfg.run_id is None:
         prefix = "full_shape_smoke" if full_shape_requested else ("smoke" if cfg.smoke else "full")
         cfg.run_id = f"{prefix}_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
@@ -510,6 +545,19 @@ def _write_training_batch_identity(run_dir: Path, cfg: STMGPromptConfig) -> None
         "run_id": cfg.run_id,
         "model_name": cfg.model_name,
         "component_ablation": cfg.component_ablation,
+        "variant": getattr(cfg, "variant", None),
+        "definition": getattr(cfg, "definition", None),
+        "training_role": getattr(cfg, "training_role", None),
+        "training_batch_profile_id": getattr(cfg, "training_batch_profile_id", None),
+        "training_batch_profile_hash": getattr(cfg, "training_batch_profile_hash", None),
+        "trained_for_e5_scope27": bool(getattr(cfg, "trained_for_e5_scope27", False)),
+        "consumed_read_only_by_e5": bool(getattr(cfg, "consumed_read_only_by_e5", False)),
+        "checkpoint_copied": bool(getattr(cfg, "checkpoint_copied", False)),
+        "metrics_copied": bool(getattr(cfg, "metrics_copied", False)),
+        "warm_started_from_historical_a8": bool(
+            getattr(cfg, "warm_started_from_historical_a8", False)
+        ),
+        "precision_policy": getattr(cfg, "precision_policy", None),
         "canonical_status": (
             "BATCH4_CANONICAL_CANDIDATE"
             if cfg.component_ablation in (None, "A0")
@@ -521,6 +569,149 @@ def _write_training_batch_identity(run_dir: Path, cfg: STMGPromptConfig) -> None
         json.dumps(artifact_manifest, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
     )
+
+
+def _a8_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _a8_canonical_hash(value) -> str:
+    material = json.dumps(
+        value,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+        allow_nan=False,
+        default=str,
+    ).encode("utf-8")
+    return hashlib.sha256(material).hexdigest()
+
+
+def _write_a8_execution_receipt(
+    cfg: STMGPromptConfig,
+    run_dir: Path,
+    args: argparse.Namespace,
+    *,
+    started_at: str,
+    finished_at: str,
+    exit_code: int,
+) -> Path:
+    """Write the A8 receipt once, from the actual completed artifact files."""
+
+    from st_mgprompt.a8_batch4_contract import (
+        A8_DEFINITION,
+        A8_MODEL_ID,
+        A8_OUTPUT_ROOT,
+        A8_RUN_ID,
+        A8_SCOPE_ID,
+        A8_VARIANT,
+        TRAINING_ROLE,
+        canonical_hash,
+        graph_identity,
+        loss_identity,
+        precision_identity,
+        source_closure,
+        variant_contract_hash,
+    )
+
+    receipt_path = run_dir / "a8_batch4_execution_receipt.json"
+    if receipt_path.exists():
+        raise RuntimeError(f"Refusing to overwrite an existing A8 execution receipt: {receipt_path}")
+    required_files = (
+        "best_checkpoint.pt",
+        "last_checkpoint.pt",
+        "metrics.csv",
+        "metrics_eval_h3.json",
+        "metrics_eval_h6.json",
+        "metrics_eval_h10.json",
+        "train_log.csv",
+    )
+    missing = [name for name in required_files if not (run_dir / name).is_file()]
+    if missing:
+        raise RuntimeError(f"Cannot issue A8 receipt; required files are missing: {missing}")
+    records = [
+        {"path": name, "sha256": _a8_sha256(run_dir / name)}
+        for name in required_files
+    ]
+    git_commit = getattr(args, "source_revision", None)
+    if not git_commit:
+        completed = subprocess.run(
+            ["git", "-C", str(Path(__file__).resolve().parents[3]), "rev-parse", "HEAD"],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        git_commit = completed.stdout.strip() if completed.returncode == 0 else "UNKNOWN"
+    effective_config_hash = _a8_sha256(run_dir / "effective_config.json")
+    dataset_signature_path = run_dir / "data_signature.json"
+    dataset_identity_hash = (
+        _a8_canonical_hash(
+            json.loads(dataset_signature_path.read_text(encoding="utf-8"))
+        )
+        if dataset_signature_path.is_file()
+        else None
+    )
+    graph = graph_identity()
+    loss = loss_identity()
+    precision = precision_identity()
+    receipt = {
+        "schema_version": "st_mgprompt_a8_batch4_execution_receipt_v1",
+        "status": "COMPLETED" if exit_code == 0 else "FAILED",
+        "scope_id": A8_SCOPE_ID,
+        "training_role": TRAINING_ROLE,
+        "model_id": A8_MODEL_ID,
+        "variant": A8_VARIANT,
+        "definition": A8_DEFINITION,
+        "run_id": A8_RUN_ID,
+        "output_root": A8_OUTPUT_ROOT,
+        "git_commit": git_commit,
+        "source_revision_type": "explicit" if getattr(args, "source_revision", None) else "git",
+        "source_closure_hash": source_closure()["canonical_combined_hash"],
+        "effective_config_hash": effective_config_hash,
+        "variant_contract_hash": variant_contract_hash(),
+        "training_profile_id": getattr(cfg, "training_batch_profile_id", "uniform_train_batch4_v1"),
+        "training_profile_hash": getattr(cfg, "training_batch_profile_hash", None),
+        "batch_identity": _training_batch_identity(cfg),
+        "dataset_identity_hash": dataset_identity_hash,
+        "macro_graph_identity_hash": canonical_hash(
+            {key: graph[key] for key in ("macro_graph_source", "macro_graph_hash", "graph_generation_protocol_hash")}
+        ),
+        "micro_graph_identity_hash": canonical_hash(
+            {key: graph[key] for key in ("micro_graph_source", "micro_graph_hash", "graph_generation_protocol_hash")}
+        ),
+        "macro_graph_identity": graph,
+        "micro_graph_identity": graph,
+        "loss_identity_hash": loss["loss_identity_hash"],
+        "loss_identity": loss,
+        "protocol_hash": getattr(cfg, "base_benchmark_protocol_hash", None),
+        "precision_identity_hash": canonical_hash(precision),
+        "precision_identity": precision,
+        "best_checkpoint_sha256": _a8_sha256(run_dir / "best_checkpoint.pt"),
+        "last_checkpoint_sha256": _a8_sha256(run_dir / "last_checkpoint.pt"),
+        "metrics_bundle_hash": canonical_hash(records[2:6]),
+        "metrics_csv_hash": _a8_sha256(run_dir / "metrics.csv"),
+        "train_log_hash": _a8_sha256(run_dir / "train_log.csv"),
+        "command": [str(sys.executable), *[str(value) for value in sys.argv]],
+        "started_at": started_at,
+        "finished_at": finished_at,
+        "exit_code": int(exit_code),
+        "trained_for_e5_scope27": True,
+        "consumed_read_only_by_e5": True,
+        "checkpoint_copied": False,
+        "metrics_copied": False,
+        "warm_started_from_historical_a8": False,
+    }
+    atomic_path = receipt_path.with_name(receipt_path.name + ".tmp")
+    atomic_path.write_text(
+        json.dumps(receipt, indent=2, ensure_ascii=False, allow_nan=False) + "\n",
+        encoding="utf-8",
+    )
+    os.replace(atomic_path, receipt_path)
+    return receipt_path
 
 
 def _seed_run_dir(cfg: STMGPromptConfig, seed: int) -> Path:
@@ -1197,6 +1388,19 @@ def main() -> None:
     cfg = build_config(args)
     _print_environment_summary()
     formal_variant = args.experiment_variant or args.component_ablation
+    is_formal_a8_batch4 = (
+        str(formal_variant or "").upper() == "A8"
+        and args.training_profile == "uniform_train_batch4_v1"
+    )
+    if is_formal_a8_batch4 and (
+        args.resume
+        or args.resume_from
+        or args.allow_warm_start_only
+        or args.checkpoint
+    ):
+        raise ValueError(
+            "Formal A8 Batch4 cannot resume from or load any historical checkpoint."
+        )
     if formal_variant is not None:
         variant = get_variant(
             formal_variant,
@@ -1252,8 +1456,22 @@ def main() -> None:
             raise SystemExit(1)
     else:
         run_dir = _run_dir(cfg)
+        started_at = datetime.utcnow().isoformat() + "Z"
         try:
             result = _run_once(args, cfg, run_dir)
+            if (
+                is_formal_a8_batch4
+                and not (args.train_only or args.skip_test)
+                and result["protocol_passed"]
+            ):
+                _write_a8_execution_receipt(
+                    cfg,
+                    run_dir,
+                    args,
+                    started_at=started_at,
+                    finished_at=datetime.utcnow().isoformat() + "Z",
+                    exit_code=0,
+                )
         except Exception as exc:
             failure = _failure_payload(cfg, run_dir, "PROCESS_EXCEPTION", exc)
             update_run_status(run_dir, "PROCESS_EXCEPTION", failure)

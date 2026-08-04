@@ -33,7 +33,7 @@ A8_REFERENCE_ID = "STMGPrompt_A8_loss_msa_hybrid_seed2026_reference"
 BATCH4_A8_REFERENCE_ID = "STMGPrompt_A8_loss_msa_hybrid_bs4_seed2026_reference"
 EXPECTED_BENCHMARK_ENTRIES = 28
 EXPECTED_TOTAL_ENTRIES = 29
-FORMAL_OUTPUT_ROOT_RELATIVE = (
+LEGACY_FORMAL_OUTPUT_ROOT_RELATIVE = (
     "custom_models/results/benchmark_v2/common_loss_architecture_seed2026"
 )
 SMOKE_OUTPUT_ROOT_RELATIVE = (
@@ -42,6 +42,7 @@ SMOKE_OUTPUT_ROOT_RELATIVE = (
 BATCH4_FORMAL_OUTPUT_ROOT_RELATIVE = (
     "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026"
 )
+FORMAL_OUTPUT_ROOT_RELATIVE = BATCH4_FORMAL_OUTPUT_ROOT_RELATIVE
 BATCH4_SMOKE_OUTPUT_ROOT_RELATIVE = (
     "custom_models/results_smoke/benchmark_v2_uniform_bs4/e5_common_loss"
 )

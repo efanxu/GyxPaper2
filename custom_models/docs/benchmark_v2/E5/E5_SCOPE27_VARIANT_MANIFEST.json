@@ -1,15 +1,18 @@
 {
   "a8_reference_identity": {
     "checkpoint_copied": false,
-    "checkpoint_sha256": "b0aca910b34dc5df86d6ed8bbefcaddac3d97e94ebd4aa54280223a69e56033c",
-    "config_sha256": "fb706f09d302122f528d4ec9af6ccb807a720a2e90e979c59d2632ff872b1f14",
+    "definition": "w/o MS-MG-DWU",
+    "expected_formal_status": "READY_A8_BATCH4_PREREQUISITE",
+    "loss_id": "masked_score_aligned_hybrid",
     "metrics_copied": false,
-    "metrics_sha256": "706f25605a3fc0753150c1817fd8a5b0fc6d27764bd24064dcc65bc5c11636f0",
-    "protocol_evidence_sha256": "ab3bbe0debfa2a916469d3aa25f9e9b3470e171083d963137b52ec050eb70471",
     "read_only": true,
     "reference_id": "STMGPrompt_A8_loss_msa_hybrid_bs4_seed2026_reference",
-    "retrain": false,
-    "retrained_in_e5": false
+    "source_relative_path": "custom_models/results/st_mgprompt_uniform_bs4/component_ablation_a8_bs4_seed2026/STMGPrompt_ComponentAblation",
+    "training_profile_hash": "f58bbc161dfba0f00774879fdf2f78ec7c59a7faff9ef28a1733a2ed6835fe66",
+    "training_profile_id": "uniform_train_batch4_v1",
+    "training_role": "E5_BATCH4_PREREQUISITE",
+    "variant": "A8",
+    "warm_started_from_historical_a8": false
   },
   "batch_identity": {
     "amp_enabled": true,
@@ -4641,17 +4644,28 @@
     {
       "base_model_config_hash": null,
       "base_model_source_hash": null,
+      "checkpoint_copied": false,
       "command": "reference",
+      "definition": "w/o MS-MG-DWU",
       "display_name": "ST-MGPrompt A8 (w/o MS-MG-DWU)",
       "e5_run_id": "STMGPrompt_A8_loss_msa_hybrid_bs4_seed2026_reference",
       "entry_id": "STMGPrompt_A8_loss_msa_hybrid_bs4_seed2026_reference",
       "entry_type": "REFERENCE_ONLY_FORMAL_A8",
+      "expected_formal_status": "READY_A8_BATCH4_PREREQUISITE",
       "expected_output_root": null,
       "loss_id": "masked_score_aligned_hybrid",
+      "metrics_copied": false,
       "model_id": "st_mgprompt_a8",
       "ordinal": 27,
       "output_root": null,
-      "reference_id": "STMGPrompt_A8_loss_msa_hybrid_bs4_seed2026_reference"
+      "read_only": true,
+      "reference_id": "STMGPrompt_A8_loss_msa_hybrid_bs4_seed2026_reference",
+      "source_relative_path": "custom_models/results/st_mgprompt_uniform_bs4/component_ablation_a8_bs4_seed2026/STMGPrompt_ComponentAblation",
+      "training_profile_hash": "f58bbc161dfba0f00774879fdf2f78ec7c59a7faff9ef28a1733a2ed6835fe66",
+      "training_profile_id": "uniform_train_batch4_v1",
+      "training_role": "E5_BATCH4_PREREQUISITE",
+      "variant": "A8",
+      "warm_started_from_historical_a8": false
     }
   ],
   "exclusions": [
@@ -4668,6 +4682,27 @@
   ],
   "execution_order_policy": "The entries array is the only active execution order source.",
   "experiment_profile_id": "e5_common_loss_architecture_v1",
+  "graph_identity": {
+    "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
+    "graph_id": "sdwpf_physical_knn_v1",
+    "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
+    "graph_resource_paths": [
+      "custom_models/src/benchmark_v2/protocol/graph_protocol_v1.json",
+      "custom_models/src/benchmark_v2/protocol/graph_v1/graph_bundle_manifest_v1.json",
+      "custom_models/src/benchmark_v2/protocol/graph_v1/node_order_v1.json",
+      "custom_models/src/benchmark_v2/protocol/graph_v1/node_metadata_v1.json"
+    ],
+    "graph_resource_sha256": {
+      "custom_models/src/benchmark_v2/protocol/graph_protocol_v1.json": "6045202248645e8e84e76b13dedc8f49e2d02fa790008531dae26c13d00df215",
+      "custom_models/src/benchmark_v2/protocol/graph_v1/graph_bundle_manifest_v1.json": "75421fd68245cc439d0188dbb340c0d09ed48f40e64b56415335a2d211892f21",
+      "custom_models/src/benchmark_v2/protocol/graph_v1/node_metadata_v1.json": "009745391472312b425711276cb62157b09047228f4bba748f8e452399d7bc03",
+      "custom_models/src/benchmark_v2/protocol/graph_v1/node_order_v1.json": "2fb259959a7c56552ae38b0a1a924a00221ba74f7237475174aa53debe8ab3fa"
+    },
+    "identity_source": "Original scope26 frozen graph protocol/resources",
+    "node_count": 134,
+    "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
+    "selected_k": 4
+  },
   "historical_scope29_manifest": "custom_models/docs/benchmark_v2/E5/E5_VARIANT_MANIFEST.json",
   "legacy_output_policy": "LEGACY_OR_HISTORICAL_READ_ONLY_NOT_CURRENT_BATCH4_OUTPUT",
   "legacy_output_root": "custom_models/results/benchmark_v2/common_loss_architecture_seed2026",

@@ -10,6 +10,7 @@ import re
 import socket
 import subprocess
 import sys
+import tempfile
 import time
 import traceback
 import uuid
@@ -20,6 +21,8 @@ from typing import Any, Iterable, Mapping
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 SRC_ROOT = PROJECT_ROOT / "custom_models" / "src"
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(SRC_ROOT))
 
 from benchmark_v2.artifacts import atomic_write_json, validate_run  # noqa: E402
@@ -55,6 +58,11 @@ from benchmark_v2.model_source_identity import (  # noqa: E402
 )
 from benchmark_v2.precision import expected_model_precision_identity  # noqa: E402
 from benchmark_v2.training_profiles import load_training_profile  # noqa: E402
+from st_mgprompt.a8_batch4_contract import (  # noqa: E402
+    A8_REFERENCE_ID,
+    A8_RUN_RELATIVE_PATH,
+    A8_REFERENCE_RELATIVE_PATH,
+)
 
 
 DEFAULT_MANIFEST = (
@@ -93,10 +101,55 @@ TRAINABLE_ENTRY_TYPE = "TRAIN_COMMON_LOSS"
 EVALUATE_ONLY_ENTRY_TYPE = "EVALUATE_ONLY_COMMON_LOSS_DIAGNOSTIC"
 REFERENCE_ENTRY_TYPE = "REFERENCE_ONLY_FORMAL_A8"
 PREFLIGHT_SHAPE = {"B": 4, "T": 144, "N": 134, "C": 16, "H": 10}
+_SELF_PROCESS_START_FALLBACK = time.monotonic()
 
 
 class ScopeGateError(RuntimeError):
     pass
+
+
+def _a8_gate():
+    """Load the independent A8 gate without making E5 define its contract."""
+
+    from scripts import st_mgprompt_a8_batch4_gate
+
+    return st_mgprompt_a8_batch4_gate
+
+
+def _current_a8_artifact() -> dict[str, Any]:
+    return _a8_gate().inspect_a8_artifact()
+
+
+def _current_a8_reference(
+    artifact: Mapping[str, Any] | None = None,
+) -> tuple[dict[str, Any] | None, str | None]:
+    """Validate the generated current reference, never a historical JSON."""
+
+    gate = _a8_gate()
+    expected = gate.build_reference_payload()
+    if expected.get("status") != "VALID":
+        return None, "A8_REFERENCE_PAYLOAD_NOT_VALID"
+    path = PROJECT_ROOT / A8_REFERENCE_RELATIVE_PATH
+    try:
+        actual = load_json(path)
+    except (OSError, ValueError, UnicodeError) as exc:
+        return None, f"A8_REFERENCE_MISSING_OR_INVALID:{type(exc).__name__}"
+    if not isinstance(actual, dict):
+        return None, "A8_REFERENCE_NOT_OBJECT"
+    for key, value in expected.items():
+        if actual.get(key) != value:
+            return None, f"A8_REFERENCE_MISMATCH:{key}"
+    return actual, None
+
+
+def _require_a8_ready() -> dict[str, Any]:
+    artifact = _current_a8_artifact()
+    if not artifact.get("ready"):
+        raise ScopeGateError("BLOCKED_A8_BATCH4_PREREQUISITE")
+    _, reference_error = _current_a8_reference(artifact)
+    if reference_error:
+        raise ScopeGateError("BLOCKED_A8_BATCH4_REFERENCE")
+    return artifact
 
 
 def utc_now() -> str:
@@ -163,6 +216,55 @@ def _load_run_map() -> dict[str, Any]:
     return payload
 
 
+def _current_benchmark_graph_identity() -> dict[str, Any]:
+    """Derive E5's shared benchmark graph identity from frozen resources."""
+
+    original_manifest_path = PROJECT_ROOT / "custom_models/docs/benchmark_v2/BATCH4/CURRENT_BATCH4_SCOPE26_MANIFEST.json"
+    bundle_path = PROJECT_ROOT / "custom_models/src/benchmark_v2/protocol/graph_v1/graph_bundle_manifest_v1.json"
+    protocol_path = PROJECT_ROOT / "custom_models/src/benchmark_v2/protocol/graph_protocol_v1.json"
+    original = load_json(original_manifest_path)
+    bundle = load_json(bundle_path)
+    protocol = load_json(protocol_path)
+    original_graph = original.get("graph_identity") or {}
+    resource_paths = [
+        "custom_models/src/benchmark_v2/protocol/graph_protocol_v1.json",
+        "custom_models/src/benchmark_v2/protocol/graph_v1/graph_bundle_manifest_v1.json",
+        "custom_models/src/benchmark_v2/protocol/graph_v1/node_order_v1.json",
+        "custom_models/src/benchmark_v2/protocol/graph_v1/node_metadata_v1.json",
+    ]
+    resource_hashes = {
+        relative: sha256_file(PROJECT_ROOT / relative) for relative in resource_paths
+    }
+    graph_id = bundle.get("graph_id") or protocol.get("graph_id")
+    node_count = bundle.get("node_count") or protocol.get("node_count")
+    selected_k = protocol.get("selected_k")
+    graph_protocol_hash = bundle.get("graph_protocol_hash") or protocol.get("graph_protocol_hash")
+    graph_bundle_hash = bundle.get("graph_bundle_hash") or original_graph.get("graph_bundle_hash")
+    node_order_hash = bundle.get("node_order_hash") or protocol.get("node_order_hash")
+    if not all(
+        (
+            isinstance(graph_id, str) and graph_id,
+            isinstance(node_count, int) and node_count > 0,
+            isinstance(selected_k, int) and selected_k > 0,
+            isinstance(graph_protocol_hash, str) and graph_protocol_hash,
+            isinstance(graph_bundle_hash, str) and graph_bundle_hash,
+            isinstance(node_order_hash, str) and node_order_hash,
+        )
+    ):
+        raise ScopeGateError("Current benchmark graph identity cannot be derived.")
+    return {
+        "graph_id": graph_id,
+        "node_count": int(node_count),
+        "selected_k": int(selected_k),
+        "graph_protocol_hash": graph_protocol_hash,
+        "graph_bundle_hash": graph_bundle_hash,
+        "node_order_hash": node_order_hash,
+        "graph_resource_paths": resource_paths,
+        "graph_resource_sha256": resource_hashes,
+        "identity_source": "Original scope26 frozen graph protocol/resources",
+    }
+
+
 def _source_revision() -> dict[str, str]:
     completed = subprocess.run(
         ["git", "-C", str(PROJECT_ROOT), "rev-parse", "HEAD"],
@@ -179,6 +281,7 @@ def compute_e5_freeze(
     manifest: Mapping[str, Any] | None = None,
     *,
     run_map: Mapping[str, Any] | None = None,
+    require_a8_ready: bool = False,
 ) -> dict[str, Any]:
     """Compute the E5-only deterministic freeze material."""
 
@@ -193,24 +296,38 @@ def compute_e5_freeze(
         for entry in active["entries"]
         if entry["entry_type"] != REFERENCE_ENTRY_TYPE
     }
-    a8 = validate_a8_reference(training_profile=TRAINING_PROFILE_ID)
+    a8_artifact = _current_a8_artifact()
+    if require_a8_ready:
+        _require_a8_ready()
+    a8_gate = _a8_gate()
+    a8_contract = a8_gate.validate_contract()
     reference_identity = {
-        key: a8.get(key)
+        key: a8_artifact.get(key)
         for key in (
-            "reference_id",
-            "source_relative_path",
-            "source_checkpoint_sha256",
-            "source_metrics_sha256",
-            "source_config_sha256",
-            "source_protocol_evidence_sha256",
-            "source_protocol_hash",
-            "source_loss_id",
-            "retrained_in_e5",
-            "checkpoint_copied",
-            "metrics_copied",
-            "status",
+            "run_id",
+            "run_dir",
+            "best_checkpoint_sha256",
+            "metrics_bundle_hash",
+            "effective_config_sha256",
+            "ready",
         )
     }
+    reference_identity.update(
+        {
+            "reference_id": A8_REFERENCE_ID,
+            "training_role": a8_gate.TRAINING_ROLE,
+            "training_profile_id": a8_gate.TRAINING_PROFILE_ID,
+            "contract_status": a8_contract.get("status"),
+            "source_closure_hash": a8_contract.get("source_closure_hash"),
+            "graph_identity_hash": a8_contract.get("graph_identity_hash"),
+            "receipt_sha256": a8_gate._file_hash(
+                a8_gate.RUN_DIR / "a8_batch4_execution_receipt.json"
+            ),
+            "checkpoint_copied": False,
+            "metrics_copied": False,
+            "warm_started_from_historical_a8": False,
+        }
+    )
     material = {
         "schema_version": "e5_scope27_freeze_v1",
         "scope_id": E5_SCOPE27_ID,
@@ -242,6 +359,8 @@ def compute_e5_freeze(
             if entry["entry_type"] != REFERENCE_ENTRY_TYPE
         },
         "a8_reference_identity": reference_identity,
+        "a8_contract_hash": a8_contract.get("variant_contract_hash"),
+        "a8_formal_ready": bool(a8_artifact.get("ready")),
         "current_batch4_output_root": active["output_root"],
         "forbidden_inputs": [
             "Batch32",
@@ -324,6 +443,12 @@ def validate_manifest(
         "LEGACY_OR_HISTORICAL_READ_ONLY_NOT_CURRENT_BATCH4_OUTPUT"
     ):
         raise ScopeGateError("Legacy E5 output root policy is not read-only.")
+    graph_identity_value = manifest.get("graph_identity")
+    if not isinstance(graph_identity_value, Mapping) or not graph_identity_value:
+        raise ScopeGateError("E5 graph_identity must be a non-empty object.")
+    expected_graph_identity = _current_benchmark_graph_identity()
+    if dict(graph_identity_value) != expected_graph_identity:
+        raise ScopeGateError("E5 graph identity does not match current Original graph resources.")
     if manifest.get("source_identity_schema_version") != SOURCE_IDENTITY_SCHEMA_VERSION:
         raise ScopeGateError("Model source identity schema mismatch.")
     entries = list(manifest.get("entries", []))
@@ -358,6 +483,34 @@ def validate_manifest(
         raise ScopeGateError("The active E5 reference id is not the Batch4 A8 id.")
     if manifest.get("a8_reference_identity", {}).get("reference_id") != entries[-1].get("e5_run_id"):
         raise ScopeGateError("A8 reference identity does not match the active entry.")
+    a8_identity = manifest.get("a8_reference_identity") or {}
+    expected_a8_identity = {
+        "reference_id": A8_REFERENCE_ID,
+        "variant": "A8",
+        "definition": "w/o MS-MG-DWU",
+        "training_role": "E5_BATCH4_PREREQUISITE",
+        "training_profile_id": TRAINING_PROFILE_ID,
+        "loss_id": "masked_score_aligned_hybrid",
+        "expected_formal_status": "READY_A8_BATCH4_PREREQUISITE",
+        "read_only": True,
+        "checkpoint_copied": False,
+        "metrics_copied": False,
+        "warm_started_from_historical_a8": False,
+        "source_relative_path": A8_RUN_RELATIVE_PATH,
+    }
+    for key, expected in expected_a8_identity.items():
+        if a8_identity.get(key) != expected:
+            raise ScopeGateError(f"A8 prerequisite contract mismatch for {key}.")
+    if a8_identity.get("training_profile_hash") != manifest.get("training_profile_hash"):
+        raise ScopeGateError("A8 prerequisite training profile hash is not current.")
+    forbidden_a8_hash_fields = {
+        "checkpoint_sha256",
+        "metrics_sha256",
+        "config_sha256",
+        "protocol_evidence_sha256",
+    }
+    if forbidden_a8_hash_fields & set(a8_identity):
+        raise ScopeGateError("E5 manifest must not contain runtime A8 artifact hashes.")
     for entry in entries[:-1]:
         if entry.get("output_root") != manifest.get("output_root"):
             raise ScopeGateError(
@@ -1019,67 +1172,30 @@ def inspect_run(
 def inspect_a8(
     manifest: Mapping[str, Any], entry: Mapping[str, Any]
 ) -> dict[str, Any]:
-    expected = manifest["a8_reference_identity"]
-    result = validate_a8_reference(training_profile=TRAINING_PROFILE_ID)
-    reasons: list[str] = []
-    checks = (
-        (result.get("status") == "VALID", "A8_REFERENCE_INVALID"),
-        (result.get("reference_id") == entry["e5_run_id"], "A8_ID_MISMATCH"),
-        (
-            result.get("source_checkpoint_sha256")
-            == expected["checkpoint_sha256"],
-            "A8_CHECKPOINT_HASH_MISMATCH",
-        ),
-        (
-            result.get("source_metrics_sha256") == expected["metrics_sha256"],
-            "A8_METRICS_HASH_MISMATCH",
-        ),
-        (
-            result.get("source_config_sha256") == expected["config_sha256"],
-            "A8_CONFIG_HASH_MISMATCH",
-        ),
-        (
-            result.get("source_protocol_evidence_sha256")
-            == expected["protocol_evidence_sha256"],
-            "A8_PROTOCOL_EVIDENCE_HASH_MISMATCH",
-        ),
-        (
-            result.get("source_protocol_hash")
-            == manifest["benchmark_protocol_hash"],
-            "A8_PROTOCOL_HASH_MISMATCH",
-        ),
-        (
-            result.get("source_loss_id")
-            == manifest["loss_identity"]["loss_id"],
-            "A8_LOSS_ID_MISMATCH",
-        ),
-        (result.get("retrained_in_e5") is False, "A8_MUST_BE_READ_ONLY"),
-        (result.get("checkpoint_copied") is False, "A8_CHECKPOINT_COPIED"),
-        (result.get("metrics_copied") is False, "A8_METRICS_COPIED"),
-        (result.get("trained_with_common_loss") is True, "A8_LOSS_EVIDENCE_MISSING"),
-        (result.get("train_batch_size") == 4, "A8_TRAIN_BATCH_MISMATCH"),
-        (result.get("val_batch_size") == 4, "A8_VAL_BATCH_MISMATCH"),
-        (result.get("test_batch_size") == 4, "A8_TEST_BATCH_MISMATCH"),
-        (result.get("lookback") == 144, "A8_LOOKBACK_MISMATCH"),
-        (result.get("max_pred_len") == 10, "A8_HORIZON_MISMATCH"),
-    )
-    reasons.extend(reason for passed, reason in checks if not passed)
+    artifact = _current_a8_artifact()
+    reasons = list(artifact.get("reasons", []))
+    if entry.get("e5_run_id") != A8_REFERENCE_ID:
+        reasons.append("A8_ID_MISMATCH")
+    if artifact.get("ready"):
+        _, reference_error = _current_a8_reference(artifact)
+        if reference_error:
+            reasons.append(reference_error)
+    if artifact.get("ready") and artifact.get("receipt", {}).get("protocol_hash") != manifest.get("benchmark_protocol_hash"):
+        reasons.append("A8_PROTOCOL_HASH_MISMATCH")
     return {
         "entry_id": entry["entry_id"],
         "model_id": entry["model_id"],
         "entry_type": entry["entry_type"],
         "run_id": entry["e5_run_id"],
-        "run_dir": result.get("source_absolute_or_resolved_path"),
-        "found": not bool(result.get("missing")),
+        "run_dir": artifact.get("run_dir"),
+        "found": bool(artifact.get("found")),
         "ready": not reasons,
         "reasons": reasons,
-        "checkpoint_sha256": result.get("source_checkpoint_sha256"),
-        "metrics_sha256": result.get("source_metrics_sha256"),
-        "effective_config_sha256": result.get("source_config_sha256"),
-        "protocol_evidence_sha256": result.get(
-            "source_protocol_evidence_sha256"
-        ),
-        "reference": result,
+        "checkpoint_sha256": artifact.get("best_checkpoint_sha256"),
+        "metrics_sha256": artifact.get("metrics_bundle_hash"),
+        "effective_config_sha256": artifact.get("effective_config_sha256"),
+        "protocol_evidence_sha256": None,
+        "reference": artifact,
     }
 
 
@@ -1138,11 +1254,11 @@ def _process_start_time(pid: int) -> float | None:
 
         return float(psutil.Process(pid).create_time())
     except ImportError:
-        return None
+        return _SELF_PROCESS_START_FALLBACK if pid == os.getpid() else None
     except Exception as exc:  # psutil exception classes vary by platform.
         if type(exc).__name__ not in {"NoSuchProcess", "AccessDenied", "ZombieProcess"}:
             raise
-        return None
+        return _SELF_PROCESS_START_FALLBACK if pid == os.getpid() else None
 
 
 def lock_status(path: Path = LOCK_PATH) -> dict[str, Any]:
@@ -1232,19 +1348,32 @@ def _recursive_file_manifest(root: Path) -> list[dict[str, str]]:
 
 
 def _active_worker(run_dir: Path) -> bool:
+    # Missing, malformed, or ambiguous worker evidence must block an archive
+    # or quarantine.  Treating an unreadable status as inactive was a data
+    # safety hole because it allowed a live worker's directory to be moved.
     try:
         status = load_json(run_dir / "run_status.json")
         effective = load_json(run_dir / "effective_config.json")
     except Exception:
-        return False
-    if isinstance(status, dict) and status.get("status") == "RUNNING":
         return True
-    candidates = []
+    if not isinstance(status, dict) or not isinstance(effective, dict):
+        return True
+    status_name = str(status.get("status") or status.get("current_stage") or "").upper()
+    if status_name in {"RUNNING", "STARTING", "ACTIVE", "TRAINING", "EVALUATING", "PREFLIGHT_RUNNING"}:
+        return True
+    if status_name not in {"FAILED", "COMPLETED", "PROCESS_FINISHED", "INCOMPLETE", "ARCHIVED", "NOT_STARTED"}:
+        return True
     for payload in (status, effective):
-        if isinstance(payload, dict):
-            candidates.append(payload.get("formal_worker_pid"))
-            candidates.append(payload.get("pid"))
-    return any(isinstance(pid, int) and _pid_alive(pid) for pid in candidates)
+        for key in ("formal_worker_pid", "worker_pid", "process_id", "pid"):
+            if key not in payload or payload[key] in (None, ""):
+                continue
+            try:
+                pid = int(payload[key])
+            except (TypeError, ValueError):
+                return True
+            if _pid_alive(pid):
+                return True
+    return False
 
 
 def _canonical_identity_evidence(
@@ -1449,6 +1578,143 @@ def build_preflight_plan(manifest: Mapping[str, Any]) -> dict[str, Any]:
         },
         "entries": rows,
     }
+
+
+def run_preflight_suite(
+    manifest: Mapping[str, Any],
+    *,
+    preflight_root: Path,
+    source_revision: str,
+    report_path: Path | None = None,
+    child_log_root: Path | None = None,
+) -> tuple[int, dict[str, Any]]:
+    """Run E5's 24 children with stdout/stderr isolated per model."""
+
+    try:
+        _require_a8_ready()
+        freeze = compute_e5_freeze(manifest, require_a8_ready=True)
+    except ScopeGateError as exc:
+        blocked_status = (
+            "BLOCKED_A8_BATCH4_REFERENCE"
+            if "REFERENCE" in str(exc)
+            else "BLOCKED_A8_BATCH4_PREREQUISITE"
+        )
+        payload = {
+            "schema_version": "e5_scope27_preflight_run_v2",
+            "status": blocked_status,
+            "scope_id": E5_SCOPE27_ID,
+            "gpu_preflight_performed": False,
+            "child_launch_count": 0,
+            "counts": {"pass": 0, "expected": 24},
+            "error": str(exc),
+        }
+        if report_path:
+            atomic_write_json(report_path, payload)
+        return 74, payload
+    preflight_root = Path(preflight_root or AUDIT_ROOT / "preflight").resolve()
+    plan = build_plan(manifest, EXPECTED_OUTPUT_ROOT)
+    blocked_rows = [
+        row
+        for row in plan["entries"]
+        if row["action"] == "BLOCK_EXISTING_IDENTITY_MISMATCH"
+    ]
+    if blocked_rows:
+        payload = {
+            "schema_version": "e5_scope27_preflight_run_v2",
+            "status": "BLOCKED_EXISTING_ARTIFACTS",
+            "scope_id": E5_SCOPE27_ID,
+            "gpu_preflight_performed": False,
+            "child_launch_count": 0,
+            "counts": {"pass": 0, "expected": 24},
+            "plan": plan,
+        }
+        if report_path:
+            atomic_write_json(report_path, payload)
+        return 74, payload
+    run_map = _load_run_map()
+    log_root = Path(child_log_root or preflight_root / "child_logs").resolve()
+    log_root.mkdir(parents=True, exist_ok=True)
+    results: list[dict[str, Any]] = []
+    for entry in manifest["entries"]:
+        if entry["entry_type"] != TRAINABLE_ENTRY_TYPE:
+            continue
+        log_path = log_root / f"{int(entry['ordinal']):02d}_{entry['model_id']}.preflight.log"
+
+        def _child_runner(argv, check=False, *, _log_path=log_path):
+            with _log_path.open("w", encoding="utf-8", newline="") as handle:
+                return subprocess.run(
+                    argv,
+                    check=check,
+                    cwd=str(PROJECT_ROOT),
+                    env={**os.environ, "PYTHONPATH": str(SRC_ROOT) + os.pathsep + os.environ.get("PYTHONPATH", "")},
+                    stdout=handle,
+                    stderr=subprocess.STDOUT,
+                )
+
+        error_type = None
+        error_message = None
+        try:
+            from benchmark_v2.hardware_preflight import launch_preflight, read_matching_pass
+
+            code = launch_preflight(
+                entry["model_id"],
+                root=preflight_root,
+                experiment_profile=CLI_PROFILE_ID,
+                training_profile=TRAINING_PROFILE_ID,
+                formal_scope_id=E5_SCOPE27_ID,
+                source_revision=source_revision,
+                runner=_child_runner,
+            )
+            matched = read_matching_pass(
+                entry["model_id"],
+                root=preflight_root,
+                experiment_profile=CLI_PROFILE_ID,
+                training_profile=TRAINING_PROFILE_ID,
+                formal_scope_id=E5_SCOPE27_ID,
+                source_revision=source_revision,
+                manifest=manifest,
+                run_map=run_map,
+                freeze=freeze,
+            )
+            status = "PASS" if code == 0 and matched else "FAILED"
+        except Exception as exc:
+            code = 74
+            matched = None
+            status = "FAILED"
+            error_type = type(exc).__name__
+            error_message = str(exc)
+        result = {
+            "ordinal": entry["ordinal"],
+            "model_id": entry["model_id"],
+            "status": status,
+            "exit_code": int(code),
+            "matched_exact_identity": bool(matched),
+            "child_log": str(log_path),
+            "scope_id": E5_SCOPE27_ID,
+            "freeze_hash": freeze["freeze_hash"],
+            "manifest_hash": canonical_hash(manifest),
+            "git_commit": source_revision,
+        }
+        if error_type is not None and status == "FAILED":
+            result.update({"error_type": error_type, "error_message": error_message})
+        results.append(result)
+    passed = sum(item["status"] == "PASS" for item in results)
+    payload = {
+        "schema_version": "e5_scope27_preflight_run_v2",
+        "status": "PASS" if passed == 24 else "COMPLETED_WITH_FAILURES",
+        "scope_id": E5_SCOPE27_ID,
+        "gpu_preflight_performed": True,
+        "child_launch_count": len(results),
+        "counts": {"pass": passed, "expected": 24, "trainable": len(results), "evaluate_only_skipped": 2, "a8_reference_skipped": 1},
+        "freeze_hash": freeze["freeze_hash"],
+        "manifest_hash": canonical_hash(manifest),
+        "git_commit": source_revision,
+        "child_log_root": str(log_root),
+        "results": results,
+    }
+    if report_path:
+        atomic_write_json(report_path, payload)
+    return (0 if passed == 24 else 1), payload
 
 
 def _plan_action(
@@ -1659,15 +1925,17 @@ def _write_failure_artifact(log_root: Path, evidence: dict[str, Any], ordinal: i
 
 
 def _acquire_lock(manifest: Mapping[str, Any], freeze: Mapping[str, Any]) -> dict[str, Any]:
-    state = lock_status()
-    if state["status"] != "ABSENT":
-        raise ScopeGateError(f"E5 lock blocks execution: {state['status']}")
+    process_start = _process_start_time(os.getpid())
+    if process_start is None:
+        raise ScopeGateError("E5 current process start identity is unavailable.")
+    lock_owner = f"{socket.gethostname()}:{os.getpid()}:{process_start:.6f}"
     payload = {
         "schema_version": LOCK_SCHEMA_VERSION,
         "scope_id": E5_SCOPE27_ID,
         "hostname": socket.gethostname(),
         "pid": os.getpid(),
-        "process_start_time": time.time(),
+        "process_start_time": process_start,
+        "lock_owner": lock_owner,
         "git_commit": _source_revision()["git_commit"],
         "manifest_hash": canonical_hash(manifest),
         "run_map_hash": canonical_hash(_load_run_map()),
@@ -1675,8 +1943,26 @@ def _acquire_lock(manifest: Mapping[str, Any], freeze: Mapping[str, Any]) -> dic
         "created_at": utc_now(),
     }
     LOCK_PATH.parent.mkdir(parents=True, exist_ok=True)
-    atomic_write_json(LOCK_PATH, payload)
+    try:
+        with LOCK_PATH.open("x", encoding="utf-8") as handle:
+            json.dump(payload, handle, ensure_ascii=False, indent=2, allow_nan=False)
+            handle.write("\n")
+    except FileExistsError as exc:
+        state = lock_status()
+        raise ScopeGateError(f"E5 lock blocks execution: {state.get('status', 'UNKNOWN')}") from exc
     return payload
+
+
+def _release_lock(owner: Mapping[str, Any]) -> None:
+    if not LOCK_PATH.is_file():
+        return
+    state = lock_status()
+    if state.get("status") != "ACTIVE":
+        return
+    for key in ("pid", "process_start_time", "scope_id", "lock_owner"):
+        if state.get(key) != owner.get(key):
+            return
+    LOCK_PATH.unlink()
 
 
 def run_scope(
@@ -1688,7 +1974,21 @@ def run_scope(
     preflight_root: Path,
     source_revision: str,
 ) -> tuple[int, dict[str, Any]]:
-    freeze = compute_e5_freeze(manifest)
+    try:
+        _require_a8_ready()
+        freeze = compute_e5_freeze(manifest, require_a8_ready=True)
+    except ScopeGateError as exc:
+        blocked_status = (
+            "BLOCKED_A8_BATCH4_REFERENCE"
+            if "REFERENCE" in str(exc)
+            else "BLOCKED_A8_BATCH4_PREREQUISITE"
+        )
+        return 74, {
+            "status": blocked_status,
+            "scope_id": E5_SCOPE27_ID,
+            "gpu_child_started": False,
+            "error": str(exc),
+        }
     plan = build_plan(manifest, EXPECTED_OUTPUT_ROOT)
     if any(row["action"] == "BLOCK_A8_BATCH4_REFERENCE" for row in plan["entries"]):
         return 74, {"status": "BLOCKED_A8_BATCH4_REFERENCE", "plan": plan}
@@ -1696,6 +1996,7 @@ def run_scope(
         return 74, {"status": "BLOCKED_EXISTING_ARTIFACTS", "plan": plan}
     log_root.mkdir(parents=True, exist_ok=True)
     lock_payload = _acquire_lock(manifest, freeze)
+    run_map = _load_run_map()
     results: list[dict[str, Any]] = []
     failures: list[dict[str, Any]] = []
     try:
@@ -1750,6 +2051,9 @@ def run_scope(
                         training_profile=TRAINING_PROFILE_ID,
                         formal_scope_id=E5_SCOPE27_ID,
                         source_revision=source_revision,
+                        manifest=manifest,
+                        run_map=run_map,
+                        freeze=freeze,
                     ) is None:
                         raise ScopeGateError("PREFLIGHT_MISSING_OR_MISMATCH")
                 with log_path.open("w", encoding="utf-8", newline="") as handle:
@@ -1830,9 +2134,8 @@ def run_scope(
         return code, report
     finally:
         try:
-            if LOCK_PATH.is_file() and load_json(LOCK_PATH).get("pid") == os.getpid():
-                LOCK_PATH.unlink()
-        except (OSError, ValueError, KeyError):
+            _release_lock(lock_payload)
+        except (OSError, ValueError, KeyError, TypeError):
             pass
 
 
@@ -1983,12 +2286,23 @@ def _aggregate_rows(
     for evidence in readiness["entries"]:
         entry = entries[evidence["model_id"]]
         if entry["entry_type"] == "REFERENCE_ONLY_FORMAL_A8":
-            reference = evidence["reference"]
+            a8_gate = _a8_gate()
+            reference = a8_gate.build_reference_payload()
+            if reference.get("status") != "VALID":
+                raise ScopeGateError("A8 reference is not a valid Batch4 prerequisite.")
+            a8_run_dir = a8_gate.RUN_DIR
             metrics_paths = [
-                Path(path) for path in reference["source_metrics_paths"]
+                a8_run_dir / f"metrics_eval_h{horizon}.json"
+                for horizon in HORIZONS
             ]
-            effective = load_json(Path(reference["source_config_path"]))
-            training_status = "REFERENCE_ONLY"
+            effective = load_json(a8_run_dir / "effective_config.json")
+            train_complete = load_json(a8_run_dir / "train_complete.json")
+            model_summary = load_json(a8_run_dir / "model_summary.json")
+            receipt = load_json(a8_run_dir / "a8_batch4_execution_receipt.json")
+            training_status = str(receipt.get("status"))
+            checkpoint_path = a8_run_dir / "best_checkpoint.pt"
+            checkpoint_sha256 = sha256_file(checkpoint_path)
+            profile_id = TRAINING_PROFILE_ID
         else:
             run_dir = Path(evidence["run_dir"])
             metrics_paths = [
@@ -1996,7 +2310,20 @@ def _aggregate_rows(
                 for horizon in HORIZONS
             ]
             effective = load_json(run_dir / "effective_config.json")
+            train_complete = load_json(run_dir / "train_complete.json") if entry["entry_type"] == TRAINABLE_ENTRY_TYPE else {}
+            model_summary = load_json(run_dir / "model_summary.json") if (run_dir / "model_summary.json").is_file() else {}
             training_status = load_json(run_dir / "run_status.json")["status"]
+            checkpoint_path = (
+                run_dir / "best_checkpoint.pt"
+                if entry["entry_type"] == TRAINABLE_ENTRY_TYPE
+                else None
+            )
+            checkpoint_sha256 = (
+                sha256_file(checkpoint_path)
+                if checkpoint_path is not None and checkpoint_path.is_file()
+                else None
+            )
+            profile_id = entry.get("training_profile_id") or TRAINING_PROFILE_ID
         metrics, reasons = _metric_payloads(metrics_paths)
         if reasons:
             raise ScopeGateError(
@@ -2008,32 +2335,28 @@ def _aggregate_rows(
             "model_id": entry["model_id"],
             "entry_type": entry["entry_type"],
             "training_mode": (
-                "REFERENCE_ONLY"
+                "TRAINED_PREREQUISITE_REFERENCE"
                 if entry["entry_type"] == "REFERENCE_ONLY_FORMAL_A8"
                 else ("EVALUATE_ONLY" if entry["command"] == "evaluate-only" else "TRAIN")
             ),
             "loss_id": entry["loss_id"],
             "training_status": training_status,
-            "checkpoint": (
-                "best_checkpoint.pt"
-                if entry["entry_type"] == "TRAIN_COMMON_LOSS"
-                else None
+            "checkpoint": str(checkpoint_path) if checkpoint_path is not None else None,
+            "checkpoint_sha256": checkpoint_sha256,
+            "best_epoch": train_complete.get("best_epoch", effective.get("best_epoch")),
+            "parameter_count": model_summary.get(
+                "total_parameters", effective.get("parameter_count")
             ),
-            "best_epoch": effective.get("best_epoch"),
-            "parameter_count": effective.get("parameter_count"),
-            "trainable_parameter_count": effective.get(
-                "trainable_parameter_count"
+            "trainable_parameter_count": model_summary.get(
+                "trainable_parameters", effective.get("trainable_parameter_count")
             ),
             "active_scope_id": E5_SCOPE27_ID,
-            "training_batch_profile_id": (
-                None
-                if entry["entry_type"] == "REFERENCE_ONLY_FORMAL_A8"
-                else TRAINING_PROFILE_ID
-            ),
+            "training_batch_profile_id": profile_id,
         }
         for horizon in HORIZONS:
             for metric in REQUIRED_METRICS:
                 row[f"H{horizon}_{metric}"] = metrics[horizon][metric]
+            row[f"H{horizon}_valid_target_count"] = metrics[horizon]["valid_target_count"]
         row["average_Score"] = sum(
             float(metrics[horizon]["Score"]) for horizon in HORIZONS
         ) / len(HORIZONS)
@@ -2051,6 +2374,7 @@ def aggregate(
 ) -> dict[str, Any]:
     if not require_complete:
         raise ScopeGateError("Final E5 aggregation requires --require-complete.")
+    _require_a8_ready()
     readiness = build_readiness(manifest, output_root)
     write_readiness_outputs(readiness, report_path, evidence_path)
     if readiness["status"] != "COMPLETED_READY_27_OF_27":
@@ -2060,69 +2384,190 @@ def aggregate(
     if len(rows) != 27:
         raise ScopeGateError("Aggregate row count must be exactly 27.")
 
+    type_counts = {
+        "TRAIN_COMMON_LOSS": sum(
+            row["entry_type"] == "TRAIN_COMMON_LOSS" for row in rows
+        ),
+        "EVALUATE_ONLY_COMMON_LOSS_DIAGNOSTIC": sum(
+            row["entry_type"] == "EVALUATE_ONLY_COMMON_LOSS_DIAGNOSTIC"
+            for row in rows
+        ),
+        "REFERENCE_ONLY_FORMAL_A8": sum(
+            row["entry_type"] == "REFERENCE_ONLY_FORMAL_A8" for row in rows
+        ),
+    }
+    if type_counts != {
+        "TRAIN_COMMON_LOSS": 24,
+        "EVALUATE_ONLY_COMMON_LOSS_DIAGNOSTIC": 2,
+        "REFERENCE_ONLY_FORMAL_A8": 1,
+    }:
+        raise ScopeGateError(f"Aggregate denominator mismatch: {type_counts}")
+    for row in rows:
+        for horizon in HORIZONS:
+            for metric in REQUIRED_METRICS:
+                value = row.get(f"H{horizon}_{metric}")
+                if not isinstance(value, (int, float)) or isinstance(value, bool) or not math.isfinite(float(value)):
+                    raise ScopeGateError(
+                        f"Aggregate metric is not finite: {row['model_id']} H{horizon} {metric}"
+                    )
+            count = row.get(f"H{horizon}_valid_target_count")
+            if isinstance(count, bool) or not isinstance(count, int) or count <= 0:
+                raise ScopeGateError(
+                    f"Aggregate valid_target_count is invalid: {row['model_id']} H{horizon}"
+                )
+
+    output_root.mkdir(parents=True, exist_ok=True)
     fieldnames = list(rows[0])
     csv_path = output_root / "common_loss_architecture_scope27_seed2026.csv"
-    with csv_path.open("w", encoding="utf-8-sig", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(rows)
     md_path = output_root / "COMMON_LOSS_ARCHITECTURE_SCOPE27_SEED2026.md"
-    lines = [
-        "# E5 common-loss architecture: batch4 scope27 seed2026",
-        "",
-        "| model | mode | checkpoint | H3 Score | H6 Score | H10 Score | average Score |",
-        "|---|---|---|---:|---:|---:|---:|",
-    ]
-    for row in rows:
-        lines.append(
-            f"| {row['model']} | {row['training_mode']} | "
-            f"{row['checkpoint'] or 'null'} | "
-            f"{row['H3_Score']:.6f} | {row['H6_Score']:.6f} | "
-            f"{row['H10_Score']:.6f} | {row['average_Score']:.6f} |"
-        )
-    md_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
     audit_path = output_root / "common_loss_architecture_scope27_audit.json"
-    atomic_write_json(
-        audit_path,
-        {
-            "status": "PASS",
-            "scope_id": E5_SCOPE27_ID,
-            "require_complete": True,
-            "row_count": 27,
-            "readiness": readiness["counts"],
-            "generated_at": utc_now(),
-        },
-    )
     xlsx_path = output_root / "COMMON_LOSS_ARCHITECTURE_SCOPE27_SEED2026.xlsx"
+    temporary_paths: list[Path] = []
+
+    def _temporary_path(target: Path) -> Path:
+        handle = tempfile.NamedTemporaryFile(
+            prefix=f".{target.name}.",
+            suffix=".tmp",
+            dir=str(target.parent),
+            delete=False,
+        )
+        path = Path(handle.name)
+        handle.close()
+        temporary_paths.append(path)
+        return path
+
     try:
         from openpyxl import Workbook
+        from openpyxl import load_workbook
     except ImportError as exc:
         raise ScopeGateError(
             "openpyxl is required for the complete E5 aggregate."
         ) from exc
-    workbook = Workbook()
-    trained = workbook.active
-    trained.title = "Trainable structures"
-    references = workbook.create_sheet("Evaluate-only and A8")
-    all_rows = workbook.create_sheet("All 27")
-    selections = (
-        (
-            trained,
-            [row for row in rows if row["entry_type"] == "TRAIN_COMMON_LOSS"],
-        ),
-        (
-            references,
-            [row for row in rows if row["entry_type"] != "TRAIN_COMMON_LOSS"],
-        ),
-        (all_rows, rows),
-    )
-    for sheet, selected in selections:
-        sheet.append(fieldnames)
-        for row in selected:
-            sheet.append([row.get(field) for field in fieldnames])
-        sheet.freeze_panes = "A2"
-        sheet.auto_filter.ref = sheet.dimensions
-    workbook.save(xlsx_path)
+    try:
+        csv_tmp = _temporary_path(csv_path)
+        with csv_tmp.open("w", encoding="utf-8-sig", newline="") as handle:
+            writer = csv.DictWriter(handle, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(rows)
+
+        md_tmp = _temporary_path(md_path)
+        lines = [
+            "# E5 common-loss architecture: batch4 scope27 seed2026",
+            "",
+            "| model | mode | checkpoint | checkpoint sha256 | H3 Score | H6 Score | H10 Score | average Score |",
+            "|---|---|---|---|---:|---:|---:|---:|",
+        ]
+        for row in rows:
+            lines.append(
+                f"| {row['model']} | {row['training_mode']} | "
+                f"{row['checkpoint'] or 'null'} | {row['checkpoint_sha256'] or 'null'} | "
+                f"{row['H3_Score']:.6f} | {row['H6_Score']:.6f} | "
+                f"{row['H10_Score']:.6f} | {row['average_Score']:.6f} |"
+            )
+        md_tmp.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+        audit_tmp = _temporary_path(audit_path)
+        atomic_write_json(
+            audit_tmp,
+            {
+                "status": "PASS",
+                "scope_id": E5_SCOPE27_ID,
+                "require_complete": True,
+                "row_count": 27,
+                "denominators": {
+                    "trainable": "24/24",
+                    "evaluate_only": "2/2",
+                    "a8_prerequisite": "1/1",
+                    "full_e5": "27/27",
+                },
+                "readiness": readiness["counts"],
+                "generated_at": utc_now(),
+            },
+        )
+
+        xlsx_tmp = _temporary_path(xlsx_path)
+        workbook = Workbook()
+        trained = workbook.active
+        trained.title = "Trainable structures"
+        references = workbook.create_sheet("Evaluate-only and A8")
+        all_rows = workbook.create_sheet("All 27")
+        selections = (
+            (
+                trained,
+                [row for row in rows if row["entry_type"] == "TRAIN_COMMON_LOSS"],
+            ),
+            (
+                references,
+                [row for row in rows if row["entry_type"] != "TRAIN_COMMON_LOSS"],
+            ),
+            (all_rows, rows),
+        )
+        for sheet, selected in selections:
+            sheet.append(fieldnames)
+            for row in selected:
+                sheet.append([row.get(field) for field in fieldnames])
+            sheet.freeze_panes = "A2"
+            sheet.auto_filter.ref = sheet.dimensions
+        workbook.save(xlsx_tmp)
+        check_workbook = load_workbook(xlsx_tmp, read_only=True, data_only=False)
+        try:
+            expected_sheet_rows = {
+                "Trainable structures": 25,
+                "Evaluate-only and A8": 3,
+                "All 27": 28,
+            }
+            for sheet_name, expected_rows in expected_sheet_rows.items():
+                if sheet_name not in check_workbook.sheetnames or check_workbook[sheet_name].max_row != expected_rows:
+                    raise ScopeGateError(f"Workbook validation failed for {sheet_name}.")
+        finally:
+            check_workbook.close()
+
+        publish_pairs = (
+            (xlsx_tmp, xlsx_path),
+            (md_tmp, md_path),
+            (csv_tmp, csv_path),
+            (audit_tmp, audit_path),
+        )
+        backups: list[tuple[Path, Path]] = []
+        published_targets: list[Path] = []
+        try:
+            for _, target in publish_pairs:
+                if target.exists():
+                    backup = target.with_name(
+                        f".{target.name}.{uuid.uuid4().hex}.bak"
+                    )
+                    os.replace(target, backup)
+                    backups.append((target, backup))
+            for temporary, target in publish_pairs:
+                os.replace(temporary, target)
+                published_targets.append(target)
+                temporary_paths.remove(temporary)
+        except Exception:
+            # Restore the previous complete set, or remove only the newly
+            # published files when no previous set existed.  This prevents a
+            # failed multi-file publication from looking like a valid partial
+            # aggregate on the next readiness check.
+            for target in reversed(published_targets):
+                try:
+                    target.unlink()
+                except FileNotFoundError:
+                    pass
+            for target, backup in reversed(backups):
+                if backup.is_file():
+                    os.replace(backup, target)
+            raise
+        else:
+            for _, backup in backups:
+                try:
+                    backup.unlink()
+                except FileNotFoundError:
+                    pass
+    finally:
+        for temporary in list(temporary_paths):
+            try:
+                temporary.unlink()
+            except FileNotFoundError:
+                pass
     return {
         "status": "PASS",
         "scope_id": E5_SCOPE27_ID,
@@ -2142,11 +2587,14 @@ def build_parser() -> argparse.ArgumentParser:
     subparsers = parser.add_subparsers(dest="command", required=True)
     subparsers.add_parser("validate-manifest")
     subparsers.add_parser("list-runnable")
+    subparsers.add_parser("freeze-plan")
     subparsers.add_parser("freeze")
     plan = subparsers.add_parser("plan-runs")
     plan.add_argument("--output-root", default=str(EXPECTED_OUTPUT_ROOT))
     dry_run = subparsers.add_parser("dry-run")
     dry_run.add_argument("--output-root", default=str(EXPECTED_OUTPUT_ROOT))
+    static_audit = subparsers.add_parser("static-audit")
+    static_audit.add_argument("--output-root", default=str(EXPECTED_OUTPUT_ROOT))
     inventory_parser = subparsers.add_parser("inventory")
     inventory_parser.add_argument("--output-root", default=str(EXPECTED_OUTPUT_ROOT))
     preflight_plan = subparsers.add_parser("preflight-plan")
@@ -2172,6 +2620,8 @@ def build_parser() -> argparse.ArgumentParser:
     preflight = subparsers.add_parser("preflight")
     preflight.add_argument("--preflight-root", default=str(AUDIT_ROOT / "preflight"))
     preflight.add_argument("--source-revision")
+    preflight.add_argument("--report-path", default=str(AUDIT_ROOT / "e5_scope27_preflight_summary.json"))
+    preflight.add_argument("--child-log-root", default=str(AUDIT_ROOT / "preflight" / "child_logs"))
     run = subparsers.add_parser("run")
     run.add_argument("--input-path")
     run.add_argument("--target-path")
@@ -2208,8 +2658,18 @@ def main(argv: list[str] | None = None) -> int:
                 )
             )
             return 0
+        if args.command == "freeze-plan":
+            payload = compute_e5_freeze(manifest, require_a8_ready=False)
+            payload["formal_execution_allowed"] = False
+            payload["a8_prerequisite_required"] = True
+            payload["a8_prerequisite_ready"] = bool(
+                _current_a8_artifact().get("ready")
+            )
+            print(json.dumps(payload, ensure_ascii=False, indent=2))
+            return 0
         if args.command == "freeze":
-            print(json.dumps(compute_e5_freeze(manifest), ensure_ascii=False, indent=2))
+            _require_a8_ready()
+            print(json.dumps(compute_e5_freeze(manifest, require_a8_ready=True), ensure_ascii=False, indent=2))
             return 0
         if args.command == "list-runnable":
             for entry in manifest["entries"]:
@@ -2227,10 +2687,15 @@ def main(argv: list[str] | None = None) -> int:
                     )
                 )
             return 0
-        if args.command in {"plan-runs", "dry-run"}:
+        if args.command in {"plan-runs", "dry-run", "static-audit"}:
             output_root = Path(args.output_root).resolve()
             plan_payload = build_plan(manifest, output_root)
             print(json.dumps(plan_payload, ensure_ascii=False, indent=2))
+            if args.command in {"dry-run", "static-audit"} and (
+                plan_payload["counts"]["blocked"]
+                or not _current_a8_artifact().get("ready")
+            ):
+                return 74
             return 0
         if args.command == "inventory":
             payload = inventory(manifest, Path(args.output_root).resolve())
@@ -2263,35 +2728,15 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         if args.command == "preflight":
             source_revision = args.source_revision or _source_revision()["git_commit"]
-            preflight_root = Path(args.preflight_root).resolve()
-            results = []
-            from benchmark_v2.hardware_preflight import launch_preflight, read_matching_pass
-
-            for entry in manifest["entries"]:
-                if entry["entry_type"] != TRAINABLE_ENTRY_TYPE:
-                    results.append({"model_id": entry["model_id"], "status": "SKIPPED_NON_TRAINABLE"})
-                    continue
-                code = launch_preflight(
-                    entry["model_id"],
-                    root=preflight_root,
-                    experiment_profile=CLI_PROFILE_ID,
-                    training_profile=TRAINING_PROFILE_ID,
-                    formal_scope_id=E5_SCOPE27_ID,
-                    source_revision=source_revision,
-                )
-                matched = read_matching_pass(
-                    entry["model_id"],
-                    root=preflight_root,
-                    experiment_profile=CLI_PROFILE_ID,
-                    training_profile=TRAINING_PROFILE_ID,
-                    formal_scope_id=E5_SCOPE27_ID,
-                    source_revision=source_revision,
-                )
-                results.append({"model_id": entry["model_id"], "exit_code": code, "status": "PASS" if code == 0 and matched else "FAIL"})
-            passed = sum(row["status"] == "PASS" for row in results)
-            payload = {"scope_id": E5_SCOPE27_ID, "status": "PASS" if passed == 24 else "FAIL", "counts": {"pass": passed, "expected": 24}, "entries": results}
+            code, payload = run_preflight_suite(
+                manifest,
+                preflight_root=Path(args.preflight_root).resolve(),
+                source_revision=source_revision,
+                report_path=Path(args.report_path).resolve(),
+                child_log_root=Path(args.child_log_root).resolve(),
+            )
             print(json.dumps(payload, ensure_ascii=False, indent=2))
-            return 0 if passed == 24 else 3
+            return code
         if args.command == "inspect-entry":
             entry = _entry(manifest, args.model_id)
             if entry["entry_type"] == "REFERENCE_ONLY_FORMAL_A8":

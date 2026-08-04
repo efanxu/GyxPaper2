@@ -6,12 +6,29 @@ import os
 import subprocess
 import socket
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 
-LOCK_SCHEMA_VERSION = "e5_scope27_lock_v1"
+LOCK_SCHEMA_VERSION = "e5_scope27_lock_v2"
+_SELF_PROCESS_START_FALLBACK = time.monotonic()
+
+
+def _process_start_time(pid: int) -> float | None:
+    if pid <= 0:
+        return None
+    try:
+        import psutil  # type: ignore
+
+        return float(psutil.Process(pid).create_time())
+    except ImportError:
+        return _SELF_PROCESS_START_FALLBACK if pid == os.getpid() else None
+    except Exception as exc:
+        if type(exc).__name__ not in {"NoSuchProcess", "AccessDenied", "ZombieProcess"}:
+            raise
+        return _SELF_PROCESS_START_FALLBACK if pid == os.getpid() else None
 
 
 def _read(path: Path) -> dict[str, Any]:
@@ -51,33 +68,46 @@ def inspect_lock(path: Path) -> int:
         print(json.dumps({"status": "ABSENT", "path": str(path)}))
         return 0
     payload = _read(path)
-    pid = int(payload.get("pid", 0))
-    status = "ACTIVE" if _pid_alive(pid) else "STALE"
+    try:
+        pid = int(payload.get("pid", 0))
+    except (TypeError, ValueError):
+        print(json.dumps({"status": "MALFORMED", "path": str(path), **payload}))
+        return 74
+    if payload.get("schema_version") != LOCK_SCHEMA_VERSION:
+        print(json.dumps({"status": "MALFORMED", "path": str(path), **payload}))
+        return 74
+    recorded_start = payload.get("process_start_time")
+    if recorded_start is not None:
+        try:
+            recorded_start = float(recorded_start)
+        except (TypeError, ValueError):
+            print(json.dumps({"status": "MALFORMED", "path": str(path), **payload}))
+            return 74
+    current_start = _process_start_time(pid) if recorded_start is not None else None
+    identity_matches = (
+        recorded_start is None
+        or current_start is None
+        or abs(recorded_start - current_start) <= 1e-3
+    )
+    status = "ACTIVE" if _pid_alive(pid) and identity_matches else "STALE"
     print(json.dumps({"status": status, "path": str(path), **payload}))
     return 0 if status == "ACTIVE" else 74
 
 
 def acquire_lock(path: Path, args: argparse.Namespace) -> int:
-    if path.exists():
-        existing = _read(path)
-        pid = int(existing.get("pid", 0))
-        if _pid_alive(pid):
-            print(
-                f"ACTIVE_LOCK: refusing concurrent scope27 run pid={pid} path={path}",
-                file=sys.stderr,
-            )
-            return 73
-        print(
-            f"STALE_LOCK: explicit clear-stale is required before restart: {path}",
-            file=sys.stderr,
-        )
-        return 74
     path.parent.mkdir(parents=True, exist_ok=True)
+    pid = int(args.pid)
+    process_start_time = _process_start_time(pid)
+    if process_start_time is None:
+        print("UNKNOWN_PROCESS_START: refusing to acquire E5 lock", file=sys.stderr)
+        return 74
     payload = {
         "schema_version": LOCK_SCHEMA_VERSION,
         "scope_id": args.scope_id,
-        "pid": int(args.pid),
+        "pid": pid,
         "hostname": args.hostname or socket.gethostname(),
+        "process_start_time": process_start_time,
+        "lock_owner": f"{args.hostname or socket.gethostname()}:{pid}:{process_start_time:.6f}",
         "started_at": args.started_at
         or datetime.now(timezone.utc).isoformat(),
         "git_commit": args.git_commit,
@@ -89,8 +119,17 @@ def acquire_lock(path: Path, args: argparse.Namespace) -> int:
             json.dump(payload, handle, ensure_ascii=False, indent=2)
             handle.write("\n")
     except FileExistsError:
-        print(f"ACTIVE_LOCK: concurrent lock creation won: {path}", file=sys.stderr)
-        return 73
+        try:
+            existing = _read(path)
+            existing_pid = int(existing.get("pid", 0))
+        except (RuntimeError, TypeError, ValueError):
+            existing_pid = 0
+        print(
+            f"LOCK_EXISTS: refusing concurrent or stale lock pid={existing_pid} path={path}; "
+            "inspect and clear explicitly.",
+            file=sys.stderr,
+        )
+        return 73 if _pid_alive(existing_pid) else 74
     print(json.dumps({"status": "ACQUIRED", "path": str(path), **payload}))
     return 0
 
@@ -100,7 +139,10 @@ def clear_stale_lock(path: Path) -> int:
         print(f"ABSENT_LOCK: {path}")
         return 0
     payload = _read(path)
-    pid = int(payload.get("pid", 0))
+    try:
+        pid = int(payload.get("pid", 0))
+    except (TypeError, ValueError) as exc:
+        raise RuntimeError("Malformed lock pid; refusing clear.") from exc
     if _pid_alive(pid):
         print(
             f"ACTIVE_LOCK: refusing clear while pid={pid} is alive: {path}",
@@ -123,6 +165,17 @@ def release_lock(path: Path, pid: int) -> int:
             file=sys.stderr,
         )
         return 75
+    recorded_start = payload.get("process_start_time")
+    current_start = _process_start_time(pid)
+    if recorded_start is not None and current_start is not None:
+        try:
+            recorded_start = float(recorded_start)
+        except (TypeError, ValueError):
+            print("LOCK_PROCESS_START_MALFORMED: refusing release", file=sys.stderr)
+            return 75
+        if abs(recorded_start - current_start) > 1e-3:
+            print("LOCK_PROCESS_START_MISMATCH: refusing release", file=sys.stderr)
+            return 75
     path.unlink()
     print(f"RELEASED_LOCK: {path}")
     return 0

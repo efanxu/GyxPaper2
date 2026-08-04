@@ -88,11 +88,13 @@ function Invoke-Gate {
     param(
         [string]$Label,
         [string[]]$Arguments,
-        [int[]]$AllowedExitCodes = @(0)
+        [int[]]$AllowedExitCodes = @(0),
+        [string]$ReportPath
     )
 
     $logPath = Join-Path $LogRoot ($Label + '.log')
-    $lines = @(& $Python $Gate @Arguments 2>&1)
+    $stderrPath = Join-Path $LogRoot ($Label + '.stderr.log')
+    $lines = @(& $Python $Gate @Arguments 2> $stderrPath)
     $exitCode = $LASTEXITCODE
     $textLines = @($lines | ForEach-Object { [string]$_ })
     $text = ($textLines -join [Environment]::NewLine)
@@ -103,7 +105,14 @@ function Invoke-Gate {
         throw "$Label failed with exit code $exitCode. See $logPath"
     }
     $json = $null
-    if (-not [string]::IsNullOrWhiteSpace($text)) {
+    if (-not [string]::IsNullOrWhiteSpace($ReportPath) -and (Test-Path -LiteralPath $ReportPath -PathType Leaf)) {
+        try {
+            $json = Get-Content -LiteralPath $ReportPath -Raw -Encoding UTF8 | ConvertFrom-Json
+        } catch {
+            $json = $null
+        }
+    }
+    if ($null -eq $json -and -not [string]::IsNullOrWhiteSpace($text)) {
         try {
             $json = $text | ConvertFrom-Json
         } catch {
@@ -168,7 +177,7 @@ function Assert-StaticPlan {
         throw 'Original exact preflight-plan denominator is not 24 trainable plus 2 evaluate-only.'
     }
 
-    $dryRun = Invoke-Gate -Label 'dry-run' -Arguments @('dry-run', '--output-root', $ResultRoot)
+    $dryRun = Invoke-Gate -Label 'dry-run' -Arguments @('dry-run', '--output-root', $ResultRoot) -AllowedExitCodes @(0, 74)
     if ($null -eq $dryRun.Json -or @($dryRun.Json.entries).Count -ne $ExpectedTotal) {
         throw 'Original dry-run did not return all 26 active entries.'
     }
@@ -178,6 +187,9 @@ function Assert-StaticPlan {
         Write-Host "MANUAL REVIEW ONLY: $model action=$($row.action) reasons=$([string]::Join(';', @($row.reasons)))"
         Write-Host "Preview only: & '$Launcher' -Action QuarantineExisting -Model '$model'"
         Write-Host "After independent per-model confirmation only: & '$Launcher' -Action QuarantineExisting -Model '$model' -Apply"
+    }
+    if ($blocked.Count -gt 0) {
+        throw "Original static audit is fail-closed: existing identity mismatch requires explicit per-model review before preflight or formal run."
     }
 
     $lock = Invoke-Gate -Label 'lock-status' -Arguments @('lock-status') -AllowedExitCodes @(0, 73, 74)
@@ -248,8 +260,9 @@ function Invoke-ExactPreflight {
     if (-not [string]::IsNullOrWhiteSpace($SourceRevision)) {
         $revision = $SourceRevision
     }
-    $arguments = @('preflight', '--preflight-root', $PreflightRoot, '--source-revision', $revision)
-    $result = Invoke-Gate -Label 'preflight' -Arguments $arguments
+    $preflightReport = Join-Path $AuditRoot 'original_scope26_preflight_summary.json'
+    $arguments = @('preflight', '--preflight-root', $PreflightRoot, '--source-revision', $revision, '--report-path', $preflightReport, '--child-log-root', (Join-Path $AuditRoot 'preflightchild_logs'))
+    $result = Invoke-Gate -Label 'preflight' -Arguments $arguments -ReportPath $preflightReport
     if ($null -eq $result.Json -or $result.Json.gpu_preflight_performed -ne $true) {
         throw 'Exact Original GPU preflight did not report gpu_preflight_performed=true.'
     }
@@ -293,7 +306,8 @@ function Invoke-FormalRun {
 
 function Invoke-ReadinessOnly {
     $null = Assert-RepositoryIdentity
-    $result = Invoke-Gate -Label 'readiness-only' -Arguments @('readiness', '--output-root', $ResultRoot) -AllowedExitCodes @(0, 4)
+    $readinessReport = Join-Path $AuditRoot 'original_scope26_readiness.json'
+    $result = Invoke-Gate -Label 'readiness-only' -Arguments @('readiness', '--output-root', $ResultRoot, '--report-path', $readinessReport, '--evidence-path', (Join-Path $AuditRoot 'original_scope26_evidence_manifest.json')) -AllowedExitCodes @(0, 4) -ReportPath $readinessReport
     if ($null -eq $result.Json) {
         throw 'Original readiness did not return JSON.'
     }
@@ -311,7 +325,8 @@ function Invoke-AggregateOnly {
         throw 'Aggregate requires the explicit -RequireComplete switch.'
     }
     $null = Assert-RepositoryIdentity
-    $readiness = Invoke-Gate -Label 'aggregate-readiness' -Arguments @('readiness', '--output-root', $ResultRoot) -AllowedExitCodes @(0, 4)
+    $readinessReport = Join-Path $AuditRoot 'original_scope26_readiness.json'
+    $readiness = Invoke-Gate -Label 'aggregate-readiness' -Arguments @('readiness', '--output-root', $ResultRoot, '--report-path', $readinessReport, '--evidence-path', (Join-Path $AuditRoot 'original_scope26_evidence_manifest.json')) -AllowedExitCodes @(0, 4) -ReportPath $readinessReport
     if ($null -eq $readiness.Json -or [string]$readiness.Json.status -ne 'COMPLETED_READY_26_OF_26') {
         throw 'Aggregate is refused unless readiness is exactly COMPLETED_READY_26_OF_26.'
     }

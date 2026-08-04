@@ -1006,6 +1006,15 @@ def _active_worker(run_dir: Path, inspected: Mapping[str, Any]) -> bool:
     status_name = str(status.get("status", "")).upper()
     if status_name in {"RUNNING", "STARTING", "ACTIVE"}:
         return True
+    if status_name not in {
+        "FAILED",
+        "COMPLETED",
+        "PROCESS_FINISHED",
+        "INCOMPLETE",
+        "ARCHIVED",
+        "NOT_STARTED",
+    }:
+        return True
     for key in ("pid", "process_id", "worker_pid", "formal_worker_pid"):
         value = status.get(key)
         if value is None:
@@ -1950,6 +1959,54 @@ def run_suite(
         current_revision=revision,
         current_run_map=run_map,
     )
+    blocked_rows = [
+        row
+        for row in plan["entries"]
+        if row["action"] == "BLOCK_EXISTING_IDENTITY_MISMATCH"
+    ]
+    if blocked_rows:
+        return 74, {
+            "status": "BLOCK_EXISTING_IDENTITY_MISMATCH",
+            "scope_id": CURRENT_SCOPE26_ID,
+            "gpu_child_started": False,
+            "plan": plan,
+        }
+    formal_preflight_root = Path(
+        preflight_root
+        or PROJECT_ROOT / "custom_models/logs/uniform_bs4/preflight/original_scope26"
+    )
+    from benchmark_v2.hardware_preflight import read_matching_pass
+
+    missing_preflight = []
+    for entry, row in zip(active["entries"], plan["entries"]):
+        if entry["entry_type"] != TRAINABLE_TYPE or row["action"] not in {
+            "RUN_MISSING",
+            "ARCHIVE_INCOMPLETE_THEN_RUN",
+        }:
+            continue
+        if (
+            read_matching_pass(
+                entry["model_id"],
+                root=formal_preflight_root,
+                training_profile=active["training_profile_id"],
+                formal_scope_id=CURRENT_SCOPE26_ID,
+                source_revision=revision["git_commit"],
+                manifest=active,
+                run_map=run_map,
+                freeze=freeze,
+            )
+            is None
+        ):
+            missing_preflight.append(entry["model_id"])
+    if missing_preflight:
+        return 74, {
+            "status": "PREFLIGHT_MISSING_OR_MISMATCH",
+            "scope_id": CURRENT_SCOPE26_ID,
+            "gpu_child_started": False,
+            "missing_models": missing_preflight,
+            "preflight_root": str(formal_preflight_root),
+            "plan": plan,
+        }
     _acquire_lock(
         manifest=active,
         freeze=freeze,
@@ -2018,7 +2075,7 @@ def run_suite(
                 entry,
                 input_path=input_path,
                 target_path=target_path,
-                preflight_root=preflight_root,
+                preflight_root=formal_preflight_root,
                 source_revision=revision["git_commit"],
             )
             if entry["entry_type"] == TRAINABLE_TYPE:
@@ -2027,7 +2084,7 @@ def run_suite(
                 if (
                     read_matching_pass(
                         entry["model_id"],
-                        root=preflight_root,
+                        root=formal_preflight_root,
                         training_profile=active["training_profile_id"],
                         formal_scope_id=CURRENT_SCOPE26_ID,
                         source_revision=source_revision,
@@ -2308,6 +2365,8 @@ def run_preflight_suite(
     *,
     preflight_root: Path | None = None,
     source_revision: str | None = None,
+    report_path: Path | None = None,
+    child_log_root: Path | None = None,
 ) -> tuple[int, dict[str, Any]]:
     """Run one isolated exact preflight child per current trainable model."""
 
@@ -2327,36 +2386,112 @@ def run_preflight_suite(
         run_map=selected_map,
         source_revision=source_revision,
     )
-    from benchmark_v2.hardware_preflight import launch_preflight
+    plan = build_plan(
+        active,
+        output_root=(PROJECT_ROOT / active["output_root"]).resolve(),
+        current_freeze=freeze,
+        current_revision=revision,
+        current_run_map=selected_map,
+    )
+    blocked_rows = [
+        row
+        for row in plan["entries"]
+        if row["action"] == "BLOCK_EXISTING_IDENTITY_MISMATCH"
+    ]
+    if blocked_rows:
+        payload = {
+            "schema_version": "original_scope26_preflight_run_v2",
+            "status": "BLOCK_EXISTING_IDENTITY_MISMATCH",
+            "scope_id": CURRENT_SCOPE26_ID,
+            "gpu_preflight_performed": False,
+            "child_launch_count": 0,
+            "counts": {
+                "trainable": 0,
+                "expected_trainable": 24,
+                "evaluate_only_skipped": 2,
+                "excluded_skipped": 2,
+            },
+            "freeze_hash": freeze["freeze_hash"],
+            "manifest_hash": validation["manifest_hash"],
+            "git_commit": revision["git_commit"],
+            "plan": plan,
+        }
+        if report_path:
+            atomic_write_json(report_path, payload)
+        return 74, payload
+    preflight_root = Path(
+        preflight_root or PROJECT_ROOT / "custom_models/logs/uniform_bs4/preflight/original_scope26"
+    ).resolve()
+    from benchmark_v2.hardware_preflight import launch_preflight, read_matching_pass
 
     results: list[dict[str, Any]] = []
+    selected_revision = source_revision or revision["git_commit"]
+    child_root = Path(
+        child_log_root or AUDIT_ROOT / "original_scope26_preflight_child_logs"
+    ).resolve()
+    child_root.mkdir(parents=True, exist_ok=True)
     for entry in active["entries"]:
         if entry["entry_type"] != TRAINABLE_TYPE:
             continue
+        child_log = child_root / f"{int(entry['ordinal']):02d}_{entry['model_id']}.log"
+        error_type = None
+        error_message = None
         try:
+            def _child_runner(argv, check=False, *, _child_log=child_log):
+                with _child_log.open("w", encoding="utf-8", newline="") as handle:
+                    return subprocess.run(
+                        argv,
+                        cwd=str(PROJECT_ROOT),
+                        env={
+                            **os.environ,
+                            "PYTHONPATH": str(SOURCE_ROOT)
+                            + os.pathsep
+                            + os.environ.get("PYTHONPATH", ""),
+                        },
+                        stdout=handle,
+                        stderr=subprocess.STDOUT,
+                        check=check,
+                    )
+
             code = launch_preflight(
                 entry["model_id"],
                 root=preflight_root,
                 training_profile=active["training_profile_id"],
                 formal_scope_id=CURRENT_SCOPE26_ID,
-                source_revision=source_revision,
+                source_revision=selected_revision,
+                runner=_child_runner,
+            )
+            matched = read_matching_pass(
+                entry["model_id"],
+                root=preflight_root,
+                training_profile=active["training_profile_id"],
+                formal_scope_id=CURRENT_SCOPE26_ID,
+                source_revision=selected_revision,
+                manifest=active,
+                run_map=selected_map,
+                freeze=freeze,
             )
             result = {
                 "model_id": entry["model_id"],
-                "status": "PASS" if code == 0 else "FAILED",
+                "status": "PASS" if code == 0 and matched else "FAILED",
                 "exit_code": int(code),
+                "matched_exact_identity": bool(matched),
+                "child_log": str(child_log),
                 "scope_id": CURRENT_SCOPE26_ID,
                 "freeze_hash": freeze["freeze_hash"],
                 "manifest_hash": validation["manifest_hash"],
                 "git_commit": revision["git_commit"],
             }
         except Exception as exc:
+            error_type = type(exc).__name__
+            error_message = str(exc)
             result = {
                 "model_id": entry["model_id"],
                 "status": "FAILED",
                 "exit_code": 74,
-                "error_type": type(exc).__name__,
-                "error_message": str(exc),
+                "error_type": error_type,
+                "error_message": error_message,
+                "child_log": str(child_log),
                 "scope_id": CURRENT_SCOPE26_ID,
                 "freeze_hash": freeze["freeze_hash"],
                 "manifest_hash": validation["manifest_hash"],
@@ -2364,7 +2499,7 @@ def run_preflight_suite(
             }
         results.append(result)
     code = 0 if all(item["exit_code"] == 0 for item in results) else 1
-    return code, {
+    payload = {
         "schema_version": "original_scope26_preflight_run_v1",
         "status": "PASS" if code == 0 else "COMPLETED_WITH_FAILURES",
         "scope_id": CURRENT_SCOPE26_ID,
@@ -2376,8 +2511,14 @@ def run_preflight_suite(
             "excluded_skipped": 2,
         },
         "freeze_hash": freeze["freeze_hash"],
+        "manifest_hash": validation["manifest_hash"],
+        "git_commit": revision["git_commit"],
+        "child_log_root": str(child_root),
         "results": results,
     }
+    if report_path:
+        atomic_write_json(report_path, payload)
+    return code, payload
 
 
 def _parser() -> argparse.ArgumentParser:
@@ -2389,12 +2530,16 @@ def _parser() -> argparse.ArgumentParser:
     preflight = sub.add_parser("preflight")
     preflight.add_argument("--preflight-root")
     preflight.add_argument("--source-revision")
+    preflight.add_argument("--report-path", default=str(AUDIT_ROOT / "original_scope26_preflight_summary.json"))
+    preflight.add_argument("--child-log-root", default=str(AUDIT_ROOT / "original_scope26_preflight_child_logs"))
     sub.add_parser("freeze")
     sub.add_parser("lock-status")
     clear_lock = sub.add_parser("clear-stale-lock")
     clear_lock.add_argument("--lock-path", default=str(LOCK_PATH))
     dry = sub.add_parser("dry-run")
     dry.add_argument("--output-root", default=str(RESULT_ROOT))
+    static_audit = sub.add_parser("static-audit")
+    static_audit.add_argument("--output-root", default=str(RESULT_ROOT))
     inv = sub.add_parser("inventory")
     inv.add_argument("--root", default=str(RESULT_ROOT))
     inv.add_argument("--json-path", default=str(AUDIT_ROOT / "original_scope26_result_inventory.json"))
@@ -2455,13 +2600,19 @@ def main(argv: Sequence[str] | None = None) -> int:
                 manifest,
                 preflight_root=Path(args.preflight_root) if args.preflight_root else None,
                 source_revision=args.source_revision,
+                report_path=Path(args.report_path).resolve(),
+                child_log_root=Path(args.child_log_root).resolve(),
             )
             print(json.dumps(report, ensure_ascii=False, indent=2))
             return code
-        if args.command == "dry-run":
+        if args.command in {"dry-run", "static-audit"}:
             plan = build_plan(manifest, output_root=Path(args.output_root))
             print(json.dumps(plan, ensure_ascii=False, indent=2))
-            return 0
+            blocked = any(
+                row["action"] == "BLOCK_EXISTING_IDENTITY_MISMATCH"
+                for row in plan["entries"]
+            )
+            return 74 if blocked else 0
         if args.command == "inventory":
             inventory = build_result_inventory(manifest, root=Path(args.root))
             write_inventory(inventory, json_path=Path(args.json_path), csv_path=Path(args.csv_path))

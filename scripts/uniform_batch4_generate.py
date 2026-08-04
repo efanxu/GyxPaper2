@@ -13,7 +13,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 SRC_ROOT = PROJECT_ROOT / "custom_models" / "src"
 sys.path.insert(0, str(SRC_ROOT))
 
-from benchmark_v2.experiments.e5_common_loss.contracts import (  # noqa: E402
+from benchmark_v2.experiments.e5_common_loss.legacy_scope29_contract import (  # noqa: E402
     NONTRAINABLE_MODELS,
     TRAINABLE_MODELS,
 )
@@ -719,11 +719,23 @@ batch4 readiness or aggregation.
 def main() -> int:
     parser = argparse.ArgumentParser()
     sub = parser.add_subparsers(dest="command", required=True)
-    sub.add_parser("generate")
+    generate = sub.add_parser("generate")
+    generate.add_argument(
+        "--legacy-scope29",
+        action="store_true",
+        help="Explicitly generate superseded scope29 documents only.",
+    )
     collect = sub.add_parser("collect-preflight")
     collect.add_argument("--suite", choices=("known_oom6", "all26"), required=True)
     args = parser.parse_args()
     if args.command == "generate":
+        if not args.legacy_scope29:
+            print(
+                "ERROR: legacy scope29 generation requires --legacy-scope29; "
+                "the active Batch4 generator is benchmark_v2.manifest_generator.",
+                file=sys.stderr,
+            )
+            return 74
         generate_docs()
         return 0
     report = collect_preflight(args.suite)

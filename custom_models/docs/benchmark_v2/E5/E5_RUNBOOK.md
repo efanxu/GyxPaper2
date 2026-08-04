@@ -50,4 +50,7 @@ Create one configuration per line below:
 - Linux auto-shutdown preserves the suite exit code, calls `sync`, then `/usr/bin/shutdown -h now`.
 - Inspect with `tail -f logs/benchmark_v2/E5_RUN_ALL_29.log`, `ps -ef | grep '[r]un_benchmark.py'`, `nvidia-smi`, and `wait <pid>; echo $?`.
 
-Run precheck, then all 26 E5-specific target-machine preflights, then the 29 entries, then readiness and require-complete aggregation. Stop immediately on any nonzero exit.
+The superseded scope29 runbook is historical. Use `E5_SCOPE27_RUNBOOK.md` and
+the independent A8 Batch4 launcher: A8 contract/preflight/run/readiness first,
+then E5's exact 24-child preflight, 27-entry run, readiness, and
+`--require-complete` aggregation. Stop immediately on any nonzero gate exit.

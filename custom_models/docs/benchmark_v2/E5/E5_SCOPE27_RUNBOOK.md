@@ -26,6 +26,17 @@ export PYTHONPATH="$PWD/custom_models/src"
 export PYTHONUTF8=1
 export PYTHONIOENCODING=utf-8
 
+"$PYTHON" scripts/st_mgprompt_a8_batch4_gate.py validate-contract
+"$PYTHON" scripts/st_mgprompt_a8_batch4_gate.py lock-status
+"$PYTHON" scripts/st_mgprompt_a8_batch4_gate.py freeze-plan
+"$PYTHON" scripts/st_mgprompt_a8_batch4_gate.py preflight-plan
+"$PYTHON" scripts/st_mgprompt_a8_batch4_gate.py dry-run
+"$PYTHON" scripts/st_mgprompt_a8_batch4_gate.py preflight
+"$PYTHON" scripts/st_mgprompt_a8_batch4_gate.py run \
+  --log-root custom_models/logs/uniform_bs4/audit/st_mgprompt_a8_batch4/formal
+"$PYTHON" scripts/st_mgprompt_a8_batch4_gate.py readiness
+
+# E5 is not allowed to start until the independent A8 readiness is READY.
 "$PYTHON" scripts/e5_batch4_scope27_gate.py lock-status
 "$PYTHON" scripts/e5_batch4_scope27_gate.py validate-manifest
 "$PYTHON" scripts/e5_batch4_scope27_gate.py freeze
@@ -43,7 +54,8 @@ export PYTHONIOENCODING=utf-8
 "$PYTHON" scripts/e5_batch4_scope27_gate.py aggregate --require-complete
 ```
 
-`preflight` must report exact 24/24 PASS. Formal execution never creates a
+The independent A8 preflight must pass before its formal run. E5 `preflight`
+must then report exact 24/24 PASS. Formal execution never creates a
 preflight implicitly. `run` uses only exact canonical run IDs and emits one
 execution receipt per successful train/evaluate-only result. Its failure
 artifacts retain the real per-model log tail and classify OOM, nonfinite,
@@ -58,12 +70,13 @@ receipts, so a failed move leaves the canonical source unchanged and can be
 retried safely. Symlinks, path traversal, active workers, and target
 collisions are rejected.
 
-The A8 reference is strictly read-only and must be
+The A8 prerequisite is trained independently once, then consumed by E5
+strictly read-only. Its reference is
 `STMGPrompt_A8_loss_msa_hybrid_bs4_seed2026_reference`, sourced from
 `custom_models/results/st_mgprompt_uniform_bs4/component_ablation_a8_bs4_seed2026/STMGPrompt_ComponentAblation/`.
 Batch4 config, protocol, nonempty checkpoint, finite H3/H6/H10 metrics,
 JSON/CSV equality, and the three copied/retrained flags are checked. Missing
-or invalid A8 evidence yields `BLOCKED_A8_BATCH4_REFERENCE`; no Batch32
+or invalid A8 evidence yields `BLOCKED_A8_BATCH4_PREREQUISITE`; no Batch32
 fallback is allowed.
 
 Readiness must be `COMPLETED_READY_27_OF_27` before aggregation. Otherwise no
