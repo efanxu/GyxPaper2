@@ -221,6 +221,8 @@ def main(argv: list[str] | None = None) -> int:
     train.add_argument("--run-id")
     train.add_argument("--device", default="cuda")
     train.add_argument("--preflight-root")
+    train.add_argument("--preflight-attempt-id")
+    train.add_argument("--preflight-artifact-sha256")
     train.add_argument("--source-revision")
     add_experiment_profile(train)
     add_training_profile(train)
@@ -228,6 +230,7 @@ def main(argv: list[str] | None = None) -> int:
     preflight = sub.add_parser("hardware-preflight")
     preflight.add_argument("--model", required=True)
     preflight.add_argument("--preflight-root")
+    preflight.add_argument("--preflight-attempt-id")
     preflight.add_argument("--source-revision")
     add_experiment_profile(preflight)
     add_training_profile(preflight)
@@ -235,6 +238,7 @@ def main(argv: list[str] | None = None) -> int:
     preflight_worker = sub.add_parser("_hardware-preflight-worker")
     preflight_worker.add_argument("--model", required=True)
     preflight_worker.add_argument("--preflight-root")
+    preflight_worker.add_argument("--preflight-attempt-id")
     preflight_worker.add_argument("--source-revision")
     add_experiment_profile(preflight_worker)
     add_training_profile(preflight_worker)
@@ -247,6 +251,8 @@ def main(argv: list[str] | None = None) -> int:
     train_worker.add_argument("--run-id", required=True)
     train_worker.add_argument("--device", default="cuda")
     train_worker.add_argument("--preflight-root")
+    train_worker.add_argument("--preflight-attempt-id")
+    train_worker.add_argument("--preflight-artifact-sha256")
     train_worker.add_argument("--source-revision")
     add_experiment_profile(train_worker)
     add_training_profile(train_worker)
@@ -392,6 +398,7 @@ def main(argv: list[str] | None = None) -> int:
                 training_profile=args.training_profile,
                 formal_scope_id=args.formal_scope_id,
                 source_revision=args.source_revision,
+                attempt_id=args.preflight_attempt_id,
             )
         if args.command == "_hardware-preflight-worker":
             result = run_preflight_worker(
@@ -401,6 +408,7 @@ def main(argv: list[str] | None = None) -> int:
                 training_profile=args.training_profile,
                 formal_scope_id=args.formal_scope_id,
                 source_revision=args.source_revision,
+                attempt_id=args.preflight_attempt_id,
             )
             print(json.dumps(result, ensure_ascii=False, indent=2))
             return 0 if result["status"] == "PASS" else 3
@@ -417,6 +425,8 @@ def main(argv: list[str] | None = None) -> int:
                 training_profile=args.training_profile,
                 formal_scope_id=args.formal_scope_id,
                 source_revision=args.source_revision,
+                preflight_attempt_id=args.preflight_attempt_id,
+                preflight_artifact_sha256=args.preflight_artifact_sha256,
             ), ensure_ascii=False, indent=2))
             return 0
         if args.command == "train":
@@ -437,6 +447,8 @@ def main(argv: list[str] | None = None) -> int:
                 training_profile=args.training_profile,
                 formal_scope_id=args.formal_scope_id,
                 source_revision=args.source_revision,
+                preflight_attempt_id=args.preflight_attempt_id,
+                preflight_artifact_sha256=args.preflight_artifact_sha256,
             )
     except (
         BenchmarkV2Error,

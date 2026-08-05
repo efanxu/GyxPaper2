@@ -325,6 +325,7 @@ class OriginalScope26Tests(unittest.TestCase):
         self.assertNotIn("msgnet", material_text.casefold())
         self.assertIn("active_gate_revision", freeze["freeze_material"])
         self.assertIn("active_launcher_revision", freeze["freeze_material"])
+        self.assertIn("checkout_identity", freeze["freeze_material"])
 
         changed_map = copy.deepcopy(json.loads(CURRENT_RUN_MAP.read_text(encoding="utf-8")))
         changed_map["entries"][0]["run_id"] += "_changed"

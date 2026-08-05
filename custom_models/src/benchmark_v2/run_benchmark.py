@@ -7,6 +7,9 @@ else:
     from pathlib import Path
 
     source_root = Path(__file__).resolve().parents[1]
+    project_root = Path(__file__).resolve().parents[3]
+    if str(project_root) not in sys.path:
+        sys.path.insert(0, str(project_root))
     if str(source_root) not in sys.path:
         sys.path.insert(0, str(source_root))
     from benchmark_v2.cli import main

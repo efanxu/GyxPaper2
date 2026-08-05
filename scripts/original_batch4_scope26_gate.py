@@ -41,6 +41,11 @@ from benchmark_v2.original_scope26 import (  # noqa: E402
 from benchmark_v2.artifacts import atomic_write_json  # noqa: E402
 from benchmark_v2.precision import expected_model_precision_identity  # noqa: E402
 from benchmark_v2.registry import load_registry  # noqa: E402
+from benchmark_v2.graph.source_doctor import (  # noqa: E402
+    checkout_identity,
+    inspect_graph_source,
+    repair_graph_source,
+)
 
 
 CURRENT_MANIFEST = CURRENT_MANIFEST_PATH
@@ -497,7 +502,7 @@ def compute_original_freeze(
     protocol_path = project_root / "custom_models/src/benchmark_v2/protocol/benchmark_protocol_v1.json"
     loss_path = project_root / "custom_models/src/benchmark_v2/losses.py"
     gate_path = project_root / "scripts/original_batch4_scope26_gate.py"
-    launcher_path = project_root / "custom_models/docs/benchmark_v2/BATCH4/ORIGINAL_RUN_ALL_26_BATCH4_WINDOWS.ps1"
+    launcher_path = project_root / "custom_models/docs/benchmark_v2/BATCH4/ORIGINAL_SCOPE26_WINDOWS_FORMAL_COMMANDS.ps1"
     revision = resolve_source_revision(
         project_root=project_root,
         explicit_source_revision=source_revision,
@@ -542,6 +547,7 @@ def compute_original_freeze(
         },
         "active_gate_revision": _canonical_text_sha256(gate_path),
         "active_launcher_revision": _canonical_text_sha256(launcher_path),
+        "checkout_identity": checkout_identity(project_root),
         "source_revision": revision,
     }
     return {
@@ -1771,6 +1777,7 @@ def _write_execution_receipt(
     run_map_hash: str,
     freeze: Mapping[str, Any],
     manifest: Mapping[str, Any],
+    preflight_pass: Mapping[str, Any] | None = None,
 ) -> None:
     path = run_dir / "execution_receipt.json"
     if path.exists():
@@ -1800,6 +1807,9 @@ def _write_execution_receipt(
         "training_profile_hash": manifest["training_profile_hash"],
         "dataset_identity_hash": _canonical_json_hash(manifest["dataset_identity"]),
         "graph_identity_hash": _canonical_json_hash(manifest["graph_identity"]),
+        "checkout_identity": freeze["freeze_material"].get("checkout_identity"),
+        "preflight_attempt_id": (preflight_pass or {}).get("preflight_attempt_id"),
+        "preflight_artifact_sha256": (preflight_pass or {}).get("preflight_artifact_sha256"),
         "run_map_hash": run_map_hash,
         "freeze_hash": freeze["freeze_hash"],
         "manifest_hash": manifest_hash,
@@ -2078,22 +2088,21 @@ def run_suite(
                 preflight_root=formal_preflight_root,
                 source_revision=revision["git_commit"],
             )
+            preflight_pass = None
             if entry["entry_type"] == TRAINABLE_TYPE:
                 from benchmark_v2.hardware_preflight import read_matching_pass
 
-                if (
-                    read_matching_pass(
-                        entry["model_id"],
-                        root=formal_preflight_root,
-                        training_profile=active["training_profile_id"],
-                        formal_scope_id=CURRENT_SCOPE26_ID,
-                        source_revision=source_revision,
-                        manifest=active,
-                        run_map=run_map,
-                        freeze=freeze,
-                    )
-                    is None
-                ):
+                preflight_pass = read_matching_pass(
+                    entry["model_id"],
+                    root=formal_preflight_root,
+                    training_profile=active["training_profile_id"],
+                    formal_scope_id=CURRENT_SCOPE26_ID,
+                    source_revision=source_revision,
+                    manifest=active,
+                    run_map=run_map,
+                    freeze=freeze,
+                )
+                if preflight_pass is None:
                     log_path = logs / f"{entry['ordinal']:02d}_{entry['model_id']}.log"
                     log_path.write_text(
                         "PREFLIGHT_MISSING_OR_MISMATCH: exact current scope26 PASS is required.\n",
@@ -2127,6 +2136,17 @@ def run_suite(
                     results.append(evidence)
                     failures.append(evidence)
                     continue
+                if preflight_pass.get("preflight_attempt_id"):
+                    command.extend(
+                        ["--preflight-attempt-id", str(preflight_pass["preflight_attempt_id"])]
+                    )
+                if preflight_pass.get("preflight_artifact_sha256"):
+                    command.extend(
+                        [
+                            "--preflight-artifact-sha256",
+                            str(preflight_pass["preflight_artifact_sha256"]),
+                        ]
+                    )
             log_path = logs / f"{entry['ordinal']:02d}_{entry['model_id']}.log"
             started_at = _utc_now()
             exit_code = 1
@@ -2138,7 +2158,18 @@ def run_suite(
                     completed = subprocess.run(
                         command,
                         cwd=str(PROJECT_ROOT),
-                        env={**os.environ, "PYTHONPATH": str(SOURCE_ROOT) + os.pathsep + os.environ.get("PYTHONPATH", "")},
+                        env={
+                            **os.environ,
+                            "PYTHONPATH": os.pathsep.join(
+                                value
+                                for value in (
+                                    str(PROJECT_ROOT),
+                                    str(SOURCE_ROOT),
+                                    os.environ.get("PYTHONPATH", ""),
+                                )
+                                if value
+                            ),
+                        },
                         stdout=handle,
                         stderr=subprocess.STDOUT,
                         check=False,
@@ -2163,6 +2194,7 @@ def run_suite(
                     run_map_hash=validation["run_map_hash"],
                     freeze=freeze,
                     manifest=active,
+                    preflight_pass=preflight_pass,
                 )
             diagnostics = _failure_diagnostics(
                 log_path,
@@ -2422,7 +2454,14 @@ def run_preflight_suite(
     preflight_root = Path(
         preflight_root or PROJECT_ROOT / "custom_models/logs/uniform_bs4/preflight/original_scope26"
     ).resolve()
-    from benchmark_v2.hardware_preflight import launch_preflight, read_matching_pass
+    from benchmark_v2.hardware_preflight import (
+        build_preflight_child_contract,
+        launch_preflight,
+        new_preflight_attempt_id,
+        preflight_identity,
+        read_preflight_attempt,
+        read_matching_pass,
+    )
 
     results: list[dict[str, Any]] = []
     selected_revision = source_revision or revision["git_commit"]
@@ -2430,13 +2469,58 @@ def run_preflight_suite(
         child_log_root or AUDIT_ROOT / "original_scope26_preflight_child_logs"
     ).resolve()
     child_root.mkdir(parents=True, exist_ok=True)
+    try:
+        import torch
+
+        cuda_available = bool(torch.cuda.is_available())
+        cuda_error = None
+    except Exception as exc:
+        cuda_available = False
+        cuda_error = f"{type(exc).__name__}: {exc}"
+    if not cuda_available:
+        payload = {
+            "schema_version": "original_scope26_preflight_run_v2",
+            "status": "NOT_RUN",
+            "scope_id": CURRENT_SCOPE26_ID,
+            "gpu_preflight_performed": False,
+            "denominator_counted": False,
+            "formal_scope_pass_authorized": False,
+            "child_launch_count": 0,
+            "counts": {
+                "trainable": 0,
+                "expected_trainable": 24,
+                "evaluate_only_skipped": 2,
+                "excluded_skipped": 2,
+            },
+            "freeze_hash": freeze["freeze_hash"],
+            "manifest_hash": validation["manifest_hash"],
+            "git_commit": revision["git_commit"],
+            "reason": cuda_error or "CUDA is not available.",
+        }
+        if report_path:
+            atomic_write_json(report_path, payload)
+        return 4, payload
     for entry in active["entries"]:
         if entry["entry_type"] != TRAINABLE_TYPE:
             continue
         child_log = child_root / f"{int(entry['ordinal']):02d}_{entry['model_id']}.log"
-        error_type = None
-        error_message = None
+        attempt_id = new_preflight_attempt_id()
+        expected_identity = None
+        expected_identity_error = None
         try:
+            try:
+                expected_identity = preflight_identity(
+                    entry["model_id"],
+                    training_profile=active["training_profile_id"],
+                    formal_scope_id=CURRENT_SCOPE26_ID,
+                    source_revision=selected_revision,
+                    manifest=active,
+                    run_map=selected_map,
+                    freeze=freeze,
+                )
+            except Exception as exc:
+                expected_identity_error = f"{type(exc).__name__}: {exc}"
+
             def _child_runner(argv, check=False, *, _child_log=child_log):
                 with _child_log.open("w", encoding="utf-8", newline="") as handle:
                     return subprocess.run(
@@ -2444,9 +2528,15 @@ def run_preflight_suite(
                         cwd=str(PROJECT_ROOT),
                         env={
                             **os.environ,
-                            "PYTHONPATH": str(SOURCE_ROOT)
-                            + os.pathsep
-                            + os.environ.get("PYTHONPATH", ""),
+                            "PYTHONPATH": os.pathsep.join(
+                                value
+                                for value in (
+                                    str(PROJECT_ROOT),
+                                    str(SOURCE_ROOT),
+                                    os.environ.get("PYTHONPATH", ""),
+                                )
+                                if value
+                            ),
                         },
                         stdout=handle,
                         stderr=subprocess.STDOUT,
@@ -2459,7 +2549,11 @@ def run_preflight_suite(
                 training_profile=active["training_profile_id"],
                 formal_scope_id=CURRENT_SCOPE26_ID,
                 source_revision=selected_revision,
+                attempt_id=attempt_id,
                 runner=_child_runner,
+            )
+            attempt_payload, attempt_artifact = read_preflight_attempt(
+                entry["model_id"], root=preflight_root, attempt_id=attempt_id
             )
             matched = read_matching_pass(
                 entry["model_id"],
@@ -2470,28 +2564,60 @@ def run_preflight_suite(
                 manifest=active,
                 run_map=selected_map,
                 freeze=freeze,
+                attempt_id=attempt_id,
             )
+            contract = build_preflight_child_contract(
+                entry["model_id"],
+                exit_code=code,
+                log_path=child_log,
+                root=preflight_root,
+                attempt_id=attempt_id,
+                expected_identity=expected_identity,
+                attempt_payload=attempt_payload,
+                artifact_path=attempt_artifact,
+            )
+            if expected_identity_error:
+                contract.update(
+                    {
+                        "error_type": "PARENT_IDENTITY_ERROR",
+                        "error_message": expected_identity_error,
+                        "expected_identity_error": expected_identity_error,
+                    }
+                )
+            effective_code = 74 if expected_identity_error else code
             result = {
                 "model_id": entry["model_id"],
-                "status": "PASS" if code == 0 and matched else "FAILED",
-                "exit_code": int(code),
-                "matched_exact_identity": bool(matched),
+                "status": "PASS" if effective_code == 0 and matched else "FAILED",
+                "exit_code": int(effective_code),
+                "matched_exact_identity": bool(matched and not expected_identity_error),
                 "child_log": str(child_log),
+                "child_log_path": str(child_log),
+                "attempt_id": attempt_id,
+                **contract,
                 "scope_id": CURRENT_SCOPE26_ID,
                 "freeze_hash": freeze["freeze_hash"],
                 "manifest_hash": validation["manifest_hash"],
                 "git_commit": revision["git_commit"],
             }
         except Exception as exc:
-            error_type = type(exc).__name__
-            error_message = str(exc)
+            contract = build_preflight_child_contract(
+                entry["model_id"],
+                exit_code=74,
+                log_path=child_log,
+                root=preflight_root,
+                attempt_id=attempt_id,
+                expected_identity=expected_identity,
+            )
             result = {
                 "model_id": entry["model_id"],
                 "status": "FAILED",
                 "exit_code": 74,
-                "error_type": error_type,
-                "error_message": error_message,
                 "child_log": str(child_log),
+                "child_log_path": str(child_log),
+                "attempt_id": attempt_id,
+                **contract,
+                "parent_exception_type": type(exc).__name__,
+                "parent_exception_message": str(exc),
                 "scope_id": CURRENT_SCOPE26_ID,
                 "freeze_hash": freeze["freeze_hash"],
                 "manifest_hash": validation["manifest_hash"],
@@ -2521,6 +2647,176 @@ def run_preflight_suite(
     return code, payload
 
 
+def run_single_preflight(
+    model_id: str,
+    manifest: Mapping[str, Any] | None = None,
+    *,
+    preflight_root: Path | None = None,
+    source_revision: str | None = None,
+    child_log_root: Path | None = None,
+) -> tuple[int, dict[str, Any]]:
+    """Run one diagnostic child without changing the formal 24-entry gate."""
+
+    active = dict(manifest or load_current_scope_manifest())
+    validation = validate_manifest(active)
+    if validation["errors"]:
+        return 74, {
+            "schema_version": "original_scope26_single_preflight_v1",
+            "status": "BLOCKED_GLOBAL_IDENTITY",
+            "scope_id": CURRENT_SCOPE26_ID,
+            "model_id": model_id,
+            "gpu_preflight_performed": False,
+            "denominator_counted": False,
+            "errors": validation["errors"],
+        }
+    selected_map = _load_run_map()
+    entry = next(
+        (item for item in active["entries"] if item["model_id"] == model_id),
+        None,
+    )
+    if entry is None or entry["entry_type"] != TRAINABLE_TYPE:
+        return 74, {
+            "schema_version": "original_scope26_single_preflight_v1",
+            "status": "INVALID_DIAGNOSTIC_MODEL",
+            "scope_id": CURRENT_SCOPE26_ID,
+            "model_id": model_id,
+            "gpu_preflight_performed": False,
+            "denominator_counted": False,
+        }
+    revision = resolve_source_revision(
+        project_root=PROJECT_ROOT,
+        explicit_source_revision=source_revision,
+        manifest=active,
+    )
+    freeze = compute_original_freeze(
+        active,
+        project_root=PROJECT_ROOT,
+        run_map=selected_map,
+        source_revision=source_revision,
+    )
+    from benchmark_v2.hardware_preflight import (
+        build_preflight_child_contract,
+        launch_preflight,
+        new_preflight_attempt_id,
+        preflight_identity,
+        read_preflight_attempt,
+        read_matching_pass,
+    )
+
+    diagnostic_root = Path(
+        preflight_root or AUDIT_ROOT / "diagnostic_preflight"
+    ).resolve()
+    log_root = Path(
+        child_log_root
+        or AUDIT_ROOT / "diagnostic_preflight" / model_id / "child_logs"
+    ).resolve()
+    log_root.mkdir(parents=True, exist_ok=True)
+    try:
+        import torch
+
+        cuda_available = bool(torch.cuda.is_available())
+        cuda_error = None
+    except Exception as exc:
+        cuda_available = False
+        cuda_error = f"{type(exc).__name__}: {exc}"
+    if not cuda_available:
+        return 4, {
+            "schema_version": "original_scope26_single_preflight_v1",
+            "status": "NOT_RUN",
+            "scope_id": CURRENT_SCOPE26_ID,
+            "model_id": model_id,
+            "gpu_preflight_performed": False,
+            "denominator_counted": False,
+            "formal_scope_pass_authorized": False,
+            "diagnostic_root": str(diagnostic_root),
+            "reason": cuda_error or "CUDA is not available.",
+        }
+    child_log = log_root / f"{model_id}.log"
+    attempt_id = new_preflight_attempt_id()
+    expected_identity = preflight_identity(
+        model_id,
+        training_profile=active["training_profile_id"],
+        formal_scope_id=CURRENT_SCOPE26_ID,
+        source_revision=source_revision or revision["git_commit"],
+        manifest=active,
+        run_map=selected_map,
+        freeze=freeze,
+    )
+
+    def _child_runner(argv, check=False):
+        with child_log.open("w", encoding="utf-8", newline="") as handle:
+            return subprocess.run(
+                argv,
+                cwd=str(PROJECT_ROOT),
+                env={
+                    **os.environ,
+                    "PYTHONPATH": os.pathsep.join(
+                        value
+                        for value in (
+                            str(PROJECT_ROOT),
+                            str(SOURCE_ROOT),
+                            os.environ.get("PYTHONPATH", ""),
+                        )
+                        if value
+                    ),
+                },
+                stdout=handle,
+                stderr=subprocess.STDOUT,
+                check=check,
+            )
+
+    code = launch_preflight(
+        model_id,
+        root=diagnostic_root,
+        training_profile=active["training_profile_id"],
+        formal_scope_id=CURRENT_SCOPE26_ID,
+        source_revision=source_revision or revision["git_commit"],
+        attempt_id=attempt_id,
+        runner=_child_runner,
+    )
+    attempt_payload, artifact_path = read_preflight_attempt(
+        model_id, root=diagnostic_root, attempt_id=attempt_id
+    )
+    matched = read_matching_pass(
+        model_id,
+        root=diagnostic_root,
+        training_profile=active["training_profile_id"],
+        formal_scope_id=CURRENT_SCOPE26_ID,
+        source_revision=source_revision or revision["git_commit"],
+        manifest=active,
+        run_map=selected_map,
+        freeze=freeze,
+        attempt_id=attempt_id,
+    )
+    contract = build_preflight_child_contract(
+        model_id,
+        exit_code=code,
+        log_path=child_log,
+        root=diagnostic_root,
+        attempt_id=attempt_id,
+        expected_identity=expected_identity,
+        attempt_payload=attempt_payload,
+        artifact_path=artifact_path,
+    )
+    status = "PASS" if code == 0 and matched else contract.get("error_type") or "FAILED"
+    payload = {
+        "schema_version": "original_scope26_single_preflight_v1",
+        "status": status,
+        "scope_id": CURRENT_SCOPE26_ID,
+        "model_id": model_id,
+        "gpu_preflight_performed": True,
+        "denominator_counted": False,
+        "formal_scope_pass_authorized": False,
+        "attempt_id": attempt_id,
+        "diagnostic_root": str(diagnostic_root),
+        "freeze_hash": freeze["freeze_hash"],
+        "manifest_hash": validation["manifest_hash"],
+        "git_commit": revision["git_commit"],
+        **contract,
+    }
+    return (0 if status == "PASS" else 1), payload
+
+
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="original_batch4_scope26_gate")
     parser.add_argument("--manifest", default=str(CURRENT_MANIFEST))
@@ -2532,6 +2828,14 @@ def _parser() -> argparse.ArgumentParser:
     preflight.add_argument("--source-revision")
     preflight.add_argument("--report-path", default=str(AUDIT_ROOT / "original_scope26_preflight_summary.json"))
     preflight.add_argument("--child-log-root", default=str(AUDIT_ROOT / "original_scope26_preflight_child_logs"))
+    one = sub.add_parser("preflight-one")
+    one.add_argument("--model", required=True)
+    one.add_argument("--preflight-root")
+    one.add_argument("--source-revision")
+    one.add_argument("--child-log-root")
+    sub.add_parser("graph-source-status")
+    graph_repair = sub.add_parser("graph-source-repair")
+    graph_repair.add_argument("--apply", action="store_true")
     sub.add_parser("freeze")
     sub.add_parser("lock-status")
     clear_lock = sub.add_parser("clear-stale-lock")
@@ -2586,6 +2890,14 @@ def main(argv: Sequence[str] | None = None) -> int:
             result = clear_stale_lock(Path(args.lock_path).resolve())
             print(json.dumps(result, ensure_ascii=False, indent=2))
             return 0
+        if args.command == "graph-source-status":
+            result = inspect_graph_source(PROJECT_ROOT)
+            print(json.dumps(result, ensure_ascii=False, indent=2))
+            return 0 if result["status"] == "PASS" else 74
+        if args.command == "graph-source-repair":
+            result = repair_graph_source(PROJECT_ROOT, apply=bool(args.apply))
+            print(json.dumps(result, ensure_ascii=False, indent=2))
+            return 0 if result["status"] in {"PASS", "PREVIEW_ONLY", "NO_REPAIR_REQUIRED"} else 74
         if validation["errors"]:
             print(json.dumps({"status": "BLOCKED_GLOBAL_IDENTITY", "errors": validation["errors"]}, ensure_ascii=False, indent=2), file=sys.stderr)
             return 74
@@ -2602,6 +2914,16 @@ def main(argv: Sequence[str] | None = None) -> int:
                 source_revision=args.source_revision,
                 report_path=Path(args.report_path).resolve(),
                 child_log_root=Path(args.child_log_root).resolve(),
+            )
+            print(json.dumps(report, ensure_ascii=False, indent=2))
+            return code
+        if args.command == "preflight-one":
+            code, report = run_single_preflight(
+                args.model,
+                manifest,
+                preflight_root=Path(args.preflight_root).resolve() if args.preflight_root else None,
+                source_revision=args.source_revision,
+                child_log_root=Path(args.child_log_root).resolve() if args.child_log_root else None,
             )
             print(json.dumps(report, ensure_ascii=False, indent=2))
             return code

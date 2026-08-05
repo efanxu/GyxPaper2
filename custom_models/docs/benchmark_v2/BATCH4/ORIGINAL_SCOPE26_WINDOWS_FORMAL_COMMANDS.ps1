@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param(
-    [ValidateSet('StaticAudit', 'Preflight', 'Run', 'Readiness', 'Aggregate', 'QuarantineExisting', 'ClearStaleLock')]
+    [ValidateSet('GraphSourceStatus', 'GraphSourceRepair', 'StaticAudit', 'Preflight', 'Run', 'Readiness', 'Aggregate', 'QuarantineExisting', 'ClearStaleLock')]
     [string]$Action = 'StaticAudit',
     [string]$PythonExecutable = 'D:\Apps\Miniconda3\envs\env_tslib\python.exe',
     [string]$InputPath,
@@ -62,11 +62,13 @@ if (-not (Test-Path -LiteralPath $Gate -PathType Leaf)) {
 if (-not (Test-Path -LiteralPath $ManifestPath -PathType Leaf)) {
     throw "Original scope manifest does not exist: $ManifestPath"
 }
-if (-not (Test-Path -LiteralPath $InputPath -PathType Leaf)) {
-    throw "InputPath does not exist: $InputPath"
-}
-if (-not (Test-Path -LiteralPath $TargetPath -PathType Leaf)) {
-    throw "TargetPath does not exist: $TargetPath"
+if ($Action -eq 'Run') {
+    if (-not (Test-Path -LiteralPath $InputPath -PathType Leaf)) {
+        throw "InputPath does not exist: $InputPath"
+    }
+    if (-not (Test-Path -LiteralPath $TargetPath -PathType Leaf)) {
+        throw "TargetPath does not exist: $TargetPath"
+    }
 }
 
 New-Item -ItemType Directory -Path $AuditRoot -Force | Out-Null
@@ -74,9 +76,9 @@ New-Item -ItemType Directory -Path $LogRoot -Force | Out-Null
 
 $oldPythonPath = $env:PYTHONPATH
 if ([string]::IsNullOrWhiteSpace($oldPythonPath)) {
-    $env:PYTHONPATH = $SourceRoot
+    $env:PYTHONPATH = $ProjectRoot + [IO.Path]::PathSeparator + $SourceRoot
 } else {
-    $env:PYTHONPATH = $SourceRoot + [IO.Path]::PathSeparator + $oldPythonPath
+    $env:PYTHONPATH = $ProjectRoot + [IO.Path]::PathSeparator + $SourceRoot + [IO.Path]::PathSeparator + $oldPythonPath
 }
 $env:PYTHONUTF8 = '1'
 $env:PYTHONIOENCODING = 'utf-8'
@@ -139,6 +141,7 @@ function Invoke-GitText {
 }
 
 function Assert-RepositoryIdentity {
+    param([switch]$AllowTrackedChanges)
     $branch = Invoke-GitText @('branch', '--show-current')
     if ($branch -ne 'main') {
         throw "Formal Original scope must run on branch main; current branch is $branch."
@@ -151,13 +154,20 @@ function Assert-RepositoryIdentity {
         throw "HEAD does not equal origin/main: HEAD=$head origin/main=$originHead"
     }
     $trackedChanges = Invoke-GitText @('status', '--porcelain', '--untracked-files=no')
-    if (-not [string]::IsNullOrWhiteSpace($trackedChanges)) {
+    if (-not $AllowTrackedChanges -and -not [string]::IsNullOrWhiteSpace($trackedChanges)) {
         throw "Tracked worktree changes are present; commit or resolve them before formal execution."
+    }
+    if ($AllowTrackedChanges -and -not [string]::IsNullOrWhiteSpace($trackedChanges)) {
+        Write-Host "Graph source diagnostic sees tracked changes: $trackedChanges"
     }
     Write-Host "Repository identity: branch=$branch HEAD=$head origin/main=$originHead"
 }
 
 function Assert-StaticPlan {
+    $graphStatus = Invoke-Gate -Label 'graph-source-status' -Arguments @('graph-source-status') -AllowedExitCodes @(0, 74)
+    if ($null -eq $graphStatus.Json -or [string]$graphStatus.Json.status -ne 'PASS') {
+        throw 'GraphSourceStatus must be PASS before Original static audit or preflight.'
+    }
     $validation = Invoke-Gate -Label 'validate-manifest' -Arguments @('validate-manifest')
     if ($null -eq $validation.Json -or $validation.Json.scope_id -ne $ExpectedScope) {
         throw 'Manifest validation did not return the active Original scope26 identity.'
@@ -220,6 +230,36 @@ function Assert-StaticPlan {
         PreflightPlan = $preflightPlan.Json
         DryRun = $dryRun.Json
         Readiness = $readiness.Json
+    }
+}
+
+function Invoke-GraphSourceStatus {
+    $null = Assert-RepositoryIdentity -AllowTrackedChanges
+    $result = Invoke-Gate -Label 'graph-source-status' -Arguments @('graph-source-status') -AllowedExitCodes @(0, 74)
+    if ($null -eq $result.Json) {
+        throw 'GraphSourceStatus did not return one JSON object.'
+    }
+    Write-Host "GraphSourceStatus status=$($result.Json.status) log=$($result.LogPath)"
+}
+
+function Invoke-GraphSourceRepair {
+    $null = Assert-RepositoryIdentity -AllowTrackedChanges
+    $arguments = @('graph-source-repair')
+    if ($Apply) {
+        Write-Host 'GraphSourceRepair explicit -Apply requested for the exact frozen CSV path.'
+        $arguments += '--apply'
+    } else {
+        Write-Host 'GraphSourceRepair preview only; no source bytes will be changed.'
+    }
+    $result = Invoke-Gate -Label 'graph-source-repair' -Arguments $arguments -AllowedExitCodes @(0, 74)
+    if ($null -eq $result.Json) {
+        throw 'GraphSourceRepair did not return one JSON object.'
+    }
+    if ($Apply) {
+        $null = Invoke-GraphSourceStatus
+        if (@('PASS', 'NO_REPAIR_REQUIRED') -notcontains [string]$result.Json.status) {
+            throw "GraphSourceRepair Apply did not return a clean status: $($result.Json.status)"
+        }
     }
 }
 
@@ -361,6 +401,12 @@ function Invoke-ClearStaleLock {
 }
 
 switch ($Action) {
+    'GraphSourceStatus' {
+        Invoke-GraphSourceStatus
+    }
+    'GraphSourceRepair' {
+        Invoke-GraphSourceRepair
+    }
     'StaticAudit' {
         $null = Assert-RepositoryIdentity
         $null = Assert-StaticPlan

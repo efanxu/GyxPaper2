@@ -439,12 +439,32 @@ class OriginalScope26HardeningTests(unittest.TestCase):
         self.assertIn("$Head", text)
         self.assertIn("$env:PYTHONUTF8", text)
         self.assertIn("Tee-Object", text)
+        self.assertIn("GraphSourceStatus", text)
+        self.assertIn("GraphSourceRepair", text)
+        self.assertIn("graph-source-status", text)
+        self.assertIn("graph-source-repair", text)
         self.assertIn("-Action QuarantineExisting -Model '$model' -Apply", text)
         self.assertIn("RequireComplete", text)
         self.assertNotIn("Remove-Item -Recurse", text)
         self.assertNotIn("quarantine-existing --model $model --apply", text)
         self.assertNotIn("shutdown.exe", text.casefold())
         self.assertNotIn("stop-computer", text.casefold())
+
+    def test_single_preflight_marks_no_cuda_not_run_without_child_launch(self):
+        with tempfile.TemporaryDirectory() as temp, patch(
+            "torch.cuda.is_available", return_value=False
+        ):
+            code, payload = gate.run_single_preflight(
+                "gcn",
+                self.manifest,
+                preflight_root=Path(temp),
+                child_log_root=Path(temp) / "child_logs",
+            )
+            self.assertEqual(code, 4)
+            self.assertEqual(payload["status"], "NOT_RUN")
+            self.assertFalse(payload["gpu_preflight_performed"])
+            self.assertFalse(payload["denominator_counted"])
+            self.assertFalse(list(Path(temp).glob("**/attempts/*/result.json")))
 
 
 if __name__ == "__main__":

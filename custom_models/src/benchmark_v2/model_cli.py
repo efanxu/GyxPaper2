@@ -1302,6 +1302,8 @@ def formal_train(
     training_profile: str | None = None,
     formal_scope_id: str | None = None,
     source_revision: str | None = None,
+    preflight_attempt_id: str | None = None,
+    preflight_artifact_sha256: str | None = None,
 ) -> dict[str, Any]:
     entry = load_registry().get(model_id)
     if model_id in {"persistence", "moving_average"}:
@@ -1350,6 +1352,8 @@ def formal_train(
                 training_profile=training_profile,
                 formal_scope_id=exact_scope_id,
                 source_revision=source_revision,
+                attempt_id=preflight_attempt_id,
+                artifact_sha256=preflight_artifact_sha256,
             )
             is None
         ):
@@ -1370,6 +1374,8 @@ def formal_train(
                 root=preflight_root,
                 experiment_profile=selected_profile,
                 training_profile=training_profile,
+                attempt_id=preflight_attempt_id,
+                artifact_sha256=preflight_artifact_sha256,
             )
             is None
         ):

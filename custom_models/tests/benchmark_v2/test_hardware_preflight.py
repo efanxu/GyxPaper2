@@ -1,9 +1,13 @@
 import json
+import inspect
 import tempfile
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
+from unittest.mock import patch
 
+import benchmark_v2.hardware_preflight as hardware_preflight
+import benchmark_v2.model_cli as model_cli
 from benchmark_v2.hardware_preflight import (
     PREFLIGHT_SHAPE,
     launch_formal_train,
@@ -155,6 +159,116 @@ class HardwarePreflightLauncherTests(unittest.TestCase):
             ],
         )
         self.assertEqual([row["exit_code"] for row in results], [0, 0])
+
+    def test_default_child_environment_contains_repository_root(self):
+        calls = []
+
+        def fake_run(argv, **kwargs):
+            calls.append((argv, kwargs))
+            return SimpleNamespace(returncode=0)
+
+        self.assertEqual(
+            hardware_preflight._run_child(
+                ["--help"],
+                runner=fake_run,
+            ),
+            0,
+        )
+        self.assertEqual(calls[0][1], {"check": False})
+
+        with patch.object(hardware_preflight.subprocess, "run", side_effect=fake_run):
+            self.assertEqual(
+                hardware_preflight._run_child(["--help"], runner=hardware_preflight.subprocess.run),
+                0,
+            )
+        kwargs = calls[-1][1]
+        self.assertEqual(kwargs["cwd"], str(hardware_preflight.PROJECT_ROOT))
+        self.assertIn(str(hardware_preflight.PROJECT_ROOT), kwargs["env"]["PYTHONPATH"])
+
+    def test_failed_attempt_isolated_and_does_not_replace_matching_pass(self):
+        identity = {"model_id": "tide", "B": 4, "N": 134, "H": 10}
+        with tempfile.TemporaryDirectory() as td, patch.object(
+            hardware_preflight,
+            "preflight_identity",
+            return_value=identity,
+        ), patch("torch.cuda.is_available", return_value=False):
+            first = hardware_preflight.run_preflight_worker("tide", root=td)
+            self.assertEqual(first["status"], "FAIL_NON_OOM")
+            self.assertTrue(Path(first["artifact_path"]).is_file())
+            self.assertEqual(
+                len(list((Path(td) / "tide" / "attempts").iterdir())),
+                1,
+            )
+
+            second_attempt = hardware_preflight.new_preflight_attempt_id()
+            second_path = hardware_preflight._attempt_result_path("tide", td, second_attempt)
+            pass_payload = {
+                **identity,
+                "attempt_id": second_attempt,
+                "identity_hash": hardware_preflight.stable_hash(identity),
+                "status": "PASS",
+                "forward_completed": True,
+                "backward_completed": True,
+                "finite_prediction": True,
+                "finite_loss": True,
+                "finite_gradients": True,
+                "prediction_shape": [4, 134, 10],
+            }
+            second_path.parent.mkdir(parents=True, exist_ok=True)
+            second_path.write_text(json.dumps(pass_payload), encoding="utf-8")
+            hardware_preflight._publish_latest(
+                "tide",
+                root=td,
+                attempt_id=second_attempt,
+                result=pass_payload,
+                result_path=second_path,
+            )
+            third = hardware_preflight.run_preflight_worker("tide", root=td)
+            latest = json.loads((Path(td) / "tide" / "latest.json").read_text(encoding="utf-8"))
+            self.assertEqual(third["status"], "FAIL_NON_OOM")
+            self.assertEqual(latest["attempt_id"], second_attempt)
+
+    def test_child_contract_keeps_exception_when_artifact_is_missing(self):
+        with tempfile.TemporaryDirectory() as td:
+            log = Path(td) / "child.log"
+            log.write_text(
+                "Traceback (most recent call last):\n"
+                "ModuleNotFoundError: No module named 'scripts'\n",
+                encoding="utf-8",
+            )
+            contract = hardware_preflight.build_preflight_child_contract(
+                "gcn",
+                exit_code=1,
+                log_path=log,
+                root=td,
+            )
+            self.assertEqual(contract["error_type"], "CHILD_EXCEPTION")
+            self.assertEqual(contract["exception_type"], "ModuleNotFoundError")
+            self.assertIn("No module named 'scripts'", contract["error_message"])
+            self.assertFalse(contract["artifact_written"])
+
+    def test_missing_artifact_does_not_become_identity_mismatch(self):
+        with tempfile.TemporaryDirectory() as td:
+            log = Path(td) / "child.log"
+            log.write_text(
+                "Traceback (most recent call last):\n"
+                "ModuleNotFoundError: No module named 'scripts'\n",
+                encoding="utf-8",
+            )
+            contract = hardware_preflight.build_preflight_child_contract(
+                "gcn",
+                exit_code=1,
+                log_path=log,
+                root=td,
+                expected_identity={"model_id": "gcn", "protocol_hash": "frozen"},
+            )
+            self.assertEqual(contract["error_type"], "CHILD_EXCEPTION")
+            self.assertEqual(contract["identity_mismatch_fields"], [])
+
+    def test_formal_train_accepts_attempt_binding_arguments(self):
+        parameters = inspect.signature(model_cli.formal_train).parameters
+        self.assertIn("preflight_attempt_id", parameters)
+        self.assertIn("preflight_artifact_sha256", parameters)
 
 
 if __name__ == "__main__":
