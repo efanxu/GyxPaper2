@@ -19,12 +19,14 @@ $ProjectRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..\..\..\..'
 $Launcher = $MyInvocation.MyCommand.Path
 $Python = $PythonExecutable
 $Gate = Join-Path $ProjectRoot 'scripts\original_batch4_scope26_gate.py'
+$NativeRunner = Join-Path $ProjectRoot 'custom_models\docs\benchmark_v2\WINDOWS_NATIVE_PROCESS_RUNNER.ps1'
 $ManifestPath = Join-Path $ProjectRoot 'custom_models\docs\benchmark_v2\BATCH4\CURRENT_BATCH4_SCOPE26_MANIFEST.json'
 $ResultRoot = Join-Path $ProjectRoot 'custom_models\results\benchmark_v2_uniform_bs4'
 $ResultCsvPath = Join-Path $ResultRoot 'original_scope26_metrics.csv'
 $SourceRoot = Join-Path $ProjectRoot 'custom_models\src'
 $AuditRoot = Join-Path $ProjectRoot 'custom_models\logs\uniform_bs4\audit\original_scope26'
 $LogRoot = Join-Path $ProjectRoot 'custom_models\logs\uniform_bs4\formal\original_scope26_windows_commands'
+$FormalRunLogRoot = Join-Path $ProjectRoot 'custom_models\logs\uniform_bs4\formal\original_scope26'
 $ExpectedScope = 'benchmark_v2_batch4_scope26_seed2026'
 $ExpectedTrainable = 24
 $ExpectedEvaluateOnly = 2
@@ -38,6 +40,7 @@ $script:LastFreeze = $null
 $script:LastPreflight = $null
 $script:LastReadiness = $null
 $script:LastAggregate = $null
+$script:LastFormalRun = $null
 
 if ([string]::IsNullOrWhiteSpace($InputPath)) {
     $InputPath = Join-Path $ProjectRoot 'dataset\sdwpf_model_input_base.parquet'
@@ -58,6 +61,9 @@ if (-not (Test-Path -LiteralPath $Launcher -PathType Leaf)) {
 }
 if (-not (Test-Path -LiteralPath $Gate -PathType Leaf)) {
     throw "Original scope gate does not exist: $Gate"
+}
+if (-not (Test-Path -LiteralPath $NativeRunner -PathType Leaf)) {
+    throw "Windows native process runner does not exist: $NativeRunner"
 }
 if (-not (Test-Path -LiteralPath $ManifestPath -PathType Leaf)) {
     throw "Original scope manifest does not exist: $ManifestPath"
@@ -85,6 +91,7 @@ $env:PYTHONIOENCODING = 'utf-8'
 $env:PYTORCH_CUDA_ALLOC_CONF = 'expandable_segments:True'
 $env:CUDA_VISIBLE_DEVICES = '0'
 Set-Location -LiteralPath $ProjectRoot
+. $NativeRunner
 
 function Invoke-Gate {
     param(
@@ -94,40 +101,16 @@ function Invoke-Gate {
         [string]$ReportPath
     )
 
-    $logPath = Join-Path $LogRoot ($Label + '.log')
-    $stderrPath = Join-Path $LogRoot ($Label + '.stderr.log')
-    $lines = @(& $Python $Gate @Arguments 2> $stderrPath)
-    $exitCode = $LASTEXITCODE
-    $textLines = @($lines | ForEach-Object { [string]$_ })
-    $text = ($textLines -join [Environment]::NewLine)
-    if (-not [string]::IsNullOrWhiteSpace($text)) {
-        $text | Tee-Object -FilePath $logPath -Append | ForEach-Object { Write-Host $_ }
-    }
-    if ($AllowedExitCodes -notcontains $exitCode) {
-        throw "$Label failed with exit code $exitCode. See $logPath"
-    }
-    $json = $null
-    if (-not [string]::IsNullOrWhiteSpace($ReportPath) -and (Test-Path -LiteralPath $ReportPath -PathType Leaf)) {
-        try {
-            $json = Get-Content -LiteralPath $ReportPath -Raw -Encoding UTF8 | ConvertFrom-Json
-        } catch {
-            $json = $null
-        }
-    }
-    if ($null -eq $json -and -not [string]::IsNullOrWhiteSpace($text)) {
-        try {
-            $json = $text | ConvertFrom-Json
-        } catch {
-            $json = $null
-        }
-    }
-    return [pscustomobject]@{
-        Label = $Label
-        ExitCode = $exitCode
-        Text = $text
-        Json = $json
-        LogPath = $logPath
-    }
+    $result = Invoke-GyxPythonGate `
+        -Python $Python `
+        -Gate $Gate `
+        -Arguments $Arguments `
+        -WorkingDirectory $ProjectRoot `
+        -LogRoot $LogRoot `
+        -Label $Label `
+        -AllowedExitCodes $AllowedExitCodes `
+        -ReportPath $ReportPath
+    return $result
 }
 
 function Invoke-GitText {
@@ -291,6 +274,13 @@ function Write-FinalEvidence {
     Write-Host "FINAL EVIDENCE aggregate_status=$aggregateStatus"
     Write-Host "FINAL EVIDENCE result_csv=$ResultCsvPath"
     Write-Host "FINAL EVIDENCE log_root=$LogRoot"
+    if ($null -ne $script:LastFormalRun) {
+        Write-Host "FINAL EVIDENCE formal_run_status=$($script:LastFormalRun.Json.status)"
+        Write-Host "FINAL EVIDENCE formal_run_exit_code=$($script:LastFormalRun.ExitCode)"
+        Write-Host "FINAL EVIDENCE formal_run_stdout_log=$($script:LastFormalRun.LogPath)"
+        Write-Host "FINAL EVIDENCE formal_run_stderr_log=$($script:LastFormalRun.StderrPath)"
+        Write-Host "FINAL EVIDENCE formal_run_report=$($script:LastFormalRun.ReportPath)"
+    }
 }
 
 function Invoke-ExactPreflight {
@@ -335,13 +325,54 @@ function Invoke-FormalRun {
     if (-not [string]::IsNullOrWhiteSpace($SourceRevision)) {
         $revision = $SourceRevision
     }
-    $arguments = @('run', '--input-path', $InputPath, '--target-path', $TargetPath, '--preflight-root', $PreflightRoot, '--source-revision', $revision)
-    $result = Invoke-Gate -Label 'run' -Arguments $arguments
+    $attemptToken = [DateTime]::UtcNow.ToString('yyyyMMddTHHmmssfffffffZ') + '-' + [Guid]::NewGuid().ToString('N')
+    $attemptLogRoot = Join-Path $FormalRunLogRoot (Join-Path 'attempts' $attemptToken)
+    $finalStatusPath = Join-Path $attemptLogRoot 'final_status.json'
+    $arguments = @(
+        'run',
+        '--input-path', $InputPath,
+        '--target-path', $TargetPath,
+        '--preflight-root', $PreflightRoot,
+        '--source-revision', $revision,
+        '--log-root', $attemptLogRoot
+    )
+    $result = Invoke-Gate -Label 'run' -Arguments $arguments -AllowedExitCodes @(0, 1, 4) -ReportPath $finalStatusPath
     if ($null -eq $result.Json) {
         throw 'Formal Original run did not return JSON.'
     }
-    Write-Host "Formal run exit_code=$($result.ExitCode) log=$($result.LogPath) per-model logs=$LogRoot"
-    Write-Host 'Formal Original run completed; readiness remains the authoritative denominator gate.'
+    $result | Add-Member -NotePropertyName ReportPath -NotePropertyValue $finalStatusPath
+    $result | Add-Member -NotePropertyName FormalLogRoot -NotePropertyValue $attemptLogRoot
+    $script:LastFormalRun = $result
+    $script:LastReadiness = $result.Json.readiness
+    Write-Host "Formal run exit_code=$($result.ExitCode) stdout_log=$($result.LogPath) stderr_log=$($result.StderrPath)"
+    Write-Host "Formal per-model log root=$attemptLogRoot final_status=$finalStatusPath"
+    switch ([int]$result.ExitCode) {
+        0 {
+            if ([string]$result.Json.status -ne 'COMPLETED_READY_26_OF_26') {
+                throw "Formal run exit 0 returned unexpected status: $($result.Json.status)"
+            }
+            Write-Host 'Formal Original run PASS: COMPLETED_READY_26_OF_26.'
+        }
+        1 {
+            if ([string]$result.Json.status -ne 'COMPLETED_WITH_FAILURES') {
+                throw "Formal run exit 1 returned unexpected status: $($result.Json.status)"
+            }
+            foreach ($failure in @($result.Json.failures)) {
+                Write-Host "FORMAL FAILURE model=$($failure.model_id) exit_code=$($failure.exit_code) log=$($failure.per_model_log) artifact=$($failure.failure_artifact)"
+            }
+            Write-Host 'Formal suite reached its final report after preserving failures and continuing subsequent models.'
+        }
+        4 {
+            if ([string]$result.Json.status -ne 'NOT_READY') {
+                throw "Formal run exit 4 returned unexpected status: $($result.Json.status)"
+            }
+            foreach ($entry in @($result.Json.readiness.entries | Where-Object { $_.ready -ne $true })) {
+                Write-Host "FORMAL NOT READY model=$($entry.model_id) action=$($entry.action) reasons=$([string]::Join(';', @($entry.reasons)))"
+            }
+            Write-Host 'Formal suite reached its final report, but the 26-entry readiness denominator is incomplete.'
+        }
+    }
+    return $result
 }
 
 function Invoke-ReadinessOnly {
@@ -418,8 +449,14 @@ switch ($Action) {
         Write-FinalEvidence
     }
     'Run' {
-        Invoke-FormalRun
+        $runResult = Invoke-FormalRun
         Write-FinalEvidence
+        if ([int]$runResult.ExitCode -eq 1) {
+            throw 'Formal Original suite completed with preserved per-model failures; inspect final_status.json and the listed logs.'
+        }
+        if ([int]$runResult.ExitCode -eq 4) {
+            throw 'Formal Original suite completed but is NOT_READY; inspect final_status.json and the listed entries.'
+        }
     }
     'Readiness' {
         Invoke-ReadinessOnly

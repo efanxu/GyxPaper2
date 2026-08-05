@@ -20,6 +20,7 @@ from .training_profiles import stable_hash
 
 CURRENT_SCOPE26_ID = "benchmark_v2_batch4_scope26_seed2026"
 CURRENT_TRAINING_PROFILE_ID = "uniform_train_batch4_v1"
+CURRENT_EXPERIMENT_PROFILE_ID = "default_benchmark_v1"
 CURRENT_MANIFEST_PATH = (
     Path(__file__).resolve().parents[3]
     / "custom_models/docs/benchmark_v2/BATCH4/CURRENT_BATCH4_SCOPE26_MANIFEST.json"
@@ -68,7 +69,12 @@ def is_current_scope26_request(
 ) -> bool:
     if formal_scope_id != CURRENT_SCOPE26_ID:
         return False
-    if experiment_profile not in (None, "", "default"):
+    if experiment_profile not in (
+        None,
+        "",
+        "default",
+        CURRENT_EXPERIMENT_PROFILE_ID,
+    ):
         return False
     if training_profile != CURRENT_TRAINING_PROFILE_ID:
         return False
@@ -257,6 +263,7 @@ def apply_current_scope_identity(
 
 
 __all__ = [
+    "CURRENT_EXPERIMENT_PROFILE_ID",
     "CURRENT_MANIFEST_PATH",
     "CURRENT_SCOPE26_ID",
     "CURRENT_TRAINING_PROFILE_ID",

@@ -503,6 +503,7 @@ def compute_original_freeze(
     loss_path = project_root / "custom_models/src/benchmark_v2/losses.py"
     gate_path = project_root / "scripts/original_batch4_scope26_gate.py"
     launcher_path = project_root / "custom_models/docs/benchmark_v2/BATCH4/ORIGINAL_SCOPE26_WINDOWS_FORMAL_COMMANDS.ps1"
+    native_runner_path = project_root / "custom_models/docs/benchmark_v2/WINDOWS_NATIVE_PROCESS_RUNNER.ps1"
     revision = resolve_source_revision(
         project_root=project_root,
         explicit_source_revision=source_revision,
@@ -547,6 +548,9 @@ def compute_original_freeze(
         },
         "active_gate_revision": _canonical_text_sha256(gate_path),
         "active_launcher_revision": _canonical_text_sha256(launcher_path),
+        "active_native_process_runner_revision": _canonical_text_sha256(
+            native_runner_path
+        ),
         "checkout_identity": checkout_identity(project_root),
         "source_revision": revision,
     }

@@ -14,6 +14,7 @@ Set-StrictMode -Version 2.0
 $ProjectRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..\..\..\..')).Path
 $Python = $PythonExecutable
 $Gate = Join-Path $ProjectRoot 'scripts\st_mgprompt_a8_batch4_gate.py'
+$NativeRunner = Join-Path $ProjectRoot 'custom_models\docs\benchmark_v2\WINDOWS_NATIVE_PROCESS_RUNNER.ps1'
 $SourceRoot = Join-Path $ProjectRoot 'custom_models\src'
 $AuditRoot = Join-Path $ProjectRoot 'custom_models\logs\uniform_bs4\audit\st_mgprompt_a8_batch4'
 $PreflightRoot = Join-Path $ProjectRoot 'custom_models\logs\uniform_bs4\preflight\st_mgprompt_a8_batch4'
@@ -26,29 +27,32 @@ if ([string]::IsNullOrWhiteSpace($InputPath)) { $InputPath = Join-Path $ProjectR
 if ([string]::IsNullOrWhiteSpace($TargetPath)) { $TargetPath = Join-Path $ProjectRoot 'dataset\sdwpf_eval_target.parquet' }
 if (-not (Test-Path -LiteralPath $Python -PathType Leaf)) { throw "Python executable does not exist: $Python" }
 if (-not (Test-Path -LiteralPath $Gate -PathType Leaf)) { throw "A8 gate does not exist: $Gate" }
+if (-not (Test-Path -LiteralPath $NativeRunner -PathType Leaf)) { throw "Windows native process runner does not exist: $NativeRunner" }
 New-Item -ItemType Directory -Path $AuditRoot -Force | Out-Null
 New-Item -ItemType Directory -Path $PreflightRoot -Force | Out-Null
-$env:PYTHONPATH = $SourceRoot
+$oldPythonPath = $env:PYTHONPATH
+if ([string]::IsNullOrWhiteSpace($oldPythonPath)) {
+    $env:PYTHONPATH = $ProjectRoot + [IO.Path]::PathSeparator + $SourceRoot
+} else {
+    $env:PYTHONPATH = $ProjectRoot + [IO.Path]::PathSeparator + $SourceRoot + [IO.Path]::PathSeparator + $oldPythonPath
+}
 $env:PYTHONUTF8 = '1'
 $env:PYTHONIOENCODING = 'utf-8'
 Set-Location -LiteralPath $ProjectRoot
+. $NativeRunner
 
 function Invoke-A8Gate {
     param([string]$Label, [string[]]$Arguments, [int[]]$AllowedExitCodes = @(0), [string]$ReportPath)
-    $stdoutPath = Join-Path $AuditRoot ($Label + '.stdout.log')
-    $stderrPath = Join-Path $AuditRoot ($Label + '.stderr.log')
-    $lines = @(& $Python $Gate @Arguments 2> $stderrPath)
-    $code = $LASTEXITCODE
-    $text = (($lines | ForEach-Object { [string]$_ }) -join [Environment]::NewLine)
-    if (-not [string]::IsNullOrWhiteSpace($text)) { $text | Tee-Object -FilePath $stdoutPath -Append | ForEach-Object { Write-Host $_ } }
-    if ($AllowedExitCodes -notcontains $code) { throw "$Label failed with exit code $code" }
-    $json = $null
-    if (-not [string]::IsNullOrWhiteSpace($ReportPath) -and (Test-Path -LiteralPath $ReportPath -PathType Leaf)) {
-        $json = Get-Content -LiteralPath $ReportPath -Raw -Encoding UTF8 | ConvertFrom-Json
-    } elseif (-not [string]::IsNullOrWhiteSpace($text)) {
-        $json = $text | ConvertFrom-Json
-    }
-    [pscustomobject]@{ ExitCode = $code; Json = $json; Stdout = $stdoutPath; Stderr = $stderrPath }
+    $result = Invoke-GyxPythonGate `
+        -Python $Python `
+        -Gate $Gate `
+        -Arguments $Arguments `
+        -WorkingDirectory $ProjectRoot `
+        -LogRoot $AuditRoot `
+        -Label $Label `
+        -AllowedExitCodes $AllowedExitCodes `
+        -ReportPath $ReportPath
+    return $result
 }
 
 switch ($Action) {

@@ -13,6 +13,7 @@ from unittest.mock import patch
 from benchmark_v2.original_scope26 import (
     CURRENT_SCOPE26_ID,
     current_model_config_hash,
+    is_current_scope26_request,
     load_current_scope_manifest,
     resolve_source_revision,
 )
@@ -27,6 +28,7 @@ from scripts.original_batch4_scope26_gate import (
     _canonical_json_hash,
     _metrics_bundle_hash,
     build_result_inventory,
+    build_preflight_plan,
     compute_original_freeze,
     inspect_run,
     validate_manifest,
@@ -236,6 +238,26 @@ class OriginalScope26Tests(unittest.TestCase):
             {item["model_id"] for item in self.manifest["exclusions"]},
             EXCLUDED_IDS,
         )
+        evaluate_only = {
+            entry["model_id"]: entry
+            for entry in self.manifest["entries"]
+            if entry["entry_type"] == "EVALUATE_ONLY"
+        }
+        self.assertEqual(set(evaluate_only), {"persistence", "moving_average"})
+        self.assertTrue(all(entry["device"] == "cpu" for entry in evaluate_only.values()))
+
+    def test_evaluate_only_entries_are_excluded_from_gpu_preflight_denominator(self):
+        plan = build_preflight_plan(self.manifest)
+        rows = {
+            row["model_id"]: row
+            for row in plan["entries"]
+            if row["model_id"] in {"persistence", "moving_average"}
+        }
+        self.assertEqual(set(rows), {"persistence", "moving_average"})
+        for row in rows.values():
+            self.assertEqual(row["preflight_action"], "EVALUATE_ONLY_CPU_PRECHECK")
+            self.assertFalse(row["requires_exact_pass"])
+            self.assertIsNone(row["exact_shape"])
 
     def test_run_map_is_exact_and_transformer_precision_is_frozen(self):
         run_map = json.loads(CURRENT_RUN_MAP.read_text(encoding="utf-8"))
@@ -284,6 +306,26 @@ class OriginalScope26Tests(unittest.TestCase):
             self.assertFalse((run_dir / "best_checkpoint.pt").exists())
             result = inspect_run(self.manifest, entry, run_dir.parent)
             self.assertTrue(result["ready"], result)
+            self.assertEqual(result["execution_receipt_status"], "SUCCESS")
+            effective = json.loads(
+                (run_dir / "effective_config.json").read_text(encoding="utf-8")
+            )
+            receipt = json.loads(
+                (run_dir / "execution_receipt.json").read_text(encoding="utf-8")
+            )
+            self.assertEqual(effective["run_id"], entry["run_id"])
+            self.assertEqual(effective["output_root"], entry["output_root"])
+            self.assertEqual(effective["test_batch_size"], 4)
+            self.assertFalse(effective["formal_training"])
+            self.assertEqual(
+                effective["source_revision"]["git_commit"],
+                resolve_source_revision(project_root=PROJECT_ROOT, manifest=self.manifest)[
+                    "git_commit"
+                ],
+            )
+            self.assertEqual(receipt["freeze_hash"], compute_original_freeze(self.manifest)["freeze_hash"])
+            self.assertEqual(receipt["graph_identity_hash"], _canonical_json_hash(self.manifest["graph_identity"]))
+            self.assertEqual(receipt["source_closure_hash"], entry["source_identity"]["canonical_combined_hash"])
             (run_dir / "baseline_state.json").unlink()
             result = inspect_run(self.manifest, entry, run_dir.parent)
             self.assertFalse(result["ready"])
@@ -325,6 +367,9 @@ class OriginalScope26Tests(unittest.TestCase):
         self.assertNotIn("msgnet", material_text.casefold())
         self.assertIn("active_gate_revision", freeze["freeze_material"])
         self.assertIn("active_launcher_revision", freeze["freeze_material"])
+        self.assertIn(
+            "active_native_process_runner_revision", freeze["freeze_material"]
+        )
         self.assertIn("checkout_identity", freeze["freeze_material"])
 
         changed_map = copy.deepcopy(json.loads(CURRENT_RUN_MAP.read_text(encoding="utf-8")))
@@ -361,6 +406,19 @@ class OriginalScope26Tests(unittest.TestCase):
         self.assertEqual(len(results), 26)
         self.assertEqual(results[2]["exit_code"], 19)
         self.assertEqual(results[-1]["model_id"], "model_25")
+
+    def test_canonical_default_profile_authorizes_evaluate_only_entries(self):
+        for model_id in ("persistence", "moving_average"):
+            with self.subTest(model_id=model_id):
+                self.assertTrue(
+                    is_current_scope26_request(
+                        model_id=model_id,
+                        formal_scope_id=CURRENT_SCOPE26_ID,
+                        experiment_profile="default_benchmark_v1",
+                        training_profile="uniform_train_batch4_v1",
+                        trainable=False,
+                    )
+                )
 
 
 if __name__ == "__main__":

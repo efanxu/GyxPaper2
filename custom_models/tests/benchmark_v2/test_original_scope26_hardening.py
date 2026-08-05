@@ -9,6 +9,11 @@ from pathlib import Path
 from unittest.mock import patch
 
 from benchmark_v2.model_source_identity import canonical_model_source_identity
+from benchmark_v2.hardware_preflight import (
+    preflight_artifact_path,
+    preflight_identity,
+    read_matching_pass,
+)
 from benchmark_v2.original_scope26 import load_current_scope_manifest, resolve_source_revision
 from scripts import original_batch4_scope26_gate as gate
 from scripts.original_batch4_scope26_gate import (
@@ -202,6 +207,50 @@ class OriginalScope26HardeningTests(unittest.TestCase):
             self.assertEqual(receipt["scope_id"], CURRENT_SCOPE26_ID)
             self.assertEqual(receipt["run_id"], entry["run_id"])
             self.assertIn("recursive_file_manifest", receipt)
+
+    def test_failed_persistence_attempt_is_archived_before_fresh_retry(self):
+        entry = self._entry("persistence")
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            failed = _fixture_run(root, self.manifest, "persistence")
+            _write_json(
+                failed / "run_status.json",
+                {
+                    "status": "FAILED",
+                    "exit_code": 2,
+                    "run_mode": "formal",
+                    "artifact_profile": "NON_TRAINABLE",
+                    "formal_training": False,
+                },
+            )
+            action, _ = _plan_action(
+                self.manifest,
+                entry,
+                root,
+                current_freeze=self.freeze,
+                current_revision=self.revision,
+                current_run_map=self.run_map,
+            )
+            self.assertEqual(action, "ARCHIVE_INCOMPLETE_THEN_RUN")
+            archived = archive_existing_attempt(
+                self.manifest,
+                entry,
+                root,
+                current_freeze=self.freeze,
+                current_revision=self.revision,
+                current_run_map=self.run_map,
+            )
+            archived_dir = Path(archived["target"])
+            self.assertFalse(failed.exists())
+            self.assertEqual(
+                json.loads(
+                    (archived_dir / "run_status.json").read_text(encoding="utf-8")
+                )["status"],
+                "FAILED",
+            )
+            retry = _fixture_run(root, self.manifest, "persistence")
+            self.assertTrue(retry.is_dir())
+            self.assertNotEqual(retry.resolve(), archived_dir.resolve())
 
     def test_archive_failure_keeps_source_and_identity_mismatch_is_not_auto_archived(self):
         entry = self._entry()
@@ -438,7 +487,12 @@ class OriginalScope26HardeningTests(unittest.TestCase):
         self.assertIn("$Launcher", text)
         self.assertIn("$Head", text)
         self.assertIn("$env:PYTHONUTF8", text)
-        self.assertIn("Tee-Object", text)
+        self.assertIn("Invoke-GyxPythonGate", text)
+        self.assertIn("-AllowedExitCodes @(0, 1, 4)", text)
+        self.assertIn("final_status.json", text)
+        self.assertIn("FORMAL FAILURE", text)
+        self.assertIn("Formal Original suite completed with preserved per-model failures", text)
+        self.assertIn("Formal Original suite completed but is NOT_READY", text)
         self.assertIn("GraphSourceStatus", text)
         self.assertIn("GraphSourceRepair", text)
         self.assertIn("graph-source-status", text)
@@ -465,6 +519,45 @@ class OriginalScope26HardeningTests(unittest.TestCase):
             self.assertFalse(payload["gpu_preflight_performed"])
             self.assertFalse(payload["denominator_counted"])
             self.assertFalse(list(Path(temp).glob("**/attempts/*/result.json")))
+
+    def test_old_revision_preflight_pass_is_not_reusable(self):
+        with tempfile.TemporaryDirectory() as temp:
+            identity = preflight_identity(
+                "gru",
+                training_profile="uniform_train_batch4_v1",
+                formal_scope_id=CURRENT_SCOPE26_ID,
+                source_revision=self.revision["git_commit"],
+                manifest=self.manifest,
+                run_map=self.run_map,
+                freeze=self.freeze,
+            )
+            payload = {
+                **identity,
+                "status": "PASS",
+                "forward_completed": True,
+                "backward_completed": True,
+                "finite_prediction": True,
+                "finite_loss": True,
+                "finite_gradients": True,
+                "prediction_shape": [identity["B"], identity["N"], identity["H"]],
+                "peak_allocated_memory": 0,
+                "peak_reserved_memory": 0,
+            }
+            payload["git_commit"] = "0" * 40
+            path = preflight_artifact_path("gru", root=temp)
+            _write_json(path, payload)
+            self.assertIsNone(
+                read_matching_pass(
+                    "gru",
+                    root=temp,
+                    training_profile="uniform_train_batch4_v1",
+                    formal_scope_id=CURRENT_SCOPE26_ID,
+                    source_revision=self.revision["git_commit"],
+                    manifest=self.manifest,
+                    run_map=self.run_map,
+                    freeze=self.freeze,
+                )
+            )
 
 
 if __name__ == "__main__":
