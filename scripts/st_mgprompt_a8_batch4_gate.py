@@ -41,10 +41,21 @@ from st_mgprompt.a8_batch4_contract import (  # noqa: E402
     A8_RUN_RELATIVE_PATH,
     A8_SCOPE_ID,
     A8_VARIANT,
+    DATASET_ID,
+    DATA_SIGNATURE_SCHEMA_VERSION,
+    DATA_SPLIT_RATIOS,
+    DATA_STRIDES,
     EXPECTED_CONFIG,
+    FEATURE_ORDER,
+    FEATURE_ORDER_HASH,
+    INPUT_PATV_COL,
+    INPUT_RELATIVE_PATH,
     LOSS_ID,
     LOSS_PROTOCOL,
     PRECISION_POLICY,
+    TARGET_COL,
+    TARGET_MASK_COL,
+    TARGET_RELATIVE_PATH,
     TRAINING_PROFILE_ID,
     TRAINING_ROLE,
     canonical_hash,
@@ -472,6 +483,84 @@ def _config_reasons(run_dir: Path) -> list[str]:
     return reasons
 
 
+def _data_signature_reasons(
+    run_dir: Path,
+    *,
+    project_root: str | Path | None = None,
+) -> tuple[list[str], dict[str, Any] | None, str | None]:
+    """Validate the real data bundle identity and return its canonical hash."""
+
+    path = run_dir / "data_signature.json"
+    signature, error = _read_json(path)
+    if error or not isinstance(signature, dict):
+        return [f"A8_DATA_SIGNATURE_{error or 'NOT_OBJECT'}"], None, None
+    reasons: list[str] = []
+    repository_root = Path(project_root or PROJECT_ROOT).resolve()
+
+    expected_simple = {
+        "schema_version": DATA_SIGNATURE_SCHEMA_VERSION,
+        "dataset_id": DATASET_ID,
+        "run_id": A8_RUN_ID,
+        "node_count": 134,
+        "feature_order": list(FEATURE_ORDER),
+        "feature_names": list(FEATURE_ORDER),
+        "feature_order_hash": FEATURE_ORDER_HASH,
+        "target_col": TARGET_COL,
+        "input_patv_col": INPUT_PATV_COL,
+        "target_mask_col": TARGET_MASK_COL,
+        "split_ratios": list(DATA_SPLIT_RATIOS),
+        "lookback": 144,
+        "max_pred_len": 10,
+        "eval_horizons": [3, 6, 10],
+        "stride": dict(DATA_STRIDES),
+        "strides": dict(DATA_STRIDES),
+        "seed": 2026,
+        "training_profile_id": TRAINING_PROFILE_ID,
+    }
+    for key, expected in expected_simple.items():
+        if signature.get(key) != expected:
+            reasons.append(f"A8_DATA_SIGNATURE_MISMATCH:{key}")
+    profile = load_training_profile(TRAINING_PROFILE_ID)
+    if profile is None or signature.get("training_profile_hash") != profile.profile_hash:
+        reasons.append("A8_DATA_SIGNATURE_PROFILE_HASH_MISMATCH")
+
+    resolved_paths: dict[str, Path] = {}
+    for field, expected_relative in (
+        ("input_relative_path", INPUT_RELATIVE_PATH),
+        ("target_relative_path", TARGET_RELATIVE_PATH),
+    ):
+        value = signature.get(field)
+        normalized = str(value).replace("\\", "/") if isinstance(value, str) else ""
+        candidate = Path(normalized)
+        safe = bool(
+            normalized
+            and not candidate.is_absolute()
+            and not normalized.startswith("/")
+            and not normalized.startswith("\\")
+            and ":" not in normalized.split("/", 1)[0]
+            and ".." not in candidate.parts
+        )
+        if not safe or normalized != expected_relative:
+            reasons.append(f"A8_DATA_SIGNATURE_PATH_MISMATCH:{field}")
+            continue
+        resolved = (repository_root / candidate).resolve()
+        if not _path_within(resolved, repository_root):
+            reasons.append(f"A8_DATA_SIGNATURE_PATH_ESCAPE:{field}")
+            continue
+        resolved_paths[field] = resolved
+        alias = "input_path" if field.startswith("input") else "target_path"
+        if signature.get(alias) != expected_relative:
+            reasons.append(f"A8_DATA_SIGNATURE_PATH_ALIAS_MISMATCH:{alias}")
+    for field, path_key in (("input_sha256", "input_relative_path"), ("target_sha256", "target_relative_path")):
+        path_value = resolved_paths.get(path_key)
+        actual = _file_hash(path_value) if path_value is not None else None
+        if not isinstance(signature.get(field), str) or signature.get(field) != actual:
+            reasons.append(f"A8_DATA_SIGNATURE_HASH_MISMATCH:{field}")
+
+    identity_hash = canonical_hash(signature)
+    return reasons, signature, identity_hash
+
+
 def _receipt_reasons(
     run_dir: Path,
     metrics_bundle_hash: str | None,
@@ -519,6 +608,8 @@ def _receipt_reasons(
         "source_closure_hash",
         "effective_config_hash",
         "training_profile_hash",
+        "data_signature_path",
+        "data_signature_hash",
         "dataset_identity_hash",
         "macro_graph_identity_hash",
         "micro_graph_identity_hash",
@@ -535,6 +626,17 @@ def _receipt_reasons(
         "finished_at",
     )
     reasons.extend(f"A8_RECEIPT_MISSING:{key}" for key in required if not receipt.get(key))
+    data_reasons, data_signature, data_identity_hash = _data_signature_reasons(
+        run_dir,
+        project_root=project_root,
+    )
+    reasons.extend(data_reasons)
+    if receipt.get("data_signature_path") != "data_signature.json":
+        reasons.append("A8_DATA_SIGNATURE_PATH_RECEIPT_MISMATCH")
+    if data_identity_hash is None or receipt.get("data_signature_hash") != data_identity_hash:
+        reasons.append("A8_DATA_SIGNATURE_HASH_RECEIPT_MISMATCH")
+    if data_identity_hash is None or receipt.get("dataset_identity_hash") != data_identity_hash:
+        reasons.append("A8_DATASET_IDENTITY_HASH_MISMATCH")
     if receipt.get("source_closure_hash") != source_closure(project_root)["canonical_combined_hash"]:
         reasons.append("A8_SOURCE_CLOSURE_HASH_MISMATCH")
     try:
@@ -1118,11 +1220,56 @@ def run(
                 stderr=subprocess.STDOUT,
                 check=False,
             )
-        code = int(completed.returncode)
-        report = {"status": "COMPLETED" if code == 0 else "FAILED", "scope_id": A8_SCOPE_ID, "exit_code": code, "command": command, "log_path": str(log_path), "readiness": build_readiness()}
-        if code == 0 and report["readiness"]["status"] == "READY_A8_BATCH4_PREREQUISITE":
-            write_reference()
-        return code, report
+        child_exit_code = int(completed.returncode)
+        readiness = build_readiness()
+        report: dict[str, Any] = {
+            "status": "FAILED" if child_exit_code != 0 else "COMPLETED_BUT_NOT_READY",
+            "scope_id": A8_SCOPE_ID,
+            "command": command,
+            "log_path": str(log_path),
+            "readiness": readiness,
+            "readiness_status": readiness.get("status"),
+            "reference_written": False,
+            "child_exit_code": child_exit_code,
+            "gate_exit_code": child_exit_code,
+            # Keep the historical field for consumers while making the two
+            # exit domains explicit above.
+            "exit_code": child_exit_code,
+        }
+        if child_exit_code != 0:
+            return child_exit_code, report
+        if readiness.get("status") != "READY_A8_BATCH4_PREREQUISITE":
+            report["gate_exit_code"] = 74
+            report["exit_code"] = 74
+            return 74, report
+        reference_path = PROJECT_ROOT / A8_REFERENCE_RELATIVE_PATH
+        try:
+            reference = write_reference(reference_path)
+            actual, reference_error = _read_json(reference_path)
+            if (
+                reference.get("status") != "VALID"
+                or reference_error
+                or not isinstance(actual, dict)
+                or actual != reference
+            ):
+                raise A8GateError(
+                    f"A8 reference was not written and verified: {reference_error or reference.get('status')}"
+                )
+            report["reference_written"] = True
+        except Exception as exc:
+            report.update(
+                {
+                    "status": "REFERENCE_WRITE_FAILED",
+                    "reference_error": f"{type(exc).__name__}:{exc}",
+                    "gate_exit_code": 74,
+                    "exit_code": 74,
+                }
+            )
+            return 74, report
+        report["status"] = "COMPLETED"
+        report["gate_exit_code"] = 0
+        report["exit_code"] = 0
+        return 0, report
     finally:
         _release_lock(LOCK_PATH, lock_owner)
 
@@ -1171,6 +1318,11 @@ def write_reference(path: Path | None = None) -> dict[str, Any]:
     payload = build_reference_payload()
     if payload.get("status") == "VALID":
         _write_json(target, payload)
+        actual, error = _read_json(target)
+        if error or actual != payload:
+            raise A8GateError(
+                f"A8 reference write verification failed: {error or 'PAYLOAD_MISMATCH'}"
+            )
     return payload
 
 

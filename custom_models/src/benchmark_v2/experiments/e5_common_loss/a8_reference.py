@@ -145,6 +145,8 @@ def validate_a8_reference(
             batch4_run_root / "evaluation_complete.json",
             batch4_run_root / "prediction_metadata.json",
             batch4_run_root / "protocol_check.json",
+            batch4_run_root / "data_signature.json",
+            batch4_run_root / "a8_batch4_execution_receipt.json",
             batch4_run_root / "metrics.csv",
             *[
                 batch4_run_root / f"metrics_eval_h{h}.json"

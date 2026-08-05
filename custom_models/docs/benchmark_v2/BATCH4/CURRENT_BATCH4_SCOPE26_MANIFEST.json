@@ -4727,6 +4727,12 @@
     {
       "model_id": "transformer",
       "policy": "READ_ONLY_NOT_ADOPTED_DO_NOT_BLOCK_CANONICAL_RERUN",
+      "reason": "Legacy FP32 Transformer result predates the current Original source-closure and receipt policy; canonical run-id remains required.",
+      "run_id": "Transformer_node_shared_d512_fp32_bs4_seed2026"
+    },
+    {
+      "model_id": "transformer",
+      "policy": "READ_ONLY_NOT_ADOPTED_DO_NOT_BLOCK_CANONICAL_RERUN",
       "run_id": "Transformer_node_shared_d512_fp32_bs4_seed2026_retry2"
     }
   ],

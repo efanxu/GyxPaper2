@@ -111,6 +111,41 @@ class OriginalScope26HardeningTests(unittest.TestCase):
             self.assertFalse(inspected.get("found"))
             self.assertTrue(retry.is_dir())
 
+    def test_allowlisted_legacy_fp32_transformer_does_not_enter_denominator_or_block(self):
+        entry = self._entry()
+        self.assertEqual(self.manifest["counts"]["total"], 26)
+        self.assertEqual(self.manifest["counts"]["trainable"], 24)
+        self.assertEqual(self.manifest["counts"]["evaluate_only"], 2)
+        allowlist = gate._historical_allowlist(self.manifest)
+        old_run_id = "Transformer_node_shared_d512_fp32_bs4_seed2026"
+        retry_run_id = "Transformer_node_shared_d512_fp32_bs4_seed2026_retry2"
+        self.assertIn(("transformer", old_run_id), allowlist)
+        self.assertIn(("transformer", retry_run_id), allowlist)
+        self.assertEqual(
+            [item["run_id"] for item in self.manifest["entries"] if item["model_id"] == "transformer"],
+            ["Transformer_node_shared_d512_bs4_seed2026"],
+        )
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            old = root / old_run_id
+            retry = root / retry_run_id
+            _write_json(old / "effective_config.json", {"model_id": "transformer", "legacy": True})
+            _write_json(retry / "effective_config.json", {"model_id": "transformer", "retry2": True})
+            old_before = (old / "effective_config.json").read_text(encoding="utf-8")
+            retry_before = (retry / "effective_config.json").read_text(encoding="utf-8")
+            action, inspected = _plan_action(
+                self.manifest,
+                entry,
+                root,
+                current_freeze=self.freeze,
+                current_revision=self.revision,
+                current_run_map=self.run_map,
+            )
+            self.assertEqual(action, "RUN_MISSING")
+            self.assertFalse(inspected.get("found"))
+            self.assertEqual((old / "effective_config.json").read_text(encoding="utf-8"), old_before)
+            self.assertEqual((retry / "effective_config.json").read_text(encoding="utf-8"), retry_before)
+
     def test_source_revision_supports_explicit_no_git_and_rejects_wrong_value(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)

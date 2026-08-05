@@ -20,7 +20,7 @@ from benchmark_v2.training_profiles import (
     PROFILE_ALLOWLIST,
     load_training_profile,
 )
-from st_mgprompt.experiment_protocol import apply_variant, assert_expected_diff, canonical_config, get_variant, write_json
+from st_mgprompt.experiment_protocol import apply_variant, assert_expected_diff, canonical_config, config_diff, get_variant, write_json
 from st_mgprompt.data import make_dataloaders
 from st_mgprompt.diagnostics import (
     save_coupling_diagnostics,
@@ -591,6 +591,174 @@ def _a8_canonical_hash(value) -> str:
     return hashlib.sha256(material).hexdigest()
 
 
+def _is_formal_a8_batch4(cfg: STMGPromptConfig) -> bool:
+    """Return true only for the current, non-smoke A8 Batch4 namespace."""
+
+    from st_mgprompt.a8_batch4_contract import (
+        A8_DEFINITION,
+        A8_MODEL_ID,
+        A8_OUTPUT_ROOT,
+        A8_RUN_ID,
+        A8_VARIANT,
+        TRAINING_PROFILE_ID,
+    )
+
+    try:
+        configured_root = resolve_project_path(cfg.output_root).resolve()
+        canonical_root = resolve_project_path(A8_OUTPUT_ROOT).resolve()
+    except (OSError, TypeError, ValueError):
+        return False
+    return bool(
+        not getattr(cfg, "smoke", False)
+        and str(getattr(cfg, "run_id", "")) == A8_RUN_ID
+        and str(getattr(cfg, "component_ablation", "")).upper() == A8_VARIANT
+        and str(getattr(cfg, "variant", "")).upper() == A8_VARIANT
+        and getattr(cfg, "model_id", None) == A8_MODEL_ID
+        and getattr(cfg, "definition", None) == A8_DEFINITION
+        and getattr(cfg, "training_batch_profile_id", None) == TRAINING_PROFILE_ID
+        and getattr(cfg, "model_name", None) == "STMGPrompt_ComponentAblation"
+        and configured_root == canonical_root
+    )
+
+
+def _a8_batch4_effective_config_diff(cfg: STMGPromptConfig) -> dict:
+    """Prove A8 architecture identity while recording its profile overrides."""
+
+    result = config_diff(cfg, "A8", "component_ablation")
+    profile_fields = {"amp_enabled", "train_batch_size"}
+    unexpected = sorted(
+        set(result["unexpected_diff_fields"]) - profile_fields
+    )
+    missing = list(result["missing_expected_diff_fields"])
+    if unexpected or missing:
+        raise RuntimeError(
+            "A8 Batch4 effective config differs from the formal protocol: "
+            f"unexpected={unexpected}, missing={missing}"
+        )
+    result["expected_diff_fields"] = list(
+        dict.fromkeys(
+            [*result["expected_diff_fields"], *sorted(profile_fields)]
+        )
+    )
+    result["allowed_training_profile_diff_fields"] = sorted(profile_fields)
+    result["unexpected_diff_fields"] = unexpected
+    result["unexpected_effective_diff_count"] = len(unexpected)
+    result["passed"] = True
+    return result
+
+
+def _a8_relative_project_path(configured_path: str | Path) -> str:
+    """Resolve a dataset path while returning only a repository-relative path."""
+
+    project_root = Path(__file__).resolve().parents[3]
+    resolved = resolve_project_path(configured_path).resolve()
+    try:
+        relative = resolved.relative_to(project_root.resolve())
+    except ValueError as exc:
+        raise ValueError(f"A8 data path escapes the repository: {configured_path}") from exc
+    if not relative.parts or any(part in {"", ".", ".."} for part in relative.parts):
+        raise ValueError(f"A8 data path is not a safe relative path: {configured_path}")
+    return relative.as_posix()
+
+
+def _a8_feature_order_hash(feature_order: list[str]) -> str:
+    material = json.dumps(
+        list(feature_order),
+        ensure_ascii=False,
+        separators=(",", ":"),
+    ).encode("utf-8")
+    return hashlib.sha256(material).hexdigest()
+
+
+def _write_a8_data_signature(
+    cfg: STMGPromptConfig,
+    data,
+    run_dir: Path,
+) -> Path:
+    """Write the deterministic data identity after the real bundle is built."""
+
+    from st_mgprompt.a8_batch4_contract import (
+        A8_RUN_ID,
+        DATASET_ID,
+        DATA_SIGNATURE_SCHEMA_VERSION,
+        DATA_SPLIT_RATIOS,
+        DATA_STRIDES,
+        FEATURE_ORDER,
+        FEATURE_ORDER_HASH,
+        INPUT_PATV_COL,
+        INPUT_RELATIVE_PATH,
+        TARGET_COL,
+        TARGET_MASK_COL,
+        TARGET_RELATIVE_PATH,
+        TRAINING_PROFILE_ID,
+    )
+
+    input_relative_path = _a8_relative_project_path(cfg.model_input_path)
+    target_relative_path = _a8_relative_project_path(cfg.eval_target_path)
+    if input_relative_path != INPUT_RELATIVE_PATH:
+        raise ValueError(
+            f"Formal A8 input path is not the frozen Batch4 path: {input_relative_path}"
+        )
+    if target_relative_path != TARGET_RELATIVE_PATH:
+        raise ValueError(
+            f"Formal A8 target path is not the frozen Batch4 path: {target_relative_path}"
+        )
+    feature_order = list(data.feature_cols)
+    if feature_order != list(FEATURE_ORDER):
+        raise ValueError(f"Formal A8 feature order mismatch: {feature_order}")
+    if int(data.num_nodes) != 134:
+        raise ValueError(f"Formal A8 node count mismatch: {data.num_nodes}")
+    profile = load_training_profile(TRAINING_PROFILE_ID)
+    if profile is None:
+        raise ValueError(f"Missing A8 training profile: {TRAINING_PROFILE_ID}")
+    input_path = resolve_project_path(input_relative_path)
+    target_path = resolve_project_path(target_relative_path)
+    signature = {
+        "schema_version": DATA_SIGNATURE_SCHEMA_VERSION,
+        "dataset_id": DATASET_ID,
+        "run_id": A8_RUN_ID,
+        "node_count": int(data.num_nodes),
+        "feature_order": feature_order,
+        "feature_names": feature_order,
+        "feature_order_hash": _a8_feature_order_hash(feature_order),
+        "input_relative_path": input_relative_path,
+        "target_relative_path": target_relative_path,
+        "input_path": input_relative_path,
+        "target_path": target_relative_path,
+        "input_sha256": _a8_sha256(input_path),
+        "target_sha256": _a8_sha256(target_path),
+        "target_col": cfg.target_col,
+        "input_patv_col": cfg.input_patv_col,
+        "target_mask_col": cfg.target_mask_col,
+        "split_ratios": list(cfg.split_ratios),
+        "lookback": int(cfg.lookback),
+        "max_pred_len": int(cfg.max_pred_len),
+        "eval_horizons": [int(value) for value in cfg.eval_horizons],
+        "stride": dict(DATA_STRIDES),
+        "strides": dict(DATA_STRIDES),
+        "seed": int(cfg.seed),
+        "training_profile_id": profile.profile_id,
+        "training_profile_hash": profile.profile_hash,
+    }
+    if signature["feature_order_hash"] != FEATURE_ORDER_HASH:
+        raise ValueError("Formal A8 feature-order hash does not match the frozen protocol.")
+    if signature["split_ratios"] != list(DATA_SPLIT_RATIOS):
+        raise ValueError("Formal A8 split ratios do not match the frozen protocol.")
+    if signature["target_col"] != TARGET_COL:
+        raise ValueError("Formal A8 target column does not match the frozen protocol.")
+    if signature["input_patv_col"] != INPUT_PATV_COL:
+        raise ValueError("Formal A8 input Patv column does not match the frozen protocol.")
+    if signature["target_mask_col"] != TARGET_MASK_COL:
+        raise ValueError("Formal A8 target mask column does not match the frozen protocol.")
+    if signature["lookback"] != 144 or signature["max_pred_len"] != 10:
+        raise ValueError("Formal A8 window identity does not match the frozen protocol.")
+    if signature["eval_horizons"] != [3, 6, 10] or signature["seed"] != 2026:
+        raise ValueError("Formal A8 horizon/seed identity does not match the frozen protocol.")
+    path = run_dir / "data_signature.json"
+    _atomic_json_write(path, signature, sort_keys=True)
+    return path
+
+
 def _write_a8_execution_receipt(
     cfg: STMGPromptConfig,
     run_dir: Path,
@@ -648,13 +816,12 @@ def _write_a8_execution_receipt(
         git_commit = completed.stdout.strip() if completed.returncode == 0 else "UNKNOWN"
     effective_config_hash = _a8_sha256(run_dir / "effective_config.json")
     dataset_signature_path = run_dir / "data_signature.json"
-    dataset_identity_hash = (
-        _a8_canonical_hash(
-            json.loads(dataset_signature_path.read_text(encoding="utf-8"))
-        )
-        if dataset_signature_path.is_file()
-        else None
-    )
+    if not dataset_signature_path.is_file():
+        raise RuntimeError("Cannot issue A8 receipt; data_signature.json is missing.")
+    dataset_signature = json.loads(dataset_signature_path.read_text(encoding="utf-8"))
+    if not isinstance(dataset_signature, dict):
+        raise RuntimeError("Cannot issue A8 receipt; data_signature.json is not an object.")
+    dataset_identity_hash = _a8_canonical_hash(dataset_signature)
     graph = graph_identity()
     loss = loss_identity()
     precision = precision_identity()
@@ -675,6 +842,8 @@ def _write_a8_execution_receipt(
         "variant_contract_hash": variant_contract_hash(),
         "training_profile_id": getattr(cfg, "training_batch_profile_id", "uniform_train_batch4_v1"),
         "training_profile_hash": getattr(cfg, "training_batch_profile_hash", None),
+        "data_signature_path": "data_signature.json",
+        "data_signature_hash": dataset_identity_hash,
         "batch_identity": _training_batch_identity(cfg),
         "dataset_identity_hash": dataset_identity_hash,
         "macro_graph_identity_hash": canonical_hash(
@@ -833,9 +1002,18 @@ def _print_environment_summary() -> None:
     print(f"GPU name: {summary['gpu_name'] or 'NO_GPU'}", flush=True)
 
 
-def _atomic_json_write(path: Path, payload: dict) -> None:
+def _atomic_json_write(path: Path, payload: dict, *, sort_keys: bool = False) -> None:
     tmp_path = path.with_name(f"{path.name}.tmp")
-    tmp_path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
+    tmp_path.write_text(
+        json.dumps(
+            payload,
+            indent=2,
+            ensure_ascii=False,
+            allow_nan=False,
+            sort_keys=sort_keys,
+        ),
+        encoding="utf-8",
+    )
     os.replace(tmp_path, path)
 
 
@@ -936,7 +1114,9 @@ def _failure_payload(cfg: STMGPromptConfig, run_dir: Path, stage: str, exc: Base
         if rows:
             last_epoch = rows[-1].get("epoch")
     oom_context = dict(getattr(exc, "stmg_oom_context", {}) or {})
-    return {
+    payload = {
+        "status": "FAILED",
+        "exit_code": 1,
         "failure_stage": oom_context.get("stage", stage),
         "last_completed_epoch": last_epoch,
         "best_checkpoint_exists": (run_dir / "best_checkpoint.pt").exists(),
@@ -956,6 +1136,56 @@ def _failure_payload(cfg: STMGPromptConfig, run_dir: Path, stage: str, exc: Base
         "error": str(exc),
         **_training_batch_identity(cfg),
     }
+    if _is_formal_a8_batch4(cfg):
+        from st_mgprompt.a8_batch4_contract import A8_RUN_ID, A8_SCOPE_ID
+
+        payload.update(
+            {
+                "run_mode": "formal",
+                "formal_training": True,
+                "artifact_profile": "TRAIN",
+                "scope_id": A8_SCOPE_ID,
+                "run_id": A8_RUN_ID,
+            }
+        )
+    return payload
+
+
+def _finalize_a8_formal_success(
+    cfg: STMGPromptConfig,
+    run_dir: Path,
+    args: argparse.Namespace,
+    *,
+    started_at: str,
+    finished_at: str,
+) -> Path:
+    """Publish the receipt first, then atomically publish completed status."""
+
+    from st_mgprompt.a8_batch4_contract import A8_RUN_ID, A8_SCOPE_ID
+
+    receipt_path = _write_a8_execution_receipt(
+        cfg,
+        run_dir,
+        args,
+        started_at=started_at,
+        finished_at=finished_at,
+        exit_code=0,
+    )
+    update_run_status(
+        run_dir,
+        "PROCESS_FINISHED",
+        {
+            "status": "COMPLETED",
+            "exit_code": 0,
+            "run_mode": "formal",
+            "formal_training": True,
+            "artifact_profile": "TRAIN",
+            "scope_id": A8_SCOPE_ID,
+            "run_id": A8_RUN_ID,
+            "finished_at": finished_at,
+        },
+    )
+    return receipt_path
 
 
 def _set_model_vadsp_statistics(cfg: STMGPromptConfig, model, data) -> None:
@@ -1202,6 +1432,8 @@ def _run_once(args: argparse.Namespace, cfg: STMGPromptConfig, run_dir: Path) ->
 
     dataloaders = make_dataloaders(cfg)
     data = dataloaders["bundle"]
+    if _is_formal_a8_batch4(cfg):
+        _write_a8_data_signature(cfg, data, run_dir)
     first_batch = next(iter(data.train_loader))
     validate_batch_shapes(first_batch, cfg.lookback, cfg.max_pred_len)
 
@@ -1388,10 +1620,7 @@ def main() -> None:
     cfg = build_config(args)
     _print_environment_summary()
     formal_variant = args.experiment_variant or args.component_ablation
-    is_formal_a8_batch4 = (
-        str(formal_variant or "").upper() == "A8"
-        and args.training_profile == "uniform_train_batch4_v1"
-    )
+    is_formal_a8_batch4 = _is_formal_a8_batch4(cfg)
     if is_formal_a8_batch4 and (
         args.resume
         or args.resume_from
@@ -1413,7 +1642,10 @@ def main() -> None:
         diff_config = cfg
         if args.smoke or full_shape_requested:
             diff_config = apply_variant(STMGPromptConfig(), variant.variant_id, variant.experiment_family)
-        diff = assert_expected_diff(diff_config, variant.variant_id, variant.experiment_family)
+        if is_formal_a8_batch4:
+            diff = _a8_batch4_effective_config_diff(diff_config)
+        else:
+            diff = assert_expected_diff(diff_config, variant.variant_id, variant.experiment_family)
         run_dir = _run_dir(cfg)
         run_dir.mkdir(parents=True, exist_ok=True)
         write_json(run_dir / "effective_config_diff.json", diff)
@@ -1464,13 +1696,12 @@ def main() -> None:
                 and not (args.train_only or args.skip_test)
                 and result["protocol_passed"]
             ):
-                _write_a8_execution_receipt(
+                _finalize_a8_formal_success(
                     cfg,
                     run_dir,
                     args,
                     started_at=started_at,
                     finished_at=datetime.utcnow().isoformat() + "Z",
-                    exit_code=0,
                 )
         except Exception as exc:
             failure = _failure_payload(cfg, run_dir, "PROCESS_EXCEPTION", exc)
@@ -1483,6 +1714,18 @@ def main() -> None:
             raise
         print(json.dumps(result, indent=2, ensure_ascii=False))
         if not result["protocol_passed"]:
+            if is_formal_a8_batch4:
+                failure = _failure_payload(
+                    cfg,
+                    run_dir,
+                    "PROTOCOL_CHECK_FAILED",
+                    RuntimeError("A8 formal protocol check did not pass."),
+                )
+                update_run_status(run_dir, "PROCESS_EXCEPTION", failure)
+                (run_dir / "failure.json").write_text(
+                    json.dumps(failure, indent=2, ensure_ascii=False) + "\n",
+                    encoding="utf-8",
+                )
             raise SystemExit(1)
 
 

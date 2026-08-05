@@ -337,6 +337,16 @@ class UniformBatch4ProfileTests(unittest.TestCase):
                 "evaluation_complete.json": {"status": "completed"},
                 "prediction_metadata.json": {},
                 "protocol_check.json": {"passed": True},
+                "data_signature.json": {
+                    "schema_version": "st_mgprompt_a8_data_signature_v1",
+                    "dataset_id": "SDWPF",
+                    "node_count": 134,
+                    "feature_order_hash": "b9878a5091618737ca8c126dcee80d5b70f122ff3901960a620cb6bc10e7f853",
+                },
+                "a8_batch4_execution_receipt.json": {
+                    "status": "COMPLETED",
+                    "dataset_identity_hash": "fixture",
+                },
             }
             for name, payload in json_files.items():
                 (run / name).write_text(json.dumps(payload), encoding="utf-8")

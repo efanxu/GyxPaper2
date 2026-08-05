@@ -32,6 +32,36 @@ TRAINING_PROFILE_ID = "uniform_train_batch4_v1"
 LOSS_ID = "masked_score_aligned_hybrid"
 LOSS_PROTOCOL = "fair_main"
 PRECISION_POLICY = "fp32"
+DATA_SIGNATURE_SCHEMA_VERSION = "st_mgprompt_a8_data_signature_v1"
+DATASET_ID = "SDWPF"
+INPUT_RELATIVE_PATH = "dataset/sdwpf_model_input_base.parquet"
+TARGET_RELATIVE_PATH = "dataset/sdwpf_eval_target.parquet"
+TARGET_COL = "Patv_raw"
+INPUT_PATV_COL = "Patv_clean_for_input"
+TARGET_MASK_COL = "valid_target_mask"
+FEATURE_ORDER = [
+    "Wspd",
+    "Wdir",
+    "Etmp",
+    "Itmp",
+    "Ndir",
+    "Pab1",
+    "Pab2",
+    "Pab3",
+    "Prtv",
+    "T2m",
+    "Sp",
+    "RelH",
+    "Wspd_w",
+    "Wdir_w",
+    "Tp",
+    "Patv_clean_for_input",
+]
+# This is the repository-wide ordered-feature hash used by the Batch4
+# protocol (JSON list, compact separators, UTF-8 SHA256).
+FEATURE_ORDER_HASH = "b9878a5091618737ca8c126dcee80d5b70f122ff3901960a620cb6bc10e7f853"
+DATA_SPLIT_RATIOS = [0.8, 0.1, 0.1]
+DATA_STRIDES = {"train": 6, "val": 3, "test": 1}
 
 EXPECTED_CONFIG: dict[str, Any] = {
     "model_id": A8_MODEL_ID,
@@ -362,6 +392,17 @@ __all__ = [
     "LOSS_ID",
     "LOSS_PROTOCOL",
     "PRECISION_POLICY",
+    "DATA_SIGNATURE_SCHEMA_VERSION",
+    "DATASET_ID",
+    "INPUT_RELATIVE_PATH",
+    "TARGET_RELATIVE_PATH",
+    "TARGET_COL",
+    "INPUT_PATV_COL",
+    "TARGET_MASK_COL",
+    "FEATURE_ORDER",
+    "FEATURE_ORDER_HASH",
+    "DATA_SPLIT_RATIOS",
+    "DATA_STRIDES",
     "EXPECTED_CONFIG",
     "A8_SOURCE_CLOSURE_RELATIVE_PATHS",
     "GRAPH_PARAMETERS",
