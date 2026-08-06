@@ -36,10 +36,12 @@ def extract_base_run_ids() -> dict[str, dict[str, str]]:
     return {key: found[key] for key in sorted(expected)}
 
 
-def e5_run_id(base_run_id: str, training_profile: str | None = None) -> str:
+def e5_run_id(base_run_id: str, training_profile: str | None = "uniform_train_batch4_v1") -> str:
     if not base_run_id.endswith("_seed2026"):
         raise ValueError(f"Invalid base run-id: {base_run_id}")
-    suffix = "_loss_msa_hybrid_bs4_seed2026" if training_profile else "_loss_msa_hybrid_seed2026"
+    if training_profile != "uniform_train_batch4_v1":
+        raise ValueError("E5 scope27 run-id requires uniform_train_batch4_v1.")
+    suffix = "_loss_msa_hybrid_bs4_seed2026"
     return base_run_id[:-len("_seed2026")] + suffix
 
 
@@ -47,7 +49,9 @@ def _base_config(model_id: str) -> dict[str, Any]:
     return get_model_factory(model_id).resolve_config(load_protocol(), run_mode="formal")
 
 
-def build_variant_manifest(training_profile: str | None = None) -> dict[str, Any]:
+def build_variant_manifest(training_profile: str | None = "uniform_train_batch4_v1") -> dict[str, Any]:
+    if training_profile != "uniform_train_batch4_v1":
+        raise ValueError("E5 scope27 manifest requires uniform_train_batch4_v1.")
     registry = load_registry()
     contract = validate_registry_contract(registry)
     if contract["status"] != "PASS":
@@ -92,7 +96,7 @@ def build_variant_manifest(training_profile: str | None = None) -> dict[str, Any
     }
 
 
-def build_run_id_map(training_profile: str | None = None) -> dict[str, Any]:
+def build_run_id_map(training_profile: str | None = "uniform_train_batch4_v1") -> dict[str, Any]:
     manifest = build_variant_manifest(training_profile)
     return {
         "schema_version": "e5_run_id_map_v2", "scope_id": manifest["scope_id"],

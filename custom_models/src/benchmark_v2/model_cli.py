@@ -1212,6 +1212,7 @@ def formal_evaluate_only(
             experiment_profile=selected_profile,
             training_profile=training_profile,
             formal_scope_id=formal_scope_id,
+            run_id=run_id,
             source_revision=source_revision,
         )
     apply_experiment_profile(
@@ -1372,6 +1373,7 @@ def formal_train(
                     if current_scope26_request
                     else None
                 ),
+                run_id=run_id,
                 source_revision=source_revision,
             )
         ),

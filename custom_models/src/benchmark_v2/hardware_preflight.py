@@ -65,6 +65,7 @@ def preflight_shape(training_profile: str | None = None, formal_scope_id: str | 
 def preflight_identity(
     model_id: str, *, experiment_profile: str | None = None,
     training_profile: str | None = None, formal_scope_id: str | None = None,
+    run_id: str | None = None,
     source_revision: str | None = None, manifest: Mapping[str, Any] | None = None,
     run_map: Mapping[str, Any] | None = None, freeze: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
@@ -73,8 +74,7 @@ def preflight_identity(
     entry = load_registry().get(model_id)
     shape = preflight_shape(training_profile, formal_scope_id)
     precision = expected_model_precision_identity(entry.canonical_id, training_profile)
-    run_id = None
-    if manifest:
+    if run_id is None and manifest:
         for row in manifest.get("entries", []):
             if row.get("model_id") == entry.canonical_id:
                 run_id = row.get("run_id") or row.get("e5_run_id")
@@ -118,6 +118,7 @@ def read_matching_pass(
     model_id: str, *, root: str | Path | None = None,
     experiment_profile: str | None = None, training_profile: str | None = None,
     formal_scope_id: str | None = None, source_revision: str | None = None,
+    run_id: str | None = None,
     attempt_id: str | None = None,
 ) -> dict[str, Any] | None:
     del source_revision
@@ -131,14 +132,15 @@ def read_matching_pass(
     expected = preflight_identity(
         model_id, experiment_profile=experiment_profile,
         training_profile=training_profile, formal_scope_id=formal_scope_id,
+        run_id=run_id,
     )
-    required = {
-        "status": "PASS", "model_id": expected["model_id"],
-        "scope_id": expected["scope_id"], "batch_size": expected["batch_size"],
-        "precision": expected["precision"], "forward_pass": True,
-        "backward_pass": True, "finite": True,
-    }
-    if any(payload.get(key) != value for key, value in required.items()):
+    required = {key: expected[key] for key in (
+        "scope_id", "model_id", "run_id", "batch_size", "lookback",
+        "node_count", "feature_count", "horizon", "precision",
+        "amp_enabled", "loss_id", "training_profile_id",
+    )}
+    required.update({"status": "PASS", "forward_pass": True, "backward_pass": True, "finite": True})
+    if any(key not in payload or payload.get(key) != value for key, value in required.items()):
         return None
     if payload.get("output_shape") != [expected["batch_size"], expected["node_count"], expected["horizon"]]:
         return None
@@ -179,13 +181,14 @@ def run_preflight_worker(
     model_id: str, *, root: str | Path | None = None,
     experiment_profile: str | None = None, training_profile: str | None = None,
     formal_scope_id: str | None = None, source_revision: str | None = None,
+    run_id: str | None = None,
     manifest: Mapping[str, Any] | None = None, run_map: Mapping[str, Any] | None = None,
     freeze: Mapping[str, Any] | None = None, attempt_id: str | None = None,
 ) -> dict[str, Any]:
     del source_revision, run_map, freeze
     import torch
     selected = attempt_id or new_preflight_attempt_id()
-    identity = preflight_identity(model_id, experiment_profile=experiment_profile, training_profile=training_profile, formal_scope_id=formal_scope_id, manifest=manifest)
+    identity = preflight_identity(model_id, experiment_profile=experiment_profile, training_profile=training_profile, formal_scope_id=formal_scope_id, run_id=run_id, manifest=manifest)
     path = _attempt_result_path(model_id, root, selected)
     result = {
         "status": "FAIL", **identity, "attempt_id": selected,
@@ -238,9 +241,9 @@ def _run_child(args: Sequence[str], *, runner: Callable[..., Any] = subprocess.r
     return int(completed.returncode)
 
 
-def launch_preflight(model_id: str, *, root: str | Path | None = None, experiment_profile: str | None = None, training_profile: str | None = None, formal_scope_id: str | None = None, source_revision: str | None = None, attempt_id: str | None = None, runner: Callable[..., Any] = subprocess.run) -> int:
+def launch_preflight(model_id: str, *, root: str | Path | None = None, experiment_profile: str | None = None, training_profile: str | None = None, formal_scope_id: str | None = None, source_revision: str | None = None, run_id: str | None = None, attempt_id: str | None = None, runner: Callable[..., Any] = subprocess.run) -> int:
     args = ["_hardware-preflight-worker", "--model", model_id]
-    for flag, value in (("--experiment-profile", experiment_profile), ("--training-profile", training_profile), ("--formal-scope-id", formal_scope_id), ("--source-revision", source_revision), ("--preflight-root", root), ("--preflight-attempt-id", attempt_id)):
+    for flag, value in (("--experiment-profile", experiment_profile), ("--training-profile", training_profile), ("--formal-scope-id", formal_scope_id), ("--run-id", run_id), ("--source-revision", source_revision), ("--preflight-root", root), ("--preflight-attempt-id", attempt_id)):
         if value is not None:
             args.extend([flag, str(value)])
     return _run_child(args, runner=runner)
@@ -260,7 +263,8 @@ def launch_formal_train(
     selected_profile = normalize_profile(experiment_profile)
     validate_scope27_request(model_id=entry.canonical_id, formal_scope_id=formal_scope_id, experiment_profile=selected_profile, training_profile=training_profile, trainable=True)
     exact_scope = is_scope27_train_request(model_id=entry.canonical_id, formal_scope_id=formal_scope_id, experiment_profile=selected_profile, training_profile=training_profile) or is_current_scope26_train_request(model_id=entry.canonical_id, formal_scope_id=formal_scope_id, experiment_profile=selected_profile, training_profile=training_profile)
-    existing_pass = read_matching_pass(entry.canonical_id, root=preflight_root, experiment_profile=selected_profile, training_profile=training_profile, formal_scope_id=formal_scope_id, attempt_id=preflight_attempt_id)
+    bound_run_id = run_id if exact_scope else None
+    existing_pass = read_matching_pass(entry.canonical_id, root=preflight_root, experiment_profile=selected_profile, training_profile=training_profile, formal_scope_id=formal_scope_id, run_id=bound_run_id, attempt_id=preflight_attempt_id)
     if exact_scope and existing_pass is None:
         return 3
     needs_preflight = not exact_scope and (
@@ -274,6 +278,8 @@ def launch_formal_train(
             root=preflight_root,
             experiment_profile=selected_profile,
             training_profile=training_profile,
+            formal_scope_id=formal_scope_id,
+            run_id=bound_run_id,
             attempt_id=preflight_attempt_id,
             runner=runner,
         )
@@ -284,6 +290,8 @@ def launch_formal_train(
             root=preflight_root,
             experiment_profile=selected_profile,
             training_profile=training_profile,
+            formal_scope_id=formal_scope_id,
+            run_id=bound_run_id,
             attempt_id=preflight_attempt_id,
         )
         if existing_pass is None:

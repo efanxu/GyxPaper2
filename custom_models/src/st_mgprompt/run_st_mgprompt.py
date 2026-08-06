@@ -532,6 +532,10 @@ def _write_training_batch_identity(run_dir: Path, cfg: STMGPromptConfig) -> None
         encoding="utf-8",
     )
     effective = {**cfg.to_dict(), **identity}
+    if _is_formal_a8_batch4(cfg):
+        from st_mgprompt.a8_batch4_contract import A8_SCOPE_ID
+
+        effective.update({"scope_id": A8_SCOPE_ID, "formal_training": True})
     (run_dir / "effective_config.json").write_text(
         json.dumps(effective, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
@@ -981,6 +985,10 @@ def update_run_status(run_dir: Path, stage: str, extra: dict | None = None) -> N
             payload = {}
     else:
         payload = {}
+    import psutil
+
+    payload.setdefault("pid", os.getpid())
+    payload.setdefault("process_start_time", float(psutil.Process(os.getpid()).create_time()))
     event = {
         "stage": stage,
         "time": datetime.now().isoformat(timespec="seconds"),
@@ -1168,11 +1176,15 @@ def _run_full_shape_smoke(args: argparse.Namespace, cfg: STMGPromptConfig) -> di
     forward_start = time.perf_counter()
     with _autocast_context(device, bool(cfg.amp_enabled)):
         out = model(x)
+    actual_output_shape = list(out["pred"].shape)
+    finite_output = bool(torch.isfinite(out["pred"]).all().item())
     if device.type == "cuda":
         torch.cuda.synchronize(device)
     forward_time = time.perf_counter() - forward_start
     train_forward_memory = memory_mib()
     validate_model_output(out, train_batch | {"y": y})
+    if not finite_output:
+        raise FloatingPointError("Full-shape smoke output is not finite.")
     with torch.autocast(device_type=device.type, enabled=False):
         loss = loss_fn(out["pred"].float(), y.float(), mask.float())
     if loss is None:
@@ -1279,6 +1291,8 @@ def _run_full_shape_smoke(args: argparse.Namespace, cfg: STMGPromptConfig) -> di
         "granularity_weight_mode": cfg.granularity_weight_mode,
         "parameter_count": int(sum(p.numel() for p in model.parameters() if p.requires_grad)),
         "loss_value": train_loss_value,
+        "output_shape": actual_output_shape,
+        "finite_output": finite_output,
         "val_loss_value": float(sum(val_loss_values) / len(val_loss_values)),
         "loss_finite": True,
         "gradient_checks": gradient_checks,

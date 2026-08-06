@@ -1,112 +1,175 @@
 from __future__ import annotations
 
 import json
-import math
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from st_mgprompt.a8_batch4_contract import (
+    A8_DEFINITION,
+    A8_MODEL_ID,
+    A8_REFERENCE_ID,
+    A8_REFERENCE_RELATIVE_PATH,
+    A8_RUN_RELATIVE_PATH,
+    A8_RUN_ID,
+    A8_SCOPE_ID,
+    A8_VARIANT,
+    LOSS_ID,
+    PRECISION_POLICY,
+    TRAINING_PROFILE_ID,
+)
+from st_mgprompt.a8_batch4_readiness import A8_EXPLICIT_CONFIG, inspect_a8_run
+
 from ...artifacts import atomic_write_json
 from ...runtime import PROJECT_ROOT
-from ...training_profiles import load_training_profile
-from .contracts import BATCH4_A8_REFERENCE_ID
 
 
-A8_RUN_ROOT = (
-    PROJECT_ROOT / "custom_models/results/st_mgprompt_uniform_bs4"
-    / "component_ablation_a8_bs4_seed2026/STMGPrompt_ComponentAblation"
+A8_RUN_ROOT = PROJECT_ROOT / A8_RUN_RELATIVE_PATH
+A8_RUNTIME_REFERENCE_PATH = PROJECT_ROOT / A8_REFERENCE_RELATIVE_PATH
+REFERENCE_KEYS = (
+    "reference_type", "reference_id", "status", "scope_id", "model_id",
+    "run_id", "variant", "definition", "training_profile_id",
+    "train_batch_size", "val_batch_size", "test_batch_size",
+    "gradient_accumulation_steps", "seed", "lookback", "max_pred_len",
+    "loss_id", "precision", "formal_training", "source_path",
+    "source_config_path", "checkpoint_path", "source_metrics_paths",
+    "metrics_complete", "checkpoint_loadable", "config_conflicts",
+    "metrics_validation_reasons",
 )
 
 
-def _load(path: Path) -> Any:
-    return json.loads(path.read_text(encoding="utf-8"))
-
-
-def _validate_metrics(run_root: Path) -> tuple[bool, list[str], dict[int, dict[str, Any]]]:
-    reasons: list[str] = []
-    payloads: dict[int, dict[str, Any]] = {}
-    for horizon in (3, 6, 10):
-        path = run_root / f"metrics_eval_h{horizon}.json"
-        if not path.is_file():
-            reasons.append(f"MISSING:{path.name}")
-            continue
-        try:
-            payload = _load(path)
-        except (OSError, ValueError) as exc:
-            reasons.append(f"INVALID:{path.name}:{type(exc).__name__}")
-            continue
-        payloads[horizon] = payload
-        if payload.get("horizon") != horizon:
-            reasons.append(f"HORIZON_CONFLICT:{path.name}")
-        for key in ("MAE", "RMSE", "R2", "Score"):
-            value = payload.get(key)
-            if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(float(value)):
-                reasons.append(f"NONFINITE:{path.name}:{key}")
-        count = payload.get("valid_target_count", payload.get("ValidCount"))
-        if not isinstance(count, (int, float)) or count <= 0:
-            reasons.append(f"INVALID_COUNT:{path.name}")
-    return not reasons, reasons, payloads
-
-
-def validate_a8_reference(training_profile: str | None = None) -> dict[str, Any]:
-    profile = load_training_profile(training_profile)
-    required = [
-        A8_RUN_ROOT / "effective_config.json", A8_RUN_ROOT / "best_checkpoint.pt",
-        A8_RUN_ROOT / "run_status.json", A8_RUN_ROOT / "metrics_eval_h3.json",
-        A8_RUN_ROOT / "metrics_eval_h6.json", A8_RUN_ROOT / "metrics_eval_h10.json",
-    ]
-    missing = [str(path) for path in required if not path.is_file()]
-    if missing:
-        return {"status": "BLOCKED_FORMAL_A8_NOT_READY", "reference_id": BATCH4_A8_REFERENCE_ID, "missing": missing}
-    config = _load(A8_RUN_ROOT / "effective_config.json")
-    status = _load(A8_RUN_ROOT / "run_status.json")
-    expected = {
-        "component_ablation": "A8", "seed": 2026, "lookback": 144,
-        "max_pred_len": 10, "train_batch_size": 4,
-        "val_batch_size": 4, "test_batch_size": 4,
-    }
-    conflicts = {key: {"actual": config.get(key), "expected": value} for key, value in expected.items() if config.get(key) != value}
-    metrics_complete, metric_reasons, metrics = _validate_metrics(A8_RUN_ROOT)
-    checkpoint = A8_RUN_ROOT / "best_checkpoint.pt"
-    checkpoint_loadable = False
-    try:
-        import torch
-        torch.load(checkpoint, map_location="cpu", weights_only=False)
-        checkpoint_loadable = checkpoint.stat().st_size > 0
-    except Exception:
-        checkpoint_loadable = False
-    passed = (
-        not conflicts and metrics_complete and checkpoint_loadable
-        and status.get("status") == "COMPLETED" and status.get("exit_code") == 0
-        and config.get("formal_training", True) is True
-    )
-    result = {
+def build_a8_reference(run_root: str | Path = A8_RUN_ROOT) -> dict[str, Any]:
+    root = Path(run_root).resolve()
+    inspected = inspect_a8_run(root)
+    return {
         "reference_type": "FORMAL_A8_BATCH4_READ_ONLY",
-        "reference_id": BATCH4_A8_REFERENCE_ID,
-        "status": "VALID" if passed else "BLOCKED_FORMAL_A8_NOT_READY",
-        "scope_id": config.get("scope_id", "st_mgprompt_a8_batch4_seed2026"),
-        "run_id": config.get("run_id", "component_ablation_a8_bs4_seed2026"),
-        "variant": "A8", "definition": "w/o MS-MG-DWU",
-        "batch_size": 4, "lookback": 144, "node_count": 134,
-        "feature_count": config.get("feature_count", 16), "horizon": 10,
-        "loss_id": config.get("loss_id", config.get("loss_function", "masked_score_aligned_hybrid")),
-        "precision": config.get("precision", config.get("precision_policy")),
+        "reference_id": A8_REFERENCE_ID,
+        "status": inspected["status"],
+        "scope_id": A8_SCOPE_ID,
+        "model_id": A8_MODEL_ID,
+        "run_id": A8_RUN_ID,
+        "variant": A8_VARIANT,
+        "definition": A8_DEFINITION,
+        "training_profile_id": TRAINING_PROFILE_ID,
+        "train_batch_size": 4,
+        "val_batch_size": 4,
+        "test_batch_size": 4,
+        "gradient_accumulation_steps": 1,
+        "seed": 2026,
+        "lookback": 144,
+        "max_pred_len": 10,
+        "loss_id": LOSS_ID,
+        "precision": PRECISION_POLICY,
         "formal_training": True,
-        "source_path": str(A8_RUN_ROOT.resolve()),
-        "checkpoint_path": str(checkpoint.resolve()),
-        "metrics_paths": [str((A8_RUN_ROOT / f"metrics_eval_h{h}.json").resolve()) for h in (3, 6, 10)],
-        "metrics": metrics, "metrics_complete": metrics_complete,
-        "metrics_validation_reasons": metric_reasons,
-        "checkpoint_loadable": checkpoint_loadable,
-        "config_conflicts": conflicts,
+        "source_path": str(root),
+        "source_config_path": str(root / "effective_config.json"),
+        "checkpoint_path": str(root / "best_checkpoint.pt"),
+        "source_metrics_paths": [
+            str(root / f"metrics_eval_h{horizon}.json") for horizon in (3, 6, 10)
+        ],
+        "metrics_complete": inspected["metrics_complete"],
+        "checkpoint_loadable": inspected["checkpoint_loadable"],
+        "config_conflicts": {
+            **inspected["explicit_config_conflicts"],
+            **{
+                key: {"expected": A8_EXPLICIT_CONFIG[key], "actual": None}
+                for key in inspected["missing_config_fields"]
+            },
+        },
+        "metrics_validation_reasons": [
+            reason for reason in inspected["reasons"]
+            if reason.startswith(("MISSING:metrics_", "INVALID:metrics_", "HORIZON_", "NONFINITE:", "INVALID_COUNT:"))
+        ],
         "created_at": datetime.now(timezone.utc).isoformat(),
     }
-    if profile is not None:
-        result.update(profile.identity())
+
+
+def _load_reference(path: Path) -> dict[str, Any] | None:
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (FileNotFoundError, OSError, ValueError):
+        return None
+    return payload if isinstance(payload, dict) else None
+
+
+def validate_a8_reference(
+    training_profile: str | None = TRAINING_PROFILE_ID,
+    *,
+    reference_path: str | Path = A8_RUNTIME_REFERENCE_PATH,
+    run_root: str | Path | None = None,
+) -> dict[str, Any]:
+    if training_profile != TRAINING_PROFILE_ID:
+        raise ValueError("A8 reference requires uniform_train_batch4_v1.")
+    selected_path = Path(reference_path)
+    published = _load_reference(selected_path)
+    if published is None:
+        missing = build_a8_reference(run_root or A8_RUN_ROOT)
+        missing["status"] = "NOT_READY"
+        missing["metrics_validation_reasons"] = ["MISSING_RUNTIME_REFERENCE"]
+        return missing
+    missing_keys = [key for key in REFERENCE_KEYS if key not in published]
+    source = Path(run_root or str(published.get("source_path", ""))).resolve()
+    current = build_a8_reference(source)
+    expected_identity = {
+        key: current[key]
+        for key in (
+            "reference_type", "reference_id", "scope_id", "model_id", "run_id",
+            "variant", "definition", "training_profile_id", "train_batch_size",
+            "val_batch_size", "test_batch_size", "gradient_accumulation_steps",
+            "seed", "lookback", "max_pred_len", "loss_id", "precision",
+            "formal_training", "source_path", "source_config_path",
+            "checkpoint_path", "source_metrics_paths",
+        )
+    }
+    conflicts = {
+        key: {"expected": expected, "actual": published.get(key)}
+        for key, expected in expected_identity.items()
+        if published.get(key) != expected
+    }
+    all_paths = [
+        Path(str(published.get("source_config_path", ""))),
+        Path(str(published.get("checkpoint_path", ""))),
+        *[Path(str(value)) for value in published.get("source_metrics_paths", [])],
+    ]
+    same_run = len(all_paths) == 5 and all(path.parent.resolve() == source for path in all_paths)
+    ready = (
+        not missing_keys
+        and not conflicts
+        and same_run
+        and published.get("status") == "READY"
+        and current["status"] == "READY"
+    )
+    result = {key: current[key] for key in REFERENCE_KEYS}
+    result.update({
+        "status": "READY" if ready else "NOT_READY",
+        "config_conflicts": {**current["config_conflicts"], **conflicts},
+        "metrics_validation_reasons": [
+            *current["metrics_validation_reasons"],
+            *([f"MISSING_REFERENCE_FIELDS:{','.join(missing_keys)}"] if missing_keys else []),
+            *([] if same_run else ["REFERENCE_PATHS_NOT_FROM_ONE_A8_RUN"]),
+        ],
+        "created_at": published.get("created_at"),
+        "reference_path": str(selected_path),
+    })
     return result
 
 
-def create_a8_reference(output_path: str | Path, training_profile: str | None = None) -> dict[str, Any]:
-    reference = validate_a8_reference(training_profile=training_profile)
+def create_a8_reference(
+    output_path: str | Path = A8_RUNTIME_REFERENCE_PATH,
+    training_profile: str | None = TRAINING_PROFILE_ID,
+    *,
+    run_root: str | Path = A8_RUN_ROOT,
+) -> dict[str, Any]:
+    if training_profile != TRAINING_PROFILE_ID:
+        raise ValueError("A8 reference requires uniform_train_batch4_v1.")
+    reference = build_a8_reference(run_root)
+    if reference["status"] != "READY":
+        raise RuntimeError("A8 reference cannot be published before readiness.")
     atomic_write_json(Path(output_path), reference)
     return reference
+
+
+__all__ = [
+    "A8_RUN_ROOT", "A8_RUNTIME_REFERENCE_PATH", "REFERENCE_KEYS",
+    "build_a8_reference", "create_a8_reference", "validate_a8_reference",
+]

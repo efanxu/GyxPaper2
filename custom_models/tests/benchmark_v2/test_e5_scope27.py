@@ -15,12 +15,15 @@ class E5Scope27Tests(unittest.TestCase):
         plan = gate.build_preflight_plan(manifest)
         self.assertEqual(plan["required"], 24)
         self.assertTrue(all(row["batch_size"] == 4 for row in plan["entries"]))
+        benchmark = [row for row in manifest["entries"] if row["entry_type"] != "REFERENCE_ONLY_FORMAL_A8"]
+        self.assertEqual(len(benchmark), 26)
+        self.assertTrue(all(row["e5_run_id"].endswith("_bs4_seed2026") for row in benchmark))
+        self.assertEqual(manifest["entries"][-1]["e5_run_id"], "STMGPrompt_A8_loss_msa_hybrid_bs4_seed2026_reference")
 
     def test_readiness_accepts_explicit_27_of_27(self) -> None:
         manifest = gate.load_manifest()
-        def ready(_manifest, entry, _root):
-            return {"model_id": entry["model_id"], "run_id": entry.get("e5_run_id"), "run_dir": "fixture", "status": "COMPLETED", "ready": True, "reasons": [], "explicit_config_conflicts": [], "metrics_complete": True, "checkpoint_loadable": True}
-        with patch.object(gate, "inspect_run", side_effect=ready):
+        fixture = {"status": "READY", "ready_entries": 27, "expected_total_entries": 27, "counts": {"trainable": 24, "evaluate_only": 2, "a8_reference": 1, "total": 27}, "entries": []}
+        with patch.object(gate, "build_common_readiness", return_value=fixture):
             report = gate.build_readiness(manifest, gate.EXPECTED_OUTPUT_ROOT)
         self.assertEqual(report["status"], "READY")
         self.assertEqual(report["ready_entries"], 27)

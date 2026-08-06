@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-PROJECT_ROOT=/root/autodl-tmp/GyxPaper2
-PYTHON=/root/miniconda3/envs/env_tslib/bin/python
+PROJECT_ROOT=${PROJECT_ROOT:-/root/autodl-tmp/GyxPaper2}
+PYTHON=${PYTHON:-/root/miniconda3/envs/env_tslib/bin/python}
 export PYTHON
 export PATH="$(dirname "$PYTHON"):$PATH"
 export PYTHONPATH="$PROJECT_ROOT/custom_models/src"
@@ -35,7 +35,10 @@ A8_READINESS_REPORT="$A8_AUDIT_ROOT/a8_batch4_readiness.json"
 A8_PREFLIGHT_REPORT="$A8_AUDIT_ROOT/a8_batch4_preflight_summary.json"
 A8_REFERENCE="$AUDIT_ROOT/E5_A8_BATCH4_REFERENCE.json"
 
-mkdir -p "$AUDIT_ROOT" "$A8_AUDIT_ROOT" "$RUN_LOG_ROOT"
+mkdir -p "$OUTPUT_ROOT"
+mkdir -p "$AUDIT_ROOT" "$A8_AUDIT_ROOT"
+mkdir -p "$PREFLIGHT_ROOT"
+mkdir -p "$RUN_LOG_ROOT"
 if [[ -e "$AUDIT_ROOT/e5_scope27_started" ]]; then
   echo "ERROR: legacy launch sentinel exists; inspect before retrying" >&2
   exit 72
@@ -43,8 +46,6 @@ fi
 for required in "$PYTHON" "$MANIFEST" "$GATE" "$INPUT" "$TARGET"; do
   [[ -e "$required" ]] || { echo "ERROR: missing required path: $required" >&2; exit 66; }
 done
-[[ -d "$(dirname "$OUTPUT_ROOT")" ]] || { echo "ERROR: output-root parent is missing" >&2; exit 67; }
-
 exec > >(tee -a "$PRECHECK_LOG") 2>&1
 set +e
 "$PYTHON" "$A8_GATE" validate-contract
@@ -59,7 +60,11 @@ if [[ "$a8_contract_code" -ne 0 || "$a8_readiness_code" -ne 0 ]]; then
   fi
   exit "$a8_readiness_code"
 fi
-"$PYTHON" "$GATE" --manifest "$MANIFEST" lock-status
+lock_status=$("$PYTHON" "$GATE" --manifest "$MANIFEST" lock-status | "$PYTHON" -c 'import json,sys; print(json.load(sys.stdin)["status"])')
+if [[ "$lock_status" != "ABSENT" ]]; then
+  echo "E5 lock must be ABSENT; ACTIVE/MALFORMED fail closed and STALE requires explicit clear-stale-lock: $lock_status" >&2
+  exit 73
+fi
 "$PYTHON" "$GATE" --manifest "$MANIFEST" validate-manifest
 "$PYTHON" "$GATE" --manifest "$MANIFEST" freeze > "$AUDIT_ROOT/e5_scope27_freeze.json"
 "$PYTHON" "$GATE" --manifest "$MANIFEST" preflight-plan > "$AUDIT_ROOT/e5_scope27_preflight_plan.json"
@@ -103,7 +108,7 @@ set +e
 readiness_code=${PIPESTATUS[0]}
 set -e
 if [[ "$readiness_code" -ne 0 ]]; then
-  echo "Readiness is not COMPLETED_READY_27_OF_27; aggregate is stopped." >&2
+  echo "Readiness is not READY 27/27; aggregate is stopped." >&2
   exit "$readiness_code"
 fi
 

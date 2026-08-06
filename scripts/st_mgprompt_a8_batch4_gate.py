@@ -2,9 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
-import math
 import os
-import socket
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -18,6 +16,17 @@ if str(SOURCE_ROOT) not in sys.path:
     sys.path.insert(0, str(SOURCE_ROOT))
 
 from benchmark_v2.artifacts import atomic_write_json
+from benchmark_v2.experiments.e5_common_loss.a8_reference import (
+    build_a8_reference,
+    create_a8_reference,
+)
+from benchmark_v2.process_lock import (
+    ProcessLockError,
+    acquire_lock as acquire_process_lock,
+    clear_stale_lock as clear_process_stale_lock,
+    lock_status as process_lock_status,
+    release_lock as release_process_lock,
+)
 from st_mgprompt.a8_batch4_contract import (
     A8_DEFINITION, A8_MODEL_ID, A8_OUTPUT_ROOT, A8_REFERENCE_ID,
     A8_REFERENCE_RELATIVE_PATH, A8_RUN_ID, A8_RUN_RELATIVE_PATH,
@@ -25,6 +34,7 @@ from st_mgprompt.a8_batch4_contract import (
     LOSS_ID, PRECISION_POLICY, TRAINING_PROFILE_ID, graph_identity,
     loss_identity, precision_identity, variant_contract,
 )
+from st_mgprompt.a8_batch4_readiness import inspect_a8_run
 
 
 A8_RUN_ROOT = PROJECT_ROOT / A8_RUN_RELATIVE_PATH
@@ -54,10 +64,6 @@ def _read_json(path: Path) -> tuple[Any | None, str | None]:
         return None, f"INVALID:{path.name}:{type(exc).__name__}"
 
 
-def _finite(value: Any) -> bool:
-    return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(float(value))
-
-
 def validate_contract(project_root: str | Path | None = None) -> dict[str, Any]:
     root = Path(project_root or PROJECT_ROOT)
     graph = graph_identity(root)
@@ -75,37 +81,6 @@ def validate_contract(project_root: str | Path | None = None) -> dict[str, Any]:
     }
 
 
-def _metric_validation(run_dir: Path) -> tuple[dict[int, dict[str, Any]], list[str]]:
-    payloads, reasons = {}, []
-    for horizon in REQUIRED_HORIZONS:
-        path = run_dir / f"metrics_eval_h{horizon}.json"
-        payload, error = _read_json(path)
-        if error or not isinstance(payload, dict):
-            reasons.append(error or f"INVALID:{path.name}")
-            continue
-        payloads[horizon] = payload
-        if payload.get("horizon") != horizon:
-            reasons.append(f"HORIZON_CONFLICT:{horizon}")
-        for key in ("MAE", "RMSE", "R2", "Score"):
-            if not _finite(payload.get(key)):
-                reasons.append(f"NONFINITE:H{horizon}:{key}")
-        count = payload.get("valid_target_count", payload.get("ValidCount"))
-        if not _finite(count) or float(count) <= 0:
-            reasons.append(f"INVALID_COUNT:H{horizon}")
-    return payloads, reasons
-
-
-def _loadable_checkpoint(path: Path) -> bool:
-    if not path.is_file() or path.stat().st_size <= 0:
-        return False
-    try:
-        import torch
-        torch.load(path, map_location="cpu", weights_only=False)
-        return True
-    except Exception:
-        return False
-
-
 def inspect_a8_artifact(output_root: str | Path | None = None, project_root: str | Path | None = None) -> dict[str, Any]:
     root = Path(project_root or PROJECT_ROOT)
     run_dir = Path(output_root) if output_root else root / A8_RUN_RELATIVE_PATH
@@ -120,46 +95,14 @@ def inspect_a8_artifact(output_root: str | Path | None = None, project_root: str
             "metrics_complete": False, "checkpoint_loadable": False,
             "explicit_config_conflicts": [], "reasons": ["RUN_MISSING"],
         }
-    status, status_error = _read_json(run_dir / "run_status.json")
-    config, config_error = _read_json(run_dir / "effective_config.json")
-    status = status if isinstance(status, dict) else {}
-    config = config if isinstance(config, dict) else {}
-    reasons = [value for value in (status_error, config_error) if value]
-    aliases = {
-        "scope_id": ("scope_id",), "model_id": ("model_id",), "run_id": ("run_id",),
-        "component_ablation": ("component_ablation",), "definition": ("definition",),
-        "training_profile": ("training_profile", "training_batch_profile_id"),
-        "train_batch_size": ("train_batch_size",), "val_batch_size": ("val_batch_size",),
-        "test_batch_size": ("test_batch_size",), "gradient_accumulation_steps": ("gradient_accumulation_steps",),
-        "seed": ("seed",), "lookback": ("lookback",), "max_pred_len": ("max_pred_len",),
-        "loss_function": ("loss_function", "loss_id"), "precision_policy": ("precision_policy", "precision"),
-        "formal_training": ("formal_training",),
-    }
-    conflicts = []
-    for key, expected in EXPECTED_CONFIG.items():
-        values = [config.get(name) for name in aliases[key] if name in config]
-        if values and all(value != expected for value in values):
-            conflicts.append(key)
-    _, metric_reasons = _metric_validation(run_dir)
-    reasons.extend(metric_reasons)
-    checkpoint_loadable = _loadable_checkpoint(run_dir / "best_checkpoint.pt")
-    if not checkpoint_loadable:
-        reasons.append("CHECKPOINT_NOT_LOADABLE")
-    if status.get("status") != "COMPLETED" or status.get("exit_code") != 0:
-        reasons.append("NOT_COMPLETED")
-    if conflicts:
-        reasons.append("EXPLICIT_CONFIG_CONFLICT")
-    ready = not reasons
+    inspected = inspect_a8_run(run_dir)
     return {
-        "status": "READY" if ready else str(status.get("status") or "INCOMPLETE"),
-        "ready": ready, "scope_id": A8_SCOPE_ID, "model_id": A8_MODEL_ID,
+        **inspected,
+        "scope_id": A8_SCOPE_ID, "model_id": A8_MODEL_ID,
         "run_id": A8_RUN_ID, "batch_size": 4, "lookback": 144,
         "node_count": 134, "feature_count": 16, "horizon": 10,
         "loss_id": LOSS_ID, "precision": PRECISION_POLICY,
         "formal_training": True, "run_dir": str(run_dir),
-        "metrics_complete": not metric_reasons,
-        "checkpoint_loadable": checkpoint_loadable,
-        "explicit_config_conflicts": conflicts, "reasons": reasons,
     }
 
 
@@ -180,7 +123,15 @@ def read_matching_preflight_pass(path: Path = PREFLIGHT_RESULT_PATH) -> dict[str
     payload, error = _read_json(path)
     if error or not isinstance(payload, dict):
         return None
-    expected = {"status": "PASS", "scope_id": A8_SCOPE_ID, "model_id": A8_MODEL_ID, "run_id": A8_RUN_ID, "batch_size": 4, "precision": PRECISION_POLICY, "forward_pass": True, "backward_pass": True, "finite": True, "output_shape": [4, 134, 10]}
+    expected = {
+        "status": "PASS", "scope_id": A8_SCOPE_ID, "model_id": A8_MODEL_ID,
+        "run_id": A8_RUN_ID, "batch_size": 4, "lookback": 144,
+        "node_count": 134, "feature_count": 16, "horizon": 10,
+        "precision": PRECISION_POLICY, "amp_enabled": False,
+        "loss_id": LOSS_ID, "training_profile_id": TRAINING_PROFILE_ID,
+        "forward_pass": True, "backward_pass": True, "finite": True,
+        "output_shape": [4, 134, 10],
+    }
     return payload if all(payload.get(key) == value for key, value in expected.items()) else None
 
 
@@ -215,21 +166,30 @@ def run_preflight(*, report_path: Path | None = None, child_log_root: Path | Non
     child, error = _read_json(child_path)
     child = child if isinstance(child, dict) else {}
     gradients = child.get("gradient_checks") or {}
+    output_shape = child.get("output_shape")
     passed = (
         exit_code == 0 and error is None and child.get("status") == "passed"
+        and str(child.get("device", "")).startswith("cuda")
+        and child.get("finite_output") is True
         and child.get("loss_finite") is True and bool(gradients)
         and all(bool(value) for value in gradients.values())
         and child.get("strict_reload_completed") is True
         and child.get("batch_shape", {}).get("train_x", [None])[0] == 4
+        and child.get("amp_enabled") is False
+        and output_shape == [4, 134, 10]
     )
     payload = {
         "schema_version": "st_mgprompt_a8_batch4_preflight_result_v2",
         "status": "PASS" if passed else "FAILED", "scope_id": A8_SCOPE_ID,
         "model_id": A8_MODEL_ID, "run_id": A8_RUN_ID, "batch_size": 4,
-        "precision": PRECISION_POLICY, "device": "cuda",
-        "forward_pass": bool(gradients), "backward_pass": bool(gradients),
-        "finite": child.get("loss_finite") is True and all(bool(value) for value in gradients.values()),
-        "output_shape": [4, 134, 10], "created_at": started_at,
+        "lookback": 144, "node_count": 134, "feature_count": 16, "horizon": 10,
+        "precision": PRECISION_POLICY, "amp_enabled": False,
+        "loss_id": LOSS_ID, "training_profile_id": TRAINING_PROFILE_ID,
+        "device": child.get("device"),
+        "forward_pass": output_shape is not None,
+        "backward_pass": bool(gradients),
+        "finite": child.get("finite_output") is True and child.get("loss_finite") is True and all(bool(value) for value in gradients.values()),
+        "output_shape": output_shape, "created_at": started_at,
         "finished_at": utc_now(), "exit_code": exit_code,
         "child_log": str(log_path), "child_report": str(child_path),
     }
@@ -257,6 +217,9 @@ def _formal_command(input_path: str | None, target_path: str | None) -> list[str
 def run(*, input_path: str | None = None, target_path: str | None = None,
         log_root: Path | None = None, runner: Any = subprocess.run, **_: Any) -> tuple[int, dict[str, Any]]:
     validate_contract()
+    state = lock_status()
+    if state["status"] != "ABSENT":
+        return 74, {"status": f"LOCK_{state['status']}", "scope_id": A8_SCOPE_ID, "lock": state}
     if read_matching_preflight_pass() is None:
         return 74, {"status": "PREFLIGHT_MISSING", "scope_id": A8_SCOPE_ID, "child_started": False}
     plan = build_plan()
@@ -264,25 +227,31 @@ def run(*, input_path: str | None = None, target_path: str | None = None,
         return 0, {"status": "SKIP_COMPLETED", "scope_id": A8_SCOPE_ID, "readiness": build_readiness()}
     if plan["action"] == "BLOCK_EXPLICIT_CONFIG_CONFLICT":
         return 74, {"status": "BLOCK_EXPLICIT_CONFIG_CONFLICT", "plan": plan}
-    if plan["action"] == "ARCHIVE_AND_RUN":
-        archive_or_quarantine(apply=True)
-    logs = Path(log_root or AUDIT_ROOT / "formal").resolve()
-    logs.mkdir(parents=True, exist_ok=True)
-    log_path = logs / "a8_batch4_formal.log"
-    command = _formal_command(input_path, target_path)
-    with log_path.open("w", encoding="utf-8", newline="") as handle:
-        completed = runner(command, cwd=str(PROJECT_ROOT),
-                           env={**os.environ, "PYTHONPATH": str(SOURCE_ROOT)},
-                           stdout=handle, stderr=subprocess.STDOUT, check=False)
-    exit_code = int(completed.returncode)
-    readiness = build_readiness()
-    if exit_code == 0 and readiness["status"] == "READY":
-        write_reference()
-    return (0 if exit_code == 0 and readiness["status"] == "READY" else exit_code or 74), {
-        "status": "COMPLETED" if exit_code == 0 and readiness["status"] == "READY" else "FAILED",
-        "scope_id": A8_SCOPE_ID, "run_id": A8_RUN_ID, "exit_code": exit_code,
-        "log_path": str(log_path), "readiness": readiness,
-    }
+    try:
+        owner = acquire_lock()
+    except ProcessLockError:
+        raced = lock_status()
+        return 74, {"status": f"LOCK_{raced['status']}", "scope_id": A8_SCOPE_ID, "lock": raced}
+    try:
+        if plan["action"] == "ARCHIVE_AND_RUN":
+            archive_or_quarantine(apply=True)
+        logs = Path(log_root or AUDIT_ROOT / "formal").resolve()
+        logs.mkdir(parents=True, exist_ok=True)
+        log_path = logs / "a8_batch4_formal.log"
+        command = _formal_command(input_path, target_path)
+        with log_path.open("w", encoding="utf-8", newline="") as handle:
+            completed = runner(command, cwd=str(PROJECT_ROOT),
+                               env={**os.environ, "PYTHONPATH": str(SOURCE_ROOT)},
+                               stdout=handle, stderr=subprocess.STDOUT, check=False)
+        exit_code = int(completed.returncode)
+        readiness = build_readiness()
+        return (0 if exit_code == 0 and readiness["status"] == "READY" else exit_code or 74), {
+            "status": "COMPLETED" if exit_code == 0 and readiness["status"] == "READY" else "FAILED",
+            "scope_id": A8_SCOPE_ID, "run_id": A8_RUN_ID, "exit_code": exit_code,
+            "log_path": str(log_path), "readiness": readiness,
+        }
+    finally:
+        release_lock(owner)
 
 
 def build_plan() -> dict[str, Any]:
@@ -297,6 +266,15 @@ def build_inventory() -> dict[str, Any]:
 
 def archive_or_quarantine(*, kind: str = ARCHIVE_DIRECTORY, apply: bool = False, reason: str = "explicit A8 action") -> dict[str, Any]:
     source = A8_RUN_ROOT
+    if source.is_dir():
+        status, _ = _read_json(source / "run_status.json")
+        status = status if isinstance(status, dict) else {}
+        pid = status.get("pid")
+        expected_start = status.get("process_start_time")
+        if isinstance(pid, int) and _pid_alive(pid):
+            actual_start = _process_start_time(pid)
+            if expected_start is None or actual_start is None or abs(float(expected_start) - actual_start) < 1:
+                raise A8GateError("BLOCK_ACTIVE_PROCESS: active A8 run directory cannot be archived.")
     target = source.parent / kind / f"{source.name}__{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}"
     files = [path for path in source.rglob("*") if path.is_file()] if source.is_dir() else []
     result = {"schema_version": "a8_archive_receipt_v2", "scope_id": A8_SCOPE_ID, "model_id": A8_MODEL_ID, "run_id": A8_RUN_ID, "action": kind, "source": str(source), "target": str(target), "status": "PREVIEW", "started_at": utc_now(), "finished_at": None, "exit_code": None, "file_count": len(files), "total_size_bytes": sum(path.stat().st_size for path in files), "message": reason}
@@ -308,23 +286,19 @@ def archive_or_quarantine(*, kind: str = ARCHIVE_DIRECTORY, apply: bool = False,
 
 
 def build_reference_payload() -> dict[str, Any]:
-    inspected = inspect_a8_artifact()
-    return {"schema_version": "e5_a8_reference_v2", "reference_id": A8_REFERENCE_ID, **{key: inspected[key] for key in ("status", "scope_id", "model_id", "run_id", "batch_size", "lookback", "node_count", "feature_count", "horizon", "loss_id", "precision", "formal_training", "run_dir", "metrics_complete", "checkpoint_loadable")}}
+    return build_a8_reference(A8_RUN_ROOT)
 
 
 def write_reference(path: Path | None = None) -> dict[str, Any]:
-    payload = build_reference_payload()
-    if payload["status"] != "READY":
-        raise A8GateError("A8 reference cannot be published before readiness.")
     target = path or PROJECT_ROOT / A8_REFERENCE_RELATIVE_PATH
-    atomic_write_json(target, payload)
-    return payload
+    return create_a8_reference(target, run_root=A8_RUN_ROOT)
 
 
 def _pid_alive(pid: int) -> bool:
     try:
-        os.kill(pid, 0); return pid > 0
-    except OSError:
+        import psutil
+        return pid > 0 and psutil.pid_exists(pid) and psutil.Process(pid).is_running()
+    except Exception:
         return False
 
 
@@ -337,20 +311,19 @@ def _process_start_time(pid: int) -> float | None:
 
 
 def lock_status(path: Path = LOCK_PATH) -> dict[str, Any]:
-    if not path.is_file(): return {"status": "ABSENT", "path": str(path)}
-    payload, error = _read_json(path)
-    required = {"scope_id", "hostname", "pid", "process_start_time", "created_at"}
-    if error or not isinstance(payload, dict) or not required.issubset(payload): return {"status": "MALFORMED", "path": str(path)}
-    if payload["hostname"] != socket.gethostname() or not _pid_alive(int(payload["pid"])): return {"status": "STALE", "path": str(path), "owner": payload}
-    actual = _process_start_time(int(payload["pid"]))
-    if actual is not None and abs(actual - float(payload["process_start_time"])) >= 1: return {"status": "STALE", "path": str(path), "owner": payload}
-    return {"status": "ACTIVE", "path": str(path), "owner": payload}
+    return process_lock_status(path, scope_id=A8_SCOPE_ID)
+
+
+def acquire_lock(path: Path = LOCK_PATH) -> dict[str, Any]:
+    return acquire_process_lock(path, scope_id=A8_SCOPE_ID)
+
+
+def release_lock(owner: Mapping[str, Any], path: Path = LOCK_PATH) -> bool:
+    return release_process_lock(path, owner=owner)
 
 
 def clear_stale_lock(path: Path = LOCK_PATH) -> dict[str, Any]:
-    status = lock_status(path)
-    if status["status"] == "STALE": path.unlink(); return {"status": "CLEARED", "path": str(path)}
-    return status
+    return clear_process_stale_lock(path, scope_id=A8_SCOPE_ID)
 
 
 def _parser() -> argparse.ArgumentParser:

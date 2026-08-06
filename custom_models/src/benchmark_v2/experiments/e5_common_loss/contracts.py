@@ -27,8 +27,8 @@ TRAINABLE_MODELS = (
     "stid",
 )
 NONTRAINABLE_MODELS = ("persistence", "moving_average")
-A8_REFERENCE_ID = "STMGPrompt_A8_loss_msa_hybrid_seed2026_reference"
-BATCH4_A8_REFERENCE_ID = "STMGPrompt_A8_loss_msa_hybrid_bs4_seed2026_reference"
+A8_REFERENCE_ID = "STMGPrompt_A8_loss_msa_hybrid_bs4_seed2026_reference"
+BATCH4_A8_REFERENCE_ID = A8_REFERENCE_ID
 EXPECTED_BENCHMARK_ENTRIES = 26
 EXPECTED_TOTAL_ENTRIES = 27
 LEGACY_FORMAL_OUTPUT_ROOT_RELATIVE = (

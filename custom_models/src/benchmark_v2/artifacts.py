@@ -85,6 +85,11 @@ def write_status(run_dir: str | Path, *, status: str, run_mode: str, artifact_pr
     path = Path(run_dir) / "run_status.json"
     previous = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
     now = datetime.now(timezone.utc).isoformat()
+    if status == "RUNNING":
+        import psutil
+
+        extra.setdefault("pid", os.getpid())
+        extra.setdefault("process_start_time", float(psutil.Process(os.getpid()).create_time()))
     effective_path = Path(run_dir) / "effective_config.json"
     if effective_path.is_file():
         effective = json.loads(effective_path.read_text(encoding="utf-8"))

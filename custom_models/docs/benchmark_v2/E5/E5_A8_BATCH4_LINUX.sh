@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-PROJECT_ROOT=/root/autodl-tmp/GyxPaper2
-PYTHON=/root/miniconda3/envs/env_tslib/bin/python
+PROJECT_ROOT=${PROJECT_ROOT:-/root/autodl-tmp/GyxPaper2}
+PYTHON=${PYTHON:-/root/miniconda3/envs/env_tslib/bin/python}
 export PYTHONPATH="$PROJECT_ROOT/custom_models/src"
 export PYTHONUTF8=1
 export PYTHONIOENCODING=utf-8
@@ -19,7 +19,11 @@ REFERENCE="$PROJECT_ROOT/custom_models/logs/uniform_bs4/audit/e5_scope27/E5_A8_B
 
 mkdir -p "$AUDIT_ROOT" "$PREFLIGHT_ROOT"
 "$PYTHON" "$GATE" validate-contract
-"$PYTHON" "$GATE" lock-status
+lock_status=$("$PYTHON" "$GATE" lock-status | "$PYTHON" -c 'import json,sys; print(json.load(sys.stdin)["status"])')
+if [[ "$lock_status" != "ABSENT" ]]; then
+  echo "A8 lock must be ABSENT; ACTIVE/MALFORMED fail closed and STALE requires explicit clear-stale-lock: $lock_status" >&2
+  exit 73
+fi
 "$PYTHON" "$GATE" freeze-plan > "$AUDIT_ROOT/a8_batch4_freeze_plan.json"
 "$PYTHON" "$GATE" preflight-plan > "$AUDIT_ROOT/a8_batch4_preflight_plan.json"
 set +e
@@ -55,4 +59,5 @@ fi
 "$PYTHON" "$GATE" readiness \
   --report-path "$READINESS_REPORT" \
   --reference-path "$REFERENCE"
+"$PYTHON" -c 'import json,sys; p=json.load(open(sys.argv[1],encoding="utf-8")); assert p.get("status")=="READY"' "$READINESS_REPORT"
 echo "A8 Batch4 prerequisite is READY; E5 may now consume it read-only."

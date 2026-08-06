@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import tempfile
 import unittest
+import socket
 from pathlib import Path
 
 from scripts import e5_batch4_scope27_gate as gate
@@ -22,7 +23,7 @@ class E5ScopeSafetyTests(unittest.TestCase):
             self.assertEqual(gate.lock_status(path)["status"], "ABSENT")
             path.write_text("{}", encoding="utf-8")
             self.assertEqual(gate.lock_status(path)["status"], "MALFORMED")
-            path.write_text(json.dumps({"scope_id": gate.E5_SCOPE_ID, "hostname": "different-host", "pid": 99999999, "process_start_time": 1.0, "created_at": "now"}), encoding="utf-8")
+            path.write_text(json.dumps({"schema_version": "explicit_process_lock_v1", "scope_id": gate.E5_SCOPE_ID, "hostname": socket.gethostname(), "pid": 99999999, "process_start_time": 1.0, "created_at": "now"}), encoding="utf-8")
             self.assertEqual(gate.lock_status(path)["status"], "STALE")
 
 

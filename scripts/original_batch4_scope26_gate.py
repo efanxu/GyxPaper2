@@ -278,12 +278,14 @@ def run_preflight_suite(manifest: Mapping[str, Any], *, preflight_root: Path,
             code = launch_preflight(
                 entry["model_id"], root=preflight_root,
                 training_profile="uniform_train_batch4_v1",
-                formal_scope_id=CURRENT_SCOPE26_ID, runner=child_runner,
+                formal_scope_id=CURRENT_SCOPE26_ID,
+                run_id=entry["run_id"], runner=child_runner,
             )
         passed = code == 0 and read_matching_pass(
             entry["model_id"], root=preflight_root,
             training_profile="uniform_train_batch4_v1",
             formal_scope_id=CURRENT_SCOPE26_ID,
+            run_id=entry["run_id"],
         ) is not None
         results.append({
             "status": "PASS" if passed else "FAILED", "scope_id": CURRENT_SCOPE26_ID,
@@ -325,7 +327,8 @@ def run_suite(manifest: Mapping[str, Any], *, input_path: str | None, target_pat
                if entry["entry_type"] == "TRAINABLE" and row["action"] != "SKIP_COMPLETED"
                and read_matching_pass(entry["model_id"], root=preflight_root,
                                       training_profile="uniform_train_batch4_v1",
-                                      formal_scope_id=CURRENT_SCOPE26_ID) is None]
+                                      formal_scope_id=CURRENT_SCOPE26_ID,
+                                      run_id=entry["run_id"]) is None]
     if missing: return 74, {"status": "PREFLIGHT_MISSING", "scope_id": CURRENT_SCOPE26_ID, "models": missing}
     log_root.mkdir(parents=True, exist_ok=True); results = []
     for entry, row in zip(manifest["entries"], plan["entries"]):

@@ -228,6 +228,7 @@ def main(argv: list[str] | None = None) -> int:
     add_formal_scope(train)
     preflight = sub.add_parser("hardware-preflight")
     preflight.add_argument("--model", required=True)
+    preflight.add_argument("--run-id")
     preflight.add_argument("--preflight-root")
     preflight.add_argument("--preflight-attempt-id")
     preflight.add_argument("--source-revision")
@@ -236,6 +237,7 @@ def main(argv: list[str] | None = None) -> int:
     add_formal_scope(preflight)
     preflight_worker = sub.add_parser("_hardware-preflight-worker")
     preflight_worker.add_argument("--model", required=True)
+    preflight_worker.add_argument("--run-id")
     preflight_worker.add_argument("--preflight-root")
     preflight_worker.add_argument("--preflight-attempt-id")
     preflight_worker.add_argument("--source-revision")
@@ -387,7 +389,7 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "e5-reference-a8":
             reference = create_a8_reference(args.output_path, training_profile=args.training_profile)
             print(json.dumps(reference, ensure_ascii=False, indent=2))
-            return 0 if reference.get("status") == "VALID" else 4
+            return 0 if reference.get("status") == "READY" else 4
         if args.command == "hardware-preflight":
             return launch_preflight(
                 args.model,
@@ -395,6 +397,7 @@ def main(argv: list[str] | None = None) -> int:
                 experiment_profile=args.experiment_profile,
                 training_profile=args.training_profile,
                 formal_scope_id=args.formal_scope_id,
+                run_id=args.run_id,
                 source_revision=args.source_revision,
                 attempt_id=args.preflight_attempt_id,
             )
@@ -405,6 +408,7 @@ def main(argv: list[str] | None = None) -> int:
                 experiment_profile=args.experiment_profile,
                 training_profile=args.training_profile,
                 formal_scope_id=args.formal_scope_id,
+                run_id=args.run_id,
                 source_revision=args.source_revision,
                 attempt_id=args.preflight_attempt_id,
             )

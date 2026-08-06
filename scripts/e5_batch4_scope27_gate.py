@@ -2,9 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
-import math
 import os
-import socket
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -18,7 +16,19 @@ if str(SOURCE_ROOT) not in sys.path: sys.path.insert(0, str(SOURCE_ROOT))
 if str(PROJECT_ROOT) not in sys.path: sys.path.insert(0, str(PROJECT_ROOT))
 
 from benchmark_v2.artifacts import atomic_write_json
+from benchmark_v2.experiments.e5_common_loss.a8_reference import validate_a8_reference
 from benchmark_v2.experiments.e5_common_loss.contracts import NONTRAINABLE_MODELS, TRAINABLE_MODELS
+from benchmark_v2.experiments.e5_common_loss.readiness import (
+    build_readiness as build_common_readiness,
+    inspect_benchmark_run,
+)
+from benchmark_v2.process_lock import (
+    ProcessLockError,
+    acquire_lock as acquire_process_lock,
+    clear_stale_lock as clear_process_stale_lock,
+    lock_status as process_lock_status,
+    release_lock as release_process_lock,
+)
 from st_mgprompt.a8_batch4_contract import A8_REFERENCE_ID
 
 
@@ -73,6 +83,11 @@ def validate_manifest(manifest: Mapping[str, Any], run_map: Mapping[str, Any] | 
     if len(set(ids)) != 27 or len(set(run_ids)) != 27: reasons.append("DUPLICATE_MODEL_OR_RUN_ID")
     if {"segrnn", "msgnet"} & set(ids): reasons.append("EXCLUDED_MODEL_PRESENT")
     if any(row.get("loss_id") != "masked_score_aligned_hybrid" for row in entries): reasons.append("LOSS_CONFLICT")
+    if manifest.get("training_profile_id") != "uniform_train_batch4_v1": reasons.append("TRAINING_PROFILE_CONFLICT")
+    benchmark = [row for row in entries if row.get("entry_type") != "REFERENCE_ONLY_FORMAL_A8"]
+    if any(not str(row.get("e5_run_id", "")).endswith("_bs4_seed2026") for row in benchmark): reasons.append("NON_BATCH4_RUN_ID")
+    references = [row for row in entries if row.get("entry_type") == "REFERENCE_ONLY_FORMAL_A8"]
+    if len(references) != 1 or references[0].get("e5_run_id") != A8_REFERENCE_ID: reasons.append("A8_REFERENCE_ID_CONFLICT")
     selected = dict(run_map or _load_run_map()); mapped = {row.get("model_id"): row.get("e5_run_id") or row.get("run_id") for row in selected.get("entries", [])}
     if mapped and any(mapped.get(row["model_id"]) != (row.get("e5_run_id") or row.get("run_id")) for row in entries): reasons.append("RUN_MAP_CONFLICT")
     if reasons: raise ScopeGateError(f"E5 manifest invalid: {reasons}")
@@ -85,33 +100,6 @@ def compute_e5_freeze(manifest: Mapping[str, Any], *, run_map: Mapping[str, Any]
     return {"schema_version": "e5_scope27_explicit_snapshot_v2", "scope_id": E5_SCOPE_ID, "protocol_version": manifest.get("schema_version"), "batch": 4, "seed": 2026, "lookback": 144, "max_pred_len": 10, "eval_horizons": [3, 6, 10], "loss_id": "masked_score_aligned_hybrid", "counts": {"trainable": 24, "evaluate_only": 2, "a8_reference": 1, "total": 27}, "entries": entries}
 
 
-def _finite(value: Any) -> bool: return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(float(value))
-
-
-def _metric_payloads(paths: list[Path]) -> tuple[dict[int, dict[str, Any]], list[str]]:
-    payloads, reasons = {}, []
-    for path, horizon in zip(paths, HORIZONS):
-        try: payload = load_json(path)
-        except FileNotFoundError: reasons.append(f"MISSING:{path.name}"); continue
-        except (OSError, ValueError): reasons.append(f"INVALID:{path.name}"); continue
-        if not isinstance(payload, dict): reasons.append(f"INVALID:{path.name}"); continue
-        payloads[horizon] = payload
-        if payload.get("horizon") != horizon: reasons.append(f"HORIZON_CONFLICT:{horizon}")
-        for key in ("MAE", "RMSE", "R2", "Score"):
-            if not _finite(payload.get(key)): reasons.append(f"NONFINITE:H{horizon}:{key}")
-        count = payload.get("valid_target_count", payload.get("ValidCount"))
-        if not _finite(count) or float(count) <= 0: reasons.append(f"INVALID_COUNT:H{horizon}")
-    return payloads, reasons
-
-
-def _loadable_checkpoint(path: Path) -> bool:
-    if not path.is_file() or path.stat().st_size <= 0: return False
-    try:
-        import torch
-        torch.load(path, map_location="cpu", weights_only=False); return True
-    except Exception: return False
-
-
 def _entry(manifest: Mapping[str, Any], model_id: str) -> Mapping[str, Any]:
     for row in manifest["entries"]:
         if row.get("model_id") == model_id: return row
@@ -121,21 +109,7 @@ def _entry(manifest: Mapping[str, Any], model_id: str) -> Mapping[str, Any]:
 def inspect_run(manifest: Mapping[str, Any], entry: Mapping[str, Any], output_root: Path, **_: Any) -> dict[str, Any]:
     if entry["model_id"] == "st_mgprompt_a8": return inspect_a8()
     run_id = entry.get("e5_run_id") or entry.get("run_id"); run_dir = output_root / str(run_id)
-    if not run_dir.is_dir(): return {"model_id": entry["model_id"], "run_id": run_id, "run_dir": str(run_dir), "status": "RUN_MISSING", "ready": False, "reasons": ["RUN_MISSING"], "explicit_config_conflicts": []}
-    try: status = load_json(run_dir / "run_status.json")
-    except (OSError, ValueError): status = {}
-    try: effective = load_json(run_dir / "effective_config.json")
-    except (OSError, ValueError): effective = {}
-    expected = {"model_id": entry["model_id"], "run_id": run_id, "scope_id": E5_SCOPE_ID, "loss_id": "masked_score_aligned_hybrid", "training_batch_profile_id": "uniform_train_batch4_v1"}
-    conflicts = [key for key, value in expected.items() if key in effective and effective.get(key) != value]
-    _, metric_reasons = _metric_payloads([run_dir / f"metrics_eval_h{h}.json" for h in HORIZONS])
-    completed = status.get("status") == "COMPLETED" and status.get("exit_code") == 0
-    checkpoint_loadable = True if entry["entry_type"] == "EVALUATE_ONLY_COMMON_LOSS_DIAGNOSTIC" else _loadable_checkpoint(run_dir / "best_checkpoint.pt")
-    reasons = list(metric_reasons)
-    if not completed: reasons.append("NOT_COMPLETED")
-    if not checkpoint_loadable: reasons.append("CHECKPOINT_NOT_LOADABLE")
-    if conflicts: reasons.append("EXPLICIT_CONFIG_CONFLICT")
-    return {"model_id": entry["model_id"], "run_id": run_id, "run_dir": str(run_dir), "status": "COMPLETED" if not reasons else str(status.get("status") or "INCOMPLETE"), "ready": not reasons, "reasons": reasons, "explicit_config_conflicts": conflicts, "metrics_complete": not metric_reasons, "checkpoint_loadable": checkpoint_loadable, "pid": status.get("pid"), "process_start_time": status.get("process_start_time")}
+    return inspect_benchmark_run(entry, run_dir)
 
 
 def inspect_trainable_run(manifest: Mapping[str, Any], entry: Mapping[str, Any], output_root: Path, **kwargs: Any) -> dict[str, Any]: return inspect_run(manifest, entry, output_root, **kwargs)
@@ -143,14 +117,16 @@ def inspect_evaluate_only_run(manifest: Mapping[str, Any], entry: Mapping[str, A
 
 
 def inspect_a8() -> dict[str, Any]:
-    from scripts import st_mgprompt_a8_batch4_gate as a8_gate
-    inspected = a8_gate.inspect_a8_artifact()
-    return {"model_id": "st_mgprompt_a8", "run_id": A8_REFERENCE_ID, "entry_type": "REFERENCE_ONLY_FORMAL_A8", "status": "COMPLETED" if inspected.get("ready") else inspected.get("status"), "ready": bool(inspected.get("ready")), "reasons": inspected.get("reasons", []), "metrics_complete": inspected.get("metrics_complete"), "checkpoint_loadable": inspected.get("checkpoint_loadable"), "explicit_config_conflicts": inspected.get("explicit_config_conflicts", [])}
+    reference = validate_a8_reference()
+    ready = reference["status"] == "READY"
+    return {"model_id": "st_mgprompt_a8", "run_id": A8_REFERENCE_ID, "entry_type": "REFERENCE_ONLY_FORMAL_A8", "status": "COMPLETED" if ready else "NOT_READY", "ready": ready, "reasons": [] if ready else [*reference["metrics_validation_reasons"], "A8_REFERENCE_NOT_READY"], "metrics_complete": reference["metrics_complete"], "checkpoint_loadable": reference["checkpoint_loadable"], "explicit_config_conflicts": reference["config_conflicts"], "reference": reference}
 
 
 def _pid_alive(pid: int) -> bool:
-    try: os.kill(pid, 0); return pid > 0
-    except OSError: return False
+    try:
+        import psutil
+        return pid > 0 and psutil.pid_exists(pid) and psutil.Process(pid).is_running()
+    except Exception: return False
 
 
 def _process_start_time(pid: int) -> float | None:
@@ -161,21 +137,19 @@ def _process_start_time(pid: int) -> float | None:
 
 
 def lock_status(path: Path = LOCK_PATH) -> dict[str, Any]:
-    if not path.is_file(): return {"status": "ABSENT", "path": str(path)}
-    try: payload = load_json(path)
-    except (OSError, ValueError): return {"status": "MALFORMED", "path": str(path)}
-    required = {"scope_id", "hostname", "pid", "process_start_time", "created_at"}
-    if not isinstance(payload, dict) or not required.issubset(payload): return {"status": "MALFORMED", "path": str(path)}
-    if payload["hostname"] != socket.gethostname() or not _pid_alive(int(payload["pid"])): return {"status": "STALE", "path": str(path), "owner": payload}
-    actual = _process_start_time(int(payload["pid"]))
-    if actual is not None and abs(actual - float(payload["process_start_time"])) >= 1: return {"status": "STALE", "path": str(path), "owner": payload}
-    return {"status": "ACTIVE", "path": str(path), "owner": payload}
+    return process_lock_status(path, scope_id=E5_SCOPE_ID)
+
+
+def acquire_lock(path: Path = LOCK_PATH) -> dict[str, Any]:
+    return acquire_process_lock(path, scope_id=E5_SCOPE_ID)
+
+
+def release_lock(owner: Mapping[str, Any], path: Path = LOCK_PATH) -> bool:
+    return release_process_lock(path, owner=owner)
 
 
 def clear_stale_lock(path: Path = LOCK_PATH) -> dict[str, Any]:
-    status = lock_status(path)
-    if status["status"] == "STALE": path.unlink(); return {"status": "CLEARED", "path": str(path)}
-    return status
+    return clear_process_stale_lock(path, scope_id=E5_SCOPE_ID)
 
 
 def _active_worker(run_dir: Path, inspected: Mapping[str, Any]) -> bool:
@@ -187,6 +161,8 @@ def _active_worker(run_dir: Path, inspected: Mapping[str, Any]) -> bool:
 
 
 def _plan_action(entry: Mapping[str, Any], inspected: Mapping[str, Any]) -> str:
+    if entry.get("entry_type") == "REFERENCE_ONLY_FORMAL_A8":
+        return "SKIP_COMPLETED" if inspected.get("ready") else "BLOCK_A8_REFERENCE_NOT_READY"
     if inspected.get("status") == "RUN_MISSING": return "RUN_MISSING"
     if inspected.get("explicit_config_conflicts"): return "BLOCK_EXPLICIT_CONFIG_CONFLICT"
     if inspected.get("ready"): return "SKIP_COMPLETED"
@@ -227,15 +203,20 @@ def run_preflight_suite(manifest: Mapping[str, Any], *, preflight_root: Path,
             code = launch_preflight(entry["model_id"], root=preflight_root,
                                     experiment_profile="e5_common_loss_v1",
                                     training_profile="uniform_train_batch4_v1",
-                                    formal_scope_id=E5_SCOPE_ID, runner=child_runner)
-        passed = code == 0 and read_matching_pass(
+                                    formal_scope_id=E5_SCOPE_ID,
+                                    run_id=entry["e5_run_id"], runner=child_runner)
+        matched = read_matching_pass(
             entry["model_id"], root=preflight_root, experiment_profile="e5_common_loss_v1",
-            training_profile="uniform_train_batch4_v1", formal_scope_id=E5_SCOPE_ID) is not None
+            training_profile="uniform_train_batch4_v1", formal_scope_id=E5_SCOPE_ID,
+            run_id=entry["e5_run_id"])
+        passed = code == 0 and matched is not None
         results.append({"status": "PASS" if passed else "FAILED", "scope_id": E5_SCOPE_ID,
                         "model_id": entry["model_id"], "run_id": entry["e5_run_id"],
-                        "batch_size": 4, "precision": entry.get("precision_identity"), "device": "cuda",
-                        "forward_pass": passed, "backward_pass": passed, "finite": passed,
-                        "output_shape": [4, 134, 10], "created_at": utc_now(),
+                        "batch_size": 4, "precision": None if matched is None else matched.get("precision"), "device": "cuda",
+                        "forward_pass": False if matched is None else matched.get("forward_pass"),
+                        "backward_pass": False if matched is None else matched.get("backward_pass"),
+                        "finite": False if matched is None else matched.get("finite"),
+                        "output_shape": None if matched is None else matched.get("output_shape"), "created_at": utc_now(),
                         "exit_code": int(code), "log_path": str(log_path)})
     passed_count = sum(row["status"] == "PASS" for row in results)
     payload = {"schema_version": "e5_scope27_preflight_run_v2",
@@ -261,9 +242,14 @@ def _run_command(entry: Mapping[str, Any], *, input_path: str | None,
 
 
 def run_scope(manifest: Mapping[str, Any], *, input_path: str | None, target_path: str | None,
-              log_root: Path, preflight_root: Path) -> tuple[int, dict[str, Any]]:
+              log_root: Path, preflight_root: Path,
+              suite_report_path: Path | None = None,
+              runner: Any = subprocess.run) -> tuple[int, dict[str, Any]]:
+    state = lock_status()
+    if state["status"] != "ABSENT":
+        return 74, {"status": f"LOCK_{state['status']}", "scope_id": E5_SCOPE_ID, "lock": state}
     plan = build_plan(manifest, EXPECTED_OUTPUT_ROOT)
-    blocked = [row for row in plan["entries"] if row["action"] in {"BLOCK_EXPLICIT_CONFIG_CONFLICT", "BLOCK_ACTIVE_PROCESS"}]
+    blocked = [row for row in plan["entries"] if row["action"] in {"BLOCK_EXPLICIT_CONFIG_CONFLICT", "BLOCK_ACTIVE_PROCESS", "BLOCK_A8_REFERENCE_NOT_READY"}]
     if blocked: return 74, {"status": "BLOCKED", "scope_id": E5_SCOPE_ID, "entries": blocked}
     a8 = inspect_a8()
     if not a8.get("ready"): return 74, {"status": "A8_PREREQUISITE_NOT_READY", "a8": a8}
@@ -273,37 +259,99 @@ def run_scope(manifest: Mapping[str, Any], *, input_path: str | None, target_pat
                and read_matching_pass(entry["model_id"], root=preflight_root,
                                       experiment_profile="e5_common_loss_v1",
                                       training_profile="uniform_train_batch4_v1",
-                                      formal_scope_id=E5_SCOPE_ID) is None]
+                                      formal_scope_id=E5_SCOPE_ID,
+                                      run_id=entry["e5_run_id"]) is None]
     if missing: return 74, {"status": "PREFLIGHT_MISSING", "scope_id": E5_SCOPE_ID, "models": missing}
-    log_root.mkdir(parents=True, exist_ok=True); results = []
-    for entry, row in zip(manifest["entries"], plan["entries"]):
-        if entry["model_id"] == "st_mgprompt_a8":
-            results.append({"model_id": entry["model_id"], "run_id": A8_REFERENCE_ID, "status": "REFERENCE_READY", "exit_code": 0}); continue
-        if row["action"] == "SKIP_COMPLETED":
-            results.append({"model_id": entry["model_id"], "run_id": entry.get("e5_run_id"), "status": "SKIP_COMPLETED", "exit_code": 0}); continue
-        if row["action"] == "ARCHIVE_AND_RUN": archive_or_quarantine(manifest, entry, EXPECTED_OUTPUT_ROOT, apply=True)
-        command = _run_command(entry, input_path=input_path, target_path=target_path, preflight_root=preflight_root)
-        log_path = log_root / f"{int(entry['ordinal']):02d}_{entry['model_id']}.log"
-        with log_path.open("w", encoding="utf-8", newline="") as handle:
-            completed = subprocess.run(command, cwd=str(PROJECT_ROOT),
+    try:
+        owner = acquire_lock()
+    except ProcessLockError:
+        raced = lock_status()
+        return 74, {"status": f"LOCK_{raced['status']}", "scope_id": E5_SCOPE_ID, "lock": raced}
+    results = []
+    try:
+        log_root.mkdir(parents=True, exist_ok=True)
+        for entry, row in zip(manifest["entries"], plan["entries"]):
+            if entry["model_id"] == "st_mgprompt_a8":
+                results.append({"model_id": entry["model_id"], "run_id": A8_REFERENCE_ID, "status": "REFERENCE_READY", "exit_code": 0})
+                continue
+            if row["action"] == "SKIP_COMPLETED":
+                results.append({"model_id": entry["model_id"], "run_id": entry.get("e5_run_id"), "status": "SKIP_COMPLETED", "exit_code": 0})
+                continue
+            log_path = log_root / f"{int(entry['ordinal']):02d}_{entry['model_id']}.log"
+            try:
+                if row["action"] == "ARCHIVE_AND_RUN":
+                    archive_or_quarantine(manifest, entry, EXPECTED_OUTPUT_ROOT, apply=True)
+                command = _run_command(entry, input_path=input_path, target_path=target_path, preflight_root=preflight_root)
+                with log_path.open("w", encoding="utf-8", newline="") as handle:
+                    completed = runner(command, cwd=str(PROJECT_ROOT),
                                        env={**os.environ, "PYTHONPATH": str(SOURCE_ROOT)},
                                        stdout=handle, stderr=subprocess.STDOUT, check=False)
-        results.append({"model_id": entry["model_id"], "run_id": entry.get("e5_run_id"),
-                        "status": "COMPLETED" if completed.returncode == 0 else "FAILED",
-                        "exit_code": int(completed.returncode), "log_path": str(log_path)})
-    readiness = build_readiness(manifest, EXPECTED_OUTPUT_ROOT)
-    code = 0 if all(row["exit_code"] == 0 for row in results) and readiness["status"] == "READY" else 1
-    return code, {"status": "COMPLETED" if code == 0 else "COMPLETED_WITH_FAILURES",
-                  "scope_id": E5_SCOPE_ID, "entries": results, "readiness": readiness}
+                exit_code = int(completed.returncode)
+                results.append({"model_id": entry["model_id"], "run_id": entry.get("e5_run_id"),
+                                "status": "COMPLETED" if exit_code == 0 else "FAILED",
+                                "exit_code": exit_code, "log_path": str(log_path)})
+            except Exception as exc:
+                results.append({"model_id": entry["model_id"], "run_id": entry.get("e5_run_id"),
+                                "status": "FAILED", "exit_code": 1,
+                                "error_type": type(exc).__name__, "error_message": str(exc),
+                                "log_path": str(log_path)})
+        readiness = build_readiness(manifest, EXPECTED_OUTPUT_ROOT)
+        code = 0 if len(results) == 27 and all(row["exit_code"] == 0 for row in results) and readiness["status"] == "READY" else 1
+        payload = {"schema_version": "e5_scope27_suite_report_v1",
+                   "status": "COMPLETED" if code == 0 else "COMPLETED_WITH_FAILURES",
+                   "scope_id": E5_SCOPE_ID, "entry_count": len(results),
+                   "entries": results, "readiness": readiness}
+        atomic_write_json(suite_report_path or AUDIT_ROOT / "e5_scope27_suite_report.json", payload)
+        return code, payload
+    finally:
+        release_lock(owner)
 
 
-def build_readiness(manifest: Mapping[str, Any], output_root: Path, **_: Any) -> dict[str, Any]:
-    plan = build_plan(manifest, output_root); ready = sum(row.get("ready", False) for row in plan["entries"])
-    return {"schema_version": "e5_scope27_readiness_v2", "scope_id": E5_SCOPE_ID, "status": "READY" if ready == 27 else "NOT_READY", "ready_entries": ready, "expected_entries": 27, "counts": plan["counts"], "entries": plan["entries"]}
+def build_readiness(manifest: Mapping[str, Any], output_root: Path, **kwargs: Any) -> dict[str, Any]:
+    validate_manifest(manifest)
+    options: dict[str, Any] = {}
+    if kwargs.get("a8_run_root") is not None:
+        options["a8_run_root"] = kwargs["a8_run_root"]
+    return build_common_readiness(
+        manifest=manifest,
+        output_root=output_root,
+        training_profile="uniform_train_batch4_v1",
+        a8_reference_path=kwargs.get("a8_reference_path") or (
+            AUDIT_ROOT / "E5_A8_BATCH4_REFERENCE.json"
+        ),
+        **options,
+    )
+
+
+def write_readiness_outputs(report: Mapping[str, Any], report_path: Path, evidence_path: Path) -> None:
+    atomic_write_json(report_path, dict(report))
+    atomic_write_json(evidence_path, dict(report))
+
+
+def aggregate(manifest: Mapping[str, Any], output_root: Path, *, require_complete: bool,
+              report_path: Path, evidence_path: Path) -> dict[str, Any]:
+    readiness = build_readiness(manifest, output_root)
+    write_readiness_outputs(readiness, report_path, evidence_path)
+    if readiness["status"] != "READY":
+        raise ScopeGateError(f"E5_RESULT_NOT_READY:{readiness['ready_entries']}/27")
+    from benchmark_v2.experiments.e5_common_loss.aggregation import aggregate as aggregate_results
+
+    return aggregate_results(
+        output_root=output_root,
+        require_complete=require_complete,
+        training_profile="uniform_train_batch4_v1",
+        manifest=manifest,
+        a8_reference_path=AUDIT_ROOT / "E5_A8_BATCH4_REFERENCE.json",
+    )
 
 
 def archive_or_quarantine(manifest: Mapping[str, Any], entry: Mapping[str, Any], output_root: Path, *, apply: bool = False, kind: str = ARCHIVE_DIRECTORY, **_: Any) -> dict[str, Any]:
+    if entry.get("entry_type") == "REFERENCE_ONLY_FORMAL_A8":
+        raise ScopeGateError("A8 reference is read-only and cannot be archived.")
     run_id = entry.get("e5_run_id") or entry.get("run_id"); source = output_root / str(run_id); target = output_root / kind / f"{run_id}__{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}"
+    inspected = inspect_benchmark_run(entry, source)
+    if _active_worker(source, inspected):
+        raise ScopeGateError("BLOCK_ACTIVE_PROCESS: active run directory cannot be archived.")
     files = [path for path in source.rglob("*") if path.is_file()] if source.is_dir() else []
     result = {"schema_version": "e5_archive_receipt_v2", "scope_id": E5_SCOPE_ID, "model_id": entry["model_id"], "run_id": run_id, "action": kind, "source": str(source), "target": str(target), "status": "PREVIEW", "started_at": utc_now(), "finished_at": None, "exit_code": None, "file_count": len(files), "total_size_bytes": sum(path.stat().st_size for path in files), "message": "Existing attempt will be preserved."}
     if apply and source.is_dir(): target.parent.mkdir(parents=True, exist_ok=True); os.replace(source, target); result.update({"status": "COMPLETED", "finished_at": utc_now(), "exit_code": 0})
@@ -320,7 +368,7 @@ def _parser() -> argparse.ArgumentParser:
         if name in {"plan-runs", "dry-run", "static-audit", "readiness", "inventory"}: item.add_argument("--output-root", default=str(EXPECTED_OUTPUT_ROOT))
     clear = sub.add_parser("clear-stale-lock"); clear.add_argument("--lock-path", default=str(LOCK_PATH))
     preflight = sub.add_parser("preflight"); preflight.add_argument("--preflight-root", default=str(AUDIT_ROOT / "preflight")); preflight.add_argument("--source-revision"); preflight.add_argument("--report-path", default=str(AUDIT_ROOT / "e5_scope27_preflight_summary.json")); preflight.add_argument("--child-log-root", default=str(AUDIT_ROOT / "preflight/child_logs"))
-    run = sub.add_parser("run"); run.add_argument("--input-path"); run.add_argument("--target-path"); run.add_argument("--log-root", default=str(AUDIT_ROOT / "runs")); run.add_argument("--preflight-root", default=str(AUDIT_ROOT / "preflight")); run.add_argument("--source-revision")
+    run = sub.add_parser("run"); run.add_argument("--input-path"); run.add_argument("--target-path"); run.add_argument("--log-root", default=str(AUDIT_ROOT / "runs")); run.add_argument("--preflight-root", default=str(AUDIT_ROOT / "preflight")); run.add_argument("--suite-report-path", default=str(AUDIT_ROOT / "e5_scope27_suite_report.json")); run.add_argument("--source-revision")
     aggregate_parser = sub.add_parser("aggregate"); aggregate_parser.add_argument("--output-root", default=str(EXPECTED_OUTPUT_ROOT)); aggregate_parser.add_argument("--report-path", default=str(AUDIT_ROOT / "e5_scope27_readiness.json")); aggregate_parser.add_argument("--evidence-path", default=str(AUDIT_ROOT / "e5_scope27_evidence.json")); aggregate_parser.add_argument("--require-complete", action="store_true")
     for name in ("readiness", "inventory"):
         sub.choices[name].add_argument("--report-path")
@@ -342,10 +390,9 @@ def main(argv: list[str] | None = None) -> int:
         elif args.command == "preflight":
             code, result = run_preflight_suite(manifest, preflight_root=Path(args.preflight_root), report_path=Path(args.report_path), child_log_root=Path(args.child_log_root)); print(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False)); return code
         elif args.command == "run":
-            code, result = run_scope(manifest, input_path=args.input_path, target_path=args.target_path, log_root=Path(args.log_root), preflight_root=Path(args.preflight_root)); print(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False)); return code
+            code, result = run_scope(manifest, input_path=args.input_path, target_path=args.target_path, log_root=Path(args.log_root), preflight_root=Path(args.preflight_root), suite_report_path=Path(args.suite_report_path)); print(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False)); return code
         elif args.command == "aggregate":
-            from benchmark_v2.experiments.e5_common_loss.aggregation import aggregate
-            result = aggregate(output_root=Path(args.output_root), require_complete=args.require_complete)
+            result = aggregate(manifest, Path(args.output_root), require_complete=args.require_complete, report_path=Path(args.report_path), evidence_path=Path(args.evidence_path))
         else: raise ScopeGateError(f"Unsupported command: {args.command}")
         if args.command in {"readiness", "inventory"} and args.report_path: atomic_write_json(Path(args.report_path), result)
         if args.command == "readiness" and args.evidence_path: atomic_write_json(Path(args.evidence_path), result)

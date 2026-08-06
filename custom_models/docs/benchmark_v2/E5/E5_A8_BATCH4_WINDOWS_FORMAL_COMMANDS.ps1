@@ -58,14 +58,14 @@ switch ($Action) {
     'StaticAudit' {
         $contract = Invoke-A8Gate -Label 'validate-contract' -Arguments @('validate-contract') -AllowedExitCodes @(0, 74)
         $lock = Invoke-A8Gate -Label 'lock-status' -Arguments @('lock-status') -AllowedExitCodes @(0, 74)
-        if ($null -eq $lock.Json -or [string]$lock.Json.status -ne 'ABSENT') { throw "A8 lock is not ABSENT: $($lock.Json.status)" }
+        if ($null -eq $lock.Json -or [string]$lock.Json.status -ne 'ABSENT') { throw "A8 lock must be ABSENT before launch; ACTIVE/MALFORMED fail closed and STALE requires explicit ClearStaleLock: $($lock.Json.status)" }
         $freeze = Invoke-A8Gate -Label 'freeze-plan' -Arguments @('freeze-plan')
         $plan = Invoke-A8Gate -Label 'preflight-plan' -Arguments @('preflight-plan')
         $dry = Invoke-A8Gate -Label 'dry-run' -Arguments @('dry-run') -AllowedExitCodes @(0, 74)
         $ready = Invoke-A8Gate -Label 'readiness' -Arguments @('readiness', '--report-path', $ReadinessPath, '--reference-path', $ReferencePath) -AllowedExitCodes @(0, 4) -ReportPath $ReadinessPath
         Write-Host "A8 static status=$($ready.Json.status); no GPU preflight or training was started."
         if ($contract.ExitCode -ne 0) { exit 74 }
-        if ($ready.Json.status -eq 'READY_A8_BATCH4_PREREQUISITE') { exit 0 }
+        if ($ready.Json.status -eq 'READY') { exit 0 }
         exit 4
     }
     'Preflight' {
@@ -74,14 +74,15 @@ switch ($Action) {
     }
     'Run' {
         $args = @('run', '--input-path', $InputPath, '--target-path', $TargetPath, '--log-root', (Join-Path $AuditRoot 'formal'))
-        $null = Invoke-A8Gate -Label 'run' -Arguments $args
+        $result = Invoke-A8Gate -Label 'run' -Arguments $args
+        if ($null -eq $result.Json -or $result.Json.status -ne 'COMPLETED' -or $result.Json.readiness.status -ne 'READY') { throw 'A8 run post-acceptance did not reach READY.' }
     }
     'Readiness' {
         $result = Invoke-A8Gate -Label 'readiness' -Arguments @('readiness', '--report-path', $ReadinessPath, '--reference-path', $ReferencePath) -AllowedExitCodes @(0, 4) -ReportPath $ReadinessPath
-        if ($result.Json.status -ne 'READY_A8_BATCH4_PREREQUISITE') { exit 4 }
+        if ($result.Json.status -ne 'READY') { exit 4 }
     }
     'QuarantineExisting' {
-        $args = @('quarantine-existing', '--model', 'st_mgprompt_a8')
+        $args = @('quarantine-existing')
         if ($Apply) { $args += '--apply' }
         $null = Invoke-A8Gate -Label 'quarantine-existing' -Arguments $args -AllowedExitCodes @(0, 74)
     }

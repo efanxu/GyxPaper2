@@ -3,14 +3,15 @@ from __future__ import annotations
 import csv
 import json
 from pathlib import Path
-from typing import Any
+from typing import Any, Mapping
 
 from ...artifacts import atomic_write_json
 from ...runtime import PROJECT_ROOT
 from ...training_profiles import batch_identity
+from .a8_reference import A8_RUN_ROOT, A8_RUNTIME_REFERENCE_PATH
 from .contracts import FORMAL_OUTPUT_ROOT_RELATIVE
-from .readiness import build_readiness
-from .variant_manifest import build_variant_manifest
+from .readiness import build_readiness, load_scope27_manifest
+from .scope27_contract import TRAINING_PROFILE_ID
 
 
 def _load(path: Path) -> Any:
@@ -21,30 +22,35 @@ def aggregate(
     *,
     output_root: str | Path | None = None,
     require_complete: bool = True,
-    training_profile: str | None = None,
+    training_profile: str = TRAINING_PROFILE_ID,
+    manifest: Mapping[str, Any] | str | Path | None = None,
+    a8_reference_path: str | Path = A8_RUNTIME_REFERENCE_PATH,
+    a8_run_root: str | Path = A8_RUN_ROOT,
     legacy_scope29: bool = False,
 ) -> dict[str, Any]:
     del legacy_scope29
     if not require_complete:
         raise ValueError("E5 final aggregation requires --require-complete")
+    if training_profile != TRAINING_PROFILE_ID:
+        raise ValueError("E5 scope27 aggregation requires uniform_train_batch4_v1.")
+    selected_manifest = load_scope27_manifest(manifest)
     root = Path(output_root or (PROJECT_ROOT / FORMAL_OUTPUT_ROOT_RELATIVE))
     readiness = build_readiness(
         output_root=root,
         training_profile=training_profile,
+        manifest=selected_manifest,
+        a8_reference_path=a8_reference_path,
+        a8_run_root=a8_run_root,
     )
     if readiness["status"] != "READY":
         raise RuntimeError(
             f"E5_RESULT_NOT_READY: {readiness['ready_entries']}/27 entries ready"
         )
-    manifest = build_variant_manifest(training_profile=training_profile)
     rows = []
-    for entry in manifest["entries"]:
+    readiness_by_id = {row["entry_id"]: row for row in readiness["entries"]}
+    for entry in selected_manifest["entries"]:
         if entry["entry_type"] == "REFERENCE_ONLY_FORMAL_A8":
-            from .a8_reference import validate_a8_reference
-
-            reference = validate_a8_reference(
-                training_profile=training_profile
-            )
+            reference = readiness_by_id[entry["entry_id"]]["reference"]
             metrics_paths = [Path(path) for path in reference["source_metrics_paths"]]
             effective = _load(Path(reference["source_config_path"]))
             run_status = {"status": "REFERENCE_ONLY"}
@@ -53,13 +59,19 @@ def aggregate(
             metrics_paths = [run_dir / f"metrics_eval_h{h}.json" for h in (3, 6, 10)]
             effective = _load(run_dir / "effective_config.json")
             run_status = _load(run_dir / "run_status.json")
+        training_mode = entry.get("training_mode") or {
+            "TRAIN_COMMON_LOSS": "TRAIN",
+            "EVALUATE_ONLY_COMMON_LOSS_DIAGNOSTIC": "EVALUATE_ONLY",
+            "REFERENCE_ONLY_FORMAL_A8": "REFERENCE_ONLY",
+        }[entry["entry_type"]]
         metrics = {int(_load(path)["horizon"]): _load(path) for path in metrics_paths}
         row = {
             "model": entry["display_name"],
             "model_id": entry["model_id"],
+            "run_id": entry["e5_run_id"],
             "category": entry.get("category"),
             "entry_type": entry["entry_type"],
-            "training_mode": entry["training_mode"],
+            "training_mode": training_mode,
             "loss_id": entry["loss_id"],
             "training_loss": entry.get("training_loss", entry["loss_id"]),
             "common_loss_evaluation_applied": entry.get(

@@ -13,7 +13,7 @@ A8_RUN_ID = "component_ablation_a8_bs4_seed2026"
 A8_OUTPUT_ROOT = "custom_models/results/st_mgprompt_uniform_bs4"
 A8_RUN_RELATIVE_PATH = f"{A8_OUTPUT_ROOT}/{A8_RUN_ID}/STMGPrompt_ComponentAblation"
 A8_REFERENCE_ID = "STMGPrompt_A8_loss_msa_hybrid_bs4_seed2026_reference"
-A8_REFERENCE_RELATIVE_PATH = "custom_models/docs/benchmark_v2/E5/E5_A8_REFERENCE.json"
+A8_REFERENCE_RELATIVE_PATH = "custom_models/logs/uniform_bs4/audit/e5_scope27/E5_A8_BATCH4_REFERENCE.json"
 TRAINING_ROLE = "E5_BATCH4_PREREQUISITE"
 TRAINING_PROFILE_ID = "uniform_train_batch4_v1"
 LOSS_ID = "masked_score_aligned_hybrid"
@@ -32,12 +32,14 @@ DATA_STRIDES = {"train": 6, "val": 3, "test": 1}
 
 EXPECTED_CONFIG = {
     "scope_id": A8_SCOPE_ID, "model_id": A8_MODEL_ID, "run_id": A8_RUN_ID,
-    "component_ablation": A8_VARIANT, "definition": A8_DEFINITION,
-    "training_profile": TRAINING_PROFILE_ID, "train_batch_size": 4,
+    "component_ablation": A8_VARIANT, "variant": A8_VARIANT,
+    "definition": A8_DEFINITION,
+    "training_batch_profile_id": TRAINING_PROFILE_ID, "train_batch_size": 4,
     "val_batch_size": 4, "test_batch_size": 4,
     "gradient_accumulation_steps": 1, "seed": 2026, "lookback": 144,
     "max_pred_len": 10, "loss_function": LOSS_ID,
-    "precision_policy": PRECISION_POLICY, "formal_training": True,
+    "precision_policy": PRECISION_POLICY, "amp_enabled": False,
+    "formal_training": True,
 }
 
 

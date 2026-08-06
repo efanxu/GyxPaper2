@@ -2,7 +2,7 @@
   "a8_reference_identity": {
     "checkpoint_copied": false,
     "definition": "w/o MS-MG-DWU",
-    "expected_formal_status": "READY_A8_BATCH4_PREREQUISITE",
+    "expected_formal_status": "READY",
     "loss_id": "masked_score_aligned_hybrid",
     "metrics_copied": false,
     "read_only": true,
@@ -668,7 +668,7 @@
       "e5_run_id": "STMGPrompt_A8_loss_msa_hybrid_bs4_seed2026_reference",
       "entry_id": "STMGPrompt_A8_loss_msa_hybrid_bs4_seed2026_reference",
       "entry_type": "REFERENCE_ONLY_FORMAL_A8",
-      "expected_formal_status": "READY_A8_BATCH4_PREREQUISITE",
+      "expected_formal_status": "READY",
       "expected_output_root": null,
       "loss_id": "masked_score_aligned_hybrid",
       "metrics_copied": false,
