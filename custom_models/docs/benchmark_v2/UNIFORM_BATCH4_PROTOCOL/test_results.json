@@ -22,11 +22,11 @@
     }
   ],
   "coverage": [
-    "profile schema/hash/allowlist/fixed batches",
+    "profile schema/record/allowlist/fixed batches",
     "DataLoader batch4 and unchanged sample collection",
     "gradient accumulation/effective batch",
     "initialization/forward/optimizer param-group invariance",
-    "preflight identity mismatch rejection for batch32/16/8 and hashes",
+    "preflight identity mismatch rejection for batch32/16/8 and records",
     "artifact/checkpoint batch identity",
     "readiness/aggregation mixed-batch rejection",
     "old A8 rejection and new batch4 A8 acceptance",

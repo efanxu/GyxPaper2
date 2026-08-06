@@ -35,4 +35,4 @@ git pull --ff-only origin main
 
 提交前只添加明确的逻辑批次路径，避免 `git add .`；检查 `git diff --cached --stat`、`git diff --cached --name-only` 和 `git lfs status`。提交后推送分支并创建 PR。
 
-当前导入没有选择任何需要 Git LFS 的 canonical checkpoint；大型 checkpoint、数组、日志和可重建结果只保存在本地。完整路径、大小、SHA256 和排除原因见 `GIT_IMPORT_AUDIT.md`、`git_import_inventory.csv` 与 `git_import_excluded_paths.txt`。
+当前导入没有选择任何需要 Git LFS 的 canonical checkpoint；大型 checkpoint、数组、日志和可重建结果只保存在本地。完整路径、大小、content record 和排除原因见 `GIT_IMPORT_AUDIT.md`、`git_import_inventory.csv` 与 `git_import_excluded_paths.txt`。

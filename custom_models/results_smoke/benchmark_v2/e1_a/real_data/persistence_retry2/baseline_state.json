@@ -1,7 +1,5 @@
 {
   "model_id": "persistence",
-  "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
-  "feature_order_hash": "b9878a5091618737ca8c126dcee80d5b70f122ff3901960a620cb6bc10e7f853",
   "baseline_rule": "repeat_last_visible_Patv_clean_for_input",
   "ma_window": null,
   "optimizer": null,
@@ -14,9 +12,6 @@
     "input_power_std": 430.83156085564553,
     "target_mean": 529.3295454231197,
     "target_std": 436.2417327115245,
-    "input_scaler_hash": "82d60aea2300b7dcff556e38cdca9b5faa476d64ea6812a399f2298b496df6f7",
-    "target_scaler_hash": "6eb0a5663eaa47f7cfc37846ee1949c6ca7ecbf269c6b56596fa6f98e26c7db9",
-    "feature_order_hash": "b9878a5091618737ca8c126dcee80d5b70f122ff3901960a620cb6bc10e7f853",
     "conversion": "input normalized -> physical kW -> target normalized"
   }
 }

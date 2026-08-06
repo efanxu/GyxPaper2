@@ -170,7 +170,6 @@
             134,
             134
           ],
-          "canonical_content_hash": "899f3426ce2d77739d8190d08c7de6319a2f84a22c44957cf780c8d7a66b6999",
           "finite": true,
           "min": 0.007240254431962967,
           "max": 0.008748462423682213,
@@ -209,10 +208,7 @@
               "union": 17956,
               "jaccard": 0.029850746268656716
             }
-          },
-          "checkpoint_reload_hash_before": "899f3426ce2d77739d8190d08c7de6319a2f84a22c44957cf780c8d7a66b6999",
-          "checkpoint_reload_hash_after": "899f3426ce2d77739d8190d08c7de6319a2f84a22c44957cf780c8d7a66b6999",
-          "checkpoint_reload_hash_matches": true
+          }
         },
         "initialization_parity": null
       },
@@ -301,7 +297,6 @@
             134,
             134
           ],
-          "canonical_content_hash": "7a07d0e5a7e156dcffbcabeff7bf47a18716bc43bc2783e4dfa34f774a37d1b1",
           "finite": true,
           "min": 0.0,
           "max": 1.0,
@@ -3283,10 +3278,7 @@
             ],
             "effective_nonzero_min": 20,
             "effective_nonzero_max": 20
-          },
-          "checkpoint_reload_hash_before": "7a07d0e5a7e156dcffbcabeff7bf47a18716bc43bc2783e4dfa34f774a37d1b1",
-          "checkpoint_reload_hash_after": "7a07d0e5a7e156dcffbcabeff7bf47a18716bc43bc2783e4dfa34f774a37d1b1",
-          "checkpoint_reload_hash_matches": true
+          }
         },
         "initialization_parity": null
       },
@@ -3375,7 +3367,6 @@
             134,
             134
           ],
-          "canonical_content_hash": "456ada5864b582377b485ac5b2e60035244f357458bae6bd331f20262e883828",
           "finite": true,
           "min": 0.007237666752189398,
           "max": 0.009140665642917156,
@@ -3402,10 +3393,7 @@
             "min": 134,
             "max": 134,
             "mean": 134.0
-          },
-          "checkpoint_reload_hash_before": "456ada5864b582377b485ac5b2e60035244f357458bae6bd331f20262e883828",
-          "checkpoint_reload_hash_after": "456ada5864b582377b485ac5b2e60035244f357458bae6bd331f20262e883828",
-          "checkpoint_reload_hash_matches": true
+          }
         },
         "initialization_parity": null
       },
@@ -3496,7 +3484,6 @@
             134,
             32
           ],
-          "node_embedding_hash": "6020012681d7777a88e0ca853e04c35e4a077f54e6c89676af0ff46761280a56",
           "cosine_similarity_diagnostic_only": {
             "shape": [
               134,
@@ -3505,10 +3492,7 @@
             "min": -0.602132260799408,
             "max": 1.000000238418579,
             "mean": 0.008214220404624939
-          },
-          "checkpoint_reload_hash_before": "6020012681d7777a88e0ca853e04c35e4a077f54e6c89676af0ff46761280a56",
-          "checkpoint_reload_hash_after": "6020012681d7777a88e0ca853e04c35e4a077f54e6c89676af0ff46761280a56",
-          "checkpoint_reload_hash_matches": true
+          }
         },
         "initialization_parity": null
       },

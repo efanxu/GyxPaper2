@@ -1,6 +1,6 @@
 # E2-B multiscale fairness and leakage audit
 
-TimesNet retains five dynamically detected periods and all six inception kernel sizes in each of two TimesBlocks. Period evidence is derived solely from the representation produced by historical `x_enc`; dynamic periods are not frozen into the config hash. Node grouping prevents one turbine from influencing another turbine's batch-averaged spectrum.
+TimesNet retains five dynamically detected periods and all six inception kernel sizes in each of two TimesBlocks. Period evidence is derived solely from the representation produced by historical `x_enc`; dynamic periods are not frozen into the config record. Node grouping prevents one turbine from influencing another turbine's batch-averaged spectrum.
 
 MICN retains both convolution scales 12 and 16, both odd decomposition scales 13 and 17, both isometric scales 13 and 10, and the two-branch Conv2d fusion. Its full-history decoder is derived from observed history plus a zero future suffix; marks are zero.
 

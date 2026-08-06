@@ -51,7 +51,7 @@ def resolve_common(
         "loss_space": "normalized_target_space",
         "checkpoint_metric": "validation_official_score_h10",
         "checkpoint_direction": "lower_is_better",
-        "protocol_hash": protocol["protocol_hash"],
+        "protocol_id": protocol["protocol_id"],
         "upstream_project": "THUML/Time-Series-Library",
         "upstream_license_path": "Time-Series-Library/LICENSE",
         "source_modified": False,

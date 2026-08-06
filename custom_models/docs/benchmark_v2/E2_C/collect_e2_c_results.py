@@ -50,7 +50,6 @@ def smoke_record(run_dir: Path, *, real: bool) -> dict[str, Any]:
         "strict_reload_completed": True,
         "artifact_validation": "PASS",
         "upstream_source_path": effective["upstream_source_path"],
-        "upstream_source_sha256": effective["upstream_source_sha256"],
         "effective_config": effective["model_specific_parameters"],
         "config_resolution_reason": effective["config_resolution_reason"],
         "validation_search_performed": effective[

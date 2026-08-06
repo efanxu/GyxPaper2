@@ -3,7 +3,6 @@
   "model_id": "gru",
   "formal_registry_entry": true,
   "formal_training": false,
-  "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
   "prediction_shape": [
     1,
     134,

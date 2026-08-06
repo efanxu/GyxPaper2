@@ -111,7 +111,6 @@ def main():
         "task": "E2-C",
         "model_id": "frets",
         "source_path": source.source_path,
-        "source_sha256": source.source_sha256,
         "type_matrix": [
             branch_case(model_class, value) for value in (0, 1, "0", "1")
         ],

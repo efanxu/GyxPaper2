@@ -22,12 +22,10 @@
     "errors": 0
   },
   "protocol_check": {
-    "status": "PASS",
-    "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b"
+    "status": "PASS"
   },
   "graph_protocol_check": {
-    "status": "PASS",
-    "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef"
+    "status": "PASS"
   },
   "ordinary_smoke": "3/3 PASS",
   "exact_full_shape_smoke": "3/3 PASS",

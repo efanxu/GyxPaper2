@@ -7,6 +7,5 @@
   "epochs": 2,
   "patience": 6,
   "min_delta": 0.01,
-  "learning_rate": 0.001,
-  "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b"
+  "learning_rate": 0.001
 }

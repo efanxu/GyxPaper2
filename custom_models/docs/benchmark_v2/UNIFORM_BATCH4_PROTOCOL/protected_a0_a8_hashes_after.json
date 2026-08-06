@@ -8,1219 +8,1045 @@
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A0/effective_config.json",
       "exists": true,
       "size": 5298,
-      "mtime_ns": 1785135700000000000,
-      "sha256": "c9e06dbd5db3e564f270d11a9b2fc7bae711a6787a045723849e9ee74460c963"
+      "mtime_ns": 1785135700000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A0/effective_config_diff.json",
       "exists": true,
       "size": 327,
-      "mtime_ns": 1785135700000000000,
-      "sha256": "1a6c6a9532e10cd42b9805250141f60cbb80ace74fff8b8158516cf46ec31782"
+      "mtime_ns": 1785135700000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A0/reference.json",
       "exists": true,
       "size": 835,
-      "mtime_ns": 1785135700000000000,
-      "sha256": "c132b67c7552d200787bb2d19f0fd1e6afd4069e697edb208839b3d7366132b4"
+      "mtime_ns": 1785135700000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/effective_config.json",
       "exists": true,
       "size": 5299,
-      "mtime_ns": 1785135700000000000,
-      "sha256": "90bbe424f53a1494ca0bee3cee686517754cc2642b0910b7473c35319687469a"
+      "mtime_ns": 1785135700000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/effective_config_diff.json",
       "exists": true,
       "size": 512,
-      "mtime_ns": 1785135700000000000,
-      "sha256": "f7feccf69d2b40981c361d340a532286c745ed893c46ed999229e2fc743f5927"
+      "mtime_ns": 1785135700000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/run_command.json",
       "exists": true,
       "size": 394,
-      "mtime_ns": 1785135700000000000,
-      "sha256": "5b0c9a45172fbd6a732d0a81e1339d730537ed3b81a576f8552d15b0bc9a633d"
+      "mtime_ns": 1785135700000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/active_config.json",
       "exists": true,
       "size": 5400,
-      "mtime_ns": 1785137282000000000,
-      "sha256": "4db5a5857ffa290cf1dc92433fdb1bcb3daef997a6fecc54119ad9bafe1f02e8"
+      "mtime_ns": 1785137282000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/best_checkpoint.pt",
       "exists": true,
       "size": 2848804,
-      "mtime_ns": 1785136564000000000,
-      "sha256": "f21d63286c88d26fa5e918efcd13fb06ccceb7aa30da3a44a979195942771221"
+      "mtime_ns": 1785136564000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/config.json",
       "exists": true,
       "size": 5388,
-      "mtime_ns": 1785135702000000000,
-      "sha256": "46f06e63479a242188220576fec589057234d39b32d8b2d8accbb27a4fe73e37"
+      "mtime_ns": 1785135702000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/diagnostics/loss_diagnostics_summary.json",
       "exists": true,
       "size": 805,
-      "mtime_ns": 1785137046000000000,
-      "sha256": "65e7771436b150b2b788173a789858118e2df9be8f239cb5e11b7289511dcbc2"
+      "mtime_ns": 1785137046000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/diagnostics/loss_weights.csv",
       "exists": true,
       "size": 9275,
-      "mtime_ns": 1785137044000000000,
-      "sha256": "3c1de79bf20e5fa2e693be2b439d5c304bc0a459606f18ede6e982311de670d3"
+      "mtime_ns": 1785137044000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/diagnostics/site_weight_final.csv",
       "exists": true,
       "size": 5783,
-      "mtime_ns": 1785137044000000000,
-      "sha256": "5e8a5649562f2d4c1f2d0e71c2946880202b5fee364ef8301d231151719e7a71"
+      "mtime_ns": 1785137044000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/effective_config_diff.json",
       "exists": true,
       "size": 767,
-      "mtime_ns": 1785137282000000000,
-      "sha256": "173ce2b993e6d1c0d2299ed61eabec8720157ac2f5ea664bf01628ac8271696c"
+      "mtime_ns": 1785137282000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/evaluation_complete.json",
       "exists": true,
       "size": 264,
-      "mtime_ns": 1785137072000000000,
-      "sha256": "2e6cc1315320375e357f853340a50b4e8f4a61bd057437aab0b94129ba39fe98"
+      "mtime_ns": 1785137072000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/metrics.csv",
       "exists": true,
       "size": 579,
-      "mtime_ns": 1785137072000000000,
-      "sha256": "3363889cb9ef33b98eb899b2369bbe15c418af45d0fe820c744d8b0dd6187ee2"
+      "mtime_ns": 1785137072000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
       "exists": true,
       "size": 554,
-      "mtime_ns": 1785137072000000000,
-      "sha256": "4fa634d6af544b6fb780d772ed7b8c6d765e82e26b6a7225f28da14d4dce1ef7"
+      "mtime_ns": 1785137072000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
       "exists": true,
       "size": 549,
-      "mtime_ns": 1785137072000000000,
-      "sha256": "2c951346d2fa7a0c4d1c596b0ff4b1d07dca824cd919845e40900873a0d52223"
+      "mtime_ns": 1785137072000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
       "exists": true,
       "size": 553,
-      "mtime_ns": 1785137072000000000,
-      "sha256": "14c57d7573348c2ff95be6c9b315032b4fe7af330d7946c302a0b8cd9a29dd2e"
+      "mtime_ns": 1785137072000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/model_summary.json",
       "exists": true,
       "size": 12902,
-      "mtime_ns": 1785137072000000000,
-      "sha256": "a20cb9892491511fef1e184933ddbb5d80b55b7fa5b53f49b77df20b74eff33a"
+      "mtime_ns": 1785137072000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/prediction_metadata.json",
       "exists": true,
       "size": 615,
-      "mtime_ns": 1785137072000000000,
-      "sha256": "3bfca9f9a4144d73943b963ce76838462d344a0384858f939e85acd0db1e6c2b"
+      "mtime_ns": 1785137072000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/protocol_check.json",
       "exists": true,
       "size": 9641,
-      "mtime_ns": 1785137142000000000,
-      "sha256": "f6385d9389357e539b10f8fe7ef9dce6eb3c82b910394a6024f36989aa273074"
+      "mtime_ns": 1785137142000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/requested_config.json",
       "exists": true,
       "size": 5400,
-      "mtime_ns": 1785137282000000000,
-      "sha256": "4db5a5857ffa290cf1dc92433fdb1bcb3daef997a6fecc54119ad9bafe1f02e8"
+      "mtime_ns": 1785137282000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/run_status.json",
       "exists": true,
       "size": 4479,
-      "mtime_ns": 1785137306000000000,
-      "sha256": "59c952f54d5edbdd192f7053aa1d2d3e64deb88a0f0c662779fc604b73365de5"
+      "mtime_ns": 1785137306000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/train_complete.json",
       "exists": true,
       "size": 659,
-      "mtime_ns": 1785137046000000000,
-      "sha256": "70b8f6b8b55029fc8118f327852b4b9aa8d4d89e778d217dd1704b42e0c5e6a7"
+      "mtime_ns": 1785137046000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1/STMGPrompt_ComponentAblation/train_log.csv",
       "exists": true,
       "size": 25554,
-      "mtime_ns": 1785137044000000000,
-      "sha256": "8500959d8debda3670feef9ef71eb5929222578b833ec3f51a25866da863fbde"
+      "mtime_ns": 1785137044000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/effective_config.json",
       "exists": true,
       "size": 5299,
-      "mtime_ns": 1785137144000000000,
-      "sha256": "4c573e5ae83319edbf12a576856eeb37f2780e670c83da85dc82634fe371e98a"
+      "mtime_ns": 1785137144000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/effective_config_diff.json",
       "exists": true,
       "size": 479,
-      "mtime_ns": 1785137144000000000,
-      "sha256": "6d7c3916a23aff922b045e321c6e728b4324e032cbd091bb67f2dcad648c9086"
+      "mtime_ns": 1785137144000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/run_command.json",
       "exists": true,
       "size": 394,
-      "mtime_ns": 1785137144000000000,
-      "sha256": "4ee770e616fdce262b774eefb149b4c4ec8814adebab5cb7b33bb45a8f0b7294"
+      "mtime_ns": 1785137144000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/active_config.json",
       "exists": true,
       "size": 5388,
-      "mtime_ns": 1785137146000000000,
-      "sha256": "23e95114ea8f3028b218802fcab9aa6ae11cf92ede43c99ca6949c7c76c5e5c5"
+      "mtime_ns": 1785137146000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/best_checkpoint.pt",
       "exists": true,
       "size": 3441336,
-      "mtime_ns": 1785139358000000000,
-      "sha256": "5ed8d49d15e8cd54628dc562826f39af50f6f9f0e3dfc0c256e33e08c3acddfe"
+      "mtime_ns": 1785139358000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/config.json",
       "exists": true,
       "size": 5388,
-      "mtime_ns": 1785137146000000000,
-      "sha256": "23e95114ea8f3028b218802fcab9aa6ae11cf92ede43c99ca6949c7c76c5e5c5"
+      "mtime_ns": 1785137146000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/diagnostics/loss_diagnostics_summary.json",
       "exists": true,
       "size": 805,
-      "mtime_ns": 1785139476000000000,
-      "sha256": "e3dc16fad9a94e23baf8ce1b36c740f99cb308cf4d77bbeaa7f3ed12f08e9c39"
+      "mtime_ns": 1785139476000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/diagnostics/loss_weights.csv",
       "exists": true,
       "size": 11457,
-      "mtime_ns": 1785139476000000000,
-      "sha256": "535efc7f5bbe08dc6b83550a89d8d0fd04a97ee909880e1ffcaafa1b94a55463"
+      "mtime_ns": 1785139476000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/diagnostics/site_weight_final.csv",
       "exists": true,
       "size": 5780,
-      "mtime_ns": 1785139476000000000,
-      "sha256": "08046045fb10cbcd67dd6ce619eff613326b37b27f20ff4fd785babb3847570c"
+      "mtime_ns": 1785139476000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/effective_config_diff.json",
       "exists": true,
       "size": 479,
-      "mtime_ns": 1785137146000000000,
-      "sha256": "6d7c3916a23aff922b045e321c6e728b4324e032cbd091bb67f2dcad648c9086"
+      "mtime_ns": 1785137146000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/evaluation_complete.json",
       "exists": true,
       "size": 264,
-      "mtime_ns": 1785139516000000000,
-      "sha256": "f5c94908eaa997043f7efb28284ede6b7ba96ef9c24a3c28ec917446c10c7be9"
+      "mtime_ns": 1785139516000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/metrics.csv",
       "exists": true,
       "size": 579,
-      "mtime_ns": 1785139516000000000,
-      "sha256": "d7c6d31d5731e3b35a81671fb16fbebdb76d74b7a118d68ef9a45157eb5cff2c"
+      "mtime_ns": 1785139516000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
       "exists": true,
       "size": 551,
-      "mtime_ns": 1785139516000000000,
-      "sha256": "ca393cec2743b6e09b869a2c5057936cee789d6202e276a85af32abce5f3338c"
+      "mtime_ns": 1785139516000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
       "exists": true,
       "size": 550,
-      "mtime_ns": 1785139516000000000,
-      "sha256": "93dcabcdc347f6b543e27d5062173f30bfb4091724b2c344fe5926f6378395b0"
+      "mtime_ns": 1785139516000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
       "exists": true,
       "size": 552,
-      "mtime_ns": 1785139516000000000,
-      "sha256": "055908a46bb80e0b851af7e6815a6fc202afe140508eee2a0ca160b80c43239e"
+      "mtime_ns": 1785139516000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/model_summary.json",
       "exists": true,
       "size": 12905,
-      "mtime_ns": 1785139516000000000,
-      "sha256": "68d1611fc4a8813bc878a75bbbbd9ab5839dca8e9dabfed295b2285082c75fa9"
+      "mtime_ns": 1785139516000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/prediction_metadata.json",
       "exists": true,
       "size": 617,
-      "mtime_ns": 1785139516000000000,
-      "sha256": "9488661fddfdbc83c7d8ddb766e08bcb275e9e537e7fe9f7329f55f2e8444967"
+      "mtime_ns": 1785139516000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/protocol_check.json",
       "exists": true,
       "size": 10185,
-      "mtime_ns": 1785139592000000000,
-      "sha256": "b1ed1ab913abe07855893bf4f92eab8485c7c652794a7f0430a85c6d5b9ef761"
+      "mtime_ns": 1785139592000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/run_status.json",
       "exists": true,
       "size": 4309,
-      "mtime_ns": 1785139592000000000,
-      "sha256": "3de01c58b50cbe17682feb3e1dea90d1f4e1e6338e7e19b2cebb3cc850fe9720"
+      "mtime_ns": 1785139592000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/train_complete.json",
       "exists": true,
       "size": 659,
-      "mtime_ns": 1785139476000000000,
-      "sha256": "ca68e4c5b18dc0f9e7c9cb49f8888d04d0bf2ad6990c0650e268ce837a7d9809"
+      "mtime_ns": 1785139476000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A2/STMGPrompt_ComponentAblation/train_log.csv",
       "exists": true,
       "size": 31551,
-      "mtime_ns": 1785139476000000000,
-      "sha256": "3a3aa76c759e1c2bb3af0b7244f181e6dfb0635d592ca1159ca66084263feacb"
+      "mtime_ns": 1785139476000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/effective_config.json",
       "exists": true,
       "size": 5281,
-      "mtime_ns": 1785139594000000000,
-      "sha256": "f0cde3cce8f62564cb6426090e41b912558bfe61bbf7de73c1dac8e0a8d15958"
+      "mtime_ns": 1785139594000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/effective_config_diff.json",
       "exists": true,
       "size": 480,
-      "mtime_ns": 1785139594000000000,
-      "sha256": "aedbffa57b0d36447e8e259f73eecdc2421e1faf6b250ee46b755fa5f7c55248"
+      "mtime_ns": 1785139594000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/run_command.json",
       "exists": true,
       "size": 394,
-      "mtime_ns": 1785139594000000000,
-      "sha256": "d4a2929eb1d13715672572910275142c110b9b96b6b3e97bb5e4daf3ad7553a4"
+      "mtime_ns": 1785139594000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/active_config.json",
       "exists": true,
       "size": 5370,
-      "mtime_ns": 1785139596000000000,
-      "sha256": "640bae8e3826d6828a9ea0ec720faed5f63a79262c5dd983aa82021903f4cfd7"
+      "mtime_ns": 1785139596000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/best_checkpoint.pt",
       "exists": true,
       "size": 3100904,
-      "mtime_ns": 1785140804000000000,
-      "sha256": "dce09d0b0f81fdf31ca1927fcdbd43ea93a9065664477cfe3a1dfbd52ab8ca6b"
+      "mtime_ns": 1785140804000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/config.json",
       "exists": true,
       "size": 5370,
-      "mtime_ns": 1785139596000000000,
-      "sha256": "640bae8e3826d6828a9ea0ec720faed5f63a79262c5dd983aa82021903f4cfd7"
+      "mtime_ns": 1785139596000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/diagnostics/loss_diagnostics_summary.json",
       "exists": true,
       "size": 805,
-      "mtime_ns": 1785141380000000000,
-      "sha256": "21680b6a8409a7099f7baaaa406cbcfa34987155e23000bcb8d69bdfa2326600"
+      "mtime_ns": 1785141380000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/diagnostics/loss_weights.csv",
       "exists": true,
       "size": 10362,
-      "mtime_ns": 1785141378000000000,
-      "sha256": "1860fecae2ebd4d4b262e7c6034e44f558ef1d329cc5c9716b2763a21e13f365"
+      "mtime_ns": 1785141378000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/diagnostics/site_weight_final.csv",
       "exists": true,
       "size": 5781,
-      "mtime_ns": 1785141378000000000,
-      "sha256": "bafb09b18c2c58a73753969ed0adbb3235da8bb461d5ecfb185364b12491d73c"
+      "mtime_ns": 1785141378000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/effective_config_diff.json",
       "exists": true,
       "size": 480,
-      "mtime_ns": 1785139596000000000,
-      "sha256": "aedbffa57b0d36447e8e259f73eecdc2421e1faf6b250ee46b755fa5f7c55248"
+      "mtime_ns": 1785139596000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/evaluation_complete.json",
       "exists": true,
       "size": 264,
-      "mtime_ns": 1785141410000000000,
-      "sha256": "4f7421b1d3dab9777119e8a550d403b244b3ee38f94aaced2686366ac9c65fb7"
+      "mtime_ns": 1785141410000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/metrics.csv",
       "exists": true,
       "size": 579,
-      "mtime_ns": 1785141410000000000,
-      "sha256": "e94c749f754f70a6a0f927a0c3712aefe2e51af3e22c3efc91dca0384a1d4372"
+      "mtime_ns": 1785141410000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
       "exists": true,
       "size": 554,
-      "mtime_ns": 1785141410000000000,
-      "sha256": "ee20e0882a55c61c80767e47e83df4cb878ecea5bf0c94bdfb5c7b9f71210946"
+      "mtime_ns": 1785141410000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
       "exists": true,
       "size": 548,
-      "mtime_ns": 1785141410000000000,
-      "sha256": "5fc5033d9ab7d09d7fa3187b9be1c853e4f6ac40251e01463c1c0066fac6914d"
+      "mtime_ns": 1785141410000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
       "exists": true,
       "size": 550,
-      "mtime_ns": 1785141410000000000,
-      "sha256": "bb59ca0fc799fe9b4b029efd1c1b51091f071582c5ad51086461a7db94064aec"
+      "mtime_ns": 1785141410000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/model_summary.json",
       "exists": true,
       "size": 12900,
-      "mtime_ns": 1785141410000000000,
-      "sha256": "e861990996841c5bbb9196f198bb048a7d234231d32838c70d97588a89b12098"
+      "mtime_ns": 1785141410000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/prediction_metadata.json",
       "exists": true,
       "size": 613,
-      "mtime_ns": 1785141410000000000,
-      "sha256": "c4b4a70bcbd1bb8202f8225bcb73dacb2d602e1eb858e6dbb4fd22c9e64333df"
+      "mtime_ns": 1785141410000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/protocol_check.json",
       "exists": true,
       "size": 9641,
-      "mtime_ns": 1785141484000000000,
-      "sha256": "f6385d9389357e539b10f8fe7ef9dce6eb3c82b910394a6024f36989aa273074"
+      "mtime_ns": 1785141484000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/run_status.json",
       "exists": true,
       "size": 3042,
-      "mtime_ns": 1785141484000000000,
-      "sha256": "a8e106f33b0de8d7fb5ebd93f3ec4215d8fce02d15dc81dea785849cd9f4bfd2"
+      "mtime_ns": 1785141484000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/train_complete.json",
       "exists": true,
       "size": 659,
-      "mtime_ns": 1785141380000000000,
-      "sha256": "317b0881974ebe3e784306abaf9175267a3e84b16e28e9c6e9035278729c55a4"
+      "mtime_ns": 1785141380000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A3/STMGPrompt_ComponentAblation/train_log.csv",
       "exists": true,
       "size": 28554,
-      "mtime_ns": 1785141378000000000,
-      "sha256": "9cfd24544beda119c33bbf883cbf095585103f7e975d913c012ede7df1bf1197"
+      "mtime_ns": 1785141378000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/effective_config.json",
       "exists": true,
       "size": 5299,
-      "mtime_ns": 1785141486000000000,
-      "sha256": "7d834b22fbe2e1759ca4097b7f14d0d1c8ec8a64d76fe720d0d39f3fb4c4660f"
+      "mtime_ns": 1785141486000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/effective_config_diff.json",
       "exists": true,
       "size": 473,
-      "mtime_ns": 1785141486000000000,
-      "sha256": "e93bf805a1993016c54d111e3b946aa773af47366f7aa7a96fcc1626f134f512"
+      "mtime_ns": 1785141486000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/run_command.json",
       "exists": true,
       "size": 394,
-      "mtime_ns": 1785141486000000000,
-      "sha256": "9a51fc75da99134ea0b0a55c641b4a02bec4592aafe83af032a2d9f43cedf8be"
+      "mtime_ns": 1785141486000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/active_config.json",
       "exists": true,
       "size": 5388,
-      "mtime_ns": 1785141488000000000,
-      "sha256": "6f3e0318d5b4090c73fe99c14eabcbce02744384176338d0b5376a4f47693add"
+      "mtime_ns": 1785141488000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/best_checkpoint.pt",
       "exists": true,
       "size": 3300208,
-      "mtime_ns": 1785142570000000000,
-      "sha256": "f05510e1ac97fce9cf13fe9bda4dd58c041e85f0e8c9378687ffc9df62548f9b"
+      "mtime_ns": 1785142570000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/config.json",
       "exists": true,
       "size": 5388,
-      "mtime_ns": 1785141488000000000,
-      "sha256": "6f3e0318d5b4090c73fe99c14eabcbce02744384176338d0b5376a4f47693add"
+      "mtime_ns": 1785141488000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/diagnostics/loss_diagnostics_summary.json",
       "exists": true,
       "size": 805,
-      "mtime_ns": 1785143280000000000,
-      "sha256": "9842bd8bb74e4a77aadf4be932e9bf636fd0a963a2f173ea3915a1f185b37289"
+      "mtime_ns": 1785143280000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/diagnostics/loss_weights.csv",
       "exists": true,
       "size": 8717,
-      "mtime_ns": 1785143278000000000,
-      "sha256": "501f70e9524fd95e6f20ff9fc115b8b5c9c413dbdfe4f7cf734de9a4f49f7078"
+      "mtime_ns": 1785143278000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/diagnostics/site_weight_final.csv",
       "exists": true,
       "size": 5777,
-      "mtime_ns": 1785143278000000000,
-      "sha256": "74a742bbf9d0e96fb67000df2f4ed7669d87e4cc670efc165ff53aee3c8e366b"
+      "mtime_ns": 1785143278000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/effective_config_diff.json",
       "exists": true,
       "size": 473,
-      "mtime_ns": 1785141488000000000,
-      "sha256": "e93bf805a1993016c54d111e3b946aa773af47366f7aa7a96fcc1626f134f512"
+      "mtime_ns": 1785141488000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/evaluation_complete.json",
       "exists": true,
       "size": 264,
-      "mtime_ns": 1785143320000000000,
-      "sha256": "d972d6a7449459d00dbc75b3c9865b25dcc5e8a140dfc8f93a03611f5f18662e"
+      "mtime_ns": 1785143320000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/metrics.csv",
       "exists": true,
       "size": 579,
-      "mtime_ns": 1785143320000000000,
-      "sha256": "4ff92fb5c4972bbb2e5fe19339c0c04c45d3c51c6e421b569e6f510042e5114d"
+      "mtime_ns": 1785143320000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
       "exists": true,
       "size": 554,
-      "mtime_ns": 1785143320000000000,
-      "sha256": "154344b7bb9fe306b84506e327064ec84402b67bca70138925f1f66d97107d19"
+      "mtime_ns": 1785143320000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
       "exists": true,
       "size": 551,
-      "mtime_ns": 1785143320000000000,
-      "sha256": "94732c94b636da625e77d684edb6822ea932578f572d9a605215cad8729c5573"
+      "mtime_ns": 1785143320000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
       "exists": true,
       "size": 553,
-      "mtime_ns": 1785143320000000000,
-      "sha256": "ea2962c6f84d42fc4c4bab8c45e738651092426c2c6508ed52d9088e4e0355b6"
+      "mtime_ns": 1785143320000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/model_summary.json",
       "exists": true,
       "size": 12902,
-      "mtime_ns": 1785143320000000000,
-      "sha256": "e891dece9f1aa2514228df00758ea59ddec886974075345215af73d7f413ecab"
+      "mtime_ns": 1785143320000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/prediction_metadata.json",
       "exists": true,
       "size": 616,
-      "mtime_ns": 1785143320000000000,
-      "sha256": "cdbd8dd08342599e82bb069113efe6c827fe5c7fb9029d2f02871d443b1ad52c"
+      "mtime_ns": 1785143320000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/protocol_check.json",
       "exists": true,
       "size": 10079,
-      "mtime_ns": 1785143400000000000,
-      "sha256": "cd950553b4e3e56aae430b8575ac277c6bf1c6cc3f899cf0745e8447ef03e1ca"
+      "mtime_ns": 1785143400000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/run_status.json",
       "exists": true,
       "size": 3042,
-      "mtime_ns": 1785143400000000000,
-      "sha256": "0d67281497068ee284e80cd02c8c15de58886828916b3611bf858838f9c5df48"
+      "mtime_ns": 1785143400000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/train_complete.json",
       "exists": true,
       "size": 658,
-      "mtime_ns": 1785143280000000000,
-      "sha256": "4e12dd858d8794ed0fdbbb2b24c917284c96d0a64ed6a08b44e5fe6380658ad0"
+      "mtime_ns": 1785143280000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A4/STMGPrompt_ComponentAblation/train_log.csv",
       "exists": true,
       "size": 24071,
-      "mtime_ns": 1785143278000000000,
-      "sha256": "d3fba02972fef6b258d84f59d0b796cd49e61104e2a375df5002048238a80fd6"
+      "mtime_ns": 1785143278000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/effective_config.json",
       "exists": true,
       "size": 5297,
-      "mtime_ns": 1785143402000000000,
-      "sha256": "735577c1c04ec3be050b0eda4eb91ca0c823d98e4f04a73f3bf9b29f4297e51a"
+      "mtime_ns": 1785143402000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/effective_config_diff.json",
       "exists": true,
       "size": 488,
-      "mtime_ns": 1785143402000000000,
-      "sha256": "7baf18b1044f353be13f636220ebc43b15960b160fe459a2685976d19b1a3417"
+      "mtime_ns": 1785143402000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/run_command.json",
       "exists": true,
       "size": 394,
-      "mtime_ns": 1785143402000000000,
-      "sha256": "a4996868ebfa3c9e1c3ce3e054ce82b284b7efb93a97b4544acc00edf041d77e"
+      "mtime_ns": 1785143402000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/active_config.json",
       "exists": true,
       "size": 5386,
-      "mtime_ns": 1785143406000000000,
-      "sha256": "4616f7bfa4122b6f3a131695c27dc9735c57135e5b2fd8ffd54d1717057079c5"
+      "mtime_ns": 1785143406000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/best_checkpoint.pt",
       "exists": true,
       "size": 3373276,
-      "mtime_ns": 1785144592000000000,
-      "sha256": "e9c4e0fca17f449e03100900bab5c84f9bbdb3cc054e0a2d5ae9adce7f21d7ef"
+      "mtime_ns": 1785144592000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/config.json",
       "exists": true,
       "size": 5386,
-      "mtime_ns": 1785143406000000000,
-      "sha256": "4616f7bfa4122b6f3a131695c27dc9735c57135e5b2fd8ffd54d1717057079c5"
+      "mtime_ns": 1785143406000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/diagnostics/loss_diagnostics_summary.json",
       "exists": true,
       "size": 802,
-      "mtime_ns": 1785145208000000000,
-      "sha256": "fd3b2dbcca2fa7bff4187ac58176408c0d64119ca852dede50de96eadbe82c5d"
+      "mtime_ns": 1785145208000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/diagnostics/loss_weights.csv",
       "exists": true,
       "size": 9286,
-      "mtime_ns": 1785145208000000000,
-      "sha256": "18b32b5ae5b53e74d97c2d836015ea7b0439ea0e918e287506063ba5c932ba5d"
+      "mtime_ns": 1785145208000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/diagnostics/site_weight_final.csv",
       "exists": true,
       "size": 5782,
-      "mtime_ns": 1785145208000000000,
-      "sha256": "355d3e18e82bdd0da45c65b9f1ba5124d5a260b6f3f3aead05833f468e3ee76e"
+      "mtime_ns": 1785145208000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/effective_config_diff.json",
       "exists": true,
       "size": 488,
-      "mtime_ns": 1785143406000000000,
-      "sha256": "7baf18b1044f353be13f636220ebc43b15960b160fe459a2685976d19b1a3417"
+      "mtime_ns": 1785143406000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/evaluation_complete.json",
       "exists": true,
       "size": 264,
-      "mtime_ns": 1785145236000000000,
-      "sha256": "b0b61ded0ba2ed6719f8401a610445d01679235274d8fcedae43e4d0f167e039"
+      "mtime_ns": 1785145236000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/metrics.csv",
       "exists": true,
       "size": 576,
-      "mtime_ns": 1785145236000000000,
-      "sha256": "08407611faacbe34eed5a8f315e3448475b228f7b508b19c892a97da4a345441"
+      "mtime_ns": 1785145236000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
       "exists": true,
       "size": 556,
-      "mtime_ns": 1785145236000000000,
-      "sha256": "8a2f888daa579e61b6a163463bc4bd80d3cb56bb663870e5df3275143e12acf8"
+      "mtime_ns": 1785145236000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
       "exists": true,
       "size": 551,
-      "mtime_ns": 1785145236000000000,
-      "sha256": "50f8c3abcb3e3ea91d6a6a2bf90c553adc160293452cc22b3c5ba2f6b9c8788b"
+      "mtime_ns": 1785145236000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
       "exists": true,
       "size": 551,
-      "mtime_ns": 1785145236000000000,
-      "sha256": "37ddcfd3ca235a80948b7d29205ce685432d4e429b8048a958f0f9968ac59ca2"
+      "mtime_ns": 1785145236000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/model_summary.json",
       "exists": true,
       "size": 12902,
-      "mtime_ns": 1785145236000000000,
-      "sha256": "baa9621627f7bc39fd4f1b906b6d024d0e2aaea628e916eb06330bec31506668"
+      "mtime_ns": 1785145236000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/prediction_metadata.json",
       "exists": true,
       "size": 616,
-      "mtime_ns": 1785145236000000000,
-      "sha256": "efdcce230e776fd3ef1935376c1557bcbed63daac30ab1c01d73e41469c62f1c"
+      "mtime_ns": 1785145236000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/protocol_check.json",
       "exists": true,
       "size": 10185,
-      "mtime_ns": 1785145286000000000,
-      "sha256": "b1ed1ab913abe07855893bf4f92eab8485c7c652794a7f0430a85c6d5b9ef761"
+      "mtime_ns": 1785145286000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/run_status.json",
       "exists": true,
       "size": 3042,
-      "mtime_ns": 1785145286000000000,
-      "sha256": "f6e135de4114e7074f5002b1e2106882aa38177db976bab47bb12980ec846356"
+      "mtime_ns": 1785145286000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/train_complete.json",
       "exists": true,
       "size": 658,
-      "mtime_ns": 1785145208000000000,
-      "sha256": "784db0b5380e728b43bf89f2ac909faca7f9963a9f9f8d523dab07909d44c030"
+      "mtime_ns": 1785145208000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A5/STMGPrompt_ComponentAblation/train_log.csv",
       "exists": true,
       "size": 25546,
-      "mtime_ns": 1785145208000000000,
-      "sha256": "ecf2217002b2dd60027713488529701596eb9a826f387931a676ab6766b89cea"
+      "mtime_ns": 1785145208000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/effective_config.json",
       "exists": true,
       "size": 5299,
-      "mtime_ns": 1785145286000000000,
-      "sha256": "445f80247e151ecb7749b1b9b0d49cf8cb98d389afca28c2151aa900018399a3"
+      "mtime_ns": 1785145286000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/effective_config_diff.json",
       "exists": true,
       "size": 473,
-      "mtime_ns": 1785145286000000000,
-      "sha256": "1c29a251fa86c491834534d77e5dc34936b83da75c05f7b430b13d035cdcb762"
+      "mtime_ns": 1785145286000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/run_command.json",
       "exists": true,
       "size": 394,
-      "mtime_ns": 1785145286000000000,
-      "sha256": "1735c1aa18078d4a9f6665e86d334eee96fed37844ba86e732879febc34e1799"
+      "mtime_ns": 1785145286000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/active_config.json",
       "exists": true,
       "size": 5388,
-      "mtime_ns": 1785145288000000000,
-      "sha256": "44cee64dd0ce827d4a996b6b684e21842eb0bf456ddd3553cf6d799864b6f09f"
+      "mtime_ns": 1785145288000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/best_checkpoint.pt",
       "exists": true,
       "size": 2821028,
-      "mtime_ns": 1785146616000000000,
-      "sha256": "8003725dd3609e7d91c23c1ced0c3574ccb7ba0369f7781c567edee631cf8151"
+      "mtime_ns": 1785146616000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/config.json",
       "exists": true,
       "size": 5388,
-      "mtime_ns": 1785145288000000000,
-      "sha256": "44cee64dd0ce827d4a996b6b684e21842eb0bf456ddd3553cf6d799864b6f09f"
+      "mtime_ns": 1785145288000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/diagnostics/loss_diagnostics_summary.json",
       "exists": true,
       "size": 805,
-      "mtime_ns": 1785147032000000000,
-      "sha256": "9a6615160a93fe217e3e5edb9be88d18e79cdfb8376e82c0f963c52c59fb0910"
+      "mtime_ns": 1785147032000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/diagnostics/loss_weights.csv",
       "exists": true,
       "size": 11469,
-      "mtime_ns": 1785147032000000000,
-      "sha256": "003e0ae15ebdb9a79fb405a6a82c6bc841ca44d2a2371666e143242561bf853f"
+      "mtime_ns": 1785147032000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/diagnostics/site_weight_final.csv",
       "exists": true,
       "size": 5755,
-      "mtime_ns": 1785147032000000000,
-      "sha256": "46a75fc8376a49102aaf3a3f65edea23a0fa682cc7706da7dac12ca3cc147d36"
+      "mtime_ns": 1785147032000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/effective_config_diff.json",
       "exists": true,
       "size": 473,
-      "mtime_ns": 1785145288000000000,
-      "sha256": "1c29a251fa86c491834534d77e5dc34936b83da75c05f7b430b13d035cdcb762"
+      "mtime_ns": 1785145288000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/evaluation_complete.json",
       "exists": true,
       "size": 264,
-      "mtime_ns": 1785147056000000000,
-      "sha256": "7a496d10f80db0c83007ccc802a0f5de6582b54fc4e79f2578068a61b12a2ed9"
+      "mtime_ns": 1785147056000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/metrics.csv",
       "exists": true,
       "size": 576,
-      "mtime_ns": 1785147056000000000,
-      "sha256": "846327c19859dcb534bb763138d619cbf431ccadae0974ef0e9111accdd53458"
+      "mtime_ns": 1785147056000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
       "exists": true,
       "size": 555,
-      "mtime_ns": 1785147056000000000,
-      "sha256": "fb1b5b86d06e4f15a357e477b8c3bc8fb61991f9a3ed343696ef631c9901c2fb"
+      "mtime_ns": 1785147056000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
       "exists": true,
       "size": 553,
-      "mtime_ns": 1785147056000000000,
-      "sha256": "503a73b1788beac704359f1421a8673257f650cee59b6f937b6b47fa74816adc"
+      "mtime_ns": 1785147056000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
       "exists": true,
       "size": 549,
-      "mtime_ns": 1785147056000000000,
-      "sha256": "7eb2df937ed2ba37b900d00667bdce6d894d9a056d8ec97066cc221214dd3fa8"
+      "mtime_ns": 1785147056000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/model_summary.json",
       "exists": true,
       "size": 12901,
-      "mtime_ns": 1785147056000000000,
-      "sha256": "cb2d9b0a4ec65b6de185602b37b7fe5ef6ed55faee59e95b1ecb364b5c66a18c"
+      "mtime_ns": 1785147056000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/prediction_metadata.json",
       "exists": true,
       "size": 615,
-      "mtime_ns": 1785147056000000000,
-      "sha256": "1ecc55086745bd48c952949792376f8b55036b233543bc6359a226719181fbfc"
+      "mtime_ns": 1785147056000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/protocol_check.json",
       "exists": true,
       "size": 10201,
-      "mtime_ns": 1785147104000000000,
-      "sha256": "ee19462e364c460693dc074edd1895007cc7c9413aa69532a5cd31ae1f3f9e9c"
+      "mtime_ns": 1785147104000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/run_status.json",
       "exists": true,
       "size": 3042,
-      "mtime_ns": 1785147104000000000,
-      "sha256": "5433918c3e1f8a31932be59d9e4130bd9a0ac4d6d985f644da892a71db2f28e9"
+      "mtime_ns": 1785147104000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/train_complete.json",
       "exists": true,
       "size": 659,
-      "mtime_ns": 1785147032000000000,
-      "sha256": "dac3053f85ce89db3d0f2c30ac09d0f7c28a53100df9263f9e87fa8160675c0d"
+      "mtime_ns": 1785147032000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A6/STMGPrompt_ComponentAblation/train_log.csv",
       "exists": true,
       "size": 31537,
-      "mtime_ns": 1785147032000000000,
-      "sha256": "a527324e0c0e40283293954a54a6232e248d366bd2bee2afc64862dcfcdde365"
+      "mtime_ns": 1785147032000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/effective_config.json",
       "exists": true,
       "size": 5299,
-      "mtime_ns": 1785147104000000000,
-      "sha256": "40164264f28ea123c60e8fab47da7cf972ed8e47d088c93b08ed39384ff9ab99"
+      "mtime_ns": 1785147104000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/effective_config_diff.json",
       "exists": true,
       "size": 678,
-      "mtime_ns": 1785147104000000000,
-      "sha256": "d917bdb99c7d013a43e924bb84d9dd55639ece3ecfdc7ab2ff2ac6f0c23cda58"
+      "mtime_ns": 1785147104000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/run_command.json",
       "exists": true,
       "size": 394,
-      "mtime_ns": 1785147104000000000,
-      "sha256": "66fb4ee2669ecf446af34e2cb572c842d1356f71a8351f474399e20cc6956fa8"
+      "mtime_ns": 1785147104000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/active_config.json",
       "exists": true,
       "size": 5388,
-      "mtime_ns": 1785147106000000000,
-      "sha256": "6a442d52cfb4274011993433448cec6e14e645456a4644c906f97141458b781c"
+      "mtime_ns": 1785147106000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/best_checkpoint.pt",
       "exists": true,
       "size": 3396820,
-      "mtime_ns": 1785148582000000000,
-      "sha256": "fab9fb7e1de1ef8bc4ca5c802583b8ebc8f5183a84f1a862225aa051e25870d5"
+      "mtime_ns": 1785148582000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/config.json",
       "exists": true,
       "size": 5388,
-      "mtime_ns": 1785147106000000000,
-      "sha256": "6a442d52cfb4274011993433448cec6e14e645456a4644c906f97141458b781c"
+      "mtime_ns": 1785147106000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/diagnostics/loss_diagnostics_summary.json",
       "exists": true,
       "size": 805,
-      "mtime_ns": 1785149060000000000,
-      "sha256": "c63ffc9c5d119a41a04cb105c23e2158697c19bf70bebb057d7dedefd729d6ae"
+      "mtime_ns": 1785149060000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/diagnostics/loss_weights.csv",
       "exists": true,
       "size": 11464,
-      "mtime_ns": 1785149060000000000,
-      "sha256": "1e31e015f44552c4c40570d18534746bc87d49b74f62975e0ee5ec6708f94637"
+      "mtime_ns": 1785149060000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/diagnostics/site_weight_final.csv",
       "exists": true,
       "size": 5780,
-      "mtime_ns": 1785149060000000000,
-      "sha256": "5fac53174a4974577ab182621eb1b47fa4533726c749674f4c32e6c18561c271"
+      "mtime_ns": 1785149060000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/effective_config_diff.json",
       "exists": true,
       "size": 678,
-      "mtime_ns": 1785147106000000000,
-      "sha256": "d917bdb99c7d013a43e924bb84d9dd55639ece3ecfdc7ab2ff2ac6f0c23cda58"
+      "mtime_ns": 1785147106000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/evaluation_complete.json",
       "exists": true,
       "size": 264,
-      "mtime_ns": 1785149086000000000,
-      "sha256": "35160005c6f53427141370c96d71f50765e87fb575ebf987206ce5ac5ae4ead3"
+      "mtime_ns": 1785149086000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/metrics.csv",
       "exists": true,
       "size": 576,
-      "mtime_ns": 1785149086000000000,
-      "sha256": "2ea47812d186b712f428020e00528922fa92f39f040afa6b4249b978b862528e"
+      "mtime_ns": 1785149086000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
       "exists": true,
       "size": 554,
-      "mtime_ns": 1785149086000000000,
-      "sha256": "fe0d99df8dcfab103136f6a0af7dedc5687c6b90eca7d39f8fbd670d88776c91"
+      "mtime_ns": 1785149086000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
       "exists": true,
       "size": 550,
-      "mtime_ns": 1785149086000000000,
-      "sha256": "f7a0c5f32f091ed8393a591e942e0d0a9242280e611d50bb7b4216f397f612d2"
+      "mtime_ns": 1785149086000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
       "exists": true,
       "size": 548,
-      "mtime_ns": 1785149086000000000,
-      "sha256": "35394d3e15be21b502d6fc2350dd8a0bd7a5799e18222c65130ad95712256656"
+      "mtime_ns": 1785149086000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/model_summary.json",
       "exists": true,
       "size": 12899,
-      "mtime_ns": 1785149086000000000,
-      "sha256": "9c33554f29ccbe20fd3d45708692b6097a9508db5afaaf1385366414564eaa2a"
+      "mtime_ns": 1785149086000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/prediction_metadata.json",
       "exists": true,
       "size": 615,
-      "mtime_ns": 1785149086000000000,
-      "sha256": "25e49e88c7e4072d0bb9218aeafbd24cbcad1aa099f4885404bd0ffa1b7e786a"
+      "mtime_ns": 1785149086000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/protocol_check.json",
       "exists": true,
       "size": 10088,
-      "mtime_ns": 1785149134000000000,
-      "sha256": "6ed61fc60deaea573ac3fc301677664727db7a58b1214d362fc56d6fc444f494"
+      "mtime_ns": 1785149134000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/run_status.json",
       "exists": true,
       "size": 3042,
-      "mtime_ns": 1785149134000000000,
-      "sha256": "c5fbb4fd1f5e926a7cd98e5d7c76cd0c3477e6ae05f6fa73a25535c91ef88795"
+      "mtime_ns": 1785149134000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/train_complete.json",
       "exists": true,
       "size": 658,
-      "mtime_ns": 1785149060000000000,
-      "sha256": "a06115cbc4cecc18053f984bc4a8e264232c9719751db14a15511b6abcb3f8e0"
+      "mtime_ns": 1785149060000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A7/STMGPrompt_ComponentAblation/train_log.csv",
       "exists": true,
       "size": 31590,
-      "mtime_ns": 1785149060000000000,
-      "sha256": "1172dd1c80f0a746df83eb51a22447cc2140bd33a5446a42301332e9bb235f56"
+      "mtime_ns": 1785149060000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/effective_config.json",
       "exists": true,
       "size": 5311,
-      "mtime_ns": 1785149136000000000,
-      "sha256": "fb706f09d302122f528d4ec9af6ccb807a720a2e90e979c59d2632ff872b1f14"
+      "mtime_ns": 1785149136000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/effective_config_diff.json",
       "exists": true,
       "size": 767,
-      "mtime_ns": 1785149136000000000,
-      "sha256": "173ce2b993e6d1c0d2299ed61eabec8720157ac2f5ea664bf01628ac8271696c"
+      "mtime_ns": 1785149136000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/run_command.json",
       "exists": true,
       "size": 394,
-      "mtime_ns": 1785149136000000000,
-      "sha256": "671cf9668825817a50c5b32a7456990dbbea603fa4b66ae9478b5b16d57936df"
+      "mtime_ns": 1785149136000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/active_config.json",
       "exists": true,
       "size": 5400,
-      "mtime_ns": 1785149138000000000,
-      "sha256": "e6cc50a8ee58662c9ae51e6f37d6a473454e3eec4bd6065501a643a62ce7022a"
+      "mtime_ns": 1785149138000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/best_checkpoint.pt",
       "exists": true,
       "size": 3506898,
-      "mtime_ns": 1785150158000000000,
-      "sha256": "b0aca910b34dc5df86d6ed8bbefcaddac3d97e94ebd4aa54280223a69e56033c"
+      "mtime_ns": 1785150158000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/config.json",
       "exists": true,
       "size": 5400,
-      "mtime_ns": 1785149138000000000,
-      "sha256": "e6cc50a8ee58662c9ae51e6f37d6a473454e3eec4bd6065501a643a62ce7022a"
+      "mtime_ns": 1785149138000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/effective_config_diff.json",
       "exists": true,
       "size": 767,
-      "mtime_ns": 1785149138000000000,
-      "sha256": "173ce2b993e6d1c0d2299ed61eabec8720157ac2f5ea664bf01628ac8271696c"
+      "mtime_ns": 1785149138000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/evaluation_complete.json",
       "exists": true,
       "size": 264,
-      "mtime_ns": 1785150890000000000,
-      "sha256": "e597b45b596fa5bf2c37ee7634215c7417e027fa27316e3bd708ed153fbda529"
+      "mtime_ns": 1785150890000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/metrics.csv",
       "exists": true,
       "size": 580,
-      "mtime_ns": 1785150890000000000,
-      "sha256": "e5a5da3ae9aa622e5b7910fe828ddca4fdb03f941095b849e737435f5dd914aa"
+      "mtime_ns": 1785150890000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/metrics_eval_h10.json",
       "exists": true,
       "size": 555,
-      "mtime_ns": 1785150890000000000,
-      "sha256": "4855d4a84f7414e59ce33353c8288474ee7b951f527e8dc4e7c1f2a5b55c99e9"
+      "mtime_ns": 1785150890000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/metrics_eval_h3.json",
       "exists": true,
       "size": 550,
-      "mtime_ns": 1785150890000000000,
-      "sha256": "0602b0d40d840852d6a320d66091c952015b8d7b86065b5d8310b9ecae7bb18a"
+      "mtime_ns": 1785150890000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/metrics_eval_h6.json",
       "exists": true,
       "size": 554,
-      "mtime_ns": 1785150890000000000,
-      "sha256": "ca0ead25f4aa3bc18078eb86eb60ef1a401d2dd290a09cdc7174453c78ab45d6"
+      "mtime_ns": 1785150890000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/model_summary.json",
       "exists": true,
       "size": 12879,
-      "mtime_ns": 1785150890000000000,
-      "sha256": "50343656a35be5c3b47c653298211ee2871af2fd73b93f80a463f9d62a36f2fe"
+      "mtime_ns": 1785150890000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/prediction_metadata.json",
       "exists": true,
       "size": 615,
-      "mtime_ns": 1785150890000000000,
-      "sha256": "ea692e7e4b1fd48bf5149161a4cb9c5d716a973a9123c492d99281847772be9f"
+      "mtime_ns": 1785150890000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/protocol_check.json",
       "exists": true,
       "size": 9446,
-      "mtime_ns": 1785150966000000000,
-      "sha256": "ab3bbe0debfa2a916469d3aa25f9e9b3470e171083d963137b52ec050eb70471"
+      "mtime_ns": 1785150966000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/run_status.json",
       "exists": true,
       "size": 3042,
-      "mtime_ns": 1785150966000000000,
-      "sha256": "7c890ecaafe42166ab42a7d8db6655be74fcf5297c8545fdf07abc5878da0fdc"
+      "mtime_ns": 1785150966000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/train_complete.json",
       "exists": true,
       "size": 659,
-      "mtime_ns": 1785150850000000000,
-      "sha256": "2ba009f2825f92daf222753ba8ee92c5d4268a8a81dc376989735acb80b1cb28"
+      "mtime_ns": 1785150850000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A8/STMGPrompt_ComponentAblation/train_log.csv",
       "exists": true,
       "size": 7316,
-      "mtime_ns": 1785150850000000000,
-      "sha256": "eeb94ea282b8f52e1e7288bbaa8ca0ac9fb9e721038876cfbf617e8f80ff406c"
+      "mtime_ns": 1785150850000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/experiment_manifest.json",
       "exists": true,
       "size": 3884,
-      "mtime_ns": 1785135700000000000,
-      "sha256": "1634fd5ad79edd77f6e97bae93b9638f794c4efc1b90d4df55f34613f2415249"
+      "mtime_ns": 1785135700000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/experiment_status.json",
       "exists": true,
       "size": 746,
-      "mtime_ns": 1785150968000000000,
-      "sha256": "06afa4c5215ea58694a19a574e9bd19eee690b7055b883f0390266e4424dc879"
+      "mtime_ns": 1785150968000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/metrics_summary.csv",
       "exists": true,
       "size": 11906,
-      "mtime_ns": 1785150968000000000,
-      "sha256": "3c6913892b09405abd963ad02c62768d4d6bb6e43ebcac2e84b1eed18feaa68c"
+      "mtime_ns": 1785150968000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/metrics_summary.json",
       "exists": true,
       "size": 24700,
-      "mtime_ns": 1785150968000000000,
-      "sha256": "b39a0ac3b7ecb6f36c9ee7cbc5b3636f3183ec69456ae4a79ff6ba69ca1494b7"
+      "mtime_ns": 1785150968000000000
     },
     {
       "path": "custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/variant_config_matrix.csv",
       "exists": true,
       "size": 1824,
-      "mtime_ns": 1785135700000000000,
-      "sha256": "ffa99fd36b856856cd680e25e93a8898566420ba0410dade9c4ad1bea90f351c"
+      "mtime_ns": 1785135700000000000
     }
   ]
 }

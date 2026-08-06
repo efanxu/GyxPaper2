@@ -9,13 +9,13 @@ The parent launcher does not import/build a model or hold CUDA tensors. It check
 3. worker exit, releasing its complete CUDA context;
 4. a new formal-training Python worker, only after a matching PASS.
 
-PASS matching requires identical `model_id`, `model_config_hash`, `protocol_hash`, `source_hash`, `B/T/N/C/H`, AMP, completed forward/backward, and `status=PASS`.
+PASS matching requires identical `model_id`, `model_config_record`, `protocol_record`, `source_record`, `B/T/N/C/H`, AMP, completed forward/backward, and `status=PASS`.
 
 `FAIL_OOM` writes `hardware_preflight.json`, returns nonzero, creates no formal run, and never changes capacity. `FAIL_NON_OOM` additionally writes `engineering_block.json` with `runtime_status=BLOCKED_NON_OOM`; it also returns nonzero and starts no training.
 
 Default artifact pattern:
 
-`custom_models/results_smoke/benchmark_v2/hardware_preflight/<model>/<identity-hash>/hardware_preflight.json`.
+`custom_models/results_smoke/benchmark_v2/hardware_preflight/<model>/<identity-record>/hardware_preflight.json`.
 
 Current exact identities include:
 

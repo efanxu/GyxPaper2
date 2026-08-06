@@ -31,7 +31,6 @@
     "resolution": "test fixture changed to valid (B,T,N,4); Adapter fail-closed assertion then passed"
   },
   "protocol_check": {
-    "status": "PASS",
-    "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b"
+    "status": "PASS"
   }
 }

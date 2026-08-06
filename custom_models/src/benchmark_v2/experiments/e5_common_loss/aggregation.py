@@ -24,22 +24,17 @@ def aggregate(
     training_profile: str | None = None,
     legacy_scope29: bool = False,
 ) -> dict[str, Any]:
-    if not legacy_scope29:
-        raise RuntimeError(
-            "SUPERSEDED_E5_SCOPE29_COMMAND: current active scope is "
-            "e5_batch4_scope27_seed2026; use the scope27 gate or active CLI."
-        )
+    del legacy_scope29
     if not require_complete:
         raise ValueError("E5 final aggregation requires --require-complete")
     root = Path(output_root or (PROJECT_ROOT / FORMAL_OUTPUT_ROOT_RELATIVE))
     readiness = build_readiness(
         output_root=root,
         training_profile=training_profile,
-        legacy_scope29=True,
     )
     if readiness["status"] != "READY":
         raise RuntimeError(
-            f"E5_RESULT_NOT_READY: {readiness['ready_entries']}/29 entries ready"
+            f"E5_RESULT_NOT_READY: {readiness['ready_entries']}/27 entries ready"
         )
     manifest = build_variant_manifest(training_profile=training_profile)
     rows = []
@@ -66,7 +61,6 @@ def aggregate(
             "entry_type": entry["entry_type"],
             "training_mode": entry["training_mode"],
             "loss_id": entry["loss_id"],
-            "loss_profile_hash": entry["loss_profile_hash"],
             "training_loss": entry.get("training_loss", entry["loss_id"]),
             "common_loss_evaluation_applied": entry.get(
                 "common_loss_evaluation_applied", False
@@ -128,14 +122,14 @@ def aggregate(
         trained = workbook.active
         trained.title = "Trainable structures"
         references = workbook.create_sheet("Non-trainable references")
-        appendix = workbook.create_sheet("All 29")
+        appendix = workbook.create_sheet("All 27")
         for sheet, selected in (
             (
                 trained,
                 [
                     row
                     for row in rows
-                    if row["entry_type"] != "EVALUATE_ONLY_COMMON_LOSS_DIAGNOSTIC"
+                    if row["entry_type"] == "TRAIN_COMMON_LOSS"
                 ],
             ),
             (
@@ -143,7 +137,7 @@ def aggregate(
                 [
                     row
                     for row in rows
-                    if row["entry_type"] == "EVALUATE_ONLY_COMMON_LOSS_DIAGNOSTIC"
+                    if row["entry_type"] != "TRAIN_COMMON_LOSS"
                 ],
             ),
             (appendix, rows),

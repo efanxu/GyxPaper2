@@ -1,15 +1,15 @@
 # E1-B TSLib source audit
 
-审计对象仅为本地 `D:\PaperProject\GyxPaper2\Time-Series-Library`。未修改上游源码，未使用自动扫描、TSLib dataset、TSLib Trainer 或网络 fallback。上游项目为 `THUML/Time-Series-Library`，许可证为 MIT；`LICENSE` SHA256 为 `8a6caa178ea3f33ebff5d7bb5558628cf5b423305dc30d3630f86564c7db94a2`。
+审计对象仅为本地 `D:\PaperProject\GyxPaper2\Time-Series-Library`。未修改上游源码，未使用自动扫描、TSLib dataset、TSLib Trainer 或网络 fallback。上游项目为 `THUML/Time-Series-Library`，许可证为 MIT；`LICENSE` content record 为 `<removed-content-record>`。
 
 ## 源码身份
 
-| model | source | SHA256 |
+| model | source | content record |
 |---|---|---|
-| DLinear | `Time-Series-Library/models/DLinear.py` | `e03acaf97e70c85ea6bda6776b3a62550f84470afa7bc53dffccb6121626e7eb` |
-| LightTS | `Time-Series-Library/models/LightTS.py` | `1de1583c4ee0bbfa0764fa9b158f09ac8bcd7ddf7f2d9f1b58ab1a03a7d13989` |
-| TiDE | `Time-Series-Library/models/TiDE.py` | `4ab07dec4ae85f8b7c3062ff7d2fec00be342968d41cf09e48d599d8e40f6143` |
-| SegRNN | `Time-Series-Library/models/SegRNN.py` | `764d4ad950ee65162c70746248754942cfb4ba661162d515caab0a4eedd12252` |
+| DLinear | `Time-Series-Library/models/DLinear.py` | `<removed-content-record>` |
+| LightTS | `Time-Series-Library/models/LightTS.py` | `<removed-content-record>` |
+| TiDE | `Time-Series-Library/models/TiDE.py` | `<removed-content-record>` |
+| SegRNN | `Time-Series-Library/models/SegRNN.py` | `<removed-content-record>` |
 
 相关代码已逐文件核查：`layers/Autoformer_EncDec.py`、`exp/exp_basic.py`、`exp/exp_long_term_forecasting.py`、`run.py`、`LICENSE`。`exp_basic.py` 会扫描 `models/*.py`，本实现明确不使用该机制。`exp_long_term_forecasting.py` 在训练中访问 test loader，本实现明确不使用该训练路径。
 

@@ -12,8 +12,7 @@
   "e2_a_test_baseline_retained": 60,
   "e2_b_tests_added": 11,
   "protocol_check": {
-    "status": "PASS",
-    "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b"
+    "status": "PASS"
   },
   "focused_checks": [
     "12-entry explicit TSLib allowlist and lazy local source loading",

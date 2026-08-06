@@ -15,6 +15,6 @@ future observed covariate, target, or mask is accepted as a model input.
 
 The concatenated width is 128, followed by three residual MLP blocks with
 dropout 0.15. Cross-node isolation tests confirm that changing one node's
-history cannot affect another node. Ordinary node-embedding hash was
-`87976094afbca93a186093b6569964441085fd695203084603632bce698ffa63`
+history cannot affect another node. Ordinary node-embedding record was
+`<removed-content-record>`
 and strict reload reproduced it. `learned_graph` is explicitly `null`.

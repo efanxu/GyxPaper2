@@ -7,7 +7,7 @@
     "full_e5": "27/27",
     "trainable": "24/24"
   },
-  "evaluate_only_checkpoint_policy": "Checkpoint files are not required and are not hashed for EVALUATE_ONLY_COMMON_LOSS_DIAGNOSTIC entries.",
+  "evaluate_only_checkpoint_policy": "Checkpoint files are not required and are not recorded for EVALUATE_ONLY_COMMON_LOSS_DIAGNOSTIC entries.",
   "excluded_models_are_outside_denominator": true,
   "gate_source": "scripts/e5_batch4_scope27_gate.py",
   "hardware_artifact_gate": "EXACT_PASS_REQUIRED_FOR_24_TRAINABLE",
@@ -28,9 +28,9 @@
     "completed run identity-safe skip",
     "artifact completeness",
     "entry-type-specific artifact completeness",
-    "trainable checkpoint hash",
-    "evaluate-only baseline/diagnostic hashes",
-    "metrics hash",
+    "trainable checkpoint record",
+    "evaluate-only baseline/diagnostic records",
+    "metrics record",
     "metrics JSON/CSV consistency and finite valid target counts",
     "run_status",
     "independent E5 freeze",
@@ -46,6 +46,5 @@
   "scope_id": "e5_batch4_scope27_seed2026",
   "source_identity_schema_version": "model_source_identity_v1",
   "status": "ACTIVE_POLICY",
-  "training_profile_hash": "f58bbc161dfba0f00774879fdf2f78ec7c59a7faff9ef28a1733a2ed6835fe66",
   "training_profile_id": "uniform_train_batch4_v1"
 }

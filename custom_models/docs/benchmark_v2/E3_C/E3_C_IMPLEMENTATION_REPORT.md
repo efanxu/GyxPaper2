@@ -22,7 +22,7 @@ Registry after E3-C: 28 total, 26 trainable, 16 locally exact PASS,
 - ordinary smoke: 4/4 PASS
 - exact `(32,144,134,16) -> (32,134,10)` smoke: 4/4 PASS
 - limited real SDWPF smoke: 4/4 PASS
-- source-closure verification: 4/4 PASS
+- source listing verification: 4/4 PASS
 
 Exact local CUDA peak counters, recorded without inference:
 
@@ -39,16 +39,16 @@ reported total; no interpretation or correction was invented.
 
 ## Protection
 
-Before/after hashes match exactly for core ST-MGPrompt, TSLib, the benchmark
+Before/after records match exactly for core ST-MGPrompt, TSLib, the benchmark
 protocol/schema/contracts/loss/metrics/engine groups, and the complete graph
 protocol. Compatible benchmark extensions are limited to data metadata,
 checkpoint/artifact/preflight identity, runtime/CLI wiring, and registry.
 Prior E1/E2/E3-A count assertions were updated for the intentional registry
-transition. The E3-B directory digest changed because E3-C files and exports
+transition. The E3-B directory summary changed because E3-C files and exports
 were added under the shared graph-model directory. The historical E3-B
-aggregate source-closure hash is therefore not expected to match because its
+aggregate source listing record is therefore not expected to match because its
 shared export/runtime wiring was compatibly extended. The individual
-`common.py`, `gcn.py`, `stgcn.py`, and `dcrnn.py` architecture hashes remain
+`common.py`, `gcn.py`, `stgcn.py`, and `dcrnn.py` architecture records remain
 unchanged, and the full regression suite confirms prior behavior.
 
 No files were deleted or moved, no dependency was changed, and no formal output

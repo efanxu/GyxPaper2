@@ -3,10 +3,10 @@
 Frozen graph context:
 
 - graph: `sdwpf_physical_knn_v1`
-- graph protocol: `f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef`
-- bundle: `388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e`
-- node order: `1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35`
-- location source: `233a120f4db2b52402bf4dc7c90631ac9301d6af236a56c6a245e46beec1f236`
+- graph protocol: `<removed-content-record>`
+- bundle: `<removed-content-record>`
+- node order: `<removed-content-record>`
+- location source: `<removed-content-record>`
 
 | Model | Physical support enters forward | Learned graph/identity | Canonical policy |
 |---|---:|---|---|

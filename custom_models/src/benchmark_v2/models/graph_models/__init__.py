@@ -1,9 +1,4 @@
-"""Lazy graph-model exports.
-
-Graph implementations are independent source-identity units.  Importing the
-package for one native graph model must not import every other graph model.
-The compatibility exports below are a fixed, auditable map.
-"""
+"""Lazy graph-model exports."""
 
 from __future__ import annotations
 
@@ -22,7 +17,6 @@ _EXPORTS: dict[str, tuple[str, str]] = {
     "DCGRUCell": ("benchmark_v2.models.graph_models.dcrnn", "DCGRUCell"),
     "DCRNNForecast": ("benchmark_v2.models.graph_models.dcrnn", "DCRNNForecast"),
     "E3_C_POLICIES": ("benchmark_v2.models.graph_models.adaptive_common", "E3_C_POLICIES"),
-    "canonical_tensor_hash": ("benchmark_v2.models.graph_models.adaptive_common", "canonical_tensor_hash"),
     "e3_c_graph_identity": ("benchmark_v2.models.graph_models.adaptive_common", "e3_c_graph_identity"),
     "learned_graph_summary": ("benchmark_v2.models.graph_models.adaptive_common", "learned_graph_summary"),
     "DiffusionGraphConv": ("benchmark_v2.models.graph_models.graph_wavenet", "DiffusionGraphConv"),

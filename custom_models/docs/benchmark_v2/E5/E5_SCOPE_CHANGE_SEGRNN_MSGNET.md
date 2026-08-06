@@ -30,5 +30,5 @@ exception is authorized only when all bindings match:
 
 All other formal paths retain their prior behavior. Scope, protocol, loss,
 model source/config, dataset, run-id, output conflict, artifact completeness,
-checkpoint/metrics hash, run status, A8 identity, and 27/27 require-complete
+checkpoint/metrics record, run status, A8 identity, and 27/27 require-complete
 gates remain enabled.

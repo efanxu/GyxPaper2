@@ -160,7 +160,7 @@ ps -ef | grep '[r]un_benchmark.py'
 nvidia-smi
 ```
 
-A reusable preflight PASS must match every benchmark, source-closure, exact
+A reusable preflight PASS must match every benchmark, source listing, exact
 shape, AMP, graph, support, adaptive graph, node identity, temporal identity,
 and initialization policy field, and must contain completed forward/backward
 with `status=PASS`.

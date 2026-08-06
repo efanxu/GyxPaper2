@@ -3,7 +3,7 @@
 | Field group | Source and decision |
 |---|---|
 | Dataset, target, mask, lookback, horizon, split, stride, clip, checkpoint | E0-A audit and formal `experiment_protocol.py`/canonical overrides; these fields are frozen by the task protocol. |
-| 16 features and order | `st_mgprompt/config.py:9-26`; copied exactly and hashed. `Patv_raw` and `valid_target_mask` are excluded from input. |
+| 16 features and order | `st_mgprompt/config.py:9-26`; copied exactly and recorded. `Patv_raw` and `valid_target_mask` are excluded from input. |
 | Timestamp/node keys, alignment, window boundary, train-only scaler | `st_mgprompt/data.py:95-194, 269-410`; actual semantics preserved in the independent provider. |
 | Target loss space | `st_mgprompt/losses.py:27-84` documents normalized target-space losses; benchmark_v2 defaults to `masked_mse` there. |
 | Metric order and official Score | `st_mgprompt/metrics.py:47-141` and `evaluate.py:210-225, 388-403`; runtime reimplements the formula without importing ST-MGPrompt. |

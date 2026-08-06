@@ -2081,7 +2081,7 @@
       "mtime_ns": 1784554936000000000
     },
     {
-      "path": "custom_models/results/st_mgprompt_canonical/full_fixed_dual_keep_msmgdwu_seed2026/artifact_hashes.json",
+      "path": "custom_models/results/st_mgprompt_canonical/full_fixed_dual_keep_msmgdwu_seed2026/artifact_records.json",
       "exists": true,
       "size": 1588,
       "mtime_ns": 1784983838000000000
@@ -15822,5 +15822,5 @@
     }
   ],
   "file_count": 2636,
-  "note": "Inventory uses path/size/mtime; key protected artifacts are SHA256-covered separately."
+  "note": "Inventory uses path/size/mtime; key protected artifacts are content record-covered separately."
 }

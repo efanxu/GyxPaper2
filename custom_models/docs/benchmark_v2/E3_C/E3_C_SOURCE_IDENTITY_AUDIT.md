@@ -17,7 +17,7 @@ cloned, no source file was copied, and no dependency was installed.
 The recursive local audit covered the project source, tests, configuration, and
 documentation trees. Hits before implementation were registry/planning text
 only. The closure of every implemented model is frozen in
-`E3_C_SOURCE_CLOSURE_MANIFEST.json`; all closure records and aggregate hashes
+`E3_C_source listing_MANIFEST.json`; all closure records and aggregate records
 were reverified after implementation.
 
 `实验总Plan.md` and the requested root/workspace `HANDOFF.md` were not found

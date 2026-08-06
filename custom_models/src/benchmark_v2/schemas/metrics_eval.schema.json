@@ -1,1 +1,11 @@
-{"type":"object","required":["horizon","Score","MAE","RMSE","R2"],"additionalProperties":true}
+{
+  "type": "object",
+  "required": [
+    "horizon",
+    "Score",
+    "MAE",
+    "RMSE",
+    "R2"
+  ],
+  "additionalProperties": true
+}

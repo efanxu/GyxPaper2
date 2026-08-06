@@ -4,8 +4,8 @@ No local STCN or STGCN implementation was found. There is no class, model entry 
 
 Evidence:
 
-- `custom_models/docs/benchmark_v2/E0_A/STCN_STGCN_NAMING_AUDIT.md`, SHA256 `58c2e096f80e0266394c1d672aca23757c1039f3d70fdb384c4ef236572bde92`
-- `Time-Series-Library/run.py`, SHA256 `db6dfa215520ba193fe7095380f9005949a958efa9526975410cb5d97afe3fc4`; it exposes generic flags but constructs no STCN/STGCN
+- `custom_models/docs/benchmark_v2/E0_A/STCN_STGCN_NAMING_AUDIT.md`, content record `<removed-content-record>`
+- `Time-Series-Library/run.py`, content record `<removed-content-record>`; it exposes generic flags but constructs no STCN/STGCN
 
 Final resolution:
 

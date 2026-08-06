@@ -2,7 +2,6 @@
   "task": "E2-C",
   "model_id": "frets",
   "source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\FreTS.py",
-  "source_sha256": "2b6c9e0cd3d4f42bc74736343147812db94f029f1a8b13b098b9841705de5c18",
   "type_matrix": [
     {
       "input_value": 0,

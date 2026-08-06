@@ -23,5 +23,5 @@ def resolve_persistence_config(
         "run_mode": run_mode,
         "horizon": int(protocol["max_pred_len"]),
         "lookback": int(protocol["lookback"]),
-        "protocol_hash": protocol["protocol_hash"],
+        "protocol_id": protocol["protocol_id"],
     }

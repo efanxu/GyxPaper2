@@ -13,7 +13,7 @@
 
 `*.py`、`*.ps1`、`*.bat`、`*.cmd`、`*.json`、`*.yaml`、`*.yml`、`*.toml`、`*.ini`、`*.env`、`*.md`。
 
-重点检查了 formal runner、precision/component runner、`run_st_mgprompt.py`、协议/registry/config、smoke/full-shape/preflight、测试、RUNBOOK/HANDOFF、命令 JSON、provenance/manifest/hash 和删除清单。
+重点检查了 formal runner、precision/component runner、`run_st_mgprompt.py`、协议/registry/config、smoke/full-shape/preflight、测试、RUNBOOK/HANDOFF、命令 JSON、provenance/manifest/record 和删除清单。
 
 完整修改前审计见：[PYTHON_INTERPRETER_PATH_AUDIT.md](D:\PaperProject\GyxPaper2\PYTHON_INTERPRETER_PATH_AUDIT.md)。
 
@@ -45,11 +45,11 @@
 
 Windows 当前示例使用 `D:\Apps\Miniconda3\envs\env_tslib\python.exe`；PyCharm/PowerShell 的 `PYTHONPATH` 只包含项目源码目录，不再加入另一套 base `site-packages`。
 
-### E/F. 历史记录与 Canonical provenance/manifest/hash
+### E/F. 历史记录与 Canonical provenance/manifest/record
 
 已生成的 result command/status/preflight/full-shape JSON 保留原始环境证据，不被运行代码读取为未来解释器配置。以下保护对象未修改：
 
-- Canonical checkpoint、原始 config、原始 metrics、canonical manifest、provenance、artifact hashes。
+- Canonical checkpoint、原始 config、原始 metrics、canonical manifest、provenance、artifact records。
 - `DELETE_MANIFEST_refactor.json`
 - `DELETE_MANIFEST_refactor_bytecode.json`
 - `DELETE_STATUS_refactor.json`
@@ -181,12 +181,12 @@ A0/P0 -> 同一 Canonical artifact
 P0/A0 -> REFERENCE_ONLY
 ```
 
-Canonical SHA256 保持：
+Canonical content record 保持：
 
 ```text
-best_checkpoint.pt = f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a
-config.json        = 19e3926e3c55f4ccaaf9f3d786807c706b26cd57050443521d42598854a18e56
-metrics.csv        = ffc0d804e17a21a686038ed2d256af1cf74795c0aa81a05b16a57d91839506ea
+best_checkpoint.pt = <removed-content-record>
+config.json        = <removed-content-record>
+metrics.csv        = <removed-content-record>
 ```
 
 Canonical 文件未被本次修复触碰。

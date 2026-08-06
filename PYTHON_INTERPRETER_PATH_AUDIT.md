@@ -28,7 +28,7 @@
 | `HANDOFF_FIXED_DUAL_REFACTOR.md` | 55, 61, 64, 67, 73 | 当前解释器与 `D:\Apps\Miniconda3\Lib\site-packages` 跨环境依赖说明 | D. 当前运行文档 | 影响用户配置 | 保留当前解释器，删除 base `site-packages` 借用说明，改为环境自包含。 |
 | `RUNBOOK_FIXED_DUAL_REFACTOR.md` | 86, 92, 95, 102, 114, 196, 207, 213 | PyCharm/PowerShell 当前解释器及跨环境 `PYTHONPATH` | D. 当前运行文档 | 影响用户配置 | Windows 示例固定为当前推荐解释器；`PYTHONPATH` 只保留项目源码目录。 |
 
-## F. Canonical provenance / manifest / hash 记录
+## F. Canonical provenance / manifest / record 记录
 
 以下命中来自已生成的结果、命令快照、状态快照、preflight 或 full-shape 报告，均不是 Python 解释器选择源，也不会被运行代码读取来决定 `subprocess.run()` 的 `command[0]`。按照用户要求保留原始证据，不做全局替换：
 
@@ -42,7 +42,7 @@
 - `custom_models/results/st_mgprompt_supplementary_ablation_smoke/{scheduler_smoke_seed2026,synthetic_smoke_seed2026}/supplementary_ablation_{commands,status}.json`。
 - `custom_models/results_smoke/st_mgprompt_fixed_dual_refactor_full_shape/**/full_shape_smoke_{report,summary,failure}.json`。
 
-这些文件记录的是历史运行时环境或已生成命令；不能作为未来运行配置。Canonical checkpoint、原始 config、原始 metrics、canonical manifest、provenance、artifact hash、删除清单和删除状态均不在本次路径修复的修改范围内。
+这些文件记录的是历史运行时环境或已生成命令；不能作为未来运行配置。Canonical checkpoint、原始 config、原始 metrics、canonical manifest、provenance、artifact record、删除清单和删除状态均不在本次路径修复的修改范围内。
 
 ## E. 纯历史记录
 

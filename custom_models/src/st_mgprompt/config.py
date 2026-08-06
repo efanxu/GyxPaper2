@@ -189,7 +189,6 @@ class STMGPromptConfig:
     definition: str | None = None
     training_role: str | None = None
     training_batch_profile_id: str | None = None
-    training_batch_profile_hash: str | None = None
     trained_for_e5_scope27: bool = False
     consumed_read_only_by_e5: bool = False
     checkpoint_copied: bool = False

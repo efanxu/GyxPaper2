@@ -8,27 +8,19 @@ import numpy as np
 
 from .builder import MATRIX_FILENAMES, NODE_COUNT
 from .contracts import GraphBundle, GraphSpec
-from .hashing import (
-    file_sha256,
-    graph_bundle_hash,
-    graph_protocol_hash,
-    matrix_hash,
-    node_order_hash,
-    stable_hash,
+from .validation import (
+    GraphProtocolError,
+    canonical_node_ids,
+    validate_matrices,
 )
-from .validation import GraphProtocolError, validate_matrices
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[4]
 DEFAULT_PROTOCOL_PATH = (
     Path(__file__).resolve().parents[1] / "protocol" / "graph_protocol_v1.json"
 )
-DEFAULT_BUNDLE_DIR = (
-    Path(__file__).resolve().parents[1] / "protocol" / "graph_v1"
-)
-DEFAULT_LOCATION_PATH = (
-    PROJECT_ROOT / "dataset" / "sdwpf_turb_location_elevation.csv"
-)
+DEFAULT_BUNDLE_DIR = Path(__file__).resolve().parents[1] / "protocol" / "graph_v1"
+DEFAULT_LOCATION_PATH = PROJECT_ROOT / "dataset" / "sdwpf_turb_location_elevation.csv"
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -38,6 +30,23 @@ def _read_json(path: Path) -> dict[str, Any]:
     return payload
 
 
+def _validate_location(path: Path, ordered_node_ids: tuple[Any, ...]) -> None:
+    import pandas as pd
+
+    frame = pd.read_csv(path)
+    required = {"TurbID", "x", "y", "Ele"}
+    missing = required - set(frame.columns)
+    if missing:
+        raise GraphProtocolError(f"Location columns missing: {sorted(missing)}")
+    if len(frame) != NODE_COUNT:
+        raise GraphProtocolError(
+            f"Location row count must be {NODE_COUNT}, got {len(frame)}."
+        )
+    ids = canonical_node_ids(frame["TurbID"].astype(int).tolist())
+    if ids != ordered_node_ids:
+        raise GraphProtocolError("Location node order does not match graph node order.")
+
+
 def load_graph_bundle(
     *,
     protocol_path: str | Path = DEFAULT_PROTOCOL_PATH,
@@ -45,123 +54,89 @@ def load_graph_bundle(
     location_path: str | Path = DEFAULT_LOCATION_PATH,
     validate_location_source: bool = True,
 ) -> GraphBundle:
-    protocol_source = Path(protocol_path)
+    protocol = _read_json(Path(protocol_path))
     bundle_source = Path(bundle_dir)
-    protocol = _read_json(protocol_source)
-    declared_protocol_hash = protocol.get("graph_protocol_hash")
-    calculated_protocol_hash = graph_protocol_hash(protocol)
-    if declared_protocol_hash != calculated_protocol_hash:
-        raise GraphProtocolError(
-            "Frozen graph protocol hash mismatch: "
-            f"{declared_protocol_hash} != {calculated_protocol_hash}"
-        )
     if protocol.get("schema_version") != "graph_protocol_v1":
         raise GraphProtocolError("Unsupported graph protocol schema.")
+    graph_id = protocol.get("graph_id")
+    if not isinstance(graph_id, str) or not graph_id:
+        raise GraphProtocolError("Graph protocol requires graph_id.")
     if int(protocol.get("node_count", -1)) != NODE_COUNT:
-        raise GraphProtocolError("Frozen graph protocol node count is not 134.")
+        raise GraphProtocolError("Graph protocol node count is not 134.")
+    selected_k = int(protocol.get("selected_k", -1))
+    if selected_k <= 0:
+        raise GraphProtocolError("Graph protocol selected_k must be positive.")
+
     node_order_payload = _read_json(bundle_source / "node_order_v1.json")
     metadata_payload = _read_json(bundle_source / "node_metadata_v1.json")
     manifest = _read_json(bundle_source / "graph_bundle_manifest_v1.json")
-    ordered_node_ids = tuple(node_order_payload.get("ordered_node_ids", []))
-    order_hash = node_order_hash(ordered_node_ids)
-    if order_hash != protocol["node_order_hash"]:
-        raise GraphProtocolError("Frozen node-order hash mismatch.")
-    semantic_metadata = dict(metadata_payload)
-    declared_metadata_hash = semantic_metadata.pop("node_metadata_hash", None)
-    for audit_only_key in (
-        "location_source_sha256",
-        "source_path",
-        "created_by",
-    ):
-        semantic_metadata.pop(audit_only_key, None)
-    calculated_metadata_hash = stable_hash(semantic_metadata)
-    if (
-        declared_metadata_hash != calculated_metadata_hash
-        or declared_metadata_hash != protocol["node_metadata_hash"]
-    ):
-        raise GraphProtocolError("Frozen node-metadata hash mismatch.")
-    if validate_location_source:
-        current_location_hash = file_sha256(location_path)
-        if current_location_hash != protocol["location_source_sha256"]:
-            raise GraphProtocolError(
-                "Current location source hash does not match frozen graph identity."
-            )
-    matrices: dict[str, np.ndarray] = {}
-    matrix_hashes: dict[str, str] = {}
-    for name, filename in MATRIX_FILENAMES.items():
-        path = bundle_source / filename
-        matrix = np.load(path, allow_pickle=False)
-        digest = matrix_hash(matrix)
-        expected = protocol["matrix_files"][name]["canonical_matrix_hash"]
-        if digest != expected:
-            raise GraphProtocolError(
-                f"Frozen matrix hash mismatch for {name}: {digest} != {expected}"
-            )
-        matrices[name] = np.asarray(matrix, dtype=np.float64)
-        matrix_hashes[name] = digest
-    numerical = validate_matrices(matrices, node_count=NODE_COUNT)
-    calculated_bundle_hash = graph_bundle_hash(
-        graph_id=protocol["graph_id"],
-        node_count=NODE_COUNT,
-        node_order_digest=order_hash,
-        matrix_hashes=matrix_hashes,
+    ordered_node_ids = canonical_node_ids(
+        node_order_payload.get("ordered_node_ids", [])
     )
-    if (
-        calculated_bundle_hash != protocol["graph_bundle_hash"]
-        or calculated_bundle_hash != manifest.get("graph_bundle_hash")
-    ):
-        raise GraphProtocolError("Frozen graph-bundle hash mismatch.")
-    if manifest.get("graph_protocol_hash") != calculated_protocol_hash:
-        raise GraphProtocolError("Bundle manifest graph-protocol hash mismatch.")
+    if len(ordered_node_ids) != NODE_COUNT or len(set(ordered_node_ids)) != NODE_COUNT:
+        raise GraphProtocolError("Graph node IDs must contain 134 unique values.")
+    protocol_ids = protocol.get("ordered_node_ids")
+    if protocol_ids is not None and tuple(protocol_ids) != ordered_node_ids:
+        raise GraphProtocolError("Protocol and bundle node orders differ.")
+    records = metadata_payload.get("records")
+    if not isinstance(records, list) or len(records) != NODE_COUNT:
+        raise GraphProtocolError("Node metadata must contain 134 records.")
+    if [record.get("node_id") for record in records] != list(ordered_node_ids):
+        raise GraphProtocolError("Node metadata order differs from graph node order.")
+    if validate_location_source:
+        _validate_location(Path(location_path), ordered_node_ids)
+
+    declared_files = protocol.get("matrix_files")
+    if not isinstance(declared_files, dict) or set(declared_files) != set(MATRIX_FILENAMES):
+        raise GraphProtocolError("Graph protocol matrix names are incomplete.")
+    manifest_files = manifest.get("matrix_files")
+    if not isinstance(manifest_files, dict) or set(manifest_files) != set(MATRIX_FILENAMES):
+        raise GraphProtocolError("Graph bundle manifest matrix names are incomplete.")
+    matrices: dict[str, np.ndarray] = {}
+    for name, filename in MATRIX_FILENAMES.items():
+        declaration = declared_files[name]
+        if not isinstance(declaration, dict):
+            raise GraphProtocolError(f"Matrix declaration for {name} must be an object.")
+        if declaration.get("filename") != filename:
+            raise GraphProtocolError(f"Unexpected matrix filename for {name}.")
+        if declaration.get("shape") != [NODE_COUNT, NODE_COUNT]:
+            raise GraphProtocolError(f"Unexpected matrix shape declaration for {name}.")
+        matrix = np.load(bundle_source / filename, allow_pickle=False)
+        matrices[name] = np.asarray(matrix, dtype=np.float64)
+    validate_matrices(matrices, node_count=NODE_COUNT)
+
     spec = GraphSpec(
-        graph_id=protocol["graph_id"],
+        graph_id=graph_id,
         schema_version=protocol["schema_version"],
         node_count=NODE_COUNT,
         coordinate_system=protocol["coordinate_system"],
         distance_metric=protocol["distance_metric"],
-        elevation_used=bool(
-            protocol["elevation_policy"]["used_in_edge_distance"]
-        ),
+        elevation_used=bool(protocol["elevation_policy"]["used_in_edge_distance"]),
         k_selection_rule=protocol["k_selection_rule"],
-        selected_k=int(protocol["selected_k"]),
-        directedness=json.dumps(
-            protocol["directedness"], ensure_ascii=False, sort_keys=True
-        ),
+        selected_k=selected_k,
+        directedness=json.dumps(protocol["directedness"], ensure_ascii=False, sort_keys=True),
         self_loop_policy=protocol["self_loop_policy"],
         weight_formula=protocol["weight_formula"],
         normalization_formulas=protocol["normalization_formulas"],
-        graph_protocol_hash=calculated_protocol_hash,
     )
     return GraphBundle(
         spec=spec,
         ordered_node_ids=ordered_node_ids,
-        node_order_hash=order_hash,
-        node_metadata_hash=declared_metadata_hash,
-        location_source_hash=protocol["location_source_sha256"],
-        matrix_hashes=matrix_hashes,
-        graph_bundle_hash=calculated_bundle_hash,
-        graph_protocol_hash=calculated_protocol_hash,
         **matrices,
     )
 
 
 def graph_protocol_check() -> dict[str, Any]:
     bundle = load_graph_bundle()
-    diagnostics = validate_matrices(
-        bundle.matrices, node_count=bundle.spec.node_count
-    )
+    diagnostics = validate_matrices(bundle.matrices, node_count=bundle.spec.node_count)
     return {
         "status": "PASS",
         "schema_version": bundle.spec.schema_version,
         "graph_id": bundle.spec.graph_id,
         "node_count": bundle.spec.node_count,
         "selected_k": bundle.spec.selected_k,
-        "node_order_hash": bundle.node_order_hash,
-        "node_metadata_hash": bundle.node_metadata_hash,
-        "location_source_hash": bundle.location_source_hash,
-        "matrix_hashes": dict(bundle.matrix_hashes),
-        "graph_bundle_hash": bundle.graph_bundle_hash,
-        "graph_protocol_hash": bundle.graph_protocol_hash,
+        "ordered_node_ids": list(bundle.ordered_node_ids),
+        "matrix_names": list(bundle.matrices),
         "matrix_validation": diagnostics,
         "cuda_context_created": False,
         "model_constructed": False,

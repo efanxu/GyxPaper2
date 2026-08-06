@@ -1,143 +1,119 @@
 {
   "task": "E3-B",
-  "algorithm": "SHA256 of canonical JSON for ordered closure records; every record contains relative path, file SHA256, role, and identity flag",
+  "algorithm": "content record of canonical JSON for ordered closure records; every record contains relative path, file content record, role, and identity flag",
   "models": {
     "gcn": {
-      "source_closure_sha256": "c6803799a5314112784ea4441ed09c0ac71cf4dc6f12c8f687c2e9298b0a1196",
       "files": [
         {
           "path": "custom_models/src/benchmark_v2/models/graph_models/__init__.py",
-          "sha256": "5d3b952d6de848407c78ce4255cecd186f8899f6ef250fc741b9daf2e5bb1ffa",
           "role": "graph model public exports",
           "model_identity_part": true
         },
         {
           "path": "custom_models/src/benchmark_v2/models/graph_models/common.py",
-          "sha256": "d2699d65c513ffc66603a9fbae3502ff711376e431c71b94cfba58bd3cab2b44",
           "role": "frozen support copies and graph identity",
           "model_identity_part": true
         },
         {
           "path": "custom_models/src/benchmark_v2/adapters/e3_b.py",
-          "sha256": "09f48204b3fe5c4b7d713c82842cf5dd70d8d3581530076402abc9f004115fcb",
           "role": "native graph adapter and leakage/identity boundary",
           "model_identity_part": true
         },
         {
           "path": "custom_models/src/benchmark_v2/configs/graph_common.py",
-          "sha256": "a0c2ef852b967f2fc7e0dc08446680e9d093d9f2e11f40ea4fb0997a3f1a6468",
           "role": "shared frozen benchmark graph configuration",
           "model_identity_part": true
         },
         {
           "path": "custom_models/src/benchmark_v2/model_runtime.py",
-          "sha256": "6dfcbcabda9bea7ace70aad4e0323918b099fe4e502adb2c69627767a26e995c",
           "role": "explicit runtime build entry",
           "model_identity_part": true
         },
         {
           "path": "custom_models/src/benchmark_v2/models/graph_models/gcn.py",
-          "sha256": "e81a418c750a397fc564a22242504fe0113c25ccbad338cdd788f89990448a3c",
           "role": "model architecture and custom graph operators",
           "model_identity_part": true
         },
         {
           "path": "custom_models/src/benchmark_v2/configs/gcn.py",
-          "sha256": "7889ff899f1a53aff396c27b4088f2cf2aa1e1f0684163e3751e7ba2468d54b7",
           "role": "model-specific frozen configuration",
           "model_identity_part": true
         }
       ]
     },
     "stgcn": {
-      "source_closure_sha256": "90efe073ef671394b2508418765ea0b5db2b6f49b62a852bb00cfb35a484b965",
       "files": [
         {
           "path": "custom_models/src/benchmark_v2/models/graph_models/__init__.py",
-          "sha256": "5d3b952d6de848407c78ce4255cecd186f8899f6ef250fc741b9daf2e5bb1ffa",
           "role": "graph model public exports",
           "model_identity_part": true
         },
         {
           "path": "custom_models/src/benchmark_v2/models/graph_models/common.py",
-          "sha256": "d2699d65c513ffc66603a9fbae3502ff711376e431c71b94cfba58bd3cab2b44",
           "role": "frozen support copies and graph identity",
           "model_identity_part": true
         },
         {
           "path": "custom_models/src/benchmark_v2/adapters/e3_b.py",
-          "sha256": "09f48204b3fe5c4b7d713c82842cf5dd70d8d3581530076402abc9f004115fcb",
           "role": "native graph adapter and leakage/identity boundary",
           "model_identity_part": true
         },
         {
           "path": "custom_models/src/benchmark_v2/configs/graph_common.py",
-          "sha256": "a0c2ef852b967f2fc7e0dc08446680e9d093d9f2e11f40ea4fb0997a3f1a6468",
           "role": "shared frozen benchmark graph configuration",
           "model_identity_part": true
         },
         {
           "path": "custom_models/src/benchmark_v2/model_runtime.py",
-          "sha256": "6dfcbcabda9bea7ace70aad4e0323918b099fe4e502adb2c69627767a26e995c",
           "role": "explicit runtime build entry",
           "model_identity_part": true
         },
         {
           "path": "custom_models/src/benchmark_v2/models/graph_models/stgcn.py",
-          "sha256": "41f7d70a3e388a0f5a4e6ffcbddc7177e51f0f6e3ce2b899d64415d6f72d47d2",
           "role": "model architecture and custom graph operators",
           "model_identity_part": true
         },
         {
           "path": "custom_models/src/benchmark_v2/configs/stgcn.py",
-          "sha256": "5215169e6507b88df262bb6e50ed97f8e52b27e5845124a68f4446d1dfd82334",
           "role": "model-specific frozen configuration",
           "model_identity_part": true
         }
       ]
     },
     "dcrnn": {
-      "source_closure_sha256": "9ee9198c4f36b0a44e392e294d4315b0be8ba38c5304379dfc35ce4fb1bb97c4",
       "files": [
         {
           "path": "custom_models/src/benchmark_v2/models/graph_models/__init__.py",
-          "sha256": "5d3b952d6de848407c78ce4255cecd186f8899f6ef250fc741b9daf2e5bb1ffa",
           "role": "graph model public exports",
           "model_identity_part": true
         },
         {
           "path": "custom_models/src/benchmark_v2/models/graph_models/common.py",
-          "sha256": "d2699d65c513ffc66603a9fbae3502ff711376e431c71b94cfba58bd3cab2b44",
           "role": "frozen support copies and graph identity",
           "model_identity_part": true
         },
         {
           "path": "custom_models/src/benchmark_v2/adapters/e3_b.py",
-          "sha256": "09f48204b3fe5c4b7d713c82842cf5dd70d8d3581530076402abc9f004115fcb",
           "role": "native graph adapter and leakage/identity boundary",
           "model_identity_part": true
         },
         {
           "path": "custom_models/src/benchmark_v2/configs/graph_common.py",
-          "sha256": "a0c2ef852b967f2fc7e0dc08446680e9d093d9f2e11f40ea4fb0997a3f1a6468",
           "role": "shared frozen benchmark graph configuration",
           "model_identity_part": true
         },
         {
           "path": "custom_models/src/benchmark_v2/model_runtime.py",
-          "sha256": "6dfcbcabda9bea7ace70aad4e0323918b099fe4e502adb2c69627767a26e995c",
           "role": "explicit runtime build entry",
           "model_identity_part": true
         },
         {
           "path": "custom_models/src/benchmark_v2/models/graph_models/dcrnn.py",
-          "sha256": "4b5aaea22158b04981d7ebfbd559e1530beccab51da1978b824f50317e970e8b",
           "role": "model architecture and custom graph operators",
           "model_identity_part": true
         },
         {
           "path": "custom_models/src/benchmark_v2/configs/dcrnn.py",
-          "sha256": "1aa5a7fbdc097ae415cbed984ecbe2a36a047590e2cd45648f7911eca3e41d5e",
           "role": "model-specific frozen configuration",
           "model_identity_part": true
         }

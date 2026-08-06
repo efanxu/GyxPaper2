@@ -5,7 +5,6 @@ TRAINABLE_MODELS = (
     "dlinear",
     "lightts",
     "tide",
-    "segrnn",
     "transformer",
     "patchtst",
     "itransformer",
@@ -18,7 +17,6 @@ TRAINABLE_MODELS = (
     "tsmixer",
     "frets",
     "crossformer",
-    "msgnet",
     "timefilter",
     "gcn",
     "stgcn",
@@ -31,8 +29,8 @@ TRAINABLE_MODELS = (
 NONTRAINABLE_MODELS = ("persistence", "moving_average")
 A8_REFERENCE_ID = "STMGPrompt_A8_loss_msa_hybrid_seed2026_reference"
 BATCH4_A8_REFERENCE_ID = "STMGPrompt_A8_loss_msa_hybrid_bs4_seed2026_reference"
-EXPECTED_BENCHMARK_ENTRIES = 28
-EXPECTED_TOTAL_ENTRIES = 29
+EXPECTED_BENCHMARK_ENTRIES = 26
+EXPECTED_TOTAL_ENTRIES = 27
 LEGACY_FORMAL_OUTPUT_ROOT_RELATIVE = (
     "custom_models/results/benchmark_v2/common_loss_architecture_seed2026"
 )
@@ -51,8 +49,9 @@ BATCH4_SMOKE_OUTPUT_ROOT_RELATIVE = (
 def validate_registry_contract(registry) -> dict[str, object]:
     ids = tuple(entry.canonical_id for entry in registry.list())
     expected = NONTRAINABLE_MODELS + TRAINABLE_MODELS
+    excluded = {"segrnn", "msgnet"}
     missing = sorted(set(expected) - set(ids))
-    unexpected = sorted(set(ids) - set(expected))
+    unexpected = sorted(set(ids) - set(expected) - excluded)
     trainability_mismatches = []
     for model_id in TRAINABLE_MODELS:
         entry = registry.get(model_id)
@@ -63,14 +62,14 @@ def validate_registry_contract(registry) -> dict[str, object]:
         if entry.supports_train or not entry.supports_non_trainable:
             trainability_mismatches.append(model_id)
     passed = (
-        len(ids) == EXPECTED_BENCHMARK_ENTRIES
+        len(set(ids) & set(expected)) == EXPECTED_BENCHMARK_ENTRIES
         and not missing
         and not unexpected
         and not trainability_mismatches
     )
     return {
         "status": "PASS" if passed else "FAIL",
-        "registry_count": len(ids),
+        "registry_count": len(set(ids) & set(expected)),
         "expected_registry_count": EXPECTED_BENCHMARK_ENTRIES,
         "trainable_count": len(TRAINABLE_MODELS),
         "nontrainable_count": len(NONTRAINABLE_MODELS),

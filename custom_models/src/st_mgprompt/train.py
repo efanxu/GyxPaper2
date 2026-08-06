@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import csv
-import hashlib
 import json
 import os
 import random
@@ -59,16 +58,9 @@ STRICT_RESUME_KEYS = [
 ]
 
 
-def serializable_config_hash(config: STMGPromptConfig) -> str:
-    payload = json.dumps(config.to_dict(), sort_keys=True, ensure_ascii=False, default=str)
-    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
-
-
 def _training_batch_identity(config: STMGPromptConfig) -> dict:
     keys = (
-        "base_benchmark_protocol_hash",
         "training_batch_profile_id",
-        "training_batch_profile_hash",
         "train_batch_size",
         "val_batch_size",
         "test_batch_size",
@@ -443,7 +435,6 @@ def train_model(
     skipped_train_total = 0
     skipped_val_total = 0
     start_epoch = 1
-    config_hash = serializable_config_hash(config)
 
     resume_checkpoint_path = Path(resume_from) if resume_from else None
     if resume_checkpoint_path is not None:
@@ -567,7 +558,6 @@ def train_model(
             "grad_scaler_state_dict": scaler.state_dict() if scaler is not None else None,
             "early_stopping_counter": bad_epochs,
             "config": config.to_dict(),
-            "config_hash": config_hash,
             "batch_identity": _training_batch_identity(config),
             "input_dim": data.input_dim,
             "num_nodes": data.num_nodes,
@@ -619,7 +609,6 @@ def train_model(
         "last_checkpoint": str(last_checkpoint_path),
         "amp_enabled": bool(config.amp_enabled),
         "amp_dtype": config.amp_dtype if config.amp_enabled else None,
-        "config_hash": config_hash,
     }
     (run_dir / "train_complete.json").write_text(
         json.dumps(train_complete, indent=2, ensure_ascii=False),

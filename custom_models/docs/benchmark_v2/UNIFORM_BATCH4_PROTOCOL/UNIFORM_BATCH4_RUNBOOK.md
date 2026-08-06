@@ -33,9 +33,8 @@ identity is accepted. Original-loss and E5 common-loss have distinct identities
 and distinct summaries. Missing or mismatched rows are printed before a formal
 script exits with a nonzero code.
 
-If a deployment archive has no `.git` directory, set
-`UNIFORM_BATCH4_GIT_COMMIT` to the same source commit on both machines. The
-manifest still records all protected-file and dataset hashes. If Git metadata
+Deployment archives use the same explicit scope, model, batch, loss, precision,
+and dataset-path metadata as repository checkouts. If repository metadata
 is present and the tree is dirty, every changed path is recorded.
 
 ## Preflight order
@@ -71,7 +70,7 @@ bash custom_models/docs/benchmark_v2/UNIFORM_BATCH4_PROTOCOL/UNIFORM_BATCH4_PREF
 
 Each machine writes
 `UNIFORM_BATCH4_MACHINE_PREFLIGHT_<machine_id>.json` and `.md`. Preflight logs,
-exit codes, full tracebacks, Git/dirty details, protocol/profile/dataset hashes,
+exit codes, full tracebacks, Git/dirty details, protocol/profile/dataset records,
 and artifact paths are retained.
 
 ## Formal suite commands
@@ -124,8 +123,8 @@ bash custom_models/docs/benchmark_v2/UNIFORM_BATCH4_PROTOCOL/UNIFORM_BATCH4_FINA
 
 Machine A may run Original 28 while Machine B runs E5 core. The manifests must
 match on commit (or the explicit archive commit), benchmark and Batch4 protocol
-hashes, profile hash, model/config/source closure hashes, graph/node identity,
-dataset hashes, run-id map, AMP, shape, and seed. The tasks use the frozen,
+records, profile record, model/config/source listing records, graph/node identity,
+dataset records, run-id map, AMP, shape, and seed. The tasks use the frozen,
 disjoint output roots already recorded in `UNIFORM_BATCH4_RUN_ID_MAP.json`;
 they must never share a run-id directory.
 

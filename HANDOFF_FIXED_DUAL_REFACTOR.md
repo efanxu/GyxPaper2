@@ -134,7 +134,7 @@ bi_diffusion
 
 两者只做非语义名称映射；Canonical 的源 `config.json` 字节保持不变。
 
-## 4. Canonical 兼容性与 hash
+## 4. Canonical 兼容性与 record
 
 当前构造器只读复核：
 
@@ -149,29 +149,29 @@ loss unexpected keys：0
 预期参数量：278,534
 ```
 
-关键 SHA256：
+关键 content record：
 
 ```text
 config.json
-19e3926e3c55f4ccaaf9f3d786807c706b26cd57050443521d42598854a18e56
+<removed-content-record>
 
 best_checkpoint.pt
-f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a
+<removed-content-record>
 
 metrics.csv
-ffc0d804e17a21a686038ed2d256af1cf74795c0aa81a05b16a57d91839506ea
+<removed-content-record>
 
 metrics_eval_h3.json
-881be8f8b56d7d1aa4515ec717b6d2ad591516062fbf31d9ec405bae354d0225
+<removed-content-record>
 
 metrics_eval_h6.json
-87f6b70246f1d9e97db10b638b164ef92f9d14f502da8d2829c94faf398bc633
+<removed-content-record>
 
 metrics_eval_h10.json
-c0f47960bdee49dbf92727a463784943c00c917cf6d00a18c3651f78df5a9c13
+<removed-content-record>
 ```
 
-A0、P0 的 `reference.json` 均解析到同一 Canonical 目录，checkpoint/config/metrics hash 与上述值一致。
+A0、P0 的 `reference.json` 均解析到同一 Canonical 目录，checkpoint/config/metrics record 与上述值一致。
 
 ## 5. Canonical 迁移清单
 
@@ -181,7 +181,7 @@ Canonical 目录：
 D:\PaperProject\GyxPaper2\custom_models\results\st_mgprompt_canonical\full_fixed_dual_keep_msmgdwu_seed2026
 ```
 
-从旧 A1 逐文件复制并逐文件验证 SHA256 的 18 个真实文件：
+从旧 A1 逐文件复制并逐文件验证 content record 的 18 个真实文件：
 
 ```text
 config.json
@@ -209,7 +209,7 @@ diagnostics/site_weight_final.csv
 ```text
 effective_config.json
 canonical_manifest.json
-artifact_hashes.json
+artifact_records.json
 provenance.json
 canonical_verification.json
 ```
@@ -371,7 +371,7 @@ DELETE_MANIFEST_refactor.json
 entry_count = 996
 missing_count = 0
 duplicate_count = 0
-hash_mismatch_count = 0
+record_mismatch_count = 0
 outside_project_count = 0
 migrated old-A1 entries = 19
 ```

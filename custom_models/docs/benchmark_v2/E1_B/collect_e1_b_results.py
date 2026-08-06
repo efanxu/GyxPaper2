@@ -53,7 +53,6 @@ def collect_trainable_run(run_dir: Path) -> dict[str, Any]:
         "strict_reload_completed": completed,
         "artifact_validation": "PASS" if completed else "FAIL",
         "upstream_source_path": effective.get("upstream_source_path"),
-        "upstream_source_sha256": effective.get("upstream_source_sha256"),
     }
 
 

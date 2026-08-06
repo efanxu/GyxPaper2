@@ -65,7 +65,6 @@ fi
 "$PYTHON" "$GATE" --manifest "$MANIFEST" preflight-plan > "$AUDIT_ROOT/e5_scope27_preflight_plan.json"
 "$PYTHON" "$GATE" --manifest "$MANIFEST" dry-run --output-root "$OUTPUT_ROOT" > "$AUDIT_ROOT/e5_scope27_dry_run.json"
 
-HEAD="$(git rev-parse HEAD)"
 echo "Static E5 scope27 plan complete at $(date -u +%Y-%m-%dT%H:%M:%SZ)"
 echo "Current output root: $OUTPUT_ROOT"
 echo "Legacy root is read-only and is never passed to the gate."
@@ -73,7 +72,6 @@ echo "Legacy root is read-only and is never passed to the gate."
 set +e
 "$PYTHON" "$GATE" --manifest "$MANIFEST" preflight \
   --preflight-root "$PREFLIGHT_ROOT" \
-  --source-revision "$HEAD" \
   --report-path "$PREFLIGHT_REPORT" \
   --child-log-root "$PREFLIGHT_CHILD_LOG_ROOT" 2>&1 | tee "$PREFLIGHT_LOG"
 preflight_code=${PIPESTATUS[0]}
@@ -89,8 +87,7 @@ set +e
   --input-path "$INPUT" \
   --target-path "$TARGET" \
   --log-root "$RUN_LOG_ROOT" \
-  --preflight-root "$PREFLIGHT_ROOT" \
-  --source-revision "$HEAD" 2>&1 | tee "$RUN_LOG"
+  --preflight-root "$PREFLIGHT_ROOT" 2>&1 | tee "$RUN_LOG"
 run_code=${PIPESTATUS[0]}
 set -e
 if [[ "$run_code" -ne 0 ]]; then

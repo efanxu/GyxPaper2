@@ -4,11 +4,11 @@ E3-A is complete and stops before E3-B.
 
 `graph_protocol_v1` is frozen as `sdwpf_physical_knn_v1` for 134 integer TurbID nodes. It uses Cartesian x/y Euclidean distance, horizontal position only, deterministic minimum-connected k=4, Gaussian distance weights, explicit directed/undirected base matrices, GCN support, forward/reverse diffusion supports, and symmetric/scaled Laplacians.
 
-Graph protocol hash: `f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef`
+Graph protocol record: `<removed-content-record>`
 
-Graph bundle hash: `388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e`
+Graph bundle record: `<removed-content-record>`
 
-Node-order hash: `1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35`
+Node-order record: `<removed-content-record>`
 
 STCN/STGCN is now the future canonical `stgcn` slot. No implementation was found or added, so it remains `MISSING_IMPLEMENTATION / BLOCKED_UNIMPLEMENTED`.
 

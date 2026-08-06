@@ -24,9 +24,7 @@
     "Tp",
     "Patv_clean_for_input"
   ],
-  "feature_order_hash": "b9878a5091618737ca8c126dcee80d5b70f122ff3901960a620cb6bc10e7f853",
   "node_count": 4,
-  "node_order_hash": "synthetic",
   "timestamp_count": 144,
   "normalization_fit_scope": "synthetic_explicit_no_fit"
 }

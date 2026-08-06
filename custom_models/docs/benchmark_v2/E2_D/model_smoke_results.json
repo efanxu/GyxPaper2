@@ -26,7 +26,6 @@
       "strict_reload_completed": true,
       "artifact_validation": "PASS",
       "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\Crossformer.py",
-      "upstream_source_sha256": "f5892f70eb3fc320f69fa0a9b2019b68537cc5a5e5aa2ec544c15127b19e36f0",
       "effective_config": {
         "d_model": 32,
         "d_ff": 32,
@@ -63,7 +62,6 @@
       "strict_reload_completed": true,
       "artifact_validation": "PASS",
       "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\MSGNet.py",
-      "upstream_source_sha256": "e6f8f3fbd4e0bc9d77c78e2409969c4fe4b2fc6560e7c1f5cced2a809d8e9e59",
       "effective_config": {
         "label_len": 48,
         "c_out": 16,
@@ -110,7 +108,6 @@
       "strict_reload_completed": true,
       "artifact_validation": "PASS",
       "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\TimeFilter.py",
-      "upstream_source_sha256": "6cbce92f112a9907fe6117ea23527bf1864c0ea00721a812d786e86e0a1b0724",
       "effective_config": {
         "c_out": 16,
         "d_model": 512,

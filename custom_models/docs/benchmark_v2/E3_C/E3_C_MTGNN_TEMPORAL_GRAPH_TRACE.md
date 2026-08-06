@@ -20,7 +20,7 @@ therefore ends at width 1 before the horizon head.
 The constructor is directed and antisymmetric before top-k. It removes
 self-loops and retains exactly 20 outgoing edges per row. Ordinary smoke:
 2,680 edges, density `0.14925373134328357`, outgoing degree exactly 20,
-incoming degree 0–59, maximum asymmetry 1.0, hash
-`7a07d0e5a7e156dcffbcabeff7bf47a18716bc43bc2783e4dfa34f774a37d1b1`.
+incoming degree 0–59, maximum asymmetry 1.0, record
+`<removed-content-record>`.
 Forward and reverse MixProp both use depth 2. Physical supports are context-only.
 Node splitting/sampling is disabled.

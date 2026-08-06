@@ -4,9 +4,6 @@
   "graph_id": "sdwpf_physical_knn_v1",
   "node_count": 134,
   "selected_k": 4,
-  "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
-  "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
-  "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
   "connected_component_count": 1,
   "tests": {
     "task": "E3-A",
@@ -32,14 +29,11 @@
       "errors": 0
     },
     "protocol_check": {
-      "status": "PASS",
-      "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b"
+      "status": "PASS"
     },
     "graph_protocol_check": {
-      "status": "PASS",
-      "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef"
+      "status": "PASS"
     },
-    "double_rebuild_hash_verification": "PASS",
     "frozen_graph_overwrite_fail_closed": "PASS",
     "dummy_graph_contract_smoke": "PASS",
     "formal_training": "NOT_RUN",

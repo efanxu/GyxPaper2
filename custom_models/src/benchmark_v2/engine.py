@@ -1,9 +1,6 @@
 from __future__ import annotations
 
 import traceback
-import hashlib
-import os
-import subprocess
 from pathlib import Path
 from typing import Any, Callable
 
@@ -21,7 +18,6 @@ from .nonfinite import (
     write_nonfinite_artifact,
 )
 from .transformer_diagnostics import TransformerHookCapture
-from .checkpointing import config_hash
 from .seeds import seed_everything
 
 
@@ -52,24 +48,9 @@ class Trainer:
         )
         self.amp_enabled = bool(effective_config.get("amp_enabled", False)) and self.device.type == "cuda"
         self.amp_scaler = torch.amp.GradScaler("cuda", enabled=self.amp_enabled)
-        self.ckpt = CheckpointManager(self.run_dir, protocol_hash=protocol.protocol_hash if hasattr(protocol, "protocol_hash") else protocol["protocol_hash"], model_id=model_id, resolved_config=resolved_config, effective_config=effective_config)
+        self.ckpt = CheckpointManager(self.run_dir, protocol_id=str(protocol.get("protocol_id", protocol.get("protocol_version", "benchmark_v2"))), model_id=model_id, resolved_config=resolved_config, effective_config=effective_config)
         self.model_id = model_id
         self.nonfinite_diagnostics_enabled = diagnostics_enabled()
-        self._git_commit = os.environ.get("UNIFORM_BATCH4_GIT_COMMIT", "").strip() or None
-        if self._git_commit is None:
-            try:
-                completed = subprocess.run(
-                    ["git", "rev-parse", "HEAD"],
-                    cwd=self.run_dir,
-                    check=False,
-                    capture_output=True,
-                    text=True,
-                    encoding="utf-8",
-                )
-                if completed.returncode == 0:
-                    self._git_commit = completed.stdout.strip() or None
-            except OSError:
-                pass
         self._last_checkpoint: dict[str, Any] | None = None
         self._last_optimizer_update: dict[str, Any] | None = None
 
@@ -85,24 +66,14 @@ class Trainer:
     ) -> dict[str, Any]:
         import torch
 
-        protocol_hash = (
-            self.protocol.protocol_hash
-            if hasattr(self.protocol, "protocol_hash")
-            else self.protocol["protocol_hash"]
-        )
-        commit = self._git_commit
         checkpoint = dict(self._last_checkpoint or {})
         return {
             "model_id": self.model_id,
             "run_id": self.run_dir.name,
             "run_mode": self.effective_config.get("run_mode"),
             "artifact_profile": self.effective_config.get("artifact_profile"),
-            "protocol_hash": protocol_hash,
-            "resolved_config_hash": config_hash(self.resolved_config),
-            "effective_config_hash": config_hash(self.effective_config),
+            "protocol_id": self.protocol.get("protocol_id", self.protocol.get("protocol_version")),
             "batch_profile_id": self.effective_config.get("training_batch_profile_id"),
-            "batch_profile_hash": self.effective_config.get("training_batch_profile_hash"),
-            "git_commit": commit,
             "phase": phase,
             "epoch": int(epoch),
             "epoch_is_zero_based": False,
@@ -162,13 +133,6 @@ class Trainer:
             )
         if diagnostic.optimizer_update is None and self._last_optimizer_update is not None:
             diagnostic.optimizer_update = dict(self._last_optimizer_update)
-        checkpoint = diagnostic.context.get("checkpoint")
-        if isinstance(checkpoint, dict) and checkpoint.get("path"):
-            checkpoint_path = Path(checkpoint["path"])
-            if checkpoint_path.is_file() and not checkpoint.get("sha256"):
-                checkpoint["sha256"] = hashlib.sha256(
-                    checkpoint_path.read_bytes()
-                ).hexdigest()
         path = write_nonfinite_artifact(self.run_dir, diagnostic)
         if path is not None:
             diagnostic.context["artifact_path"] = str(path)

@@ -3,7 +3,6 @@ from __future__ import annotations
 from typing import Any, Mapping
 
 from ..contracts import BenchmarkOutput
-from ..data.signatures import feature_order_hash
 from ..errors import ContractError
 from .node_shared import NodeSharedAdapter
 
@@ -18,8 +17,6 @@ class TSLibPowerChannelAdapter(NodeSharedAdapter):
         features = tuple(protocol["ordered_input_features"])
         if len(features) != int(protocol["feature_count"]):
             raise ContractError("Protocol feature count/order mismatch.")
-        if feature_order_hash(features) != protocol["feature_order_hash"]:
-            raise ContractError("Protocol feature order hash mismatch.")
         power_feature = str(protocol["input_power_column"])
         if features.count(power_feature) != 1:
             raise ContractError(

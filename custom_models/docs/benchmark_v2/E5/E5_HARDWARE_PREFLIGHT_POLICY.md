@@ -1,8 +1,8 @@
 # E5 hardware preflight policy
 
 A masked-MSE PASS is not reusable for E5. The E5 identity additionally binds
-the experiment profile, E5 protocol hash, loss id/source/profile hashes,
-base config/source closure, benchmark protocol, exact B/T/N/C/H, AMP, seed,
+the experiment profile, E5 protocol record, loss id/source/profile records,
+base config/source listing, benchmark protocol, exact B/T/N/C/H, AMP, seed,
 and graph/node/timestamp identities. PASS requires completed forward and
 backward. OOM routes only the E5 variant to
 `E5_AVAILABLE_TRAINABLE_HARDWARE_PREFLIGHT_REQUIRED`; non-OOM failures block.

@@ -45,5 +45,5 @@ def resolve_gru_config(
         "checkpoint_direction": "lower_is_better",
         "loss": "masked_mse",
         "loss_space": "normalized_target_space",
-        "protocol_hash": protocol["protocol_hash"],
+        "protocol_id": protocol["protocol_id"],
     }

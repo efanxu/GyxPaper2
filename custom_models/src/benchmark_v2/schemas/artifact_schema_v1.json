@@ -2,13 +2,32 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "benchmark_v2/artifact_schema_v1",
   "type": "object",
-  "required": ["schema_version", "artifact_profile", "run_mode", "protocol_hash"],
+  "required": [
+    "schema_version",
+    "artifact_profile",
+    "run_mode",
+    "protocol_record"
+  ],
   "properties": {
-    "schema_version": {"const": "artifact_schema_v1"},
-    "artifact_profile": {"enum": ["TRAIN", "EVALUATE_ONLY", "NON_TRAINABLE", "REFERENCE_ONLY", "SMOKE", "FAILED"]},
-    "run_mode": {"enum": ["formal", "smoke"]},
-    "protocol_hash": {"type": "string", "minLength": 64, "maxLength": 64}
+    "schema_version": {
+      "const": "artifact_schema_v1"
+    },
+    "artifact_profile": {
+      "enum": [
+        "TRAIN",
+        "EVALUATE_ONLY",
+        "NON_TRAINABLE",
+        "REFERENCE_ONLY",
+        "SMOKE",
+        "FAILED"
+      ]
+    },
+    "run_mode": {
+      "enum": [
+        "formal",
+        "smoke"
+      ]
+    }
   },
   "additionalProperties": true
 }
-

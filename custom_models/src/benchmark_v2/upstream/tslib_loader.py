@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import hashlib
 import importlib.util
 import sys
 import threading
@@ -46,21 +45,11 @@ class TSLibSource:
     upstream_project: str
     source_path: str
     source_relative_path: str
-    source_sha256: str
     license_path: str
-    license_sha256: str
     source_modified: bool = False
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
-
-
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _allowed_id(model_id: str) -> str:
@@ -88,9 +77,7 @@ def resolve_tslib_source(model_id: str) -> TSLibSource:
         upstream_project="THUML/Time-Series-Library",
         source_path=str(source),
         source_relative_path=source.relative_to(PROJECT_ROOT).as_posix(),
-        source_sha256=_sha256(source),
         license_path=str(TSLIB_LICENSE),
-        license_sha256=_sha256(TSLIB_LICENSE),
         source_modified=False,
     )
 
@@ -115,9 +102,7 @@ def load_tslib_model_class(model_id: str):
         module = _MODULE_CACHE.get(key)
         if module is None:
             _reject_foreign_layers_package()
-            module_name = (
-                f"_benchmark_v2_tslib_{key}_{source.source_sha256[:12]}"
-            )
+            module_name = f"_benchmark_v2_tslib_{key}"
             spec = importlib.util.spec_from_file_location(
                 module_name, source.source_path
             )

@@ -2,13 +2,5 @@
   "alias": "P0",
   "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
   "canonical_directory": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026",
-  "checkpoint_sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
-  "config_sha256": "19e3926e3c55f4ccaaf9f3d786807c706b26cd57050443521d42598854a18e56",
-  "metrics_sha256": {
-    "metrics.csv": "ffc0d804e17a21a686038ed2d256af1cf74795c0aa81a05b16a57d91839506ea",
-    "metrics_eval_h10.json": "c0f47960bdee49dbf92727a463784943c00c917cf6d00a18c3651f78df5a9c13",
-    "metrics_eval_h3.json": "881be8f8b56d7d1aa4515ec717b6d2ad591516062fbf31d9ec405bae354d0225",
-    "metrics_eval_h6.json": "87f6b70246f1d9e97db10b638b164ef92f9d14f502da8d2829c94faf398bc633"
-  },
   "trainable": false
 }

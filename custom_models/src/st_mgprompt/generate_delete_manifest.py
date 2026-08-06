@@ -3,14 +3,14 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from .experiment_protocol import sha256_file, write_json
+from .experiment_protocol import write_json
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 
 OLD_RESULT_ROOTS = {
     "old_component_A0_A10": (
         "custom_models/results/st_mgprompt_component_ablation/component_ablation_p1_seed2026",
-        "Old Dynamic-VADSP A0-A10; old A1 already migrated and hash-verified as Canonical Full.",
+        "Old Dynamic-VADSP A0-A10; old A1 was migrated as Canonical Full.",
     ),
     "old_precision_P0_P5": (
         "custom_models/results/st_mgprompt_precision/precision_ablation_fair_main_seed2026_all_p0_p5",
@@ -72,7 +72,7 @@ def build_manifest() -> dict:
                     "old_experiment": experiment,
                     "deletion_reason": reason,
                     "migrated": experiment == "old_component_A0_A10" and "\\A1\\" in str(path),
-                    "sha256": sha256_file(path),
+                    "size_bytes": path.stat().st_size,
                 }
             )
     for relative, reason in OLD_CODE_FILES.items():
@@ -85,7 +85,7 @@ def build_manifest() -> dict:
                     "old_experiment": "supplementary_only_code",
                     "deletion_reason": reason,
                     "migrated": False,
-                    "sha256": sha256_file(path),
+                    "size_bytes": path.stat().st_size,
                 }
             )
     return {

@@ -47,14 +47,11 @@
     "seed": 2026,
     "amp_enabled": true,
     "loss": {
-      "id": "masked_score_aligned_hybrid",
-      "source_hash": "f90b99df342de7b1b1ee6ea39bbf30cc84eceb11663b38dfc7070d3905afc32b",
-      "profile_hash": "0fc1fca238d7161d3a0257d639a11df8cc92ad2a1c4d61eab234338fa24b59fa"
+      "id": "masked_score_aligned_hybrid"
     },
     "loss_space": "normalized_target_space",
     "checkpoint_metric": "validation_official_score_h10",
     "checkpoint_direction": "lower_is_better",
-    "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
     "upstream_project": "THUML/Time-Series-Library",
     "upstream_license_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\LICENSE",
     "source_modified": false,
@@ -85,8 +82,6 @@
     "seg_num_y": 5,
     "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\SegRNN.py",
     "upstream_source_relative_path": "Time-Series-Library/models/SegRNN.py",
-    "upstream_source_sha256": "764d4ad950ee65162c70746248754942cfb4ba661162d515caab0a4eedd12252",
-    "upstream_license_sha256": "8a6caa178ea3f33ebff5d7bb5558628cf5b423305dc30d3630f86564c7db94a2",
     "parameter_count": 1583874,
     "trainable_parameter_count": 1583874,
     "experiment_profile_id": "e5_common_loss_architecture_v1",
@@ -94,12 +89,8 @@
     "output_root": null,
     "preflight_identity": null,
     "provenance": {
-      "base_model_id": "segrnn",
-      "base_model_config_hash": "a886625d33ed832eb145aeaf8ccad6e470979c6835a4b354b88c5629a746ed1f",
-      "base_model_source_closure_hash": "764d4ad950ee65162c70746248754942cfb4ba661162d515caab0a4eedd12252",
-      "e5_common_loss_protocol_hash": "a7c5b5a5b15b5ab70d08bf926b9de351f05740940f16409c801eed419287141a"
+      "base_model_id": "segrnn"
     },
-    "experiment_config_hash": "c14a32324bed0941da999fbc23ab84364f81a5005f8d9dd794957abbc2ee36c0",
     "artifact_profile": "SMOKE",
     "formal_training": false
   }

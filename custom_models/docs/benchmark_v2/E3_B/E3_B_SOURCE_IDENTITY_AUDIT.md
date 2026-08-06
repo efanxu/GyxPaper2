@@ -47,6 +47,6 @@ only under `custom_models/src/benchmark_v2`.
   disabled because unified benchmark_v2 forbids target from entering forward.
   The decoder uses a zero GO token followed only by its own predictions.
 
-The authoritative local closure hashes are in
-`E3_B_SOURCE_CLOSURE_MANIFEST.json`. Graph protocol and GraphBundle hashes are
-separate identities and are not folded into model source hashes.
+The authoritative local closure records are in
+`E3_B_source listing_MANIFEST.json`. Graph protocol and GraphBundle records are
+separate identities and are not folded into model source records.

@@ -71,7 +71,7 @@ Preflight artifacts:
 
 - `custom_models/results_smoke/benchmark_v2/hardware_preflight/transformer/76ea8eedcd747b1e3c67/hardware_preflight.json`
 - `custom_models/results_smoke/benchmark_v2/hardware_preflight/patchtst/88c28fc94eac08f63f42/hardware_preflight.json`
-- optional local rechecks follow the corresponding hash-scoped iTransformer/TimeXer directory.
+- optional local rechecks follow the corresponding record-scoped iTransformer/TimeXer directory.
 
 Formal outputs are below `custom_models/results/benchmark_v2/e2_a_seed2026/<run-id>`.
 

@@ -48,9 +48,9 @@ def main() -> int:
         def forward(self, value, graph_bundle):
             self.forward_argument_count = 2
             graph_bundle.validate_runtime_identity(
-                graph_protocol_hash=identity.graph_protocol_hash,
-                node_order_hash=identity.node_order_hash,
-                graph_bundle_hash=identity.graph_bundle_hash,
+                graph_protocol_record=identity.graph_protocol_record,
+                node_order_record=identity.node_order_record,
+                graph_bundle_record=identity.graph_bundle_record,
             )
             return value[:, -1, :, 15:16].repeat(1, 1, 10)
 

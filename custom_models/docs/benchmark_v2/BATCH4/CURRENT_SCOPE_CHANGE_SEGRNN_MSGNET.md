@@ -30,7 +30,7 @@ Their current status is `EXCLUDED_FROM_CURRENT_FORMAL_SCOPE` with reason
 the active manifest and denominator.
 
 The Original freeze is independent of E5. It covers the current 26-entry
-manifest, current run map, active model/config source closures, protocol,
+manifest, current run map, active model/config source listings, protocol,
 Batch4 profile, dataset/graph identities, Original loss, per-model precision,
 and the active gate/launcher revisions. It does not include the E5 manifest,
 legacy E5 run maps, SegRNN, MSGNet, or Batch32 artifacts.
@@ -38,7 +38,7 @@ legacy E5 run maps, SegRNN, MSGNet, or Batch32 artifacts.
 Model construction is closed over the selected fixed factory, wrapper,
 adapter, config, and transitive repository-local imports. The factory and
 graph export boundaries use literal audited maps; unknown model ids and
-non-literal dynamic imports fail closed. Source-closure hashes are generated
+non-literal dynamic imports fail closed. source listing records are generated
 deterministically and are recorded in the active manifest and freeze.
 
 ## Commands
@@ -104,7 +104,7 @@ $commands = 'D:\PaperProject\GyxPaper2\custom_models\docs\benchmark_v2\BATCH4\OR
 & $commands -Action Aggregate -RequireComplete
 ```
 
-`StaticAudit` checks `HEAD == origin/main`, tracked-worktree cleanliness,
+`StaticAudit` checks the explicit scope, entry list, configuration, and tracked-worktree cleanliness,
 manifest/freeze identity, the 24+2 preflight denominator, lock status,
 current-root dry-run, and readiness. Existing identity mismatches are printed
 as manual quarantine templates only. Untracked historical/result evidence is
@@ -117,7 +117,7 @@ result is skipped only after exact model/run/output-root/formal/profile/Batch4
 protocol/dataset/config/source/precision/checkpoint/metric/receipt validation.
 Incomplete or FAILED identity-matched canonical directories are planned as
 `ARCHIVE_INCOMPLETE_THEN_RUN`. The runner writes an `archive_receipt.json` with
-the recursive file manifest, hashes, current Git/manifest/freeze identity, and
+the recursive file manifest, records, current Git/manifest/freeze identity, and
 then uses an atomic `os.replace()` move to
 `.original_scope26_archived_attempts/<run_id>/<timestamp>_<pid>/` before a new
 canonical child starts. Archive failure leaves the source in place and only
@@ -142,14 +142,14 @@ preflight workers; `Persistence` and `MovingAverage` never need GPU preflight.
 `SegRNN` and `MSGNet` are excluded from both.
 
 Every successful run has an execution receipt bound to scope, entry/model/run,
-root, Git/source revision, manifest/run-map/freeze, source closure, model
+root, Git/source revision, manifest/run-map/freeze, source listing, model
 config, precision, protocol, training profile, dataset, graph, checkpoint and
-metrics hashes, command, timestamps, and exit code. `inspect_run()` also checks
+metrics records, command, timestamps, and exit code. `inspect_run()` also checks
 the effective/artifact/prediction run and root bindings and fails closed on an
 old or incomplete receipt; it never fills missing fields.
 
 The lock payload includes scope, host, PID, process start time, Git,
-manifest/freeze hashes, and creation time. `lock-status` distinguishes
+manifest/freeze records, and creation time. `lock-status` distinguishes
 `ACTIVE`, `STALE`, `UNKNOWN_REMOTE`, and `MALFORMED`; only
 `clear-stale-lock` can remove a confirmed stale lock, while normal exit
 releases its own lock in `finally`.

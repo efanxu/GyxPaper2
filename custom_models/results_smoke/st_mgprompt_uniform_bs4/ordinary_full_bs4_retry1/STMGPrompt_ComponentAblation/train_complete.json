@@ -6,6 +6,5 @@
   "best_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results_smoke\\st_mgprompt_uniform_bs4\\ordinary_full_bs4_retry1\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
   "last_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results_smoke\\st_mgprompt_uniform_bs4\\ordinary_full_bs4_retry1\\STMGPrompt_ComponentAblation\\last_checkpoint.pt",
   "amp_enabled": true,
-  "amp_dtype": "float16",
-  "config_hash": "93988fb98144fc1fd7247a256e87392a5dc83942537a61e9ac1e126c022e575a"
+  "amp_dtype": "float16"
 }

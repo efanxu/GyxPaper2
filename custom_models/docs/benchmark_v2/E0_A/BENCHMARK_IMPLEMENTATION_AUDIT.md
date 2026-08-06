@@ -60,7 +60,7 @@ Evidence for the matrix is in `benchmark_implementation_matrix.csv`; each row li
 
 ### Canonical/P0/A0 protection
 
-Canonical is `D:\PaperProject\GyxPaper2\custom_models\results\st_mgprompt_canonical\full_fixed_dual_keep_msmgdwu_seed2026` with checkpoint SHA256 `f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a`. `experiment_protocol.py:15-22,165-234,332-381` defines the canonical ID/root and reference resolution. P0 and A0 `reference.json` files point to this directory, are `trainable:false`, and carry the same checkpoint/config/metrics hashes. `run_st_mgprompt.py:489` and `train.py:441,589` use `load_state_dict(..., strict=True)`. No benchmark code was found coupled to P/A; the risk is namespace/result-directory collision if E0-B reuses these roots.
+Canonical is `D:\PaperProject\GyxPaper2\custom_models\results\st_mgprompt_canonical\full_fixed_dual_keep_msmgdwu_seed2026` with checkpoint content record `<removed-content-record>`. `experiment_protocol.py:15-22,165-234,332-381` defines the canonical ID/root and reference resolution. P0 and A0 `reference.json` files point to this directory, are `trainable:false`, and carry the same checkpoint/config/metrics records. `run_st_mgprompt.py:489` and `train.py:441,589` use `load_state_dict(..., strict=True)`. No benchmark code was found coupled to P/A; the risk is namespace/result-directory collision if E0-B reuses these roots.
 
 ## Duplicate implementations, names, and old results
 

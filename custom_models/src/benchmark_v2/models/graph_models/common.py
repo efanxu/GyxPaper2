@@ -18,20 +18,16 @@ def graph_identity_dict(
     bundle: GraphBundle, support_names: Iterable[str]
 ) -> dict[str, Any]:
     names = tuple(str(name) for name in support_names)
-    unknown = [name for name in names if name not in bundle.matrix_hashes]
+    unknown = [name for name in names if name not in bundle.matrices]
     if unknown:
         raise GraphProtocolError(f"Unknown frozen graph supports: {unknown}")
     return {
         "graph_id": bundle.spec.graph_id,
-        "graph_protocol_hash": bundle.graph_protocol_hash,
-        "node_order_hash": bundle.node_order_hash,
-        "graph_bundle_hash": bundle.graph_bundle_hash,
-        "location_source_hash": bundle.location_source_hash,
+        "node_count": bundle.spec.node_count,
+        "ordered_node_ids": list(bundle.ordered_node_ids),
         "selected_k": bundle.spec.selected_k,
         "graph_support_names": list(names),
-        "graph_support_hashes": [
-            bundle.matrix_hashes[name] for name in names
-        ],
+        "graph_support_shapes": [list(bundle.matrices[name].shape) for name in names],
         "graph_runtime_dtype": "torch.float32",
         "graph_frozen_dtype": "numpy.float64",
         "graph_support_persistent": False,
@@ -41,7 +37,7 @@ def graph_identity_dict(
 def runtime_support(bundle: GraphBundle, name: str):
     import torch
 
-    if name not in bundle.matrix_hashes:
+    if name not in bundle.matrices:
         raise GraphProtocolError(f"Frozen GraphBundle has no support {name}.")
     return torch.from_numpy(
         np.array(getattr(bundle, name), dtype=np.float32, copy=True)

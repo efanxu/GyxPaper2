@@ -149,6 +149,6 @@ ps -ef | grep '[r]un_benchmark.py'
 nvidia-smi
 ```
 
-A reusable preflight PASS must exactly match model ID, model-config hash,
-Protocol hash, source hash, B/T/N/C/H, AMP, completed forward/backward, and
+A reusable preflight PASS must exactly match model ID, model-config record,
+Protocol record, source record, B/T/N/C/H, AMP, completed forward/backward, and
 `status=PASS`.

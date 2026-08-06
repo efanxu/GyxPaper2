@@ -1,6 +1,6 @@
 # HANDOFF_E1_A
 
-E1-A is complete and stopped before formal runs or E1-B. It implements Persistence, MovingAverage, and an independent node-shared GRU inside `custom_models/src/benchmark_v2`. The sole protocol remains `protocol/benchmark_protocol_v1.json`, with unchanged hash `0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b`.
+E1-A is complete and stopped before formal runs or E1-B. It implements Persistence, MovingAverage, and an independent node-shared GRU inside `custom_models/src/benchmark_v2`. The sole protocol remains `protocol/benchmark_protocol_v1.json`, with unchanged record `<removed-content-record>`.
 
 ## Exact models
 
@@ -45,7 +45,7 @@ Limited real SDWPF: Persistence accepted retry2 PASS `(4,134,10)`; MovingAverage
 
 `benchmark_v2.metrics.official_score` previously allowed masked raw NaNs to poison the score because `NaN * False` is NaN in NumPy. A failing regression test was run first, then `np.where(mask, error, 0.0)` was applied. This is the only intentional protected benchmark-scope difference; protocol semantics did not change.
 
-Canonical SHA256 before/after: `f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a`. ST-MGPrompt, Canonical directory, graph metadata, P0-P5, A0-A8, TSLib, protocol, data, losses, and schemas have matching before/after hashes. No dependency or file was deleted. `custom_models/results/benchmark_v2` did not exist before and was not created.
+Canonical content record before/after: `<removed-content-record>`. ST-MGPrompt, Canonical directory, graph metadata, P0-P5, A0-A8, TSLib, protocol, data, losses, and schemas have matching before/after records. No dependency or file was deleted. `custom_models/results/benchmark_v2` did not exist before and was not created.
 
 ## Formal status and runbook
 

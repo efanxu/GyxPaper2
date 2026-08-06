@@ -3,7 +3,6 @@
     134,
     134
   ],
-  "canonical_content_hash": "e501df0f912831068de1eefa8a5a1f8181e9af99802d778fd70ad3803f4540b7",
   "finite": true,
   "min": 0.007236675824970007,
   "max": 0.009134434163570404,
@@ -30,8 +29,5 @@
     "min": 134,
     "max": 134,
     "mean": 134.0
-  },
-  "checkpoint_reload_hash_before": "e501df0f912831068de1eefa8a5a1f8181e9af99802d778fd70ad3803f4540b7",
-  "checkpoint_reload_hash_after": "e501df0f912831068de1eefa8a5a1f8181e9af99802d778fd70ad3803f4540b7",
-  "checkpoint_reload_hash_matches": true
+  }
 }

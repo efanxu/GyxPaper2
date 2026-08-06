@@ -1,88 +1,73 @@
 {
   "task": "E2-C",
   "snapshot": "E2-C task before",
-  "algorithm": "SHA256; directory digest is SHA256 of sorted relative_path:sha256 newline records; __pycache__ excluded",
+  "algorithm": "content record; directory summary is content record of sorted relative_path:content record newline records; __pycache__ excluded",
   "paths": [
     {
       "path": "custom_models/src/benchmark_v2/models/timesnet.py",
       "exists": true,
-      "kind": "file",
-      "sha256": "95bd735cca819ee750af34d705db82b9b45216cec3a39b8805e5bda9f8c52896"
+      "kind": "file"
     },
     {
       "path": "custom_models/src/benchmark_v2/models/micn.py",
       "exists": true,
-      "kind": "file",
-      "sha256": "e836b131b003ef4082660902414046e7d7d36a2a8d5f4ea0dba458234bdf22c3"
+      "kind": "file"
     },
     {
       "path": "custom_models/src/benchmark_v2/models/wpmixer.py",
       "exists": true,
-      "kind": "file",
-      "sha256": "b2e18a70b973f2d512ccd46908ee251d0a28566a800b6e875cf7a36eb1ec9f17"
+      "kind": "file"
     },
     {
       "path": "custom_models/src/benchmark_v2/models/multipatchformer.py",
       "exists": true,
-      "kind": "file",
-      "sha256": "ad4db5bf41f7315c1dbae809e8ccb5e4d5dd7b18a0408fecdc06a36bc6ca71b0"
+      "kind": "file"
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/timesnet.py",
       "exists": true,
-      "kind": "file",
-      "sha256": "8827368d682f80ec96b9693564a778315591d09f77057b157dc29929508986ce"
+      "kind": "file"
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/micn.py",
       "exists": true,
-      "kind": "file",
-      "sha256": "4c46c0c63574d869bab48607db3e2443278de55a30628016ffa70dddac071ae7"
+      "kind": "file"
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/wpmixer.py",
       "exists": true,
-      "kind": "file",
-      "sha256": "432aadc9a3df0b0965afa7a1c8ec990710dbe7793d3f8cbe2b1b10ee51c1e42c"
+      "kind": "file"
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/multipatchformer.py",
       "exists": true,
-      "kind": "file",
-      "sha256": "94ada0c3ef441dc75d2a0b7baef670a0f29fc14c698dbe5d543845067bbfb9f8"
+      "kind": "file"
     },
     {
       "path": "custom_models/src/benchmark_v2/adapters/e2_b.py",
       "exists": true,
-      "kind": "file",
-      "sha256": "4e002b7cc250695d25f6b041f1ce03e9493e98d247d05601d4d6026571d78d72"
+      "kind": "file"
     },
     {
       "path": "custom_models/docs/benchmark_v2/E2_B/model_smoke_results.json",
       "exists": true,
-      "kind": "file",
-      "sha256": "aa49da77d49d1670fe86f0885b3cdf5f9aaa60b80803a1cc6d6251302ff1758d"
+      "kind": "file"
     },
     {
       "path": "custom_models/docs/benchmark_v2/E2_B/full_shape_model_smoke_results.json",
       "exists": true,
-      "kind": "file",
-      "sha256": "ee6873e0a3a53d1ac3058fd214c493bffe24fecd6b5d70a0445a6623cecd3232"
+      "kind": "file"
     },
     {
       "path": "custom_models/docs/benchmark_v2/E2_B/real_data_smoke_results.json",
       "exists": true,
-      "kind": "file",
-      "sha256": "9ab501d90189f583a593e71fcd5c73e4071ed1d0342deadfb7bf34766aa6c051"
+      "kind": "file"
     },
     {
       "path": "custom_models/docs/benchmark_v2/E2_B/hardware_preflight_test_results.json",
       "exists": true,
-      "kind": "file",
-      "sha256": "a770162a104475f96980fdf11b19d95e3b36af10e3e08ca63366a044cff19d0b"
+      "kind": "file"
     }
   ],
-  "protocol_file_sha256": "a250a476a03683c7ed62c77685d8b878b0fb5e2d371b694aba308d6df62e2492",
-  "canonical_checkpoint_sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
   "formal_output_root_existed": false
 }

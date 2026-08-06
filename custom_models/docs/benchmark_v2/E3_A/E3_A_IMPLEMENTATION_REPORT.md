@@ -6,10 +6,10 @@ The canonical node axis is integer `TurbID` 1..134 from the actual benchmark pro
 
 Frozen identities:
 
-- node order: `1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35`
-- node metadata: `c7b631159b900d3d51f125e9a4f01a4e432cda2cdd75f1ec6f14d7868850c727`
-- graph bundle: `388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e`
-- graph protocol: `f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef`
+- node order: `<removed-content-record>`
+- node metadata: `<removed-content-record>`
+- graph bundle: `<removed-content-record>`
+- graph protocol: `<removed-content-record>`
 
 GraphSpec, read-only GraphBundle, explicit device transfer, frozen-only provider, fail-closed identity checks, checkpoint/artifact/preflight metadata rules, and native `(B,T,N,C)` contract are implemented. The CLI command `graph-protocol-check` loads and verifies without constructing a model or CUDA context.
 

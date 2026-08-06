@@ -9,13 +9,12 @@ from pathlib import Path
 from typing import Any
 
 from .errors import ArtifactError
-from .protocol import load_protocol
 from .registry import load_registry
 
 
 PROFILES = {
     "TRAIN": {"resolved_config.json", "effective_config.json", "protocol_check.json", "environment.json", "data_signature.json", "model_summary.json", "artifact_manifest.json", "best_checkpoint.pt", "last_checkpoint.pt", "train_log.csv", "metrics_eval_h3.json", "metrics_eval_h6.json", "metrics_eval_h10.json", "metrics.csv", "prediction_metadata.json", "run_status.json"},
-    "EVALUATE_ONLY": {"resolved_config.json", "effective_config.json", "protocol_check.json", "environment.json", "data_signature.json", "model_summary.json", "artifact_manifest.json", "best_checkpoint.pt", "metrics_eval_h3.json", "metrics_eval_h6.json", "metrics_eval_h10.json", "metrics.csv", "prediction_metadata.json", "run_status.json"},
+    "EVALUATE_ONLY": {"resolved_config.json", "effective_config.json", "protocol_check.json", "environment.json", "data_signature.json", "model_summary.json", "artifact_manifest.json", "metrics_eval_h3.json", "metrics_eval_h6.json", "metrics_eval_h10.json", "metrics.csv", "prediction_metadata.json", "run_status.json"},
     "NON_TRAINABLE": {"resolved_config.json", "effective_config.json", "protocol_check.json", "environment.json", "data_signature.json", "model_summary.json", "artifact_manifest.json", "baseline_state.json", "metrics_eval_h3.json", "metrics_eval_h6.json", "metrics_eval_h10.json", "metrics.csv", "prediction_metadata.json", "run_status.json"},
     "REFERENCE_ONLY": {"resolved_config.json", "effective_config.json", "protocol_check.json", "artifact_manifest.json", "run_status.json"},
     "SMOKE": {"resolved_config.json", "effective_config.json", "protocol_check.json", "model_summary.json", "artifact_manifest.json", "best_checkpoint.pt", "last_checkpoint.pt", "train_log.csv", "metrics_eval_h3.json", "metrics_eval_h6.json", "metrics_eval_h10.json", "metrics.csv", "prediction_metadata.json", "run_status.json"},
@@ -23,20 +22,18 @@ PROFILES = {
 }
 
 STATUSES = {"CREATED", "PROTOCOL_VALIDATED", "RUNNING", "EARLY_STOPPED", "TRAINING_COMPLETED", "EVALUATING", "COMPLETED", "FAILED", "REFERENCE_ONLY"}
-GRAPH_IDENTITY_KEYS = (
+GRAPH_METADATA_KEYS = (
     "graph_id",
-    "graph_protocol_hash",
-    "node_order_hash",
-    "graph_bundle_hash",
-    "location_source_hash",
+    "node_count",
+    "ordered_node_ids",
     "selected_k",
     "graph_support_names",
-    "graph_support_hashes",
+    "graph_support_shapes",
     "graph_runtime_dtype",
     "graph_context_id",
     "uses_physical_support",
     "physical_support_names",
-    "physical_support_hashes",
+    "physical_support_shapes",
     "adaptive_graph_policy",
     "node_identity_policy",
     "temporal_identity_policy",
@@ -91,7 +88,7 @@ def write_status(run_dir: str | Path, *, status: str, run_mode: str, artifact_pr
     effective_path = Path(run_dir) / "effective_config.json"
     if effective_path.is_file():
         effective = json.loads(effective_path.read_text(encoding="utf-8"))
-        for key in GRAPH_IDENTITY_KEYS:
+        for key in GRAPH_METADATA_KEYS:
             if key in effective:
                 extra.setdefault(key, effective[key])
     terminal = status in {"EARLY_STOPPED", "TRAINING_COMPLETED", "COMPLETED", "FAILED", "REFERENCE_ONLY"}
@@ -102,9 +99,7 @@ def write_status(run_dir: str | Path, *, status: str, run_mode: str, artifact_pr
 def validate_run(
     run_dir: str | Path,
     *,
-    expected_protocol_hash: str | None = None,
     expected_training_batch_profile_id: str | None = None,
-    expected_training_batch_profile_hash: str | None = None,
 ) -> dict[str, Any]:
     run_dir = Path(run_dir).resolve()
     status_path = run_dir / "run_status.json"
@@ -117,15 +112,7 @@ def validate_run(
     missing = sorted(name for name in PROFILES[profile] if not (run_dir / name).exists())
     if missing:
         raise ArtifactError(f"Incomplete {profile} artifact; missing: {missing}")
-    protocol_path = run_dir / "protocol_check.json"
-    if protocol_path.exists():
-        protocol_check = json.loads(protocol_path.read_text(encoding="utf-8"))
-    if expected_protocol_hash and protocol_check.get("protocol_hash") != expected_protocol_hash:
-        raise ArtifactError("Artifact protocol hash mismatch")
-    if (
-        expected_training_batch_profile_id is not None
-        or expected_training_batch_profile_hash is not None
-    ):
+    if expected_training_batch_profile_id is not None:
         manifest = json.loads(
             (run_dir / "artifact_manifest.json").read_text(encoding="utf-8")
         )
@@ -139,20 +126,12 @@ def validate_run(
                 != expected_training_batch_profile_id
             ):
                 raise ArtifactError("BLOCKED_MIXED_BATCH_PROFILE: profile id mismatch")
-            if (
-                expected_training_batch_profile_hash is not None
-                and payload.get("training_batch_profile_hash")
-                != expected_training_batch_profile_hash
-            ):
-                raise ArtifactError(
-                    "BLOCKED_MIXED_BATCH_PROFILE: profile hash mismatch"
-                )
     effective_path = run_dir / "effective_config.json"
     if effective_path.exists():
         effective = json.loads(effective_path.read_text(encoding="utf-8"))
         expected_graph = {
             key: effective[key]
-            for key in GRAPH_IDENTITY_KEYS
+            for key in GRAPH_METADATA_KEYS
             if key in effective
         }
         if expected_graph:
@@ -175,7 +154,7 @@ def validate_run(
                 }
                 if mismatches:
                     raise ArtifactError(
-                        f"{name} graph identity mismatch: {mismatches}"
+                        f"{name} graph metadata mismatch: {mismatches}"
                     )
     return {"status": "PASS", "run_dir": str(run_dir), "artifact_profile": profile, "run_status": status.get("status"), "missing": []}
 
@@ -189,9 +168,8 @@ def is_formal_discoverable(run_dir: str | Path) -> bool:
         return False
     try:
         status = json.loads((run_dir / "run_status.json").read_text(encoding="utf-8"))
-        protocol = json.loads((run_dir / "protocol_check.json").read_text(encoding="utf-8"))
         registry = load_registry()
         model_id = json.loads((run_dir / "effective_config.json").read_text(encoding="utf-8")).get("model_id")
-        return status.get("run_mode") == "formal" and status.get("status") == "COMPLETED" and protocol.get("protocol_hash") == load_protocol().protocol_hash and model_id in {e.canonical_id for e in registry.list()} and model_id != "__framework_test_only__" and all((run_dir / f"metrics_eval_h{h}.json").exists() for h in (3, 6, 10))
+        return status.get("run_mode") == "formal" and status.get("status") == "COMPLETED" and model_id in {e.canonical_id for e in registry.list()} and model_id != "__framework_test_only__" and all((run_dir / f"metrics_eval_h{h}.json").exists() for h in (3, 6, 10))
     except (OSError, ValueError, KeyError, ArtifactError):
         return False

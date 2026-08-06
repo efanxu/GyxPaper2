@@ -13,10 +13,6 @@
   "runtime_unavailable_count": 25,
   "trainable_count": 1,
   "non_trainable_count": 2,
-  "protocol_hash_before": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
-  "protocol_hash_after": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
-  "canonical_sha256_before": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
-  "canonical_sha256_after": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
   "st_mgprompt_modified": false,
   "tslib_modified": false,
   "p0_p5_modified": false,
@@ -46,12 +42,12 @@
     "custom_models/docs/benchmark_v2/E1_A/model_smoke_results.json",
     "custom_models/docs/benchmark_v2/E1_A/full_shape_model_smoke_results.json",
     "custom_models/docs/benchmark_v2/E1_A/real_data_smoke_results.json",
-    "custom_models/docs/benchmark_v2/E1_A/protected_core_hashes_before.json",
-    "custom_models/docs/benchmark_v2/E1_A/protected_core_hashes_after.json",
-    "custom_models/docs/benchmark_v2/E1_A/protected_tslib_hashes_before.json",
-    "custom_models/docs/benchmark_v2/E1_A/protected_tslib_hashes_after.json",
-    "custom_models/docs/benchmark_v2/E1_A/protected_benchmark_frozen_hashes_before.json",
-    "custom_models/docs/benchmark_v2/E1_A/protected_benchmark_frozen_hashes_after.json"
+    "custom_models/docs/benchmark_v2/E1_A/protected_core_records_before.json",
+    "custom_models/docs/benchmark_v2/E1_A/protected_core_records_after.json",
+    "custom_models/docs/benchmark_v2/E1_A/protected_tslib_records_before.json",
+    "custom_models/docs/benchmark_v2/E1_A/protected_tslib_records_after.json",
+    "custom_models/docs/benchmark_v2/E1_A/protected_benchmark_frozen_records_before.json",
+    "custom_models/docs/benchmark_v2/E1_A/protected_benchmark_frozen_records_after.json"
   ],
   "files_modified": [
     "custom_models/src/benchmark_v2/adapters/__init__.py",
@@ -80,7 +76,7 @@
     "D:/Apps/Miniconda3/envs/env_tslib/python.exe -m benchmark_v2.cli full-shape-model-smoke --model <persistence|moving_average|gru>",
     "D:/Apps/Miniconda3/envs/env_tslib/python.exe -m benchmark_v2.cli real-data-model-smoke --model <persistence|moving_average|gru>",
     "D:/Apps/Miniconda3/envs/env_tslib/python.exe custom_models/src/benchmark_v2/run_benchmark.py registry-show --model persistence",
-    "SHA256 before/after tree protection and final artifact validation checks"
+    "content record before/after tree protection and final artifact validation checks"
   ],
   "tests": [
     {
@@ -104,17 +100,50 @@
     }
   ],
   "smoke_runs": [
-    {"name": "Persistence ordinary", "status": "PASS"},
-    {"name": "MovingAverage ordinary", "status": "PASS"},
-    {"name": "GRU ordinary", "status": "PASS"},
-    {"name": "Persistence full-shape", "status": "PASS"},
-    {"name": "MovingAverage full-shape", "status": "PASS"},
-    {"name": "GRU full-shape AMP backward", "status": "PASS"},
-    {"name": "Persistence limited real data retry2", "status": "PASS"},
-    {"name": "MovingAverage limited real data", "status": "PASS"},
-    {"name": "GRU limited real data", "status": "PASS"},
-    {"name": "Persistence limited real data initial", "status": "FAIL"},
-    {"name": "Persistence limited real data retry1", "status": "FAIL"}
+    {
+      "name": "Persistence ordinary",
+      "status": "PASS"
+    },
+    {
+      "name": "MovingAverage ordinary",
+      "status": "PASS"
+    },
+    {
+      "name": "GRU ordinary",
+      "status": "PASS"
+    },
+    {
+      "name": "Persistence full-shape",
+      "status": "PASS"
+    },
+    {
+      "name": "MovingAverage full-shape",
+      "status": "PASS"
+    },
+    {
+      "name": "GRU full-shape AMP backward",
+      "status": "PASS"
+    },
+    {
+      "name": "Persistence limited real data retry2",
+      "status": "PASS"
+    },
+    {
+      "name": "MovingAverage limited real data",
+      "status": "PASS"
+    },
+    {
+      "name": "GRU limited real data",
+      "status": "PASS"
+    },
+    {
+      "name": "Persistence limited real data initial",
+      "status": "FAIL"
+    },
+    {
+      "name": "Persistence limited real data retry1",
+      "status": "FAIL"
+    }
   ],
   "framework_defect_fixes": [
     {

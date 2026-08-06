@@ -74,14 +74,7 @@
     },
     "amp_first_nonfinite_module": null,
     "fp32_first_nonfinite_module": null,
-    "rng_state_after": {
-      "python_hash": "71760d2faa0be874465271c5d71b90c5d17b07a52564df4190cdb05871ceb200",
-      "numpy_hash": "5929386af60feb4336c6768aec94e8048f76df4b1b5627645f213beb17bcf882",
-      "torch_cpu_hash": "3124a372d1babbc0af5a080fdd5acd30280c6d0c203784191d24ac5370e5a09d",
-      "cuda_hashes": [
-        "7332376a62159e4221ed8963153259ecbfda1aa142e59e15db0dc5b2f0b92a01"
-      ]
-    }
+    "rng_state_after": {}
   },
   "diagnostic": {
     "schema_version": "benchmark_v2_nonfinite_diagnostic_v1",
@@ -95,8 +88,6 @@
       "epoch": 7,
       "batch_index": 1686,
       "global_step": 11560,
-      "resolved_config_hash": "c4f20de0701230ac46807e4f2e1cdda8a246bd9d2bdca8595a107276dc1edf6c",
-      "effective_config_hash": "c4f20de0701230ac46807e4f2e1cdda8a246bd9d2bdca8595a107276dc1edf6c",
       "checkpoint": {
         "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\Transformer_node_shared_d512_bs4_seed2026\\last_checkpoint.pt"
       }
@@ -227,27 +218,13 @@
     },
     "optimizer_update": null,
     "parameters": null,
-    "random_state": {
-      "python_hash": "71760d2faa0be874465271c5d71b90c5d17b07a52564df4190cdb05871ceb200",
-      "numpy_hash": "5929386af60feb4336c6768aec94e8048f76df4b1b5627645f213beb17bcf882",
-      "torch_cpu_hash": "3124a372d1babbc0af5a080fdd5acd30280c6d0c203784191d24ac5370e5a09d",
-      "cuda_hashes": [
-        "7332376a62159e4221ed8963153259ecbfda1aa142e59e15db0dc5b2f0b92a01"
-      ]
-    },
+    "random_state": {},
     "exception": {
       "type": "ContractError",
       "message": "prediction contains NaN/Inf"
     }
   },
   "skipped_all_masked_batches": 86,
-  "rng_state_summary": {
-    "python_hash": "71760d2faa0be874465271c5d71b90c5d17b07a52564df4190cdb05871ceb200",
-    "numpy_hash": "5929386af60feb4336c6768aec94e8048f76df4b1b5627645f213beb17bcf882",
-    "torch_cpu_hash": "3124a372d1babbc0af5a080fdd5acd30280c6d0c203784191d24ac5370e5a09d",
-    "cuda_hashes": [
-      "7332376a62159e4221ed8963153259ecbfda1aa142e59e15db0dc5b2f0b92a01"
-    ]
-  },
+  "rng_state_summary": {},
   "status": "PASS"
 }

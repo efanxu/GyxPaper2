@@ -104,10 +104,6 @@ def build_model_runtime(
                 config=config,
             )
             factory.apply_graph_identity(config, graph_bundle)
-            config["source_hash"] = entry.values.get("source_sha256")
-            config["source_closure_manifest"] = entry.values.get(
-                "source_closure_manifest"
-            )
         elif entry.canonical_id in {"graph_wavenet", "mtgnn", "agcrn", "stid"}:
             assert graph_bundle is not None
             adapter = factory.create_adapter(
@@ -118,11 +114,6 @@ def build_model_runtime(
             )
             factory.apply_graph_identity(
                 config, graph_bundle, entry.canonical_id
-            )
-            config["source_hash"] = entry.values.get("source_sha256")
-            config["source_closure_hash"] = entry.values.get("source_sha256")
-            config["source_closure_manifest"] = entry.values.get(
-                "source_closure_manifest"
             )
         else:
             adapter = factory.create_adapter(
@@ -139,9 +130,7 @@ def build_model_runtime(
                     "upstream_source_relative_path": provenance.get(
                         "source_relative_path"
                     ),
-                    "upstream_source_sha256": provenance.get("source_sha256"),
                     "upstream_license_path": provenance.get("license_path"),
-                    "upstream_license_sha256": provenance.get("license_sha256"),
                     "source_modified": provenance.get("source_modified", False),
                 }
             )

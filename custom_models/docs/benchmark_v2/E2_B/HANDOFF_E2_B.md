@@ -4,10 +4,10 @@ E2-B is complete and stopped before formal runs and E2-C.
 
 Integrated models and sources:
 
-- TimesNet — `Time-Series-Library/models/TimesNet.py`, SHA256 `f64c4bed1fd7347090044a0163bd4209c9f9ec1c1b19ceff47842df36b64bba7`; final `AVAILABLE_TRAINABLE`.
-- MICN — `Time-Series-Library/models/MICN.py`, SHA256 `a0cb59254e850bfd1d94114a73126c290e6baf2ea700132ede8aade680bbedbf`; final `AVAILABLE_TRAINABLE`.
-- WPMixer — `Time-Series-Library/models/WPMixer.py`, SHA256 `5b549f5454864d19a230747f0060dc00732fb0de6b50a359173e0d7a6b04ce8f`; final `AVAILABLE_TRAINABLE_HARDWARE_PREFLIGHT_REQUIRED`.
-- MultiPatchFormer — `Time-Series-Library/models/MultiPatchFormer.py`, SHA256 `e8603a9d8b1e796a822171399a057bd3945cf51b38fb1661d91fe60ad79313b3`; final `AVAILABLE_TRAINABLE_HARDWARE_PREFLIGHT_REQUIRED`.
+- TimesNet — `Time-Series-Library/models/TimesNet.py`, content record `<removed-content-record>`; final `AVAILABLE_TRAINABLE`.
+- MICN — `Time-Series-Library/models/MICN.py`, content record `<removed-content-record>`; final `AVAILABLE_TRAINABLE`.
+- WPMixer — `Time-Series-Library/models/WPMixer.py`, content record `<removed-content-record>`; final `AVAILABLE_TRAINABLE_HARDWARE_PREFLIGHT_REQUIRED`.
+- MultiPatchFormer — `Time-Series-Library/models/MultiPatchFormer.py`, content record `<removed-content-record>`; final `AVAILABLE_TRAINABLE_HARDWARE_PREFLIGHT_REQUIRED`.
 
 The explicit TSLib allowlist has exactly 12 IDs: `dlinear, lightts, tide, segrnn, transformer, patchtst, itransformer, timexer, timesnet, micn, wpmixer, multipatchformer`.
 
@@ -38,7 +38,7 @@ Verification:
 
 Registry: 28 total; 13 formal-runnable trainable; 7 locally full-shape verified; 6 hardware-preflight required; 2 available non-trainable; 13 true blocked/unavailable.
 
-Protection: protocol remains `0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b`; Canonical remains `f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a`. Review the six matching before/after snapshot pairs. TSLib, ST-MGPrompt, E1-A, E1-B, E2-A, P0–P5/A0–A8, dependencies, and formal results were not modified.
+Protection: protocol remains `<removed-content-record>`; Canonical remains `<removed-content-record>`. Review the six matching before/after snapshot pairs. TSLib, ST-MGPrompt, E1-A, E1-B, E2-A, P0–P5/A0–A8, dependencies, and formal results were not modified.
 
 Runbook: `custom_models/docs/benchmark_v2/E2_B/E2_B_RUNBOOK.md`.
 

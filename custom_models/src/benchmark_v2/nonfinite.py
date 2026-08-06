@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import hashlib
 import json
 import os
 import random
@@ -118,30 +117,14 @@ def _first_nonfinite(mapping: dict[str, dict[str, Any]]) -> str | None:
     return None
 
 
-def _hash_bytes(value: bytes) -> str:
-    return hashlib.sha256(value).hexdigest()
-
-
-def _hash_object(value: Any) -> str:
-    return _hash_bytes(repr(value).encode("utf-8", errors="replace"))
-
-
 def rng_state_summary() -> dict[str, Any]:
-    import numpy as np
     import torch
 
-    result = {
-        "python_hash": _hash_object(random.getstate()),
-        "numpy_hash": _hash_object(np.random.get_state()),
-        "torch_cpu_hash": _hash_bytes(torch.get_rng_state().cpu().numpy().tobytes()),
-        "cuda_hashes": [],
+    return {
+        "python_state_available": random.getstate() is not None,
+        "torch_cpu_state_available": torch.get_rng_state() is not None,
+        "cuda_state_count": len(torch.cuda.get_rng_state_all()) if torch.cuda.is_available() else 0,
     }
-    if torch.cuda.is_available():
-        result["cuda_hashes"] = [
-            _hash_bytes(state.cpu().numpy().tobytes())
-            for state in torch.cuda.get_rng_state_all()
-        ]
-    return result
 
 
 def _top_abs_items(items: list[tuple[float | None, str, bool]], limit: int = 8) -> list[dict[str, Any]]:

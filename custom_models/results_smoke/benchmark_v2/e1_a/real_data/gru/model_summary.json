@@ -51,7 +51,6 @@
     "checkpoint_direction": "lower_is_better",
     "loss": "masked_mse",
     "loss_space": "normalized_target_space",
-    "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
     "artifact_profile": "SMOKE",
     "formal_training": false
   }

@@ -6,6 +6,5 @@
   "best_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results_smoke\\st_mgprompt_fixed_dual_refactor\\component_ablation_fixed_dual_seed2026\\A1\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
   "last_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results_smoke\\st_mgprompt_fixed_dual_refactor\\component_ablation_fixed_dual_seed2026\\A1\\STMGPrompt_ComponentAblation\\last_checkpoint.pt",
   "amp_enabled": true,
-  "amp_dtype": "float16",
-  "config_hash": "107cb570a1df4f7a17914a615a54bcd3729aa97f90ae8b0c0b0d992cdcad9792"
+  "amp_dtype": "float16"
 }

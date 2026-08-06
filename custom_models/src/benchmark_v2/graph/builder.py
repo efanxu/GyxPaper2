@@ -6,23 +6,19 @@ from typing import Any
 
 import numpy as np
 
-from .hashing import (
-    canonical_matrix,
-    canonical_node_ids,
-    file_sha256,
-    graph_bundle_hash,
-    graph_protocol_hash,
-    matrix_hash,
-    node_order_hash,
-    stable_hash,
-)
 from .transforms import (
     gcn_support,
     random_walk,
     scaled_laplacian_fixed_two,
     symmetric_normalized_laplacian,
 )
-from .validation import GraphProtocolError, connected_components, validate_matrices
+from .validation import (
+    GraphProtocolError,
+    canonical_matrix,
+    canonical_node_ids,
+    connected_components,
+    validate_matrices,
+)
 
 
 GRAPH_ID = "sdwpf_physical_knn_v1"
@@ -44,12 +40,8 @@ MATRIX_FILENAMES = {
 @dataclass(frozen=True)
 class GraphBuild:
     ordered_node_ids: tuple[Any, ...]
-    node_order_hash: str
     node_metadata: dict[str, Any]
-    node_metadata_hash: str
     matrices: dict[str, np.ndarray]
-    matrix_hashes: dict[str, str]
-    graph_bundle_hash: str
     diagnostics: dict[str, Any]
 
 
@@ -93,7 +85,7 @@ def _candidate_diagnostics(
 def _node_metadata_payload(
     ordered_node_ids: tuple[Any, ...],
     frame: Any,
-) -> tuple[dict[str, Any], str]:
+) -> dict[str, Any]:
     records = [
         {
             "node_id": node_id,
@@ -103,7 +95,7 @@ def _node_metadata_payload(
         }
         for node_id, row in zip(ordered_node_ids, frame.itertuples(index=False))
     ]
-    semantic_identity = {
+    return {
         "schema_version": "node_metadata_v1",
         "node_id_type": "integer"
         if isinstance(ordered_node_ids[0], int)
@@ -116,8 +108,6 @@ def _node_metadata_payload(
         "elevation_used_in_edge_distance": False,
         "records": records,
     }
-    digest = stable_hash(semantic_identity)
-    return {**semantic_identity, "node_metadata_hash": digest}, digest
 
 
 def build_physical_graph(
@@ -203,17 +193,7 @@ def build_physical_graph(
     }
     matrices = {name: canonical_matrix(value) for name, value in matrices.items()}
     matrix_diagnostics = validate_matrices(matrices, node_count=NODE_COUNT)
-    order_digest = node_order_hash(ordered)
-    metadata, metadata_digest = _node_metadata_payload(ordered, frame)
-    matrix_hashes = {
-        name: matrix_hash(value) for name, value in matrices.items()
-    }
-    bundle_digest = graph_bundle_hash(
-        graph_id=GRAPH_ID,
-        node_count=NODE_COUNT,
-        node_order_digest=order_digest,
-        matrix_hashes=matrix_hashes,
-    )
+    metadata = _node_metadata_payload(ordered, frame)
     undirected_degree = np.count_nonzero(binary_undirected, axis=1)
     weighted_degree = undirected.sum(axis=1)
     undirected_edge_distances = distance[
@@ -265,61 +245,20 @@ def build_physical_graph(
     }
     return GraphBuild(
         ordered_node_ids=ordered,
-        node_order_hash=order_digest,
         node_metadata=metadata,
-        node_metadata_hash=metadata_digest,
         matrices=matrices,
-        matrix_hashes=matrix_hashes,
-        graph_bundle_hash=bundle_digest,
         diagnostics=diagnostics,
     )
 
 
-def node_schema_source_hash(
-    *,
-    logical_path: str,
-    node_id_column: str,
-    node_id_type: str,
-    ordered_node_ids: list[Any],
-    row_count: int,
-    timestamp_count: int,
-) -> str:
-    return stable_hash(
-        {
-            "hash_semantics": "node_schema_only_no_feature_or_target_values",
-            "logical_path": logical_path.replace("\\", "/"),
-            "node_id_column": node_id_column,
-            "node_id_type": node_id_type,
-            "ordered_node_ids": ordered_node_ids,
-            "row_count": int(row_count),
-            "timestamp_count": int(timestamp_count),
-        }
-    )
-
-
-def make_protocol_payload(
-    build: GraphBuild,
-    *,
-    location_source_hash: str,
-    input_source_hash: str,
-    target_source_hash: str,
-) -> dict[str, Any]:
+def make_protocol_payload(build: GraphBuild) -> dict[str, Any]:
     payload: dict[str, Any] = {
         "schema_version": SCHEMA_VERSION,
         "graph_protocol_status": "FROZEN",
         "graph_id": GRAPH_ID,
         "dataset": "SDWPF",
         "node_count": NODE_COUNT,
-        "node_order_hash": build.node_order_hash,
-        "node_metadata_hash": build.node_metadata_hash,
-        "location_source_sha256": location_source_hash,
-        "input_source_hash": input_source_hash,
-        "target_source_hash": target_source_hash,
-        "source_hash_semantics": {
-            "location_source_sha256": "full file bytes; identity-bearing",
-            "input_source_hash": "node schema only; feature values excluded",
-            "target_source_hash": "node schema only; target/mask values excluded",
-        },
+        "ordered_node_ids": list(build.ordered_node_ids),
         "coordinate_system": "cartesian_xy",
         "coordinate_columns": ["x", "y"],
         "coordinate_units": "SOURCE_UNIT_UNSPECIFIED",
@@ -363,28 +302,24 @@ def make_protocol_payload(
         "numeric_canonicalization": {
             "build_device": "cpu",
             "calculation_dtype": "float64",
-            "storage_identity_dtype": "little-endian float64",
+            "storage_dtype": "little-endian float64",
             "c_contiguous": True,
             "negative_zero_normalized": True,
             "finite_required": True,
             "round_decimals": 12,
-            "npy_container_bytes_identity_bearing": False,
         },
         "matrix_files": {
             name: {
                 "filename": filename,
                 "shape": [NODE_COUNT, NODE_COUNT],
-                "canonical_matrix_hash": build.matrix_hashes[name],
             }
             for name, filename in MATRIX_FILENAMES.items()
         },
-        "graph_bundle_hash": build.graph_bundle_hash,
         "runtime_policy": {
             "load_frozen_only": True,
             "automatic_rebuild": False,
             "automatic_overwrite": False,
             "node_order_mismatch": "FAIL_CLOSED",
-            "hash_mismatch": "FAIL_CLOSED",
         },
         "leakage_policy": {
             "edge_inputs": ["canonical node ID", "x", "y", "protocol constants"],
@@ -395,5 +330,4 @@ def make_protocol_payload(
             "split_used": False,
         },
     }
-    payload["graph_protocol_hash"] = graph_protocol_hash(payload)
     return payload

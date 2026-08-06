@@ -3,7 +3,6 @@
   "model_id": "patchtst",
   "formal_registry_entry": true,
   "formal_training": false,
-  "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
   "prediction_shape": [
     4,
     4,
@@ -13,9 +12,7 @@
   "output_space_before_inverse": "normalized_target_space",
   "output_space_after_inverse": "physical_kW",
   "source_checkpoint": "best_checkpoint.pt",
-  "base_benchmark_protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
   "training_batch_profile_id": "uniform_train_batch4_v1",
-  "training_batch_profile_hash": "f58bbc161dfba0f00774879fdf2f78ec7c59a7faff9ef28a1733a2ed6835fe66",
   "train_batch_size": 4,
   "val_batch_size": 4,
   "test_batch_size": 4,

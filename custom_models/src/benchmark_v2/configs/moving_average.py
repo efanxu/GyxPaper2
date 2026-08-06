@@ -38,5 +38,5 @@ def resolve_moving_average_config(
         "ma_window": value,
         "horizon": int(protocol["max_pred_len"]),
         "lookback": formal_window,
-        "protocol_hash": protocol["protocol_hash"],
+        "protocol_id": protocol["protocol_id"],
     }

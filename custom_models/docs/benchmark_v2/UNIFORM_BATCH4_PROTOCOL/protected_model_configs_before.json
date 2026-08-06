@@ -8,225 +8,193 @@
       "path": "custom_models/src/benchmark_v2/configs/__init__.py",
       "exists": true,
       "size": 3262,
-      "mtime_ns": 1785231202895285400,
-      "sha256": "54711bd421c2b16564d7fa10d76b16e86ff57a6e1b6f2f25ea12cf9d43ef24d3"
+      "mtime_ns": 1785231202895285400
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/agcrn.py",
       "exists": true,
       "size": 1327,
-      "mtime_ns": 1785231148193835300,
-      "sha256": "b50932ec8ef52bc1c6b08947c3a887d44bab524d85b480a638432d8824c3a7f6"
+      "mtime_ns": 1785231148193835300
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/crossformer.py",
       "exists": true,
       "size": 1307,
-      "mtime_ns": 1785215786539987600,
-      "sha256": "7699784fc9ee46e945f46bf7b090ff40ceb29c1a80ceb05a3e5afa47e94e4b7e"
+      "mtime_ns": 1785215786539987600
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/dcrnn.py",
       "exists": true,
       "size": 1541,
-      "mtime_ns": 1785227011455538100,
-      "sha256": "1aa5a7fbdc097ae415cbed984ecbe2a36a047590e2cd45648f7911eca3e41d5e"
+      "mtime_ns": 1785227011455538100
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/dlinear.py",
       "exists": true,
       "size": 847,
-      "mtime_ns": 1785156976355481900,
-      "sha256": "6339f2263e48eaa641579d7f824146eb355a8aed7fbd85af92b00b041608a742"
+      "mtime_ns": 1785156976355481900
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/e3_c_common.py",
       "exists": true,
       "size": 3327,
-      "mtime_ns": 1785231148188355700,
-      "sha256": "cdf5ff39b7a43f212524b9a63a184d1752f5846302e2e73b7da2ae6d3ff4a2fc"
+      "mtime_ns": 1785231148188355700
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/frets.py",
       "exists": true,
       "size": 1829,
-      "mtime_ns": 1785212202080580300,
-      "sha256": "ec99846bb07fccbd9d4ca67571fc408ac4ff60c83f3751be9d333ac9325efd0a"
+      "mtime_ns": 1785212202080580300
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/gcn.py",
       "exists": true,
       "size": 1238,
-      "mtime_ns": 1785227011451519700,
-      "sha256": "7889ff899f1a53aff396c27b4088f2cf2aa1e1f0684163e3751e7ba2468d54b7"
+      "mtime_ns": 1785227011451519700
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/graph_common.py",
       "exists": true,
       "size": 2417,
-      "mtime_ns": 1785227011445058900,
-      "sha256": "a0c2ef852b967f2fc7e0dc08446680e9d093d9f2e11f40ea4fb0997a3f1a6468"
+      "mtime_ns": 1785227011445058900
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/graph_wavenet.py",
       "exists": true,
       "size": 1718,
-      "mtime_ns": 1785231148191532700,
-      "sha256": "5ec26c3f1f52905e226bfbe8c11136f2b0ee0c7a48f6c991362cc4f39560ab5a"
+      "mtime_ns": 1785231148191532700
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/gru.py",
       "exists": true,
       "size": 1532,
-      "mtime_ns": 1785144166076118900,
-      "sha256": "e6707e76f3b9f122c0786a363dd009bc52cb6697019c25a803b14dfd302c3bac"
+      "mtime_ns": 1785144166076118900
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/itransformer.py",
       "exists": true,
       "size": 1042,
-      "mtime_ns": 1785162531719934000,
-      "sha256": "4f084adfc39987b4140ed6c7cff3835cf35ce5396fa823b1625373e7c5f4efd6"
+      "mtime_ns": 1785162531719934000
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/lightts.py",
       "exists": true,
       "size": 1248,
-      "mtime_ns": 1785156976355481900,
-      "sha256": "ff18cf1bf035a119779c567ef2a2e52a562bf6251d18d088972f8af2872d0250"
+      "mtime_ns": 1785156976355481900
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/micn.py",
       "exists": true,
       "size": 1943,
-      "mtime_ns": 1785208297860980700,
-      "sha256": "4c46c0c63574d869bab48607db3e2443278de55a30628016ffa70dddac071ae7"
+      "mtime_ns": 1785208297860980700
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/moving_average.py",
       "exists": true,
       "size": 1279,
-      "mtime_ns": 1785144166075084400,
-      "sha256": "26bc694d345d268f2dfe66ffdcd5a02bcd13cfc9a138f6d6fa143171b6797d92"
+      "mtime_ns": 1785144166075084400
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/msgnet.py",
       "exists": true,
       "size": 1780,
-      "mtime_ns": 1785215786540984800,
-      "sha256": "4b31f295f2162086404f4c7138f02537bf5ed6b24ea6a7d8e0a7103d3d305105"
+      "mtime_ns": 1785215786540984800
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/mtgnn.py",
       "exists": true,
       "size": 1771,
-      "mtime_ns": 1785231148192803300,
-      "sha256": "eed1cd968011fecb8ef507c05cf5a217bee7aff4b96994706e4f73d3f57895c3"
+      "mtime_ns": 1785231148192803300
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/multipatchformer.py",
       "exists": true,
       "size": 2343,
-      "mtime_ns": 1785208559693747100,
-      "sha256": "94ada0c3ef441dc75d2a0b7baef670a0f29fc14c698dbe5d543845067bbfb9f8"
+      "mtime_ns": 1785208559693747100
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/patchtst.py",
       "exists": true,
       "size": 1414,
-      "mtime_ns": 1785162531718543400,
-      "sha256": "c1f618a53e23fc44ae5f3313ff9c42c956cbc165469c81729c74e72d61534715"
+      "mtime_ns": 1785162531718543400
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/persistence.py",
       "exists": true,
       "size": 703,
-      "mtime_ns": 1785144166072498900,
-      "sha256": "663f684613b339ed7bc92f0de52d8ac3aac0fe675b18a514c68ead25efe41d02"
+      "mtime_ns": 1785144166072498900
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/segrnn.py",
       "exists": true,
       "size": 1414,
-      "mtime_ns": 1785156976355481900,
-      "sha256": "55ca07e5f067cfc377ec3667fe0a1871284b9877b9337bd2e1e4e2592631bb6e"
+      "mtime_ns": 1785156976355481900
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/stgcn.py",
       "exists": true,
       "size": 1556,
-      "mtime_ns": 1785227011453529400,
-      "sha256": "5215169e6507b88df262bb6e50ed97f8e52b27e5845124a68f4446d1dfd82334"
+      "mtime_ns": 1785227011453529400
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/stid.py",
       "exists": true,
       "size": 1636,
-      "mtime_ns": 1785231148194866200,
-      "sha256": "c0d17eb866e0a7194d58435a34b87f0e725bb758fea849fda43f1157167f60ea"
+      "mtime_ns": 1785231148194866200
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/tide.py",
       "exists": true,
       "size": 1189,
-      "mtime_ns": 1785156976355481900,
-      "sha256": "aea5f0f61010a09136feb6ce194f9c2e34eb44da14ab5f11a8bde8fc7600c07d"
+      "mtime_ns": 1785156976355481900
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/timefilter.py",
       "exists": true,
       "size": 1766,
-      "mtime_ns": 1785215786542979500,
-      "sha256": "ccd239dcda50c5bd13c188c0ebcd0e9d22f340fa8f71a134c12480a1412dac83"
+      "mtime_ns": 1785215786542979500
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/timemixer.py",
       "exists": true,
       "size": 1817,
-      "mtime_ns": 1785211443143361700,
-      "sha256": "669f5bbd017b23982ec75af6372a5ab88767a32b8a7ed999a5fb5d21627c674d"
+      "mtime_ns": 1785211443143361700
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/timesnet.py",
       "exists": true,
       "size": 1376,
-      "mtime_ns": 1785208743774403900,
-      "sha256": "8827368d682f80ec96b9693564a778315591d09f77057b157dc29929508986ce"
+      "mtime_ns": 1785208743774403900
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/timexer.py",
       "exists": true,
       "size": 1740,
-      "mtime_ns": 1785162531721338400,
-      "sha256": "02aed571aa772289d1f44e36400f0552425f92d91a407af481acbb9b35b96ee3"
+      "mtime_ns": 1785162531721338400
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/transformer.py",
       "exists": true,
       "size": 1156,
-      "mtime_ns": 1785162531717204300,
-      "sha256": "039cef9b46c2f6bbef71301c64db89366a52d628dc5d5193932ec7ff05e18a43"
+      "mtime_ns": 1785162531717204300
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/tslib_common.py",
       "exists": true,
       "size": 2582,
-      "mtime_ns": 1785156976323251100,
-      "sha256": "a1d3557d64e66a16ddd9a9b229d148c3a578f6b9b61b85a092e9d7cfac1a7571"
+      "mtime_ns": 1785156976323251100
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/tsmixer.py",
       "exists": true,
       "size": 1225,
-      "mtime_ns": 1785211443148821900,
-      "sha256": "f99d834b1d75f6595489e6c9cd275eb9ca92fcb9e5026f9031a2d2d46e64a994"
+      "mtime_ns": 1785211443148821900
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/wpmixer.py",
       "exists": true,
       "size": 1345,
-      "mtime_ns": 1785208848851682600,
-      "sha256": "432aadc9a3df0b0965afa7a1c8ec990710dbe7793d3f8cbe2b1b10ee51c1e42c"
+      "mtime_ns": 1785208848851682600
     }
   ]
 }

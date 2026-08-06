@@ -10,12 +10,12 @@
     "suite": "custom_models.tests.benchmark_v2.test_e3_b_graph_models",
     "status": "PASS",
     "verified_mismatch_rejection": [
-      "graph_bundle_hash",
-      "node_order_hash",
+      "graph_bundle_record",
+      "node_order_record",
       "graph_support_names",
-      "graph_support_hashes",
-      "source_hash",
-      "model_config_hash"
+      "graph_support_records",
+      "source_record",
+      "model_config_record"
     ]
   },
   "missing_pass_launches_preflight_then_formal": "PASS_DUMMY",

@@ -34,10 +34,6 @@
   "runtime_unavailable_count": 23,
   "trainable_count": 3,
   "non_trainable_count": 2,
-  "protocol_hash_before": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
-  "protocol_hash_after": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
-  "canonical_sha256_before": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
-  "canonical_sha256_after": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
   "tslib_sources_modified": false,
   "st_mgprompt_modified": false,
   "e1_a_models_modified": false,
@@ -77,7 +73,7 @@
   ],
   "files_deleted": [],
   "commands_executed": [
-    "fixed interpreter source/config audit and SHA256 checks",
+    "fixed interpreter source/config audit and content record checks",
     "SegRNN original seg_len=96 failure reproduction",
     "python -m compileall -q custom_models/src/benchmark_v2",
     "python -m unittest discover -s custom_models/tests/benchmark_v2 -p test_*.py",
@@ -85,7 +81,7 @@
     "python -m benchmark_v2.cli model-smoke --model <four E1-B models>",
     "python -m benchmark_v2.cli full-shape-model-smoke --model <four E1-B models>",
     "python -m benchmark_v2.cli real-data-model-smoke --model <four E1-B models>",
-    "before/after protected SHA256 snapshots"
+    "before/after protected content record snapshots"
   ],
   "tests": [
     {
@@ -107,18 +103,54 @@
     }
   ],
   "smoke_runs": [
-    {"name": "DLinear ordinary", "status": "PASS"},
-    {"name": "LightTS ordinary", "status": "PASS"},
-    {"name": "TiDE ordinary", "status": "PASS"},
-    {"name": "SegRNN ordinary", "status": "PASS"},
-    {"name": "DLinear full-shape AMP backward", "status": "PASS"},
-    {"name": "LightTS full-shape AMP backward", "status": "PASS"},
-    {"name": "TiDE full-shape AMP backward", "status": "FAIL_OOM"},
-    {"name": "SegRNN full-shape AMP backward", "status": "FAIL_OOM"},
-    {"name": "DLinear limited real data", "status": "PASS"},
-    {"name": "LightTS limited real data", "status": "PASS"},
-    {"name": "TiDE limited real data", "status": "PASS"},
-    {"name": "SegRNN limited real data", "status": "PASS"}
+    {
+      "name": "DLinear ordinary",
+      "status": "PASS"
+    },
+    {
+      "name": "LightTS ordinary",
+      "status": "PASS"
+    },
+    {
+      "name": "TiDE ordinary",
+      "status": "PASS"
+    },
+    {
+      "name": "SegRNN ordinary",
+      "status": "PASS"
+    },
+    {
+      "name": "DLinear full-shape AMP backward",
+      "status": "PASS"
+    },
+    {
+      "name": "LightTS full-shape AMP backward",
+      "status": "PASS"
+    },
+    {
+      "name": "TiDE full-shape AMP backward",
+      "status": "FAIL_OOM"
+    },
+    {
+      "name": "SegRNN full-shape AMP backward",
+      "status": "FAIL_OOM"
+    },
+    {
+      "name": "DLinear limited real data",
+      "status": "PASS"
+    },
+    {
+      "name": "LightTS limited real data",
+      "status": "PASS"
+    },
+    {
+      "name": "TiDE limited real data",
+      "status": "PASS"
+    },
+    {
+      "name": "SegRNN limited real data",
+      "status": "PASS"
+    }
   ],
   "framework_defect_fixes": [],
   "formal_output_root_existed_before": false,

@@ -52,7 +52,6 @@ def collect_run(kind: str, model_id: str) -> dict[str, Any]:
         "strict_reload_completed": True,
         "artifact_validation": artifact_status(run_dir),
         "upstream_source_path": config["upstream_source_path"],
-        "upstream_source_sha256": config["upstream_source_sha256"],
         "effective_config": config["model_specific_parameters"],
         "config_resolution_reason": config["config_resolution_reason"],
         "validation_search_performed": False,

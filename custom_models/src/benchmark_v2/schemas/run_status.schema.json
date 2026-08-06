@@ -1,1 +1,9 @@
-{"type":"object","required":["status","run_mode","artifact_profile"],"additionalProperties":true}
+{
+  "type": "object",
+  "required": [
+    "status",
+    "run_mode",
+    "artifact_profile"
+  ],
+  "additionalProperties": true
+}

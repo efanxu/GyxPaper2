@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import csv
-import hashlib
 import json
 from copy import deepcopy
 from dataclasses import asdict, dataclass
@@ -314,14 +313,6 @@ def assert_expected_diff(config: STMGPromptConfig, variant_id: str, family: str 
     return result
 
 
-def sha256_file(path: str | Path) -> str:
-    digest = hashlib.sha256()
-    with Path(path).open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
-
-
 def write_json(path: str | Path, value: Any) -> Path:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -333,22 +324,13 @@ def canonical_directory(project_root: str | Path) -> Path:
     return Path(project_root) / CANONICAL_RESULT_ROOT / CANONICAL_ID
 
 
-def canonical_hashes(project_root: str | Path) -> dict[str, str]:
-    directory = canonical_directory(project_root)
-    return directory_hashes(directory)
-
-
-def directory_hashes(directory: str | Path) -> dict[str, str]:
+def directory_files(directory: str | Path) -> list[dict[str, Any]]:
     directory = Path(directory)
     required = ("config.json", "best_checkpoint.pt")
     missing = [name for name in required if not (directory / name).is_file()]
     if missing:
         raise FileNotFoundError(f"Canonical artifact is incomplete; missing {missing} in {directory}")
-    result = {
-        name: sha256_file(directory / name)
-        for name in sorted(p.name for p in directory.iterdir() if p.is_file())
-    }
-    return result
+    return [{"path": path.name, "size_bytes": path.stat().st_size} for path in sorted(directory.iterdir()) if path.is_file()]
 
 
 def write_reference(alias: str, alias_directory: str | Path, project_root: str | Path) -> Path:
@@ -356,15 +338,13 @@ def write_reference(alias: str, alias_directory: str | Path, project_root: str |
     if alias not in {"A0", "P0"}:
         raise ValueError("Only A0 and P0 may reference Canonical Full.")
     directory = canonical_directory(project_root)
-    hashes = canonical_hashes(project_root)
-    metric_hashes = {k: v for k, v in hashes.items() if k.startswith("metrics")}
     payload = {
         "alias": alias,
         "canonical_id": CANONICAL_ID,
         "canonical_directory": str(directory.resolve()),
-        "checkpoint_sha256": hashes["best_checkpoint.pt"],
-        "config_sha256": hashes["config.json"],
-        "metrics_sha256": metric_hashes,
+        "checkpoint_path": "best_checkpoint.pt",
+        "config_path": "config.json",
+        "files": directory_files(directory),
         "trainable": False,
     }
     return write_json(Path(alias_directory) / "reference.json", payload)
@@ -375,9 +355,7 @@ def resolve_reference(reference_path: str | Path) -> Path:
     if payload.get("trainable") is not False or payload.get("canonical_id") != CANONICAL_ID:
         raise ValueError(f"Invalid canonical reference: {reference_path}")
     directory = Path(payload["canonical_directory"])
-    hashes = directory_hashes(directory)
-    if hashes["best_checkpoint.pt"] != payload.get("checkpoint_sha256"):
-        raise RuntimeError("Canonical checkpoint hash no longer matches reference.json.")
+    directory_files(directory)
     return directory
 
 

@@ -253,7 +253,6 @@
   "schema_version": "e5_scope27_run_id_map_v2",
   "scope_id": "e5_batch4_scope27_seed2026",
   "source_identity_schema_version": "model_source_identity_v1",
-  "training_profile_hash": "f58bbc161dfba0f00774879fdf2f78ec7c59a7faff9ef28a1733a2ed6835fe66",
   "training_profile_id": "uniform_train_batch4_v1",
   "unique_run_id_count": 27
 }

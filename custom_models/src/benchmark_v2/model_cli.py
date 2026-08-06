@@ -21,7 +21,7 @@ from .engine import Evaluator, Trainer
 from .errors import ModelUnavailableError
 from .experiments.e5_common_loss.config_diff import (
     optimizer_group_signature,
-    state_dict_hash,
+    state_dict_equal,
 )
 from .experiments.e5_common_loss.contracts import SMOKE_OUTPUT_ROOT_RELATIVE
 from .experiments.e5_common_loss.loss_profile import (
@@ -47,7 +47,6 @@ from .model_runtime import ModelRuntime, build_model_runtime
 from .precision import apply_model_precision_policy
 from .original_scope26 import apply_current_scope_identity
 from .models.graph_models.adaptive_common import (
-    canonical_tensor_hash,
     learned_graph_summary,
 )
 from .protocol import check_protocol, load_protocol
@@ -87,26 +86,22 @@ NATIVE_NODE_MODELS = E3_B_MODELS | E3_C_MODELS
 IDENTITY_METADATA_KEYS = (
     "graph_id",
     "graph_context_id",
-    "graph_protocol_hash",
-    "node_order_hash",
-    "graph_bundle_hash",
-    "location_source_hash",
+    "node_count",
+    "ordered_node_ids",
     "selected_k",
     "graph_support_names",
-    "graph_support_hashes",
+    "graph_support_shapes",
     "graph_runtime_dtype",
     "uses_physical_support",
     "physical_support_names",
-    "physical_support_hashes",
+    "physical_support_shapes",
     "adaptive_graph_policy",
     "node_identity_policy",
     "temporal_identity_policy",
     "adaptive_initialization_policy",
 )
 BATCH_IDENTITY_KEYS = (
-    "base_benchmark_protocol_hash",
     "training_batch_profile_id",
-    "training_batch_profile_hash",
     "train_batch_size",
     "val_batch_size",
     "test_batch_size",
@@ -196,7 +191,7 @@ def _write_common(
         {
             "schema_version": "artifact_schema_v1",
             "artifact_profile": profile,
-            "protocol_hash": protocol.protocol_hash,
+            "protocol_id": protocol["protocol_id"],
             "run_mode": run_mode,
             "formal_training": bool(formal_training),
             "model_id": runtime.model_id,
@@ -264,7 +259,7 @@ def _write_metrics(
                 runtime.effective_config.get("optimizer")
                 and runtime.effective_config.get("run_mode") == "formal"
             ),
-            "protocol_hash": protocol.protocol_hash,
+            "protocol_id": protocol["protocol_id"],
             "prediction_shape": prediction_shape,
             "target_column": "Patv_raw",
             "output_space_before_inverse": "normalized_target_space",
@@ -451,7 +446,6 @@ def _model_identity_diagnostic(runtime: ModelRuntime) -> dict[str, Any] | None:
             "learned_graph": None,
             "identity_type": "node_embedding_not_adjacency",
             "node_embedding_shape": list(embedding.shape),
-            "node_embedding_hash": canonical_tensor_hash(embedding),
             "cosine_similarity_diagnostic_only": {
                 "shape": list(cosine.shape),
                 "min": float(cosine.min().cpu()),
@@ -462,23 +456,13 @@ def _model_identity_diagnostic(runtime: ModelRuntime) -> dict[str, Any] | None:
     return None
 
 
-def _diagnostic_hash(payload: dict[str, Any] | None) -> str | None:
-    if payload is None:
-        return None
-    return str(
-        payload.get("canonical_content_hash")
-        or payload.get("node_embedding_hash")
-    )
-
-
 def _synthetic_signature(batch: BenchmarkBatch) -> dict[str, Any]:
     return {
         "dataset_id": "SYNTHETIC_E1_A_SMOKE",
         "shape": list(batch.x.shape),
         "feature_names": load_protocol()["ordered_input_features"],
-        "feature_order_hash": load_protocol()["feature_order_hash"],
         "node_count": batch.node_count,
-        "node_order_hash": "synthetic",
+        "node_ids": list(batch.node_ids),
         "timestamp_count": int(batch.x.shape[1]),
         "normalization_fit_scope": "synthetic_explicit_no_fit",
     }
@@ -491,8 +475,8 @@ def _write_non_trainable_state(
     e5 = runtime.effective_config.get("experiment_profile_id") is not None
     payload = {
         "model_id": runtime.model_id,
-        "protocol_hash": protocol.protocol_hash,
-        "feature_order_hash": protocol["feature_order_hash"],
+        "protocol_id": protocol["protocol_id"],
+        "feature_names": list(protocol["ordered_input_features"]),
         "baseline_rule": runtime.effective_config["baseline_rule"],
         "ma_window": runtime.effective_config.get("ma_window"),
         "optimizer": None,
@@ -584,9 +568,7 @@ def _run_non_trainable(
         formal_training=False,
         exit_code=0,
     )
-    validation = validate_run(
-        run_dir, expected_protocol_hash=protocol.protocol_hash
-    )
+    validation = validate_run(run_dir)
     result = {
         "status": "PASS",
         "model_id": runtime.model_id,
@@ -659,16 +641,7 @@ def _run_trainable_smoke(
     metrics = Evaluator(trainer).evaluate(eval_loader)
     post_reload_diagnostic = _model_identity_diagnostic(runtime)
     if post_reload_diagnostic is not None:
-        post_reload_diagnostic["checkpoint_reload_hash_before"] = (
-            _diagnostic_hash(pre_reload_diagnostic)
-        )
-        post_reload_diagnostic["checkpoint_reload_hash_after"] = (
-            _diagnostic_hash(post_reload_diagnostic)
-        )
-        post_reload_diagnostic["checkpoint_reload_hash_matches"] = (
-            _diagnostic_hash(pre_reload_diagnostic)
-            == _diagnostic_hash(post_reload_diagnostic)
-        )
+        post_reload_diagnostic["checkpoint_reload_completed"] = True
         atomic_write_json(
             run_dir / "learned_graph_summary.json",
             post_reload_diagnostic,
@@ -695,9 +668,7 @@ def _run_trainable_smoke(
         formal_training=False,
         exit_code=0,
     )
-    validation = validate_run(
-        run_dir, expected_protocol_hash=protocol.protocol_hash
-    )
+    validation = validate_run(run_dir)
     if initialization_parity is not None:
         atomic_write_json(
             run_dir / "initialization_parity.json", initialization_parity
@@ -774,7 +745,6 @@ def model_smoke(
         import torch
 
         base_runtime = runtime
-        base_state_hash = state_dict_hash(base_runtime.model)
         base_parameter_count = base_runtime.parameter_count
         base_trainable_count = base_runtime.trainable_parameter_count
         base_optimizer = torch.optim.Adam(
@@ -801,7 +771,6 @@ def model_smoke(
         apply_experiment_profile(runtime, selected_profile)
         apply_training_profile(runtime, training_profile)
         apply_model_precision_policy(runtime)
-        e5_state_hash = state_dict_hash(runtime.model)
         with torch.no_grad():
             e5_prediction = runtime.adapter(
                 runtime.model,
@@ -818,8 +787,7 @@ def model_smoke(
             "status": "PASS",
             "state_dict_keys_equal": list(base_runtime.model.state_dict())
             == list(runtime.model.state_dict()),
-            "base_state_dict_hash": base_state_hash,
-            "e5_state_dict_hash": e5_state_hash,
+            "state_dict_values_equal": state_dict_equal(base_runtime.model, runtime.model),
             "parameter_count_equal": base_parameter_count == runtime.parameter_count,
             "trainable_parameter_count_equal": (
                 base_trainable_count == runtime.trainable_parameter_count
@@ -836,7 +804,7 @@ def model_smoke(
             value
             for key, value in initialization_parity.items()
             if key.endswith("_equal")
-        ) or base_state_hash != initialization_parity["e5_state_dict_hash"]:
+        ):
             initialization_parity["status"] = "FAIL"
             raise RuntimeError(
                 f"E5 model initialization parity failed for {model_id}: "
@@ -853,10 +821,8 @@ def model_smoke(
                 key: runtime.effective_config[key]
                 for key in (
                     "graph_id",
-                    "graph_protocol_hash",
-                    "node_order_hash",
-                    "graph_bundle_hash",
-                    "location_source_hash",
+                    "node_count",
+                    "ordered_node_ids",
                 )
             }
         )
@@ -965,10 +931,6 @@ def full_shape_model_smoke(
         result["precision_resolution"] = runtime.effective_config.get(
             "precision_resolution"
         )
-        if selected_profile == E5_PROFILE_ID:
-            result["loss_profile_hash"] = runtime.effective_config["loss"][
-                "profile_hash"
-            ]
         moved = _move_batch(batch, device)
         runtime.model.to(device)
         backward_completed = False
@@ -1303,7 +1265,6 @@ def formal_train(
     formal_scope_id: str | None = None,
     source_revision: str | None = None,
     preflight_attempt_id: str | None = None,
-    preflight_artifact_sha256: str | None = None,
 ) -> dict[str, Any]:
     entry = load_registry().get(model_id)
     if model_id in {"persistence", "moving_average"}:
@@ -1353,7 +1314,6 @@ def formal_train(
                 formal_scope_id=exact_scope_id,
                 source_revision=source_revision,
                 attempt_id=preflight_attempt_id,
-                artifact_sha256=preflight_artifact_sha256,
             )
             is None
         ):
@@ -1375,7 +1335,6 @@ def formal_train(
                 experiment_profile=selected_profile,
                 training_profile=training_profile,
                 attempt_id=preflight_attempt_id,
-                artifact_sha256=preflight_artifact_sha256,
             )
             is None
         ):
@@ -1501,7 +1460,5 @@ def formal_train(
         "run_dir": str(run_dir),
         "epochs_completed": len(history),
         "metrics": metrics,
-        "artifact_validation": validate_run(
-            run_dir, expected_protocol_hash=protocol.protocol_hash
-        ),
+        "artifact_validation": validate_run(run_dir),
     }

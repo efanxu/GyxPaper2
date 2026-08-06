@@ -4,8 +4,7 @@
   "interpreter": "D:/Apps/Miniconda3/envs/env_tslib/python.exe",
   "compileall": "PASS",
   "protocol_check": {
-    "status": "PASS",
-    "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b"
+    "status": "PASS"
   },
   "focused_e2_d": {
     "status": "PASS",

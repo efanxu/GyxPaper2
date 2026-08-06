@@ -7,7 +7,6 @@
   "TARGET_MACHINE_STATUS": "PENDING_TARGET_MACHINE_PREFLIGHT",
   "GLOBAL_ENGINEERING_STATUS": "READY_FOR_TARGET_MACHINE_VALIDATION",
   "profile_id": "uniform_train_batch4_v1",
-  "profile_hash": "f58bbc161dfba0f00774879fdf2f78ec7c59a7faff9ef28a1733a2ed6835fe66",
   "train_batch_size": 4,
   "val_batch_size": 4,
   "test_batch_size": 4,
@@ -26,12 +25,6 @@
   "registry_after": 28,
   "tslib_allowlist_before": 18,
   "tslib_allowlist_after": 18,
-  "benchmark_protocol_hash_before": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
-  "benchmark_protocol_hash_after": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
-  "canonical_hash_before": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
-  "canonical_hash_after": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
-  "graph_protocol_hash_before": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
-  "graph_protocol_hash_after": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
   "model_sources_modified": false,
   "model_configs_modified": false,
   "loss_modified": false,
@@ -125,11 +118,11 @@
       }
     ],
     "coverage": [
-      "profile schema/hash/allowlist/fixed batches",
+      "profile schema/record/allowlist/fixed batches",
       "DataLoader batch4 and unchanged sample collection",
       "gradient accumulation/effective batch",
       "initialization/forward/optimizer param-group invariance",
-      "preflight identity mismatch rejection for batch32/16/8 and hashes",
+      "preflight identity mismatch rejection for batch32/16/8 and records",
       "artifact/checkpoint batch identity",
       "readiness/aggregation mixed-batch rejection",
       "old A8 rejection and new batch4 A8 acceptance",
@@ -137,21 +130,15 @@
     ]
   },
   "protection_snapshot_matches": {
-    "protected_core_hashes": true,
     "protected_model_sources": true,
     "protected_model_configs": true,
-    "protected_tslib_hashes": true,
-    "protected_graph_hashes": true,
-    "protected_st_mgprompt_hashes": true,
-    "protected_a0_a8_hashes": true,
-    "protected_e5_a_hashes": true,
     "protected_formal_results_inventory": true
   },
   "warnings": [
     "Exact preflight ran on NVIDIA GeForce GTX 1060 6 GiB, not the intended approximately 48 GiB formal GPU.",
     "Windows/WDDM CUDA peak counters in the artifacts can exceed physical VRAM because of virtual-memory accounting.",
     "Real-data smoke had SegRNN OOM and an abnormal MSGNet process exit; these are smoke diagnostics, not performance results.",
-    "ST synthetic smoke initially rewrote the shared trend-prior files. The 134-node arrays and metadata were deterministically restored to all three frozen SHA256 values; their filesystem mtimes changed. Smoke graph output is now isolated per smoke run.",
+    "ST synthetic smoke initially rewrote the shared trend-prior files. The 134-node arrays and metadata were deterministically restored to all three frozen content record values; their filesystem mtimes changed. Smoke graph output is now isolated per smoke run.",
     "Optimizer steps per epoch increase from the old batch32 protocol; no claim of equal update counts is made."
   ],
   "blocked_reasons": [

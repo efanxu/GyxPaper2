@@ -1,52 +1,45 @@
 {
   "task": "E1-B",
   "snapshot": "E1-B task before",
-  "algorithm": "SHA256; directory digest is SHA256 of sorted relative_path:sha256 newline records; __pycache__ excluded",
+  "algorithm": "content record; directory summary is content record of sorted relative_path:content record newline records; __pycache__ excluded",
   "paths": [
     {
       "path": "custom_models/src/benchmark_v2/protocol",
       "exists": true,
       "kind": "directory",
-      "file_count": 5,
-      "tree_sha256": "748a76bb0a0070dc87a1b9c5eea1fc8c7df4c1033aef7ba93006cec9a221183e"
+      "file_count": 5
     },
     {
       "path": "custom_models/src/benchmark_v2/data",
       "exists": true,
       "kind": "directory",
-      "file_count": 5,
-      "tree_sha256": "f0b9f63affe57bd39bb7fa0038199b63a24aaa8152729ce9eff4b0d2e9fdca6e"
+      "file_count": 5
     },
     {
       "path": "custom_models/src/benchmark_v2/schemas",
       "exists": true,
       "kind": "directory",
-      "file_count": 8,
-      "tree_sha256": "d8e36f1ca35daf8db2edf6ce0eedc8028a2958f55717f33514d0c1dd8be789c5"
+      "file_count": 8
     },
     {
       "path": "custom_models/src/benchmark_v2/losses.py",
       "exists": true,
-      "kind": "file",
-      "sha256": "89a6e5636bc3a15b0b2385837256cccb0bc8c5c3d68b6c0d63b7f559f0874dce"
+      "kind": "file"
     },
     {
       "path": "custom_models/src/benchmark_v2/metrics.py",
       "exists": true,
-      "kind": "file",
-      "sha256": "0afefe18e64d02f535b7e09b6f72cda3e7c7bb384de603f1831da5352af7bfcf"
+      "kind": "file"
     },
     {
       "path": "custom_models/src/benchmark_v2/checkpointing.py",
       "exists": true,
-      "kind": "file",
-      "sha256": "79c6dce5de03a508aa96d8ba0f78b35c2578b90ff0807d8d98fb1e7be30c4478"
+      "kind": "file"
     },
     {
       "path": "custom_models/src/benchmark_v2/artifacts.py",
       "exists": true,
-      "kind": "file",
-      "sha256": "964a85925a4f6c1800e6f42ad3354a8eb20ee70712cd1e9885bddbd094504834"
+      "kind": "file"
     }
   ]
 }

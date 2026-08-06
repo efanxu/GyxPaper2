@@ -154,7 +154,7 @@ nvidia-smi
 
 Expected PASS artifact root:
 
-`custom_models/results_smoke/benchmark_v2/hardware_preflight/<model>/<identity-hash>/hardware_preflight.json`
+`custom_models/results_smoke/benchmark_v2/hardware_preflight/<model>/<identity-record>/hardware_preflight.json`
 
-A reusable PASS must match model ID, model-config hash, protocol hash, source
-hash, `B/T/N/C/H`, AMP, forward/backward completion, and `status=PASS`.
+A reusable PASS must match model ID, model-config record, protocol record, source
+record, `B/T/N/C/H`, AMP, forward/backward completion, and `status=PASS`.

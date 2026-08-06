@@ -2,7 +2,7 @@
 
 Source: `dataset/sdwpf_turb_location_elevation.csv`
 
-SHA256: `233a120f4db2b52402bf4dc7c90631ac9301d6af236a56c6a245e46beec1f236`
+content record: `<removed-content-record>`
 
 Columns and pandas types are `TurbID:int64`, `x:float64`, `y:float64`, and `Ele:float64`. Ranges are:
 

@@ -146,6 +146,6 @@ ps -ef | grep '[r]un_benchmark.py'
 nvidia-smi
 ```
 
-A reusable graph preflight PASS must match model/config/benchmark/source hashes,
+A reusable graph preflight PASS must match model/config/benchmark/source records,
 exact B/T/N/C/H, AMP, graph protocol, graph bundle, node order, location source,
-support names/hashes, and completed forward/backward with `status=PASS`.
+support names/records, and completed forward/backward with `status=PASS`.

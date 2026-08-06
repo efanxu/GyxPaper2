@@ -42,7 +42,7 @@ selected output=(B*N,10)
 restored output=(B,N,10)
 ```
 
-回归测试同时保留原配置 FAIL 与修复配置 PASS。未裁剪、padding、预测 12 再截断，也未修改 TSLib source；源码 SHA256 前后保持 `764d4ad950ee65162c70746248754942cfb4ba661162d515caab0a4eedd12252`。
+回归测试同时保留原配置 FAIL 与修复配置 PASS。未裁剪、padding、预测 12 再截断，也未修改 TSLib source；源码 content record 前后保持 `<removed-content-record>`。
 
 ## Full-shape result
 

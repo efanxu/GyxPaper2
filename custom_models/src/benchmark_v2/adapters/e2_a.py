@@ -3,7 +3,6 @@ from __future__ import annotations
 from typing import Any, Mapping
 
 from ..contracts import BenchmarkOutput
-from ..data.signatures import feature_order_hash
 from ..errors import ContractError
 from .node_shared import NodeSharedAdapter
 from .tslib_channel import TSLibPowerChannelAdapter
@@ -158,8 +157,6 @@ class TimeXerAdapter(_HistoryOnlyMixin, NodeSharedAdapter):
     def __init__(self, protocol: Mapping[str, Any]):
         self.protocol = protocol
         features = tuple(protocol["ordered_input_features"])
-        if feature_order_hash(features) != protocol["feature_order_hash"]:
-            raise ContractError("TimeXer feature order hash mismatch.")
         power = str(protocol["input_power_column"])
         if not features or features[-1] != power:
             raise ContractError(

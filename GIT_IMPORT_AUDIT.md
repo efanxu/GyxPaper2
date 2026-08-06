@@ -44,7 +44,7 @@ Generated: 2026-07-31T15:49:07.4882539+08:00
 
 ## Large files
 
-All files above 10 MiB are hashed in `git_import_inventory.csv`; excluded files are listed with SHA256 in `git_import_excluded_paths.txt`.
+All files above 10 MiB are recorded in `git_import_inventory.csv`; excluded files are listed with content record in `git_import_excluded_paths.txt`.
 
 | Size MiB | Relative path | Classification | Plan | Reason |
 |---:|---|---|---|---|

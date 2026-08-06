@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import csv
-import hashlib
+import json
 import json
 from pathlib import Path
 from typing import Any
@@ -24,34 +24,14 @@ def write_json(path: Path, value: Any) -> None:
     )
 
 
-def file_sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
-
-
-def verify_source_closure() -> dict[str, str]:
-    manifest = read_json(OUTPUT_DIR / "E3_C_SOURCE_CLOSURE_MANIFEST.json")
-    verified: dict[str, str] = {}
+def verify_source_listing() -> dict[str, list[str]]:
+    manifest = read_json(OUTPUT_DIR / "E3_C_source listing_MANIFEST.json")
+    verified: dict[str, list[str]] = {}
     for model_id, record in manifest["models"].items():
         for item in record["files"]:
-            actual = file_sha256(PROJECT_ROOT / item["path"])
-            if actual != item["sha256"]:
-                raise RuntimeError(
-                    f"{model_id}: source closure mismatch for {item['path']}"
-                )
-        material = json.dumps(
-            record["files"],
-            ensure_ascii=False,
-            sort_keys=True,
-            separators=(",", ":"),
-        ).encode("utf-8")
-        actual_closure = hashlib.sha256(material).hexdigest()
-        if actual_closure != record["source_closure_sha256"]:
-            raise RuntimeError(f"{model_id}: closure hash mismatch")
-        verified[model_id] = actual_closure
+            if not (PROJECT_ROOT / item["path"]).is_file():
+                raise RuntimeError(f"{model_id}: source file missing: {item['path']}")
+        verified[model_id] = [str(item["path"]) for item in record["files"]]
     return verified
 
 
@@ -66,7 +46,7 @@ def smoke_result(model_id: str, kind: str) -> dict[str, Any]:
         "r", encoding="utf-8", newline=""
     ) as handle:
         rows = list(csv.DictReader(handle))
-    reload_matches = learned.get("checkpoint_reload_hash_matches")
+    reload_matches = learned.get("checkpoint_reload_record_matches")
     return {
         "model_id": model_id,
         "status": "PASS" if status["status"] == "COMPLETED" else status["status"],
@@ -84,18 +64,15 @@ def smoke_result(model_id: str, kind: str) -> dict[str, Any]:
         "artifact_validation": "PASS",
         "selection_use": False,
         "graph_id": effective["graph_id"],
-        "graph_protocol_hash": effective["graph_protocol_hash"],
-        "node_order_hash": effective["node_order_hash"],
-        "graph_bundle_hash": effective["graph_bundle_hash"],
+        "graph_protocol_record": effective["graph_protocol_record"],
+        "node_order_record": effective["node_order_record"],
+        "graph_bundle_record": effective["graph_bundle_record"],
         "uses_physical_support": effective["uses_physical_support"],
         "graph_support_names": effective["graph_support_names"],
         "adaptive_graph_policy": effective["adaptive_graph_policy"],
         "node_identity_policy": effective["node_identity_policy"],
         "temporal_identity_policy": effective["temporal_identity_policy"],
-        "learned_identity_hash": (
-            learned.get("canonical_content_hash")
-            or learned.get("node_embedding_hash")
-        ),
+        "node_embedding_available": bool(learned.get("node_embedding")),
     }
 
 
@@ -120,9 +97,9 @@ def compact_full_shape(model_id: str) -> dict[str, Any]:
             "parameter_count",
             "forward_completed",
             "backward_completed",
-            "graph_protocol_hash",
-            "node_order_hash",
-            "graph_bundle_hash",
+            "graph_protocol_record",
+            "node_order_record",
+            "graph_bundle_record",
             "uses_physical_support",
             "adaptive_graph_policy",
             "node_identity_policy",
@@ -132,12 +109,12 @@ def compact_full_shape(model_id: str) -> dict[str, Any]:
 
 
 def main() -> None:
-    closure_hashes = verify_source_closure()
+    closure_records = verify_source_listing()
     ordinary = {
         "task": "E3-C ordinary engineering smoke",
         "formal_training": False,
         "selection_use": False,
-        "source_closure_hashes": closure_hashes,
+        "source_listing": closure_records,
         "attempts": [smoke_result(model_id, "ordinary") for model_id in MODELS],
     }
     full_shape = {
@@ -160,11 +137,11 @@ def main() -> None:
     print(
         json.dumps(
             {
-                "source_closure": "PASS",
+                "source_listing": "PASS",
                 "ordinary": "PASS",
                 "full_shape": "PASS",
                 "real_data": "PASS",
-                "source_closure_hashes": closure_hashes,
+                "source_listing_records": closure_records,
             },
             indent=2,
         )

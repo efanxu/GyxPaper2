@@ -1,7 +1,6 @@
 {
   "status": "PASS",
   "mode": "smoke",
-  "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
   "fixed_fields_checked": [
     "protocol_id",
     "protocol_version",
@@ -14,7 +13,7 @@
     "target_unit",
     "ordered_input_features",
     "feature_count",
-    "feature_order_hash",
+    "feature_order_record",
     "input_tensor_shape",
     "prediction_tensor_shape",
     "target_tensor_shape",
@@ -54,9 +53,7 @@
     "artifact_schema_version"
   ],
   "formal_shape": false,
-  "base_benchmark_protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
   "training_batch_profile_id": "uniform_train_batch4_v1",
-  "training_batch_profile_hash": "f58bbc161dfba0f00774879fdf2f78ec7c59a7faff9ef28a1733a2ed6835fe66",
   "train_batch_size": 4,
   "val_batch_size": 4,
   "test_batch_size": 4,

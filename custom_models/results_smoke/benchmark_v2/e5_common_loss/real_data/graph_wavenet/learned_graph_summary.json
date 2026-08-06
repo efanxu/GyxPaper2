@@ -3,7 +3,6 @@
     134,
     134
   ],
-  "canonical_content_hash": "8bbadbd6bab51c7453512bb8de76ee6cc2ae446f2eb0ca29878901ff25933627",
   "finite": true,
   "min": 0.007239587139338255,
   "max": 0.008747234009206295,
@@ -42,8 +41,5 @@
       "union": 17956,
       "jaccard": 0.029850746268656716
     }
-  },
-  "checkpoint_reload_hash_before": "8bbadbd6bab51c7453512bb8de76ee6cc2ae446f2eb0ca29878901ff25933627",
-  "checkpoint_reload_hash_after": "8bbadbd6bab51c7453512bb8de76ee6cc2ae446f2eb0ca29878901ff25933627",
-  "checkpoint_reload_hash_matches": true
+  }
 }

@@ -13,5 +13,5 @@ The sole machine-readable source is `custom_models/src/benchmark_v2/protocol/ben
 - Normalization: standard z-score, fit train-only; default loss space is normalized target space.
 - Future observed and future calendar covariates are disabled.
 
-Protocol hash: `0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b`.
+Protocol record: `<removed-content-record>`.
 

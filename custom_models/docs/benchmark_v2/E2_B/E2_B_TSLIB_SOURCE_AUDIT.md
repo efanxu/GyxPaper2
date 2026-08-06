@@ -4,12 +4,12 @@ E2-B uses only the local `THUML/Time-Series-Library` checkout through the explic
 
 `dlinear, lightts, tide, segrnn, transformer, patchtst, itransformer, timexer, timesnet, micn, wpmixer, multipatchformer`.
 
-There is no directory scan, network access, TSLib Trainer, TSLib dataset, arbitrary-string import, or source modification. The license is local MIT text at `Time-Series-Library/LICENSE`, SHA256 `8a6caa178ea3f33ebff5d7bb5558628cf5b423305dc30d3630f86564c7db94a2`.
+There is no directory scan, network access, TSLib Trainer, TSLib dataset, arbitrary-string import, or source modification. The license is local MIT text at `Time-Series-Library/LICENSE`, content record `<removed-content-record>`.
 
 ## TimesNet
 
 - Source: `Time-Series-Library/models/TimesNet.py`
-- SHA256: `f64c4bed1fd7347090044a0163bd4209c9f9ec1c1b19ceff47842df36b64bba7`
+- content record: `<removed-content-record>`
 - Imports: torch, `layers.Embed.DataEmbedding`, `layers.Conv_Blocks.Inception_Block_V1`.
 - Constructor: `Model(configs)`; forecast fields are `task_name`, `seq_len`, `label_len`, `pred_len`, `enc_in`, `c_out`, `d_model`, `d_ff`, `e_layers`, `top_k`, `num_kernels`, `dropout`, `embed`, `freq`.
 - Forward: `forward(x_enc, x_mark_enc, x_dec, x_mark_dec, mask=None)`. Long/short forecast uses only `x_enc` and optional `x_mark_enc`; decoder values and decoder marks are ignored.
@@ -23,7 +23,7 @@ There is no directory scan, network access, TSLib Trainer, TSLib dataset, arbitr
 ## MICN
 
 - Source: `Time-Series-Library/models/MICN.py`
-- SHA256: `a0cb59254e850bfd1d94114a73126c290e6baf2ea700132ede8aade680bbedbf`
+- content record: `<removed-content-record>`
 - Imports: torch, `DataEmbedding`, `series_decomp`, `series_decomp_multi`.
 - Constructor: `Model(configs, conv_kernel=[12,16])`; forecast reads `task_name`, `seq_len`, `pred_len`, `enc_in`, `c_out`, `d_model`, `n_heads`, `d_layers`, `dropout`, `embed`, `freq`.
 - Forward: `forward(x_enc, x_mark_enc, x_dec, x_mark_dec, mask=None)`. Forecast uses `x_enc`, the batch/channel shape of `x_dec`, and `x_mark_dec`; `x_mark_enc` is ignored.
@@ -36,7 +36,7 @@ There is no directory scan, network access, TSLib Trainer, TSLib dataset, arbitr
 ## WPMixer
 
 - Source: `Time-Series-Library/models/WPMixer.py`
-- SHA256: `5b549f5454864d19a230747f0060dc00732fb0de6b50a359173e0d7a6b04ce8f`
+- content record: `<removed-content-record>`
 - Direct dependency: `layers.DWT_Decomposition.Decomposition`; that local file embeds differentiable DWT code and imports `pywt`. Installed versions: PyWavelets 1.9.0, torch 2.7.1+cu128.
 - Constructor: `Model(args, tfactor=5, dfactor=5, wavelet='db2', level=1, stride=8, no_decomposition=False)`. It reads `task_name`, `seq_len`, `pred_len`, `batch_size`, `c_out`, `d_model`, `dropout`, `patch_len`, `device`, `use_amp`.
 - Forward: standard five-argument signature; forecast uses historical `x_enc` only. Marks and decoder are ignored.
@@ -49,7 +49,7 @@ There is no directory scan, network access, TSLib Trainer, TSLib dataset, arbitr
 ## MultiPatchFormer
 
 - Source: `Time-Series-Library/models/MultiPatchFormer.py`
-- SHA256: `e8603a9d8b1e796a822171399a057bd3945cf51b38fb1661d91fe60ad79313b3`
+- content record: `<removed-content-record>`
 - Imports: torch, math, einops 0.8.1, local `AttentionLayer` and `FullAttention`.
 - Constructor: `Model(configs)`; reads `task_name`, `seq_len`, `pred_len`, `enc_in`, `e_layers`, `d_model`, `d_ff`, `n_heads`, `dropout`.
 - Forward: standard five-argument signature; forecast uses only `x_enc`. Marks and decoder are ignored.
@@ -61,6 +61,6 @@ There is no directory scan, network access, TSLib Trainer, TSLib dataset, arbitr
 
 ## Shared imported sources
 
-`layers/Embed.py` SHA256 `17e7c3577324c41a0da427a199c955b782fde905aabb1f7cbc3c4e15ebd4ae35`; `layers/Conv_Blocks.py` `16d9f2d9e4fa094dc357901e32beecda9839709bcca02625e6447186933ce4e1`; `layers/Autoformer_EncDec.py` `48745b4bb647355e9845792a855df9c59fd7df7fcc664c765351fec390c4073e`; `layers/DWT_Decomposition.py` `422af1eec77df1b9dcfdea3d457e545c8575da69da4f505f27ba54db0c9f7764`; `layers/SelfAttention_Family.py` `6f6592aed0753e342fc04c01db70528c2eb191eeb067cd5fd4c8d348fddcb794`; `run.py` `db6dfa215520ba193fe7095380f9005949a958efa9526975410cb5d97afe3fc4`; `exp_basic.py` `694ac20676eab3c1a3778b972b503950887d7198db938bc40a58b4c74b00bdee`; `exp_long_term_forecasting.py` `0413d8670d75ae53e0a3950a9ff4c7192f1cb52c57c18c84dfeca60654f548f2`.
+`layers/Embed.py` content record `<removed-content-record>`; `layers/Conv_Blocks.py` `<removed-content-record>`; `layers/Autoformer_EncDec.py` `<removed-content-record>`; `layers/DWT_Decomposition.py` `<removed-content-record>`; `layers/SelfAttention_Family.py` `<removed-content-record>`; `run.py` `<removed-content-record>`; `exp_basic.py` `<removed-content-record>`; `exp_long_term_forecasting.py` `<removed-content-record>`.
 
 TSLib `exp_long_term_forecasting.py` and its dataset path are audited but never invoked.

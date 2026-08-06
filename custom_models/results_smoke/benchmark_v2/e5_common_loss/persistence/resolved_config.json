@@ -10,23 +10,16 @@
   "run_mode": "smoke",
   "horizon": 10,
   "lookback": 144,
-  "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
   "experiment_profile_id": "e5_common_loss_architecture_v1",
   "loss": {
-    "id": "masked_score_aligned_hybrid",
-    "source_hash": "f90b99df342de7b1b1ee6ea39bbf30cc84eceb11663b38dfc7070d3905afc32b",
-    "profile_hash": "0fc1fca238d7161d3a0257d639a11df8cc92ad2a1c4d61eab234338fa24b59fa"
+    "id": "masked_score_aligned_hybrid"
   },
   "run_id": null,
   "output_root": null,
   "preflight_identity": null,
   "provenance": {
-    "base_model_id": "persistence",
-    "base_model_config_hash": "69edc3cf8b39f681acff3a9580b2006aa867609ebb454944f4c68ba6f91f427a",
-    "base_model_source_closure_hash": null,
-    "e5_common_loss_protocol_hash": "a7c5b5a5b15b5ab70d08bf926b9de351f05740940f16409c801eed419287141a"
+    "base_model_id": "persistence"
   },
-  "experiment_config_hash": "1588ed3c8d762aa0ce1dac6cf13d974349eb2e530137c9bf9bb0a9173146f5d6",
   "artifact_profile": "NON_TRAINABLE",
   "formal_registry_entry": true,
   "formal_training": false

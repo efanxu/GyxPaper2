@@ -56,13 +56,11 @@ class NativeGraphAdapter(NativeSpatiotemporalAdapter):
     def _validate_batch_graph_metadata(self, batch: BenchmarkBatch) -> None:
         for key in (
             "graph_id",
-            "graph_protocol_hash",
-            "node_order_hash",
-            "graph_bundle_hash",
-            "location_source_hash",
+            "node_count",
+            "ordered_node_ids",
             "selected_k",
             "graph_support_names",
-            "graph_support_hashes",
+            "graph_support_shapes",
         ):
             if key in batch.metadata:
                 expected = self.graph_identity[key]
@@ -82,11 +80,6 @@ class NativeGraphAdapter(NativeSpatiotemporalAdapter):
             bundle=self.bundle,
             expected_time=144,
             expected_features=16,
-        )
-        self.bundle.validate_runtime_identity(
-            graph_protocol_hash=self.graph_identity["graph_protocol_hash"],
-            node_order_hash=self.graph_identity["node_order_hash"],
-            graph_bundle_hash=self.graph_identity["graph_bundle_hash"],
         )
         self._validate_batch_graph_metadata(batch)
         return batch.x

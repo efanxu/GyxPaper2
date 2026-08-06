@@ -2,12 +2,6 @@
   "task": "E3-C ordinary engineering smoke",
   "formal_training": false,
   "selection_use": false,
-  "source_closure_hashes": {
-    "graph_wavenet": "cf401b35cd1f9455eb9653e2e04ef28f02c2e1673812dd4abb4a19bca7366eb8",
-    "mtgnn": "99ce4ec1be02f20d3f580ecdd363a3bc336d2d4f1a180d7f517cf9e91fe2c7d3",
-    "agcrn": "638bbfd5e7a451df556b458a98ae87b35490bcf15b38a0152b0faf6a2a67a7be",
-    "stid": "34dc11ac13ade13d3eb83cfb8cde98acfacf5ad4b18d3e79d653d5486dbe4bb9"
-  },
   "attempts": [
     {
       "model_id": "graph_wavenet",
@@ -30,9 +24,6 @@
       "artifact_validation": "PASS",
       "selection_use": false,
       "graph_id": "sdwpf_physical_knn_v1",
-      "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
-      "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
-      "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
       "uses_physical_support": true,
       "graph_support_names": [
         "P_forward",
@@ -40,8 +31,7 @@
       ],
       "adaptive_graph_policy": "learned_softmax_relu_low_rank",
       "node_identity_policy": "adaptive_low_rank_node_parameters",
-      "temporal_identity_policy": "none",
-      "learned_identity_hash": "0c2dc80e419305ec2f803f9edef8baf780bad99625b2c644b7f75e0a8fa89c78"
+      "temporal_identity_policy": "none"
     },
     {
       "model_id": "mtgnn",
@@ -64,15 +54,11 @@
       "artifact_validation": "PASS",
       "selection_use": false,
       "graph_id": "sdwpf_physical_knn_v1",
-      "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
-      "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
-      "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
       "uses_physical_support": false,
       "graph_support_names": [],
       "adaptive_graph_policy": "directed_topk_graph_constructor",
       "node_identity_policy": "learned_directed_graph_node_embeddings",
-      "temporal_identity_policy": "none",
-      "learned_identity_hash": "7a07d0e5a7e156dcffbcabeff7bf47a18716bc43bc2783e4dfa34f774a37d1b1"
+      "temporal_identity_policy": "none"
     },
     {
       "model_id": "agcrn",
@@ -95,15 +81,11 @@
       "artifact_validation": "PASS",
       "selection_use": false,
       "graph_id": "sdwpf_physical_knn_v1",
-      "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
-      "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
-      "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
       "uses_physical_support": false,
       "graph_support_names": [],
       "adaptive_graph_policy": "DAGG_from_node_embeddings",
       "node_identity_policy": "NAPL_shared_learned_node_embeddings",
-      "temporal_identity_policy": "none",
-      "learned_identity_hash": "15170695c7a4096b72e26768f62bc8fefbd341397129b930f32064402c3192d3"
+      "temporal_identity_policy": "none"
     },
     {
       "model_id": "stid",
@@ -126,15 +108,11 @@
       "artifact_validation": "PASS",
       "selection_use": false,
       "graph_id": "sdwpf_physical_knn_v1",
-      "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
-      "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
-      "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
       "uses_physical_support": false,
       "graph_support_names": [],
       "adaptive_graph_policy": "none",
       "node_identity_policy": "learned_node_embedding",
-      "temporal_identity_policy": "historical_anchor_time_only",
-      "learned_identity_hash": "87976094afbca93a186093b6569964441085fd695203084603632bce698ffa63"
+      "temporal_identity_policy": "historical_anchor_time_only"
     }
   ]
 }

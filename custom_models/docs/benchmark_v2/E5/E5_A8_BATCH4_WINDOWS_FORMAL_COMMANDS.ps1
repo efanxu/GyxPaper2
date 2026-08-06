@@ -5,7 +5,6 @@ param(
     [string]$PythonExecutable = 'D:\Apps\Miniconda3\envs\env_tslib\python.exe',
     [string]$InputPath,
     [string]$TargetPath,
-    [string]$SourceRevision,
     [switch]$Apply
 )
 
@@ -70,13 +69,11 @@ switch ($Action) {
         exit 4
     }
     'Preflight' {
-        $revision = if ([string]::IsNullOrWhiteSpace($SourceRevision)) { (& git rev-parse HEAD).Trim() } else { $SourceRevision }
-        $result = Invoke-A8Gate -Label 'preflight' -Arguments @('preflight', '--report-path', $ReportPath, '--child-log-root', $ChildLogRoot, '--source-revision', $revision) -ReportPath $ReportPath
+        $result = Invoke-A8Gate -Label 'preflight' -Arguments @('preflight', '--report-path', $ReportPath, '--child-log-root', $ChildLogRoot) -ReportPath $ReportPath
         if ($null -eq $result.Json -or $result.Json.status -ne 'PASS') { throw 'A8 exact preflight did not pass.' }
     }
     'Run' {
         $args = @('run', '--input-path', $InputPath, '--target-path', $TargetPath, '--log-root', (Join-Path $AuditRoot 'formal'))
-        if (-not [string]::IsNullOrWhiteSpace($SourceRevision)) { $args += @('--source-revision', $SourceRevision) }
         $null = Invoke-A8Gate -Label 'run' -Arguments $args
     }
     'Readiness' {

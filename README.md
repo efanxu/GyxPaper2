@@ -10,7 +10,7 @@ GyxPaper2 是一个面向风电时间序列预测与自定义模型实验的研�
 - `scripts/`：实验运行、预检查、汇总和快照脚本。
 - `dataset/`：本地数据位置；数据主体被 Git 忽略，schema、元数据和清洗报告可协作。
 - `Time-Series-Library/`：基础时间序列库及其运行组件。
-- `GIT_IMPORT_AUDIT.md`：本次仓库导入的文件审计、SHA256 和排除原因。
+- `GIT_IMPORT_AUDIT.md`：本次仓库导入的文件审计、content record 和排除原因。
 
 ## 数据准备
 
@@ -22,4 +22,4 @@ GitHub 不提供数据集下载。请将原始或处理后的数据放在本地 
 
 克隆后执行 `git lfs install` 和 `git lfs pull`，再创建 `feature/<name>`、`fix/<name>` 或 `experiment/<name>` 分支。提交前先检查本地修改，只添加明确的逻辑批次并运行相应的轻量验证；不要使用 `git add .`。完整协作约定见 [`GIT_COLLABORATION.md`](GIT_COLLABORATION.md)。
 
-本次导入没有选择 canonical checkpoint 或其他必须使用 Git LFS 的大文件。大型 checkpoint、数组、日志和可重建实验结果保留在本地；路径、大小、SHA256 与原因见 [`GIT_IMPORT_AUDIT.md`](GIT_IMPORT_AUDIT.md)。
+本次导入没有选择 canonical checkpoint 或其他必须使用 Git LFS 的大文件。大型 checkpoint、数组、日志和可重建实验结果保留在本地；路径、大小、content record 与原因见 [`GIT_IMPORT_AUDIT.md`](GIT_IMPORT_AUDIT.md)。

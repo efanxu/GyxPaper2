@@ -1,7 +1,6 @@
 {
   "status": "PASS",
   "mode": "smoke",
-  "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
   "fixed_fields_checked": [
     "protocol_id",
     "protocol_version",
@@ -14,7 +13,7 @@
     "target_unit",
     "ordered_input_features",
     "feature_count",
-    "feature_order_hash",
+    "feature_order_record",
     "input_tensor_shape",
     "prediction_tensor_shape",
     "target_tensor_shape",
@@ -56,28 +55,16 @@
   "formal_shape": false,
   "graph_id": "sdwpf_physical_knn_v1",
   "graph_context_id": "sdwpf_physical_knn_v1",
-  "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
-  "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
-  "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
-  "location_source_hash": "233a120f4db2b52402bf4dc7c90631ac9301d6af236a56c6a245e46beec1f236",
   "selected_k": 4,
   "graph_support_names": [
     "P_forward",
     "P_reverse"
-  ],
-  "graph_support_hashes": [
-    "59b39f001b3118557b55b88041b27b4ce7a743a85c0bc7948210945f7e3b8c03",
-    "89f09d41a8cae126c5668d4fe55934819c0a7489797b8e09fc0def0cc05da4fe"
   ],
   "graph_runtime_dtype": "torch.float32",
   "uses_physical_support": true,
   "physical_support_names": [
     "P_forward",
     "P_reverse"
-  ],
-  "physical_support_hashes": [
-    "59b39f001b3118557b55b88041b27b4ce7a743a85c0bc7948210945f7e3b8c03",
-    "89f09d41a8cae126c5668d4fe55934819c0a7489797b8e09fc0def0cc05da4fe"
   ],
   "adaptive_graph_policy": "learned_softmax_relu_low_rank",
   "node_identity_policy": "adaptive_low_rank_node_parameters",

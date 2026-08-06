@@ -36,7 +36,6 @@ class GraphSpec:
     self_loop_policy: Mapping[str, Any]
     weight_formula: str
     normalization_formulas: Mapping[str, str]
-    graph_protocol_hash: str
 
     def __post_init__(self) -> None:
         object.__setattr__(
@@ -54,12 +53,6 @@ class GraphTensorBundle:
     spec: GraphSpec
     ordered_node_ids: tuple[Any, ...]
     matrices: Mapping[str, Any]
-    node_order_hash: str
-    node_metadata_hash: str
-    location_source_hash: str
-    matrix_hashes: Mapping[str, str]
-    graph_bundle_hash: str
-    graph_protocol_hash: str
     device: str
 
 
@@ -67,9 +60,6 @@ class GraphTensorBundle:
 class GraphBundle:
     spec: GraphSpec
     ordered_node_ids: tuple[Any, ...]
-    node_order_hash: str
-    node_metadata_hash: str
-    location_source_hash: str
     A_binary_directed: np.ndarray
     A_binary_undirected: np.ndarray
     A_directed: np.ndarray
@@ -79,9 +69,6 @@ class GraphBundle:
     P_reverse: np.ndarray
     L_sym: np.ndarray
     L_tilde: np.ndarray
-    matrix_hashes: Mapping[str, str]
-    graph_bundle_hash: str
-    graph_protocol_hash: str
 
     def __post_init__(self) -> None:
         for name in MATRIX_NAMES:
@@ -90,9 +77,6 @@ class GraphBundle:
             )
             matrix.setflags(write=False)
             object.__setattr__(self, name, matrix)
-        object.__setattr__(
-            self, "matrix_hashes", MappingProxyType(dict(self.matrix_hashes))
-        )
 
     @property
     def matrices(self) -> dict[str, np.ndarray]:
@@ -102,33 +86,7 @@ class GraphBundle:
         validate_node_order(
             node_ids,
             self.ordered_node_ids,
-            expected_hash=self.node_order_hash,
         )
-
-    def validate_runtime_identity(
-        self,
-        *,
-        graph_protocol_hash: str,
-        node_order_hash: str,
-        graph_bundle_hash: str,
-    ) -> None:
-        expected = {
-            "graph_protocol_hash": self.graph_protocol_hash,
-            "node_order_hash": self.node_order_hash,
-            "graph_bundle_hash": self.graph_bundle_hash,
-        }
-        actual = {
-            "graph_protocol_hash": graph_protocol_hash,
-            "node_order_hash": node_order_hash,
-            "graph_bundle_hash": graph_bundle_hash,
-        }
-        mismatches = {
-            key: (actual[key], expected[key])
-            for key in expected
-            if actual[key] != expected[key]
-        }
-        if mismatches:
-            raise GraphProtocolError(f"Graph runtime identity mismatch: {mismatches}")
 
     def to(self, device: Any) -> GraphTensorBundle:
         import torch
@@ -144,12 +102,6 @@ class GraphBundle:
             spec=self.spec,
             ordered_node_ids=self.ordered_node_ids,
             matrices=MappingProxyType(tensors),
-            node_order_hash=self.node_order_hash,
-            node_metadata_hash=self.node_metadata_hash,
-            location_source_hash=self.location_source_hash,
-            matrix_hashes=self.matrix_hashes,
-            graph_bundle_hash=self.graph_bundle_hash,
-            graph_protocol_hash=self.graph_protocol_hash,
             device=str(target),
         )
 
@@ -157,20 +109,16 @@ class GraphBundle:
 @dataclass(frozen=True)
 class GraphIdentity:
     graph_id: str
-    graph_protocol_hash: str
-    node_order_hash: str
-    graph_bundle_hash: str
-    location_source_hash: str
+    node_count: int
+    ordered_node_ids: tuple[Any, ...]
     selected_k: int
     graph_support_names: tuple[str, ...]
 
     def to_dict(self) -> dict[str, Any]:
         return {
             "graph_id": self.graph_id,
-            "graph_protocol_hash": self.graph_protocol_hash,
-            "node_order_hash": self.node_order_hash,
-            "graph_bundle_hash": self.graph_bundle_hash,
-            "location_source_hash": self.location_source_hash,
+            "node_count": self.node_count,
+            "ordered_node_ids": list(self.ordered_node_ids),
             "selected_k": self.selected_k,
             "graph_support_names": list(self.graph_support_names),
         }
@@ -179,10 +127,8 @@ class GraphIdentity:
 def identity_from_bundle(bundle: GraphBundle) -> GraphIdentity:
     return GraphIdentity(
         graph_id=bundle.spec.graph_id,
-        graph_protocol_hash=bundle.graph_protocol_hash,
-        node_order_hash=bundle.node_order_hash,
-        graph_bundle_hash=bundle.graph_bundle_hash,
-        location_source_hash=bundle.location_source_hash,
+        node_count=bundle.spec.node_count,
+        ordered_node_ids=bundle.ordered_node_ids,
         selected_k=bundle.spec.selected_k,
         graph_support_names=MATRIX_NAMES,
     )
@@ -199,10 +145,8 @@ def validate_graph_identity(
     )
     required = (
         "graph_id",
-        "graph_protocol_hash",
-        "node_order_hash",
-        "graph_bundle_hash",
-        "location_source_hash",
+        "node_count",
+        "ordered_node_ids",
         "selected_k",
         "graph_support_names",
     )

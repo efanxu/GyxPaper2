@@ -245,8 +245,6 @@
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "111ae830c6e18c6959b043c3b2f187756400b8bf6975479f10fe0b59f5099618",
-          "e5_state_dict_hash": "111ae830c6e18c6959b043c3b2f187756400b8bf6975479f10fe0b59f5099618",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -337,8 +335,6 @@
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "f6a536978c1188215f0a56ba8132074504ea0fc43c1143a5c6feefdd54b44ae0",
-          "e5_state_dict_hash": "f6a536978c1188215f0a56ba8132074504ea0fc43c1143a5c6feefdd54b44ae0",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -429,8 +425,6 @@
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "ca04107340eb58cfa46939b2cf86920a6244982791c16979a9b416f2f81f280d",
-          "e5_state_dict_hash": "ca04107340eb58cfa46939b2cf86920a6244982791c16979a9b416f2f81f280d",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -521,8 +515,6 @@
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "830052f1a8769acc2d42cc2298d0883a52fb728fcdf86a1b6579bcd7f585fecf",
-          "e5_state_dict_hash": "830052f1a8769acc2d42cc2298d0883a52fb728fcdf86a1b6579bcd7f585fecf",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -613,8 +605,6 @@
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "5c5e90a30f779c428a9dee641a122892fd8ddd9b7df4a52850601da0be8c8a00",
-          "e5_state_dict_hash": "5c5e90a30f779c428a9dee641a122892fd8ddd9b7df4a52850601da0be8c8a00",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -705,8 +695,6 @@
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "c8be2a1e242318a7ddc82c6de806fc447b71ab7d91fa83a81bd0b9860ca20335",
-          "e5_state_dict_hash": "c8be2a1e242318a7ddc82c6de806fc447b71ab7d91fa83a81bd0b9860ca20335",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -797,8 +785,6 @@
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "f0c95c057dd5087b5ae85630fa247928aa34905552b35c8342281e4b2dc25511",
-          "e5_state_dict_hash": "f0c95c057dd5087b5ae85630fa247928aa34905552b35c8342281e4b2dc25511",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -889,8 +875,6 @@
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "36f432abfcbb75f94de11c81bde64c38cd4d38da1faaa77114b4810e93485a9e",
-          "e5_state_dict_hash": "36f432abfcbb75f94de11c81bde64c38cd4d38da1faaa77114b4810e93485a9e",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -981,8 +965,6 @@
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "95d4f6b48c7c88a2d3742b13cacf6eb27e0f0ab2505eeaabf03da00efe2a7309",
-          "e5_state_dict_hash": "95d4f6b48c7c88a2d3742b13cacf6eb27e0f0ab2505eeaabf03da00efe2a7309",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -1073,8 +1055,6 @@
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "27bf2ded98df53c3c9afcdf563d149afd3658b16ff7f3221ac70edaf53d4944a",
-          "e5_state_dict_hash": "27bf2ded98df53c3c9afcdf563d149afd3658b16ff7f3221ac70edaf53d4944a",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -1165,8 +1145,6 @@
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "ec8354466aca6d0f3b98aaf61e2b05f36267d31c12c9255202c44ece9f719554",
-          "e5_state_dict_hash": "ec8354466aca6d0f3b98aaf61e2b05f36267d31c12c9255202c44ece9f719554",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -1257,8 +1235,6 @@
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "5303509c3371f62a25d0435f086502f3725cda4f3af51a80dad056531c3d2d75",
-          "e5_state_dict_hash": "5303509c3371f62a25d0435f086502f3725cda4f3af51a80dad056531c3d2d75",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -1349,8 +1325,6 @@
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "25e23e31c1907268cb75240619bcb9a984a584ca68a742dcf9797fe2ad8110a1",
-          "e5_state_dict_hash": "25e23e31c1907268cb75240619bcb9a984a584ca68a742dcf9797fe2ad8110a1",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -1441,8 +1415,6 @@
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "d6cb64bdb60d3cd99d91fdf48a83292c15444845689a4d86e8b1fb51e1012ebb",
-          "e5_state_dict_hash": "d6cb64bdb60d3cd99d91fdf48a83292c15444845689a4d86e8b1fb51e1012ebb",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -1533,8 +1505,6 @@
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "7b3bb772fa0be4d5dbfe7c1fb820ef57d9d523309b6f0a2bd41f8602766043ad",
-          "e5_state_dict_hash": "7b3bb772fa0be4d5dbfe7c1fb820ef57d9d523309b6f0a2bd41f8602766043ad",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -1625,8 +1595,6 @@
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "663bbc2a53ad59d98fecd28c46fc2f9780bfb8de3ff285011e59566b34218ff6",
-          "e5_state_dict_hash": "663bbc2a53ad59d98fecd28c46fc2f9780bfb8de3ff285011e59566b34218ff6",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -1717,8 +1685,6 @@
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "c4d07af3ccfe09515ccd57dfffe48b631923751b2a67229a09264b3b50ad8181",
-          "e5_state_dict_hash": "c4d07af3ccfe09515ccd57dfffe48b631923751b2a67229a09264b3b50ad8181",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -1809,8 +1775,6 @@
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "d88ae3b53634b5e4da0b738272115c06baff0f8cffb7a004fa1fba09ff6bbb74",
-          "e5_state_dict_hash": "d88ae3b53634b5e4da0b738272115c06baff0f8cffb7a004fa1fba09ff6bbb74",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -1901,8 +1865,6 @@
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "ead0ef01326eb21e2f3a0e63ffbc1d2c481d4084a0e38178ac6bd2de5bc753a9",
-          "e5_state_dict_hash": "ead0ef01326eb21e2f3a0e63ffbc1d2c481d4084a0e38178ac6bd2de5bc753a9",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -1993,8 +1955,6 @@
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "facfcc75afc9c5624ccfec239458f613ca2a6b764abd33b18ac241fec3aecdb5",
-          "e5_state_dict_hash": "facfcc75afc9c5624ccfec239458f613ca2a6b764abd33b18ac241fec3aecdb5",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -2085,8 +2045,6 @@
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "d6d039d1aef677d040c6259729fdb38b8a3b88978f980f0b7a66716cefeb5c77",
-          "e5_state_dict_hash": "d6d039d1aef677d040c6259729fdb38b8a3b88978f980f0b7a66716cefeb5c77",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -2177,8 +2135,6 @@
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "8d21d57002636865b86e22212b787b70268c7b3680479d173777f69eb5b5754c",
-          "e5_state_dict_hash": "8d21d57002636865b86e22212b787b70268c7b3680479d173777f69eb5b5754c",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -2270,7 +2226,6 @@
             134,
             134
           ],
-          "canonical_content_hash": "46f4a235b9c5782f9078268a0b95f6c26be3744a2ad3ea885b012c2511f2934a",
           "finite": true,
           "min": 0.007240415550768375,
           "max": 0.008745425380766392,
@@ -2309,16 +2264,11 @@
               "union": 17956,
               "jaccard": 0.029850746268656716
             }
-          },
-          "checkpoint_reload_hash_before": "46f4a235b9c5782f9078268a0b95f6c26be3744a2ad3ea885b012c2511f2934a",
-          "checkpoint_reload_hash_after": "46f4a235b9c5782f9078268a0b95f6c26be3744a2ad3ea885b012c2511f2934a",
-          "checkpoint_reload_hash_matches": true
+          }
         },
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "0b24a3061efc64318bca42553f44a3605600bdb39d270de551f7ec4e215b8631",
-          "e5_state_dict_hash": "0b24a3061efc64318bca42553f44a3605600bdb39d270de551f7ec4e215b8631",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -2410,7 +2360,6 @@
             134,
             134
           ],
-          "canonical_content_hash": "7a07d0e5a7e156dcffbcabeff7bf47a18716bc43bc2783e4dfa34f774a37d1b1",
           "finite": true,
           "min": 0.0,
           "max": 1.0,
@@ -5392,16 +5341,11 @@
             ],
             "effective_nonzero_min": 20,
             "effective_nonzero_max": 20
-          },
-          "checkpoint_reload_hash_before": "7a07d0e5a7e156dcffbcabeff7bf47a18716bc43bc2783e4dfa34f774a37d1b1",
-          "checkpoint_reload_hash_after": "7a07d0e5a7e156dcffbcabeff7bf47a18716bc43bc2783e4dfa34f774a37d1b1",
-          "checkpoint_reload_hash_matches": true
+          }
         },
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "4d1e81e4a3c198b27ae576c865e9749f5328fa37be9318a0acea237b187eadfa",
-          "e5_state_dict_hash": "4d1e81e4a3c198b27ae576c865e9749f5328fa37be9318a0acea237b187eadfa",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -5493,7 +5437,6 @@
             134,
             134
           ],
-          "canonical_content_hash": "0bda89ea9ec9ad6905de23eafffb29ab6397d3e02620babe0143898f8886014c",
           "finite": true,
           "min": 0.007240807171911001,
           "max": 0.009126207791268826,
@@ -5520,16 +5463,11 @@
             "min": 134,
             "max": 134,
             "mean": 134.0
-          },
-          "checkpoint_reload_hash_before": "0bda89ea9ec9ad6905de23eafffb29ab6397d3e02620babe0143898f8886014c",
-          "checkpoint_reload_hash_after": "0bda89ea9ec9ad6905de23eafffb29ab6397d3e02620babe0143898f8886014c",
-          "checkpoint_reload_hash_matches": true
+          }
         },
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "1e405a2012e9ce9d7082127943ae007d692292763689f8b0afb2159b210fe6a5",
-          "e5_state_dict_hash": "1e405a2012e9ce9d7082127943ae007d692292763689f8b0afb2159b210fe6a5",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,
@@ -5623,7 +5561,6 @@
             134,
             32
           ],
-          "node_embedding_hash": "948b5b7dbaeb3c89523d89b234d1edfd8cae6ee1a1059a07ac0fb509b7f30bed",
           "cosine_similarity_diagnostic_only": {
             "shape": [
               134,
@@ -5632,16 +5569,11 @@
             "min": -0.5986186265945435,
             "max": 1.000000238418579,
             "mean": 0.008124816231429577
-          },
-          "checkpoint_reload_hash_before": "948b5b7dbaeb3c89523d89b234d1edfd8cae6ee1a1059a07ac0fb509b7f30bed",
-          "checkpoint_reload_hash_after": "948b5b7dbaeb3c89523d89b234d1edfd8cae6ee1a1059a07ac0fb509b7f30bed",
-          "checkpoint_reload_hash_matches": true
+          }
         },
         "initialization_parity": {
           "status": "PASS",
           "state_dict_keys_equal": true,
-          "base_state_dict_hash": "8aa36c8d07d50c7f6d5c0ff2aa95610a39b7ed7fd23469dfc2e25dd08f13f107",
-          "e5_state_dict_hash": "8aa36c8d07d50c7f6d5c0ff2aa95610a39b7ed7fd23469dfc2e25dd08f13f107",
           "parameter_count_equal": true,
           "trainable_parameter_count_equal": true,
           "forward_equal": true,

@@ -1,14 +1,22 @@
 {
   "snapshot": "E1-A task end",
-  "algorithm": "sorted relative_path:sha256 tree digest (UTF-8), excluding __pycache__",
+  "algorithm": "sorted relative_path:content record tree summary (UTF-8), excluding __pycache__",
   "paths": [
-    {"path": "Time-Series-Library/models", "file_count": 42, "tree_sha256": "9a7681e46426a02ada4a057771871c0b8026c934b26dba6ceea1f6521ce76626"},
-    {"path": "Time-Series-Library/exp", "file_count": 8, "tree_sha256": "ec305f0e0d3a6b89db407a35eb2d7564c3d0016bcfcde2d9518a3c4437630af2"},
-    {"path": "Time-Series-Library/data_provider", "file_count": 5, "tree_sha256": "5c53098ff823040547c2c84da76aa961ca451bdc3ebaa34b9adc9259824cc27c"}
+    {
+      "path": "Time-Series-Library/models",
+      "file_count": 42
+    },
+    {
+      "path": "Time-Series-Library/exp",
+      "file_count": 8
+    },
+    {
+      "path": "Time-Series-Library/data_provider",
+      "file_count": 5
+    }
   ],
   "license": {
-    "path": "Time-Series-Library/LICENSE",
-    "sha256": "8a6caa178ea3f33ebff5d7bb5558628cf5b423305dc30d3630f86564c7db94a2"
+    "path": "Time-Series-Library/LICENSE"
   },
   "matches_before": true
 }

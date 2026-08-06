@@ -43,13 +43,11 @@ export PYTHONIOENCODING=utf-8
 "$PYTHON" scripts/e5_batch4_scope27_gate.py preflight-plan
 "$PYTHON" scripts/e5_batch4_scope27_gate.py dry-run
 "$PYTHON" scripts/e5_batch4_scope27_gate.py preflight \
-  --preflight-root custom_models/logs/uniform_bs4/audit/e5_scope27/preflight \
-  --source-revision "$(git rev-parse HEAD)"
+  --preflight-root custom_models/logs/uniform_bs4/audit/e5_scope27/preflight
 "$PYTHON" scripts/e5_batch4_scope27_gate.py run \
   --input-path dataset/sdwpf_model_input_base.parquet \
   --target-path dataset/sdwpf_eval_target.parquet \
-  --preflight-root custom_models/logs/uniform_bs4/audit/e5_scope27/preflight \
-  --source-revision "$(git rev-parse HEAD)"
+  --preflight-root custom_models/logs/uniform_bs4/audit/e5_scope27/preflight
 "$PYTHON" scripts/e5_batch4_scope27_gate.py readiness
 "$PYTHON" scripts/e5_batch4_scope27_gate.py aggregate --require-complete
 ```

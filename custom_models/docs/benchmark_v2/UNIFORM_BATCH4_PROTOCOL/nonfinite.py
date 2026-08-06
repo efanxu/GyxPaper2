@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-import hashlib
+import json
 import json
 import os
 import random
@@ -118,12 +118,12 @@ def _first_nonfinite(mapping: dict[str, dict[str, Any]]) -> str | None:
     return None
 
 
-def _hash_bytes(value: bytes) -> str:
-    return hashlib.sha256(value).hexdigest()
+def _record_bytes(value: bytes) -> str:
+    return json.dumps(value)
 
 
-def _hash_object(value: Any) -> str:
-    return _hash_bytes(repr(value).encode("utf-8", errors="replace"))
+def _record_object(value: Any) -> str:
+    return _record_bytes(repr(value).encode("utf-8", errors="replace"))
 
 
 def rng_state_summary() -> dict[str, Any]:
@@ -131,14 +131,14 @@ def rng_state_summary() -> dict[str, Any]:
     import torch
 
     result = {
-        "python_hash": _hash_object(random.getstate()),
-        "numpy_hash": _hash_object(np.random.get_state()),
-        "torch_cpu_hash": _hash_bytes(torch.get_rng_state().cpu().numpy().tobytes()),
-        "cuda_hashes": [],
+        "python_record": _record_object(random.getstate()),
+        "numpy_record": _record_object(np.random.get_state()),
+        "torch_cpu_record": _record_bytes(torch.get_rng_state().cpu().numpy().tobytes()),
+        "cuda_records": [],
     }
     if torch.cuda.is_available():
-        result["cuda_hashes"] = [
-            _hash_bytes(state.cpu().numpy().tobytes())
+        result["cuda_records"] = [
+            _record_bytes(state.cpu().numpy().tobytes())
             for state in torch.cuda.get_rng_state_all()
         ]
     return result

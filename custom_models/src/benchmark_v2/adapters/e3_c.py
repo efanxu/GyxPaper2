@@ -65,16 +65,14 @@ class NativeAdaptiveNodeAdapter(NativeSpatiotemporalAdapter):
         keys = (
             "graph_id",
             "graph_context_id",
-            "graph_protocol_hash",
-            "node_order_hash",
-            "graph_bundle_hash",
-            "location_source_hash",
+            "node_count",
+            "ordered_node_ids",
             "selected_k",
             "graph_support_names",
-            "graph_support_hashes",
+            "graph_support_shapes",
             "uses_physical_support",
             "physical_support_names",
-            "physical_support_hashes",
+            "physical_support_shapes",
             "adaptive_graph_policy",
             "node_identity_policy",
             "temporal_identity_policy",
@@ -152,11 +150,6 @@ class NativeAdaptiveNodeAdapter(NativeSpatiotemporalAdapter):
             bundle=self.bundle,
             expected_time=144,
             expected_features=16,
-        )
-        self.bundle.validate_runtime_identity(
-            graph_protocol_hash=self.graph_identity["graph_protocol_hash"],
-            node_order_hash=self.graph_identity["node_order_hash"],
-            graph_bundle_hash=self.graph_identity["graph_bundle_hash"],
         )
         self._validate_batch_context(batch)
         if self.model_id == "stid":

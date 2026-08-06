@@ -192,9 +192,7 @@
   "input_scaler_type": "standard",
   "target_scaler_type": "standard",
   "eligible_for_fair_main_table": false,
-  "base_benchmark_protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
   "training_batch_profile_id": "uniform_train_batch4_v1",
-  "training_batch_profile_hash": "f58bbc161dfba0f00774879fdf2f78ec7c59a7faff9ef28a1733a2ed6835fe66",
   "gradient_accumulation_steps": 1,
   "effective_train_batch_size": 4
 }

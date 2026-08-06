@@ -4,7 +4,7 @@
 
 This handoff completes audit-only E0-A for `D:\PaperProject\GyxPaper2`. It read `HANDOFF(8).md` and `PLAN.md`, audited `custom_models/src/st_mgprompt`, `custom_models/results`, `custom_models/results_smoke`, `dataset`, and the local `Time-Series-Library` source/config/runner/layer/data paths. No model core, formal registry, runner, data protocol, Canonical checkpoint, P0-P5, A0-A8, dependency set, or formal result directory was modified. No training or tuning started; no files were deleted.
 
-Git metadata is absent, so Git HEAD/branch/status are `null` rather than invented. Canonical is `custom_models/results/st_mgprompt_canonical/full_fixed_dual_keep_msmgdwu_seed2026` and its best checkpoint remains SHA256 `f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a`. P0 and A0 `reference.json` point to this artifact with `trainable:false`; `run_st_mgprompt.py:489` and `train.py:441,589` use strict checkpoint loading.
+Git metadata is absent, so Git HEAD/branch/status are `null` rather than invented. Canonical is `custom_models/results/st_mgprompt_canonical/full_fixed_dual_keep_msmgdwu_seed2026` and its best checkpoint remains content record `<removed-content-record>`. P0 and A0 `reference.json` point to this artifact with `trainable:false`; `run_st_mgprompt.py:489` and `train.py:441,589` use strict checkpoint loading.
 
 ## Findings
 
@@ -19,7 +19,7 @@ Git metadata is absent, so Git HEAD/branch/status are `null` rather than invente
 
 ## Deliverables
 
-See all files in this directory. The required files are `BENCHMARK_IMPLEMENTATION_AUDIT.md`, `BENCHMARK_PROTOCOL_GAP_AUDIT.md`, `STCN_STGCN_NAMING_AUDIT.md`, `benchmark_implementation_matrix.csv`, `benchmark_dependency_report.md`, `benchmark_registry_inventory.json`, `E0_A_AUDIT_MANIFEST.json`, and this handoff. Supporting files are `audit_commands.txt`, `audit_import_results.json`, `audit_smoke_results.json`, `old_result_audit.json`, `protected_core_hashes_before.json`, `run_e0_a_smoke.py`, and `generate_e0_a_artifacts.py`.
+See all files in this directory. The required files are `BENCHMARK_IMPLEMENTATION_AUDIT.md`, `BENCHMARK_PROTOCOL_GAP_AUDIT.md`, `STCN_STGCN_NAMING_AUDIT.md`, `benchmark_implementation_matrix.csv`, `benchmark_dependency_report.md`, `benchmark_registry_inventory.json`, `E0_A_AUDIT_MANIFEST.json`, and this handoff. Supporting files are `audit_commands.txt`, `audit_import_results.json`, `audit_smoke_results.json`, `old_result_audit.json`, `protected_core_records_before.json`, `run_e0_a_smoke.py`, and `generate_e0_a_artifacts.py`.
 
 ## Tests
 

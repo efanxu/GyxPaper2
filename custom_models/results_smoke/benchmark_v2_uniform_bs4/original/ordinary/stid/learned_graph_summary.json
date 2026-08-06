@@ -5,7 +5,6 @@
     134,
     32
   ],
-  "node_embedding_hash": "87976094afbca93a186093b6569964441085fd695203084603632bce698ffa63",
   "cosine_similarity_diagnostic_only": {
     "shape": [
       134,
@@ -14,8 +13,5 @@
     "min": -0.5980290174484253,
     "max": 1.000000238418579,
     "mean": 0.008058927021920681
-  },
-  "checkpoint_reload_hash_before": "87976094afbca93a186093b6569964441085fd695203084603632bce698ffa63",
-  "checkpoint_reload_hash_after": "87976094afbca93a186093b6569964441085fd695203084603632bce698ffa63",
-  "checkpoint_reload_hash_matches": true
+  }
 }

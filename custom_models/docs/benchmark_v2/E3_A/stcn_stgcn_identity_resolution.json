@@ -20,12 +20,10 @@
   "source_evidence": [
     {
       "path": "custom_models/docs/benchmark_v2/E0_A/STCN_STGCN_NAMING_AUDIT.md",
-      "sha256": "58c2e096f80e0266394c1d672aca23757c1039f3d70fdb384c4ef236572bde92",
       "finding": "No trusted STCN.py/STGCN.py, class, adjacency provider, temporal graph block, configuration, citation, or old result metadata."
     },
     {
       "path": "Time-Series-Library/run.py",
-      "sha256": "db6dfa215520ba193fe7095380f9005949a958efa9526975410cb5d97afe3fc4",
       "finding": "Generic graph flags only; no STCN/STGCN constructor or implementation."
     }
   ],

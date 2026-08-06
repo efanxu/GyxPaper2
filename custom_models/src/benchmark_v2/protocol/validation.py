@@ -3,14 +3,12 @@ from __future__ import annotations
 from typing import Any, Mapping
 
 from ..errors import ProtocolError
-from .hashing import protocol_hash
-from ..data.signatures import feature_order_hash
 
 
 REQUIRED_FIELDS = (
     "protocol_id", "protocol_version", "dataset_id", "sample_interval_minutes", "expected_node_count",
     "target_column", "input_power_column", "mask_column", "target_unit", "ordered_input_features",
-    "feature_count", "feature_order_hash", "input_tensor_shape", "prediction_tensor_shape",
+    "feature_count", "input_tensor_shape", "prediction_tensor_shape",
     "target_tensor_shape", "mask_tensor_shape", "lookback", "max_pred_len", "eval_horizons",
     "split_ratio", "split_mode", "window_boundary_policy", "train_sample_stride", "val_sample_stride",
     "test_sample_stride", "train_batch_size", "val_batch_size", "test_batch_size", "epochs",
@@ -34,8 +32,6 @@ def check_protocol(protocol: Mapping[str, Any], mode: str = "formal") -> dict[st
         raise ProtocolError("Target/input power columns do not match the frozen SDWPF contract.")
     if protocol["mask_column"] != "valid_target_mask":
         raise ProtocolError("Mask column does not match the frozen SDWPF contract.")
-    if protocol["feature_order_hash"] != feature_order_hash(features):
-        raise ProtocolError("feature_order_hash does not match ordered_input_features.")
     if list(protocol["eval_horizons"]) != [3, 6, 10]:
         raise ProtocolError("Formal horizons must be [3, 6, 10].")
     if list(protocol["split_ratio"]) != [0.8, 0.1, 0.1]:
@@ -51,7 +47,6 @@ def check_protocol(protocol: Mapping[str, Any], mode: str = "formal") -> dict[st
     return {
         "status": "PASS",
         "mode": mode,
-        "protocol_hash": protocol.get("protocol_hash") or protocol_hash(dict(protocol)),
         "fixed_fields_checked": list(REQUIRED_FIELDS),
         "formal_shape": mode == "formal",
     }

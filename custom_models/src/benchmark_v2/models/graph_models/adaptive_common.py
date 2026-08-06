@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import hashlib
 from typing import Any
 
 import numpy as np
@@ -56,8 +55,8 @@ def e3_c_graph_identity(bundle: GraphBundle, model_id: str) -> dict[str, Any]:
             "graph_context_id": bundle.spec.graph_id,
             "uses_physical_support": bool(policy["uses_physical_support"]),
             "physical_support_names": list(names),
-            "physical_support_hashes": [
-                bundle.matrix_hashes[name] for name in names
+            "physical_support_shapes": [
+                list(bundle.matrices[name].shape) for name in names
             ],
             "adaptive_graph_policy": policy["adaptive_graph_policy"],
             "node_identity_policy": policy["node_identity_policy"],
@@ -88,16 +87,6 @@ def validate_e3_c_model_identity(
         )
 
 
-def canonical_tensor_hash(value: Any) -> str:
-    array = (
-        value.detach().float().cpu().contiguous().numpy()
-        if hasattr(value, "detach")
-        else np.asarray(value, dtype=np.float32)
-    )
-    canonical = np.ascontiguousarray(array.astype("<f4", copy=False))
-    return hashlib.sha256(canonical.tobytes(order="C")).hexdigest()
-
-
 def learned_graph_summary(
     adjacency: Any,
     *,
@@ -116,7 +105,6 @@ def learned_graph_summary(
     asymmetry = float(np.max(np.abs(array - array.T)))
     summary: dict[str, Any] = {
         "shape": list(array.shape),
-        "canonical_content_hash": canonical_tensor_hash(array),
         "finite": finite,
         "min": float(array.min()),
         "max": float(array.max()),

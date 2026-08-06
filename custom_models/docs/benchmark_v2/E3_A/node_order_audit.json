@@ -558,13 +558,5 @@
   "location_duplicate_coordinate_count": 0,
   "location_coordinate_null_count": 0,
   "row_count": 7042906,
-  "timestamp_count": 52559,
-  "input_source_hash": "bb5a5b9a6cfb175c68def21a5190feaa4561c418c8e02fd2ffb446c308a3e018",
-  "target_source_hash": "98e540b90e9eaa2f94d990817e5f8fc5a8f76b0ccd7e3c3abe93e3d792f9e90f",
-  "input_file_sha256_audit_only": "7bbc77e2a55d6ad6c7be891e88721b363516f7dd3192894da3bd1091bd7402aa",
-  "target_file_sha256_audit_only": "760c1f79c2200c826fc75c7a6e9ec34ba1053dc4716ea22499daf64bb165d4fb",
-  "location_source_sha256": "233a120f4db2b52402bf4dc7c90631ac9301d6af236a56c6a245e46beec1f236",
-  "input_source_hash_semantics": "node schema only; feature values are excluded",
-  "target_source_hash_semantics": "node schema only; target and mask values are excluded",
-  "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35"
+  "timestamp_count": 52559
 }

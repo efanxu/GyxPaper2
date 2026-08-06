@@ -28,14 +28,11 @@
   "seed": 2026,
   "amp_enabled": true,
   "loss": {
-    "id": "masked_score_aligned_hybrid",
-    "source_hash": "f90b99df342de7b1b1ee6ea39bbf30cc84eceb11663b38dfc7070d3905afc32b",
-    "profile_hash": "0fc1fca238d7161d3a0257d639a11df8cc92ad2a1c4d61eab234338fa24b59fa"
+    "id": "masked_score_aligned_hybrid"
   },
   "loss_space": "normalized_target_space",
   "checkpoint_metric": "validation_official_score_h10",
   "checkpoint_direction": "lower_is_better",
-  "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
   "upstream_project": "THUML/Time-Series-Library",
   "upstream_license_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\LICENSE",
   "source_modified": false,
@@ -76,8 +73,6 @@
   "oom_driven_capacity_reduction": false,
   "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\Crossformer.py",
   "upstream_source_relative_path": "Time-Series-Library/models/Crossformer.py",
-  "upstream_source_sha256": "f5892f70eb3fc320f69fa0a9b2019b68537cc5a5e5aa2ec544c15127b19e36f0",
-  "upstream_license_sha256": "8a6caa178ea3f33ebff5d7bb5558628cf5b423305dc30d3630f86564c7db94a2",
   "parameter_count": 117668,
   "trainable_parameter_count": 117668,
   "experiment_profile_id": "e5_common_loss_architecture_v1",
@@ -85,12 +80,8 @@
   "output_root": null,
   "preflight_identity": null,
   "provenance": {
-    "base_model_id": "crossformer",
-    "base_model_config_hash": "3691106096dcc29a4336ed7b2244be3214bca0306a2d4b4e5abfceea6fcd19ce",
-    "base_model_source_closure_hash": "f5892f70eb3fc320f69fa0a9b2019b68537cc5a5e5aa2ec544c15127b19e36f0",
-    "e5_common_loss_protocol_hash": "a7c5b5a5b15b5ab70d08bf926b9de351f05740940f16409c801eed419287141a"
+    "base_model_id": "crossformer"
   },
-  "experiment_config_hash": "81733e80c70521d421f52c8bbd43b83aa1aebb5f0cfb11aa0165ddda0af7ea31",
   "artifact_profile": "SMOKE",
   "formal_training": false,
   "formal_registry_entry": true

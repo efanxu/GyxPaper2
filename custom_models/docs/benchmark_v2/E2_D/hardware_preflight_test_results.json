@@ -21,7 +21,6 @@
     "fail_oom_creates_no_formal_run": true,
     "fail_non_oom_creates_no_formal_run": true,
     "config_mismatch_not_reused": true,
-    "source_hash_mismatch_not_reused": true,
     "shape_mismatch_not_reused": true,
     "parent_launcher_imports_no_torch_and_constructs_no_cuda_tensor": true
   },

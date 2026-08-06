@@ -816,8 +816,6 @@
       "elevation": 1424.7000732421875
     }
   ],
-  "node_metadata_hash": "c7b631159b900d3d51f125e9a4f01a4e432cda2cdd75f1ec6f14d7868850c727",
   "source_path": "dataset/sdwpf_turb_location_elevation.csv",
-  "location_source_sha256": "233a120f4db2b52402bf4dc7c90631ac9301d6af236a56c6a245e46beec1f236",
   "created_by": "E3-A build_graph_protocol_v1.py"
 }

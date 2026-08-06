@@ -5,7 +5,6 @@
     134,
     32
   ],
-  "node_embedding_hash": "948b5b7dbaeb3c89523d89b234d1edfd8cae6ee1a1059a07ac0fb509b7f30bed",
   "cosine_similarity_diagnostic_only": {
     "shape": [
       134,
@@ -14,8 +13,5 @@
     "min": -0.5986186265945435,
     "max": 1.000000238418579,
     "mean": 0.008124816231429577
-  },
-  "checkpoint_reload_hash_before": "948b5b7dbaeb3c89523d89b234d1edfd8cae6ee1a1059a07ac0fb509b7f30bed",
-  "checkpoint_reload_hash_after": "948b5b7dbaeb3c89523d89b234d1edfd8cae6ee1a1059a07ac0fb509b7f30bed",
-  "checkpoint_reload_hash_matches": true
+  }
 }

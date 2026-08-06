@@ -4,11 +4,34 @@ from typing import Any, Iterable
 
 import numpy as np
 
-from .hashing import canonical_node_ids, node_order_hash
-
-
 class GraphProtocolError(ValueError):
     pass
+
+
+ROUND_DECIMALS = 12
+
+
+def canonical_node_ids(node_ids: Iterable[Any]) -> tuple[Any, ...]:
+    values = tuple(node_ids)
+    if not values:
+        raise ValueError("Node order must not be empty.")
+    if any(isinstance(value, bool) for value in values):
+        raise TypeError("Boolean node IDs are not permitted.")
+    kinds = {type(value) for value in values}
+    if kinds in ({int}, {str}):
+        return values
+    raise TypeError("Node IDs must be uniformly integer or uniformly string.")
+
+
+def canonical_matrix(value: Any) -> np.ndarray:
+    matrix = np.asarray(value, dtype=np.float64)
+    if matrix.ndim != 2:
+        raise ValueError(f"Graph matrix must be rank two, got {matrix.shape}.")
+    if not np.isfinite(matrix).all():
+        raise ValueError("Graph matrix contains NaN or Inf.")
+    matrix = np.round(matrix, decimals=ROUND_DECIMALS)
+    matrix[matrix == 0.0] = 0.0
+    return np.ascontiguousarray(matrix, dtype="<f8")
 
 
 def connected_components(adjacency: np.ndarray) -> list[list[int]]:
@@ -41,19 +64,12 @@ def connected_components(adjacency: np.ndarray) -> list[list[int]]:
 def validate_node_order(
     runtime_node_ids: Iterable[Any],
     frozen_node_ids: Iterable[Any],
-    *,
-    expected_hash: str,
 ) -> None:
     runtime = canonical_node_ids(runtime_node_ids)
     frozen = canonical_node_ids(frozen_node_ids)
     if runtime != frozen:
         raise GraphProtocolError(
             "Runtime node order does not match frozen canonical node order."
-        )
-    actual_hash = node_order_hash(runtime)
-    if actual_hash != expected_hash:
-        raise GraphProtocolError(
-            f"Runtime node-order hash mismatch: {actual_hash} != {expected_hash}"
         )
 
 

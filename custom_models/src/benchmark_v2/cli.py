@@ -75,11 +75,11 @@ def _tiny_batch(*, batch_size: int, time_steps: int, nodes: int, features: int, 
 
 
 def _write_common(run_dir: Path, protocol, effective: dict, profile: str) -> None:
-    atomic_write_json(run_dir / "resolved_config.json", {"protocol_hash": protocol.protocol_hash, "model_id": effective["model_id"], "config_source": "benchmark_protocol_v1"})
+    atomic_write_json(run_dir / "resolved_config.json", {"protocol_id": protocol["protocol_id"], "model_id": effective["model_id"], "config_source": "benchmark_protocol_v1"})
     atomic_write_json(run_dir / "effective_config.json", effective)
     atomic_write_json(run_dir / "protocol_check.json", check_protocol(protocol, mode="smoke"))
     atomic_write_json(run_dir / "model_summary.json", {"model_id": effective["model_id"], "formal_registry_entry": False, "profile": profile})
-    atomic_write_json(run_dir / "artifact_manifest.json", {"schema_version": "artifact_schema_v1", "artifact_profile": profile, "protocol_hash": protocol.protocol_hash, "run_mode": "smoke"})
+    atomic_write_json(run_dir / "artifact_manifest.json", {"schema_version": "artifact_schema_v1", "artifact_profile": profile, "protocol_id": protocol["protocol_id"], "run_mode": "smoke"})
 
 
 def framework_smoke() -> dict:
@@ -87,7 +87,7 @@ def framework_smoke() -> dict:
     protocol = load_protocol()
     run_dir = safe_run_dir(SMOKE_ROOT, "e0_b_framework")
     run_dir.mkdir(parents=True)
-    effective = {"model_id": "__framework_test_only__", "formal_registry_entry": False, "run_mode": "smoke", "artifact_profile": "SMOKE", "seed": 2026, "epochs": 2, "patience": 6, "min_delta": 0.01, "learning_rate": 1e-3, "protocol_hash": protocol.protocol_hash}
+    effective = {"model_id": "__framework_test_only__", "formal_registry_entry": False, "run_mode": "smoke", "artifact_profile": "SMOKE", "seed": 2026, "epochs": 2, "patience": 6, "min_delta": 0.01, "learning_rate": 1e-3, "protocol_id": protocol["protocol_id"]}
     _write_common(run_dir, protocol, effective, "SMOKE")
     batch = _tiny_batch(batch_size=2, time_steps=12, nodes=4, features=16, horizon=10)
     batch.validate(expected_nodes=4)
@@ -105,9 +105,9 @@ def framework_smoke() -> dict:
     atomic_write_json(run_dir / "metrics_eval_h6.json", metrics[1])
     atomic_write_json(run_dir / "metrics_eval_h10.json", metrics[2])
     atomic_write_csv(run_dir / "metrics.csv", ["horizon", "MAE", "RMSE", "R2", "Score", "score", "valid_target_count"], metrics)
-    atomic_write_json(run_dir / "prediction_metadata.json", {"run_mode":"smoke", "model_id":"__framework_test_only__", "formal_registry_entry":False, "protocol_hash":protocol.protocol_hash, "prediction_shape":[2,4,10], "source_checkpoint":"best_checkpoint.pt"})
+    atomic_write_json(run_dir / "prediction_metadata.json", {"run_mode":"smoke", "model_id":"__framework_test_only__", "formal_registry_entry":False, "protocol_id":protocol["protocol_id"], "prediction_shape":[2,4,10], "source_checkpoint":"best_checkpoint.pt"})
     write_status(run_dir, status="COMPLETED", run_mode="smoke", artifact_profile="SMOKE", exit_code=0)
-    validation = validate_run(run_dir, expected_protocol_hash=protocol.protocol_hash)
+    validation = validate_run(run_dir)
     return {"status":"PASS", "run_dir":str(run_dir), "history":history, "metrics":metrics, "artifact_validation":validation, "run_mode":"smoke", "model_id":"__framework_test_only__", "formal_registry_entry":False}
 
 
@@ -222,7 +222,6 @@ def main(argv: list[str] | None = None) -> int:
     train.add_argument("--device", default="cuda")
     train.add_argument("--preflight-root")
     train.add_argument("--preflight-attempt-id")
-    train.add_argument("--preflight-artifact-sha256")
     train.add_argument("--source-revision")
     add_experiment_profile(train)
     add_training_profile(train)
@@ -252,7 +251,6 @@ def main(argv: list[str] | None = None) -> int:
     train_worker.add_argument("--device", default="cuda")
     train_worker.add_argument("--preflight-root")
     train_worker.add_argument("--preflight-attempt-id")
-    train_worker.add_argument("--preflight-artifact-sha256")
     train_worker.add_argument("--source-revision")
     add_experiment_profile(train_worker)
     add_training_profile(train_worker)
@@ -334,7 +332,7 @@ def main(argv: list[str] | None = None) -> int:
                 )
             )
             return 0
-        if args.command == "artifact-validate": print(json.dumps(validate_run(args.run_dir, expected_protocol_hash=load_protocol().protocol_hash), ensure_ascii=False, indent=2)); return 0
+        if args.command == "artifact-validate": print(json.dumps(validate_run(args.run_dir), ensure_ascii=False, indent=2)); return 0
         if args.command == "framework-smoke": print(json.dumps(framework_smoke(), ensure_ascii=False, indent=2)); return 0
         if args.command == "full-shape-framework-smoke": print(json.dumps(full_shape_framework_smoke(), ensure_ascii=False, indent=2)); return 0
         if args.command == "data-contract-smoke": print(json.dumps(data_contract_smoke(), ensure_ascii=False, indent=2)); return 0
@@ -426,7 +424,6 @@ def main(argv: list[str] | None = None) -> int:
                 formal_scope_id=args.formal_scope_id,
                 source_revision=args.source_revision,
                 preflight_attempt_id=args.preflight_attempt_id,
-                preflight_artifact_sha256=args.preflight_artifact_sha256,
             ), ensure_ascii=False, indent=2))
             return 0
         if args.command == "train":
@@ -448,7 +445,6 @@ def main(argv: list[str] | None = None) -> int:
                 formal_scope_id=args.formal_scope_id,
                 source_revision=args.source_revision,
                 preflight_attempt_id=args.preflight_attempt_id,
-                preflight_artifact_sha256=args.preflight_artifact_sha256,
             )
     except (
         BenchmarkV2Error,

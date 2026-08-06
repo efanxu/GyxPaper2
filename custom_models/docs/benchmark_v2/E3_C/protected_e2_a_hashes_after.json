@@ -1,76 +1,66 @@
 {
   "task": "E3-C",
   "snapshot": "E3-C task after",
-  "algorithm": "SHA256; directory digest is SHA256 of sorted relative_path:sha256 newline records; __pycache__ excluded",
+  "algorithm": "content record; directory summary is content record of sorted relative_path:content record newline records; __pycache__ excluded",
   "paths": [
     {
       "path": "custom_models/src/benchmark_v2/models/transformer.py",
       "exists": true,
       "kind": "file",
-      "sha256": "90c30196305a0573ecb0f70f3d800bf0a23d95090ec05d494dc8e7b03a254463",
       "matches_before": true
     },
     {
       "path": "custom_models/src/benchmark_v2/models/patchtst.py",
       "exists": true,
       "kind": "file",
-      "sha256": "13aed0bdd024b33e5b412ee672325f7e2064dad5d6f8f256b365f7eec1bc2989",
       "matches_before": true
     },
     {
       "path": "custom_models/src/benchmark_v2/models/itransformer.py",
       "exists": true,
       "kind": "file",
-      "sha256": "c76644cc1c0cd458b23d33c99fcc288536d693be751d8991f05325c5cb32653c",
       "matches_before": true
     },
     {
       "path": "custom_models/src/benchmark_v2/models/timexer.py",
       "exists": true,
       "kind": "file",
-      "sha256": "f8d3a12acc7d81191a764658abb06a888956b24ab0e72876a3df146126a119c6",
       "matches_before": true
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/transformer.py",
       "exists": true,
       "kind": "file",
-      "sha256": "039cef9b46c2f6bbef71301c64db89366a52d628dc5d5193932ec7ff05e18a43",
       "matches_before": true
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/patchtst.py",
       "exists": true,
       "kind": "file",
-      "sha256": "c1f618a53e23fc44ae5f3313ff9c42c956cbc165469c81729c74e72d61534715",
       "matches_before": true
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/itransformer.py",
       "exists": true,
       "kind": "file",
-      "sha256": "4f084adfc39987b4140ed6c7cff3835cf35ce5396fa823b1625373e7c5f4efd6",
       "matches_before": true
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/timexer.py",
       "exists": true,
       "kind": "file",
-      "sha256": "02aed571aa772289d1f44e36400f0552425f92d91a407af481acbb9b35b96ee3",
       "matches_before": true
     },
     {
       "path": "custom_models/src/benchmark_v2/adapters/e2_a.py",
       "exists": true,
       "kind": "file",
-      "sha256": "645089703cbaf34ca7331aa714e6eff638a5dd3356d5a4569ee97fd69ef7b892",
       "matches_before": true
     },
     {
       "path": "custom_models/tests/benchmark_v2/test_e2_a_models.py",
       "exists": true,
       "kind": "file",
-      "sha256": "29919da383cdc642a632a9a4ec3b041da309bee676ff85e2b98564c2c144cd10",
       "matches_before": true
     },
     {
@@ -78,12 +68,9 @@
       "exists": true,
       "kind": "directory",
       "file_count": 26,
-      "tree_sha256": "d5a0848f34866a3ec818e305ac521dcbaec3ce57696625fd3be2a91faeb9c599",
       "matches_before": true
     }
   ],
-  "protocol_file_sha256": "a250a476a03683c7ed62c77685d8b878b0fb5e2d371b694aba308d6df62e2492",
-  "canonical_checkpoint_sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
   "formal_output_root_existed": false,
   "mismatches": [],
   "protocol_matches_before": true,

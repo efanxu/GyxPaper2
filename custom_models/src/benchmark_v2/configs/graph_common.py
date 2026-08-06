@@ -48,7 +48,7 @@ def resolve_graph_common(
         "loss_space": "normalized_target_space",
         "checkpoint_metric": "validation_official_score_h10",
         "checkpoint_direction": "lower_is_better",
-        "protocol_hash": protocol["protocol_hash"],
+        "protocol_id": protocol["protocol_id"],
         "clean_room_implementation": True,
         "validation_search_performed": False,
         "test_result_used": False,

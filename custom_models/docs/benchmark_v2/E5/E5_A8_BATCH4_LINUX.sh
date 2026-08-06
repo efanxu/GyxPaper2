@@ -34,8 +34,7 @@ fi
 set +e
 "$PYTHON" "$GATE" preflight \
   --report-path "$PREFLIGHT_REPORT" \
-  --child-log-root "$CHILD_LOG_ROOT" \
-  --source-revision "$(git rev-parse HEAD)"
+  --child-log-root "$CHILD_LOG_ROOT"
 preflight_code=$?
 set -e
 if [[ "$preflight_code" -ne 0 ]]; then
@@ -45,8 +44,7 @@ fi
 
 set +e
 "$PYTHON" "$GATE" run \
-  --log-root "$AUDIT_ROOT/formal" \
-  --source-revision "$(git rev-parse HEAD)"
+  --log-root "$AUDIT_ROOT/formal"
 run_code=$?
 set -e
 if [[ "$run_code" -ne 0 ]]; then

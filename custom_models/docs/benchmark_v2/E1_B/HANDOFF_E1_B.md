@@ -8,12 +8,12 @@ No formal 20-epoch training/evaluation was started. E2-A was not started.
 
 ## Final model status
 
-| model | source SHA256 | config | params | ordinary | full-shape | real | Registry |
+| model | source content record | config | params | ordinary | full-shape | real | Registry |
 |---|---|---|---:|---|---|---|---|
-| DLinear | `e03acaf97e70c85ea6bda6776b3a62550f84470afa7bc53dffccb6121626e7eb` | ma=25, individual=false | 2,900 | PASS | PASS, 230,003,712 B | PASS | AVAILABLE_TRAINABLE |
-| LightTS | `1de1583c4ee0bbfa0764fa9b158f09ac8bcd7ddf7f2d9f1b58ab1a03a7d13989` | chunk=8, chunks=18, d_model=512 | 104,342 | PASS | PASS, 2,760,148,992 B | PASS | AVAILABLE_TRAINABLE |
-| TiDE | `4ab07dec4ae85f8b7c3062ff7d2fec00be342968d41cf09e48d599d8e40f6143` | d_model=512, d_ff=2048, e/d=2/1, c_out=1 | 1,804,777 | PASS | FAIL OOM | PASS | BLOCKED_FULL_SHAPE_OOM |
-| SegRNN | `764d4ad950ee65162c70746248754942cfb4ba661162d515caab0a4eedd12252` | seg_len=2, d_model=512 | 1,583,874 | PASS | FAIL OOM | PASS | BLOCKED_FULL_SHAPE_OOM |
+| DLinear | `<removed-content-record>` | ma=25, individual=false | 2,900 | PASS | PASS, 230,003,712 B | PASS | AVAILABLE_TRAINABLE |
+| LightTS | `<removed-content-record>` | chunk=8, chunks=18, d_model=512 | 104,342 | PASS | PASS, 2,760,148,992 B | PASS | AVAILABLE_TRAINABLE |
+| TiDE | `<removed-content-record>` | d_model=512, d_ff=2048, e/d=2/1, c_out=1 | 1,804,777 | PASS | FAIL OOM | PASS | BLOCKED_FULL_SHAPE_OOM |
+| SegRNN | `<removed-content-record>` | seg_len=2, d_model=512 | 1,583,874 | PASS | FAIL OOM | PASS | BLOCKED_FULL_SHAPE_OOM |
 
 源码路径分别为 `Time-Series-Library/models/DLinear.py`、`LightTS.py`、`TiDE.py`、`SegRNN.py`。
 
@@ -21,9 +21,9 @@ Registry counts: total 28, available 5, unavailable/blocked 23, supports_train 3
 
 ## Loader
 
-`custom_models/src/benchmark_v2/upstream/tslib_loader.py` 的 allowlist 只有四项，不扫描目录，不接受任意 module string，不联网。它从自身位置解析项目根和 TSLib 根，检查精确文件，计算 SHA256，以私有 module name 加载；临时 sys.path 在 finally 中还原，并拒绝外部同名 `layers` 包。
+`custom_models/src/benchmark_v2/upstream/tslib_loader.py` 的 allowlist 只有四项，不扫描目录，不接受任意 module string，不联网。它从自身位置解析项目根和 TSLib 根，检查精确文件，计算 content record，以私有 module name 加载；临时 sys.path 在 finally 中还原，并拒绝外部同名 `layers` 包。
 
-Registry list/show 和 protocol-check 不导入 TSLib；model creation 才 lazy-load。resolved/effective/model summary 记录 source/license 绝对路径、hash、wrapper、adapter、source_modified=false。
+Registry list/show 和 protocol-check 不导入 TSLib；model creation 才 lazy-load。resolved/effective/model summary 记录 source/license 绝对路径、record、wrapper、adapter、source_modified=false。
 
 ## Input/output semantics
 
@@ -62,8 +62,8 @@ TiDE 不使用 future target、future Patv_clean、future wind、ERA5、test tar
 
 ## Protection
 
-- Protocol before/after: `0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b`。
-- Canonical before/after: `f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a`。
+- Protocol before/after: `<removed-content-record>`。
+- Canonical before/after: `<removed-content-record>`。
 - ST-MGPrompt, Canonical tree, P0-P5/A0-A8 protected result trees, graph metadata: unchanged。
 - TSLib models/layers/exp/data_provider/run.py/LICENSE: unchanged。
 - protocol/data/loss/metrics/schemas/checkpointing/artifacts: unchanged。

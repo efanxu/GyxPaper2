@@ -21,6 +21,6 @@ node-specific weight variation, both bases, both recurrent layers, the direct
 pool.
 
 Ordinary DAGG was dense row-stochastic with 17,956 entries, 134 positive
-self-loops, maximum asymmetry `0.00015133386477828026`, and hash
-`15170695c7a4096b72e26768f62bc8fefbd341397129b930f32064402c3192d3`.
-Strict reload reproduced the hash.
+self-loops, maximum asymmetry `0.00015133386477828026`, and record
+`<removed-content-record>`.
+Strict reload reproduced the record.

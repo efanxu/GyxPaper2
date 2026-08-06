@@ -20,5 +20,5 @@ PASS, 10 preflight-required, 2 non-trainable, 7 blocked/unavailable.
 
 Use `E2_D_RUNBOOK.md`. Target high-memory preflight, all three formal Full
 runs, formal evaluation, and E3 are NOT_RUN/NOT_STARTED. The next permitted
-stage is E3-A only: freeze graph protocol, resolve STCN/STGCN naming, and hash
+stage is E3-A only: freeze graph protocol, resolve STCN/STGCN naming, and record
 the 134-turbine node order and graph.

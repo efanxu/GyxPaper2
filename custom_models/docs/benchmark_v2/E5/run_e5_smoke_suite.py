@@ -20,9 +20,7 @@ E5_PROTOCOL = (
     SOURCE_ROOT
     / "benchmark_v2/experiments/e5_common_loss/e5_common_loss_protocol_v1.json"
 )
-LOSS_PROFILE_HASH = json.loads(E5_PROTOCOL.read_text(encoding="utf-8"))[
-    "loss_profile_hash"
-]
+LOSS_ID = json.loads(E5_PROTOCOL.read_text(encoding="utf-8"))["loss_id"]
 TRAINABLE = (
     "gru dlinear lightts tide segrnn transformer patchtst itransformer timexer "
     "timesnet micn wpmixer multipatchformer timemixer tsmixer frets crossformer "
@@ -82,7 +80,7 @@ def _existing(mode: str, model_id: str) -> dict | None:
             return {
                 "source": "existing_validated_artifact",
                 **payload,
-                "loss_profile_hash": LOSS_PROFILE_HASH,
+                "loss_id": LOSS_ID,
                 "accepted": accepted,
                 "e5_variant_status": (
                     "E5_AVAILABLE_TRAINABLE"
@@ -151,7 +149,7 @@ def _run(mode: str, model_id: str) -> dict:
             "exit_code": completed.returncode,
             "stderr_tail": completed.stderr.splitlines()[-50:],
             "source": "executed_independent_process",
-            "loss_profile_hash": LOSS_PROFILE_HASH,
+            "loss_id": LOSS_ID,
         }
     )
     raw_status = payload.get("status")

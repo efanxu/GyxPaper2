@@ -8,8 +8,7 @@
       "path": "custom_models/src/benchmark_v2/experiments/e5_common_loss/e5_common_loss_protocol_v1.json",
       "exists": true,
       "size": 963,
-      "mtime_ns": 1785244282676977900,
-      "sha256": "fa0c7981d13d1b418d7ccb8cac2269ff64f852c7beca9843663b20af709c2f82"
+      "mtime_ns": 1785244282676977900
     }
   ]
 }

@@ -102,17 +102,12 @@ def acquire_lock(path: Path, args: argparse.Namespace) -> int:
         print("UNKNOWN_PROCESS_START: refusing to acquire E5 lock", file=sys.stderr)
         return 74
     payload = {
-        "schema_version": LOCK_SCHEMA_VERSION,
         "scope_id": args.scope_id,
         "pid": pid,
         "hostname": args.hostname or socket.gethostname(),
         "process_start_time": process_start_time,
-        "lock_owner": f"{args.hostname or socket.gethostname()}:{pid}:{process_start_time:.6f}",
-        "started_at": args.started_at
+        "created_at": args.started_at
         or datetime.now(timezone.utc).isoformat(),
-        "git_commit": args.git_commit,
-        "python_executable": args.python_executable,
-        "manifest_sha256": args.manifest_sha256,
     }
     try:
         with path.open("x", encoding="utf-8") as handle:
@@ -189,9 +184,6 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--pid", type=int, default=os.getpid())
     parser.add_argument("--hostname")
     parser.add_argument("--started-at")
-    parser.add_argument("--git-commit")
-    parser.add_argument("--python-executable")
-    parser.add_argument("--manifest-sha256")
     return parser
 
 

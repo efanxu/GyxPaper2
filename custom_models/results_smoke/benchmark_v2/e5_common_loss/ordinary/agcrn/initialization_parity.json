@@ -1,8 +1,6 @@
 {
   "status": "PASS",
   "state_dict_keys_equal": true,
-  "base_state_dict_hash": "1e405a2012e9ce9d7082127943ae007d692292763689f8b0afb2159b210fe6a5",
-  "e5_state_dict_hash": "1e405a2012e9ce9d7082127943ae007d692292763689f8b0afb2159b210fe6a5",
   "parameter_count_equal": true,
   "trainable_parameter_count_equal": true,
   "forward_equal": true,

@@ -1,6 +1,6 @@
 # E1-A model specifications
 
-Protocol source: `custom_models/src/benchmark_v2/protocol/benchmark_protocol_v1.json`. Protocol hash: `0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b`.
+Protocol source: `custom_models/src/benchmark_v2/protocol/benchmark_protocol_v1.json`. Protocol record: `<removed-content-record>`.
 
 ## Common contract
 
@@ -8,7 +8,7 @@ All three models receive only the 144-step, 16-feature historical input. They do
 
 ## Persistence
 
-Definition: for each node, repeat the last visible historical `Patv_clean_for_input` value for all 10 horizons. The power feature index is resolved from the frozen `ordered_input_features`, with uniqueness, feature-count, and feature-order-hash checks.
+Definition: for each node, repeat the last visible historical `Patv_clean_for_input` value for all 10 horizons. The power feature index is resolved from the frozen `ordered_input_features`, with uniqueness, feature-count, and feature-order-record checks.
 
 Scaler path: normalized input power -> inverse input feature scaler -> physical kW -> select final historical value -> target scaler transform -> normalized `Patv_raw`. Input and target scaler statistics are never assumed equal. A non-finite final value raises `ContractError`; the model neither fills zero nor searches backward.
 

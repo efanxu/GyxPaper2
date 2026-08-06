@@ -1,13 +1,12 @@
 {
   "task": "E3-C",
   "snapshot": "E3-C task after",
-  "algorithm": "SHA256; directory digest is SHA256 of sorted relative_path:sha256 newline records; __pycache__ excluded",
+  "algorithm": "content record; directory summary is content record of sorted relative_path:content record newline records; __pycache__ excluded",
   "paths": [
     {
       "path": "custom_models/src/benchmark_v2/protocol/benchmark_protocol_v1.json",
       "exists": true,
       "kind": "file",
-      "sha256": "a250a476a03683c7ed62c77685d8b878b0fb5e2d371b694aba308d6df62e2492",
       "matches_before": true
     },
     {
@@ -15,7 +14,6 @@
       "exists": true,
       "kind": "directory",
       "file_count": 5,
-      "tree_sha256": "306c421f1fb99f9f55c94152114a2f1d604768d997a6648b96c33a4c894259e8",
       "matches_before": false
     },
     {
@@ -23,7 +21,6 @@
       "exists": true,
       "kind": "directory",
       "file_count": 8,
-      "tree_sha256": "d8e36f1ca35daf8db2edf6ce0eedc8028a2958f55717f33514d0c1dd8be789c5",
       "matches_before": true
     },
     {
@@ -31,84 +28,72 @@
       "exists": true,
       "kind": "directory",
       "file_count": 5,
-      "tree_sha256": "0b6c820b70b0ebc3e019172ce4c591e9d619d8ae40b9aea449bdcc2337a9ebb5",
       "matches_before": true
     },
     {
       "path": "custom_models/src/benchmark_v2/losses.py",
       "exists": true,
       "kind": "file",
-      "sha256": "89a6e5636bc3a15b0b2385837256cccb0bc8c5c3d68b6c0d63b7f559f0874dce",
       "matches_before": true
     },
     {
       "path": "custom_models/src/benchmark_v2/metrics.py",
       "exists": true,
       "kind": "file",
-      "sha256": "0afefe18e64d02f535b7e09b6f72cda3e7c7bb384de603f1831da5352af7bfcf",
       "matches_before": true
     },
     {
       "path": "custom_models/src/benchmark_v2/checkpointing.py",
       "exists": true,
       "kind": "file",
-      "sha256": "ad9ae6bd0a6b00926e2d3202cec7689996c26ac77f0cf02df19237dcb74641fe",
       "matches_before": false
     },
     {
       "path": "custom_models/src/benchmark_v2/artifacts.py",
       "exists": true,
       "kind": "file",
-      "sha256": "926352345384063f474041aba37fc7eb91224760f04d6e193a5a58d8c79a5517",
       "matches_before": false
     },
     {
       "path": "custom_models/src/benchmark_v2/engine.py",
       "exists": true,
       "kind": "file",
-      "sha256": "713e48bb1d1fb89ab8d545e420e74f87d6914d00c379c3158d9747f9ba7ca3c9",
       "matches_before": true
     },
     {
       "path": "custom_models/src/benchmark_v2/hardware_preflight.py",
       "exists": true,
       "kind": "file",
-      "sha256": "97d51b304fe8fc48a9c6ae636887da538e4a1897856da8715242c36c5966a044",
       "matches_before": false
     },
     {
       "path": "custom_models/src/benchmark_v2/model_runtime.py",
       "exists": true,
       "kind": "file",
-      "sha256": "e7ee8a03f55b192d74ea3eee99e0c342ca777d01638382aec526baedf7c3ae2f",
       "matches_before": false
     },
     {
       "path": "custom_models/src/benchmark_v2/model_cli.py",
       "exists": true,
       "kind": "file",
-      "sha256": "8e79360c3713af5a5c809682bbb50334edca54b85bf41913ec33701522d15dc1",
       "matches_before": false
     },
     {
       "path": "custom_models/src/benchmark_v2/cli.py",
       "exists": true,
       "kind": "file",
-      "sha256": "45c3eb4f1684a6e63cbd13f4eeeb1c026fe281a2cf55065f3967eac5e84009b0",
       "matches_before": true
     },
     {
       "path": "custom_models/src/benchmark_v2/runtime.py",
       "exists": true,
       "kind": "file",
-      "sha256": "f60671a619fab41b7773c2d8f1765a4631f70973292fa74023cd35717d29ec08",
       "matches_before": true
     },
     {
       "path": "custom_models/src/benchmark_v2/run_benchmark.py",
       "exists": true,
       "kind": "file",
-      "sha256": "f18a250a5426538547292ddd921bf45bfa5a2e18abb07bf619396b64e88dcce4",
       "matches_before": true
     },
     {
@@ -116,19 +101,15 @@
       "exists": true,
       "kind": "directory",
       "file_count": 4,
-      "tree_sha256": "9e3a3de75ca9c0bed49294b132c1e53d63baa2c4268369f01dac9f277812678d",
       "matches_before": false
     },
     {
       "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
       "exists": true,
       "kind": "file",
-      "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9",
       "matches_before": true
     }
   ],
-  "protocol_file_sha256": "a250a476a03683c7ed62c77685d8b878b0fb5e2d371b694aba308d6df62e2492",
-  "canonical_checkpoint_sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
   "formal_output_root_existed": false,
   "mismatches": [
     "custom_models/src/benchmark_v2/data",

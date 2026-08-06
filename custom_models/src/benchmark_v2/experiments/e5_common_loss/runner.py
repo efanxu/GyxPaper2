@@ -3,40 +3,18 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-from ...model_source_identity import canonical_model_source_identity
-from .loss_profile import (
-    CLI_PROFILE_ID,
-    DEFAULT_PROFILE_ID,
-    get_profile_metadata,
-    loss_for_profile,
-    stable_hash,
-)
-
-
-def canonical_base_model_config_hash(model_id: str) -> str:
-    from ...model_factories.registry import get_model_factory
-    from ...protocol import load_protocol
-
-    protocol = load_protocol()
-    config = get_model_factory(model_id).resolve_config(
-        protocol, run_mode="formal"
-    )
-    return stable_hash(config)
+from .loss_profile import CLI_PROFILE_ID, DEFAULT_PROFILE_ID, get_profile_metadata, loss_for_profile
 
 
 def normalize_profile(profile: str | None) -> str:
     if profile in (None, "", DEFAULT_PROFILE_ID):
         return DEFAULT_PROFILE_ID
-    if profile != CLI_PROFILE_ID:
-        get_profile_metadata(profile)
-    return profile
+    get_profile_metadata(profile)
+    return str(profile)
 
 
 def apply_experiment_profile(
-    runtime,
-    profile: str | None,
-    *,
-    run_id: str | None = None,
+    runtime, profile: str | None, *, run_id: str | None = None,
     output_root: str | Path | None = None,
     preflight_identity: dict[str, Any] | None = None,
     provenance: dict[str, Any] | None = None,
@@ -45,98 +23,27 @@ def apply_experiment_profile(
     if selected == DEFAULT_PROFILE_ID:
         return runtime
     metadata = get_profile_metadata(selected)
-    base = dict(runtime.effective_config)
-    source_identity = canonical_model_source_identity(runtime.model_id)
-    supplied_provenance = dict(provenance or {})
-    protected_identity = {
-        "base_model_source_closure_hash": source_identity[
-            "canonical_combined_hash"
-        ],
-        "base_model_source_identity_schema_version": source_identity[
-            "source_identity_schema_version"
-        ],
-        "base_model_source_closure_files": source_identity[
-            "source_closure_files"
-        ],
-    }
-    for key, expected in protected_identity.items():
-        if key in supplied_provenance and supplied_provenance[key] != expected:
-            raise ValueError(
-                f"Model source identity override is not allowed for {runtime.model_id}: {key}"
-            )
-    overlay = {
+    preflight = dict(preflight_identity or {})
+    runtime.effective_config.update({
         "experiment_profile_id": metadata["profile_id"],
-        "loss": {
-            "id": metadata["loss_id"],
-            "source_hash": metadata["loss_source_hash"],
-            "profile_hash": metadata["loss_profile_hash"],
-        },
+        "loss": {"id": metadata["loss_id"], "source_function": metadata["source_function"]},
+        "loss_id": metadata["loss_id"],
         "run_id": run_id,
         "output_root": None if output_root is None else str(Path(output_root)),
-        "preflight_identity": preflight_identity,
-        "active_scope_id": (
-            supplied_provenance.get("active_scope_id")
-            or (preflight_identity or {}).get("active_scope_id")
-            or (preflight_identity or {}).get("scope_id")
-        ),
-        "active_pointer_hash": (preflight_identity or {}).get(
-            "active_pointer_hash"
-        ),
-        "manifest_hash": (preflight_identity or {}).get("manifest_hash"),
-        "run_map_hash": (preflight_identity or {}).get("run_map_hash"),
-        "freeze_hash": (preflight_identity or {}).get("freeze_hash"),
-        "model_config_hash": (preflight_identity or {}).get(
-            "model_config_hash"
-        ),
-        "source_closure_hash": (preflight_identity or {}).get(
-            "source_closure_hash"
-        )
-        or (preflight_identity or {}).get("source_hash"),
-        "precision_identity": (preflight_identity or {}).get(
-            "precision_identity"
-        ),
-        "precision_identity_hash": (preflight_identity or {}).get(
-            "precision_identity_hash"
-        ),
-        "training_batch_profile_id": (preflight_identity or {}).get(
-            "training_profile_id"
-        ),
-        "training_batch_profile_hash": (preflight_identity or {}).get(
-            "training_profile_hash"
-        ),
-        "dataset_identity_hash": (preflight_identity or {}).get(
-            "dataset_identity_hash"
-        ),
-        "graph_identity_hash": (preflight_identity or {}).get(
-            "graph_identity_hash"
-        ),
-        "loss_identity_hash": (preflight_identity or {}).get(
-            "loss_identity_hash"
-        ),
-        "provenance": {
-            "base_model_id": runtime.model_id,
-            "base_model_config_hash": canonical_base_model_config_hash(
-                runtime.model_id
-            ),
-            **protected_identity,
-            "e5_common_loss_protocol_hash": metadata[
-                "e5_common_loss_protocol_hash"
-            ],
-            **supplied_provenance,
-        },
-    }
-    experiment_material = {**base, **overlay}
-    overlay["experiment_config_hash"] = stable_hash(experiment_material)
-    runtime.effective_config.update(overlay)
+        "preflight_metadata": {key: preflight.get(key) for key in (
+            "status", "scope_id", "model_id", "run_id", "batch_size",
+            "precision", "device", "forward_pass", "backward_pass",
+            "finite", "output_shape", "created_at",
+        ) if key in preflight},
+        "scope_id": preflight.get("scope_id") or dict(provenance or {}).get("active_scope_id"),
+        "training_batch_profile_id": preflight.get("training_profile_id"),
+        "provenance": {"base_model_id": runtime.model_id, **dict(provenance or {})},
+    })
     return runtime
 
 
 def runtime_profile(runtime) -> str:
-    return (
-        CLI_PROFILE_ID
-        if runtime.effective_config.get("experiment_profile_id")
-        else DEFAULT_PROFILE_ID
-    )
+    return CLI_PROFILE_ID if runtime.effective_config.get("experiment_profile_id") else DEFAULT_PROFILE_ID
 
 
 def runtime_loss(runtime):

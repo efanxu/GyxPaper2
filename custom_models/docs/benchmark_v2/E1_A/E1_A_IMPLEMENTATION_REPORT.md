@@ -16,7 +16,7 @@ The generic Trainer remains the only trainer. It now honors the frozen Adam weig
 
 ## NON_TRAINABLE path
 
-Persistence and MovingAverage create `NON_TRAINABLE` artifacts containing resolved/effective configuration, protocol and data signatures, environment, model summary, baseline state, scaler hashes/metadata, H3/H6/H10 metrics, prediction metadata, and status. They create no optimizer, scheduler, epoch log, or checkpoint.
+Persistence and MovingAverage create `NON_TRAINABLE` artifacts containing resolved/effective configuration, protocol and data signatures, environment, model summary, baseline state, scaler records/metadata, H3/H6/H10 metrics, prediction metadata, and status. They create no optimizer, scheduler, epoch log, or checkpoint.
 
 ## Tests and smoke
 

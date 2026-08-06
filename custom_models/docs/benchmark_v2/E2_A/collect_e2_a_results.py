@@ -49,7 +49,6 @@ def smoke_record(run_dir: Path, *, real: bool) -> dict[str, Any]:
         "strict_reload_completed": True,
         "artifact_validation": "PASS",
         "upstream_source_path": effective["upstream_source_path"],
-        "upstream_source_sha256": effective["upstream_source_sha256"],
     }
     if real:
         record.update(
@@ -113,7 +112,7 @@ def main() -> None:
         },
         "protocol_check": {
             "status": "PASS",
-            "protocol_hash": (
+            "protocol_record": (
                 "0140d8774e2cc189a8bd99f1fc9c8a120"
                 "b565265bf9a7c729ed1d47a0b1c069b"
             ),

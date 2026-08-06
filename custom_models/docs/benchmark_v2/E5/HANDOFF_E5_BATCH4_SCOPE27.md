@@ -11,7 +11,7 @@ The active A8 ID is
 `STMGPrompt_A8_loss_msa_hybrid_bs4_seed2026_reference`; the source is the
 Batch4 A8 directory under `st_mgprompt_uniform_bs4`, never Batch32. SegRNN,
 MSGNet, old scope29 entries, and Transformer retry2 are excluded from the
-current denominator and source closure.
+current denominator and source listing.
 
 Before any cloud run, validate the independent A8 contract, inspect its lock,
 freeze-plan, exact preflight, formal run, and readiness first. Only then
@@ -19,7 +19,7 @@ validate the active E5 pointer and manifest, inspect the E5 lock, compute the
 E5 freeze, review `dry-run`, and run exact GPU preflight for the 24 trainable
 entries. Formal `run` requires an exact PASS artifact and never creates one
 implicitly. Successful entries receive strict
-E5 execution receipts; readiness recomputes file hashes and validates metrics,
+E5 execution receipts; readiness recomputes file records and validates metrics,
 CSV/JSON equality, checkpoints, baseline diagnostics, source/config/precision,
 loss, graph, dataset, manifest, run-map, and freeze identities.
 

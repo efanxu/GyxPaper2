@@ -1,1 +1,7 @@
-{"type":"object","required":["protocol_hash"],"additionalProperties":true}
+{
+  "type": "object",
+  "required": [
+    "protocol_record"
+  ],
+  "additionalProperties": true
+}

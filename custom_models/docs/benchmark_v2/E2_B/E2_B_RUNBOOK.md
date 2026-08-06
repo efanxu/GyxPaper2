@@ -156,6 +156,6 @@ nvidia-smi
 
 Expected preflight artifacts:
 
-`custom_models/results_smoke/benchmark_v2/hardware_preflight/<model>/<identity-hash>/hardware_preflight.json`.
+`custom_models/results_smoke/benchmark_v2/hardware_preflight/<model>/<identity-record>/hardware_preflight.json`.
 
-A PASS must exactly match model/config/protocol/source hashes, B/T/N/C/H, AMP, completed forward, completed backward, and status.
+A PASS must exactly match model/config/protocol/source records, B/T/N/C/H, AMP, completed forward, completed backward, and status.

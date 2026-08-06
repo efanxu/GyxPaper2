@@ -11,11 +11,11 @@ in strict checkpoints. They are not frozen graph protocol artifacts.
 - STID owns a `(134,32)` node embedding but no learned adjacency.
 
 Reusable checkpoint or hardware-preflight identity includes model ID, resolved
-and effective config hashes, source-closure hash, benchmark protocol, exact
+and effective config records, source listing record, benchmark protocol, exact
 `B/T/N/C/H`, AMP, graph protocol, bundle, node order, location source, support
-names/hashes, physical-support policy, adaptive-graph policy, node-identity
+names/records, physical-support policy, adaptive-graph policy, node-identity
 policy, temporal-identity policy, and adaptive initialization policy. Any
 mismatch is rejected before state reuse.
 
-Canonical learned-matrix hashes are diagnostic checkpoint-state identities, not
+Canonical learned-matrix records are diagnostic checkpoint-state identities, not
 frozen protocol identities and not performance evidence.

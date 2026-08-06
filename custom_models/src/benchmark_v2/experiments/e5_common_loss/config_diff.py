@@ -1,18 +1,15 @@
 from __future__ import annotations
 
-import hashlib
 from typing import Any, Mapping
 
 
 ALLOWED_DIFF_PATHS = {
     "experiment_profile_id",
     "loss.id",
-    "loss.source_hash",
-    "loss.profile_hash",
+    "loss.source_function",
     "run_id",
     "output_root",
-    "experiment_config_hash",
-    "preflight_identity",
+    "preflight_metadata",
     "provenance",
 }
 
@@ -35,11 +32,7 @@ def compare_configs(base: Mapping[str, Any], variant: Mapping[str, Any]) -> dict
     def normalize(config: Mapping[str, Any]) -> dict[str, Any]:
         result = dict(config)
         if "loss" in result and not isinstance(result["loss"], Mapping):
-            result["loss"] = {
-                "id": result["loss"],
-                "source_hash": None,
-                "profile_hash": None,
-            }
+            result["loss"] = {"id": result["loss"]}
         return result
 
     left, right = _flatten(normalize(base)), _flatten(normalize(variant))
@@ -57,14 +50,14 @@ def compare_configs(base: Mapping[str, Any], variant: Mapping[str, Any]) -> dict
     }
 
 
-def state_dict_hash(model) -> str:
-    digest = hashlib.sha256()
-    for key, tensor in model.state_dict().items():
-        digest.update(key.encode("utf-8"))
-        digest.update(str(tensor.dtype).encode("ascii"))
-        digest.update(str(tuple(tensor.shape)).encode("ascii"))
-        digest.update(tensor.detach().cpu().contiguous().numpy().tobytes())
-    return digest.hexdigest()
+def state_dict_equal(left, right) -> bool:
+    import torch
+    left_state = left.state_dict()
+    right_state = right.state_dict()
+    return left_state.keys() == right_state.keys() and all(
+        torch.equal(left_state[key].detach().cpu(), right_state[key].detach().cpu())
+        for key in left_state
+    )
 
 
 def optimizer_group_signature(optimizer) -> list[dict[str, Any]]:

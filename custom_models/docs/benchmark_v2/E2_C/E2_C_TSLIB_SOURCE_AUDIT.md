@@ -7,21 +7,21 @@ The explicit allowlist is exactly:
 
 There is no directory scan, arbitrary-path import, network download, dummy fallback,
 TSLib Trainer, or TSLib dataset use. TSLib source files were not modified.
-License: `Time-Series-Library/LICENSE`, MIT, SHA256
-`8a6caa178ea3f33ebff5d7bb5558628cf5b423305dc30d3630f86564c7db94a2`.
+License: `Time-Series-Library/LICENSE`, MIT, content record
+`<removed-content-record>`.
 
 ## TimeMixer
 
 - Absolute source: `D:\PaperProject\GyxPaper2\Time-Series-Library\models\TimeMixer.py`
-- SHA256: `bbf378cab03d16d3e7ae907f7b3cefbac89ae1504e036270578d5d496ffbd133`
+- content record: `<removed-content-record>`
 - Constructor: `Model(configs)`.
 - Forward: `forward(x_enc, x_mark_enc, x_dec, x_mark_dec, mask=None)`.
 - Direct local imports: `layers.Autoformer_EncDec.series_decomp`
-  (`48745b4bb647355e9845792a855df9c59fd7df7fcc664c765351fec390c4073e`),
+  (`<removed-content-record>`),
   `layers.Embed.DataEmbedding_wo_pos`
-  (`17e7c3577324c41a0da427a199c955b782fde905aabb1f7cbc3c4e15ebd4ae35`),
+  (`<removed-content-record>`),
   and `layers.StandardNorm.Normalize`
-  (`3f690dc5fc0e395d4f1ffe6396717548d18bd04f4518258308bbe5f392703f5f`).
+  (`<removed-content-record>`).
 - Required forecast fields: `task_name,seq_len,label_len,pred_len,enc_in,c_out,
   d_model,d_ff,e_layers,dropout,down_sampling_layers,down_sampling_window,
   down_sampling_method,decomp_method,moving_avg,channel_independence,use_norm,
@@ -44,7 +44,7 @@ License: `Time-Series-Library/LICENSE`, MIT, SHA256
 ## TSMixer
 
 - Absolute source: `D:\PaperProject\GyxPaper2\Time-Series-Library\models\TSMixer.py`
-- SHA256: `a82942ddc22cba59f4161f3ea480eb0e474eba6f0ab2d13f2bd949f100b2ce87`
+- content record: `<removed-content-record>`
 - Constructor: `Model(configs)`.
 - Forward: `forward(x_enc, x_mark_enc, x_dec, x_mark_dec, mask=None)`.
 - Local dependencies: none beyond PyTorch.
@@ -62,7 +62,7 @@ License: `Time-Series-Library/LICENSE`, MIT, SHA256
 ## FreTS
 
 - Absolute source: `D:\PaperProject\GyxPaper2\Time-Series-Library\models\FreTS.py`
-- SHA256: `2b6c9e0cd3d4f42bc74736343147812db94f029f1a8b13b098b9841705de5c18`
+- content record: `<removed-content-record>`
 - Constructor: `Model(configs)`.
 - Forward: `forward(x_enc, x_mark_enc, x_dec, x_mark_dec)`.
 - Local dependencies: none; imports PyTorch and NumPy (NumPy is unused).
@@ -84,12 +84,12 @@ License: `Time-Series-Library/LICENSE`, MIT, SHA256
 
 ## Script and repository identity
 
-- `run.py`: `db6dfa215520ba193fe7095380f9005949a958efa9526975410cb5d97afe3fc4`
-- `README.md`: `2d03e4917e41917105ed647c5ea7537e1394f88b0af190e05715457b55dc5be6`
+- `run.py`: `<removed-content-record>`
+- `README.md`: `<removed-content-record>`
 - Weather TimeMixer script:
-  `24638b0358519d62024bc7d4e42ad76e0cb71f4b85b74482d32bd15d3816f8d2`
+  `<removed-content-record>`
 - Weather TSMixer script:
-  `0dfcc7956d0c2ef32590623b7e4f3aa0f7b120e34be74ccb1a44f15a626baa55`
+  `<removed-content-record>`
 
 None of the three imports VADSP, an ST-MGPrompt graph, Macro Prompt, Reverse
 Cross, Cross Fusion, ST Prompt, or MS-MG-DWU.

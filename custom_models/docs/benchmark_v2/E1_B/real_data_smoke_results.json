@@ -24,7 +24,6 @@
       "strict_reload_completed": true,
       "artifact_validation": "PASS",
       "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\DLinear.py",
-      "upstream_source_sha256": "e03acaf97e70c85ea6bda6776b3a62550f84470afa7bc53dffccb6121626e7eb",
       "train_batch_limit": 2,
       "validation_batch_limit": 1,
       "evaluation_batch_limit": 1
@@ -48,7 +47,6 @@
       "strict_reload_completed": true,
       "artifact_validation": "PASS",
       "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\LightTS.py",
-      "upstream_source_sha256": "1de1583c4ee0bbfa0764fa9b158f09ac8bcd7ddf7f2d9f1b58ab1a03a7d13989",
       "train_batch_limit": 2,
       "validation_batch_limit": 1,
       "evaluation_batch_limit": 1
@@ -72,7 +70,6 @@
       "strict_reload_completed": true,
       "artifact_validation": "PASS",
       "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\TiDE.py",
-      "upstream_source_sha256": "4ab07dec4ae85f8b7c3062ff7d2fec00be342968d41cf09e48d599d8e40f6143",
       "train_batch_limit": 2,
       "validation_batch_limit": 1,
       "evaluation_batch_limit": 1
@@ -96,7 +93,6 @@
       "strict_reload_completed": true,
       "artifact_validation": "PASS",
       "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\SegRNN.py",
-      "upstream_source_sha256": "764d4ad950ee65162c70746248754942cfb4ba661162d515caab0a4eedd12252",
       "train_batch_limit": 2,
       "validation_batch_limit": 1,
       "evaluation_batch_limit": 1

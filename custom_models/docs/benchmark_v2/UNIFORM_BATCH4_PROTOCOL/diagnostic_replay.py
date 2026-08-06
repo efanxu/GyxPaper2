@@ -235,7 +235,7 @@ def run_transformer_nonfinite_diagnostic(
     )
     manager = CheckpointManager(
         run_dir,
-        protocol_hash=protocol.protocol_hash,
+        protocol_id=protocol.protocol_id,
         model_id=model_id,
         resolved_config=resolved,
         effective_config=effective,
@@ -341,8 +341,8 @@ def run_transformer_nonfinite_diagnostic(
                 "epoch": failure["epoch"],
                 "batch_index": failure["batch_index"],
                 "global_step": failure["global_step"],
-                "resolved_config_hash": manager.resolved_hash,
-                "effective_config_hash": manager.effective_hash,
+                "resolved_config": resolved,
+                "effective_config": effective,
                 "checkpoint": {"path": str(Path(checkpoint).resolve())},
             }
         )

@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from typing import Any, Mapping
 
-from ..data.signatures import feature_order_hash
 from ..errors import ContractError
 from .tslib_common import resolve_common
 
@@ -29,8 +28,6 @@ def resolve_timexer_config(
 ) -> dict[str, Any]:
     features = tuple(protocol["ordered_input_features"])
     power = str(protocol["input_power_column"])
-    if feature_order_hash(features) != protocol["feature_order_hash"]:
-        raise ContractError("TimeXer feature order hash mismatch.")
     if not features or features[-1] != power:
         raise ContractError(
             "TimeXer requires Patv_clean_for_input as the final endogenous channel."

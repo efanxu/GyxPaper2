@@ -26,7 +26,6 @@
       "strict_reload_completed": true,
       "artifact_validation": "PASS",
       "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\TimesNet.py",
-      "upstream_source_sha256": "f64c4bed1fd7347090044a0163bd4209c9f9ec1c1b19ceff47842df36b64bba7",
       "effective_config": {
         "label_len": 48,
         "c_out": 16,
@@ -67,7 +66,6 @@
       "strict_reload_completed": true,
       "artifact_validation": "PASS",
       "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\MICN.py",
-      "upstream_source_sha256": "a0cb59254e850bfd1d94114a73126c290e6baf2ea700132ede8aade680bbedbf",
       "effective_config": {
         "label_len": 144,
         "c_out": 16,
@@ -118,7 +116,6 @@
       "strict_reload_completed": true,
       "artifact_validation": "PASS",
       "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\WPMixer.py",
-      "upstream_source_sha256": "5b549f5454864d19a230747f0060dc00732fb0de6b50a359173e0d7a6b04ce8f",
       "effective_config": {
         "label_len": 0,
         "c_out": 16,
@@ -162,7 +159,6 @@
       "strict_reload_completed": true,
       "artifact_validation": "PASS",
       "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\MultiPatchFormer.py",
-      "upstream_source_sha256": "e8603a9d8b1e796a822171399a057bd3945cf51b38fb1661d91fe60ad79313b3",
       "effective_config": {
         "label_len": 48,
         "c_out": 16,

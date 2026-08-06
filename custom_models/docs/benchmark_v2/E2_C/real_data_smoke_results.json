@@ -26,7 +26,6 @@
       "strict_reload_completed": true,
       "artifact_validation": "PASS",
       "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\TimeMixer.py",
-      "upstream_source_sha256": "bbf378cab03d16d3e7ae907f7b3cefbac89ae1504e036270578d5d496ffbd133",
       "effective_config": {
         "label_len": 0,
         "enc_in": 16,
@@ -75,7 +74,6 @@
       "strict_reload_completed": true,
       "artifact_validation": "PASS",
       "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\TSMixer.py",
-      "upstream_source_sha256": "a82942ddc22cba59f4161f3ea480eb0e474eba6f0ab2d13f2bd949f100b2ce87",
       "effective_config": {
         "e_layers": 2,
         "d_model": 32,
@@ -110,7 +108,6 @@
       "strict_reload_completed": true,
       "artifact_validation": "PASS",
       "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\FreTS.py",
-      "upstream_source_sha256": "2b6c9e0cd3d4f42bc74736343147812db94f029f1a8b13b098b9841705de5c18",
       "effective_config": {
         "channel_independence": "0",
         "embed_size": 128,

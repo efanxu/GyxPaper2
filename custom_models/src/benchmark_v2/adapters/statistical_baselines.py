@@ -5,9 +5,7 @@ from typing import Any, Mapping
 
 import numpy as np
 
-from ..data.signatures import feature_order_hash
 from ..errors import ContractError
-from ..protocol.hashing import stable_hash
 from .node_shared import NodeSharedAdapter
 
 
@@ -18,9 +16,6 @@ class BaselineScalerContext:
     input_power_std: float
     target_mean: float
     target_std: float
-    input_scaler_hash: str
-    target_scaler_hash: str
-    feature_order_hash: str
 
     @classmethod
     def from_scalers(
@@ -34,11 +29,6 @@ class BaselineScalerContext:
             raise ContractError(
                 f"{power_name} must occur exactly once in ordered_input_features."
             )
-        calculated_hash = feature_order_hash(features)
-        if calculated_hash != protocol["feature_order_hash"]:
-            raise ContractError(
-                "ordered_input_features does not match the frozen feature_order_hash."
-            )
         input_mean = np.asarray(input_scaler.mean, dtype=np.float64).reshape(-1)
         input_std = np.asarray(input_scaler.std, dtype=np.float64).reshape(-1)
         if input_mean.size != 16 or input_std.size != 16:
@@ -49,17 +39,12 @@ class BaselineScalerContext:
         values = [input_mean[index], input_std[index], target_mean, target_std]
         if not np.isfinite(values).all() or input_std[index] <= 0 or target_std <= 0:
             raise ContractError("Baseline scaler means/stds must be finite with positive std.")
-        input_meta = input_scaler.to_dict()
-        target_meta = target_scaler.to_dict()
         return cls(
             power_feature_index=index,
             input_power_mean=float(input_mean[index]),
             input_power_std=float(input_std[index]),
             target_mean=target_mean,
             target_std=target_std,
-            input_scaler_hash=stable_hash(input_meta),
-            target_scaler_hash=stable_hash(target_meta),
-            feature_order_hash=calculated_hash,
         )
 
     def input_to_physical(self, values: Any) -> Any:
@@ -78,9 +63,6 @@ class BaselineScalerContext:
             "input_power_std": self.input_power_std,
             "target_mean": self.target_mean,
             "target_std": self.target_std,
-            "input_scaler_hash": self.input_scaler_hash,
-            "target_scaler_hash": self.target_scaler_hash,
-            "feature_order_hash": self.feature_order_hash,
             "conversion": "input normalized -> physical kW -> target normalized",
         }
 

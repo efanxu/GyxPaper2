@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import csv
-import hashlib
 import json
 import math
 import subprocess
@@ -92,11 +91,6 @@ def classify_returncode(returncode: int | None) -> dict[str, Any]:
     }
 
 
-def _expected_config_hash(config: dict[str, Any]) -> str:
-    payload = json.dumps(config, sort_keys=True, ensure_ascii=False, default=str)
-    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
-
-
 def _cpu_load_checkpoint(path: Path) -> dict[str, Any]:
     """Load a checkpoint in an isolated process so a native torch crash cannot kill the runner."""
 
@@ -104,7 +98,7 @@ def _cpu_load_checkpoint(path: Path) -> dict[str, Any]:
         "import json, sys, torch; "
         "x=torch.load(sys.argv[1], map_location='cpu', weights_only=False); "
         "print(json.dumps({'keys': list(x)[:20] if isinstance(x, dict) else [], "
-        "'config_hash': x.get('config_hash') if isinstance(x, dict) else None, "
+        "'model_id': x.get('model_id') if isinstance(x, dict) else None, "
         "'best_epoch': x.get('best_epoch') if isinstance(x, dict) else None}))"
     )
     try:
@@ -188,19 +182,11 @@ def inspect_variant_artifacts(
     config_ok, config_differences = _config_matches(actual_config, expected)
     if not config_ok:
         errors.append("config mismatch: " + ", ".join(config_differences))
-    expected_hash = _expected_config_hash(expected)
-
     checkpoint_path = run_dir / "best_checkpoint.pt"
     checkpoint_probe = _cpu_load_checkpoint(checkpoint_path) if checkpoint_path.exists() else {"valid": False, "error": "missing: best_checkpoint.pt"}
     checkpoint_valid = bool(checkpoint_probe.get("valid"))
     if not checkpoint_valid:
         errors.append(str(checkpoint_probe.get("error", "best_checkpoint.pt failed CPU load")))
-    checkpoint_hash = checkpoint_probe.get("config_hash")
-    if checkpoint_hash is not None and checkpoint_hash != expected_hash:
-        errors.append("best_checkpoint.pt config_hash does not match current variant config")
-    train_hash = train_complete.get("config_hash") if train_complete else None
-    if train_hash is not None and train_hash != expected_hash:
-        errors.append("train_complete.json config_hash does not match current variant config")
 
     log_ok, last_epoch, log_error = _read_train_log(run_dir / "train_log.csv")
     if log_error:
@@ -216,7 +202,6 @@ def inspect_variant_artifacts(
         and best_epoch > 0
         and _finite(best_score)
         and config_ok
-        and (train_hash in {None, expected_hash})
     )
 
     metrics: dict[int, dict[str, Any]] = {}

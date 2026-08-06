@@ -1,63 +1,53 @@
 {
   "task": "E3-C",
   "snapshot": "E3-C task before",
-  "algorithm": "SHA256; directory digest is SHA256 of sorted relative_path:sha256 newline records; __pycache__ excluded",
+  "algorithm": "content record; directory summary is content record of sorted relative_path:content record newline records; __pycache__ excluded",
   "paths": [
     {
       "path": "Time-Series-Library/models",
       "exists": true,
       "kind": "directory",
-      "file_count": 42,
-      "tree_sha256": "bbdf54c9f07903bd1db131c3be0b5dc7dbee3f97b8cf1f091bffe84c3ce7f33b"
+      "file_count": 42
     },
     {
       "path": "Time-Series-Library/layers",
       "exists": true,
       "kind": "directory",
-      "file_count": 17,
-      "tree_sha256": "4178a32a3f24757baf0a1d24923b1524971ba09d896b18ebd6066d7e848f6bdd"
+      "file_count": 17
     },
     {
       "path": "Time-Series-Library/exp",
       "exists": true,
       "kind": "directory",
-      "file_count": 8,
-      "tree_sha256": "cdfb17fcd9530e136268a432372b030ff6f40efe12b082c918be2ef76386c019"
+      "file_count": 8
     },
     {
       "path": "Time-Series-Library/data_provider",
       "exists": true,
       "kind": "directory",
-      "file_count": 5,
-      "tree_sha256": "39793dceb52393160a8427491ecbdde5f986a6e185f9484504b86b5df35db4c5"
+      "file_count": 5
     },
     {
       "path": "Time-Series-Library/run.py",
       "exists": true,
-      "kind": "file",
-      "sha256": "db6dfa215520ba193fe7095380f9005949a958efa9526975410cb5d97afe3fc4"
+      "kind": "file"
     },
     {
       "path": "Time-Series-Library/README.md",
       "exists": true,
-      "kind": "file",
-      "sha256": "2d03e4917e41917105ed647c5ea7537e1394f88b0af190e05715457b55dc5be6"
+      "kind": "file"
     },
     {
       "path": "Time-Series-Library/LICENSE",
       "exists": true,
-      "kind": "file",
-      "sha256": "8a6caa178ea3f33ebff5d7bb5558628cf5b423305dc30d3630f86564c7db94a2"
+      "kind": "file"
     },
     {
       "path": "Time-Series-Library/scripts",
       "exists": true,
       "kind": "directory",
-      "file_count": 269,
-      "tree_sha256": "9db6638fc503fad8b61672cecfa302459aeffe266ebaaac34fffd9be623136f4"
+      "file_count": 269
     }
   ],
-  "protocol_file_sha256": "a250a476a03683c7ed62c77685d8b878b0fb5e2d371b694aba308d6df62e2492",
-  "canonical_checkpoint_sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
   "formal_output_root_existed": false
 }

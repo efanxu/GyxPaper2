@@ -150,4 +150,21 @@ class SDWPFDataProvider:
         return batches
 
     def signature(self) -> dict[str, Any]:
-        return data_signature(dataset_id=str(self._p("dataset_id", "SDWPF")), feature_names=self.feature_names, node_ids=self.node_ids, timestamps=self.timestamps, shape=self.x_raw.shape, scalers_fit_split="train_only")
+        return data_signature(
+            dataset_id=str(self._p("dataset_id", "SDWPF")),
+            feature_names=self.feature_names,
+            node_ids=self.node_ids,
+            timestamps=self.timestamps,
+            shape=self.x_raw.shape,
+            scalers_fit_split="train_only",
+            input_path=self._p("input_path", None),
+            target_path=self._p("target_path", None),
+            split=self._p("split_ratio", [0.8, 0.1, 0.1]),
+            lookback=int(self._p("lookback", 144)),
+            horizon=int(self._p("max_pred_len", 10)),
+            stride={
+                name: int(self._p(f"{name}_sample_stride", value))
+                for name, value in {"train": 6, "val": 3, "test": 1}.items()
+            },
+            seed=int(self._p("default_seed", 2026)),
+        )

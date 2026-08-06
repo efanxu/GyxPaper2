@@ -11,8 +11,8 @@ Verification outcome:
 - hardware-preflight dummy/process-runner regression: 9/9 PASS;
 - full benchmark_v2 unittest discovery: 84/84 PASS;
 - compileall: PASS;
-- protocol-check: PASS, hash
-  `0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b`;
+- protocol-check: PASS, record
+  `<removed-content-record>`;
 - ordinary smoke: 3/3 PASS;
 - limited real SDWPF smoke: 3/3 PASS;
 - exact local full-shape: TSMixer PASS; TimeMixer/FreTS `FAIL_OOM`;

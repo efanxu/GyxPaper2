@@ -19,11 +19,11 @@ ORDINARY_RUNS = {
 REAL_RUNS = {
     model: SMOKE_ROOT / "real_data" / model for model in MODELS
 }
-PROTOCOL_HASH = (
+PROTOCOL_record = (
     "0140d8774e2cc189a8bd99f1fc9c8a120"
     "b565265bf9a7c729ed1d47a0b1c069b"
 )
-CANONICAL_HASH = (
+CANONICAL_record = (
     "f08c822f512384aaf7700b9f5e6049a940"
     "d63f385829a43f4223920b583bba7a"
 )
@@ -65,7 +65,6 @@ def smoke_record(run_dir: Path, *, real: bool) -> dict[str, Any]:
         "strict_reload_completed": True,
         "artifact_validation": "PASS",
         "upstream_source_path": effective["upstream_source_path"],
-        "upstream_source_sha256": effective["upstream_source_sha256"],
         "effective_config": effective["model_specific_parameters"],
         "config_resolution_reason": effective["config_resolution_reason"],
         "validation_search_performed": effective[
@@ -189,7 +188,7 @@ def main() -> None:
         "e2_b_tests_added": 11,
         "protocol_check": {
             "status": "PASS",
-            "protocol_hash": PROTOCOL_HASH,
+            "protocol_record": PROTOCOL_record,
         },
         "focused_checks": [
             "12-entry explicit TSLib allowlist and lazy local source loading",

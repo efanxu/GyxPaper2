@@ -29,9 +29,6 @@
       "artifact_validation": "PASS",
       "selection_use": false,
       "graph_id": "sdwpf_physical_knn_v1",
-      "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
-      "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
-      "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
       "uses_physical_support": true,
       "graph_support_names": [
         "P_forward",
@@ -39,8 +36,7 @@
       ],
       "adaptive_graph_policy": "learned_softmax_relu_low_rank",
       "node_identity_policy": "adaptive_low_rank_node_parameters",
-      "temporal_identity_policy": "none",
-      "learned_identity_hash": "c8d93604258c493b6c538e47ce2f3b3da6c89b9eb6589ee1cd814a1a83ec3bc7"
+      "temporal_identity_policy": "none"
     },
     {
       "model_id": "mtgnn",
@@ -63,15 +59,11 @@
       "artifact_validation": "PASS",
       "selection_use": false,
       "graph_id": "sdwpf_physical_knn_v1",
-      "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
-      "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
-      "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
       "uses_physical_support": false,
       "graph_support_names": [],
       "adaptive_graph_policy": "directed_topk_graph_constructor",
       "node_identity_policy": "learned_directed_graph_node_embeddings",
-      "temporal_identity_policy": "none",
-      "learned_identity_hash": "7a07d0e5a7e156dcffbcabeff7bf47a18716bc43bc2783e4dfa34f774a37d1b1"
+      "temporal_identity_policy": "none"
     },
     {
       "model_id": "agcrn",
@@ -94,15 +86,11 @@
       "artifact_validation": "PASS",
       "selection_use": false,
       "graph_id": "sdwpf_physical_knn_v1",
-      "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
-      "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
-      "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
       "uses_physical_support": false,
       "graph_support_names": [],
       "adaptive_graph_policy": "DAGG_from_node_embeddings",
       "node_identity_policy": "NAPL_shared_learned_node_embeddings",
-      "temporal_identity_policy": "none",
-      "learned_identity_hash": "e501df0f912831068de1eefa8a5a1f8181e9af99802d778fd70ad3803f4540b7"
+      "temporal_identity_policy": "none"
     },
     {
       "model_id": "stid",
@@ -125,15 +113,11 @@
       "artifact_validation": "PASS",
       "selection_use": false,
       "graph_id": "sdwpf_physical_knn_v1",
-      "graph_protocol_hash": "f8224287f2a41be0e67e808445ce9a43b9973e7b075d1e1b4768396d6f98e1ef",
-      "node_order_hash": "1bcfaa0afafb0a6535b9d24129bb2ba260cfd1782b9b485d960e6cfe4af90c35",
-      "graph_bundle_hash": "388a87dcba4fa0b897ab9b40b546d844433a26c799d50f4a009d832c6e335f0e",
       "uses_physical_support": false,
       "graph_support_names": [],
       "adaptive_graph_policy": "none",
       "node_identity_policy": "learned_node_embedding",
-      "temporal_identity_policy": "historical_anchor_time_only",
-      "learned_identity_hash": "900c637ab337e79a0f9be11ceb3a34832075243ad1808d57acfabb06e9611b5a"
+      "temporal_identity_policy": "historical_anchor_time_only"
     }
   ]
 }

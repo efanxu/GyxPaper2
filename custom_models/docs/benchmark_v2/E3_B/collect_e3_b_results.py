@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import csv
-import hashlib
+import json
 import json
 from pathlib import Path
 from typing import Any
@@ -62,44 +62,17 @@ def write_json(path: Path, value: Any) -> None:
     )
 
 
-def file_sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
-
-
-def source_closure() -> dict[str, Any]:
+def source_listing() -> dict[str, Any]:
     models: dict[str, Any] = {}
     for model_id in MODELS:
         files = []
         for relative, role in [*COMMON_CLOSURE, *MODEL_CLOSURE[model_id]]:
             path = PROJECT_ROOT / relative
-            files.append(
-                {
-                    "path": relative,
-                    "sha256": file_sha256(path),
-                    "role": role,
-                    "model_identity_part": True,
-                }
-            )
-        material = json.dumps(
-            files,
-            ensure_ascii=False,
-            sort_keys=True,
-            separators=(",", ":"),
-        ).encode("utf-8")
-        models[model_id] = {
-            "source_closure_sha256": hashlib.sha256(material).hexdigest(),
-            "files": files,
-        }
+            files.append({"path": relative, "role": role, "exists": path.is_file()})
+        models[model_id] = {"files": files}
     return {
         "task": "E3-B",
-        "algorithm": (
-            "SHA256 of canonical JSON for ordered closure records; every "
-            "record contains relative path, file SHA256, role, and identity flag"
-        ),
+        "validation": "explicit ordered source paths, roles, and existence",
         "models": models,
         "graph_protocol_identity_is_separate": True,
     }
@@ -129,17 +102,17 @@ def smoke_result(model_id: str, kind: str) -> dict[str, Any]:
         "strict_reload_completed": True,
         "artifact_validation": "PASS",
         "graph_id": effective["graph_id"],
-        "graph_protocol_hash": effective["graph_protocol_hash"],
-        "node_order_hash": effective["node_order_hash"],
-        "graph_bundle_hash": effective["graph_bundle_hash"],
+        "graph_protocol_record": effective["graph_protocol_record"],
+        "node_order_record": effective["node_order_record"],
+        "graph_bundle_record": effective["graph_bundle_record"],
         "graph_support_names": effective["graph_support_names"],
-        "graph_support_hashes": effective["graph_support_hashes"],
+        "graph_support_records": effective["graph_support_records"],
     }
 
 
 def main() -> None:
-    closure = source_closure()
-    write_json(OUTPUT_DIR / "E3_B_SOURCE_CLOSURE_MANIFEST.json", closure)
+    closure = source_listing()
+    write_json(OUTPUT_DIR / "E3_B_source listing_MANIFEST.json", closure)
     ordinary = {
         "task": "E3-B ordinary smoke",
         "selection_use": False,
@@ -168,12 +141,7 @@ def main() -> None:
     print(
         json.dumps(
             {
-                "source_closure_hashes": {
-                    model_id: closure["models"][model_id][
-                        "source_closure_sha256"
-                    ]
-                    for model_id in MODELS
-                },
+                "source_listing": closure,
                 "ordinary": "PASS",
                 "full_shape": "PASS",
                 "real_data": "PASS",

@@ -25,7 +25,6 @@
       "strict_reload_completed": true,
       "artifact_validation": "PASS",
       "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\Transformer.py",
-      "upstream_source_sha256": "46ded6c516fd03951bce0a82c3f4245f0247efd01fb5bde775145cfbb6d8435d",
       "train_batch_limit": 2,
       "validation_batch_limit": 1,
       "evaluation_batch_limit": 1
@@ -49,7 +48,6 @@
       "strict_reload_completed": true,
       "artifact_validation": "PASS",
       "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\PatchTST.py",
-      "upstream_source_sha256": "29835d4fedddd3cbee26cc60d6a54c04513f5a9ca32e4a0d08de2c9e059084e5",
       "train_batch_limit": 2,
       "validation_batch_limit": 1,
       "evaluation_batch_limit": 1
@@ -73,7 +71,6 @@
       "strict_reload_completed": true,
       "artifact_validation": "PASS",
       "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\iTransformer.py",
-      "upstream_source_sha256": "7fdc721d041b0f8f63be8fa794ecd68422fd958c7c8d449026320fd9f368788e",
       "train_batch_limit": 2,
       "validation_batch_limit": 1,
       "evaluation_batch_limit": 1
@@ -97,7 +94,6 @@
       "strict_reload_completed": true,
       "artifact_validation": "PASS",
       "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\TimeXer.py",
-      "upstream_source_sha256": "b334d7869544d0a5de7a35501d0342d7bd0be4ebda06ccc045855a42819728c0",
       "train_batch_limit": 2,
       "validation_batch_limit": 1,
       "evaluation_batch_limit": 1

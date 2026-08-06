@@ -3,7 +3,13 @@
   "status": "PASS",
   "formal_target_machine_preflight": "NOT_RUN",
   "local_exact_full_shape_engineering_smoke": {
-    "shape": {"B": 32, "T": 144, "N": 134, "C": 16, "H": 10},
+    "shape": {
+      "B": 32,
+      "T": 144,
+      "N": 134,
+      "C": 16,
+      "H": 10
+    },
     "amp": true,
     "models": {
       "graph_wavenet": "PASS",
@@ -24,12 +30,12 @@
     "fields": [
       "uses_physical_support",
       "physical_support_names",
-      "physical_support_hashes",
+      "physical_support_records",
       "adaptive_graph_policy",
       "node_identity_policy",
       "temporal_identity_policy",
       "adaptive_initialization_policy",
-      "source_closure_hash"
+      "source listing_record"
     ]
   },
   "final_routing": {

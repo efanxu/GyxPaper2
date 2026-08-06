@@ -5,7 +5,6 @@ from .builder import (
     GraphBuild,
     build_physical_graph,
     make_protocol_payload,
-    node_schema_source_hash,
 )
 from .contracts import (
     MATRIX_NAMES,
@@ -36,7 +35,6 @@ __all__ = [
     "identity_from_bundle",
     "load_graph_bundle",
     "make_protocol_payload",
-    "node_schema_source_hash",
     "validate_graph_identity",
     "validate_native_graph_input",
     "validate_node_order",

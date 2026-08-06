@@ -8,7 +8,7 @@ aggregate status and exit code, final exit code, and completion time.
 The live evidence manifest is
 `logs/benchmark_v2/e5_batch4_scope27/e5_scope27_evidence_manifest.json`.
 It contains exactly 27 entries and records checkpoint, metrics, effective
-config, run status, artifact manifest, and A8 protocol-evidence hashes where
+config, run status, artifact manifest, and A8 protocol-evidence records where
 applicable.
 
 Neither file can report complete unless the scope27 gate independently resolves

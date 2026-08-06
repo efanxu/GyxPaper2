@@ -1,1 +1,8 @@
-{"type":"object","required":["model_id","run_mode"],"additionalProperties":true}
+{
+  "type": "object",
+  "required": [
+    "model_id",
+    "run_mode"
+  ],
+  "additionalProperties": true
+}

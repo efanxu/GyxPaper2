@@ -37,10 +37,6 @@
     "non_trainable_available": 2,
     "true_blocked_or_unavailable": 13
   },
-  "protocol_hash_before": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
-  "protocol_hash_after": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
-  "canonical_sha256_before": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
-  "canonical_sha256_after": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
   "tslib_modified": false,
   "st_mgprompt_modified": false,
   "prior_models_modified": false,
@@ -72,18 +68,18 @@
     "custom_models/docs/benchmark_v2/E2_B/full_shape_model_smoke_results.json",
     "custom_models/docs/benchmark_v2/E2_B/real_data_smoke_results.json",
     "custom_models/docs/benchmark_v2/E2_B/hardware_preflight_test_results.json",
-    "custom_models/docs/benchmark_v2/E2_B/protected_core_hashes_before.json",
-    "custom_models/docs/benchmark_v2/E2_B/protected_core_hashes_after.json",
-    "custom_models/docs/benchmark_v2/E2_B/protected_tslib_hashes_before.json",
-    "custom_models/docs/benchmark_v2/E2_B/protected_tslib_hashes_after.json",
-    "custom_models/docs/benchmark_v2/E2_B/protected_benchmark_frozen_hashes_before.json",
-    "custom_models/docs/benchmark_v2/E2_B/protected_benchmark_frozen_hashes_after.json",
-    "custom_models/docs/benchmark_v2/E2_B/protected_e1_a_hashes_before.json",
-    "custom_models/docs/benchmark_v2/E2_B/protected_e1_a_hashes_after.json",
-    "custom_models/docs/benchmark_v2/E2_B/protected_e1_b_hashes_before.json",
-    "custom_models/docs/benchmark_v2/E2_B/protected_e1_b_hashes_after.json",
-    "custom_models/docs/benchmark_v2/E2_B/protected_e2_a_hashes_before.json",
-    "custom_models/docs/benchmark_v2/E2_B/protected_e2_a_hashes_after.json",
+    "custom_models/docs/benchmark_v2/E2_B/protected_core_records_before.json",
+    "custom_models/docs/benchmark_v2/E2_B/protected_core_records_after.json",
+    "custom_models/docs/benchmark_v2/E2_B/protected_tslib_records_before.json",
+    "custom_models/docs/benchmark_v2/E2_B/protected_tslib_records_after.json",
+    "custom_models/docs/benchmark_v2/E2_B/protected_benchmark_frozen_records_before.json",
+    "custom_models/docs/benchmark_v2/E2_B/protected_benchmark_frozen_records_after.json",
+    "custom_models/docs/benchmark_v2/E2_B/protected_e1_a_records_before.json",
+    "custom_models/docs/benchmark_v2/E2_B/protected_e1_a_records_after.json",
+    "custom_models/docs/benchmark_v2/E2_B/protected_e1_b_records_before.json",
+    "custom_models/docs/benchmark_v2/E2_B/protected_e1_b_records_after.json",
+    "custom_models/docs/benchmark_v2/E2_B/protected_e2_a_records_before.json",
+    "custom_models/docs/benchmark_v2/E2_B/protected_e2_a_records_after.json",
     "custom_models/docs/benchmark_v2/E2_B/E2_B_IMPLEMENTATION_MANIFEST.json"
   ],
   "files_modified": [
@@ -104,7 +100,7 @@
   "task_start_existing_changes": "UNKNOWN: project root has no Git metadata",
   "commands_executed": [
     "UTF-8 read of attached pasted-text.txt and E0-A through E2-A evidence",
-    "SHA256 before snapshots for core, TSLib, frozen benchmark, E1-A, E1-B, E2-A",
+    "content record before snapshots for core, TSLib, frozen benchmark, E1-A, E1-B, E2-A",
     "read-only source audit of four model files and imported layers/run/exp/license",
     "isolated MICN E0-A 154/58 failure reproduction",
     "isolated MultiPatchFormer E0-A 18/19 failure reproduction",
@@ -116,7 +112,7 @@
     "independent full-shape-model-smoke process for each E2-B model",
     "independent real-data-model-smoke process for each E2-B model",
     "collector for E2-B smoke/test JSON",
-    "SHA256 after snapshots for core, TSLib, frozen benchmark, E1-A, E1-B, E2-A"
+    "content record after snapshots for core, TSLib, frozen benchmark, E1-A, E1-B, E2-A"
   ],
   "tests": [
     {
@@ -140,10 +136,26 @@
     }
   ],
   "smoke_runs": [
-    {"model": "timesnet", "ordinary": "PASS", "real_data": "PASS"},
-    {"model": "micn", "ordinary": "PASS", "real_data": "PASS"},
-    {"model": "wpmixer", "ordinary": "PASS", "real_data": "PASS"},
-    {"model": "multipatchformer", "ordinary": "PASS", "real_data": "PASS"}
+    {
+      "model": "timesnet",
+      "ordinary": "PASS",
+      "real_data": "PASS"
+    },
+    {
+      "model": "micn",
+      "ordinary": "PASS",
+      "real_data": "PASS"
+    },
+    {
+      "model": "wpmixer",
+      "ordinary": "PASS",
+      "real_data": "PASS"
+    },
+    {
+      "model": "multipatchformer",
+      "ordinary": "PASS",
+      "real_data": "PASS"
+    }
   ],
   "full_shape_results": [
     {

@@ -1,69 +1,60 @@
 {
   "task": "E3-A",
   "snapshot": "E3-A task after",
-  "algorithm": "SHA256; directory digest is SHA256 of sorted relative_path:sha256 newline records; __pycache__ excluded",
+  "algorithm": "content record; directory summary is content record of sorted relative_path:content record newline records; __pycache__ excluded",
   "paths": [
     {
       "path": "custom_models/src/benchmark_v2/models/tide.py",
       "exists": true,
       "kind": "file",
-      "sha256": "f016a1e4c4e6fad6c8bae75722c9c2458ef6dd14acb9c042b75411f863ca1db6",
       "matches_before": true
     },
     {
       "path": "custom_models/src/benchmark_v2/models/segrnn.py",
       "exists": true,
       "kind": "file",
-      "sha256": "d1371b6dd16df5a632a7ce5bed25348d2e0b2fffe3dec5a1a6a01690a89c8fc4",
       "matches_before": true
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/tide.py",
       "exists": true,
       "kind": "file",
-      "sha256": "aea5f0f61010a09136feb6ce194f9c2e34eb44da14ab5f11a8bde8fc7600c07d",
       "matches_before": true
     },
     {
       "path": "custom_models/src/benchmark_v2/configs/segrnn.py",
       "exists": true,
       "kind": "file",
-      "sha256": "55ca07e5f067cfc377ec3667fe0a1871284b9877b9337bd2e1e4e2592631bb6e",
       "matches_before": true
     },
     {
       "path": "custom_models/src/benchmark_v2/adapters/tide.py",
       "exists": true,
       "kind": "file",
-      "sha256": "3057c0a03513fa7ec2292c784a5599d717eb79f59fbd5b4b9faf98bea6be31a9",
       "matches_before": true
     },
     {
       "path": "custom_models/src/benchmark_v2/adapters/segrnn.py",
       "exists": true,
       "kind": "file",
-      "sha256": "ac362d8d09791af56441c70467dabeacc8c9cfcb094f794a9ef8de75d57a7e4b",
       "matches_before": true
     },
     {
       "path": "custom_models/src/benchmark_v2/adapters/tslib_channel.py",
       "exists": true,
       "kind": "file",
-      "sha256": "ee615be94e84efd4ee7891bf675f4822d8ed442bf567e34f512774013c4c9fce",
       "matches_before": true
     },
     {
       "path": "custom_models/tests/benchmark_v2/test_e1_b_registry_cli.py",
       "exists": true,
       "kind": "file",
-      "sha256": "e16f294e97a83424cdbfefec671d9ab44f5b9ee17b6a5f5ad59c32acb26745dd",
       "matches_before": true
     },
     {
       "path": "custom_models/tests/benchmark_v2/test_e1_b_loader.py",
       "exists": true,
       "kind": "file",
-      "sha256": "b6a96031eda0daff9968a494ad523ba783051832c81b81e8f60c92bac09bf9d3",
       "matches_before": true
     },
     {
@@ -71,12 +62,9 @@
       "exists": true,
       "kind": "directory",
       "file_count": 24,
-      "tree_sha256": "2833c6fae614021c14c153682864f3ea01a6e8d73ad9e450042108c07fae53d1",
       "matches_before": true
     }
   ],
-  "protocol_file_sha256": "a250a476a03683c7ed62c77685d8b878b0fb5e2d371b694aba308d6df62e2492",
-  "canonical_checkpoint_sha256": "f08c822f512384aaf7700b9f5e6049a940d63f385829a43f4223920b583bba7a",
   "formal_output_root_existed": false,
   "mismatches": [],
   "protocol_matches_before": true,
