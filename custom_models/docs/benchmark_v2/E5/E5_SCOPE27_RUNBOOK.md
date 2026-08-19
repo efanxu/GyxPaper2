@@ -112,16 +112,56 @@ bash custom_models/docs/benchmark_v2/E5/E5_RUN_ALL_27_BATCH4_LINUX_AUTOSHUTDOWN.
 ## Windows PowerShell order
 
 ```powershell
+$ProjectRoot = 'D:\PaperProject\GyxPaper2'
+Set-Location -LiteralPath $ProjectRoot
 $PythonExecutable = 'D:\Apps\Miniconda3\envs\env_tslib\python.exe'
 & $PythonExecutable -m pip install -r custom_models\docs\benchmark_v2\E5\requirements.txt
-$Launcher = '.\custom_models\docs\benchmark_v2\E5\E5_A8_BATCH4_WINDOWS_FORMAL_COMMANDS.ps1'
-& $Launcher -Action StaticAudit -PythonExecutable $PythonExecutable
+if ($LASTEXITCODE -ne 0) { throw 'Dependency installation failed.' }
+
+$A8Launcher = '.\custom_models\docs\benchmark_v2\E5\E5_A8_BATCH4_WINDOWS_FORMAL_COMMANDS.ps1'
+$E5Launcher = '.\custom_models\docs\benchmark_v2\E5\E5_SCOPE27_WINDOWS_FORMAL_COMMANDS.ps1'
+
+# A8: StaticAudit returns 4 before the first completed A8 run; that means
+# NOT_READY and is expected. Any other nonzero code is a hard failure.
+& powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $A8Launcher `
+  -Action StaticAudit -PythonExecutable $PythonExecutable
+if ($LASTEXITCODE -notin @(0, 4)) { throw "A8 StaticAudit failed: $LASTEXITCODE" }
 # Only after manual confirmation that the reported lock is STALE:
-# & $Launcher -Action ClearStaleLock -PythonExecutable $PythonExecutable
-& $Launcher -Action Preflight -PythonExecutable $PythonExecutable
-& $Launcher -Action Run -PythonExecutable $PythonExecutable
-& $Launcher -Action Readiness -PythonExecutable $PythonExecutable
+# & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $A8Launcher -Action ClearStaleLock -PythonExecutable $PythonExecutable
+& powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $A8Launcher `
+  -Action Preflight -PythonExecutable $PythonExecutable
+if ($LASTEXITCODE -ne 0) { throw "A8 Preflight failed: $LASTEXITCODE" }
+& powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $A8Launcher `
+  -Action Run -PythonExecutable $PythonExecutable
+if ($LASTEXITCODE -ne 0) { throw "A8 Run failed: $LASTEXITCODE" }
+& powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $A8Launcher `
+  -Action Readiness -PythonExecutable $PythonExecutable
+if ($LASTEXITCODE -ne 0) { throw "A8 Readiness failed: $LASTEXITCODE" }
+
+# E5: the launcher independently rechecks the A8 reference before every GPU
+# or result-producing action. All 24 trainable models run FP32 with AMP off.
+& powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $E5Launcher `
+  -Action StaticAudit -PythonExecutable $PythonExecutable
+if ($LASTEXITCODE -ne 0) { throw "E5 StaticAudit failed: $LASTEXITCODE" }
+# Only after manual confirmation that the reported lock is STALE:
+# & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $E5Launcher -Action ClearStaleLock -PythonExecutable $PythonExecutable
+& powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $E5Launcher `
+  -Action Preflight -PythonExecutable $PythonExecutable
+if ($LASTEXITCODE -ne 0) { throw "E5 Preflight failed: $LASTEXITCODE" }
+& powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $E5Launcher `
+  -Action Run -PythonExecutable $PythonExecutable
+if ($LASTEXITCODE -ne 0) { throw "E5 Run failed: $LASTEXITCODE" }
+& powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $E5Launcher `
+  -Action Readiness -PythonExecutable $PythonExecutable
+if ($LASTEXITCODE -ne 0) { throw "E5 Readiness failed: $LASTEXITCODE" }
+& powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $E5Launcher `
+  -Action Aggregate -PythonExecutable $PythonExecutable
+if ($LASTEXITCODE -ne 0) { throw "E5 Aggregate failed: $LASTEXITCODE" }
 ```
 
-The Windows launcher uses only `READY`/`NOT_READY`, and its run action performs
-post-run acceptance before returning success.
+Use `-InputPath` and `-TargetPath` on both `Run` commands only when the parquet
+files are not in the default `dataset` directory. Each Windows launcher uses a
+child `powershell.exe` process so `$LASTEXITCODE` is reliable. A8 and E5 use
+only `READY`/`NOT_READY`; both run actions perform post-run acceptance before
+returning success. The E5 preflight requires 24/24 full-shape FP32 forward,
+backward, finite-gradient, and optimizer-step checks before training starts.

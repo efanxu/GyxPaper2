@@ -16,6 +16,7 @@
   "scope_id": "e5_batch4_scope27_seed2026",
   "source_identity_schema_version": "model_source_identity_v1",
   "status": "ACTIVE",
+  "windows_launcher": "custom_models/docs/benchmark_v2/E5/E5_SCOPE27_WINDOWS_FORMAL_COMMANDS.ps1",
   "superseded_read_only_files": [
     "custom_models/docs/benchmark_v2/E5/E5_VARIANT_MANIFEST.json",
     "custom_models/docs/benchmark_v2/E5/E5_RUN_ID_MAP.json",

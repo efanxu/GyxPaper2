@@ -37,6 +37,7 @@ if ([string]::IsNullOrWhiteSpace($oldPythonPath)) {
 }
 $env:PYTHONUTF8 = '1'
 $env:PYTHONIOENCODING = 'utf-8'
+$env:PYTORCH_CUDA_ALLOC_CONF = 'expandable_segments:True'
 Set-Location -LiteralPath $ProjectRoot
 . $NativeRunner
 
@@ -73,6 +74,9 @@ switch ($Action) {
         if ($null -eq $result.Json -or $result.Json.status -ne 'PASS') { throw 'A8 exact preflight did not pass.' }
     }
     'Run' {
+        foreach ($path in @($InputPath, $TargetPath)) {
+            if (-not (Test-Path -LiteralPath $path -PathType Leaf)) { throw "Formal dataset file does not exist: $path" }
+        }
         $args = @('run', '--input-path', $InputPath, '--target-path', $TargetPath, '--log-root', (Join-Path $AuditRoot 'formal'))
         $result = Invoke-A8Gate -Label 'run' -Arguments $args
         if ($null -eq $result.Json -or $result.Json.status -ne 'COMPLETED' -or $result.Json.readiness.status -ne 'READY') { throw 'A8 run post-acceptance did not reach READY.' }
@@ -92,3 +96,4 @@ switch ($Action) {
         $null = Invoke-A8Gate -Label 'clear-stale-lock' -Arguments @('clear-stale-lock')
     }
 }
+exit 0

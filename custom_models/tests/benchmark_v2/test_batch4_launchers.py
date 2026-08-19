@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import unittest
 import os
+import json
 import subprocess
 import tempfile
 from pathlib import Path
@@ -153,6 +154,33 @@ class Batch4LauncherTests(unittest.TestCase):
         self.assertNotIn("READY_A8_" + "BATCH4_PREREQUISITE", windows)
         self.assertNotIn("'--model', 'st_mgprompt_a8'", windows)
         self.assertIn("$result.Json.readiness.status -ne 'READY'", windows)
+
+    def test_scope27_windows_launcher_runs_e5_after_a8_in_fp32(self) -> None:
+        launcher_name = "E5_SCOPE27_WINDOWS_FORMAL_COMMANDS.ps1"
+        script = (E5_DOCS / launcher_name).read_text(encoding="utf-8")
+        self.assertIn("scripts\\e5_batch4_scope27_gate.py", script)
+        self.assertIn("scripts\\st_mgprompt_a8_batch4_gate.py", script)
+        self.assertIn("function Assert-A8Ready", script)
+        self.assertIn("$gateArguments = @('--manifest', $Manifest) + @($Arguments)", script)
+        for action in ("'StaticAudit'", "'Preflight'", "'Run'", "'Readiness'", "'Aggregate'"):
+            self.assertIn(action, script)
+        self.assertIn("[int]$result.Json.counts.pass -ne 24", script)
+        self.assertIn("precision=FP32; amp_enabled=false", script)
+        self.assertIn("--require-complete", script)
+
+        active_scope = json.loads((E5_DOCS / "E5_ACTIVE_SCOPE.json").read_text(encoding="utf-8"))
+        self.assertEqual(
+            active_scope["windows_launcher"],
+            f"custom_models/docs/benchmark_v2/E5/{launcher_name}",
+        )
+
+    def test_windows_runbook_uses_separate_a8_and_e5_processes(self) -> None:
+        runbook = (E5_DOCS / "E5_SCOPE27_RUNBOOK.md").read_text(encoding="utf-8")
+        self.assertIn("$A8Launcher", runbook)
+        self.assertIn("$E5Launcher", runbook)
+        self.assertIn("E5_SCOPE27_WINDOWS_FORMAL_COMMANDS.ps1", runbook)
+        self.assertIn("powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass", runbook)
+        self.assertIn("E5 Aggregate failed", runbook)
 
 
 if __name__ == "__main__":
