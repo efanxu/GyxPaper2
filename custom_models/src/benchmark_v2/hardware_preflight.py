@@ -73,7 +73,11 @@ def preflight_identity(
     protocol = load_protocol()
     entry = load_registry().get(model_id)
     shape = preflight_shape(training_profile, formal_scope_id)
-    precision = expected_model_precision_identity(entry.canonical_id, training_profile)
+    precision = expected_model_precision_identity(
+        entry.canonical_id,
+        training_profile,
+        experiment_profile_id=normalize_profile(experiment_profile),
+    )
     if run_id is None and manifest:
         for row in manifest.get("entries", []):
             if row.get("model_id") == entry.canonical_id:
@@ -139,7 +143,13 @@ def read_matching_pass(
         "node_count", "feature_count", "horizon", "precision",
         "amp_enabled", "loss_id", "training_profile_id",
     )}
-    required.update({"status": "PASS", "forward_pass": True, "backward_pass": True, "finite": True})
+    required.update({
+        "status": "PASS",
+        "forward_pass": True,
+        "backward_pass": True,
+        "optimizer_step_pass": True,
+        "finite": True,
+    })
     if any(key not in payload or payload.get(key) != value for key, value in required.items()):
         return None
     if payload.get("output_shape") != [expected["batch_size"], expected["node_count"], expected["horizon"]]:
@@ -177,6 +187,105 @@ def _synthetic_batch(model_id: str, *, training_profile: str | None = None, form
     )
 
 
+def _preflight_training_step(runtime, batch: BenchmarkBatch, identity: Mapping[str, Any], loss_fn, device) -> dict[str, Any]:
+    """Run the same precision, scaler, backward, and optimizer path as training."""
+
+    import torch
+
+    moved = BenchmarkBatch(
+        x=batch.x.to(device),
+        target=batch.target.to(device),
+        mask=batch.mask.to(device),
+        target_raw_or_inverse_transform=(
+            None
+            if batch.target_raw_or_inverse_transform is None
+            else batch.target_raw_or_inverse_transform.to(device)
+        ),
+        sample_ids=batch.sample_ids,
+        window_end_indices=batch.window_end_indices,
+        node_ids=batch.node_ids,
+        x_mark=None if batch.x_mark is None else batch.x_mark.to(device),
+        y_mark=None if batch.y_mark is None else batch.y_mark.to(device),
+        split=batch.split,
+        metadata=batch.metadata,
+    )
+    runtime.model.to(device)
+    runtime.model.train()
+    amp_enabled = bool(runtime.effective_config.get("amp_enabled", False)) and device.type == "cuda"
+    if amp_enabled != bool(identity["amp_enabled"]):
+        raise RuntimeError("Preflight precision identity does not match runtime precision.")
+    optimizer = torch.optim.Adam(
+        runtime.model.parameters(),
+        lr=float(runtime.effective_config.get("learning_rate", 1e-3)),
+        weight_decay=float(runtime.effective_config.get("weight_decay", 0.0)),
+    )
+    scaler = torch.amp.GradScaler("cuda", enabled=amp_enabled)
+    optimizer.zero_grad(set_to_none=True)
+    with torch.autocast(
+        device_type=device.type,
+        dtype=torch.float16,
+        enabled=amp_enabled,
+    ):
+        output = runtime.adapter(
+            runtime.model,
+            moved,
+            expected_horizon=int(identity["horizon"]),
+            expected_features=int(identity["feature_count"]),
+        )
+        loss = loss_fn(output.prediction, moved.target, moved.mask)
+    finite_output = bool(torch.isfinite(output.prediction).all().item())
+    finite_loss = loss is not None and bool(torch.isfinite(loss).all().item())
+    if loss is None:
+        raise RuntimeError("Trainable preflight model returned no loss.")
+    scaler.scale(loss).backward()
+    scaler.unscale_(optimizer)
+    gradients = [
+        parameter.grad
+        for parameter in runtime.model.parameters()
+        if parameter.grad is not None
+    ]
+    finite_gradients = bool(gradients) and all(
+        bool(torch.isfinite(gradient).all().item()) for gradient in gradients
+    )
+    if not (finite_output and finite_loss and finite_gradients):
+        raise RuntimeError("Preflight produced non-finite output, loss, or gradients.")
+    scaler.step(optimizer)
+    scaler.update()
+    finite_parameters = all(
+        bool(torch.isfinite(parameter).all().item())
+        for parameter in runtime.model.parameters()
+    )
+    optimizer_tensors = [
+        value
+        for state in optimizer.state.values()
+        for value in state.values()
+        if isinstance(value, torch.Tensor)
+    ]
+    finite_optimizer_state = all(
+        bool(torch.isfinite(value).all().item()) for value in optimizer_tensors
+    )
+    return {
+        "output_shape": list(output.prediction.shape),
+        "forward_pass": True,
+        "backward_pass": True,
+        "optimizer_step_pass": finite_parameters and finite_optimizer_state,
+        "finite_output": finite_output,
+        "finite_loss": finite_loss,
+        "finite_gradients": finite_gradients,
+        "finite_parameters_after_step": finite_parameters,
+        "finite_optimizer_state_after_step": finite_optimizer_state,
+        "finite": (
+            finite_output
+            and finite_loss
+            and finite_gradients
+            and finite_parameters
+            and finite_optimizer_state
+        ),
+        "autocast_enabled": amp_enabled,
+        "grad_scaler_enabled": amp_enabled,
+    }
+
+
 def run_preflight_worker(
     model_id: str, *, root: str | Path | None = None,
     experiment_profile: str | None = None, training_profile: str | None = None,
@@ -193,7 +302,7 @@ def run_preflight_worker(
     result = {
         "status": "FAIL", **identity, "attempt_id": selected,
         "device": "cuda", "forward_pass": False, "backward_pass": False,
-        "finite": False, "output_shape": None,
+        "optimizer_step_pass": False, "finite": False, "output_shape": None,
         "created_at": datetime.now(timezone.utc).isoformat(),
     }
     try:
@@ -206,20 +315,21 @@ def run_preflight_worker(
         apply_training_profile(runtime, training_profile)
         apply_model_precision_policy(runtime)
         device = torch.device("cuda")
-        runtime.model.to(device)
-        moved = BenchmarkBatch(x=batch.x.to(device), target=batch.target.to(device), mask=batch.mask.to(device), sample_ids=batch.sample_ids, window_end_indices=batch.window_end_indices, node_ids=batch.node_ids, metadata=batch.metadata)
-        output = runtime.adapter(runtime.model, moved, expected_horizon=identity["horizon"], expected_features=identity["feature_count"])
-        result["forward_pass"] = True
-        result["output_shape"] = list(output.prediction.shape)
-        finite_output = bool(torch.isfinite(output.prediction).all().item())
-        loss = loss_for_profile(normalize_profile(experiment_profile))(output.prediction, moved.target, moved.mask)
-        finite_loss = bool(torch.isfinite(loss).item())
-        loss.backward()
-        finite_gradients = all(torch.isfinite(parameter.grad).all().item() for parameter in runtime.model.parameters() if parameter.grad is not None)
-        result["backward_pass"] = True
-        result["finite"] = finite_output and finite_loss and finite_gradients
+        result.update(
+            _preflight_training_step(
+                runtime,
+                batch,
+                identity,
+                loss_for_profile(normalize_profile(experiment_profile)),
+                device,
+            )
+        )
         expected_shape = [identity["batch_size"], identity["node_count"], identity["horizon"]]
-        if result["output_shape"] != expected_shape or not result["finite"]:
+        if (
+            result["output_shape"] != expected_shape
+            or not result["optimizer_step_pass"]
+            or not result["finite"]
+        ):
             raise RuntimeError("Preflight output validation failed.")
         result["status"] = "PASS"
     except Exception as exc:

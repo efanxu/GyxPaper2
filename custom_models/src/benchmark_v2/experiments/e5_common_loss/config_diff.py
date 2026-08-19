@@ -11,6 +11,10 @@ ALLOWED_DIFF_PATHS = {
     "output_root",
     "preflight_metadata",
     "provenance",
+    "amp_enabled",
+    "precision_policy",
+    "precision_resolution",
+    "activation_checkpointing",
 }
 
 

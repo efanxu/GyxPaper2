@@ -6,6 +6,21 @@ excluded. The benchmark output root is
 `custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026`.
 The legacy Batch32 and Original scope26 roots are historical read-only evidence.
 
+All 24 E5 training runs and both evaluate-only baselines use FP32. The E5
+overlay disables AMP uniformly so model comparisons cannot be interrupted or
+biased by model-specific float16 overflow. This does not change the precision
+policy of Original or other experiment profiles. The independent A8 reference
+keeps its own frozen precision identity.
+
+PatchTST uses encoder-layer activation checkpointing only under the E5 FP32
+overlay. This keeps the exact Batch4/model/optimizer contract while reducing
+saved activation memory; there is no automatic batch reduction or gradient
+accumulation fallback.
+
+Every E5 preflight PASS includes a full-shape FP32 forward, common-loss
+backward, and Adam optimizer update. Outputs, loss, gradients, parameters, and
+optimizer state must remain finite before a formal worker can start.
+
 The A8 runtime reference is written only to
 `custom_models/logs/uniform_bs4/audit/e5_scope27/E5_A8_BATCH4_REFERENCE.json`.
 No launcher writes a reference into tracked documentation.
@@ -19,6 +34,7 @@ explicitly run `clear-stale-lock`; `ACTIVE` and `MALFORMED` fail closed.
 cd /root/autodl-tmp/GyxPaper2 || exit 1
 PYTHON=/root/miniconda3/envs/env_tslib/bin/python
 export PYTHONPATH="$PWD/custom_models/src"
+"$PYTHON" -m pip install -r custom_models/docs/benchmark_v2/E5/requirements.txt
 
 "$PYTHON" scripts/st_mgprompt_a8_batch4_gate.py validate-contract
 "$PYTHON" scripts/st_mgprompt_a8_batch4_gate.py lock-status
@@ -96,13 +112,15 @@ bash custom_models/docs/benchmark_v2/E5/E5_RUN_ALL_27_BATCH4_LINUX_AUTOSHUTDOWN.
 ## Windows PowerShell order
 
 ```powershell
+$PythonExecutable = 'D:\Apps\Miniconda3\envs\env_tslib\python.exe'
+& $PythonExecutable -m pip install -r custom_models\docs\benchmark_v2\E5\requirements.txt
 $Launcher = '.\custom_models\docs\benchmark_v2\E5\E5_A8_BATCH4_WINDOWS_FORMAL_COMMANDS.ps1'
-& $Launcher -Action StaticAudit
+& $Launcher -Action StaticAudit -PythonExecutable $PythonExecutable
 # Only after manual confirmation that the reported lock is STALE:
-# & $Launcher -Action ClearStaleLock
-& $Launcher -Action Preflight
-& $Launcher -Action Run
-& $Launcher -Action Readiness
+# & $Launcher -Action ClearStaleLock -PythonExecutable $PythonExecutable
+& $Launcher -Action Preflight -PythonExecutable $PythonExecutable
+& $Launcher -Action Run -PythonExecutable $PythonExecutable
+& $Launcher -Action Readiness -PythonExecutable $PythonExecutable
 ```
 
 The Windows launcher uses only `READY`/`NOT_READY`, and its run action performs

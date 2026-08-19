@@ -18,6 +18,13 @@ class E5Scope27Tests(unittest.TestCase):
         benchmark = [row for row in manifest["entries"] if row["entry_type"] != "REFERENCE_ONLY_FORMAL_A8"]
         self.assertEqual(len(benchmark), 26)
         self.assertTrue(all(row["e5_run_id"].endswith("_bs4_seed2026") for row in benchmark))
+        self.assertTrue(
+            all(
+                row["precision_identity"]["precision_policy"] == "fp32"
+                and row["precision_identity"]["amp_enabled"] is False
+                for row in benchmark
+            )
+        )
         self.assertEqual(manifest["entries"][-1]["e5_run_id"], "STMGPrompt_A8_loss_msa_hybrid_bs4_seed2026_reference")
 
     def test_readiness_accepts_explicit_27_of_27(self) -> None:

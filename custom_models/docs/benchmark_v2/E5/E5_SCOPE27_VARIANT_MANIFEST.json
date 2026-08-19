@@ -50,11 +50,11 @@
       "original_entry_id": "original_scope26_gru",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -74,11 +74,11 @@
       "original_entry_id": "original_scope26_dlinear",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -98,11 +98,11 @@
       "original_entry_id": "original_scope26_lightts",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -122,11 +122,11 @@
       "original_entry_id": "original_scope26_tide",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -150,7 +150,7 @@
         "precision_policy": "fp32",
         "precision_resolution": {
           "effective_amp_enabled": false,
-          "reason": "AMP-only forward overflow reproduced in upstream Transformer attention on benchmark_v2 uniform batch4; keep model-specific FP32 forward policy.",
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -170,11 +170,11 @@
       "original_entry_id": "original_scope26_patchtst",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -194,11 +194,11 @@
       "original_entry_id": "original_scope26_itransformer",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -218,11 +218,11 @@
       "original_entry_id": "original_scope26_timexer",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -242,11 +242,11 @@
       "original_entry_id": "original_scope26_timesnet",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -266,11 +266,11 @@
       "original_entry_id": "original_scope26_micn",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -290,11 +290,11 @@
       "original_entry_id": "original_scope26_wpmixer",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -314,11 +314,11 @@
       "original_entry_id": "original_scope26_multipatchformer",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -338,11 +338,11 @@
       "original_entry_id": "original_scope26_timemixer",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -362,11 +362,11 @@
       "original_entry_id": "original_scope26_tsmixer",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -386,11 +386,11 @@
       "original_entry_id": "original_scope26_frets",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -410,11 +410,11 @@
       "original_entry_id": "original_scope26_crossformer",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -434,11 +434,11 @@
       "original_entry_id": "original_scope26_timefilter",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -458,11 +458,11 @@
       "original_entry_id": "original_scope26_gcn",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -482,11 +482,11 @@
       "original_entry_id": "original_scope26_stgcn",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -506,11 +506,11 @@
       "original_entry_id": "original_scope26_dcrnn",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -530,11 +530,11 @@
       "original_entry_id": "original_scope26_graph_wavenet",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -554,11 +554,11 @@
       "original_entry_id": "original_scope26_mtgnn",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -578,11 +578,11 @@
       "original_entry_id": "original_scope26_agcrn",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -602,11 +602,11 @@
       "original_entry_id": "original_scope26_stid",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -626,11 +626,11 @@
       "original_entry_id": "original_scope26_persistence",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },
@@ -650,11 +650,11 @@
       "original_entry_id": "original_scope26_moving_average",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "E5 uses one uniform FP32 policy for every benchmark model so its common-loss comparison cannot be interrupted or biased by model-specific AMP overflow.",
           "requested_amp_enabled": true
         }
       },

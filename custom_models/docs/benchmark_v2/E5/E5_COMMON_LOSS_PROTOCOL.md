@@ -6,6 +6,8 @@
 - Loss: `masked_score_aligned_hybrid`
 - Loss profile record: `<removed-content-record>`
 - Seed: `2026`
+- Precision: uniform FP32 for the 24 trainable and 2 evaluate-only benchmark
+  entries; AMP is disabled only by the E5 overlay.
 - Active Batch4 entries: 24 trainable + 2 evaluate-only + 1 independent A8
   prerequisite reference = 27.
 - The current root is `custom_models/results/benchmark_v2_uniform_bs4/`;

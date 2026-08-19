@@ -15,7 +15,7 @@
   "legacy_policy": "LEGACY_OR_HISTORICAL_READ_ONLY_NOT_CURRENT_BATCH4_OUTPUT",
   "null_numeric_policy": "NaN, infinity, null, and missing metrics fail closed and are never replaced with zero.",
   "output_root": "custom_models/results/benchmark_v2_uniform_bs4/common_loss_architecture_seed2026",
-  "precision_identity_policy": "Manifest-declared; Transformer + uniform_train_batch4_v1 requires fp32 and all other active Batch4 models retain profile AMP.",
+  "precision_identity_policy": "All 24 trainable and 2 evaluate-only E5 benchmark entries use FP32; the independent A8 reference retains its frozen precision identity.",
   "require_complete": true,
   "required_gates": [
     "active scope identity",

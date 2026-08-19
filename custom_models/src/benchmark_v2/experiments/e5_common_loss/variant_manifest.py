@@ -73,7 +73,11 @@ def build_variant_manifest(training_profile: str | None = "uniform_train_batch4_
             "training_mode": "TRAIN" if trainable else "EVALUATE_ONLY",
             "formal_training": trainable, "loss_id": profile["loss_id"],
             "model_config": _base_config(model_id),
-            "precision_identity": expected_model_precision_identity(model_id, training_profile),
+            "precision_identity": expected_model_precision_identity(
+                model_id,
+                training_profile,
+                experiment_profile_id=CLI_PROFILE_ID,
+            ),
             "expected_output_root": str(output_root),
             "expected_run_dir": str(output_root / run_id),
             "uses_physical_support": bool(registry_entry.requires_graph) and model_id not in {"mtgnn", "agcrn", "stid"},
