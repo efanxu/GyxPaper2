@@ -69,7 +69,6 @@ def benchmark_suite(
     attempt_tag: str | None = None,
 ) -> dict:
     rows = []
-    e5 = kind == "e5"
     real = kind == "real"
     models = ALL_MODELS if not real else TRAINABLE
     if selected_models is not None:
@@ -95,8 +94,6 @@ def benchmark_suite(
             "--output-root",
             str(root),
         ]
-        if e5:
-            command.extend(["--experiment-profile", "e5_common_loss_v1"])
         row = run(
             command,
             PROJECT_ROOT
@@ -162,7 +159,7 @@ def st_suite() -> dict:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "suite", choices=("original", "e5", "real", "st")
+        "suite", choices=("original", "real", "st")
     )
     parser.add_argument(
         "--models",
@@ -190,7 +187,6 @@ def main() -> int:
     )
     target = {
         "original": "BATCH4_ORDINARY_SMOKE_RESULTS.json",
-        "e5": "BATCH4_E5_ORDINARY_SMOKE_RESULTS.json",
         "real": "BATCH4_REAL_DATA_SMOKE_RESULTS.json",
         "st": "BATCH4_ST_MGPROMPT_ORDINARY_SMOKE_RESULTS.json",
     }[args.suite]

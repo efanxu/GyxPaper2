@@ -836,7 +836,7 @@
   "loss_identity": {
     "loss_id": "masked_mse",
     "loss_space": "normalized_target_space",
-    "profile_policy": "Original benchmark loss; no E5 common-loss overlay",
+    "profile_policy": "Original benchmark default_benchmark_v1 with masked_mse",
     "source_path": "custom_models/src/benchmark_v2/losses.py"
   },
   "output_root": "custom_models/results/benchmark_v2_uniform_bs4",

@@ -19,33 +19,17 @@ from .contracts import BenchmarkBatch
 from .data import SDWPFDataProvider, StandardScaler
 from .engine import Evaluator, Trainer
 from .errors import ModelUnavailableError
-from .experiments.e5_common_loss.config_diff import (
-    optimizer_group_signature,
-    state_dict_equal,
-)
-from .experiments.e5_common_loss.contracts import SMOKE_OUTPUT_ROOT_RELATIVE
-from .experiments.e5_common_loss.loss_profile import (
-    CLI_PROFILE_ID as E5_PROFILE_ID,
-    DEFAULT_PROFILE_ID,
-)
-from .experiments.e5_common_loss.runner import (
-    apply_experiment_profile,
-    normalize_profile,
-    runtime_loss,
-)
-from .experiments.e5_common_loss.scope27_contract import (
-    CURRENT_SCOPE26_ID,
-    E5_SCOPE27_ID,
-    PREFLIGHT_POLICY_ID,
-    is_current_scope26_train_request,
-    is_scope27_train_request,
-    validate_scope27_request,
-)
 from .losses import get_loss
 from .metrics import evaluate_horizons
 from .model_runtime import ModelRuntime, build_model_runtime
 from .precision import apply_model_precision_policy
-from .original_scope26 import apply_current_scope_identity
+from .original_scope26 import (
+    CURRENT_SCOPE26_ID,
+    apply_current_scope_identity,
+    is_current_scope26_request,
+    normalize_experiment_profile,
+    validate_current_scope26_request,
+)
 from .models.graph_models.adaptive_common import (
     learned_graph_summary,
 )
@@ -65,6 +49,25 @@ from .training_profiles import (
     load_training_profile,
     resolved_batch_sizes,
 )
+
+
+def _state_dict_equal(left, right) -> bool:
+    import torch
+
+    left_state = left.state_dict()
+    right_state = right.state_dict()
+    return left_state.keys() == right_state.keys() and all(
+        torch.equal(left_state[key].detach().cpu(), right_state[key].detach().cpu())
+        for key in left_state
+    )
+
+
+def _optimizer_group_signature(optimizer) -> list[dict[str, Any]]:
+    return [
+        {key: value for key, value in group.items() if key != "params"}
+        | {"parameter_count": sum(int(item.numel()) for item in group["params"])}
+        for group in optimizer.param_groups
+    ]
 
 
 E1_A_SMOKE_ROOT = SMOKE_ROOT / "e1_a"
@@ -472,7 +475,6 @@ def _write_non_trainable_state(
     run_dir: Path, runtime: ModelRuntime, protocol
 ) -> None:
     assert runtime.scaler_context is not None
-    e5 = runtime.effective_config.get("experiment_profile_id") is not None
     payload = {
         "model_id": runtime.model_id,
         "protocol_id": protocol["protocol_id"],
@@ -485,20 +487,6 @@ def _write_non_trainable_state(
         "early_stopping": None,
         "scaler_context": runtime.scaler_context.to_dict(),
     }
-    if e5:
-        payload.update(
-            {
-                "schema_version": "e5_non_trainable_baseline_v1",
-                "training_mode": "EVALUATE_ONLY",
-                "training_loss": "NOT_APPLICABLE",
-                "trained_with_common_loss": False,
-                "common_loss_evaluation_applied": True,
-                "diagnostic_loss": "masked_score_aligned_hybrid",
-                "best_checkpoint": None,
-                "best_epoch": None,
-                "comparison_role": "NON_TRAINABLE_REFERENCE",
-            }
-        )
     atomic_write_json(run_dir / "baseline_state.json", payload)
 
 
@@ -530,28 +518,13 @@ def _run_non_trainable(
         artifact_profile="NON_TRAINABLE",
         formal_training=False,
     )
-    e5 = runtime.effective_config.get("experiment_profile_id") is not None
-    metrics, prediction_shape, diagnostic_loss = _evaluate(
+    metrics, prediction_shape, _ = _evaluate(
         runtime,
         batches,
         protocol,
         device=device,
-        diagnostic_loss_fn=runtime_loss(runtime) if e5 else None,
+        diagnostic_loss_fn=None,
     )
-    if e5:
-        atomic_write_json(
-            run_dir / "common_loss_diagnostic.json",
-            {
-                "schema_version": "e5_common_loss_diagnostic_v1",
-                "model_id": runtime.model_id,
-                "loss_id": "masked_score_aligned_hybrid",
-                "loss_space": "normalized Patv_raw",
-                "value": diagnostic_loss,
-                "training_loss": "NOT_APPLICABLE",
-                "trained_with_common_loss": False,
-                "common_loss_evaluation_applied": True,
-            },
-        )
     _write_metrics(
         run_dir,
         metrics,
@@ -582,15 +555,6 @@ def _run_non_trainable(
         "metrics": metrics,
         "artifact_validation": validation,
     }
-    if e5:
-        result.update(
-            {
-                "diagnostic_loss": diagnostic_loss,
-                "training_loss": "NOT_APPLICABLE",
-                "trained_with_common_loss": False,
-                "common_loss_evaluation_applied": True,
-            }
-        )
     return result
 
 
@@ -719,7 +683,7 @@ def model_smoke(
     training_profile: str | None = None,
 ) -> dict[str, Any]:
     protocol = load_protocol()
-    selected_profile = normalize_profile(experiment_profile)
+    normalize_experiment_profile(experiment_profile)
     seed_everything(int(protocol["default_seed"]))
     graph_model = model_id in NATIVE_NODE_MODELS
     profile = load_training_profile(training_profile)
@@ -739,7 +703,7 @@ def model_smoke(
     )
     initialization_parity = None
     if (
-        (selected_profile == E5_PROFILE_ID or profile is not None)
+        profile is not None
         and model_id not in {"persistence", "moving_average"}
     ):
         import torch
@@ -759,7 +723,7 @@ def model_smoke(
                 expected_horizon=int(protocol["max_pred_len"]),
                 expected_features=int(protocol["feature_count"]),
             ).prediction.detach().clone()
-        base_optimizer_signature = optimizer_group_signature(base_optimizer)
+        base_optimizer_signature = _optimizer_group_signature(base_optimizer)
         seed_everything(int(protocol["default_seed"]))
         runtime = build_model_runtime(
             model_id,
@@ -768,17 +732,16 @@ def model_smoke(
             input_scaler=input_scaler,
             target_scaler=target_scaler,
         )
-        apply_experiment_profile(runtime, selected_profile)
         apply_training_profile(runtime, training_profile)
         apply_model_precision_policy(runtime)
         with torch.no_grad():
-            e5_prediction = runtime.adapter(
+            profile_prediction = runtime.adapter(
                 runtime.model,
                 batch,
                 expected_horizon=int(protocol["max_pred_len"]),
                 expected_features=int(protocol["feature_count"]),
             ).prediction.detach()
-        e5_optimizer = torch.optim.Adam(
+        profile_optimizer = torch.optim.Adam(
             runtime.model.parameters(),
             lr=float(runtime.effective_config.get("learning_rate", 1e-3)),
             weight_decay=float(runtime.effective_config.get("weight_decay", 0.0)),
@@ -787,17 +750,17 @@ def model_smoke(
             "status": "PASS",
             "state_dict_keys_equal": list(base_runtime.model.state_dict())
             == list(runtime.model.state_dict()),
-            "state_dict_values_equal": state_dict_equal(base_runtime.model, runtime.model),
+            "state_dict_values_equal": _state_dict_equal(base_runtime.model, runtime.model),
             "parameter_count_equal": base_parameter_count == runtime.parameter_count,
             "trainable_parameter_count_equal": (
                 base_trainable_count == runtime.trainable_parameter_count
             ),
             "forward_equal": bool(
-                torch.allclose(base_prediction, e5_prediction, atol=1e-7, rtol=1e-6)
+                torch.allclose(base_prediction, profile_prediction, atol=1e-7, rtol=1e-6)
             ),
             "optimizer_param_groups_equal": (
                 base_optimizer_signature
-                == optimizer_group_signature(e5_optimizer)
+                == _optimizer_group_signature(profile_optimizer)
             ),
         }
         if not all(
@@ -807,11 +770,10 @@ def model_smoke(
         ):
             initialization_parity["status"] = "FAIL"
             raise RuntimeError(
-                f"E5 model initialization parity failed for {model_id}: "
+                f"Training-profile initialization parity failed for {model_id}: "
                 f"{initialization_parity}"
             )
     else:
-        apply_experiment_profile(runtime, selected_profile)
         apply_training_profile(runtime, training_profile)
         apply_model_precision_policy(runtime)
     data_signature = _synthetic_signature(batch)
@@ -826,11 +788,7 @@ def model_smoke(
                 )
             }
         )
-    root = root or (
-        PROJECT_ROOT / SMOKE_OUTPUT_ROOT_RELATIVE
-        if selected_profile == E5_PROFILE_ID
-        else _default_smoke_root(model_id)
-    )
+    root = root or _default_smoke_root(model_id)
     if (
         model_id in E2_C_MODELS
         or model_id in E2_D_MODELS
@@ -872,12 +830,8 @@ def full_shape_model_smoke(
     import torch
 
     protocol = load_protocol()
-    selected_profile = normalize_profile(experiment_profile)
-    root = root or (
-        PROJECT_ROOT / SMOKE_OUTPUT_ROOT_RELATIVE
-        if selected_profile == E5_PROFILE_ID
-        else _default_smoke_root(model_id)
-    )
+    normalize_experiment_profile(experiment_profile)
+    root = root or _default_smoke_root(model_id)
     seed_everything(int(protocol["default_seed"]))
     profile = load_training_profile(training_profile)
     requested = {
@@ -898,8 +852,6 @@ def full_shape_model_smoke(
         "cuda_available": bool(torch.cuda.is_available()),
         "amp_enabled": bool(protocol["amp_enabled"]),
     }
-    if selected_profile == E5_PROFILE_ID:
-        result["experiment_profile"] = selected_profile
     result.update(batch_identity(training_profile))
     try:
         if torch.cuda.is_available():
@@ -919,7 +871,6 @@ def full_shape_model_smoke(
             input_scaler=input_scaler,
             target_scaler=target_scaler,
         )
-        apply_experiment_profile(runtime, selected_profile)
         apply_training_profile(runtime, training_profile)
         apply_model_precision_policy(runtime)
         result["amp_enabled"] = bool(
@@ -1084,12 +1035,8 @@ def real_data_model_smoke(
     training_profile: str | None = None,
 ) -> dict[str, Any]:
     protocol = load_protocol()
-    selected_profile = normalize_profile(experiment_profile)
-    root = root or (
-        PROJECT_ROOT / SMOKE_OUTPUT_ROOT_RELATIVE
-        if selected_profile == E5_PROFILE_ID
-        else _default_smoke_root(model_id)
-    )
+    normalize_experiment_profile(experiment_profile)
+    root = root or _default_smoke_root(model_id)
     seed_everything(int(protocol["default_seed"]))
     provider = SDWPFDataProvider.from_files(
         input_path, target_path, protocol=protocol
@@ -1101,7 +1048,6 @@ def real_data_model_smoke(
         input_scaler=provider.scalers["input"],
         target_scaler=provider.scalers["target"],
     )
-    apply_experiment_profile(runtime, selected_profile)
     apply_training_profile(runtime, training_profile)
     apply_model_precision_policy(runtime)
     run_name = model_id if not attempt_tag else f"{model_id}_{attempt_tag}"
@@ -1137,17 +1083,6 @@ def real_data_model_smoke(
     if training_profile:
         val_batch_size = sizes["val"]
         test_batch_size = sizes["test"]
-    elif (
-        selected_profile == E5_PROFILE_ID
-        and model_id not in {"msgnet", "timefilter"}
-    ):
-        # The exact B=32 hardware contract is exercised separately above.
-        # This bounded real-data path preserves model/config identity while
-        # limiting only the number and size of diagnostic smoke batches.
-        train_batch_size = 2
-        train_batch_limit = 2
-        val_batch_size = 1
-        test_batch_size = 1
     else:
         val_batch_size = 1
         test_batch_size = 1
@@ -1195,37 +1130,13 @@ def formal_evaluate_only(
         input_scaler=provider.scalers["input"],
         target_scaler=provider.scalers["target"],
     )
-    selected_profile = normalize_profile(experiment_profile)
-    validate_scope27_request(
+    selected_profile = normalize_experiment_profile(experiment_profile)
+    validate_current_scope26_request(
         model_id=model_id,
         formal_scope_id=formal_scope_id,
         experiment_profile=selected_profile,
         training_profile=training_profile,
         trainable=False,
-    )
-    e5_preflight_identity = None
-    if formal_scope_id in {E5_SCOPE27_ID, CURRENT_SCOPE26_ID}:
-        from .hardware_preflight import preflight_identity
-
-        e5_preflight_identity = preflight_identity(
-            model_id,
-            experiment_profile=selected_profile,
-            training_profile=training_profile,
-            formal_scope_id=formal_scope_id,
-            run_id=run_id,
-            source_revision=source_revision,
-        )
-    apply_experiment_profile(
-        runtime,
-        selected_profile,
-        run_id=run_id,
-        output_root=output_root,
-        preflight_identity=e5_preflight_identity,
-        provenance=(
-            {"active_scope_id": E5_SCOPE27_ID}
-            if formal_scope_id == E5_SCOPE27_ID
-            else None
-        ),
     )
     apply_training_profile(runtime, training_profile)
     apply_model_precision_policy(runtime)
@@ -1278,41 +1189,33 @@ def formal_train(
             f"{entry.display_name} is unavailable for training; "
             f"planned_stage={entry.planned_stage}. No formal run was started."
         )
-    selected_profile = normalize_profile(experiment_profile)
-    validate_scope27_request(
+    selected_profile = normalize_experiment_profile(experiment_profile)
+    validate_current_scope26_request(
         model_id=model_id,
         formal_scope_id=formal_scope_id,
         experiment_profile=selected_profile,
         training_profile=training_profile,
         trainable=True,
     )
-    scope27_request = is_scope27_train_request(
+    current_scope26_request = is_current_scope26_request(
         model_id=model_id,
         formal_scope_id=formal_scope_id,
         experiment_profile=selected_profile,
         training_profile=training_profile,
+        trainable=True,
     )
-    current_scope26_request = is_current_scope26_train_request(
-        model_id=model_id,
-        formal_scope_id=formal_scope_id,
-        experiment_profile=selected_profile,
-        training_profile=training_profile,
-    )
-    scope_request = scope27_request or current_scope26_request
-    exact_scope_request = scope27_request or current_scope26_request
+    scope_request = current_scope26_request
+    exact_scope_request = current_scope26_request
     if exact_scope_request:
         from .hardware_preflight import read_matching_pass
 
-        exact_scope_id = (
-            E5_SCOPE27_ID if scope27_request else CURRENT_SCOPE26_ID
-        )
         if (
             read_matching_pass(
                 model_id,
                 root=preflight_root,
                 experiment_profile=selected_profile,
                 training_profile=training_profile,
-                formal_scope_id=exact_scope_id,
+                formal_scope_id=CURRENT_SCOPE26_ID,
                 source_revision=source_revision,
                 attempt_id=preflight_attempt_id,
             )
@@ -1324,7 +1227,6 @@ def formal_train(
             )
     elif not scope_request and (
         training_profile is not None
-        or selected_profile == E5_PROFILE_ID
         or bool(entry.values.get("formal_hardware_preflight_required", False))
     ):
         from .hardware_preflight import read_matching_pass
@@ -1353,35 +1255,6 @@ def formal_train(
         protocol,
         run_mode="formal",
         target_scaler=provider.scalers["target"],
-    )
-    from .hardware_preflight import preflight_identity
-
-    apply_experiment_profile(
-        runtime,
-        selected_profile,
-        run_id=run_id,
-        output_root=output_root,
-        preflight_identity=(
-            preflight_identity(
-                model_id,
-                experiment_profile=selected_profile,
-                training_profile=training_profile,
-                formal_scope_id=(
-                    E5_SCOPE27_ID
-                    if scope27_request
-                    else CURRENT_SCOPE26_ID
-                    if current_scope26_request
-                    else None
-                ),
-                run_id=run_id,
-                source_revision=source_revision,
-            )
-        ),
-        provenance=(
-            {"active_scope_id": E5_SCOPE27_ID}
-            if scope27_request
-            else None
-        ),
     )
     apply_training_profile(runtime, training_profile)
     apply_model_precision_policy(runtime)

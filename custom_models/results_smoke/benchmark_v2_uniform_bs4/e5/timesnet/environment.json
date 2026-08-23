@@ -1,8 +1,0 @@
-{
-  "python": "D:\\Apps\\Miniconda3\\envs\\env_tslib\\python.exe",
-  "python_version": "3.11.15 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:12:53) [MSC v.1942 64 bit (AMD64)]",
-  "platform": "Windows-10-10.0.26200-SP0",
-  "device": "cuda",
-  "cuda_available": true,
-  "torch_version": "2.7.1+cu128"
-}

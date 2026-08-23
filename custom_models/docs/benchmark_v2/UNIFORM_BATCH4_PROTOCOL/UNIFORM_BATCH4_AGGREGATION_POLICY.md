@@ -1,6 +1,5 @@
 # Uniform Batch=4 Aggregation Policy
 
-E4 may read only batch4 original benchmark artifacts and batch4 Full. E5 may
-read only batch4 common-loss artifacts and the new batch4 A8 reference.
-Readiness rejects any id/record/batch/loss/config/source mismatch as
-`BLOCKED_MIXED_BATCH_PROFILE`; aggregation must not emit a final table.
+Original aggregation reads only the active 26-entry Original Batch4 scope.
+ST-MGPrompt Full and A8 retain their independent result protocols. Readiness
+rejects mixed batch, loss, config, source, or run identities.

@@ -4,7 +4,7 @@ E0-B froze the benchmark_v2 public runtime and stopped before E1-A. The only pro
 
 Package areas: `protocol/`, `registry/`, `contracts/`, `adapters/`, `data/`, `losses.py`, `metrics.py`, `checkpointing.py`, `artifacts.py`, `engine.py`, `runtime.py`, `cli.py`, and schemas. The registry has 28 explicit entries and no runtime-available model. The 18 TSLib sources are source-audited but not adapted; eight models are missing; GRU is only a partial internal block; STCN/STGCN remains unresolved.
 
-Non-graph models use node-shared `(B,T,N,C)->(B*N,T,C)->(B,N,H)`. Graph models are native `(B,T,N,C)->(B,N,H)` and require explicit `GraphContext`; no graph is generated here. Future observed/calendar covariates are disabled. Default E1-E4 loss is masked MSE in normalized target space; E5 common loss comparison and E9 MS-MG-DWU are outside E0-B. Checkpoints monitor validation official Score H10, min, patience 6, min delta 0.01, and test is a separate post-training evaluator.
+Non-graph models use node-shared `(B,T,N,C)->(B*N,T,C)->(B,N,H)`. Graph models are native `(B,T,N,C)->(B,N,H)` and require explicit `GraphContext`; no graph is generated here. Future observed/calendar covariates are disabled. The benchmark loss is masked MSE in normalized target space; ST-MGPrompt MS-MG-DWU remains outside E0-B. Checkpoints monitor validation official Score H10, min, patience 6, min delta 0.01, and test is a separate post-training evaluator.
 
 Smoke root: `custom_models/results_smoke/benchmark_v2`; formal root: `custom_models/results/benchmark_v2`. CLI: `PYTHONPATH=custom_models/src python -m benchmark_v2.cli registry-list`, `protocol-check`, `framework-smoke`, `full-shape-framework-smoke`, `artifact-validate --run-dir <path>`. No TSLib trainer or old result root is used.
 

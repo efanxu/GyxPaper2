@@ -29,11 +29,10 @@ Their current status is `EXCLUDED_FROM_CURRENT_FORMAL_SCOPE` with reason
 `RESOURCE_REQUIREMENT_EXCEEDS_AVAILABLE_FORMAL_HARDWARE`; they are absent from
 the active manifest and denominator.
 
-The Original freeze is independent of E5. It covers the current 26-entry
-manifest, current run map, active model/config source listings, protocol,
-Batch4 profile, dataset/graph identities, Original loss, per-model precision,
-and the active gate/launcher revisions. It does not include the E5 manifest,
-legacy E5 run maps, SegRNN, MSGNet, or Batch32 artifacts.
+The Original freeze covers the current 26-entry manifest, current run map,
+active model/config source listings, protocol, Batch4 profile, dataset/graph
+identities, Original loss, per-model precision, and the active gate/launcher
+revisions. It does not include SegRNN, MSGNet, or Batch32 artifacts.
 
 Model construction is closed over the selected fixed factory, wrapper,
 adapter, config, and transitive repository-local imports. The factory and

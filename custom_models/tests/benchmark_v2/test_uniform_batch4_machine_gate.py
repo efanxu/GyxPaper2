@@ -11,12 +11,10 @@ class UniformBatch4GateTests(unittest.TestCase):
         self.assertEqual(snapshot["batch_size"], 4)
         self.assertEqual(snapshot["seed"], 2026)
         self.assertEqual(snapshot["original"]["counts"]["total"], 26)
-        self.assertEqual(snapshot["e5"]["counts"]["total"], 27)
         self.assertEqual(precheck()["status"], "PASS")
 
     def test_preflight_inventory(self) -> None:
         self.assertEqual(preflight_inventory("original")["required"], 24)
-        self.assertEqual(preflight_inventory("e5")["required"], 24)
 
 
 if __name__ == "__main__":

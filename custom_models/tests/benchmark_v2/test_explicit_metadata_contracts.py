@@ -7,7 +7,6 @@ from pathlib import Path
 
 from benchmark_v2.data.signatures import data_signature
 from benchmark_v2.hardware_preflight import preflight_identity, read_matching_pass
-from scripts import e5_batch4_scope27_gate as e5_gate
 from scripts import original_batch4_scope26_gate as original_gate
 from scripts import st_mgprompt_a8_batch4_gate as a8_gate
 
@@ -95,13 +94,9 @@ class ExplicitMetadataContractTests(unittest.TestCase):
         original_result = original_gate.validate_manifest(original)
         self.assertEqual(original_result["counts"], {"trainable": 24, "evaluate_only": 2, "total": 26})
         self.assertEqual(set(original_result["excluded"]), {"segrnn", "msgnet"})
-        e5 = e5_gate.load_manifest(e5_gate.DEFAULT_MANIFEST)
-        e5_result = e5_gate.validate_manifest(e5)
-        self.assertEqual(e5_result["counts"], {"trainable": 24, "evaluate_only": 2, "a8_reference": 1, "total": 27})
-        self.assertEqual(e5_result["loss_id"], "masked_score_aligned_hybrid")
         a8 = a8_gate.validate_contract()
         self.assertEqual(a8["batch_size"], 4)
-        for payload in (original_gate.compute_original_freeze(original), e5_gate.compute_e5_freeze(e5), a8_gate.build_freeze_plan()):
+        for payload in (original_gate.compute_original_freeze(original), a8_gate.build_freeze_plan()):
             assert_clean_keys(self, payload)
 
 

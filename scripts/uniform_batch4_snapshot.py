@@ -27,7 +27,6 @@ def main() -> int:
         ROOT / "custom_models/src/benchmark_v2/protocol/benchmark_protocol_v1.json",
         ROOT / "custom_models/src/benchmark_v2/training_profiles/uniform_train_batch4_v1.json",
         ROOT / "custom_models/docs/benchmark_v2/BATCH4/CURRENT_BATCH4_SCOPE26_MANIFEST.json",
-        ROOT / "custom_models/docs/benchmark_v2/E5/E5_SCOPE27_VARIANT_MANIFEST.json",
     ]
     payload = {
         "schema_version": "uniform_batch4_file_inventory_v1",

@@ -10,11 +10,9 @@
   "amp_enabled": true,
   "optimizer_step_policy": "No gradient accumulation. Optimizer steps per epoch increase relative to batch=32.",
   "scope": {
-    "original_trainable": 26,
+    "original_trainable": 24,
     "original_evaluate_only": 2,
     "st_mgprompt_full": 1,
-    "st_mgprompt_a8": 1,
-    "e5_trainable": 26,
-    "e5_evaluate_only": 2
+    "st_mgprompt_a8": 1
   }
 }

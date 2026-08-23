@@ -1,6 +1,5 @@
 {
   "benchmark_scope_id": "benchmark_v2_batch4_scope26_seed2026",
-  "e5_scope_id": "e5_batch4_scope27_seed2026",
   "exclusions": [
     {
       "display_name": "SegRNN",

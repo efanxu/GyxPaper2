@@ -492,8 +492,6 @@ def build_config(args: argparse.Namespace) -> STMGPromptConfig:
         cfg.amp_enabled = False
         cfg.precision_policy = PRECISION_POLICY
         cfg.training_role = TRAINING_ROLE
-        cfg.trained_for_e5_scope27 = True
-        cfg.consumed_read_only_by_e5 = True
         cfg.checkpoint_copied = False
         cfg.metrics_copied = False
         cfg.warm_started_from_historical_a8 = False
@@ -549,8 +547,6 @@ def _write_training_batch_identity(run_dir: Path, cfg: STMGPromptConfig) -> None
         "definition": getattr(cfg, "definition", None),
         "training_role": getattr(cfg, "training_role", None),
         "training_batch_profile_id": getattr(cfg, "training_batch_profile_id", None),
-        "trained_for_e5_scope27": bool(getattr(cfg, "trained_for_e5_scope27", False)),
-        "consumed_read_only_by_e5": bool(getattr(cfg, "consumed_read_only_by_e5", False)),
         "checkpoint_copied": bool(getattr(cfg, "checkpoint_copied", False)),
         "metrics_copied": bool(getattr(cfg, "metrics_copied", False)),
         "warm_started_from_historical_a8": bool(
@@ -793,8 +789,6 @@ def _write_a8_execution_receipt(
         "file_count": len(required_files),
         "total_size_bytes": sum((run_dir / name).stat().st_size for name in required_files),
         "message": "A8 formal artifacts completed and passed explicit checks.",
-        "trained_for_e5_scope27": True,
-        "consumed_read_only_by_e5": True,
         "checkpoint_copied": False,
         "metrics_copied": False,
         "warm_started_from_historical_a8": False,

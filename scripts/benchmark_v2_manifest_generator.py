@@ -11,18 +11,14 @@ SOURCE_ROOT = PROJECT_ROOT / "custom_models/src"
 if str(SOURCE_ROOT) not in sys.path:
     sys.path.insert(0, str(SOURCE_ROOT))
 
-from benchmark_v2.manifest_generator import generate_all, generate_e5, generate_original  # noqa: E402
+from benchmark_v2.manifest_generator import generate_original  # noqa: E402
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="benchmark_v2_manifest_generator")
-    parser.add_argument("scope", choices=("original", "e5", "all"))
+    parser.add_argument("scope", choices=("original",))
     args = parser.parse_args(argv)
-    result = {
-        "original": generate_original,
-        "e5": generate_e5,
-        "all": generate_all,
-    }[args.scope]()
+    result = generate_original()
     print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True, allow_nan=False))
     return 0
 

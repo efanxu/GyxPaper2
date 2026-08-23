@@ -1,8 +1,0 @@
-{
-  "status": "PASS",
-  "state_dict_keys_equal": true,
-  "parameter_count_equal": true,
-  "trainable_parameter_count_equal": true,
-  "forward_equal": true,
-  "optimizer_param_groups_equal": true
-}

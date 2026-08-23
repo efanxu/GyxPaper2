@@ -15,10 +15,14 @@ from typing import Any, Callable, Mapping, Sequence
 from .artifacts import atomic_write_json
 from .contracts import BenchmarkBatch
 from .errors import ModelUnavailableError
-from .experiments.e5_common_loss.loss_profile import CLI_PROFILE_ID, DEFAULT_PROFILE_ID, loss_for_profile
-from .experiments.e5_common_loss.runner import apply_experiment_profile, normalize_profile
-from .experiments.e5_common_loss.scope27_contract import CURRENT_SCOPE26_ID, E5_SCOPE27_ID, is_current_scope26_train_request, is_scope27_train_request, validate_scope27_request
+from .losses import get_loss
 from .model_runtime import build_model_runtime
+from .original_scope26 import (
+    CURRENT_SCOPE26_ID,
+    is_current_scope26_request,
+    normalize_experiment_profile,
+    validate_current_scope26_request,
+)
 from .precision import apply_model_precision_policy, expected_model_precision_identity
 from .protocol import load_protocol
 from .registry import load_registry
@@ -52,13 +56,13 @@ def machine_identity() -> dict[str, Any]:
 
 def preflight_shape(training_profile: str | None = None, formal_scope_id: str | None = None) -> dict[str, int]:
     shape = dict(PREFLIGHT_SHAPE)
-    if formal_scope_id in {CURRENT_SCOPE26_ID, E5_SCOPE27_ID} and training_profile is None:
+    if formal_scope_id == CURRENT_SCOPE26_ID and training_profile is None:
         training_profile = "uniform_train_batch4_v1"
     profile = load_training_profile(training_profile)
     if profile is not None:
         shape["B"] = profile.train_batch_size
-    if formal_scope_id in {CURRENT_SCOPE26_ID, E5_SCOPE27_ID} and shape["B"] != 4:
-        raise ValueError("Formal Original/E5 preflight requires Batch4.")
+    if formal_scope_id == CURRENT_SCOPE26_ID and shape["B"] != 4:
+        raise ValueError("Formal Original preflight requires Batch4.")
     return shape
 
 
@@ -69,6 +73,7 @@ def preflight_identity(
     source_revision: str | None = None, manifest: Mapping[str, Any] | None = None,
     run_map: Mapping[str, Any] | None = None, freeze: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
+    normalize_experiment_profile(experiment_profile)
     del source_revision, run_map, freeze
     protocol = load_protocol()
     entry = load_registry().get(model_id)
@@ -77,7 +82,7 @@ def preflight_identity(
     if run_id is None and manifest:
         for row in manifest.get("entries", []):
             if row.get("model_id") == entry.canonical_id:
-                run_id = row.get("run_id") or row.get("e5_run_id")
+                run_id = row.get("run_id")
                 break
     return {
         **machine_identity(),
@@ -91,7 +96,7 @@ def preflight_identity(
         "horizon": shape["H"],
         "precision": precision.get("precision_policy"),
         "amp_enabled": bool(precision.get("amp_enabled", protocol["amp_enabled"])),
-        "loss_id": "masked_score_aligned_hybrid" if normalize_profile(experiment_profile) != DEFAULT_PROFILE_ID else "masked_mse",
+        "loss_id": "masked_mse",
         "training_profile_id": training_profile,
     }
 
@@ -202,7 +207,6 @@ def run_preflight_worker(
         protocol = load_protocol()
         batch = _synthetic_batch(model_id, training_profile=training_profile, formal_scope_id=formal_scope_id)
         runtime = build_model_runtime(model_id, protocol, run_mode="formal")
-        apply_experiment_profile(runtime, normalize_profile(experiment_profile))
         apply_training_profile(runtime, training_profile)
         apply_model_precision_policy(runtime)
         device = torch.device("cuda")
@@ -212,7 +216,7 @@ def run_preflight_worker(
         result["forward_pass"] = True
         result["output_shape"] = list(output.prediction.shape)
         finite_output = bool(torch.isfinite(output.prediction).all().item())
-        loss = loss_for_profile(normalize_profile(experiment_profile))(output.prediction, moved.target, moved.mask)
+        loss = get_loss("masked_mse")(output.prediction, moved.target, moved.mask)
         finite_loss = bool(torch.isfinite(loss).item())
         loss.backward()
         finite_gradients = all(torch.isfinite(parameter.grad).all().item() for parameter in runtime.model.parameters() if parameter.grad is not None)
@@ -260,16 +264,15 @@ def launch_formal_train(
     entry = load_registry().get(model_id)
     if bool(entry.supports_non_trainable) or not entry.supports_train:
         raise ModelUnavailableError(f"{entry.display_name} is unavailable for training.")
-    selected_profile = normalize_profile(experiment_profile)
-    validate_scope27_request(model_id=entry.canonical_id, formal_scope_id=formal_scope_id, experiment_profile=selected_profile, training_profile=training_profile, trainable=True)
-    exact_scope = is_scope27_train_request(model_id=entry.canonical_id, formal_scope_id=formal_scope_id, experiment_profile=selected_profile, training_profile=training_profile) or is_current_scope26_train_request(model_id=entry.canonical_id, formal_scope_id=formal_scope_id, experiment_profile=selected_profile, training_profile=training_profile)
+    selected_profile = normalize_experiment_profile(experiment_profile)
+    validate_current_scope26_request(model_id=entry.canonical_id, formal_scope_id=formal_scope_id, experiment_profile=selected_profile, training_profile=training_profile, trainable=True)
+    exact_scope = is_current_scope26_request(model_id=entry.canonical_id, formal_scope_id=formal_scope_id, experiment_profile=selected_profile, training_profile=training_profile, trainable=True)
     bound_run_id = run_id if exact_scope else None
     existing_pass = read_matching_pass(entry.canonical_id, root=preflight_root, experiment_profile=selected_profile, training_profile=training_profile, formal_scope_id=formal_scope_id, run_id=bound_run_id, attempt_id=preflight_attempt_id)
     if exact_scope and existing_pass is None:
         return 3
     needs_preflight = not exact_scope and (
         training_profile is not None
-        or selected_profile == CLI_PROFILE_ID
         or bool(entry.values.get("formal_hardware_preflight_required", False))
     )
     if needs_preflight and existing_pass is None:

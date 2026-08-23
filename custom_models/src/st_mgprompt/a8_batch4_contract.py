@@ -5,16 +5,16 @@ from pathlib import Path
 from typing import Any
 
 
-A8_SCOPE_ID = "st_mgprompt_a8_batch4_prerequisite_seed2026"
+A8_SCOPE_ID = "st_mgprompt_a8_batch4_seed2026"
 A8_MODEL_ID = "st_mgprompt_a8"
 A8_VARIANT = "A8"
 A8_DEFINITION = "w/o MS-MG-DWU"
 A8_RUN_ID = "component_ablation_a8_bs4_seed2026"
 A8_OUTPUT_ROOT = "custom_models/results/st_mgprompt_uniform_bs4"
 A8_RUN_RELATIVE_PATH = f"{A8_OUTPUT_ROOT}/{A8_RUN_ID}/STMGPrompt_ComponentAblation"
-A8_REFERENCE_ID = "STMGPrompt_A8_loss_msa_hybrid_bs4_seed2026_reference"
-A8_REFERENCE_RELATIVE_PATH = "custom_models/logs/uniform_bs4/audit/e5_scope27/E5_A8_BATCH4_REFERENCE.json"
-TRAINING_ROLE = "E5_BATCH4_PREREQUISITE"
+A8_REFERENCE_ID = "STMGPrompt_A8_loss_msa_hybrid_bs4_seed2026"
+A8_REFERENCE_RELATIVE_PATH = "custom_models/logs/uniform_bs4/audit/a8/A8_BATCH4_REFERENCE.json"
+TRAINING_ROLE = "ST_MGPROMPT_COMPONENT_ABLATION"
 TRAINING_PROFILE_ID = "uniform_train_batch4_v1"
 LOSS_ID = "masked_score_aligned_hybrid"
 LOSS_PROTOCOL = "fair_main"

@@ -16,7 +16,7 @@ if str(SOURCE_ROOT) not in sys.path:
     sys.path.insert(0, str(SOURCE_ROOT))
 
 from benchmark_v2.artifacts import atomic_write_json
-from benchmark_v2.experiments.e5_common_loss.a8_reference import (
+from st_mgprompt.a8_batch4_reference import (
     build_a8_reference,
     create_a8_reference,
 )

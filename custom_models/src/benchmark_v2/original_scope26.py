@@ -59,6 +59,12 @@ def is_current_scope26_request(
     return entry.get("entry_type") == ("TRAINABLE" if trainable else "EVALUATE_ONLY")
 
 
+def normalize_experiment_profile(profile: str | None) -> str:
+    if profile in (None, "", "default", CURRENT_EXPERIMENT_PROFILE_ID):
+        return CURRENT_EXPERIMENT_PROFILE_ID
+    raise OriginalScope26Error(f"Unknown active experiment profile: {profile}")
+
+
 def validate_current_scope26_request(**kwargs: Any) -> None:
     if kwargs.get("formal_scope_id") != CURRENT_SCOPE26_ID:
         return
@@ -99,5 +105,6 @@ __all__ = [
     "CURRENT_SCOPE26_ID", "CURRENT_TRAINING_PROFILE_ID", "OriginalScope26Error",
     "apply_current_scope_identity", "current_scope_entries", "current_scope_entry",
     "is_current_scope26_request", "load_current_scope_manifest",
+    "normalize_experiment_profile",
     "validate_current_scope26_request",
 ]

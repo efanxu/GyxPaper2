@@ -11,7 +11,6 @@ def main() -> int:
         "protocol": precheck(),
         "original": verify("original"),
         "a8": verify("a8"),
-        "e5": verify("e5"),
     }
     print(json.dumps(payload, ensure_ascii=False, indent=2, allow_nan=False))
     return 0

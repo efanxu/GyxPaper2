@@ -1,7 +1,0 @@
-{
-  "schema_version": "artifact_schema_v1",
-  "artifact_profile": "SMOKE",
-  "run_mode": "smoke",
-  "formal_training": false,
-  "model_id": "timefilter"
-}
