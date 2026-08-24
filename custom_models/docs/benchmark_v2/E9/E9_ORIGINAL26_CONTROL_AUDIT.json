@@ -1,0 +1,130 @@
+{
+  "schema_version": "e9_original26_control_audit_v1",
+  "source_class": "ORIGINAL26_CONTROL",
+  "control_count": 6,
+  "ready_count": 0,
+  "ORIGINAL_MASKED_MSE_REFERENCE_READY": "0/6",
+  "controls": [
+    {
+      "model_id": "lightts",
+      "run_id": "LightTS_node_shared_chunk8_bs4_seed2026",
+      "source_root": null,
+      "run_status": null,
+      "protocol_status": null,
+      "loss_id": null,
+      "batch": null,
+      "seed": null,
+      "artifact_completeness": false,
+      "effective_config": {},
+      "resolved_config": {},
+      "metrics": null,
+      "checkpoint_metadata": {},
+      "validation_status": "FAIL",
+      "validation_errors": [
+        "MISSING_ORIGINAL26_XLSX"
+      ],
+      "ready": false
+    },
+    {
+      "model_id": "tide",
+      "run_id": "TiDE_node_shared_d512_bs4_seed2026",
+      "source_root": null,
+      "run_status": null,
+      "protocol_status": null,
+      "loss_id": null,
+      "batch": null,
+      "seed": null,
+      "artifact_completeness": false,
+      "effective_config": {},
+      "resolved_config": {},
+      "metrics": null,
+      "checkpoint_metadata": {},
+      "validation_status": "FAIL",
+      "validation_errors": [
+        "MISSING_ORIGINAL26_XLSX"
+      ],
+      "ready": false
+    },
+    {
+      "model_id": "patchtst",
+      "run_id": "PatchTST_node_shared_p16_s8_bs4_seed2026",
+      "source_root": null,
+      "run_status": null,
+      "protocol_status": null,
+      "loss_id": null,
+      "batch": null,
+      "seed": null,
+      "artifact_completeness": false,
+      "effective_config": {},
+      "resolved_config": {},
+      "metrics": null,
+      "checkpoint_metadata": {},
+      "validation_status": "FAIL",
+      "validation_errors": [
+        "MISSING_ORIGINAL26_XLSX"
+      ],
+      "ready": false
+    },
+    {
+      "model_id": "itransformer",
+      "run_id": "iTransformer_node_shared_d512_bs4_seed2026",
+      "source_root": null,
+      "run_status": null,
+      "protocol_status": null,
+      "loss_id": null,
+      "batch": null,
+      "seed": null,
+      "artifact_completeness": false,
+      "effective_config": {},
+      "resolved_config": {},
+      "metrics": null,
+      "checkpoint_metadata": {},
+      "validation_status": "FAIL",
+      "validation_errors": [
+        "MISSING_ORIGINAL26_XLSX"
+      ],
+      "ready": false
+    },
+    {
+      "model_id": "dcrnn",
+      "run_id": "DCRNN_native_dualrw_k2_h64_l2_ar_bs4_seed2026",
+      "source_root": null,
+      "run_status": null,
+      "protocol_status": null,
+      "loss_id": null,
+      "batch": null,
+      "seed": null,
+      "artifact_completeness": false,
+      "effective_config": {},
+      "resolved_config": {},
+      "metrics": null,
+      "checkpoint_metadata": {},
+      "validation_status": "FAIL",
+      "validation_errors": [
+        "MISSING_ORIGINAL26_XLSX"
+      ],
+      "ready": false
+    },
+    {
+      "model_id": "mtgnn",
+      "run_id": "MTGNN_native_adaptive_k20_gdep2_l3_bs4_seed2026",
+      "source_root": null,
+      "run_status": null,
+      "protocol_status": null,
+      "loss_id": null,
+      "batch": null,
+      "seed": null,
+      "artifact_completeness": false,
+      "effective_config": {},
+      "resolved_config": {},
+      "metrics": null,
+      "checkpoint_metadata": {},
+      "validation_status": "FAIL",
+      "validation_errors": [
+        "MISSING_ORIGINAL26_XLSX"
+      ],
+      "ready": false
+    }
+  ],
+  "e5_consumed": false
+}

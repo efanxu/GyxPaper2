@@ -51,6 +51,11 @@ from .training_profiles import (
 )
 
 
+def runtime_loss(runtime: ModelRuntime):
+    """Resolve the legacy benchmark loss from the effective config."""
+    return get_loss(str(runtime.effective_config.get("loss", "masked_mse")))
+
+
 def _state_dict_equal(left, right) -> bool:
     import torch
 

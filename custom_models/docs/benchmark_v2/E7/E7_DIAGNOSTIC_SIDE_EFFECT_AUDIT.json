@@ -1,0 +1,16 @@
+{
+  "schema_version": "e7_diagnostic_side_effect_audit_v1",
+  "mtgnn": {
+    "status": "PASS",
+    "prediction_max_abs_delta": 0.0,
+    "determinism_tolerance": 1e-07,
+    "parameters_and_buffers_unchanged": true,
+    "checkpoint_file_unchanged": true,
+    "checkpoint_content_hash_check": "NOT_COMPUTED_BY_REPOSITORY_POLICY",
+    "mode_restored": true
+  },
+  "internal_st_mgprompt": {
+    "status": "NOT_RUN_PROTOCOL_MISMATCH",
+    "reason": "A0/A1/A2/A3 formal artifacts have train_batch_size=32, not current batch4."
+  }
+}

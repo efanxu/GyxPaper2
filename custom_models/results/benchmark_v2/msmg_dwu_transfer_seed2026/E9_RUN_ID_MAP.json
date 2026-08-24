@@ -1,0 +1,30 @@
+{
+  "schema_version": "e9_run_id_map_v1",
+  "scope_id": "e9_msmg_dwu_transfer_seed2026",
+  "runs": {
+    "lightts": {
+      "control": "LightTS_node_shared_chunk8_bs4_seed2026",
+      "transfer": "LightTS_node_shared_chunk8_bs4_msmg_dwu_seed2026"
+    },
+    "tide": {
+      "control": "TiDE_node_shared_d512_bs4_seed2026",
+      "transfer": "TiDE_node_shared_d512_bs4_msmg_dwu_seed2026"
+    },
+    "patchtst": {
+      "control": "PatchTST_node_shared_p16_s8_bs4_seed2026",
+      "transfer": "PatchTST_node_shared_p16_s8_bs4_msmg_dwu_seed2026"
+    },
+    "itransformer": {
+      "control": "iTransformer_node_shared_d512_bs4_seed2026",
+      "transfer": "iTransformer_node_shared_d512_bs4_msmg_dwu_seed2026"
+    },
+    "dcrnn": {
+      "control": "DCRNN_native_dualrw_k2_h64_l2_ar_bs4_seed2026",
+      "transfer": "DCRNN_native_dualrw_k2_h64_l2_ar_bs4_msmg_dwu_seed2026"
+    },
+    "mtgnn": {
+      "control": "MTGNN_native_adaptive_k20_gdep2_l3_bs4_seed2026",
+      "transfer": "MTGNN_native_adaptive_k20_gdep2_l3_bs4_msmg_dwu_seed2026"
+    }
+  }
+}

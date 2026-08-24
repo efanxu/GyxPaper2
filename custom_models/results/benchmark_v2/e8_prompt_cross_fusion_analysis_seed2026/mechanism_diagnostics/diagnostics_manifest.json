@@ -1,0 +1,7 @@
+{
+  "status": "BLOCKED_PROTOCOL_MISMATCH",
+  "exports": [],
+  "post_fusion_single_tensor": "NOT_APPLICABLE",
+  "attention_and_gate": "EXTRACTABLE_FROM_REAL_MODULE_WHEN_READY",
+  "source_run_writeback": false
+}

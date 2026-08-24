@@ -1,0 +1,223 @@
+{
+  "schema_version": "e8_protocol_audit_v1",
+  "status": "PASS",
+  "protocol_id": "sdwpf_benchmark_v2",
+  "batch_profile_id": "uniform_train_batch4_v1",
+  "ordered_input_features": [
+    "Wspd",
+    "Wdir",
+    "Etmp",
+    "Itmp",
+    "Ndir",
+    "Pab1",
+    "Pab2",
+    "Pab3",
+    "Prtv",
+    "T2m",
+    "Sp",
+    "RelH",
+    "Wspd_w",
+    "Wdir_w",
+    "Tp",
+    "Patv_clean_for_input"
+  ],
+  "checks": {
+    "protocol.dataset_id": {
+      "expected": "SDWPF",
+      "actual": "SDWPF",
+      "passed": true
+    },
+    "protocol.target_column": {
+      "expected": "Patv_raw",
+      "actual": "Patv_raw",
+      "passed": true
+    },
+    "protocol.input_power_column": {
+      "expected": "Patv_clean_for_input",
+      "actual": "Patv_clean_for_input",
+      "passed": true
+    },
+    "protocol.mask_column": {
+      "expected": "valid_target_mask",
+      "actual": "valid_target_mask",
+      "passed": true
+    },
+    "protocol.lookback": {
+      "expected": 144,
+      "actual": 144,
+      "passed": true
+    },
+    "protocol.max_pred_len": {
+      "expected": 10,
+      "actual": 10,
+      "passed": true
+    },
+    "protocol.eval_horizons": {
+      "expected": [
+        3,
+        6,
+        10
+      ],
+      "actual": [
+        3,
+        6,
+        10
+      ],
+      "passed": true
+    },
+    "protocol.split_ratio": {
+      "expected": [
+        0.8,
+        0.1,
+        0.1
+      ],
+      "actual": [
+        0.8,
+        0.1,
+        0.1
+      ],
+      "passed": true
+    },
+    "protocol.split_mode": {
+      "expected": "strict_chronological",
+      "actual": "strict_chronological",
+      "passed": true
+    },
+    "protocol.train_sample_stride": {
+      "expected": 6,
+      "actual": 6,
+      "passed": true
+    },
+    "protocol.val_sample_stride": {
+      "expected": 3,
+      "actual": 3,
+      "passed": true
+    },
+    "protocol.test_sample_stride": {
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    "protocol.default_seed": {
+      "expected": 2026,
+      "actual": 2026,
+      "passed": true
+    },
+    "protocol.physical_power_min_kw": {
+      "expected": 0.0,
+      "actual": 0.0,
+      "passed": true
+    },
+    "protocol.physical_power_max_kw": {
+      "expected": 1500.0,
+      "actual": 1500.0,
+      "passed": true
+    },
+    "protocol.checkpoint_horizon": {
+      "expected": 10,
+      "actual": 10,
+      "passed": true
+    },
+    "protocol.checkpoint_direction": {
+      "expected": "lower_is_better",
+      "actual": "lower_is_better",
+      "passed": true
+    },
+    "batch.profile_id": {
+      "expected": "uniform_train_batch4_v1",
+      "actual": "uniform_train_batch4_v1",
+      "passed": true
+    },
+    "batch.train_batch_size": {
+      "expected": 4,
+      "actual": 4,
+      "passed": true
+    },
+    "batch.val_batch_size": {
+      "expected": 4,
+      "actual": 4,
+      "passed": true
+    },
+    "batch.test_batch_size": {
+      "expected": 4,
+      "actual": 4,
+      "passed": true
+    },
+    "batch.gradient_accumulation_steps": {
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    "batch.effective_train_batch_size": {
+      "expected": 4,
+      "actual": 4,
+      "passed": true
+    }
+  },
+  "old_batch32_accepted": false,
+  "original26_audit": {
+    "path": "C:\\Users\\12811\\Desktop\\实验结果\\original26_filtered20.xlsx",
+    "sheets": [
+      "原始指标",
+      "模型明细"
+    ],
+    "main_columns": [
+      "实验组",
+      "模型",
+      "model_id",
+      "Horizon",
+      "MAE",
+      "RMSE",
+      "R2",
+      "Score",
+      "valid_target_ratio",
+      "metric_status",
+      "run_status",
+      "protocol_status",
+      "parameter_count",
+      "uses_graph",
+      "node_semantics",
+      "source_file"
+    ],
+    "detail_columns": [
+      "序号",
+      "实验组",
+      "模型",
+      "model_id",
+      "参数量",
+      "图结构",
+      "节点语义",
+      "运行状态",
+      "协议检查",
+      "H3 MAE",
+      "H3 RMSE",
+      "H3 R²",
+      "H3 Score",
+      "H6 MAE",
+      "H6 RMSE",
+      "H6 R²",
+      "H6 Score",
+      "H10 MAE",
+      "H10 RMSE",
+      "H10 R²",
+      "H10 Score",
+      "平均 Score",
+      "H3→H10变化",
+      "H3 Score排名",
+      "H6 Score排名",
+      "H10 Score排名",
+      "综合排名",
+      "备注"
+    ],
+    "selected_model_ids": [
+      "patchtst",
+      "itransformer",
+      "timexer",
+      "multipatchformer",
+      "timemixer",
+      "timefilter"
+    ],
+    "selected_row_count": 18,
+    "schema_valid": true
+  }
+}

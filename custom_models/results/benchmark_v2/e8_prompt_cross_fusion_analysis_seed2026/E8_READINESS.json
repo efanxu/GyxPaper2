@@ -1,0 +1,61 @@
+{
+  "schema_version": "e8_readiness_v1",
+  "INTERNAL_PROMPT_FUSION_READY": "0/5",
+  "ORIGINAL26_EXTERNAL_READY": "6/6",
+  "CORE_E8_READY": "6/11",
+  "core_ready": false,
+  "REPRESENTATION_DIAGNOSTICS_READY": "BLOCKED_INTERNAL_PROTOCOL_MISMATCH",
+  "CROSS_FUSION_DIAGNOSTICS_READY": "BLOCKED_INTERNAL_PROTOCOL_MISMATCH",
+  "MACRO_PROMPT_DIAGNOSTICS_READY": "BLOCKED_INTERNAL_PROTOCOL_MISMATCH",
+  "ST_PROMPT_DIAGNOSTICS_READY": "BLOCKED_INTERNAL_PROTOCOL_MISMATCH",
+  "PAIRED_WINDOW_ANALYSIS_READY": "BLOCKED_PREDICTIONS_MISSING_OR_PROTOCOL_MISMATCH",
+  "GROUPED_ANALYSIS_READY": "BLOCKED_DEFINITION_MISSING",
+  "blockers": [
+    {
+      "evidence_id": "E8_INTERNAL_A0",
+      "errors": [
+        "MISSING_RESOLVED_CONFIG",
+        "FORMAL_RUN_STATUS_INVALID",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:train_batch_size",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id"
+      ]
+    },
+    {
+      "evidence_id": "E8_INTERNAL_A4",
+      "errors": [
+        "MISSING_RESOLVED_CONFIG",
+        "FORMAL_RUN_STATUS_INVALID",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:train_batch_size",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id"
+      ]
+    },
+    {
+      "evidence_id": "E8_INTERNAL_A5",
+      "errors": [
+        "MISSING_RESOLVED_CONFIG",
+        "FORMAL_RUN_STATUS_INVALID",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:train_batch_size",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id"
+      ]
+    },
+    {
+      "evidence_id": "E8_INTERNAL_A6",
+      "errors": [
+        "MISSING_RESOLVED_CONFIG",
+        "FORMAL_RUN_STATUS_INVALID",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:train_batch_size",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id"
+      ]
+    },
+    {
+      "evidence_id": "E8_INTERNAL_A7",
+      "errors": [
+        "MISSING_RESOLVED_CONFIG",
+        "FORMAL_RUN_STATUS_INVALID",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:train_batch_size",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id"
+      ]
+    }
+  ],
+  "fail_closed": true
+}

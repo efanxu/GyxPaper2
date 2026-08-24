@@ -1,0 +1,189 @@
+{
+  "schema_version": "e7_artifact_manifest_v1",
+  "root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2\\e7_graph_mechanism_analysis_seed2026",
+  "files": [
+    {
+      "path": "E7_ARTIFACT_MANIFEST.json",
+      "size_bytes": 5831,
+      "mtime_ns": 1787494008459687000
+    },
+    {
+      "path": "E7_DIAGNOSTIC_SIDE_EFFECT_AUDIT.json",
+      "size_bytes": 542,
+      "mtime_ns": 1787494008404986500
+    },
+    {
+      "path": "e7_distance_weight_analysis.csv",
+      "size_bytes": 3527,
+      "mtime_ns": 1787494008401498100
+    },
+    {
+      "path": "E7_EVIDENCE_MANIFEST.json",
+      "size_bytes": 48577,
+      "mtime_ns": 1787494010192492400
+    },
+    {
+      "path": "E7_GRAPH_CAPABILITY_MATRIX.csv",
+      "size_bytes": 2941,
+      "mtime_ns": 1787494010223136900
+    },
+    {
+      "path": "E7_GRAPH_CAPABILITY_MATRIX.json",
+      "size_bytes": 7073,
+      "mtime_ns": 1787494010217116000
+    },
+    {
+      "path": "e7_graph_structure_statistics.csv",
+      "size_bytes": 2126,
+      "mtime_ns": 1787494008393774700
+    },
+    {
+      "path": "E7_INTERNAL_CONFIG_DIFF.json",
+      "size_bytes": 3980,
+      "mtime_ns": 1787494010211319000
+    },
+    {
+      "path": "e7_prior_learned_overlap.csv",
+      "size_bytes": 330,
+      "mtime_ns": 1787494008396905300
+    },
+    {
+      "path": "E7_PROTOCOL_AUDIT.json",
+      "size_bytes": 8711,
+      "mtime_ns": 1787494010204910100
+    },
+    {
+      "path": "E7_READINESS.json",
+      "size_bytes": 1556,
+      "mtime_ns": 1787494010199106600
+    },
+    {
+      "path": "graph_structure_diagnostics\\dcrnn\\effective_P_forward.npz",
+      "size_bytes": 5246,
+      "mtime_ns": 1787494002335792800
+    },
+    {
+      "path": "graph_structure_diagnostics\\dcrnn\\effective_P_forward_edges.csv",
+      "size_bytes": 11985,
+      "mtime_ns": 1787494002340387800
+    },
+    {
+      "path": "graph_structure_diagnostics\\dcrnn\\effective_P_forward_metadata.json",
+      "size_bytes": 1893,
+      "mtime_ns": 1787494002343526300
+    },
+    {
+      "path": "graph_structure_diagnostics\\dcrnn\\effective_P_reverse.npz",
+      "size_bytes": 5347,
+      "mtime_ns": 1787494002346999500
+    },
+    {
+      "path": "graph_structure_diagnostics\\dcrnn\\effective_P_reverse_edges.csv",
+      "size_bytes": 11985,
+      "mtime_ns": 1787494002352317900
+    },
+    {
+      "path": "graph_structure_diagnostics\\dcrnn\\effective_P_reverse_metadata.json",
+      "size_bytes": 1893,
+      "mtime_ns": 1787494002354536000
+    },
+    {
+      "path": "graph_structure_diagnostics\\diagnostics_manifest.json",
+      "size_bytes": 47061,
+      "mtime_ns": 1787494008425569100
+    },
+    {
+      "path": "graph_structure_diagnostics\\gcn\\effective_A_gcn.npz",
+      "size_bytes": 5162,
+      "mtime_ns": 1787494002292575300
+    },
+    {
+      "path": "graph_structure_diagnostics\\gcn\\effective_A_gcn_edges.csv",
+      "size_bytes": 16301,
+      "mtime_ns": 1787494002299271700
+    },
+    {
+      "path": "graph_structure_diagnostics\\gcn\\effective_A_gcn_metadata.json",
+      "size_bytes": 1881,
+      "mtime_ns": 1787494002302665400
+    },
+    {
+      "path": "graph_structure_diagnostics\\graph\\prior_A_directed.npz",
+      "size_bytes": 3953,
+      "mtime_ns": 1787494002283038200
+    },
+    {
+      "path": "graph_structure_diagnostics\\graph\\prior_A_directed_edges.csv",
+      "size_bytes": 11997,
+      "mtime_ns": 1787494002287147000
+    },
+    {
+      "path": "graph_structure_diagnostics\\graph\\prior_A_directed_metadata.json",
+      "size_bytes": 1887,
+      "mtime_ns": 1787494002289142900
+    },
+    {
+      "path": "graph_structure_diagnostics\\mtgnn\\learned_effective_native_top20.npz",
+      "size_bytes": 14292,
+      "mtime_ns": 1787494006639516400
+    },
+    {
+      "path": "graph_structure_diagnostics\\mtgnn\\learned_effective_native_top20_edges.csv",
+      "size_bytes": 70178,
+      "mtime_ns": 1787494006658603900
+    },
+    {
+      "path": "graph_structure_diagnostics\\mtgnn\\learned_effective_native_top20_metadata.json",
+      "size_bytes": 1947,
+      "mtime_ns": 1787494006662351200
+    },
+    {
+      "path": "graph_structure_diagnostics\\mtgnn\\learned_matched_top4.npz",
+      "size_bytes": 3515,
+      "mtime_ns": 1787494006677290600
+    },
+    {
+      "path": "graph_structure_diagnostics\\mtgnn\\learned_matched_top4_edges.csv",
+      "size_bytes": 14162,
+      "mtime_ns": 1787494006683574900
+    },
+    {
+      "path": "graph_structure_diagnostics\\mtgnn\\learned_matched_top4_metadata.json",
+      "size_bytes": 1924,
+      "mtime_ns": 1787494006687763300
+    },
+    {
+      "path": "graph_structure_diagnostics\\mtgnn\\raw_learned_scores.npz",
+      "size_bytes": 72640,
+      "mtime_ns": 1787494006487972300
+    },
+    {
+      "path": "graph_structure_diagnostics\\mtgnn\\raw_learned_scores_edges.csv",
+      "size_bytes": 476310,
+      "mtime_ns": 1787494006629781800
+    },
+    {
+      "path": "graph_structure_diagnostics\\mtgnn\\raw_learned_scores_metadata.json",
+      "size_bytes": 1933,
+      "mtime_ns": 1787494006633172300
+    },
+    {
+      "path": "graph_structure_diagnostics\\stgcn\\effective_L_tilde.npz",
+      "size_bytes": 4227,
+      "mtime_ns": 1787494002317771000
+    },
+    {
+      "path": "graph_structure_diagnostics\\stgcn\\effective_L_tilde_edges.csv",
+      "size_bytes": 13915,
+      "mtime_ns": 1787494002326892900
+    },
+    {
+      "path": "graph_structure_diagnostics\\stgcn\\effective_L_tilde_metadata.json",
+      "size_bytes": 1889,
+      "mtime_ns": 1787494002331199700
+    }
+  ],
+  "content_hashes": "NOT_COMPUTED_BY_REPOSITORY_POLICY",
+  "training_executed": false,
+  "source_results_modified": false
+}

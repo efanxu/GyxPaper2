@@ -1,0 +1,69 @@
+from __future__ import annotations
+
+from .constants import CAPABILITY_VALUES
+
+
+FIELDS = (
+    "model_id", "display_name", "architecture_family", "temporal_tokenization", "variable_tokenization",
+    "uses_patching", "uses_multiscale_representation", "uses_cross_variable_interaction", "uses_cross_time_interaction",
+    "uses_endogenous_exogenous_separation", "uses_bidirectional_branch_interaction", "uses_explicit_prompt_token",
+    "uses_horizon_conditioned_representation", "uses_adaptive_filtering", "uses_fine_coarse_dual_branch",
+    "diagnostic_extraction_supported", "source_evidence", "notes",
+)
+
+
+def build_capability_matrix() -> list[dict]:
+    rows = [
+        dict(model_id="st_mgprompt", display_name="ST-MGPrompt A0", architecture_family="dual-granularity graph-temporal prompt model",
+             temporal_tokenization="causal fine convolution plus coarse rolling-window histories", variable_tokenization="turbines are graph nodes; SCADA variables are features",
+             uses_patching="YES", uses_multiscale_representation="YES", uses_cross_variable_interaction="NOT_APPLICABLE", uses_cross_time_interaction="YES",
+             uses_endogenous_exogenous_separation="NO", uses_bidirectional_branch_interaction="YES", uses_explicit_prompt_token="YES",
+             uses_horizon_conditioned_representation="YES", uses_adaptive_filtering="YES", uses_fine_coarse_dual_branch="YES",
+             diagnostic_extraction_supported="YES", source_evidence="st_mgprompt/volatility_patching.py; coupling_block.py; cross_fusion.py; prompt_alignment.py; decoder.py",
+             notes="VADSP preserves L=144 in both branches; adaptive item is the history-only branch/scale gate, not TimeFilter."),
+        dict(model_id="patchtst", display_name="PatchTST", architecture_family="channel-independent patch Transformer",
+             temporal_tokenization="single patch_len=16, stride=8", variable_tokenization="node-shared series adapter",
+             uses_patching="YES", uses_multiscale_representation="NO", uses_cross_variable_interaction="NO", uses_cross_time_interaction="YES",
+             uses_endogenous_exogenous_separation="NO", uses_bidirectional_branch_interaction="NOT_APPLICABLE", uses_explicit_prompt_token="NO",
+             uses_horizon_conditioned_representation="NO", uses_adaptive_filtering="NO", uses_fine_coarse_dual_branch="NO",
+             diagnostic_extraction_supported="NOT_EXTRACTABLE", source_evidence="benchmark_v2/models/patchtst.py; adapters/e2_a.py; configs/patchtst.py",
+             notes="Role verified from the repository node-shared adapter and fixed patch config."),
+        dict(model_id="itransformer", display_name="iTransformer", architecture_family="inverted variate-token Transformer",
+             temporal_tokenization="history embedded into variate tokens", variable_tokenization="feature/variate tokens",
+             uses_patching="NO", uses_multiscale_representation="NO", uses_cross_variable_interaction="YES", uses_cross_time_interaction="YES",
+             uses_endogenous_exogenous_separation="NO", uses_bidirectional_branch_interaction="NOT_APPLICABLE", uses_explicit_prompt_token="NO",
+             uses_horizon_conditioned_representation="NO", uses_adaptive_filtering="NO", uses_fine_coarse_dual_branch="NO",
+             diagnostic_extraction_supported="NOT_EXTRACTABLE", source_evidence="benchmark_v2/models/itransformer.py; adapters/e2_a.py; configs/itransformer.py", notes="Cross-variable role is implemented by inverted tokenization."),
+        dict(model_id="timexer", display_name="TimeXer", architecture_family="endogenous/exogenous Transformer",
+             temporal_tokenization="patched endogenous history plus exogenous variate tokens", variable_tokenization="explicit endogenous/exogenous adapter split",
+             uses_patching="YES", uses_multiscale_representation="NO", uses_cross_variable_interaction="YES", uses_cross_time_interaction="YES",
+             uses_endogenous_exogenous_separation="YES", uses_bidirectional_branch_interaction="NO", uses_explicit_prompt_token="NO",
+             uses_horizon_conditioned_representation="NO", uses_adaptive_filtering="NO", uses_fine_coarse_dual_branch="NO",
+             diagnostic_extraction_supported="NOT_EXTRACTABLE", source_evidence="benchmark_v2/models/timexer.py; adapters/e2_a.py; configs/timexer.py", notes="Split is resolved by repository config/adapter, not inferred from the paper title."),
+        dict(model_id="multipatchformer", display_name="MultiPatchFormer", architecture_family="multi-patch Transformer",
+             temporal_tokenization="patch sizes 8/16/24/32", variable_tokenization="node-shared series adapter",
+             uses_patching="YES", uses_multiscale_representation="YES", uses_cross_variable_interaction="NO", uses_cross_time_interaction="YES",
+             uses_endogenous_exogenous_separation="NO", uses_bidirectional_branch_interaction="NO", uses_explicit_prompt_token="NO",
+             uses_horizon_conditioned_representation="NO", uses_adaptive_filtering="NO", uses_fine_coarse_dual_branch="NO",
+             diagnostic_extraction_supported="NOT_EXTRACTABLE", source_evidence="benchmark_v2/models/multipatchformer.py; adapters/e2_b.py; configs/multipatchformer.py", notes="Multiple fixed patch sizes are present in the formal run-id/config."),
+        dict(model_id="timemixer", display_name="TimeMixer", architecture_family="multi-scale temporal mixer",
+             temporal_tokenization="three down-sampling levels with average pooling", variable_tokenization="channel-independent formal config",
+             uses_patching="NO", uses_multiscale_representation="YES", uses_cross_variable_interaction="NO", uses_cross_time_interaction="YES",
+             uses_endogenous_exogenous_separation="NO", uses_bidirectional_branch_interaction="NO", uses_explicit_prompt_token="NO",
+             uses_horizon_conditioned_representation="NO", uses_adaptive_filtering="NO", uses_fine_coarse_dual_branch="NO",
+             diagnostic_extraction_supported="NOT_EXTRACTABLE", source_evidence="benchmark_v2/models/timemixer.py; adapters/e2_c.py; configs/timemixer.py", notes="Formal config uses down_sampling_layers=3 and avg pooling."),
+        dict(model_id="timefilter", display_name="TimeFilter", architecture_family="adaptive patch filtering Transformer",
+             temporal_tokenization="patch_len=16 with learned filtering", variable_tokenization="node-shared adapter with feature channels",
+             uses_patching="YES", uses_multiscale_representation="NO", uses_cross_variable_interaction="YES", uses_cross_time_interaction="YES",
+             uses_endogenous_exogenous_separation="NO", uses_bidirectional_branch_interaction="NO", uses_explicit_prompt_token="NO",
+             uses_horizon_conditioned_representation="NO", uses_adaptive_filtering="YES", uses_fine_coarse_dual_branch="NO",
+             diagnostic_extraction_supported="NOT_EXTRACTABLE", source_evidence="benchmark_v2/models/timefilter.py; adapters/e2_d.py; configs/timefilter.py", notes="Filtering role follows the repository implementation and tp=0.5 formal config."),
+    ]
+    for row in rows:
+        for key, value in row.items():
+            if key.startswith("uses_") or key == "diagnostic_extraction_supported":
+                if value not in CAPABILITY_VALUES:
+                    raise ValueError(f"Invalid capability value {key}={value}")
+        if tuple(row) != FIELDS:
+            raise ValueError(f"Capability matrix field order mismatch for {row.get('model_id')}")
+    return rows

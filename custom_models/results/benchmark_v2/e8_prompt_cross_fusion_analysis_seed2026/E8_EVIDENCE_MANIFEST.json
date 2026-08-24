@@ -1,0 +1,978 @@
+{
+  "schema_version": "e8_evidence_manifest_v1",
+  "scope_id": "e8_prompt_cross_fusion_seed2026",
+  "internal_config_audit_status": "PASS",
+  "evidence": [
+    {
+      "evidence_id": "E8_INTERNAL_A0",
+      "evidence_role": "INTERNAL_FULL_REFERENCE",
+      "model_id": "st_mgprompt",
+      "display_name": "ST-MGPrompt A0",
+      "variant_id": "A0",
+      "source_type": "canonical_reference",
+      "source_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026",
+      "run_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+      "run_status": null,
+      "metrics_source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\metrics.csv",
+      "metrics_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\metrics.csv",
+        "size_bytes": 576,
+        "mtime_ns": 1784557136000000000
+      },
+      "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\best_checkpoint.pt",
+      "checkpoint_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\best_checkpoint.pt",
+        "size_bytes": 3509704,
+        "mtime_ns": 1784556404000000000
+      },
+      "protocol_identity": {
+        "protocol_version": "custom_model_stmgprompt_coupled_mask_aware_fair_v4_3_corrected",
+        "training_batch_profile_id": null,
+        "train_batch_size": 32,
+        "val_batch_size": 4,
+        "test_batch_size": 4
+      },
+      "resolved_config_identity": null,
+      "effective_config_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A0\\effective_config.json",
+        "size_bytes": 5298,
+        "mtime_ns": 1785135700000000000
+      },
+      "metrics": {
+        "3": {
+          "Score": 7.784,
+          "MAE": 76.339,
+          "RMSE": 117.757,
+          "R2": 0.92
+        },
+        "6": {
+          "Score": 9.684,
+          "MAE": 90.462,
+          "RMSE": 138.813,
+          "R2": 0.889
+        },
+        "10": {
+          "Score": 11.706,
+          "MAE": 105.413,
+          "RMSE": 159.341,
+          "R2": 0.854
+        }
+      },
+      "resource_stats": {
+        "parameter_count": 278534,
+        "trainable_parameter_count": 278534,
+        "best_epoch": 12,
+        "training_time": 2103.9356914999953,
+        "peak_memory": null,
+        "inference_time": 38.49732910000603,
+        "throughput": 132.5806262232151,
+        "checkpoint_size": 3509704
+      },
+      "validation_status": "FAIL",
+      "validation_errors": [
+        "MISSING_RESOLVED_CONFIG",
+        "FORMAL_RUN_STATUS_INVALID",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:train_batch_size",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id"
+      ],
+      "ready": false
+    },
+    {
+      "evidence_id": "E8_INTERNAL_A4",
+      "evidence_role": "INTERNAL_CAUSAL_ABLATION",
+      "model_id": "st_mgprompt",
+      "display_name": "A4 w/o Macro Prompt",
+      "variant_id": "A4",
+      "source_type": "formal_component_ablation_artifact",
+      "source_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A4\\STMGPrompt_ComponentAblation",
+      "run_id": "component_ablation_fixed_dual_seed2026/A4",
+      "run_status": null,
+      "metrics_source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A4\\STMGPrompt_ComponentAblation\\metrics.csv",
+      "metrics_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A4\\STMGPrompt_ComponentAblation\\metrics.csv",
+        "size_bytes": 579,
+        "mtime_ns": 1785143320000000000
+      },
+      "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A4\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+      "checkpoint_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A4\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+        "size_bytes": 3300208,
+        "mtime_ns": 1785142570000000000
+      },
+      "protocol_identity": {
+        "protocol_version": "custom_model_stmgprompt_coupled_mask_aware_fair_v4_3_corrected",
+        "training_batch_profile_id": null,
+        "train_batch_size": 32,
+        "val_batch_size": 4,
+        "test_batch_size": 4
+      },
+      "resolved_config_identity": null,
+      "effective_config_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A4\\effective_config.json",
+        "size_bytes": 5299,
+        "mtime_ns": 1785141486000000000
+      },
+      "metrics": {
+        "3": {
+          "Score": 8.136,
+          "MAE": 77.875,
+          "RMSE": 115.849,
+          "R2": 0.923
+        },
+        "6": {
+          "Score": 10.078,
+          "MAE": 91.61,
+          "RMSE": 135.364,
+          "R2": 0.895
+        },
+        "10": {
+          "Score": 12.242,
+          "MAE": 106.855,
+          "RMSE": 155.794,
+          "R2": 0.861
+        }
+      },
+      "resource_stats": {
+        "parameter_count": 261701,
+        "trainable_parameter_count": 261701,
+        "best_epoch": 9,
+        "training_time": 1719.677065800006,
+        "peak_memory": null,
+        "inference_time": 40.39469149999968,
+        "throughput": 126.35323629096264,
+        "checkpoint_size": 3300208
+      },
+      "validation_status": "FAIL",
+      "validation_errors": [
+        "MISSING_RESOLVED_CONFIG",
+        "FORMAL_RUN_STATUS_INVALID",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:train_batch_size",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id"
+      ],
+      "ready": false
+    },
+    {
+      "evidence_id": "E8_INTERNAL_A5",
+      "evidence_role": "INTERNAL_CAUSAL_ABLATION",
+      "model_id": "st_mgprompt",
+      "display_name": "A5 w/o Fine-to-Coarse Reverse Cross",
+      "variant_id": "A5",
+      "source_type": "formal_component_ablation_artifact",
+      "source_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A5\\STMGPrompt_ComponentAblation",
+      "run_id": "component_ablation_fixed_dual_seed2026/A5",
+      "run_status": null,
+      "metrics_source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A5\\STMGPrompt_ComponentAblation\\metrics.csv",
+      "metrics_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A5\\STMGPrompt_ComponentAblation\\metrics.csv",
+        "size_bytes": 576,
+        "mtime_ns": 1785145236000000000
+      },
+      "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A5\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+      "checkpoint_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A5\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+        "size_bytes": 3373276,
+        "mtime_ns": 1785144592000000000
+      },
+      "protocol_identity": {
+        "protocol_version": "custom_model_stmgprompt_coupled_mask_aware_fair_v4_3_corrected",
+        "training_batch_profile_id": null,
+        "train_batch_size": 32,
+        "val_batch_size": 4,
+        "test_batch_size": 4
+      },
+      "resolved_config_identity": null,
+      "effective_config_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A5\\effective_config.json",
+        "size_bytes": 5297,
+        "mtime_ns": 1785143402000000000
+      },
+      "metrics": {
+        "3": {
+          "Score": 7.763,
+          "MAE": 75.148,
+          "RMSE": 114.61,
+          "R2": 0.925
+        },
+        "6": {
+          "Score": 9.818,
+          "MAE": 90.291,
+          "RMSE": 136.926,
+          "R2": 0.892
+        },
+        "10": {
+          "Score": 11.94,
+          "MAE": 106.264,
+          "RMSE": 158.754,
+          "R2": 0.855
+        }
+      },
+      "resource_stats": {
+        "parameter_count": 278534,
+        "trainable_parameter_count": 278534,
+        "best_epoch": 10,
+        "training_time": 1732.1675381000005,
+        "peak_memory": null,
+        "inference_time": 27.473681899999065,
+        "throughput": 185.77779340162536,
+        "checkpoint_size": 3373276
+      },
+      "validation_status": "FAIL",
+      "validation_errors": [
+        "MISSING_RESOLVED_CONFIG",
+        "FORMAL_RUN_STATUS_INVALID",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:train_batch_size",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id"
+      ],
+      "ready": false
+    },
+    {
+      "evidence_id": "E8_INTERNAL_A6",
+      "evidence_role": "INTERNAL_CAUSAL_ABLATION",
+      "model_id": "st_mgprompt",
+      "display_name": "A6 w/o Cross Fusion",
+      "variant_id": "A6",
+      "source_type": "formal_component_ablation_artifact",
+      "source_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6\\STMGPrompt_ComponentAblation",
+      "run_id": "component_ablation_fixed_dual_seed2026/A6",
+      "run_status": null,
+      "metrics_source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6\\STMGPrompt_ComponentAblation\\metrics.csv",
+      "metrics_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6\\STMGPrompt_ComponentAblation\\metrics.csv",
+        "size_bytes": 576,
+        "mtime_ns": 1785147056000000000
+      },
+      "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+      "checkpoint_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+        "size_bytes": 2821028,
+        "mtime_ns": 1785146616000000000
+      },
+      "protocol_identity": {
+        "protocol_version": "custom_model_stmgprompt_coupled_mask_aware_fair_v4_3_corrected",
+        "training_batch_profile_id": null,
+        "train_batch_size": 32,
+        "val_batch_size": 4,
+        "test_batch_size": 4
+      },
+      "resolved_config_identity": null,
+      "effective_config_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6\\effective_config.json",
+        "size_bytes": 5299,
+        "mtime_ns": 1785145286000000000
+      },
+      "metrics": {
+        "3": {
+          "Score": 7.9,
+          "MAE": 75.544,
+          "RMSE": 113.909,
+          "R2": 0.926
+        },
+        "6": {
+          "Score": 9.85,
+          "MAE": 89.685,
+          "RMSE": 135.296,
+          "R2": 0.895
+        },
+        "10": {
+          "Score": 12.053,
+          "MAE": 105.392,
+          "RMSE": 156.363,
+          "R2": 0.86
+        }
+      },
+      "resource_stats": {
+        "parameter_count": 211974,
+        "trainable_parameter_count": 211974,
+        "best_epoch": 15,
+        "training_time": 1697.267633899999,
+        "peak_memory": null,
+        "inference_time": 24.049444199999925,
+        "throughput": 212.2294368865296,
+        "checkpoint_size": 2821028
+      },
+      "validation_status": "FAIL",
+      "validation_errors": [
+        "MISSING_RESOLVED_CONFIG",
+        "FORMAL_RUN_STATUS_INVALID",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:train_batch_size",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id"
+      ],
+      "ready": false
+    },
+    {
+      "evidence_id": "E8_INTERNAL_A7",
+      "evidence_role": "INTERNAL_CAUSAL_ABLATION",
+      "model_id": "st_mgprompt",
+      "display_name": "A7 w/o ST Prompt (Horizon Head)",
+      "variant_id": "A7",
+      "source_type": "formal_component_ablation_artifact",
+      "source_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A7\\STMGPrompt_ComponentAblation",
+      "run_id": "component_ablation_fixed_dual_seed2026/A7",
+      "run_status": null,
+      "metrics_source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A7\\STMGPrompt_ComponentAblation\\metrics.csv",
+      "metrics_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A7\\STMGPrompt_ComponentAblation\\metrics.csv",
+        "size_bytes": 576,
+        "mtime_ns": 1785149086000000000
+      },
+      "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A7\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+      "checkpoint_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A7\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+        "size_bytes": 3396820,
+        "mtime_ns": 1785148582000000000
+      },
+      "protocol_identity": {
+        "protocol_version": "custom_model_stmgprompt_coupled_mask_aware_fair_v4_3_corrected",
+        "training_batch_profile_id": null,
+        "train_batch_size": 32,
+        "val_batch_size": 4,
+        "test_batch_size": 4
+      },
+      "resolved_config_identity": null,
+      "effective_config_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A7\\effective_config.json",
+        "size_bytes": 5299,
+        "mtime_ns": 1785147104000000000
+      },
+      "metrics": {
+        "3": {
+          "Score": 7.651,
+          "MAE": 75.361,
+          "RMSE": 114.405,
+          "R2": 0.925
+        },
+        "6": {
+          "Score": 9.832,
+          "MAE": 91.489,
+          "RMSE": 137.157,
+          "R2": 0.892
+        },
+        "10": {
+          "Score": 12.09,
+          "MAE": 108.275,
+          "RMSE": 159.48,
+          "R2": 0.854
+        }
+      },
+      "resource_stats": {
+        "parameter_count": 269647,
+        "trainable_parameter_count": 269647,
+        "best_epoch": 15,
+        "training_time": 1908.768131500001,
+        "peak_memory": null,
+        "inference_time": 26.00483130000066,
+        "throughput": 196.27122134031572,
+        "checkpoint_size": 3396820
+      },
+      "validation_status": "FAIL",
+      "validation_errors": [
+        "MISSING_RESOLVED_CONFIG",
+        "FORMAL_RUN_STATUS_INVALID",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:train_batch_size",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id"
+      ],
+      "ready": false
+    },
+    {
+      "evidence_id": "E8_EXTERNAL_PATCHTST",
+      "evidence_role": "ORIGINAL26_EXTERNAL_INTERACTION_CONTEXT",
+      "model_id": "patchtst",
+      "display_name": "PatchTST",
+      "variant_id": null,
+      "source_type": "original26_xlsx_plus_formal_artifact",
+      "source_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\PatchTST_node_shared_p16_s8_bs4_seed2026",
+      "run_id": "PatchTST_node_shared_p16_s8_bs4_seed2026",
+      "run_status": "COMPLETED",
+      "metrics_source": {
+        "xlsx": "e2_a_seed2026/PatchTST_node_shared_p16_s8_bs4_seed2026/metrics.csv",
+        "artifact": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\PatchTST_node_shared_p16_s8_bs4_seed2026\\metrics.csv"
+      },
+      "metrics_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\PatchTST_node_shared_p16_s8_bs4_seed2026\\metrics.csv",
+        "size_bytes": 505,
+        "mtime_ns": 1787288530000000000
+      },
+      "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\PatchTST_node_shared_p16_s8_bs4_seed2026\\best_checkpoint.pt",
+      "checkpoint_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\PatchTST_node_shared_p16_s8_bs4_seed2026\\best_checkpoint.pt",
+        "size_bytes": 87184456,
+        "mtime_ns": 1787090100000000000
+      },
+      "protocol_identity": {
+        "protocol_id": "sdwpf_benchmark_v2",
+        "scope_id": "benchmark_v2_batch4_scope26_seed2026",
+        "training_batch_profile_id": "uniform_train_batch4_v1",
+        "train_batch_size": 4,
+        "val_batch_size": 4,
+        "test_batch_size": 4
+      },
+      "resolved_config_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\PatchTST_node_shared_p16_s8_bs4_seed2026\\resolved_config.json",
+        "size_bytes": 3515,
+        "mtime_ns": 1787063350000000000
+      },
+      "effective_config_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\PatchTST_node_shared_p16_s8_bs4_seed2026\\effective_config.json",
+        "size_bytes": 3515,
+        "mtime_ns": 1787063350000000000
+      },
+      "workbook_metrics": {
+        "3": {
+          "Score": 27.709917618833476,
+          "MAE": 263.0210693456831,
+          "RMSE": 410.8244229729956,
+          "R2": 0.03202471966415099
+        },
+        "6": {
+          "Score": 28.099589745087105,
+          "MAE": 262.90605856208435,
+          "RMSE": 406.88924848159695,
+          "R2": 0.050479409455787994
+        },
+        "10": {
+          "Score": 28.559796172584974,
+          "MAE": 264.1840320522931,
+          "RMSE": 405.995178197856,
+          "R2": 0.05463967913568035
+        }
+      },
+      "artifact_metrics": {
+        "3": {
+          "Score": 27.709917618833476,
+          "MAE": 263.0210693456831,
+          "RMSE": 410.8244229729956,
+          "R2": 0.03202471966415099
+        },
+        "6": {
+          "Score": 28.099589745087105,
+          "MAE": 262.90605856208435,
+          "RMSE": 406.88924848159695,
+          "R2": 0.050479409455787994
+        },
+        "10": {
+          "Score": 28.559796172584974,
+          "MAE": 264.1840320522931,
+          "RMSE": 405.995178197856,
+          "R2": 0.05463967913568035
+        }
+      },
+      "resource_stats": {
+        "parameter_count": 6406154,
+        "trainable_parameter_count": 6406154,
+        "best_epoch": 1,
+        "training_time": 225179.383336,
+        "peak_memory": null,
+        "inference_time": null,
+        "throughput": null,
+        "checkpoint_size": 87184456
+      },
+      "validation_status": "PASS",
+      "validation_errors": [],
+      "ready": true,
+      "resolved_config_model_id": "patchtst"
+    },
+    {
+      "evidence_id": "E8_EXTERNAL_ITRANSFORMER",
+      "evidence_role": "ORIGINAL26_EXTERNAL_INTERACTION_CONTEXT",
+      "model_id": "itransformer",
+      "display_name": "iTransformer",
+      "variant_id": null,
+      "source_type": "original26_xlsx_plus_formal_artifact",
+      "source_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\iTransformer_node_shared_d512_bs4_seed2026",
+      "run_id": "iTransformer_node_shared_d512_bs4_seed2026",
+      "run_status": "COMPLETED",
+      "metrics_source": {
+        "xlsx": "e2_a_seed2026/iTransformer_node_shared_d512_bs4_seed2026/metrics.csv",
+        "artifact": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\iTransformer_node_shared_d512_bs4_seed2026\\metrics.csv"
+      },
+      "metrics_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\iTransformer_node_shared_d512_bs4_seed2026\\metrics.csv",
+        "size_bytes": 503,
+        "mtime_ns": 1787047432000000000
+      },
+      "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\iTransformer_node_shared_d512_bs4_seed2026\\best_checkpoint.pt",
+      "checkpoint_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\iTransformer_node_shared_d512_bs4_seed2026\\best_checkpoint.pt",
+        "size_bytes": 76687816,
+        "mtime_ns": 1787047230000000000
+      },
+      "protocol_identity": {
+        "protocol_id": "sdwpf_benchmark_v2",
+        "scope_id": "benchmark_v2_batch4_scope26_seed2026",
+        "training_batch_profile_id": "uniform_train_batch4_v1",
+        "train_batch_size": 4,
+        "val_batch_size": 4,
+        "test_batch_size": 4
+      },
+      "resolved_config_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\iTransformer_node_shared_d512_bs4_seed2026\\resolved_config.json",
+        "size_bytes": 3216,
+        "mtime_ns": 1787046166000000000
+      },
+      "effective_config_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\iTransformer_node_shared_d512_bs4_seed2026\\effective_config.json",
+        "size_bytes": 3216,
+        "mtime_ns": 1787046166000000000
+      },
+      "workbook_metrics": {
+        "3": {
+          "Score": 19.543469078379363,
+          "MAE": 179.86357896210305,
+          "RMSE": 255.01615201722936,
+          "R2": 0.6270186337800703
+        },
+        "6": {
+          "Score": 20.44407655694262,
+          "MAE": 186.45740886620194,
+          "RMSE": 264.32970585273677,
+          "R2": 0.5992773380860299
+        },
+        "10": {
+          "Score": 21.490841130786915,
+          "MAE": 194.77153248945243,
+          "RMSE": 275.8820525622301,
+          "R2": 0.5634816394207804
+        }
+      },
+      "artifact_metrics": {
+        "3": {
+          "Score": 19.543469078379363,
+          "MAE": 179.86357896210305,
+          "RMSE": 255.01615201722936,
+          "R2": 0.6270186337800703
+        },
+        "6": {
+          "Score": 20.44407655694262,
+          "MAE": 186.45740886620194,
+          "RMSE": 264.32970585273677,
+          "R2": 0.5992773380860299
+        },
+        "10": {
+          "Score": 21.490841130786915,
+          "MAE": 194.77153248945243,
+          "RMSE": 275.8820525622301,
+          "R2": 0.5634816394207804
+        }
+      },
+      "resource_stats": {
+        "parameter_count": 6385162,
+        "trainable_parameter_count": 6385162,
+        "best_epoch": 17,
+        "training_time": 1266.599199,
+        "peak_memory": null,
+        "inference_time": null,
+        "throughput": null,
+        "checkpoint_size": 76687816
+      },
+      "validation_status": "PASS",
+      "validation_errors": [],
+      "ready": true,
+      "resolved_config_model_id": "itransformer"
+    },
+    {
+      "evidence_id": "E8_EXTERNAL_TIMEXER",
+      "evidence_role": "ORIGINAL26_EXTERNAL_INTERACTION_CONTEXT",
+      "model_id": "timexer",
+      "display_name": "TimeXer",
+      "variant_id": null,
+      "source_type": "original26_xlsx_plus_formal_artifact",
+      "source_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\TimeXer_node_shared_ms_d512_bs4_seed2026",
+      "run_id": "TimeXer_node_shared_ms_d512_bs4_seed2026",
+      "run_status": "COMPLETED",
+      "metrics_source": {
+        "xlsx": "e2_a_seed2026/TimeXer_node_shared_ms_d512_bs4_seed2026/metrics.csv",
+        "artifact": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\TimeXer_node_shared_ms_d512_bs4_seed2026\\metrics.csv"
+      },
+      "metrics_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\TimeXer_node_shared_ms_d512_bs4_seed2026\\metrics.csv",
+        "size_bytes": 507,
+        "mtime_ns": 1787048060000000000
+      },
+      "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\TimeXer_node_shared_ms_d512_bs4_seed2026\\best_checkpoint.pt",
+      "checkpoint_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\TimeXer_node_shared_ms_d512_bs4_seed2026\\best_checkpoint.pt",
+        "size_bytes": 112853673,
+        "mtime_ns": 1787047654000000000
+      },
+      "protocol_identity": {
+        "protocol_id": "sdwpf_benchmark_v2",
+        "scope_id": "benchmark_v2_batch4_scope26_seed2026",
+        "training_batch_profile_id": "uniform_train_batch4_v1",
+        "train_batch_size": 4,
+        "val_batch_size": 4,
+        "test_batch_size": 4
+      },
+      "resolved_config_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\TimeXer_node_shared_ms_d512_bs4_seed2026\\resolved_config.json",
+        "size_bytes": 3629,
+        "mtime_ns": 1787047458000000000
+      },
+      "effective_config_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\TimeXer_node_shared_ms_d512_bs4_seed2026\\effective_config.json",
+        "size_bytes": 3629,
+        "mtime_ns": 1787047458000000000
+      },
+      "workbook_metrics": {
+        "3": {
+          "Score": 31.123578810181428,
+          "MAE": 259.08093561193044,
+          "RMSE": 367.6526817624407,
+          "R2": 0.22477595415277096
+        },
+        "6": {
+          "Score": 31.527425716638117,
+          "MAE": 261.35150626779307,
+          "RMSE": 370.10124241902963,
+          "R2": 0.21441524986743443
+        },
+        "10": {
+          "Score": 31.960843796197725,
+          "MAE": 264.28206635730305,
+          "RMSE": 373.47422059946405,
+          "R2": 0.2000241477906366
+        }
+      },
+      "artifact_metrics": {
+        "3": {
+          "Score": 31.123578810181428,
+          "MAE": 259.08093561193044,
+          "RMSE": 367.6526817624407,
+          "R2": 0.22477595415277096
+        },
+        "6": {
+          "Score": 31.527425716638117,
+          "MAE": 261.35150626779307,
+          "RMSE": 370.10124241902963,
+          "R2": 0.21441524986743443
+        },
+        "10": {
+          "Score": 31.960843796197725,
+          "MAE": 264.28206635730305,
+          "RMSE": 373.47422059946405,
+          "R2": 0.2000241477906366
+        }
+      },
+      "resource_stats": {
+        "parameter_count": 8543242,
+        "trainable_parameter_count": 8543242,
+        "best_epoch": 3,
+        "training_time": 601.202141,
+        "peak_memory": null,
+        "inference_time": null,
+        "throughput": null,
+        "checkpoint_size": 112853673
+      },
+      "validation_status": "PASS",
+      "validation_errors": [],
+      "ready": true,
+      "resolved_config_model_id": "timexer"
+    },
+    {
+      "evidence_id": "E8_EXTERNAL_MULTIPATCHFORMER",
+      "evidence_role": "ORIGINAL26_EXTERNAL_INTERACTION_CONTEXT",
+      "model_id": "multipatchformer",
+      "display_name": "MultiPatchFormer",
+      "variant_id": null,
+      "source_type": "original26_xlsx_plus_formal_artifact",
+      "source_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\MultiPatchFormer_node_shared_p8_16_24_32_d256_bs4_seed2026",
+      "run_id": "MultiPatchFormer_node_shared_p8_16_24_32_d256_bs4_seed2026",
+      "run_status": "COMPLETED",
+      "metrics_source": {
+        "xlsx": "e2_b_seed2026/MultiPatchFormer_node_shared_p8_16_24_32_d256_bs4_seed2026/metrics.csv",
+        "artifact": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\MultiPatchFormer_node_shared_p8_16_24_32_d256_bs4_seed2026\\metrics.csv"
+      },
+      "metrics_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\MultiPatchFormer_node_shared_p8_16_24_32_d256_bs4_seed2026\\metrics.csv",
+        "size_bytes": 501,
+        "mtime_ns": 1787060980000000000
+      },
+      "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\MultiPatchFormer_node_shared_p8_16_24_32_d256_bs4_seed2026\\best_checkpoint.pt",
+      "checkpoint_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\MultiPatchFormer_node_shared_p8_16_24_32_d256_bs4_seed2026\\best_checkpoint.pt",
+        "size_bytes": 27957755,
+        "mtime_ns": 1787059850000000000
+      },
+      "protocol_identity": {
+        "protocol_id": "sdwpf_benchmark_v2",
+        "scope_id": "benchmark_v2_batch4_scope26_seed2026",
+        "training_batch_profile_id": "uniform_train_batch4_v1",
+        "train_batch_size": 4,
+        "val_batch_size": 4,
+        "test_batch_size": 4
+      },
+      "resolved_config_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\MultiPatchFormer_node_shared_p8_16_24_32_d256_bs4_seed2026\\resolved_config.json",
+        "size_bytes": 3976,
+        "mtime_ns": 1787058932000000000
+      },
+      "effective_config_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\MultiPatchFormer_node_shared_p8_16_24_32_d256_bs4_seed2026\\effective_config.json",
+        "size_bytes": 3976,
+        "mtime_ns": 1787058932000000000
+      },
+      "workbook_metrics": {
+        "3": {
+          "Score": 31.740392901107004,
+          "MAE": 260.31323896812194,
+          "RMSE": 365.0667182822834,
+          "R2": 0.2356430084380312
+        },
+        "6": {
+          "Score": 31.85881395030296,
+          "MAE": 262.0492532992569,
+          "RMSE": 368.65990035028096,
+          "R2": 0.22052218160223747
+        },
+        "10": {
+          "Score": 32.22958855447484,
+          "MAE": 264.86209749828663,
+          "RMSE": 372.4159014389386,
+          "R2": 0.20455152972150792
+        }
+      },
+      "artifact_metrics": {
+        "3": {
+          "Score": 31.740392901107004,
+          "MAE": 260.31323896812194,
+          "RMSE": 365.0667182822834,
+          "R2": 0.2356430084380312
+        },
+        "6": {
+          "Score": 31.85881395030296,
+          "MAE": 262.0492532992569,
+          "RMSE": 368.65990035028096,
+          "R2": 0.22052218160223747
+        },
+        "10": {
+          "Score": 32.22958855447484,
+          "MAE": 264.86209749828663,
+          "RMSE": 372.4159014389386,
+          "R2": 0.20455152972150792
+        }
+      },
+      "resource_stats": {
+        "parameter_count": 2344900,
+        "trainable_parameter_count": 2344900,
+        "best_epoch": 5,
+        "training_time": 2049.421759,
+        "peak_memory": null,
+        "inference_time": null,
+        "throughput": null,
+        "checkpoint_size": 27957755
+      },
+      "validation_status": "PASS",
+      "validation_errors": [],
+      "ready": true,
+      "resolved_config_model_id": "multipatchformer"
+    },
+    {
+      "evidence_id": "E8_EXTERNAL_TIMEMIXER",
+      "evidence_role": "ORIGINAL26_EXTERNAL_INTERACTION_CONTEXT",
+      "model_id": "timemixer",
+      "display_name": "TimeMixer",
+      "variant_id": null,
+      "source_type": "original26_xlsx_plus_formal_artifact",
+      "source_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_c_seed2026\\TimeMixer_node_shared_ci1_ds3_w2_avg_d16_bs4_seed2026",
+      "run_id": "TimeMixer_node_shared_ci1_ds3_w2_avg_d16_bs4_seed2026",
+      "run_status": "COMPLETED",
+      "metrics_source": {
+        "xlsx": "e2_c_seed2026/TimeMixer_node_shared_ci1_ds3_w2_avg_d16_bs4_seed2026/metrics.csv",
+        "artifact": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_c_seed2026\\TimeMixer_node_shared_ci1_ds3_w2_avg_d16_bs4_seed2026\\metrics.csv"
+      },
+      "metrics_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_c_seed2026\\TimeMixer_node_shared_ci1_ds3_w2_avg_d16_bs4_seed2026\\metrics.csv",
+        "size_bytes": 501,
+        "mtime_ns": 1786350934000000000
+      },
+      "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_c_seed2026\\TimeMixer_node_shared_ci1_ds3_w2_avg_d16_bs4_seed2026\\best_checkpoint.pt",
+      "checkpoint_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_c_seed2026\\TimeMixer_node_shared_ci1_ds3_w2_avg_d16_bs4_seed2026\\best_checkpoint.pt",
+        "size_bytes": 2779444,
+        "mtime_ns": 1786349972000000000
+      },
+      "protocol_identity": {
+        "protocol_id": "sdwpf_benchmark_v2",
+        "scope_id": "benchmark_v2_batch4_scope26_seed2026",
+        "training_batch_profile_id": "uniform_train_batch4_v1",
+        "train_batch_size": 4,
+        "val_batch_size": 4,
+        "test_batch_size": 4
+      },
+      "resolved_config_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_c_seed2026\\TimeMixer_node_shared_ci1_ds3_w2_avg_d16_bs4_seed2026\\resolved_config.json",
+        "size_bytes": 3721,
+        "mtime_ns": 1786349824000000000
+      },
+      "effective_config_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_c_seed2026\\TimeMixer_node_shared_ci1_ds3_w2_avg_d16_bs4_seed2026\\effective_config.json",
+        "size_bytes": 3721,
+        "mtime_ns": 1786349824000000000
+      },
+      "workbook_metrics": {
+        "3": {
+          "Score": 12.150686410878478,
+          "MAE": 96.5606882947184,
+          "RMSE": 130.53741971617325,
+          "R2": 0.9022713709176785
+        },
+        "6": {
+          "Score": 13.651528375766892,
+          "MAE": 111.05059995430807,
+          "RMSE": 153.6440973455688,
+          "R2": 0.8646108945092511
+        },
+        "10": {
+          "Score": 15.344068271861273,
+          "MAE": 126.9341514711367,
+          "RMSE": 177.1508133391964,
+          "R2": 0.8200126761254224
+        }
+      },
+      "artifact_metrics": {
+        "3": {
+          "Score": 12.150686410878478,
+          "MAE": 96.5606882947184,
+          "RMSE": 130.53741971617325,
+          "R2": 0.9022713709176785
+        },
+        "6": {
+          "Score": 13.651528375766892,
+          "MAE": 111.05059995430807,
+          "RMSE": 153.6440973455688,
+          "R2": 0.8646108945092511
+        },
+        "10": {
+          "Score": 15.344068271861273,
+          "MAE": 126.9341514711367,
+          "RMSE": 177.1508133391964,
+          "R2": 0.8200126761254224
+        }
+      },
+      "resource_stats": {
+        "parameter_count": 192285,
+        "trainable_parameter_count": 192285,
+        "best_epoch": 1,
+        "training_time": 1107.916878,
+        "peak_memory": null,
+        "inference_time": null,
+        "throughput": null,
+        "checkpoint_size": 2779444
+      },
+      "validation_status": "PASS",
+      "validation_errors": [],
+      "ready": true,
+      "resolved_config_model_id": "timemixer"
+    },
+    {
+      "evidence_id": "E8_EXTERNAL_TIMEFILTER",
+      "evidence_role": "ORIGINAL26_EXTERNAL_INTERACTION_CONTEXT",
+      "model_id": "timefilter",
+      "display_name": "TimeFilter",
+      "variant_id": null,
+      "source_type": "original26_xlsx_plus_formal_artifact",
+      "source_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_d_seed2026\\TimeFilter_node_shared_p16_d512_el2_tp0p5_bs4_seed2026",
+      "run_id": "TimeFilter_node_shared_p16_d512_el2_tp0p5_bs4_seed2026",
+      "run_status": "COMPLETED",
+      "metrics_source": {
+        "xlsx": "e2_d_seed2026/TimeFilter_node_shared_p16_d512_el2_tp0p5_bs4_seed2026/metrics.csv",
+        "artifact": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_d_seed2026\\TimeFilter_node_shared_p16_d512_el2_tp0p5_bs4_seed2026\\metrics.csv"
+      },
+      "metrics_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_d_seed2026\\TimeFilter_node_shared_p16_d512_el2_tp0p5_bs4_seed2026\\metrics.csv",
+        "size_bytes": 502,
+        "mtime_ns": 1786780258000000000
+      },
+      "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_d_seed2026\\TimeFilter_node_shared_p16_d512_el2_tp0p5_bs4_seed2026\\best_checkpoint.pt",
+      "checkpoint_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_d_seed2026\\TimeFilter_node_shared_p16_d512_el2_tp0p5_bs4_seed2026\\best_checkpoint.pt",
+        "size_bytes": 78168457,
+        "mtime_ns": 1786776244000000000
+      },
+      "protocol_identity": {
+        "protocol_id": "sdwpf_benchmark_v2",
+        "scope_id": "benchmark_v2_batch4_scope26_seed2026",
+        "training_batch_profile_id": "uniform_train_batch4_v1",
+        "train_batch_size": 4,
+        "val_batch_size": 4,
+        "test_batch_size": 4
+      },
+      "resolved_config_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_d_seed2026\\TimeFilter_node_shared_p16_d512_el2_tp0p5_bs4_seed2026\\resolved_config.json",
+        "size_bytes": 3377,
+        "mtime_ns": 1786770158000000000
+      },
+      "effective_config_identity": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_d_seed2026\\TimeFilter_node_shared_p16_d512_el2_tp0p5_bs4_seed2026\\effective_config.json",
+        "size_bytes": 3377,
+        "mtime_ns": 1786770158000000000
+      },
+      "workbook_metrics": {
+        "3": {
+          "Score": 12.17359816739544,
+          "MAE": 99.74597365211002,
+          "RMSE": 134.86136890665574,
+          "R2": 0.8956897740578657
+        },
+        "6": {
+          "Score": 13.763751784402773,
+          "MAE": 116.21284793860967,
+          "RMSE": 160.6704874475591,
+          "R2": 0.8519446242647984
+        },
+        "10": {
+          "Score": 16.143509570898875,
+          "MAE": 136.06509815896246,
+          "RMSE": 189.92613699915412,
+          "R2": 0.7931168650707618
+        }
+      },
+      "artifact_metrics": {
+        "3": {
+          "Score": 12.17359816739544,
+          "MAE": 99.74597365211002,
+          "RMSE": 134.86136890665574,
+          "R2": 0.8956897740578657
+        },
+        "6": {
+          "Score": 13.763751784402773,
+          "MAE": 116.21284793860967,
+          "RMSE": 160.6704874475591,
+          "R2": 0.8519446242647984
+        },
+        "10": {
+          "Score": 16.143509570898875,
+          "MAE": 136.06509815896246,
+          "RMSE": 189.92613699915412,
+          "R2": 0.7931168650707618
+        }
+      },
+      "resource_stats": {
+        "parameter_count": 4801994,
+        "trainable_parameter_count": 4801994,
+        "best_epoch": 11,
+        "training_time": 10099.872364,
+        "peak_memory": null,
+        "inference_time": null,
+        "throughput": null,
+        "checkpoint_size": 78168457
+      },
+      "validation_status": "PASS",
+      "validation_errors": [],
+      "ready": true,
+      "resolved_config_model_id": "timefilter"
+    }
+  ],
+  "evidence_count": 11,
+  "expected_external_model_ids": [
+    "patchtst",
+    "itransformer",
+    "timexer",
+    "multipatchformer",
+    "timemixer",
+    "timefilter"
+  ],
+  "unexpected_external_models": [],
+  "e5_consumed": false,
+  "a8_consumed": false,
+  "excluded_models_consumed": false
+}

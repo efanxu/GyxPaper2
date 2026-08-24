@@ -1,0 +1,26 @@
+{
+  "schema_version": "e8_diagnostic_side_effect_audit_v1",
+  "status": "BLOCKED_NOT_RUN",
+  "reason": "BLOCKED_INTERNAL_PROTOCOL_MISMATCH: evaluate-only export is not allowed from the available batch32 artifacts.",
+  "formal_checkpoint_evaluate_only_executed": false,
+  "source_artifacts_modified": false,
+  "static_mechanism_audit": {
+    "implementation_type": [
+      "attention",
+      "gate",
+      "residual",
+      "MLP",
+      "additive"
+    ],
+    "has_explicit_attention": true,
+    "has_explicit_gate": true,
+    "attention_fields_status": "EXTRACTABLE",
+    "gate_fields_status": "EXTRACTABLE",
+    "fine_coarse_actual_shape": "[B,144,134,64] under current formal input shape",
+    "fine_coarse_time_alignment": "identity; both branches preserve L=144",
+    "macro_prompt_physical_trend_output": false,
+    "st_prompt_horizon_conditioned": true,
+    "diagnostic_hooks_default_enabled": false
+  },
+  "side_effect_test_requirement": "Formal diagnostics remain ineligible until all five internal current-batch4 evidence slots pass."
+}

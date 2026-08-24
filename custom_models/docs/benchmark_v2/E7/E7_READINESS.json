@@ -1,0 +1,49 @@
+{
+  "schema_version": "e7_readiness_v1",
+  "INTERNAL_GRAPH_READY": "0/4",
+  "ORIGINAL26_EXTERNAL_READY": "6/6",
+  "CORE_E7_READY": "6/10",
+  "core_ready": false,
+  "GRAPH_DIAGNOSTICS_READY": "PARTIAL_EXTERNAL_ONLY",
+  "NODE_ANALYSIS_READY": "BLOCKED_PREDICTIONS_MISSING_OR_PROTOCOL_MISMATCH",
+  "GROUPED_ANALYSIS_READY": "BLOCKED_DEFINITION_MISSING",
+  "blockers": [
+    {
+      "evidence_id": "E7_INTERNAL_A0",
+      "errors": [
+        "MISSING_RESOLVED_CONFIG",
+        "FORMAL_RUN_STATUS_INVALID",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:train_batch_size",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id"
+      ]
+    },
+    {
+      "evidence_id": "E7_INTERNAL_A1",
+      "errors": [
+        "MISSING_RESOLVED_CONFIG",
+        "FORMAL_RUN_STATUS_INVALID",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:train_batch_size",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id"
+      ]
+    },
+    {
+      "evidence_id": "E7_INTERNAL_A2",
+      "errors": [
+        "MISSING_RESOLVED_CONFIG",
+        "FORMAL_RUN_STATUS_INVALID",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:train_batch_size",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id"
+      ]
+    },
+    {
+      "evidence_id": "E7_INTERNAL_A3",
+      "errors": [
+        "MISSING_RESOLVED_CONFIG",
+        "FORMAL_RUN_STATUS_INVALID",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:train_batch_size",
+        "INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id"
+      ]
+    }
+  ],
+  "fail_closed": true
+}

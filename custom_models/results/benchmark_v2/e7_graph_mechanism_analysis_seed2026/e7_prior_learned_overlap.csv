@@ -1,0 +1,2 @@
+﻿model_id,prior_matrix,learned_matrix,matched_k,prior_edges,learned_edges,shared,prior_only,learned_only,jaccard,precision,recall,row_wise_top_k_overlap,reciprocal_shared
+mtgnn,A_directed,learned_effective_native_top20,4,536,536,18,518,518,0.017077798861480076,0.033582089552238806,0.033582089552238806,0.033582089552238806,0

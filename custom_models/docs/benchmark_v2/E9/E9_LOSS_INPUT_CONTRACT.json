@@ -1,0 +1,126 @@
+{
+  "schema_version": "e9_loss_input_contract_v1",
+  "contract_type": "LossInputBundle",
+  "tensor_order": "(B,N,H)",
+  "fields": [
+    {
+      "field_name": "prediction",
+      "shape": [
+        "B",
+        "N",
+        "H"
+      ],
+      "dtype": "floating",
+      "semantic": "model forecast in normalized target space",
+      "source": "BenchmarkOutput.prediction",
+      "gradient_required": true,
+      "training_fitted": false,
+      "model_specific": false,
+      "normalization_space": "normalized_target_space",
+      "mask_semantics": "weighted only where mask=true",
+      "validation_rule": "exactly matches target and mask; H=10"
+    },
+    {
+      "field_name": "target",
+      "shape": [
+        "B",
+        "N",
+        "H"
+      ],
+      "dtype": "floating",
+      "semantic": "Patv_raw transformed by train-only target scaler",
+      "source": "BenchmarkBatch.target",
+      "gradient_required": false,
+      "training_fitted": false,
+      "model_specific": false,
+      "normalization_space": "normalized_target_space",
+      "mask_semantics": "invalid target is excluded",
+      "validation_rule": "exactly matches prediction and mask"
+    },
+    {
+      "field_name": "mask",
+      "shape": [
+        "B",
+        "N",
+        "H"
+      ],
+      "dtype": "bool or explicit 0/1",
+      "semantic": "valid_target_mask",
+      "source": "BenchmarkBatch.mask",
+      "gradient_required": false,
+      "training_fitted": false,
+      "model_specific": false,
+      "normalization_space": "not_applicable",
+      "mask_semantics": "true/1 participates; all-masked returns None and skips optimizer step",
+      "validation_rule": "only bool/0/1 values; exact tensor alignment"
+    },
+    {
+      "field_name": "site_id",
+      "shape": [
+        "N"
+      ],
+      "dtype": "canonical identifier",
+      "semantic": "frozen node axis used by site EMA weights",
+      "source": "BenchmarkBatch.node_ids",
+      "gradient_required": false,
+      "training_fitted": false,
+      "model_specific": false,
+      "normalization_space": "not_applicable",
+      "mask_semantics": "site valid iff any valid element exists",
+      "validation_rule": "length equals N; graph models preserve ordered node ids 1..134"
+    },
+    {
+      "field_name": "horizon_index",
+      "shape": [
+        "H"
+      ],
+      "dtype": "int",
+      "semantic": "one-based forecast offsets with prefixes H3/H6/H10",
+      "source": "public protocol",
+      "gradient_required": false,
+      "training_fitted": false,
+      "model_specific": false,
+      "normalization_space": "not_applicable",
+      "mask_semantics": "prefix loss uses matching mask prefix",
+      "validation_rule": "exactly 1..10; eval_horizons exactly [3,6,10]"
+    },
+    {
+      "field_name": "normalization_identity",
+      "shape": [],
+      "dtype": "string",
+      "semantic": "identity of train-only standard z-score target space",
+      "source": "formal protocol",
+      "gradient_required": false,
+      "training_fitted": true,
+      "model_specific": false,
+      "normalization_space": "train_only standard_zscore",
+      "mask_semantics": "fit excludes invalid targets",
+      "validation_rule": "target_loss_space=normalized_target_space and normalization_fit_scope=train_only"
+    },
+    {
+      "field_name": "protocol_identity",
+      "shape": [],
+      "dtype": "string",
+      "semantic": "sdwpf_benchmark_v2 plus uniform_train_batch4_v1",
+      "source": "formal protocol/profile",
+      "gradient_required": false,
+      "training_fitted": false,
+      "model_specific": false,
+      "normalization_space": "not_applicable",
+      "mask_semantics": "not_applicable",
+      "validation_rule": "protocol and batch profile must match control"
+    }
+  ],
+  "forbidden_fields": [
+    "hidden_states",
+    "attention",
+    "graph_embedding",
+    "Fine representation",
+    "Coarse representation",
+    "Prompt representation",
+    "Cross gate",
+    "model-specific auxiliary tensor"
+  ],
+  "contract_hash": "NOT_GENERATED_REPOSITORY_POLICY",
+  "validation_status": "PASS"
+}

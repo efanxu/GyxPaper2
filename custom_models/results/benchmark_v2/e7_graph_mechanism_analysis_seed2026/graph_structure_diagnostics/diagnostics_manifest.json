@@ -1,0 +1,1720 @@
+{
+  "schema_version": "e7_graph_diagnostics_manifest_v1",
+  "status": "PARTIAL_EXTERNAL_ONLY",
+  "graph_protocol": {
+    "graph_id": "sdwpf_physical_knn_v1",
+    "node_count": 134,
+    "selected_k": 4,
+    "ordered_node_ids": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134
+    ],
+    "read_only": true,
+    "training_executed": false
+  },
+  "exports": [
+    {
+      "model_id": "graph",
+      "matrix_name": "prior_A_directed",
+      "matrix_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2\\e7_graph_mechanism_analysis_seed2026\\graph_structure_diagnostics\\graph\\prior_A_directed.npz",
+      "metadata_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2\\e7_graph_mechanism_analysis_seed2026\\graph_structure_diagnostics\\graph\\prior_A_directed_metadata.json"
+    },
+    {
+      "model_id": "gcn",
+      "matrix_name": "effective_A_gcn",
+      "matrix_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2\\e7_graph_mechanism_analysis_seed2026\\graph_structure_diagnostics\\gcn\\effective_A_gcn.npz",
+      "metadata_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2\\e7_graph_mechanism_analysis_seed2026\\graph_structure_diagnostics\\gcn\\effective_A_gcn_metadata.json"
+    },
+    {
+      "model_id": "stgcn",
+      "matrix_name": "effective_L_tilde",
+      "matrix_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2\\e7_graph_mechanism_analysis_seed2026\\graph_structure_diagnostics\\stgcn\\effective_L_tilde.npz",
+      "metadata_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2\\e7_graph_mechanism_analysis_seed2026\\graph_structure_diagnostics\\stgcn\\effective_L_tilde_metadata.json"
+    },
+    {
+      "model_id": "dcrnn",
+      "matrix_name": "effective_P_forward",
+      "matrix_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2\\e7_graph_mechanism_analysis_seed2026\\graph_structure_diagnostics\\dcrnn\\effective_P_forward.npz",
+      "metadata_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2\\e7_graph_mechanism_analysis_seed2026\\graph_structure_diagnostics\\dcrnn\\effective_P_forward_metadata.json"
+    },
+    {
+      "model_id": "dcrnn",
+      "matrix_name": "effective_P_reverse",
+      "matrix_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2\\e7_graph_mechanism_analysis_seed2026\\graph_structure_diagnostics\\dcrnn\\effective_P_reverse.npz",
+      "metadata_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2\\e7_graph_mechanism_analysis_seed2026\\graph_structure_diagnostics\\dcrnn\\effective_P_reverse_metadata.json"
+    },
+    {
+      "model_id": "mtgnn",
+      "matrix_name": "raw_learned_scores",
+      "matrix_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2\\e7_graph_mechanism_analysis_seed2026\\graph_structure_diagnostics\\mtgnn\\raw_learned_scores.npz",
+      "metadata_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2\\e7_graph_mechanism_analysis_seed2026\\graph_structure_diagnostics\\mtgnn\\raw_learned_scores_metadata.json"
+    },
+    {
+      "model_id": "mtgnn",
+      "matrix_name": "learned_effective_native_top20",
+      "matrix_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2\\e7_graph_mechanism_analysis_seed2026\\graph_structure_diagnostics\\mtgnn\\learned_effective_native_top20.npz",
+      "metadata_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2\\e7_graph_mechanism_analysis_seed2026\\graph_structure_diagnostics\\mtgnn\\learned_effective_native_top20_metadata.json"
+    },
+    {
+      "model_id": "mtgnn",
+      "matrix_name": "learned_matched_top4",
+      "matrix_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2\\e7_graph_mechanism_analysis_seed2026\\graph_structure_diagnostics\\mtgnn\\learned_matched_top4.npz",
+      "metadata_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2\\e7_graph_mechanism_analysis_seed2026\\graph_structure_diagnostics\\mtgnn\\learned_matched_top4_metadata.json"
+    }
+  ],
+  "statistics": [
+    {
+      "model_id": "graph",
+      "matrix_name": "prior_A_directed",
+      "node_count": 134,
+      "edge_count": 536,
+      "nonself_edge_count": 536,
+      "density": 0.029850746268656716,
+      "self_loop_count": 0,
+      "symmetry_ratio": 0.8880597014925373,
+      "reciprocal_edge_ratio": 0.8880597014925373,
+      "weight_quantiles": {
+        "q0": 0.078131332041,
+        "q25": 0.3444351285,
+        "q50": 0.3678802494535,
+        "q75": 0.76576340057825,
+        "q90": 0.7678828505765001,
+        "q99": 0.7978853537877999,
+        "q100": 0.823103179261
+      },
+      "out_degree_min": 4,
+      "out_degree_mean": 4.0,
+      "out_degree_max": 4,
+      "in_degree_min": 2,
+      "in_degree_mean": 4.0,
+      "in_degree_max": 8,
+      "top_influence_nodes": [
+        {
+          "TurbID": 33,
+          "weighted_in_degree": 3.378149599739,
+          "weighted_out_degree": 2.240200378171
+        },
+        {
+          "TurbID": 107,
+          "weighted_in_degree": 2.959091317271,
+          "weighted_out_degree": 2.2721871506299998
+        },
+        {
+          "TurbID": 43,
+          "weighted_in_degree": 2.941951873479,
+          "weighted_out_degree": 2.262896739111
+        },
+        {
+          "TurbID": 98,
+          "weighted_in_degree": 2.914885115368,
+          "weighted_out_degree": 2.259066576923
+        },
+        {
+          "TurbID": 111,
+          "weighted_in_degree": 2.912696023549,
+          "weighted_out_degree": 2.232539645214
+        },
+        {
+          "TurbID": 133,
+          "weighted_in_degree": 2.9077046982950003,
+          "weighted_out_degree": 2.2232885677430003
+        },
+        {
+          "TurbID": 5,
+          "weighted_in_degree": 2.8376185832619996,
+          "weighted_out_degree": 2.2075182256190002
+        },
+        {
+          "TurbID": 37,
+          "weighted_in_degree": 2.79052866603,
+          "weighted_out_degree": 2.18424952116
+        },
+        {
+          "TurbID": 55,
+          "weighted_in_degree": 2.6500650614430006,
+          "weighted_out_degree": 2.2353021502660004
+        },
+        {
+          "TurbID": 76,
+          "weighted_in_degree": 2.638607246041,
+          "weighted_out_degree": 2.216245474172
+        }
+      ],
+      "top_weighted_edges": [
+        {
+          "source_TurbID": 71,
+          "target_TurbID": 72,
+          "weight": 0.823103179261
+        },
+        {
+          "source_TurbID": 72,
+          "target_TurbID": 71,
+          "weight": 0.823103179261
+        },
+        {
+          "source_TurbID": 97,
+          "target_TurbID": 98,
+          "weight": 0.803198885503
+        },
+        {
+          "source_TurbID": 98,
+          "target_TurbID": 97,
+          "weight": 0.803198885503
+        },
+        {
+          "source_TurbID": 103,
+          "target_TurbID": 104,
+          "weight": 0.798813560323
+        },
+        {
+          "source_TurbID": 104,
+          "target_TurbID": 103,
+          "weight": 0.798813560323
+        },
+        {
+          "source_TurbID": 81,
+          "target_TurbID": 82,
+          "weight": 0.796161541651
+        },
+        {
+          "source_TurbID": 82,
+          "target_TurbID": 81,
+          "weight": 0.796161541651
+        },
+        {
+          "source_TurbID": 44,
+          "target_TurbID": 45,
+          "weight": 0.791942599322
+        },
+        {
+          "source_TurbID": 45,
+          "target_TurbID": 44,
+          "weight": 0.791942599322
+        },
+        {
+          "source_TurbID": 67,
+          "target_TurbID": 68,
+          "weight": 0.791870288626
+        },
+        {
+          "source_TurbID": 68,
+          "target_TurbID": 67,
+          "weight": 0.791870288626
+        },
+        {
+          "source_TurbID": 54,
+          "target_TurbID": 55,
+          "weight": 0.790572185973
+        },
+        {
+          "source_TurbID": 55,
+          "target_TurbID": 54,
+          "weight": 0.790572185973
+        },
+        {
+          "source_TurbID": 92,
+          "target_TurbID": 93,
+          "weight": 0.789897429902
+        },
+        {
+          "source_TurbID": 93,
+          "target_TurbID": 92,
+          "weight": 0.789897429902
+        },
+        {
+          "source_TurbID": 7,
+          "target_TurbID": 8,
+          "weight": 0.78871717423
+        },
+        {
+          "source_TurbID": 8,
+          "target_TurbID": 7,
+          "weight": 0.78871717423
+        },
+        {
+          "source_TurbID": 64,
+          "target_TurbID": 65,
+          "weight": 0.788364423223
+        },
+        {
+          "source_TurbID": 65,
+          "target_TurbID": 64,
+          "weight": 0.788364423223
+        }
+      ]
+    },
+    {
+      "model_id": "gcn",
+      "matrix_name": "effective_A_gcn",
+      "node_count": 134,
+      "edge_count": 730,
+      "nonself_edge_count": 596,
+      "density": 0.04065493428380486,
+      "self_loop_count": 134,
+      "symmetry_ratio": 1.0,
+      "reciprocal_edge_ratio": 1.0,
+      "weight_quantiles": {
+        "q0": 0.02847036612,
+        "q25": 0.102247047078,
+        "q50": 0.207929519194,
+        "q75": 0.2397261216425,
+        "q90": 0.31023600084470004,
+        "q99": 0.36771824385833,
+        "q100": 0.434051430974
+      },
+      "out_degree_min": 4,
+      "out_degree_mean": 4.447761194029851,
+      "out_degree_max": 8,
+      "in_degree_min": 4,
+      "in_degree_mean": 4.447761194029851,
+      "in_degree_max": 8,
+      "top_influence_nodes": [
+        {
+          "TurbID": 33,
+          "weighted_in_degree": 0.9243434184389999,
+          "weighted_out_degree": 0.924343418439
+        },
+        {
+          "TurbID": 37,
+          "weighted_in_degree": 0.8241024930349999,
+          "weighted_out_degree": 0.824102493035
+        },
+        {
+          "TurbID": 107,
+          "weighted_in_degree": 0.818115702549,
+          "weighted_out_degree": 0.818115702549
+        },
+        {
+          "TurbID": 98,
+          "weighted_in_degree": 0.817896240262,
+          "weighted_out_degree": 0.817896240262
+        },
+        {
+          "TurbID": 43,
+          "weighted_in_degree": 0.814568533,
+          "weighted_out_degree": 0.814568533
+        },
+        {
+          "TurbID": 133,
+          "weighted_in_degree": 0.795394585082,
+          "weighted_out_degree": 0.795394585082
+        },
+        {
+          "TurbID": 5,
+          "weighted_in_degree": 0.787977139607,
+          "weighted_out_degree": 0.787977139607
+        },
+        {
+          "TurbID": 27,
+          "weighted_in_degree": 0.785080530236,
+          "weighted_out_degree": 0.785080530236
+        },
+        {
+          "TurbID": 111,
+          "weighted_in_degree": 0.780513268557,
+          "weighted_out_degree": 0.780513268557
+        },
+        {
+          "TurbID": 55,
+          "weighted_in_degree": 0.7798480628760001,
+          "weighted_out_degree": 0.779848062876
+        }
+      ],
+      "top_weighted_edges": [
+        {
+          "source_TurbID": 7,
+          "target_TurbID": 8,
+          "weight": 0.289976067868
+        },
+        {
+          "source_TurbID": 8,
+          "target_TurbID": 7,
+          "weight": 0.289976067868
+        },
+        {
+          "source_TurbID": 80,
+          "target_TurbID": 81,
+          "weight": 0.287017310883
+        },
+        {
+          "source_TurbID": 81,
+          "target_TurbID": 80,
+          "weight": 0.287017310883
+        },
+        {
+          "source_TurbID": 11,
+          "target_TurbID": 12,
+          "weight": 0.275580948063
+        },
+        {
+          "source_TurbID": 12,
+          "target_TurbID": 11,
+          "weight": 0.275580948063
+        },
+        {
+          "source_TurbID": 52,
+          "target_TurbID": 53,
+          "weight": 0.27246116096
+        },
+        {
+          "source_TurbID": 53,
+          "target_TurbID": 52,
+          "weight": 0.27246116096
+        },
+        {
+          "source_TurbID": 122,
+          "target_TurbID": 123,
+          "weight": 0.265489329153
+        },
+        {
+          "source_TurbID": 123,
+          "target_TurbID": 122,
+          "weight": 0.265489329153
+        },
+        {
+          "source_TurbID": 56,
+          "target_TurbID": 57,
+          "weight": 0.262787237648
+        },
+        {
+          "source_TurbID": 57,
+          "target_TurbID": 56,
+          "weight": 0.262787237648
+        },
+        {
+          "source_TurbID": 124,
+          "target_TurbID": 125,
+          "weight": 0.262609003186
+        },
+        {
+          "source_TurbID": 125,
+          "target_TurbID": 124,
+          "weight": 0.262609003186
+        },
+        {
+          "source_TurbID": 9,
+          "target_TurbID": 10,
+          "weight": 0.261744480177
+        },
+        {
+          "source_TurbID": 10,
+          "target_TurbID": 9,
+          "weight": 0.261744480177
+        },
+        {
+          "source_TurbID": 58,
+          "target_TurbID": 59,
+          "weight": 0.260356085619
+        },
+        {
+          "source_TurbID": 59,
+          "target_TurbID": 58,
+          "weight": 0.260356085619
+        },
+        {
+          "source_TurbID": 50,
+          "target_TurbID": 51,
+          "weight": 0.259361011288
+        },
+        {
+          "source_TurbID": 51,
+          "target_TurbID": 50,
+          "weight": 0.259361011288
+        }
+      ]
+    },
+    {
+      "model_id": "stgcn",
+      "matrix_name": "effective_L_tilde",
+      "node_count": 134,
+      "edge_count": 596,
+      "nonself_edge_count": 596,
+      "density": 0.03319224771664068,
+      "self_loop_count": 0,
+      "symmetry_ratio": 1.0,
+      "reciprocal_edge_ratio": 1.0,
+      "weight_quantiles": {
+        "q0": -0.464617506048,
+        "q25": -0.32607373493,
+        "q50": -0.1590867346375,
+        "q75": -0.141634819638,
+        "q90": -0.129119370771,
+        "q99": -0.05190302520600003,
+        "q100": -0.045425199917
+      },
+      "out_degree_min": 4,
+      "out_degree_mean": 4.447761194029851,
+      "out_degree_max": 8,
+      "in_degree_min": 4,
+      "in_degree_mean": 4.447761194029851,
+      "in_degree_max": 8,
+      "top_influence_nodes": [
+        {
+          "TurbID": 80,
+          "weighted_in_degree": -0.779133667214,
+          "weighted_out_degree": -0.779133667214
+        },
+        {
+          "TurbID": 52,
+          "weighted_in_degree": -0.798260711409,
+          "weighted_out_degree": -0.7982607114090001
+        },
+        {
+          "TurbID": 8,
+          "weighted_in_degree": -0.8049675253840001,
+          "weighted_out_degree": -0.804967525384
+        },
+        {
+          "TurbID": 35,
+          "weighted_in_degree": -0.8342684452589999,
+          "weighted_out_degree": -0.8342684452589999
+        },
+        {
+          "TurbID": 57,
+          "weighted_in_degree": -0.851573241976,
+          "weighted_out_degree": -0.851573241976
+        },
+        {
+          "TurbID": 12,
+          "weighted_in_degree": -0.856402173738,
+          "weighted_out_degree": -0.856402173738
+        },
+        {
+          "TurbID": 9,
+          "weighted_in_degree": -0.857994551483,
+          "weighted_out_degree": -0.8579945514829999
+        },
+        {
+          "TurbID": 79,
+          "weighted_in_degree": -0.860869867306,
+          "weighted_out_degree": -0.860869867306
+        },
+        {
+          "TurbID": 51,
+          "weighted_in_degree": -0.864098791992,
+          "weighted_out_degree": -0.864098791992
+        },
+        {
+          "TurbID": 123,
+          "weighted_in_degree": -0.8658629474539999,
+          "weighted_out_degree": -0.8658629474539999
+        }
+      ],
+      "top_weighted_edges": [
+        {
+          "source_TurbID": 14,
+          "target_TurbID": 80,
+          "weight": -0.045425199917
+        },
+        {
+          "source_TurbID": 80,
+          "target_TurbID": 14,
+          "weight": -0.045425199917
+        },
+        {
+          "source_TurbID": 80,
+          "target_TurbID": 83,
+          "weight": -0.050424906875
+        },
+        {
+          "source_TurbID": 83,
+          "target_TurbID": 80,
+          "weight": -0.050424906875
+        },
+        {
+          "source_TurbID": 12,
+          "target_TurbID": 34,
+          "weight": -0.051407697505
+        },
+        {
+          "source_TurbID": 34,
+          "target_TurbID": 12,
+          "weight": -0.051407697505
+        },
+        {
+          "source_TurbID": 8,
+          "target_TurbID": 76,
+          "weight": -0.051929095085
+        },
+        {
+          "source_TurbID": 76,
+          "target_TurbID": 8,
+          "weight": -0.051929095085
+        },
+        {
+          "source_TurbID": 52,
+          "target_TurbID": 55,
+          "weight": -0.054134946285
+        },
+        {
+          "source_TurbID": 55,
+          "target_TurbID": 52,
+          "weight": -0.054134946285
+        },
+        {
+          "source_TurbID": 7,
+          "target_TurbID": 30,
+          "weight": -0.082956509016
+        },
+        {
+          "source_TurbID": 30,
+          "target_TurbID": 7,
+          "weight": -0.082956509016
+        },
+        {
+          "source_TurbID": 81,
+          "target_TurbID": 102,
+          "weight": -0.083100988063
+        },
+        {
+          "source_TurbID": 102,
+          "target_TurbID": 81,
+          "weight": -0.083100988063
+        },
+        {
+          "source_TurbID": 100,
+          "target_TurbID": 123,
+          "weight": -0.095005456246
+        },
+        {
+          "source_TurbID": 123,
+          "target_TurbID": 100,
+          "weight": -0.095005456246
+        },
+        {
+          "source_TurbID": 8,
+          "target_TurbID": 31,
+          "weight": -0.097381036597
+        },
+        {
+          "source_TurbID": 31,
+          "target_TurbID": 8,
+          "weight": -0.097381036597
+        },
+        {
+          "source_TurbID": 33,
+          "target_TurbID": 56,
+          "weight": -0.09762877442
+        },
+        {
+          "source_TurbID": 56,
+          "target_TurbID": 33,
+          "weight": -0.09762877442
+        }
+      ]
+    },
+    {
+      "model_id": "dcrnn",
+      "matrix_name": "effective_P_forward",
+      "node_count": 134,
+      "edge_count": 536,
+      "nonself_edge_count": 536,
+      "density": 0.029850746268656716,
+      "self_loop_count": 0,
+      "symmetry_ratio": 0.0,
+      "reciprocal_edge_ratio": 0.8880597014925373,
+      "weight_quantiles": {
+        "q0": 0.05992243524,
+        "q25": 0.1558172820725,
+        "q50": 0.1979036953285,
+        "q75": 0.344900226454,
+        "q90": 0.3516784212395,
+        "q99": 0.45011983314919995,
+        "q100": 0.585446994928
+      },
+      "out_degree_min": 4,
+      "out_degree_mean": 4.0,
+      "out_degree_max": 4,
+      "in_degree_min": 2,
+      "in_degree_mean": 4.0,
+      "in_degree_max": 8,
+      "top_influence_nodes": [
+        {
+          "TurbID": 33,
+          "weighted_in_degree": 1.7123778238650003,
+          "weighted_out_degree": 1.0
+        },
+        {
+          "TurbID": 37,
+          "weighted_in_degree": 1.4385203056580003,
+          "weighted_out_degree": 1.0
+        },
+        {
+          "TurbID": 98,
+          "weighted_in_degree": 1.358408405807,
+          "weighted_out_degree": 1.0
+        },
+        {
+          "TurbID": 5,
+          "weighted_in_degree": 1.334812317843,
+          "weighted_out_degree": 1.000000000001
+        },
+        {
+          "TurbID": 107,
+          "weighted_in_degree": 1.3292901559799999,
+          "weighted_out_degree": 1.0
+        },
+        {
+          "TurbID": 43,
+          "weighted_in_degree": 1.317443667795,
+          "weighted_out_degree": 0.9999999999999999
+        },
+        {
+          "TurbID": 54,
+          "weighted_in_degree": 1.31474444506,
+          "weighted_out_degree": 1.0000000000009999
+        },
+        {
+          "TurbID": 55,
+          "weighted_in_degree": 1.3132765101160002,
+          "weighted_out_degree": 1.0
+        },
+        {
+          "TurbID": 133,
+          "weighted_in_degree": 1.30932886119,
+          "weighted_out_degree": 1.0
+        },
+        {
+          "TurbID": 111,
+          "weighted_in_degree": 1.306575229841,
+          "weighted_out_degree": 1.0
+        }
+      ],
+      "top_weighted_edges": [
+        {
+          "source_TurbID": 80,
+          "target_TurbID": 81,
+          "weight": 0.585446994928
+        },
+        {
+          "source_TurbID": 8,
+          "target_TurbID": 7,
+          "weight": 0.553958633139
+        },
+        {
+          "source_TurbID": 52,
+          "target_TurbID": 53,
+          "weight": 0.522726426168
+        },
+        {
+          "source_TurbID": 12,
+          "target_TurbID": 11,
+          "weight": 0.517466484218
+        },
+        {
+          "source_TurbID": 123,
+          "target_TurbID": 122,
+          "weight": 0.472469279408
+        },
+        {
+          "source_TurbID": 30,
+          "target_TurbID": 29,
+          "weight": 0.450742177588
+        },
+        {
+          "source_TurbID": 35,
+          "target_TurbID": 34,
+          "weight": 0.44896405062
+        },
+        {
+          "source_TurbID": 9,
+          "target_TurbID": 10,
+          "weight": 0.448502693194
+        },
+        {
+          "source_TurbID": 13,
+          "target_TurbID": 14,
+          "weight": 0.446229133286
+        },
+        {
+          "source_TurbID": 36,
+          "target_TurbID": 37,
+          "weight": 0.445889240914
+        },
+        {
+          "source_TurbID": 58,
+          "target_TurbID": 59,
+          "weight": 0.444417877999
+        },
+        {
+          "source_TurbID": 124,
+          "target_TurbID": 125,
+          "weight": 0.441795111676
+        },
+        {
+          "source_TurbID": 101,
+          "target_TurbID": 100,
+          "weight": 0.441093218463
+        },
+        {
+          "source_TurbID": 31,
+          "target_TurbID": 32,
+          "weight": 0.440223347679
+        },
+        {
+          "source_TurbID": 57,
+          "target_TurbID": 56,
+          "weight": 0.439942413255
+        },
+        {
+          "source_TurbID": 51,
+          "target_TurbID": 50,
+          "weight": 0.438360972487
+        },
+        {
+          "source_TurbID": 79,
+          "target_TurbID": 78,
+          "weight": 0.436552697021
+        },
+        {
+          "source_TurbID": 102,
+          "target_TurbID": 103,
+          "weight": 0.435779081246
+        },
+        {
+          "source_TurbID": 81,
+          "target_TurbID": 82,
+          "weight": 0.384575309115
+        },
+        {
+          "source_TurbID": 7,
+          "target_TurbID": 8,
+          "weight": 0.384312545569
+        }
+      ]
+    },
+    {
+      "model_id": "dcrnn",
+      "matrix_name": "effective_P_reverse",
+      "node_count": 134,
+      "edge_count": 536,
+      "nonself_edge_count": 536,
+      "density": 0.029850746268656716,
+      "self_loop_count": 0,
+      "symmetry_ratio": 0.0,
+      "reciprocal_edge_ratio": 0.8880597014925373,
+      "weight_quantiles": {
+        "q0": 0.035968206702,
+        "q25": 0.15370924881925,
+        "q50": 0.216711578756,
+        "q75": 0.34491216546725,
+        "q90": 0.4069220304875,
+        "q99": 0.5439977664553999,
+        "q100": 0.689829019263
+      },
+      "out_degree_min": 2,
+      "out_degree_mean": 4.0,
+      "out_degree_max": 8,
+      "in_degree_min": 4,
+      "in_degree_mean": 4.0,
+      "in_degree_max": 4,
+      "top_influence_nodes": [
+        {
+          "TurbID": 11,
+          "weighted_in_degree": 1.3584402996090001,
+          "weighted_out_degree": 1.000000000001
+        },
+        {
+          "TurbID": 81,
+          "weighted_in_degree": 1.333677871067,
+          "weighted_out_degree": 1.0
+        },
+        {
+          "TurbID": 50,
+          "weighted_in_degree": 1.327894594679,
+          "weighted_out_degree": 1.0
+        },
+        {
+          "TurbID": 53,
+          "weighted_in_degree": 1.269105489467,
+          "weighted_out_degree": 1.0
+        },
+        {
+          "TurbID": 7,
+          "weighted_in_degree": 1.2678882012169999,
+          "weighted_out_degree": 1.0
+        },
+        {
+          "TurbID": 10,
+          "weighted_in_degree": 1.2404692928549998,
+          "weighted_out_degree": 1.0
+        },
+        {
+          "TurbID": 125,
+          "weighted_in_degree": 1.224954417352,
+          "weighted_out_degree": 1.0
+        },
+        {
+          "TurbID": 54,
+          "weighted_in_degree": 1.21210859248,
+          "weighted_out_degree": 1.0
+        },
+        {
+          "TurbID": 6,
+          "weighted_in_degree": 1.199247029068,
+          "weighted_out_degree": 0.9999999999989999
+        },
+        {
+          "TurbID": 49,
+          "weighted_in_degree": 1.196542334908,
+          "weighted_out_degree": 1.000000000001
+        }
+      ],
+      "top_weighted_edges": [
+        {
+          "source_TurbID": 51,
+          "target_TurbID": 50,
+          "weight": 0.689829019263
+        },
+        {
+          "source_TurbID": 8,
+          "target_TurbID": 7,
+          "weight": 0.683510077211
+        },
+        {
+          "source_TurbID": 52,
+          "target_TurbID": 53,
+          "weight": 0.678966558957
+        },
+        {
+          "source_TurbID": 80,
+          "target_TurbID": 81,
+          "weight": 0.673403315302
+        },
+        {
+          "source_TurbID": 12,
+          "target_TurbID": 11,
+          "weight": 0.553204764575
+        },
+        {
+          "source_TurbID": 9,
+          "target_TurbID": 10,
+          "weight": 0.545108736251
+        },
+        {
+          "source_TurbID": 13,
+          "target_TurbID": 14,
+          "weight": 0.541934536835
+        },
+        {
+          "source_TurbID": 124,
+          "target_TurbID": 125,
+          "weight": 0.535688432764
+        },
+        {
+          "source_TurbID": 123,
+          "target_TurbID": 122,
+          "weight": 0.533897075103
+        },
+        {
+          "source_TurbID": 79,
+          "target_TurbID": 78,
+          "weight": 0.525654290505
+        },
+        {
+          "source_TurbID": 57,
+          "target_TurbID": 56,
+          "weight": 0.522262535268
+        },
+        {
+          "source_TurbID": 31,
+          "target_TurbID": 32,
+          "weight": 0.51436021481
+        },
+        {
+          "source_TurbID": 7,
+          "target_TurbID": 8,
+          "weight": 0.507485773389
+        },
+        {
+          "source_TurbID": 30,
+          "target_TurbID": 29,
+          "weight": 0.50659823184
+        },
+        {
+          "source_TurbID": 131,
+          "target_TurbID": 132,
+          "weight": 0.500900383591
+        },
+        {
+          "source_TurbID": 131,
+          "target_TurbID": 130,
+          "weight": 0.499099616409
+        },
+        {
+          "source_TurbID": 7,
+          "target_TurbID": 6,
+          "weight": 0.492514226611
+        },
+        {
+          "source_TurbID": 102,
+          "target_TurbID": 103,
+          "weight": 0.470911103147
+        },
+        {
+          "source_TurbID": 35,
+          "target_TurbID": 34,
+          "weight": 0.44896405062
+        },
+        {
+          "source_TurbID": 36,
+          "target_TurbID": 37,
+          "weight": 0.445889240914
+        }
+      ]
+    },
+    {
+      "model_id": "mtgnn",
+      "matrix_name": "raw_learned_scores",
+      "node_count": 134,
+      "edge_count": 17956,
+      "nonself_edge_count": 17822,
+      "density": 1.0,
+      "self_loop_count": 134,
+      "symmetry_ratio": 0.0,
+      "reciprocal_edge_ratio": 1.0,
+      "weight_quantiles": {
+        "q0": 0.04742586612701416,
+        "q25": 0.23984042555093765,
+        "q50": 0.5,
+        "q75": 0.7682480067014694,
+        "q90": 0.9000617563724518,
+        "q99": 0.9454810857772827,
+        "q100": 0.9525741338729858
+      },
+      "out_degree_min": 133,
+      "out_degree_mean": 133.0,
+      "out_degree_max": 133,
+      "in_degree_min": 133,
+      "in_degree_mean": 133.0,
+      "in_degree_max": 133,
+      "top_influence_nodes": [
+        {
+          "TurbID": 44,
+          "weighted_in_degree": 114.7477892562747,
+          "weighted_out_degree": 19.90656927227974
+        },
+        {
+          "TurbID": 119,
+          "weighted_in_degree": 114.70477164536715,
+          "weighted_out_degree": 19.440515778958797
+        },
+        {
+          "TurbID": 23,
+          "weighted_in_degree": 114.44541146606207,
+          "weighted_out_degree": 19.246927872300148
+        },
+        {
+          "TurbID": 132,
+          "weighted_in_degree": 114.2940703779459,
+          "weighted_out_degree": 21.8414959423244
+        },
+        {
+          "TurbID": 111,
+          "weighted_in_degree": 112.79806021600962,
+          "weighted_out_degree": 20.615206994116306
+        },
+        {
+          "TurbID": 91,
+          "weighted_in_degree": 112.6031137779355,
+          "weighted_out_degree": 14.97943014279008
+        },
+        {
+          "TurbID": 42,
+          "weighted_in_degree": 109.71896280348301,
+          "weighted_out_degree": 25.487618818879128
+        },
+        {
+          "TurbID": 47,
+          "weighted_in_degree": 98.18758565932512,
+          "weighted_out_degree": 36.1216736137867
+        },
+        {
+          "TurbID": 3,
+          "weighted_in_degree": 93.92812309414148,
+          "weighted_out_degree": 42.51127816736698
+        },
+        {
+          "TurbID": 26,
+          "weighted_in_degree": 87.41227739304304,
+          "weighted_out_degree": 45.96544623747468
+        }
+      ],
+      "top_weighted_edges": [
+        {
+          "source_TurbID": 1,
+          "target_TurbID": 17,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 3,
+          "target_TurbID": 131,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 4,
+          "target_TurbID": 41,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 5,
+          "target_TurbID": 47,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 8,
+          "target_TurbID": 41,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 16,
+          "target_TurbID": 9,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 23,
+          "target_TurbID": 3,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 24,
+          "target_TurbID": 17,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 25,
+          "target_TurbID": 9,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 28,
+          "target_TurbID": 85,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 30,
+          "target_TurbID": 17,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 31,
+          "target_TurbID": 41,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 40,
+          "target_TurbID": 17,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 44,
+          "target_TurbID": 3,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 51,
+          "target_TurbID": 134,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 68,
+          "target_TurbID": 17,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 69,
+          "target_TurbID": 29,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 80,
+          "target_TurbID": 17,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 83,
+          "target_TurbID": 44,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 89,
+          "target_TurbID": 17,
+          "weight": 0.9525741338729858
+        }
+      ]
+    },
+    {
+      "model_id": "mtgnn",
+      "matrix_name": "learned_effective_native_top20",
+      "node_count": 134,
+      "edge_count": 2680,
+      "nonself_edge_count": 2662,
+      "density": 0.14925373134328357,
+      "self_loop_count": 18,
+      "symmetry_ratio": 0.0,
+      "reciprocal_edge_ratio": 0.11344853493613824,
+      "weight_quantiles": {
+        "q0": 0.10535941272974014,
+        "q25": 0.5462256968021393,
+        "q50": 0.8380674719810486,
+        "q75": 0.8988407403230667,
+        "q90": 0.9424505531787872,
+        "q99": 0.9525741338729858,
+        "q100": 0.9525741338729858
+      },
+      "out_degree_min": 19,
+      "out_degree_mean": 19.865671641791046,
+      "out_degree_max": 20,
+      "in_degree_min": 0,
+      "in_degree_mean": 19.865671641791046,
+      "in_degree_max": 120,
+      "top_influence_nodes": [
+        {
+          "TurbID": 132,
+          "weighted_in_degree": 96.41821265220642,
+          "weighted_out_degree": 6.542577847838402
+        },
+        {
+          "TurbID": 44,
+          "weighted_in_degree": 96.09820395708084,
+          "weighted_out_degree": 6.1718929708004
+        },
+        {
+          "TurbID": 23,
+          "weighted_in_degree": 95.93124985694885,
+          "weighted_out_degree": 6.06335936486721
+        },
+        {
+          "TurbID": 119,
+          "weighted_in_degree": 95.65318667888641,
+          "weighted_out_degree": 6.007097199559212
+        },
+        {
+          "TurbID": 111,
+          "weighted_in_degree": 94.78369578719139,
+          "weighted_out_degree": 6.56234484910965
+        },
+        {
+          "TurbID": 42,
+          "weighted_in_degree": 92.80432233214378,
+          "weighted_out_degree": 7.710401564836502
+        },
+        {
+          "TurbID": 91,
+          "weighted_in_degree": 92.68164563179016,
+          "weighted_out_degree": 5.589414745569229
+        },
+        {
+          "TurbID": 47,
+          "weighted_in_degree": 87.18799597024918,
+          "weighted_out_degree": 9.966059684753418
+        },
+        {
+          "TurbID": 3,
+          "weighted_in_degree": 81.7327651977539,
+          "weighted_out_degree": 16.62209242582321
+        },
+        {
+          "TurbID": 17,
+          "weighted_in_degree": 76.39392755925655,
+          "weighted_out_degree": 12.503111183643341
+        }
+      ],
+      "top_weighted_edges": [
+        {
+          "source_TurbID": 1,
+          "target_TurbID": 17,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 3,
+          "target_TurbID": 131,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 4,
+          "target_TurbID": 41,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 5,
+          "target_TurbID": 47,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 8,
+          "target_TurbID": 41,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 16,
+          "target_TurbID": 9,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 23,
+          "target_TurbID": 3,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 24,
+          "target_TurbID": 17,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 25,
+          "target_TurbID": 9,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 28,
+          "target_TurbID": 85,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 30,
+          "target_TurbID": 17,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 31,
+          "target_TurbID": 41,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 40,
+          "target_TurbID": 17,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 44,
+          "target_TurbID": 3,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 51,
+          "target_TurbID": 134,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 68,
+          "target_TurbID": 17,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 69,
+          "target_TurbID": 29,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 80,
+          "target_TurbID": 17,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 83,
+          "target_TurbID": 44,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 89,
+          "target_TurbID": 17,
+          "weight": 0.9525741338729858
+        }
+      ]
+    },
+    {
+      "model_id": "mtgnn",
+      "matrix_name": "learned_matched_top4",
+      "node_count": 134,
+      "edge_count": 536,
+      "nonself_edge_count": 536,
+      "density": 0.029850746268656716,
+      "self_loop_count": 0,
+      "symmetry_ratio": 0.0,
+      "reciprocal_edge_ratio": 0.011194029850746268,
+      "weight_quantiles": {
+        "q0": 0.45983004570007324,
+        "q25": 0.8795012086629868,
+        "q50": 0.8978321552276611,
+        "q75": 0.9364887326955795,
+        "q90": 0.9509691894054413,
+        "q99": 0.9525741338729858,
+        "q100": 0.9525741338729858
+      },
+      "out_degree_min": 4,
+      "out_degree_mean": 4.0,
+      "out_degree_max": 4,
+      "in_degree_min": 0,
+      "in_degree_mean": 4.0,
+      "in_degree_max": 101,
+      "top_influence_nodes": [
+        {
+          "TurbID": 44,
+          "weighted_in_degree": 90.13660925626755,
+          "weighted_out_degree": 2.6208366751670837
+        },
+        {
+          "TurbID": 119,
+          "weighted_in_degree": 80.36210906505585,
+          "weighted_out_degree": 2.5184766948223114
+        },
+        {
+          "TurbID": 23,
+          "weighted_in_degree": 71.77029675245285,
+          "weighted_out_degree": 2.617195963859558
+        },
+        {
+          "TurbID": 132,
+          "weighted_in_degree": 69.03785628080368,
+          "weighted_out_degree": 2.6275805830955505
+        },
+        {
+          "TurbID": 91,
+          "weighted_in_degree": 32.02332144975662,
+          "weighted_out_degree": 2.6573358476161957
+        },
+        {
+          "TurbID": 3,
+          "weighted_in_degree": 21.677073061466217,
+          "weighted_out_degree": 3.4739675521850586
+        },
+        {
+          "TurbID": 17,
+          "weighted_in_degree": 18.041926503181458,
+          "weighted_out_degree": 3.412000000476837
+        },
+        {
+          "TurbID": 42,
+          "weighted_in_degree": 15.882471859455109,
+          "weighted_out_degree": 2.878495693206787
+        },
+        {
+          "TurbID": 9,
+          "weighted_in_degree": 14.256490230560303,
+          "weighted_out_degree": 3.4267877340316772
+        },
+        {
+          "TurbID": 29,
+          "weighted_in_degree": 14.254046738147736,
+          "weighted_out_degree": 3.4879046082496643
+        }
+      ],
+      "top_weighted_edges": [
+        {
+          "source_TurbID": 1,
+          "target_TurbID": 17,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 3,
+          "target_TurbID": 131,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 4,
+          "target_TurbID": 41,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 5,
+          "target_TurbID": 47,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 8,
+          "target_TurbID": 41,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 16,
+          "target_TurbID": 9,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 23,
+          "target_TurbID": 3,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 24,
+          "target_TurbID": 17,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 25,
+          "target_TurbID": 9,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 28,
+          "target_TurbID": 85,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 30,
+          "target_TurbID": 17,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 31,
+          "target_TurbID": 41,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 40,
+          "target_TurbID": 17,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 44,
+          "target_TurbID": 3,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 51,
+          "target_TurbID": 134,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 68,
+          "target_TurbID": 17,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 69,
+          "target_TurbID": 29,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 80,
+          "target_TurbID": 17,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 83,
+          "target_TurbID": 44,
+          "weight": 0.9525741338729858
+        },
+        {
+          "source_TurbID": 89,
+          "target_TurbID": 17,
+          "weight": 0.9525741338729858
+        }
+      ]
+    }
+  ],
+  "overlaps": [
+    {
+      "model_id": "mtgnn",
+      "prior_matrix": "A_directed",
+      "learned_matrix": "learned_effective_native_top20",
+      "matched_k": 4,
+      "prior_edges": 536,
+      "learned_edges": 536,
+      "shared": 18,
+      "prior_only": 518,
+      "learned_only": 518,
+      "jaccard": 0.017077798861480076,
+      "precision": 0.033582089552238806,
+      "recall": 0.033582089552238806,
+      "row_wise_top_k_overlap": 0.033582089552238806,
+      "reciprocal_shared": 0
+    }
+  ],
+  "distance_summaries": [
+    {
+      "model_id": "graph",
+      "matrix_name": "prior_A_directed",
+      "edge_count": 536,
+      "spearman_weight_vs_distance": -0.9999999999999998,
+      "comparison_policy": "within-model normalized weight/rank/top-k only"
+    },
+    {
+      "model_id": "gcn",
+      "matrix_name": "effective_A_gcn",
+      "edge_count": 596,
+      "spearman_weight_vs_distance": -0.8759465091533957,
+      "comparison_policy": "within-model normalized weight/rank/top-k only"
+    },
+    {
+      "model_id": "stgcn",
+      "matrix_name": "effective_L_tilde",
+      "edge_count": 596,
+      "spearman_weight_vs_distance": 0.8500748999727697,
+      "comparison_policy": "within-model normalized weight/rank/top-k only"
+    },
+    {
+      "model_id": "dcrnn",
+      "matrix_name": "effective_P_forward",
+      "edge_count": 536,
+      "spearman_weight_vs_distance": -0.876025315673015,
+      "comparison_policy": "within-model normalized weight/rank/top-k only"
+    },
+    {
+      "model_id": "dcrnn",
+      "matrix_name": "effective_P_reverse",
+      "edge_count": 536,
+      "spearman_weight_vs_distance": -0.8205040027322281,
+      "comparison_policy": "within-model normalized weight/rank/top-k only"
+    },
+    {
+      "model_id": "mtgnn",
+      "matrix_name": "raw_learned_scores",
+      "edge_count": 17822,
+      "spearman_weight_vs_distance": 0.0006384416909538193,
+      "comparison_policy": "within-model normalized weight/rank/top-k only"
+    },
+    {
+      "model_id": "mtgnn",
+      "matrix_name": "learned_effective_native_top20",
+      "edge_count": 2662,
+      "spearman_weight_vs_distance": -0.09051981429072174,
+      "comparison_policy": "within-model normalized weight/rank/top-k only"
+    },
+    {
+      "model_id": "mtgnn",
+      "matrix_name": "learned_matched_top4",
+      "edge_count": 536,
+      "spearman_weight_vs_distance": -0.03107541440434037,
+      "comparison_policy": "within-model normalized weight/rank/top-k only"
+    }
+  ],
+  "graph_free_controls": {
+    "stid": "NOT_APPLICABLE",
+    "tsmixer": "NOT_APPLICABLE"
+  },
+  "internal_diagnostics": "BLOCKED_CURRENT_BATCH4_EVIDENCE_MISSING"
+}

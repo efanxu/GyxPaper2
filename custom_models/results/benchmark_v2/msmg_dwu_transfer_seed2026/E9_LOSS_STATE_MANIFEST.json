@@ -1,0 +1,54 @@
+{
+  "schema_version": "e9_loss_state_manifest_v1",
+  "fit_scope": "training batches only",
+  "fit_range": "formal SDWPF train split (strict chronological first 0.8)",
+  "uses_validation": false,
+  "uses_test": false,
+  "uses_test_target": false,
+  "updates_in_validation": false,
+  "updates_in_test": false,
+  "model_output_dependent_state": true,
+  "state_shared_across_models": false,
+  "algorithm_shared_across_models": true,
+  "state_fields": [
+    {
+      "name": "ema_granularity_loss",
+      "shape": [
+        3
+      ],
+      "initial": 1.0
+    },
+    {
+      "name": "initial_granularity_loss",
+      "shape": [
+        3
+      ],
+      "initial": 1.0
+    },
+    {
+      "name": "initial_granularity_fitted",
+      "shape": [
+        3
+      ],
+      "initial": false
+    },
+    {
+      "name": "ema_node_loss",
+      "shape": [
+        134
+      ],
+      "initial": 1.0
+    },
+    {
+      "name": "node_weight",
+      "shape": [
+        134
+      ],
+      "initial": 1.0
+    }
+  ],
+  "checkpointed": true,
+  "state_hash": "AVAILABLE_AFTER_FORMAL_RUN_NOT_GENERATED_BY_E9",
+  "fitting_source_hash": "NOT_GENERATED_REPOSITORY_POLICY",
+  "leakage_audit": "PASS"
+}

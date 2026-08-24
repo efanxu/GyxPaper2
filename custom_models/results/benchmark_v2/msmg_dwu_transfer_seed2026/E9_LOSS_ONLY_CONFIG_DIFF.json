@@ -1,0 +1,133 @@
+{
+  "schema_version": "e9_loss_only_config_diff_v1",
+  "ready_count": 0,
+  "LOSS_ONLY_CONFIG_READY": "0/6",
+  "pairs": [
+    {
+      "model_id": "lightts",
+      "control_run_id": "LightTS_node_shared_chunk8_bs4_seed2026",
+      "transfer_run_id": "LightTS_node_shared_chunk8_bs4_msmg_dwu_seed2026",
+      "allowed_differences": [],
+      "unexpected_differences": [
+        {
+          "path": "control",
+          "reason": "MISSING_ORIGINAL26_XLSX"
+        }
+      ],
+      "model_source_match": false,
+      "model_architecture_match": false,
+      "model_hyperparameter_match": false,
+      "data_protocol_match": false,
+      "training_protocol_match": false,
+      "graph_protocol_match": false,
+      "loss_identity_changed": false,
+      "loss_only_diff_valid": false,
+      "pair_status": "INVALID_CONFIG_DIFF"
+    },
+    {
+      "model_id": "tide",
+      "control_run_id": "TiDE_node_shared_d512_bs4_seed2026",
+      "transfer_run_id": "TiDE_node_shared_d512_bs4_msmg_dwu_seed2026",
+      "allowed_differences": [],
+      "unexpected_differences": [
+        {
+          "path": "control",
+          "reason": "MISSING_ORIGINAL26_XLSX"
+        }
+      ],
+      "model_source_match": false,
+      "model_architecture_match": false,
+      "model_hyperparameter_match": false,
+      "data_protocol_match": false,
+      "training_protocol_match": false,
+      "graph_protocol_match": false,
+      "loss_identity_changed": false,
+      "loss_only_diff_valid": false,
+      "pair_status": "INVALID_CONFIG_DIFF"
+    },
+    {
+      "model_id": "patchtst",
+      "control_run_id": "PatchTST_node_shared_p16_s8_bs4_seed2026",
+      "transfer_run_id": "PatchTST_node_shared_p16_s8_bs4_msmg_dwu_seed2026",
+      "allowed_differences": [],
+      "unexpected_differences": [
+        {
+          "path": "control",
+          "reason": "MISSING_ORIGINAL26_XLSX"
+        }
+      ],
+      "model_source_match": false,
+      "model_architecture_match": false,
+      "model_hyperparameter_match": false,
+      "data_protocol_match": false,
+      "training_protocol_match": false,
+      "graph_protocol_match": false,
+      "loss_identity_changed": false,
+      "loss_only_diff_valid": false,
+      "pair_status": "INVALID_CONFIG_DIFF"
+    },
+    {
+      "model_id": "itransformer",
+      "control_run_id": "iTransformer_node_shared_d512_bs4_seed2026",
+      "transfer_run_id": "iTransformer_node_shared_d512_bs4_msmg_dwu_seed2026",
+      "allowed_differences": [],
+      "unexpected_differences": [
+        {
+          "path": "control",
+          "reason": "MISSING_ORIGINAL26_XLSX"
+        }
+      ],
+      "model_source_match": false,
+      "model_architecture_match": false,
+      "model_hyperparameter_match": false,
+      "data_protocol_match": false,
+      "training_protocol_match": false,
+      "graph_protocol_match": false,
+      "loss_identity_changed": false,
+      "loss_only_diff_valid": false,
+      "pair_status": "INVALID_CONFIG_DIFF"
+    },
+    {
+      "model_id": "dcrnn",
+      "control_run_id": "DCRNN_native_dualrw_k2_h64_l2_ar_bs4_seed2026",
+      "transfer_run_id": "DCRNN_native_dualrw_k2_h64_l2_ar_bs4_msmg_dwu_seed2026",
+      "allowed_differences": [],
+      "unexpected_differences": [
+        {
+          "path": "control",
+          "reason": "MISSING_ORIGINAL26_XLSX"
+        }
+      ],
+      "model_source_match": false,
+      "model_architecture_match": false,
+      "model_hyperparameter_match": false,
+      "data_protocol_match": false,
+      "training_protocol_match": false,
+      "graph_protocol_match": false,
+      "loss_identity_changed": false,
+      "loss_only_diff_valid": false,
+      "pair_status": "INVALID_CONFIG_DIFF"
+    },
+    {
+      "model_id": "mtgnn",
+      "control_run_id": "MTGNN_native_adaptive_k20_gdep2_l3_bs4_seed2026",
+      "transfer_run_id": "MTGNN_native_adaptive_k20_gdep2_l3_bs4_msmg_dwu_seed2026",
+      "allowed_differences": [],
+      "unexpected_differences": [
+        {
+          "path": "control",
+          "reason": "MISSING_ORIGINAL26_XLSX"
+        }
+      ],
+      "model_source_match": false,
+      "model_architecture_match": false,
+      "model_hyperparameter_match": false,
+      "data_protocol_match": false,
+      "training_protocol_match": false,
+      "graph_protocol_match": false,
+      "loss_identity_changed": false,
+      "loss_only_diff_valid": false,
+      "pair_status": "INVALID_CONFIG_DIFF"
+    }
+  ]
+}

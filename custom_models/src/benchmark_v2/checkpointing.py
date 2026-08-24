@@ -31,7 +31,7 @@ class CheckpointManager:
         self.resolved_config = dict(resolved_config)
         self.run_metadata = {key: effective_config[key] for key in EXPLICIT_CONFIG_KEYS if key in effective_config}
 
-    def save(self, name: str, *, epoch: int, global_step: int, monitor_value: float, model, optimizer=None, scheduler=None, amp_scaler=None, seed_state: dict[str, Any] | None = None) -> Path:
+    def save(self, name: str, *, epoch: int, global_step: int, monitor_value: float, model, loss_fn=None, optimizer=None, scheduler=None, amp_scaler=None, seed_state: dict[str, Any] | None = None) -> Path:
         import torch
         payload = {
             "schema_version": "checkpoint_schema_v2",
@@ -44,6 +44,7 @@ class CheckpointManager:
             "monitor_name": "validation_official_score_h10",
             "monitor_value": float(monitor_value),
             "model_state_dict": model.state_dict(),
+            "loss_state_dict": loss_fn.state_dict() if hasattr(loss_fn, "state_dict") else None,
             "optimizer_state_dict": optimizer.state_dict() if optimizer is not None else None,
             "scheduler_state_dict": scheduler.state_dict() if scheduler is not None else None,
             "amp_scaler_state_dict": amp_scaler.state_dict() if amp_scaler is not None else None,
@@ -56,7 +57,7 @@ class CheckpointManager:
         os.replace(temporary, path)
         return path
 
-    def load(self, path: str | Path, model, optimizer=None, scheduler=None, amp_scaler=None) -> dict[str, Any]:
+    def load(self, path: str | Path, model, loss_fn=None, optimizer=None, scheduler=None, amp_scaler=None) -> dict[str, Any]:
         import torch
         payload = torch.load(Path(path), map_location="cpu", weights_only=False)
         if payload.get("model_id") not in (None, self.model_id):
@@ -69,6 +70,8 @@ class CheckpointManager:
             if conflicts:
                 raise ArtifactError(f"Checkpoint explicit configuration conflict: {conflicts}")
         model.load_state_dict(payload["model_state_dict"], strict=True)
+        if loss_fn is not None and payload.get("loss_state_dict") is not None:
+            loss_fn.load_state_dict(payload["loss_state_dict"], strict=True)
         if optimizer is not None and payload.get("optimizer_state_dict") is not None:
             optimizer.load_state_dict(payload["optimizer_state_dict"])
         if scheduler is not None and payload.get("scheduler_state_dict") is not None:

@@ -1,13 +1,14 @@
 from __future__ import annotations
 
 import traceback
+import time
 from pathlib import Path
 from typing import Any, Callable
 
 from .adapters import adapter_forward
 from .artifacts import atomic_write_csv, write_status
 from .checkpointing import CheckpointManager
-from .contracts import BenchmarkBatch, BenchmarkAdapter
+from .contracts import BenchmarkBatch, BenchmarkAdapter, call_loss
 from .errors import ContractError
 from .metrics import evaluate_horizons
 from .nonfinite import (
@@ -36,13 +37,20 @@ class Trainer:
         self.run_dir = Path(run_dir)
         self.device = torch.device(device)
         self.model.to(self.device)
+        if hasattr(self.loss_fn, "to"):
+            self.loss_fn.to(self.device)
         self.inverse_target = inverse_target or (lambda x: x)
         self.resolved_config, self.effective_config = resolved_config, effective_config
         optimizer_name = str(effective_config.get("optimizer", "Adam"))
         if optimizer_name != "Adam":
             raise ValueError(f"benchmark_v2 Trainer currently supports optimizer=Adam, got {optimizer_name}")
+        optimizer_parameters = list(self.model.parameters())
+        if hasattr(self.loss_fn, "parameters"):
+            optimizer_parameters.extend(
+                parameter for parameter in self.loss_fn.parameters() if parameter.requires_grad
+            )
         self.optimizer = torch.optim.Adam(
-            self.model.parameters(),
+            optimizer_parameters,
             lr=float(effective_config.get("learning_rate", 1e-3)),
             weight_decay=float(effective_config.get("weight_decay", 0.0)),
         )
@@ -147,6 +155,16 @@ class Trainer:
         )
 
     @staticmethod
+    def _gradient_norm(parameters) -> float:
+        import torch
+
+        squared = torch.zeros((), dtype=torch.float64)
+        for parameter in parameters:
+            if parameter.grad is not None:
+                squared += parameter.grad.detach().double().square().sum().cpu()
+        return float(torch.sqrt(squared))
+
+    @staticmethod
     def _parameter_abs_max(summary: dict[str, Any]) -> float | None:
         values = [
             item.get("abs_max")
@@ -214,10 +232,18 @@ class Trainer:
         global_step = 0
         try:
             for epoch in range(1, epochs + 1):
+                epoch_started = time.perf_counter()
                 self.model.train()
+                if hasattr(self.loss_fn, "train"):
+                    self.loss_fn.train()
                 train_values = []
+                loss_detail_values: dict[str, list[float]] = {}
+                gradient_norms: list[float] = []
+                valid_target_count = 0
+                all_masked_batch_count = 0
                 for batch_index, batch in enumerate(train_loader):
                     batch = _move_batch(batch, self.device)
+                    valid_target_count += int(batch.mask.detach().sum().item())
                     diagnostic = self._new_nonfinite_diagnostic(
                         phase="fit",
                         epoch=epoch,
@@ -252,7 +278,7 @@ class Trainer:
                                     expected_features=int(self.protocol["feature_count"]),
                                     _nonfinite_diagnostics=diagnostic,
                                 )
-                                loss = self.loss_fn(output.prediction, batch.target, batch.mask)
+                                loss = call_loss(self.loss_fn, output.prediction, batch, self.protocol)
                         else:
                             with hook_context:
                                 with torch.autocast(
@@ -268,15 +294,18 @@ class Trainer:
                                         expected_features=int(self.protocol["feature_count"]),
                                         _nonfinite_diagnostics=diagnostic,
                                     )
-                                    loss = self.loss_fn(output.prediction, batch.target, batch.mask)
+                                    loss = call_loss(self.loss_fn, output.prediction, batch, self.protocol)
                     except Exception as exc:
                         self._write_diagnostic_failure(diagnostic, exc)
                         raise
                     if loss is None:
+                        all_masked_batch_count += 1
                         continue
                     self.optimizer.zero_grad(set_to_none=True)
                     if diagnostic is None:
                         self.amp_scaler.scale(loss).backward()
+                        self.amp_scaler.unscale_(self.optimizer)
+                        gradient_norms.append(self._gradient_norm(self.optimizer.param_groups[0]["params"]))
                         self.amp_scaler.step(self.optimizer)
                         self.amp_scaler.update()
                     else:
@@ -286,6 +315,7 @@ class Trainer:
                             raise error
                         self.amp_scaler.scale(loss).backward()
                         self.amp_scaler.unscale_(self.optimizer)
+                        gradient_norms.append(self._gradient_norm(self.optimizer.param_groups[0]["params"]))
                         before_parameters = summarize_parameter_state(
                             self.model, self.optimizer
                         )
@@ -305,27 +335,46 @@ class Trainer:
                             before_parameters=before_parameters,
                         )
                     train_values.append(float(loss.detach().cpu()))
+                    for key, value in dict(getattr(self.loss_fn, "last_details", {})).items():
+                        if isinstance(value, (int, float)) and value == value:
+                            loss_detail_values.setdefault(str(key), []).append(float(value))
                     global_step += 1
                 val_score, val_loss = self._validate(val_loader)
-                row = {"epoch": epoch, "train_loss": sum(train_values) / max(len(train_values), 1), "val_loss": val_loss, "val_score_h10": val_score, "is_best": False}
+                row = {
+                    "epoch": epoch, "train_loss": sum(train_values) / max(len(train_values), 1),
+                    "val_loss": val_loss, "val_score_h10": val_score, "is_best": False,
+                    "valid_target_count": valid_target_count,
+                    "all_masked_batch_count": all_masked_batch_count,
+                    "gradient_norm": sum(gradient_norms) / max(len(gradient_norms), 1),
+                    "epoch_time_seconds": time.perf_counter() - epoch_started,
+                    "nan_inf_event_count": 0,
+                }
+                row.update({
+                    key: sum(values) / len(values)
+                    for key, values in loss_detail_values.items()
+                    if values
+                })
                 is_best = val_score == val_score and val_score < best - min_delta
                 if is_best:
                     best, bad, row["is_best"] = val_score, 0, True
                 else:
                     bad += 1
                 history.append(row)
-                self.ckpt.save("last_checkpoint.pt", epoch=epoch, global_step=global_step, monitor_value=val_score, model=self.model, optimizer=self.optimizer, amp_scaler=self.amp_scaler)
+                self.ckpt.save("last_checkpoint.pt", epoch=epoch, global_step=global_step, monitor_value=val_score, model=self.model, loss_fn=self.loss_fn, optimizer=self.optimizer, amp_scaler=self.amp_scaler)
                 self._last_checkpoint = {
                     "path": str(self.run_dir / "last_checkpoint.pt"),
                     "epoch": epoch,
                     "global_step": global_step,
                 }
                 if is_best:
-                    self.ckpt.save("best_checkpoint.pt", epoch=epoch, global_step=global_step, monitor_value=val_score, model=self.model, optimizer=self.optimizer, amp_scaler=self.amp_scaler)
+                    self.ckpt.save("best_checkpoint.pt", epoch=epoch, global_step=global_step, monitor_value=val_score, model=self.model, loss_fn=self.loss_fn, optimizer=self.optimizer, amp_scaler=self.amp_scaler)
                 if bad >= patience:
                     write_status(self.run_dir, status="EARLY_STOPPED", run_mode=self.effective_config.get("run_mode", "formal"), artifact_profile=self.effective_config.get("artifact_profile", "TRAIN"))
                     break
-            fields = ["epoch", "train_loss", "val_loss", "val_score_h10", "is_best"]
+            fields = list(dict.fromkeys(
+                ["epoch", "train_loss", "val_loss", "val_score_h10", "is_best"]
+                + [key for row in history for key in row]
+            ))
             atomic_write_csv(self.run_dir / "train_log.csv", fields, history)
             write_status(self.run_dir, status="TRAINING_COMPLETED", run_mode=self.effective_config.get("run_mode", "formal"), artifact_profile=self.effective_config.get("artifact_profile", "TRAIN"))
             return history
@@ -336,6 +385,8 @@ class Trainer:
     def _validate(self, val_loader) -> tuple[float, float]:
         import torch
         self.model.eval()
+        if hasattr(self.loss_fn, "eval"):
+            self.loss_fn.eval()
         scores, losses = [], []
         with torch.no_grad():
             for batch in val_loader:
@@ -346,7 +397,7 @@ class Trainer:
                     enabled=self.amp_enabled,
                 ):
                     output = adapter_forward(self.adapter, self.model, batch, expected_horizon=int(self.protocol["max_pred_len"]), expected_features=int(self.protocol["feature_count"]))
-                    loss = self.loss_fn(output.prediction, batch.target, batch.mask)
+                    loss = call_loss(self.loss_fn, output.prediction, batch, self.protocol)
                 if loss is not None:
                     losses.append(float(loss.detach().cpu()))
                 target_raw = batch.target_raw_or_inverse_transform if batch.target_raw_or_inverse_transform is not None else batch.target
@@ -364,7 +415,7 @@ class Evaluator:
     def evaluate(self, test_loader) -> list[dict[str, Any]]:
         import torch
         best_path = self.trainer.run_dir / "best_checkpoint.pt"
-        self.trainer.ckpt.load(best_path, self.trainer.model)
+        self.trainer.ckpt.load(best_path, self.trainer.model, loss_fn=self.trainer.loss_fn)
         self.trainer.model.eval()
         predictions, targets, masks = [], [], []
         with torch.no_grad():

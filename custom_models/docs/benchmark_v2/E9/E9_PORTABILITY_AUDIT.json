@@ -1,0 +1,133 @@
+{
+  "schema_version": "e9_portability_audit_v1",
+  "audit_stage": "E9-A",
+  "source": {
+    "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\src\\st_mgprompt\\losses.py",
+    "size_bytes": 17371,
+    "mtime_ns": 1784902934411438000
+  },
+  "adapter_source": {
+    "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\src\\benchmark_v2\\losses.py",
+    "size_bytes": 3896,
+    "mtime_ns": 1787558304563489600
+  },
+  "source_symbol": "st_mgprompt.losses.MSMGDWULoss",
+  "forward_signature": [
+    "self",
+    "pred",
+    "target",
+    "mask"
+  ],
+  "forward_signature_valid": true,
+  "dependency_closure": [
+    {
+      "dependency": "prediction",
+      "required": true,
+      "finding": "public model output; gradient required"
+    },
+    {
+      "dependency": "target",
+      "required": true,
+      "finding": "normalized target from formal batch"
+    },
+    {
+      "dependency": "mask",
+      "required": true,
+      "finding": "valid_target_mask from formal batch"
+    },
+    {
+      "dependency": "site/node identity",
+      "required": true,
+      "finding": "semantic N axis; weights are indexed by the frozen node order"
+    },
+    {
+      "dependency": "horizon identity",
+      "required": true,
+      "finding": "fixed public prefixes H3/H6/H10"
+    },
+    {
+      "dependency": "normalization state",
+      "required": true,
+      "finding": "loss operates in train-fitted normalized target space"
+    },
+    {
+      "dependency": "training-only fitted statistics",
+      "required": true,
+      "finding": "online EMA/error state updates only while loss.training is true"
+    },
+    {
+      "dependency": "Fine representation",
+      "required": false,
+      "finding": "not referenced"
+    },
+    {
+      "dependency": "Coarse representation",
+      "required": false,
+      "finding": "not referenced"
+    },
+    {
+      "dependency": "granularity / VADSP state",
+      "required": false,
+      "finding": "granularity means public horizon prefix, not VADSP representation"
+    },
+    {
+      "dependency": "Macro Prompt",
+      "required": false,
+      "finding": "not referenced"
+    },
+    {
+      "dependency": "ST Prompt",
+      "required": false,
+      "finding": "not referenced"
+    },
+    {
+      "dependency": "Cross gate",
+      "required": false,
+      "finding": "not referenced"
+    },
+    {
+      "dependency": "graph embedding",
+      "required": false,
+      "finding": "not referenced"
+    },
+    {
+      "dependency": "hidden state",
+      "required": false,
+      "finding": "not referenced"
+    },
+    {
+      "dependency": "model-specific auxiliary tensor",
+      "required": false,
+      "finding": "not accepted by forward"
+    },
+    {
+      "dependency": "ST-MGPrompt proprietary object",
+      "required": false,
+      "finding": "loss module is independent of the model instance"
+    }
+  ],
+  "model_internal_tokens_used_in_forward": [],
+  "train_state": {
+    "fields": [
+      "ema_granularity_loss",
+      "initial_granularity_loss",
+      "initial_granularity_fitted",
+      "ema_node_loss",
+      "node_weight"
+    ],
+    "fit_split": "train batches only",
+    "update_guard": "self.training",
+    "validation_test_frozen": true,
+    "model_output_dependent_state": true,
+    "model_independent_algorithm": true,
+    "shared_values_across_models": false,
+    "reason": "EMA values depend on each model's training predictions; the frozen algorithm/profile is shared."
+  },
+  "classification": "PORTABLE_WITH_TRAIN_STATE",
+  "classification_reason": "The exact loss consumes only public prediction/target/mask with fixed site and horizon axes. Its additional state is training-only, model-output-dependent EMA state governed by one model-independent algorithm and frozen in validation/test.",
+  "FULL_MS_MG_DWU_TRANSFER_READY": true,
+  "PORTABLE_SUBSET_TRANSFER_READY": false,
+  "portable_subset_required": false,
+  "e9_b_allowed": true,
+  "e5_consumed": false
+}

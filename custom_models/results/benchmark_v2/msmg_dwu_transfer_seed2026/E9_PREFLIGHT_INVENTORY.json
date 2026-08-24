@@ -1,0 +1,39 @@
+{
+  "schema_version": "e9_preflight_inventory_v1",
+  "inventory": [
+    {
+      "model_id": "lightts",
+      "status": "NOT_RUN",
+      "formal_training_started": false
+    },
+    {
+      "model_id": "tide",
+      "status": "NOT_RUN",
+      "formal_training_started": false
+    },
+    {
+      "model_id": "patchtst",
+      "status": "NOT_RUN",
+      "formal_training_started": false
+    },
+    {
+      "model_id": "itransformer",
+      "status": "NOT_RUN",
+      "formal_training_started": false
+    },
+    {
+      "model_id": "dcrnn",
+      "status": "NOT_RUN",
+      "formal_training_started": false
+    },
+    {
+      "model_id": "mtgnn",
+      "status": "NOT_RUN",
+      "formal_training_started": false
+    }
+  ],
+  "passed": 0,
+  "expected": 6,
+  "all_passed": false,
+  "formal_training_started": false
+}

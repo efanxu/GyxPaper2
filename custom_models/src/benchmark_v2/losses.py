@@ -4,6 +4,7 @@ from typing import Callable
 
 import torch
 
+from .contracts.loss import LossInputBundle
 from .errors import ContractError
 
 
@@ -44,9 +45,56 @@ LOSS_REGISTRY: dict[str, Callable] = {
 }
 
 
+class BenchmarkMSMGDWULoss(torch.nn.Module):
+    """Exact public-tensor adapter around the audited ST-MGPrompt loss.
+
+    benchmark_v2 uses (B,N,H), while the original implementation uses
+    (B,H,N). The transpose is the only semantic adapter.
+    """
+
+    uses_loss_input_bundle = True
+
+    def __init__(self, *, eval_horizons=(3, 6, 10), num_nodes: int = 134, **profile):
+        super().__init__()
+        from st_mgprompt.losses import MSMGDWULoss
+
+        self.impl = MSMGDWULoss(
+            eval_horizons=list(eval_horizons),
+            num_nodes=int(num_nodes),
+            base_loss=str(profile.get("base_loss", "smooth_l1")),
+            lambda_site=float(profile.get("lambda_site", 0.2)),
+            ema_alpha=float(profile.get("ema_alpha", 0.9)),
+            node_weight_clip=tuple(profile.get("node_weight_clip", (0.5, 3.0))),
+            granularity_weight_mode=str(profile.get("granularity_weight_mode", "difficulty_rate")),
+            site_weight_mode=str(profile.get("site_weight_mode", "dynamic")),
+            difficulty_gamma=float(profile.get("difficulty_gamma", 1.0)),
+            difficulty_rate_gamma=float(profile.get("difficulty_rate_gamma", 1.0)),
+            difficulty_temperature=float(profile.get("difficulty_temperature", 1.0)),
+            granularity_weight_clip=tuple(profile.get("granularity_weight_clip", (0.5, 3.0))),
+        )
+
+    @property
+    def last_details(self):
+        return self.impl.last_details
+
+    def diagnostics_state(self):
+        return self.impl.diagnostics_state()
+
+    def forward(self, bundle: LossInputBundle):
+        bundle.validate()
+        return self.impl(
+            bundle.prediction.transpose(1, 2),
+            bundle.target.transpose(1, 2),
+            bundle.mask.transpose(1, 2),
+        )
+
+
+def build_msmg_dwu_loss(*, eval_horizons=(3, 6, 10), num_nodes: int = 134, **profile):
+    return BenchmarkMSMGDWULoss(eval_horizons=eval_horizons, num_nodes=num_nodes, **profile)
+
+
 def get_loss(name: str) -> Callable:
     try:
         return LOSS_REGISTRY[name]
     except KeyError as exc:
         raise KeyError(f"Unknown benchmark_v2 loss {name}; Dynamic MS-MG-DWU is not part of E0-B") from exc
-

@@ -1,0 +1,92 @@
+{
+  "schema_version": "e9_variant_manifest_v1",
+  "scope_id": "e9_msmg_dwu_transfer_seed2026",
+  "experiment": "E9-B 6-model loss-only transfer",
+  "models_frozen_before_results": true,
+  "variant_count": 6,
+  "variants": [
+    {
+      "variant_id": "E9_LIGHTTS_MSMG_DWU",
+      "scope_id": "e9_msmg_dwu_transfer_seed2026",
+      "model_id": "lightts",
+      "display_name": "LightTS",
+      "architecture_family": "lightweight",
+      "control_run_id": "LightTS_node_shared_chunk8_bs4_seed2026",
+      "transfer_run_id": "LightTS_node_shared_chunk8_bs4_msmg_dwu_seed2026",
+      "loss_id": "msmg_dwu_loss",
+      "formal_training": true,
+      "control_training": false
+    },
+    {
+      "variant_id": "E9_TIDE_MSMG_DWU",
+      "scope_id": "e9_msmg_dwu_transfer_seed2026",
+      "model_id": "tide",
+      "display_name": "TiDE",
+      "architecture_family": "MLP",
+      "control_run_id": "TiDE_node_shared_d512_bs4_seed2026",
+      "transfer_run_id": "TiDE_node_shared_d512_bs4_msmg_dwu_seed2026",
+      "loss_id": "msmg_dwu_loss",
+      "formal_training": true,
+      "control_training": false
+    },
+    {
+      "variant_id": "E9_PATCHTST_MSMG_DWU",
+      "scope_id": "e9_msmg_dwu_transfer_seed2026",
+      "model_id": "patchtst",
+      "display_name": "PatchTST",
+      "architecture_family": "patch-transformer",
+      "control_run_id": "PatchTST_node_shared_p16_s8_bs4_seed2026",
+      "transfer_run_id": "PatchTST_node_shared_p16_s8_bs4_msmg_dwu_seed2026",
+      "loss_id": "msmg_dwu_loss",
+      "formal_training": true,
+      "control_training": false
+    },
+    {
+      "variant_id": "E9_ITRANSFORMER_MSMG_DWU",
+      "scope_id": "e9_msmg_dwu_transfer_seed2026",
+      "model_id": "itransformer",
+      "display_name": "iTransformer",
+      "architecture_family": "cross-variable-transformer",
+      "control_run_id": "iTransformer_node_shared_d512_bs4_seed2026",
+      "transfer_run_id": "iTransformer_node_shared_d512_bs4_msmg_dwu_seed2026",
+      "loss_id": "msmg_dwu_loss",
+      "formal_training": true,
+      "control_training": false
+    },
+    {
+      "variant_id": "E9_DCRNN_MSMG_DWU",
+      "scope_id": "e9_msmg_dwu_transfer_seed2026",
+      "model_id": "dcrnn",
+      "display_name": "DCRNN",
+      "architecture_family": "recurrent-diffusion-graph",
+      "control_run_id": "DCRNN_native_dualrw_k2_h64_l2_ar_bs4_seed2026",
+      "transfer_run_id": "DCRNN_native_dualrw_k2_h64_l2_ar_bs4_msmg_dwu_seed2026",
+      "loss_id": "msmg_dwu_loss",
+      "formal_training": true,
+      "control_training": false
+    },
+    {
+      "variant_id": "E9_MTGNN_MSMG_DWU",
+      "scope_id": "e9_msmg_dwu_transfer_seed2026",
+      "model_id": "mtgnn",
+      "display_name": "MTGNN",
+      "architecture_family": "adaptive-graph-learning",
+      "control_run_id": "MTGNN_native_adaptive_k20_gdep2_l3_bs4_seed2026",
+      "transfer_run_id": "MTGNN_native_adaptive_k20_gdep2_l3_bs4_msmg_dwu_seed2026",
+      "loss_id": "msmg_dwu_loss",
+      "formal_training": true,
+      "control_training": false
+    }
+  ],
+  "excluded_models": [
+    "persistence",
+    "gru",
+    "dlinear",
+    "crossformer",
+    "graph_wavenet",
+    "agcrn",
+    "segrnn",
+    "msgnet"
+  ],
+  "e5_consumed": false
+}
