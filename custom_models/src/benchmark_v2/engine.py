@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import traceback
 import time
+import csv
+import random
 from pathlib import Path
 from typing import Any, Callable
 
@@ -61,6 +63,7 @@ class Trainer:
         self.nonfinite_diagnostics_enabled = diagnostics_enabled()
         self._last_checkpoint: dict[str, Any] | None = None
         self._last_optimizer_update: dict[str, Any] | None = None
+        self.resume_checkpoint: Path | None = None
 
     def _diagnostic_context(
         self,
@@ -165,6 +168,22 @@ class Trainer:
         return float(torch.sqrt(squared))
 
     @staticmethod
+    def _restore_rng_state(state: dict[str, Any] | None) -> None:
+        if not state:
+            return
+        import numpy as np
+        import torch
+
+        if state.get("python") is not None:
+            random.setstate(state["python"])
+        if state.get("numpy") is not None:
+            np.random.set_state(state["numpy"])
+        if state.get("torch") is not None:
+            torch.set_rng_state(state["torch"])
+        if torch.cuda.is_available() and state.get("cuda") is not None:
+            torch.cuda.set_rng_state_all(state["cuda"])
+
+    @staticmethod
     def _parameter_abs_max(summary: dict[str, Any]) -> float | None:
         values = [
             item.get("abs_max")
@@ -230,8 +249,32 @@ class Trainer:
         bad = 0
         history: list[dict[str, Any]] = []
         global_step = 0
+        start_epoch = 1
+        if self.resume_checkpoint is not None:
+            try:
+                payload = self.ckpt.load(
+                    self.resume_checkpoint, self.model, loss_fn=self.loss_fn,
+                    optimizer=self.optimizer, amp_scaler=self.amp_scaler,
+                )
+                self._restore_rng_state(payload.get("seed_state"))
+                state = payload.get("trainer_state") or {}
+                start_epoch = int(payload["epoch"]) + 1
+                global_step = int(payload.get("global_step", 0))
+                best = float(state.get("best", payload.get("monitor_value", float("inf"))))
+                bad = int(state.get("bad_epochs", 0))
+                history = list(state.get("history") or [])
+                if not history and (self.run_dir / "train_log.csv").is_file():
+                    with (self.run_dir / "train_log.csv").open("r", encoding="utf-8-sig", newline="") as handle:
+                        history = list(csv.DictReader(handle))
+            except Exception as exc:
+                write_status(
+                    self.run_dir, status="FAILED", run_mode=self.effective_config.get("run_mode", "formal"),
+                    artifact_profile="FAILED", exit_code=1, failure_stage="resume_checkpoint",
+                    error_type=type(exc).__name__, error_message=str(exc),
+                )
+                raise
         try:
-            for epoch in range(1, epochs + 1):
+            for epoch in range(start_epoch, epochs + 1):
                 epoch_started = time.perf_counter()
                 self.model.train()
                 if hasattr(self.loss_fn, "train"):
@@ -360,22 +403,29 @@ class Trainer:
                 else:
                     bad += 1
                 history.append(row)
-                self.ckpt.save("last_checkpoint.pt", epoch=epoch, global_step=global_step, monitor_value=val_score, model=self.model, loss_fn=self.loss_fn, optimizer=self.optimizer, amp_scaler=self.amp_scaler)
+                trainer_state = {"best": best, "bad_epochs": bad, "history": history}
+                self.ckpt.save("last_checkpoint.pt", epoch=epoch, global_step=global_step, monitor_value=val_score, model=self.model, loss_fn=self.loss_fn, optimizer=self.optimizer, amp_scaler=self.amp_scaler, trainer_state=trainer_state)
                 self._last_checkpoint = {
                     "path": str(self.run_dir / "last_checkpoint.pt"),
                     "epoch": epoch,
                     "global_step": global_step,
                 }
                 if is_best:
-                    self.ckpt.save("best_checkpoint.pt", epoch=epoch, global_step=global_step, monitor_value=val_score, model=self.model, loss_fn=self.loss_fn, optimizer=self.optimizer, amp_scaler=self.amp_scaler)
+                    self.ckpt.save("best_checkpoint.pt", epoch=epoch, global_step=global_step, monitor_value=val_score, model=self.model, loss_fn=self.loss_fn, optimizer=self.optimizer, amp_scaler=self.amp_scaler, trainer_state=trainer_state)
+                fields = list(dict.fromkeys(
+                    ["epoch", "train_loss", "val_loss", "val_score_h10", "is_best"]
+                    + [key for item in history for key in item]
+                ))
+                atomic_write_csv(self.run_dir / "train_log.csv", fields, history)
                 if bad >= patience:
                     write_status(self.run_dir, status="EARLY_STOPPED", run_mode=self.effective_config.get("run_mode", "formal"), artifact_profile=self.effective_config.get("artifact_profile", "TRAIN"))
                     break
-            fields = list(dict.fromkeys(
-                ["epoch", "train_loss", "val_loss", "val_score_h10", "is_best"]
-                + [key for row in history for key in row]
-            ))
-            atomic_write_csv(self.run_dir / "train_log.csv", fields, history)
+            if history:
+                fields = list(dict.fromkeys(
+                    ["epoch", "train_loss", "val_loss", "val_score_h10", "is_best"]
+                    + [key for item in history for key in item]
+                ))
+                atomic_write_csv(self.run_dir / "train_log.csv", fields, history)
             write_status(self.run_dir, status="TRAINING_COMPLETED", run_mode=self.effective_config.get("run_mode", "formal"), artifact_profile=self.effective_config.get("artifact_profile", "TRAIN"))
             return history
         except Exception as exc:

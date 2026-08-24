@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import csv
 from copy import deepcopy
 from pathlib import Path
 from typing import Any
@@ -56,7 +57,7 @@ def _current_runtime_compatible(current: dict[str, Any], control: dict[str, Any]
     return not mismatches, mismatches
 
 
-def _existing_completed(run_dir: Path, model_id: str) -> dict[str, Any] | None:
+def _existing_run(run_dir: Path, model_id: str) -> dict[str, Any] | None:
     if not run_dir.exists():
         return None
     effective_path, status_path = run_dir / "effective_config.json", run_dir / "run_status.json"
@@ -68,7 +69,35 @@ def _existing_completed(run_dir: Path, model_id: str) -> dict[str, Any] | None:
         ):
             validate_run(run_dir, expected_training_batch_profile_id=TRAINING_PROFILE_ID)
             return {"status": "SKIPPED_COMPLETED_IDENTITY_MATCH", "model_id": model_id, "run_dir": str(run_dir)}
-    raise RuntimeError(f"Existing E9 run directory is incomplete or identity-conflicting and will not be overwritten: {run_dir}")
+        identity_matches = (
+            effective.get("model_id") == model_id and effective.get("loss") == "msmg_dwu_loss"
+            and effective.get("run_id") == run_dir.name
+        )
+        if not identity_matches:
+            raise RuntimeError(f"Existing E9 run identity conflicts with the requested transfer: {run_dir}")
+        if status.get("status") in {"TRAINING_COMPLETED", "EARLY_STOPPED"} and (run_dir / "best_checkpoint.pt").is_file():
+            return {"status": "RESUME_EVALUATION", "model_id": model_id, "run_dir": str(run_dir)}
+        if status.get("status") in {"RUNNING", "FAILED"} and (run_dir / "last_checkpoint.pt").is_file():
+            return {
+                "status": "RESUME_TRAINING", "model_id": model_id, "run_dir": str(run_dir),
+                "resume_checkpoint": str(run_dir / "last_checkpoint.pt"),
+            }
+    raise RuntimeError(f"Existing E9 run is incomplete without a safe resume checkpoint and will not be overwritten: {run_dir}")
+
+
+def _resume_config_matches(existing: dict[str, Any], expected: dict[str, Any]) -> bool:
+    ignored = {"formal_worker_pid", "output_root"}
+    left = {key: value for key, value in existing.items() if key not in ignored}
+    right = {key: value for key, value in expected.items() if key not in ignored}
+    return left == right
+
+
+def _read_history(run_dir: Path) -> list[dict[str, Any]]:
+    path = run_dir / "train_log.csv"
+    if not path.is_file():
+        return []
+    with path.open("r", encoding="utf-8-sig", newline="") as handle:
+        return list(csv.DictReader(handle))
 
 
 def formal_train_transfer(
@@ -78,10 +107,17 @@ def formal_train_transfer(
     if model_id not in MODEL_IDS:
         raise ValueError(f"Model is outside the frozen E9 scope: {model_id}")
     run_id = canonical_transfer_run_id(model_id)
-    run_dir = safe_run_dir(output_root, run_id)
-    existing = _existing_completed(run_dir, model_id)
+    run_dir = safe_run_dir(output_root, run_id, allow_existing=True)
+    control_dir = _control_dir(model_id)
+    control_effective = read_json(control_dir / "effective_config.json")
+    expected_transfer = build_transfer_config(control_effective, model_id, output_root)
+    existing = _existing_run(run_dir, model_id)
     if existing is not None:
-        return existing
+        existing_effective = read_json(run_dir / "effective_config.json")
+        if not _resume_config_matches(existing_effective, expected_transfer):
+            raise RuntimeError(f"Existing E9 run config conflicts with the frozen loss-only transfer: {run_dir}")
+        if existing["status"] == "SKIPPED_COMPLETED_IDENTITY_MATCH":
+            return existing
     if not _preflight_pass(model_id, preflight_root):
         raise RuntimeError(f"Exact E9 MS-MG-DWU preflight PASS is required before formal training: {model_id}")
     protocol = load_protocol()
@@ -90,42 +126,45 @@ def formal_train_transfer(
     runtime = build_model_runtime(model_id, protocol, run_mode="formal", target_scaler=provider.scalers["target"])
     apply_training_profile(runtime, TRAINING_PROFILE_ID)
     apply_model_precision_policy(runtime)
-    control_dir = _control_dir(model_id)
-    control_effective = read_json(control_dir / "effective_config.json")
     compatible, mismatches = _current_runtime_compatible(runtime.effective_config, control_effective)
     if not compatible:
         raise RuntimeError(f"Current model resolver differs from the frozen control: {mismatches}")
-    effective_transfer = build_transfer_config(control_effective, model_id, output_root)
+    effective_transfer = deepcopy(expected_transfer)
     effective_transfer.pop("formal_worker_pid", None)
     effective_transfer["formal_worker_pid"] = os.getpid()
     runtime.effective_config = deepcopy(effective_transfer)
     diff = compare_configs(control_effective, effective_transfer, graph_model=model_id in {"dcrnn", "mtgnn"})
     if not diff["loss_only_diff_valid"]:
         raise RuntimeError(f"E9 loss-only config diff failed closed: {diff['unexpected_differences']}")
-    run_dir.mkdir(parents=True, exist_ok=False)
     loss_fn = build_msmg_dwu_loss(**LOSS_PROFILE)
-    atomic_write_json(run_dir / "initialization_provenance.json", {
-        "initialization_seed": int(protocol["default_seed"]),
-        "initial_model_state_hash": None,
-        "exact_initial_state_pairing": "NOT_VERIFIED",
-        "rng_manifest": {"seed": int(protocol["default_seed"]), "torch_rng_saved_in_checkpoint": True},
-        "sampler_identity": "ProviderBatchIterable sequential formal starts",
-        "data_order_identity": "strict chronological train starts, stride=6, no shuffle",
-    })
-    atomic_write_json(run_dir / "control_reference.json", {
-        "source_class": "ORIGINAL26_CONTROL", "read_only": True,
-        "model_id": model_id, "run_id": CONTROL_RUN_IDS[model_id], "source_root": str(control_dir),
-    })
-    atomic_write_json(run_dir / "loss_only_config_diff.json", diff)
-    atomic_write_json(run_dir / "loss_state_manifest.json", {
-        "fit_split": "train", "validation_test_frozen": True, "uses_test_target": False,
-        "model_output_dependent": True, "algorithm_shared": True, "values_shared": False,
-        "checkpointed": True,
-    })
-    resolved, effective = _write_common(
-        run_dir, runtime, protocol, profile="TRAIN", run_mode="formal",
-        data_signature=provider.signature(), formal_training=True,
-    )
+    if existing is None:
+        run_dir.mkdir(parents=True, exist_ok=False)
+        atomic_write_json(run_dir / "initialization_provenance.json", {
+            "initialization_seed": int(protocol["default_seed"]),
+            "initial_model_state_hash": None,
+            "exact_initial_state_pairing": "NOT_VERIFIED",
+            "rng_manifest": {"seed": int(protocol["default_seed"]), "torch_rng_saved_in_checkpoint": True},
+            "sampler_identity": "ProviderBatchIterable sequential formal starts",
+            "data_order_identity": "strict chronological train starts, stride=6, no shuffle",
+        })
+        atomic_write_json(run_dir / "control_reference.json", {
+            "source_class": "ORIGINAL26_CONTROL", "read_only": True,
+            "model_id": model_id, "run_id": CONTROL_RUN_IDS[model_id], "source_root": str(control_dir),
+        })
+        atomic_write_json(run_dir / "loss_only_config_diff.json", diff)
+        atomic_write_json(run_dir / "loss_state_manifest.json", {
+            "fit_split": "train", "validation_test_frozen": True, "uses_test_target": False,
+            "model_output_dependent": True, "algorithm_shared": True, "values_shared": False,
+            "checkpointed": True,
+        })
+        resolved, effective = _write_common(
+            run_dir, runtime, protocol, profile="TRAIN", run_mode="formal",
+            data_signature=provider.signature(), formal_training=True,
+        )
+    else:
+        effective = read_json(run_dir / "effective_config.json")
+        resolved = read_json(run_dir / "resolved_config.json")
+        runtime.effective_config = deepcopy(effective)
     trainer = Trainer(
         model=runtime.model, adapter=runtime.adapter, loss_fn=loss_fn, protocol=protocol,
         run_dir=run_dir, model_id=model_id, resolved_config=resolved, effective_config=effective,
@@ -133,10 +172,14 @@ def formal_train_transfer(
     )
     try:
         sizes = resolved_batch_sizes(protocol, TRAINING_PROFILE_ID)
-        history = trainer.fit(
-            ProviderBatchIterable(provider, "train", sizes["train"]),
-            ProviderBatchIterable(provider, "val", sizes["val"]),
-        )
+        if existing is not None and existing["status"] == "RESUME_EVALUATION":
+            history = _read_history(run_dir)
+        else:
+            trainer.resume_checkpoint = Path(existing["resume_checkpoint"]) if existing is not None else None
+            history = trainer.fit(
+                ProviderBatchIterable(provider, "train", sizes["train"]),
+                ProviderBatchIterable(provider, "val", sizes["val"]),
+            )
         metrics = Evaluator(trainer).evaluate(ProviderBatchIterable(provider, "test", sizes["test"]))
         _write_metrics(
             run_dir, metrics, runtime=runtime, protocol=protocol,
@@ -149,7 +192,10 @@ def formal_train_transfer(
             "epochs_completed": len(history), "metrics": metrics,
             "artifact_validation": validate_run(run_dir, expected_training_batch_profile_id=TRAINING_PROFILE_ID),
         }
-    except Exception:
-        if not (run_dir / "run_status.json").is_file():
-            write_status(run_dir, status="FAILED", run_mode="formal", artifact_profile="FAILED", formal_training=True, exit_code=1)
+    except Exception as exc:
+        write_status(
+            run_dir, status="FAILED", run_mode="formal", artifact_profile="FAILED",
+            formal_training=True, exit_code=1, failure_stage="resume_or_evaluate" if existing is not None else "train",
+            error_type=type(exc).__name__, error_message=str(exc),
+        )
         raise

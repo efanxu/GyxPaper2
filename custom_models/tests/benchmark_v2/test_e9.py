@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import json
 import math
+import shutil
+import subprocess
 import sys
 import zipfile
 from pathlib import Path
@@ -21,7 +23,10 @@ if loaded is not None and Path(getattr(loaded, "__file__", "")).resolve() == Pat
     del sys.modules["benchmark_v2"]
 
 from benchmark_v2.contracts import LossInputBundle
+from benchmark_v2.contracts import BenchmarkBatch
 from benchmark_v2.checkpointing import CheckpointManager
+from benchmark_v2.adapters import NodeSharedAdapter
+from benchmark_v2.engine import Trainer
 from benchmark_v2.e9.aggregate import IncompleteE9EvidenceError, aggregate_complete, build_tables, metric_comparison
 from benchmark_v2.e9.config_diff import build_transfer_config, compare_configs
 from benchmark_v2.e9.constants import EXCLUDED_MODEL_IDS, MODEL_IDS, WORKBOOK_SHEETS
@@ -30,6 +35,7 @@ from benchmark_v2.e9.original26_resolver import control_identity_errors, discove
 from benchmark_v2.e9.portability_audit import classify_portability, portability_audit
 from benchmark_v2.e9.evidence import build_evidence_manifest, build_transfer_readiness
 from benchmark_v2.e9.readiness import build_readiness
+from benchmark_v2.e9.training import _existing_run, _resume_config_matches
 from benchmark_v2.e9.variants import CONTROL_RUN_IDS, canonical_transfer_run_id, variant_manifest
 from benchmark_v2.e9.xlsx_writer import write_workbook
 from benchmark_v2.losses import build_msmg_dwu_loss
@@ -271,11 +277,57 @@ def test_checkpoint_roundtrip_restores_loss_training_state(tmp_path: Path):
     assert value is not None
     expected = {key: tensor.clone() for key, tensor in loss_fn.state_dict().items()}
     manager = CheckpointManager(tmp_path, protocol_id="fixture", model_id="lightts", resolved_config={}, effective_config={})
-    checkpoint = manager.save("state.pt", epoch=1, global_step=1, monitor_value=1.0, model=model, loss_fn=loss_fn)
+    trainer_state = {"best": 1.0, "bad_epochs": 0, "history": [{"epoch": 1}]}
+    checkpoint = manager.save("state.pt", epoch=1, global_step=1, monitor_value=1.0, model=model, loss_fn=loss_fn, trainer_state=trainer_state)
     restored_model = torch.nn.Linear(2, 2)
     restored_loss = build_msmg_dwu_loss(eval_horizons=[3, 6, 10], num_nodes=4, granularity_weight_mode="difficulty_rate")
-    manager.load(checkpoint, restored_model, loss_fn=restored_loss)
+    payload = manager.load(checkpoint, restored_model, loss_fn=restored_loss)
     assert all(torch.equal(expected[key], restored_loss.state_dict()[key]) for key in expected)
+    assert payload["trainer_state"] == trainer_state
+
+
+def test_trainer_resumes_epoch_optimizer_loss_rng_and_history(tmp_path: Path):
+    class TinyModel(torch.nn.Module):
+        def __init__(self):
+            super().__init__()
+            self.projection = torch.nn.Linear(16, 10)
+
+        def forward(self, values):
+            return self.projection(values[:, -1, :])
+
+    batch = BenchmarkBatch(
+        x=torch.randn(1, 2, 4, 16), target=torch.randn(1, 4, 10),
+        mask=torch.ones(1, 4, 10, dtype=torch.bool), sample_ids=["fixture"],
+        window_end_indices=[2], node_ids=[1, 2, 3, 4], split="train",
+        metadata={"contains_future_target": False},
+    )
+    protocol = {
+        "protocol_id": "fixture", "default_seed": 2026, "max_pred_len": 10, "feature_count": 16,
+        "physical_power_min_kw": 0.0, "physical_power_max_kw": 1500.0,
+    }
+    base = {
+        "model_id": "lightts", "run_mode": "formal", "artifact_profile": "TRAIN",
+        "optimizer": "Adam", "learning_rate": 0.001, "weight_decay": 0.0,
+        "patience": 6, "min_delta": 0.01, "seed": 2026, "amp_enabled": False,
+    }
+    first = Trainer(
+        model=TinyModel(), adapter=NodeSharedAdapter(),
+        loss_fn=build_msmg_dwu_loss(eval_horizons=[3, 6, 10], num_nodes=4),
+        protocol=protocol, run_dir=tmp_path, model_id="lightts", resolved_config={},
+        effective_config={**base, "epochs": 1}, device="cpu",
+    )
+    assert len(first.fit([batch], [batch])) == 1
+    second = Trainer(
+        model=TinyModel(), adapter=NodeSharedAdapter(),
+        loss_fn=build_msmg_dwu_loss(eval_horizons=[3, 6, 10], num_nodes=4),
+        protocol=protocol, run_dir=tmp_path, model_id="lightts", resolved_config={},
+        effective_config={**base, "epochs": 2}, device="cpu",
+    )
+    second.resume_checkpoint = tmp_path / "last_checkpoint.pt"
+    history = second.fit([batch], [batch])
+    assert len(history) == 2 and int(history[-1]["epoch"]) == 2
+    payload = torch.load(tmp_path / "last_checkpoint.pt", map_location="cpu", weights_only=False)
+    assert payload["epoch"] == 2 and len(payload["trainer_state"]["history"]) == 2
 
 
 def test_metric_directions_and_all_horizons():
@@ -314,3 +366,109 @@ def test_linux_scripts_scope_paths_and_shutdown_order():
     assert "evaluate-only" not in run_all and "STMGPrompt" not in run_all
     auto = contents["E9_RUN_ALL_6_LINUX_AUTOSHUTDOWN.sh"]
     assert auto.index("E9_RUN_ALL_6_LINUX.sh") < auto.index("run_code=$?") < auto.index("sync") < auto.index("/usr/bin/shutdown -h now")
+
+
+def test_windows_scripts_manifest_driven_parameterized_and_gated():
+    docs = PROJECT_ROOT / "custom_models" / "docs" / "benchmark_v2" / "E9"
+    names = (
+        "E9_PRECHECK_WINDOWS.ps1", "E9_PREFLIGHT_ALL_6_WINDOWS.ps1", "E9_RUN_ALL_6_WINDOWS.ps1",
+        "E9_RUN_ALL_6_WINDOWS_AUTOSHUTDOWN.ps1", "E9_READINESS_AND_AGGREGATE_WINDOWS.ps1",
+    )
+    contents = {name: (docs / name).read_text(encoding="utf-8") for name in names}
+    for content in contents.values():
+        assert "[string]$ProjectRoot" in content and "[string]$Python" in content
+        assert "$env:PYTHONPATH" in content or "E9_RUN_ALL_6_WINDOWS.ps1" in content
+    run_all = contents["E9_RUN_ALL_6_WINDOWS.ps1"]
+    assert "E9_VARIANT_MANIFEST.json" in run_all and "foreach ($Variant" in run_all
+    assert "train-one" in run_all and "transfer-readiness" in run_all
+    assert all(name not in run_all for name in ("LightTS", "TiDE", "PatchTST", "iTransformer", "DCRNN", "MTGNN", "A0", "A8", "E5"))
+    assert "$RunId + '.log'" in run_all and "failed_models.csv" in run_all and "completed_models.csv" in run_all
+    assert "Invoke-GyxNativeProcess -FilePath $Python" in run_all
+    readiness = contents["E9_READINESS_AND_AGGREGATE_WINDOWS.ps1"]
+    assert "CORE_E9_READY" in readiness and "12/12" in readiness and "LOSS_ONLY_PAIRING_READY" in readiness and "6/6" in readiness
+    assert "--require-complete" in readiness and "E9_ARTIFACT_NODE" in readiness
+    auto = contents["E9_RUN_ALL_6_WINDOWS_AUTOSHUTDOWN.ps1"]
+    assert auto.index("E9_RUN_ALL_6_WINDOWS.ps1") < auto.index("autoshutdown_run_all_exit_code.txt") < auto.index("shutdown.exe /s /t 0")
+
+
+def test_e9_existing_run_safe_skip_resume_and_identity_fail_closed(tmp_path: Path, monkeypatch):
+    run_dir = tmp_path / canonical_transfer_run_id("lightts")
+    run_dir.mkdir()
+    effective = {
+        "model_id": "lightts", "loss": "msmg_dwu_loss", "run_id": run_dir.name,
+        "formal_worker_pid": 1, "output_root": "old root",
+    }
+    (run_dir / "effective_config.json").write_text(json.dumps(effective), encoding="utf-8")
+    (run_dir / "run_status.json").write_text(json.dumps({"status": "COMPLETED"}), encoding="utf-8")
+    monkeypatch.setattr("benchmark_v2.e9.training.validate_run", lambda *args, **kwargs: {"status": "PASS"})
+    assert _existing_run(run_dir, "lightts")["status"] == "SKIPPED_COMPLETED_IDENTITY_MATCH"
+
+    (run_dir / "run_status.json").write_text(json.dumps({"status": "RUNNING"}), encoding="utf-8")
+    (run_dir / "last_checkpoint.pt").write_bytes(b"fixture")
+    assert _existing_run(run_dir, "lightts")["status"] == "RESUME_TRAINING"
+    expected = {**effective, "formal_worker_pid": 999, "output_root": "new root"}
+    assert _resume_config_matches(effective, expected)
+    assert not _resume_config_matches(effective, {**expected, "hidden_dim": 999})
+
+    effective["model_id"] = "tide"
+    (run_dir / "effective_config.json").write_text(json.dumps(effective), encoding="utf-8")
+    with pytest.raises(RuntimeError, match="identity conflicts"):
+        _existing_run(run_dir, "lightts")
+
+
+@pytest.mark.skipif(shutil.which("powershell.exe") is None, reason="requires Windows PowerShell")
+def test_windows_run_all_fixture_continues_after_failure_and_handles_spaces(tmp_path: Path):
+    project = tmp_path / "Project Root With Spaces"
+    e9_docs = project / "custom_models" / "docs" / "benchmark_v2" / "E9"
+    source = project / "custom_models" / "src" / "benchmark_v2" / "e9"
+    e9_docs.mkdir(parents=True)
+    source.mkdir(parents=True)
+    native_source = PROJECT_ROOT / "custom_models" / "docs" / "benchmark_v2" / "WINDOWS_NATIVE_PROCESS_RUNNER.ps1"
+    native_target = project / "custom_models" / "docs" / "benchmark_v2" / "WINDOWS_NATIVE_PROCESS_RUNNER.ps1"
+    native_target.write_text(native_source.read_text(encoding="utf-8"), encoding="utf-8")
+    variants = [
+        {
+            "variant_id": f"FIXTURE_{model_id}", "model_id": model_id,
+            "transfer_run_id": canonical_transfer_run_id(model_id), "loss_id": "msmg_dwu_loss",
+            "formal_training": True, "control_training": False,
+        }
+        for model_id in MODEL_IDS
+    ]
+    (e9_docs / "E9_VARIANT_MANIFEST.json").write_text(json.dumps({"variants": variants}), encoding="utf-8")
+    (source.parent / "__init__.py").write_text("", encoding="utf-8")
+    (source / "__init__.py").write_text("", encoding="utf-8")
+    (source / "__main__.py").write_text(
+        """import json, pathlib, sys
+args = sys.argv[1:]
+root = pathlib.Path(args[args.index('--analysis-root') + 1]) if '--analysis-root' in args else pathlib.Path('.')
+if 'train-one' in args:
+    model = args[args.index('--model') + 1]
+    print('fixture model=' + model)
+    raise SystemExit(7 if model == 'patchtst' else 0)
+if 'transfer-readiness' in args:
+    root.mkdir(parents=True, exist_ok=True)
+    (root / 'E9_TRANSFER_READINESS.json').write_text(json.dumps({'fixture': True}), encoding='utf-8')
+    raise SystemExit(0)
+raise SystemExit(0)
+""",
+        encoding="utf-8",
+    )
+    analysis = project / "analysis output"
+    logs = project / "formal logs"
+    script = PROJECT_ROOT / "custom_models" / "docs" / "benchmark_v2" / "E9" / "E9_RUN_ALL_6_WINDOWS.ps1"
+    completed = subprocess.run(
+        [
+            shutil.which("powershell.exe") or "powershell.exe", "-NoLogo", "-NoProfile", "-NonInteractive",
+            "-ExecutionPolicy", "Bypass", "-File", str(script), "-ProjectRoot", str(project),
+            "-Python", sys.executable, "-AnalysisRoot", str(analysis),
+            "-PreflightRoot", str(project / "preflight root"), "-FormalLogRoot", str(logs),
+        ],
+        cwd=PROJECT_ROOT, text=True, capture_output=True, encoding="utf-8", errors="replace", check=False,
+    )
+    assert completed.returncode == 1, completed.stdout + completed.stderr
+    failed = (logs / "failed_models.csv").read_text(encoding="utf-8")
+    done = (logs / "completed_models.csv").read_text(encoding="utf-8")
+    assert "patchtst" in failed and "mtgnn" in done
+    assert (logs / "run_all_exit_code.txt").read_text(encoding="utf-8").strip() == "1"
+    assert len(list(logs.glob("*_msmg_dwu_seed2026.log"))) == 6
+    assert (analysis / "E9_TRANSFER_READINESS.json").is_file()

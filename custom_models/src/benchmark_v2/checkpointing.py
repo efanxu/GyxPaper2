@@ -31,7 +31,7 @@ class CheckpointManager:
         self.resolved_config = dict(resolved_config)
         self.run_metadata = {key: effective_config[key] for key in EXPLICIT_CONFIG_KEYS if key in effective_config}
 
-    def save(self, name: str, *, epoch: int, global_step: int, monitor_value: float, model, loss_fn=None, optimizer=None, scheduler=None, amp_scaler=None, seed_state: dict[str, Any] | None = None) -> Path:
+    def save(self, name: str, *, epoch: int, global_step: int, monitor_value: float, model, loss_fn=None, optimizer=None, scheduler=None, amp_scaler=None, seed_state: dict[str, Any] | None = None, trainer_state: dict[str, Any] | None = None) -> Path:
         import torch
         payload = {
             "schema_version": "checkpoint_schema_v2",
@@ -49,6 +49,7 @@ class CheckpointManager:
             "scheduler_state_dict": scheduler.state_dict() if scheduler is not None else None,
             "amp_scaler_state_dict": amp_scaler.state_dict() if amp_scaler is not None else None,
             "seed_state": seed_state or _rng_state(),
+            "trainer_state": trainer_state,
             "created_at": datetime.now(timezone.utc).isoformat(),
         }
         path = self.run_dir / name

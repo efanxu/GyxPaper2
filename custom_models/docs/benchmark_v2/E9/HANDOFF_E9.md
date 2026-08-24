@@ -2,13 +2,11 @@
 
 ## Current state
 
-E9-A and E9-B engineering are implemented and locally validated. No formal long training was started.
+E9-A/E9-B design, portability, six frozen transfer variants, original26 controls, batch4 protocol, readiness, aggregation, and report framework remain unchanged. The current recommended formal execution platform is now Windows PowerShell with an NVIDIA GPU; Linux scripts remain compatibility entry points.
 
-Portability is `PORTABLE_WITH_TRAIN_STATE`. The exact MS-MG-DWU implementation uses only prediction/target/mask plus public node/horizon/protocol identity and training-only online EMA state. It has no Fine/Coarse, VADSP, Prompt, Cross-gate, hidden-state, attention, graph-embedding, or model-auxiliary dependency. Full transfer is allowed; no subset or renaming is needed.
+Portability remains `PORTABLE_WITH_TRAIN_STATE`. Full MS-MG-DWU transfer is allowed, with no portable subset. The original26 controls remain read-only `masked_mse`, batch4, seed2026 artifacts.
 
-The original26 workbook is `C:\Users\12811\Desktop\实验结果\original26_filtered20.xlsx`. All six frozen controls reconcile to formal artifacts and are genuine `masked_mse`, batch4, seed2026 controls. Proposed loss-only config diff passes 6/6.
-
-Current readiness is:
+Current pre-training readiness remains:
 
 - `PORTABILITY_AUDIT_READY=PASS`
 - `ORIGINAL_MASKED_MSE_REFERENCE_READY=6/6`
@@ -18,16 +16,24 @@ Current readiness is:
 - `FULL_MS_MG_DWU_TRANSFER_READY=true`
 - `PORTABLE_SUBSET_TRANSFER_READY=false`
 
-## Resume sequence
+## Current recommended resume sequence
 
-On Linux, run `E9_PRECHECK_LINUX.sh`, then `E9_PREFLIGHT_ALL_6_LINUX.sh`. Only after all required preflights pass, run `E9_RUN_ALL_6_LINUX.sh` or the autoshutdown wrapper. Do not change batch/shape/model settings after a failure and do not overwrite failed directories.
+On the Windows GPU computer:
 
-The run-all script always writes `E9_TRANSFER_READINESS.json`, which can reach 6/6 without the desktop workbook but explicitly does not imply core E9 readiness. If `ORIGINAL26_XLSX` is exported, the script additionally performs the full workbook-backed readiness audit.
+1. Pull `origin/main`.
+2. Run `E9_PRECHECK_WINDOWS.ps1`.
+3. Run `E9_PREFLIGHT_ALL_6_WINDOWS.ps1` and require 6/6 PASS.
+4. Run `E9_RUN_ALL_6_WINDOWS.ps1`, or its autoshutdown wrapper.
+5. Inspect `E9_TRANSFER_READINESS.json`, completed/failed CSVs, and the overall exit code.
+6. With an explicit original26 workbook, require core 12/12 and pairing 6/6.
+7. Run `E9_READINESS_AND_AGGREGATE_WINDOWS.ps1` with an artifact-tool runtime to create the formal Excel/Markdown report.
 
-After syncing the six transfer run directories back to the fixed output root, run readiness with explicit `--original26-xlsx`. Run `aggregate --require-complete` only after core 12/12 and pairing 6/6.
+The Windows run-all is manifest-driven and sequentially starts one independent Python process per transfer. Re-running the same command safely skips identity-matching COMPLETED runs. Matching checkpointed interruptions resume through the existing Trainer/checkpoint path; identity conflicts and non-resumable incomplete directories fail closed. No script deletes a run directory.
+
+See `E9_RUNBOOK.md` for parameterized foreground, background, autoshutdown, monitoring, readiness, aggregate, and safe-continuation commands. Paths containing spaces are supported through the repository's Windows native command-line quoting helper.
 
 ## Integrity constraints
 
-Controls remain read-only and are not retrained. Historical formal artifacts, A0/A8, and cancelled common-loss material were not modified or adopted. Smoke/preflight outputs cannot enter evidence. Exact initial-state equality is currently `NOT_VERIFIED`; claim only same seed/source/config/protocol unless future artifacts prove matching initial-state identity.
+Controls are not retrained. A0/A8, E5/common-loss material, smoke artifacts, and excluded models do not enter E9 training or core evidence. Do not reduce batch/shape/model settings after a preflight failure. Exact historical control/transfer initial-state equality remains `NOT_VERIFIED`; claim only same seed/source/config/protocol unless future artifacts prove otherwise.
 
-No git commit or push was performed. Stop after E9; do not start E10 automatically.
+No formal E9 training was started during the Windows orchestration implementation.
