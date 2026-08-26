@@ -1,4 +1,9 @@
 {
+  "_protocol": {
+    "status": "OBSOLETE_PRE_FORMAL_PROTOCOL",
+    "formal_component_ablation": false,
+    "variant_namespace": "LEGACY_P1_A0_A10"
+  },
   "A0": {
     "status": "completed",
     "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A0\\STMGPrompt_ComponentAblation",

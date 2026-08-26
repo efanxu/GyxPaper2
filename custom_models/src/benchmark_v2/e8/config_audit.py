@@ -6,7 +6,6 @@ from .constants import INTERNAL_ROOT, INTERNAL_TARGETS
 from .io_utils import read_json
 
 IGNORED_IDENTITY_FIELDS = {"component_ablation", "run_id", "output_root"}
-DIRECTION_FIELDS = {"use_cross_fusion", "disable_reverse_cross"}
 
 
 def _diff(left: dict[str, Any], right: dict[str, Any], ignored=IGNORED_IDENTITY_FIELDS) -> dict[str, dict[str, Any]]:
@@ -53,31 +52,21 @@ def audit_internal_config(root=INTERNAL_ROOT) -> dict:
         })
     a5 = read_json(root / "A5" / "effective_config.json")
     a6 = read_json(root / "A6" / "effective_config.json")
-    a5_other = _diff(a5, a6, ignored=IGNORED_IDENTITY_FIELDS | DIRECTION_FIELDS)
-    direction_valid = (
-        _directions(a0) == {"fine_to_coarse": True, "coarse_to_fine": True}
-        and _directions(a5) == {"fine_to_coarse": False, "coarse_to_fine": True}
-        and _directions(a6) == {"fine_to_coarse": False, "coarse_to_fine": False}
-        and not a5_other
-    )
     return {
-        "schema_version": "e8_internal_config_diff_v1",
+        "schema_version": "e8_internal_config_diff_v2",
         "status": "PASS" if all(row["config_diff_valid"] for row in comparisons) else "FAIL",
         "comparisons": comparisons,
         "direction_decomposition": {
             "A0_directions": _directions(a0), "A5_directions": _directions(a5), "A6_directions": _directions(a6),
-            "A5_A6_non_direction_differences": a5_other,
-            "DIRECTION_DECOMPOSITION_VALID": direction_valid,
-            "allowed_conclusions": [
-                "A0 vs A5 = Fine-to-Coarse contribution",
-                "A5 vs A6 = Coarse-to-Fine marginal contribution",
-                "A0 vs A6 = bidirectional Cross Fusion total contribution",
-            ] if direction_valid else [],
+            "A5_A6_non_direction_differences": _diff(a5, a6),
+            "DIRECTION_DECOMPOSITION_VALID": False,
+            "allowed_conclusions": [],
+            "reason": "A5 shortens Reverse Cross context and A6 changes fusion aggregation; neither removes a direction.",
         },
         "source_semantics": {
-            "A5_disabled_module": "SymmetricCrossFusion.fine_to_coarse",
-            "A5_retained_module": "SymmetricCrossFusion.macro_to_fine (Macro Prompt or coarse history to Fine)",
-            "A6_branch_retention": "Both FineMicroGraphTemporalEncoder and CoarseMacroGraphTemporalEncoder remain active",
-            "A7_replacement": "STPromptDirectDecoder -> HorizonDirectDecoder",
+            "A4_change": "macro_prompt_len: 4 -> 1",
+            "A5_change": "cross_fusion_recent_len: 24 -> 6; both attention directions remain active",
+            "A6_change": "fusion_mode: cross -> add; both attention directions remain active",
+            "A7_change": "st_prompt_mode: full -> horizon_only; STPromptDirectDecoder remains active",
         },
     }

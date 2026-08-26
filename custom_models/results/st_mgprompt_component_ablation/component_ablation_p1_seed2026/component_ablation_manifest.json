@@ -1,5 +1,8 @@
 {
   "generated_at": "2026-07-20T21:00:15",
+  "status": "OBSOLETE_PRE_FORMAL_PROTOCOL",
+  "formal_component_ablation": false,
+  "variant_namespace": "LEGACY_P1_A0_A10",
   "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026",
   "protocol": "leave_one_component_out_from_P1",
   "strict_a10_architecture_equal_to_a0": true,
@@ -129,8 +132,8 @@
       "seed": 2026
     },
     {
-      "id": "A4",
-      "name": "w/o Trend Prior",
+      "id": "LEGACY_P1_A4",
+      "name": "Legacy Trend Prior removal",
       "only_change": "Prior-free fully learnable graph softmax",
       "architecture": {
         "model_name": "STMGPrompt_ComponentAblation",
@@ -160,8 +163,8 @@
       "seed": 2026
     },
     {
-      "id": "A5",
-      "name": "w/o Diffusion",
+      "id": "LEGACY_P1_A5",
+      "name": "Legacy Diffusion removal",
       "only_change": "Simple graph operator replaces bidirectional diffusion",
       "architecture": {
         "model_name": "STMGPrompt_ComponentAblation",
@@ -191,8 +194,8 @@
       "seed": 2026
     },
     {
-      "id": "A6",
-      "name": "w/o Macro Prompt",
+      "id": "LEGACY_P1_A6",
+      "name": "Legacy Macro Prompt removal",
       "only_change": "No macro prompt generation or decoder injection",
       "architecture": {
         "model_name": "STMGPrompt_ComponentAblation",
@@ -222,8 +225,8 @@
       "seed": 2026
     },
     {
-      "id": "A7",
-      "name": "w/o Reverse Cross",
+      "id": "LEGACY_P1_A7",
+      "name": "Legacy Reverse Cross removal",
       "only_change": "Disable fine-to-coarse cross-attention",
       "architecture": {
         "model_name": "STMGPrompt_ComponentAblation",
@@ -285,7 +288,7 @@
     },
     {
       "id": "A9",
-      "name": "w/o ST Prompt",
+      "name": "Legacy ST Prompt removal",
       "only_change": "Ordinary direct horizon head replaces ST-prompt queries",
       "architecture": {
         "model_name": "STMGPrompt_ComponentAblation",

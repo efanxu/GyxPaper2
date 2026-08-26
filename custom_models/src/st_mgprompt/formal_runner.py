@@ -23,6 +23,7 @@ from .experiment_protocol import (
     apply_variant,
     assert_expected_diff,
     canonical_directory,
+    config_diff,
     get_variant,
     semantic_config,
     write_json,
@@ -136,6 +137,7 @@ def _root(args: argparse.Namespace, family: str) -> Path:
 
 def _effective_artifacts(root: Path, variant) -> tuple[dict[str, Any], dict[str, Any]]:
     config = apply_variant(STMGPromptConfig(), variant.variant_id, variant.experiment_family)
+    config.validate()
     effective = config.to_dict()
     diff = assert_expected_diff(config, variant.variant_id, variant.experiment_family)
     variant_dir = root / variant.variant_id
@@ -268,12 +270,49 @@ def _historical_returncode(root: Path, variant_id: str) -> int:
     return 0
 
 
+def _load_statuses(root: Path) -> dict[str, dict[str, Any]]:
+    path = root / "experiment_status.json"
+    if not path.exists():
+        return {}
+    try:
+        value = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    entries = value if isinstance(value, list) else value.get("variants", []) if isinstance(value, dict) else []
+    return {
+        str(item["variant"]).upper(): item
+        for item in entries
+        if isinstance(item, dict) and item.get("variant")
+    }
+
+
+def _ordered_statuses(mapping, by_variant: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
+    return [by_variant[name] for name in mapping if name in by_variant]
+
+
+def _current_variant_metrics(root: Path, variant) -> list[Path]:
+    if variant.variant_id not in {"A4", "A5", "A6", "A7"}:
+        return _metrics_files(root / variant.variant_id)
+    expected_config = apply_variant(STMGPromptConfig(), variant.variant_id, variant.experiment_family)
+    run_dir = _variant_run_dir(root, variant, expected_config)
+    config_path = run_dir / "active_config.json"
+    if not config_path.exists():
+        config_path = run_dir / "config.json"
+    try:
+        actual = json.loads(config_path.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+    if "st_prompt_mode" not in actual:
+        actual["st_prompt_mode"] = "full"
+    report = config_diff(actual, variant.variant_id, variant.experiment_family)
+    return _metrics_files(run_dir) if report["passed"] else []
+
+
 def _summary_rows(root: Path, variants) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     canonical = canonical_directory(PROJECT_ROOT)
     for variant in variants:
-        source = canonical if not variant.trainable else root / variant.variant_id
-        files = _metrics_files(source)
+        files = _metrics_files(canonical) if not variant.trainable else _current_variant_metrics(root, variant)
         for path in files:
             metric = json.loads(path.read_text(encoding="utf-8"))
             row = {
@@ -311,19 +350,31 @@ def run_family(family: str, argv: list[str] | None = None) -> dict[str, Any]:
     _validate_python_override(args.python)
     if sum(bool(value) for value in (args.run_full, args.run_smoke, args.full_shape_smoke, args.dry_run)) > 1:
         raise ValueError("Choose only one of --run-full, --run-smoke, --full-shape-smoke, or --dry-run.")
+    mapping, _, _, _ = _family_data(family)
     variants = selected_variants(family, args.variants)
+    all_variants = list(mapping.values())
+    selected_ids = {item.variant_id for item in variants}
     root = _root(args, family)
     root.mkdir(parents=True, exist_ok=True)
-    write_variant_matrix(root / "variant_config_matrix.csv", variants)
+    write_variant_matrix(root / "variant_config_matrix.csv", all_variants)
     manifest = {
         "canonical_id": CANONICAL_ID,
         "experiment_family": family,
         "run_id": root.name,
         "selection_uses_test_metrics": False,
-        "variants": [item.to_dict() for item in variants],
+        "variants": [item.to_dict() for item in all_variants],
+        "selected_variants": [item.variant_id for item in variants],
     }
     write_json(root / "experiment_manifest.json", manifest)
-    statuses: list[dict[str, Any]] = []
+    statuses_by_variant = _load_statuses(root)
+    statuses_by_variant = {name: value for name, value in statuses_by_variant.items() if name in mapping}
+    for name in selected_ids:
+        statuses_by_variant.pop(name, None)
+
+    def record_status(value: dict[str, Any]) -> list[dict[str, Any]]:
+        statuses_by_variant[value["variant"]] = value
+        return _ordered_statuses(mapping, statuses_by_variant)
+
     execute = args.run_full or args.run_smoke or args.full_shape_smoke
     for variant in variants:
         effective_dict, _ = _effective_artifacts(root, variant)
@@ -334,7 +385,7 @@ def run_family(family: str, argv: list[str] | None = None) -> dict[str, Any]:
         if not variant.trainable:
             print(f"{variant.variant_id}: REFERENCE_ONLY", flush=True)
             write_reference(variant.variant_id, root / variant.variant_id, PROJECT_ROOT)
-            statuses.append(
+            statuses = record_status(
                 {
                     "variant": variant.variant_id,
                     "status": "REFERENCE_ONLY",
@@ -354,7 +405,7 @@ def run_family(family: str, argv: list[str] | None = None) -> dict[str, Any]:
         ) if variant_dir.exists() else None
         if args.skip_completed and existing_audit and is_completed_status(existing_audit["final_status"]):
             print(f"{variant.variant_id}: SKIP_COMPLETED", flush=True)
-            statuses.append(
+            statuses = record_status(
                 {
                     **existing_audit,
                     "status": existing_audit["final_status"],
@@ -362,12 +413,11 @@ def run_family(family: str, argv: list[str] | None = None) -> dict[str, Any]:
                     "returncode": _historical_returncode(root, variant.variant_id),
                 }
             )
-            write_json(root / variant.variant_id / "run_command.json", [])
             _write_precision_status_files(root, manifest, statuses)
             continue
 
         if not execute:
-            statuses.append(
+            statuses = record_status(
                 {
                     "variant": variant.variant_id,
                     "status": "DRY_RUN",
@@ -419,18 +469,20 @@ def run_family(family: str, argv: list[str] | None = None) -> dict[str, Any]:
             "end_time": end_time,
             "decision": "EVALUATE_ONLY" if evaluate_only else "TRAIN",
         }
-        statuses.append(variant_status)
+        statuses = record_status(variant_status)
         write_json(root / "experiment_status.json", statuses)
         _write_precision_status_files(root, manifest, statuses)
         if returncode and not is_completed_status(final_audit["final_status"]) and not args.continue_on_error:
             break
+    statuses = _ordered_statuses(mapping, statuses_by_variant)
     write_json(root / "experiment_status.json", statuses)
     _write_precision_status_files(root, manifest, statuses)
-    write_summary(root, variants)
+    write_summary(root, all_variants)
     failed = [
         item["variant"]
         for item in statuses
-        if item.get("variant") != "P0"
+        if item.get("variant") in selected_ids
+        and item.get("variant") not in {"P0", "A0"}
         and item.get("status") not in {"DRY_RUN", "REFERENCE_ONLY"}
         and not is_completed_status(item.get("final_status"))
     ]

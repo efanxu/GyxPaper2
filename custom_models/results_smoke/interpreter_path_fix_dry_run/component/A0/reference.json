@@ -2,5 +2,85 @@
   "alias": "A0",
   "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
   "canonical_directory": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026",
+  "checkpoint_path": "best_checkpoint.pt",
+  "config_path": "config.json",
+  "files": [
+    {
+      "path": "active_config.json",
+      "size_bytes": 5281
+    },
+    {
+      "path": "artifact_hashes.json",
+      "size_bytes": 1588
+    },
+    {
+      "path": "best_checkpoint.pt",
+      "size_bytes": 3509704
+    },
+    {
+      "path": "canonical_manifest.json",
+      "size_bytes": 9480
+    },
+    {
+      "path": "canonical_verification.json",
+      "size_bytes": 226
+    },
+    {
+      "path": "config.json",
+      "size_bytes": 5281
+    },
+    {
+      "path": "effective_config.json",
+      "size_bytes": 5298
+    },
+    {
+      "path": "evaluation_complete.json",
+      "size_bytes": 264
+    },
+    {
+      "path": "metrics.csv",
+      "size_bytes": 576
+    },
+    {
+      "path": "metrics_eval_h10.json",
+      "size_bytes": 553
+    },
+    {
+      "path": "metrics_eval_h3.json",
+      "size_bytes": 551
+    },
+    {
+      "path": "metrics_eval_h6.json",
+      "size_bytes": 550
+    },
+    {
+      "path": "model_summary.json",
+      "size_bytes": 11849
+    },
+    {
+      "path": "prediction_metadata.json",
+      "size_bytes": 614
+    },
+    {
+      "path": "protocol_check.json",
+      "size_bytes": 8902
+    },
+    {
+      "path": "provenance.json",
+      "size_bytes": 4141
+    },
+    {
+      "path": "run_status.json",
+      "size_bytes": 1655
+    },
+    {
+      "path": "train_complete.json",
+      "size_bytes": 643
+    },
+    {
+      "path": "train_log.csv",
+      "size_bytes": 28478
+    }
+  ],
   "trainable": false
 }

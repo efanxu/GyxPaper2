@@ -3,18 +3,18 @@
   "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
   "effective_diff_count": 1,
   "expected_diff_fields": [
-    "use_macro_prompt"
+    "macro_prompt_len"
   ],
   "actual_diff_fields": [
-    "use_macro_prompt"
+    "macro_prompt_len"
   ],
   "unexpected_diff_fields": [],
   "missing_expected_diff_fields": [],
   "unexpected_effective_diff_count": 0,
   "differences": {
-    "use_macro_prompt": {
-      "canonical": true,
-      "effective": false
+    "macro_prompt_len": {
+      "canonical": 4,
+      "effective": 1
     }
   },
   "passed": true

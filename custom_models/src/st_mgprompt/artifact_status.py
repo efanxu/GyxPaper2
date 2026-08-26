@@ -15,6 +15,10 @@ CONFIG_FIELDS = (
     "model_name",
     "graph_operator",
     "decoder_context_mode",
+    "macro_prompt_len",
+    "cross_fusion_recent_len",
+    "fusion_mode",
+    "st_prompt_mode",
     "hidden_dim",
     "num_coupling_layers",
     "lookback",
@@ -151,7 +155,8 @@ def _config_matches(actual: dict[str, Any] | None, expected: dict[str, Any]) -> 
         return False, ["config.json or active_config.json missing/invalid"]
     differences = []
     for key in CONFIG_FIELDS:
-        if actual.get(key) != expected.get(key):
+        actual_value = actual.get(key, "full") if key == "st_prompt_mode" else actual.get(key)
+        if actual_value != expected.get(key):
             differences.append(key)
     return not differences, differences
 

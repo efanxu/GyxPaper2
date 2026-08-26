@@ -1,10 +1,10 @@
-﻿variant,display_name,experiment_family,trainable,canonical_reference,vadsp_gate_mode,graph_operator,decoder_context_mode,hidden_dim,num_coupling_layers,spatial_graph,adaptive_graph,diffusion,macro_prompt,reverse_cross,cross_fusion,st_prompt,loss_name,granularity_weight_mode,site_weight_mode,seed
-A0,Canonical Full,component_ablation,False,full_fixed_dual_keep_msmgdwu_seed2026,fixed_dual,bi_diffusion,last_state,64,1,True,True,True,True,True,True,True,msmg_dwu_loss,difficulty_rate,dynamic,2026
-A1,w/o Spatial Graph,component_ablation,True,,fixed_dual,bi_diffusion,last_state,64,1,False,True,True,True,True,True,True,msmg_dwu_loss,difficulty_rate,dynamic,2026
-A2,w/o Adaptive Graph,component_ablation,True,,fixed_dual,bi_diffusion,last_state,64,1,True,False,True,True,True,True,True,msmg_dwu_loss,difficulty_rate,dynamic,2026
-A3,w/o Diffusion,component_ablation,True,,fixed_dual,simple,last_state,64,1,True,True,False,True,True,True,True,msmg_dwu_loss,difficulty_rate,dynamic,2026
-A4,w/o Macro Prompt,component_ablation,True,,fixed_dual,bi_diffusion,last_state,64,1,True,True,True,False,True,True,True,msmg_dwu_loss,difficulty_rate,dynamic,2026
-A5,w/o Reverse Cross,component_ablation,True,,fixed_dual,bi_diffusion,last_state,64,1,True,True,True,True,False,True,True,msmg_dwu_loss,difficulty_rate,dynamic,2026
-A6,w/o Cross Fusion,component_ablation,True,,fixed_dual,bi_diffusion,last_state,64,1,True,True,True,True,False,False,True,msmg_dwu_loss,difficulty_rate,dynamic,2026
-A7,w/o ST Prompt,component_ablation,True,,fixed_dual,bi_diffusion,last_state,64,1,True,True,True,True,True,True,False,msmg_dwu_loss,difficulty_rate,dynamic,2026
-A8,w/o MS-MG-DWU,component_ablation,True,,fixed_dual,bi_diffusion,last_state,64,1,True,True,True,True,True,True,True,masked_score_aligned_hybrid,difficulty_rate,dynamic,2026
+﻿variant,display_name,experiment_family,trainable,canonical_reference,vadsp_gate_mode,graph_operator,decoder_context_mode,hidden_dim,num_coupling_layers,spatial_graph,adaptive_graph,diffusion,macro_prompt,reverse_cross,cross_fusion,st_prompt,loss_name,macro_prompt_len,cross_fusion_recent_len,fusion_mode,st_prompt_mode,granularity_weight_mode,site_weight_mode,seed
+A0,Canonical Full,component_ablation,False,full_fixed_dual_keep_msmgdwu_seed2026,fixed_dual,bi_diffusion,last_state,64,1,True,True,True,True,True,True,True,msmg_dwu_loss,4,24,cross,full,difficulty_rate,dynamic,2026
+A1,w/o Spatial Graph,component_ablation,True,,fixed_dual,bi_diffusion,last_state,64,1,False,True,True,True,True,True,True,msmg_dwu_loss,4,24,cross,full,difficulty_rate,dynamic,2026
+A2,w/o Adaptive Graph,component_ablation,True,,fixed_dual,bi_diffusion,last_state,64,1,True,False,True,True,True,True,True,msmg_dwu_loss,4,24,cross,full,difficulty_rate,dynamic,2026
+A3,w/o Diffusion,component_ablation,True,,fixed_dual,simple,last_state,64,1,True,True,False,True,True,True,True,msmg_dwu_loss,4,24,cross,full,difficulty_rate,dynamic,2026
+A4,Single-token Macro Prompt,component_ablation,True,,fixed_dual,bi_diffusion,last_state,64,1,True,True,True,True,True,True,True,msmg_dwu_loss,1,24,cross,full,difficulty_rate,dynamic,2026
+A5,Short-context Reverse Cross,component_ablation,True,,fixed_dual,bi_diffusion,last_state,64,1,True,True,True,True,True,True,True,msmg_dwu_loss,4,6,cross,full,difficulty_rate,dynamic,2026
+A6,Additive Cross Fusion,component_ablation,True,,fixed_dual,bi_diffusion,last_state,64,1,True,True,True,True,True,True,True,msmg_dwu_loss,4,24,add,full,difficulty_rate,dynamic,2026
+A7,Horizon-only Prompt,component_ablation,True,,fixed_dual,bi_diffusion,last_state,64,1,True,True,True,True,True,True,True,msmg_dwu_loss,4,24,cross,horizon_only,difficulty_rate,dynamic,2026
+A8,w/o MS-MG-DWU,component_ablation,True,,fixed_dual,bi_diffusion,last_state,64,1,True,True,True,True,True,True,True,masked_score_aligned_hybrid,4,24,cross,full,difficulty_rate,dynamic,2026

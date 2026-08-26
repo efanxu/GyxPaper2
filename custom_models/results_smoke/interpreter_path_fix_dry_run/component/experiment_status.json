@@ -2,46 +2,64 @@
   {
     "variant": "A0",
     "status": "REFERENCE_ONLY",
-    "returncode": 0
+    "final_status": "completed",
+    "returncode": 0,
+    "decision": "REFERENCE_ONLY"
   },
   {
     "variant": "A1",
     "status": "DRY_RUN",
-    "returncode": null
+    "final_status": "pending",
+    "returncode": null,
+    "decision": "DRY_RUN"
   },
   {
     "variant": "A2",
     "status": "DRY_RUN",
-    "returncode": null
+    "final_status": "pending",
+    "returncode": null,
+    "decision": "DRY_RUN"
   },
   {
     "variant": "A3",
     "status": "DRY_RUN",
-    "returncode": null
+    "final_status": "pending",
+    "returncode": null,
+    "decision": "DRY_RUN"
   },
   {
     "variant": "A4",
     "status": "DRY_RUN",
-    "returncode": null
+    "final_status": "pending",
+    "returncode": null,
+    "decision": "DRY_RUN"
   },
   {
     "variant": "A5",
     "status": "DRY_RUN",
-    "returncode": null
+    "final_status": "pending",
+    "returncode": null,
+    "decision": "DRY_RUN"
   },
   {
     "variant": "A6",
     "status": "DRY_RUN",
-    "returncode": null
+    "final_status": "pending",
+    "returncode": null,
+    "decision": "DRY_RUN"
   },
   {
     "variant": "A7",
     "status": "DRY_RUN",
-    "returncode": null
+    "final_status": "pending",
+    "returncode": null,
+    "decision": "DRY_RUN"
   },
   {
     "variant": "A8",
     "status": "DRY_RUN",
-    "returncode": null
+    "final_status": "pending",
+    "returncode": null,
+    "decision": "DRY_RUN"
   }
 ]

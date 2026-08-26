@@ -58,60 +58,58 @@
     },
     {
       "variant_id": "A4",
-      "display_name": "w/o Macro Prompt",
+      "display_name": "Single-token Macro Prompt",
       "experiment_family": "component_ablation",
       "trainable": true,
       "canonical_reference": null,
       "base_config": "CANONICAL_FULL",
       "config_overrides": {
-        "use_macro_prompt": false
+        "macro_prompt_len": 1
       },
       "expected_unique_diff": [
-        "use_macro_prompt"
+        "macro_prompt_len"
       ]
     },
     {
       "variant_id": "A5",
-      "display_name": "w/o Reverse Cross",
+      "display_name": "Short-context Reverse Cross",
       "experiment_family": "component_ablation",
       "trainable": true,
       "canonical_reference": null,
       "base_config": "CANONICAL_FULL",
       "config_overrides": {
-        "disable_reverse_cross": true
+        "cross_fusion_recent_len": 6
       },
       "expected_unique_diff": [
-        "disable_reverse_cross"
+        "cross_fusion_recent_len"
       ]
     },
     {
       "variant_id": "A6",
-      "display_name": "w/o Cross Fusion",
+      "display_name": "Additive Cross Fusion",
       "experiment_family": "component_ablation",
       "trainable": true,
       "canonical_reference": null,
       "base_config": "CANONICAL_FULL",
       "config_overrides": {
-        "use_cross_fusion": false
+        "fusion_mode": "add"
       },
       "expected_unique_diff": [
-        "use_cross_fusion"
+        "fusion_mode"
       ]
     },
     {
       "variant_id": "A7",
-      "display_name": "w/o ST Prompt",
+      "display_name": "Horizon-only Prompt",
       "experiment_family": "component_ablation",
       "trainable": true,
       "canonical_reference": null,
       "base_config": "CANONICAL_FULL",
       "config_overrides": {
-        "use_st_prompt": false,
-        "decoder_input_strategy": "direct_multi_output_horizon_head"
+        "st_prompt_mode": "horizon_only"
       },
       "expected_unique_diff": [
-        "use_st_prompt",
-        "decoder_input_strategy"
+        "st_prompt_mode"
       ]
     },
     {
@@ -132,5 +130,16 @@
         "loss_protocol"
       ]
     }
+  ],
+  "selected_variants": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "A8"
   ]
 }

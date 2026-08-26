@@ -1,0 +1,317 @@
+[
+  {
+    "variant": "A0",
+    "status": "REFERENCE_ONLY",
+    "final_status": "completed",
+    "returncode": 0,
+    "decision": "REFERENCE_ONLY"
+  },
+  {
+    "variant": "A1",
+    "status": "DRY_RUN",
+    "final_status": "failed_protocol_mismatch",
+    "returncode": null,
+    "decision": "DRY_RUN",
+    "artifact_audit": {
+      "variant": "A1",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results_smoke\\st_mgprompt_fixed_dual_refactor\\component_ablation_fixed_dual_seed2026\\A1\\STMGPrompt_ComponentAblation",
+      "training_complete": false,
+      "evaluation_complete": false,
+      "checkpoint_valid": true,
+      "metrics_complete": true,
+      "protocol_consistent": false,
+      "config_match": false,
+      "config_differences": [
+        "hidden_dim",
+        "lookback"
+      ],
+      "train_log_nonempty": true,
+      "last_epoch": 1,
+      "best_epoch": 1,
+      "best_val_score_h10": 21.056883819905902,
+      "metrics_horizons": [
+        3,
+        6,
+        10
+      ],
+      "checkpoint_probe": {
+        "valid": true,
+        "keys": [
+          "epoch",
+          "best_epoch",
+          "best_metric_name",
+          "best_metric_value",
+          "best_val_score_h3",
+          "best_val_score_h6",
+          "best_val_score_h10",
+          "model_state_dict",
+          "loss_state_dict",
+          "optimizer_state_dict",
+          "scheduler_state_dict",
+          "grad_scaler_state_dict",
+          "early_stopping_counter",
+          "config",
+          "config_hash",
+          "input_dim",
+          "num_nodes",
+          "feature_cols",
+          "turbine_ids",
+          "scalers"
+        ],
+        "model_id": null,
+        "best_epoch": 1,
+        "returncode_signed": 0,
+        "returncode_unsigned": 0,
+        "returncode_hex": "0x00000000",
+        "windows_exception_classification": "none"
+      },
+      "artifact_errors": [
+        "config mismatch: hidden_dim, lookback",
+        "variant/config protocol mismatch"
+      ],
+      "final_status": "failed_protocol_mismatch",
+      "returncode_signed": 0,
+      "returncode_unsigned": 0,
+      "returncode_hex": "0x00000000",
+      "windows_exception_classification": "none"
+    }
+  },
+  {
+    "variant": "A2",
+    "status": "DRY_RUN",
+    "final_status": "failed_protocol_mismatch",
+    "returncode": null,
+    "decision": "DRY_RUN",
+    "artifact_audit": {
+      "variant": "A2",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results_smoke\\st_mgprompt_fixed_dual_refactor\\component_ablation_fixed_dual_seed2026\\A2\\STMGPrompt_ComponentAblation",
+      "training_complete": false,
+      "evaluation_complete": false,
+      "checkpoint_valid": true,
+      "metrics_complete": true,
+      "protocol_consistent": false,
+      "config_match": false,
+      "config_differences": [
+        "hidden_dim",
+        "lookback"
+      ],
+      "train_log_nonempty": true,
+      "last_epoch": 1,
+      "best_epoch": 1,
+      "best_val_score_h10": 18.190425516325515,
+      "metrics_horizons": [
+        3,
+        6,
+        10
+      ],
+      "checkpoint_probe": {
+        "valid": true,
+        "keys": [
+          "epoch",
+          "best_epoch",
+          "best_metric_name",
+          "best_metric_value",
+          "best_val_score_h3",
+          "best_val_score_h6",
+          "best_val_score_h10",
+          "model_state_dict",
+          "loss_state_dict",
+          "optimizer_state_dict",
+          "scheduler_state_dict",
+          "grad_scaler_state_dict",
+          "early_stopping_counter",
+          "config",
+          "config_hash",
+          "input_dim",
+          "num_nodes",
+          "feature_cols",
+          "turbine_ids",
+          "scalers"
+        ],
+        "model_id": null,
+        "best_epoch": 1,
+        "returncode_signed": 0,
+        "returncode_unsigned": 0,
+        "returncode_hex": "0x00000000",
+        "windows_exception_classification": "none"
+      },
+      "artifact_errors": [
+        "config mismatch: hidden_dim, lookback",
+        "variant/config protocol mismatch"
+      ],
+      "final_status": "failed_protocol_mismatch",
+      "returncode_signed": 0,
+      "returncode_unsigned": 0,
+      "returncode_hex": "0x00000000",
+      "windows_exception_classification": "none"
+    }
+  },
+  {
+    "variant": "A3",
+    "status": "DRY_RUN",
+    "final_status": "failed_protocol_mismatch",
+    "returncode": null,
+    "decision": "DRY_RUN",
+    "artifact_audit": {
+      "variant": "A3",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results_smoke\\st_mgprompt_fixed_dual_refactor\\component_ablation_fixed_dual_seed2026\\A3\\STMGPrompt_ComponentAblation",
+      "training_complete": false,
+      "evaluation_complete": false,
+      "checkpoint_valid": true,
+      "metrics_complete": true,
+      "protocol_consistent": false,
+      "config_match": false,
+      "config_differences": [
+        "hidden_dim",
+        "lookback"
+      ],
+      "train_log_nonempty": true,
+      "last_epoch": 1,
+      "best_epoch": 1,
+      "best_val_score_h10": 16.664316678302807,
+      "metrics_horizons": [
+        3,
+        6,
+        10
+      ],
+      "checkpoint_probe": {
+        "valid": true,
+        "keys": [
+          "epoch",
+          "best_epoch",
+          "best_metric_name",
+          "best_metric_value",
+          "best_val_score_h3",
+          "best_val_score_h6",
+          "best_val_score_h10",
+          "model_state_dict",
+          "loss_state_dict",
+          "optimizer_state_dict",
+          "scheduler_state_dict",
+          "grad_scaler_state_dict",
+          "early_stopping_counter",
+          "config",
+          "config_hash",
+          "input_dim",
+          "num_nodes",
+          "feature_cols",
+          "turbine_ids",
+          "scalers"
+        ],
+        "model_id": null,
+        "best_epoch": 1,
+        "returncode_signed": 0,
+        "returncode_unsigned": 0,
+        "returncode_hex": "0x00000000",
+        "windows_exception_classification": "none"
+      },
+      "artifact_errors": [
+        "config mismatch: hidden_dim, lookback",
+        "variant/config protocol mismatch"
+      ],
+      "final_status": "failed_protocol_mismatch",
+      "returncode_signed": 0,
+      "returncode_unsigned": 0,
+      "returncode_hex": "0x00000000",
+      "windows_exception_classification": "none"
+    }
+  },
+  {
+    "variant": "A4",
+    "status": "DRY_RUN",
+    "final_status": "pending",
+    "returncode": null,
+    "decision": "DRY_RUN"
+  },
+  {
+    "variant": "A5",
+    "status": "DRY_RUN",
+    "final_status": "pending",
+    "returncode": null,
+    "decision": "DRY_RUN"
+  },
+  {
+    "variant": "A6",
+    "status": "DRY_RUN",
+    "final_status": "pending",
+    "returncode": null,
+    "decision": "DRY_RUN"
+  },
+  {
+    "variant": "A7",
+    "status": "DRY_RUN",
+    "final_status": "pending",
+    "returncode": null,
+    "decision": "DRY_RUN"
+  },
+  {
+    "variant": "A8",
+    "status": "DRY_RUN",
+    "final_status": "failed_protocol_mismatch",
+    "returncode": null,
+    "decision": "DRY_RUN",
+    "artifact_audit": {
+      "variant": "A8",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results_smoke\\st_mgprompt_fixed_dual_refactor\\component_ablation_fixed_dual_seed2026\\A8\\STMGPrompt_ComponentAblation",
+      "training_complete": false,
+      "evaluation_complete": false,
+      "checkpoint_valid": true,
+      "metrics_complete": true,
+      "protocol_consistent": false,
+      "config_match": false,
+      "config_differences": [
+        "hidden_dim",
+        "lookback"
+      ],
+      "train_log_nonempty": true,
+      "last_epoch": 1,
+      "best_epoch": 1,
+      "best_val_score_h10": 14.63613572204379,
+      "metrics_horizons": [
+        3,
+        6,
+        10
+      ],
+      "checkpoint_probe": {
+        "valid": true,
+        "keys": [
+          "epoch",
+          "best_epoch",
+          "best_metric_name",
+          "best_metric_value",
+          "best_val_score_h3",
+          "best_val_score_h6",
+          "best_val_score_h10",
+          "model_state_dict",
+          "loss_state_dict",
+          "optimizer_state_dict",
+          "scheduler_state_dict",
+          "grad_scaler_state_dict",
+          "early_stopping_counter",
+          "config",
+          "config_hash",
+          "input_dim",
+          "num_nodes",
+          "feature_cols",
+          "turbine_ids",
+          "scalers"
+        ],
+        "model_id": null,
+        "best_epoch": 1,
+        "returncode_signed": 0,
+        "returncode_unsigned": 0,
+        "returncode_hex": "0x00000000",
+        "windows_exception_classification": "none"
+      },
+      "artifact_errors": [
+        "config mismatch: hidden_dim, lookback",
+        "variant/config protocol mismatch"
+      ],
+      "final_status": "failed_protocol_mismatch",
+      "returncode_signed": 0,
+      "returncode_unsigned": 0,
+      "returncode_hex": "0x00000000",
+      "windows_exception_classification": "none"
+    }
+  }
+]

@@ -8,12 +8,12 @@ The external table is native-training-system architecture/end-to-end context. It
 
 ## Frozen internal semantics
 
-- A4 changes only `use_macro_prompt`.
-- A5 changes only `disable_reverse_cross`; in source this disables `SymmetricCrossFusion.fine_to_coarse` while retaining Macro/coarse-to-Fine attention.
-- A6 changes only `use_cross_fusion`; both Fine and Coarse graph-temporal encoders remain active.
-- A7 changes `use_st_prompt` and the coupled `decoder_input_strategy`, replacing `STPromptDirectDecoder` with `HorizonDirectDecoder`.
+- A4 changes only `macro_prompt_len`, from 4 to 1.
+- A5 changes only `cross_fusion_recent_len`, from 24 to 6; both Reverse Cross directions remain enabled.
+- A6 changes only `fusion_mode`, from adaptive gated `cross` to `add`; both cross-attention paths remain enabled.
+- A7 changes only `st_prompt_mode`, from `full` to `horizon_only`; it retains `STPromptDirectDecoder` and the prompt-query prediction strategy.
 
-Direction decomposition is enabled only when A0 has both directions, A5 retains only Coarse-to-Fine, A6 has neither direction, and A5/A6 have no other effective difference after the two direction-control fields are normalized.
+The earlier direction-removal decomposition is obsolete and must not be reported under A5/A6. E8 internal causal evidence remains pending until the redesigned A4–A7 formal runs finish.
 
 ## Real tensor and mechanism contract
 
@@ -23,11 +23,11 @@ Cross Fusion is two `MultiheadAttention` paths plus a learned sigmoid gate, resi
 
 Macro Prompt is a latent `[B,N,4,D]` projection of attention-pooled graph-enhanced Coarse history. It has no physical trend scalar/logit/head, so sign accuracy, physical trend correlation, and confusion matrix are `NOT_APPLICABLE`.
 
-ST Prompt is horizon-conditioned: node, future-step, and granularity embeddings form `[1,H,N,D]`. A7 removes this representation and uses a standard direct H-output head.
+ST Prompt is horizon-conditioned: node, future-step, and granularity embeddings form `[1,H,N,D]` in A0. A7 keeps the same tensor shape and decoder but constructs the prompt from future-step embedding only, shared across nodes at each horizon.
 
 ## Read-only diagnostics
 
-Hooks are disabled by default and exist only inside a context manager. Formal diagnostics require five valid current-batch4 internal artifacts, use `eval()` plus inference mode, and must preserve predictions, parameters, buffers, checkpoint identity, RNG state, and the caller's train/eval mode. Exports go only under the E8 analysis root.
+Hooks are disabled by default and exist only inside a context manager. Formal diagnostics require five valid current-definition internal artifacts, use `eval()` plus inference mode, and must preserve predictions, parameters, buffers, checkpoint identity, RNG state, and the caller's train/eval mode. Exports go only under the E8 analysis root.
 
 Current internal artifacts are train batch32 and therefore are not eligible for formal E8 evaluate-only diagnostics.
 

@@ -1,7 +1,8 @@
 {
   "schema_version": "e8_evidence_manifest_v1",
   "scope_id": "e8_prompt_cross_fusion_seed2026",
-  "internal_config_audit_status": "PASS",
+  "internal_config_audit_status": "PENDING_REDESIGNED_A4_A7_RESULTS",
+  "formal_protocol_note": "Internal A4-A7 entries below are obsolete pre-redesign evidence and must not be used as current formal results.",
   "evidence": [
     {
       "evidence_id": "E8_INTERNAL_A0",
@@ -78,12 +79,12 @@
       "ready": false
     },
     {
-      "evidence_id": "E8_INTERNAL_A4",
-      "evidence_role": "INTERNAL_CAUSAL_ABLATION",
+      "evidence_id": "E8_INTERNAL_LEGACY_A4",
+      "evidence_role": "OBSOLETE_PRE_REDESIGN_EVIDENCE",
       "model_id": "st_mgprompt",
-      "display_name": "A4 w/o Macro Prompt",
-      "variant_id": "A4",
-      "source_type": "formal_component_ablation_artifact",
+      "display_name": "Obsolete pre-redesign Macro Prompt removal",
+      "variant_id": "LEGACY_A4",
+      "source_type": "obsolete_pre_redesign_artifact",
       "source_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A4\\STMGPrompt_ComponentAblation",
       "run_id": "component_ablation_fixed_dual_seed2026/A4",
       "run_status": null,
@@ -152,12 +153,12 @@
       "ready": false
     },
     {
-      "evidence_id": "E8_INTERNAL_A5",
-      "evidence_role": "INTERNAL_CAUSAL_ABLATION",
+      "evidence_id": "E8_INTERNAL_LEGACY_A5",
+      "evidence_role": "OBSOLETE_PRE_REDESIGN_EVIDENCE",
       "model_id": "st_mgprompt",
-      "display_name": "A5 w/o Fine-to-Coarse Reverse Cross",
-      "variant_id": "A5",
-      "source_type": "formal_component_ablation_artifact",
+      "display_name": "Obsolete pre-redesign Reverse Cross removal",
+      "variant_id": "LEGACY_A5",
+      "source_type": "obsolete_pre_redesign_artifact",
       "source_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A5\\STMGPrompt_ComponentAblation",
       "run_id": "component_ablation_fixed_dual_seed2026/A5",
       "run_status": null,
@@ -226,12 +227,12 @@
       "ready": false
     },
     {
-      "evidence_id": "E8_INTERNAL_A6",
-      "evidence_role": "INTERNAL_CAUSAL_ABLATION",
+      "evidence_id": "E8_INTERNAL_LEGACY_A6",
+      "evidence_role": "OBSOLETE_PRE_REDESIGN_EVIDENCE",
       "model_id": "st_mgprompt",
-      "display_name": "A6 w/o Cross Fusion",
-      "variant_id": "A6",
-      "source_type": "formal_component_ablation_artifact",
+      "display_name": "Obsolete pre-redesign Cross Fusion removal",
+      "variant_id": "LEGACY_A6",
+      "source_type": "obsolete_pre_redesign_artifact",
       "source_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6\\STMGPrompt_ComponentAblation",
       "run_id": "component_ablation_fixed_dual_seed2026/A6",
       "run_status": null,
@@ -300,12 +301,12 @@
       "ready": false
     },
     {
-      "evidence_id": "E8_INTERNAL_A7",
-      "evidence_role": "INTERNAL_CAUSAL_ABLATION",
+      "evidence_id": "E8_INTERNAL_LEGACY_A7",
+      "evidence_role": "OBSOLETE_PRE_REDESIGN_EVIDENCE",
       "model_id": "st_mgprompt",
-      "display_name": "A7 w/o ST Prompt (Horizon Head)",
-      "variant_id": "A7",
-      "source_type": "formal_component_ablation_artifact",
+      "display_name": "Obsolete pre-redesign ST Prompt removal",
+      "variant_id": "LEGACY_A7",
+      "source_type": "obsolete_pre_redesign_artifact",
       "source_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A7\\STMGPrompt_ComponentAblation",
       "run_id": "component_ablation_fixed_dual_seed2026/A7",
       "run_status": null,

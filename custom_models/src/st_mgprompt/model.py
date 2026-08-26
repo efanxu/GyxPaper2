@@ -401,6 +401,7 @@ class STMGPrompt_FairFull(nn.Module):
                 max_pred_len=self.max_pred_len,
                 hidden_dim=self.hidden_dim,
                 dropout=config.dropout,
+                mode=config.st_prompt_mode,
             )
             if config.use_st_prompt
             else None
@@ -557,6 +558,7 @@ class STMGPrompt_FairFull(nn.Module):
                 "uses_macro_prompt": bool(self.config.use_macro_prompt),
                 "uses_cross_fusion": bool(self.config.use_cross_fusion),
                 "uses_st_prompt": bool(self.config.use_st_prompt),
+                "st_prompt_mode": self.config.st_prompt_mode,
                 "uses_direct_decoder": True,
                 "x_fine_coupled": x_fine,
                 "x_coarse_coupled": x_coarse,

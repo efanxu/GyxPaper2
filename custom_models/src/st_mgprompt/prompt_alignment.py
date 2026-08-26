@@ -76,15 +76,19 @@ class STPromptEmbedding(nn.Module):
         hidden_dim: int,
         num_granularities: int = 2,
         dropout: float = 0.0,
+        mode: str = "full",
     ) -> None:
         super().__init__()
         if num_nodes <= 0:
             raise ValueError("num_nodes must be positive.")
         if max_pred_len <= 0:
             raise ValueError("max_pred_len must be positive.")
+        if mode not in {"full", "horizon_only"}:
+            raise ValueError("mode must be full or horizon_only.")
         self.num_nodes = int(num_nodes)
         self.max_pred_len = int(max_pred_len)
         self.hidden_dim = int(hidden_dim)
+        self.mode = mode
         self.node_embedding = nn.Embedding(self.num_nodes, self.hidden_dim)
         self.future_step_embedding = nn.Embedding(self.max_pred_len, self.hidden_dim)
         self.granularity_embedding = nn.Embedding(int(num_granularities), self.hidden_dim)
@@ -104,11 +108,15 @@ class STPromptEmbedding(nn.Module):
         if H > self.max_pred_len:
             raise ValueError(f"Requested horizon={H} exceeds max_pred_len={self.max_pred_len}.")
         device = self.node_embedding.weight.device
-        node_ids = torch.arange(N, device=device)
         step_ids = torch.arange(H, device=device)
-        granularity_id = torch.tensor(int(granularity_index), device=device)
-        node = self.node_embedding(node_ids).view(1, 1, N, self.hidden_dim)
         step = self.future_step_embedding(step_ids).view(1, H, 1, self.hidden_dim)
-        granularity = self.granularity_embedding(granularity_id).view(1, 1, 1, self.hidden_dim)
-        prompt = self.norm(node + step + granularity)
+        if self.mode == "horizon_only":
+            prompt = step.expand(1, H, N, self.hidden_dim)
+        else:
+            node_ids = torch.arange(N, device=device)
+            granularity_id = torch.tensor(int(granularity_index), device=device)
+            node = self.node_embedding(node_ids).view(1, 1, N, self.hidden_dim)
+            granularity = self.granularity_embedding(granularity_id).view(1, 1, 1, self.hidden_dim)
+            prompt = node + step + granularity
+        prompt = self.norm(prompt)
         return self.dropout(prompt)

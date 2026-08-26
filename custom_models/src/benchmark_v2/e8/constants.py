@@ -36,16 +36,16 @@ CANONICAL_ROOT = (
 INTERNAL_VARIANTS = ("A0", "A4", "A5", "A6", "A7")
 INTERNAL_DISPLAY_NAMES = {
     "A0": "ST-MGPrompt A0",
-    "A4": "A4 w/o Macro Prompt",
-    "A5": "A5 w/o Fine-to-Coarse Reverse Cross",
-    "A6": "A6 w/o Cross Fusion",
-    "A7": "A7 w/o ST Prompt (Horizon Head)",
+    "A4": "A4 Single-token Macro Prompt",
+    "A5": "A5 Short-context Reverse Cross",
+    "A6": "A6 Additive Cross Fusion",
+    "A7": "A7 Horizon-only Prompt",
 }
 INTERNAL_TARGETS = {
-    "A4": ("Macro Prompt", ("use_macro_prompt",)),
-    "A5": ("Fine-to-Coarse / Reverse Cross", ("disable_reverse_cross",)),
-    "A6": ("Bidirectional Cross Fusion", ("use_cross_fusion",)),
-    "A7": ("ST Prompt and prompt-query prediction head", ("use_st_prompt", "decoder_input_strategy")),
+    "A4": ("Macro Prompt token count", ("macro_prompt_len",)),
+    "A5": ("Reverse Cross context length", ("cross_fusion_recent_len",)),
+    "A6": ("Cross Fusion aggregation", ("fusion_mode",)),
+    "A7": ("ST Prompt information content", ("st_prompt_mode",)),
 }
 
 EXTERNAL_MODEL_IDS = ("patchtst", "itransformer", "timexer", "multipatchformer", "timemixer", "timefilter")

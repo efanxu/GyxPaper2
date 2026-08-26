@@ -371,10 +371,10 @@ add_table(doc, ["编号", "变体", "所检验的机制"], [
     ("A1", "w/o Spatial Graph", "不执行节点间空间传播，检验空间图的必要性"),
     ("A2", "w/o Adaptive Graph", "只保留 prior graph，检验自适应图的增益"),
     ("A3", "w/o Diffusion", "用 Simple Graph Operator 替代 Bi-Diffusion，检验方向性传播"),
-    ("A4", "w/o Macro Prompt", "保留 Coarse branch，但关闭 Macro-Trend Prompt 的生成与注入"),
-    ("A5", "w/o Reverse Cross", "只保留 Coarse → Fine，关闭 Fine → Coarse"),
-    ("A6", "w/o Cross Fusion", "保留两条分支，但关闭双向交叉融合"),
-    ("A7", "w/o ST Prompt", "使用普通直接多步预测头"),
+    ("A4", "Single-token Macro Prompt", "将 Macro Prompt 从 4 tokens 缩减为 1 token"),
+    ("A5", "Short-context Reverse Cross", "保留双向 Cross，将 Fine→Coarse 近期上下文从 24 steps 缩短为 6 steps"),
+    ("A6", "Additive Cross Fusion", "保留双向 cross-attention，以 additive fusion 替代 adaptive gated fusion"),
+    ("A7", "Horizon-only Prompt", "保留 STPromptDirectDecoder，Prompt 仅使用 future-step embedding"),
     ("A8", "w/o MS-MG-DWU", "使用 masked_score_aligned_hybrid 训练"),
 ], [1100, 4660, 3900])
 add_para(doc, "原稿中还记录了 w/o VADSP、Fine-only、Coarse-only、Fixed Dual、Random Gate 和 Shuffled Volatility 等机制诊断。由于最终正式模型采用固定双分支，Dynamic VADSP 不再是 Full 模型的一部分；这些变体应作为额外的分支机制实验，用来回答“动态波动率门控是否真的利用了波动条件信息”，而不能与 A0 的最终定义混写。")

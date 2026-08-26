@@ -128,15 +128,15 @@ def test_fixed_whitelist_excluded_and_e5_rejection():
         assert forbidden_source(path) is not None
 
 
-def test_config_diff_and_direction_decomposition():
+def test_config_diff_and_redesigned_semantics():
     audit = audit_internal_config()
     assert audit["status"] == "PASS"
-    assert [row["allowed_differences"] for row in audit["comparisons"]] == [["use_macro_prompt"], ["disable_reverse_cross"], ["use_cross_fusion"], ["use_st_prompt", "decoder_input_strategy"]]
-    assert audit["direction_decomposition"]["DIRECTION_DECOMPOSITION_VALID"]
-    assert audit["source_semantics"]["A6_branch_retention"].startswith("Both Fine")
+    assert [row["allowed_differences"] for row in audit["comparisons"]] == [["macro_prompt_len"], ["cross_fusion_recent_len"], ["fusion_mode"], ["st_prompt_mode"]]
+    assert not audit["direction_decomposition"]["DIRECTION_DECOMPOSITION_VALID"]
+    assert "both attention directions" in audit["source_semantics"]["A6_change"]
 
 
-def test_direction_decomposition_auto_disables_on_extra_difference(tmp_path: Path):
+def test_config_audit_rejects_extra_difference(tmp_path: Path):
     manifest = json.loads((INTERNAL_ROOT / "experiment_manifest.json").read_text(encoding="utf-8"))
     (tmp_path / "experiment_manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
     for variant in ("A0", "A4", "A5", "A6", "A7"):
@@ -147,7 +147,9 @@ def test_direction_decomposition_auto_disables_on_extra_difference(tmp_path: Pat
             config["hidden_dim"] = 65
         (target / "effective_config.json").write_text(json.dumps(config), encoding="utf-8")
         (target / "effective_config_diff.json").write_text("{}", encoding="utf-8")
-    assert not audit_internal_config(tmp_path)["direction_decomposition"]["DIRECTION_DECOMPOSITION_VALID"]
+    audit = audit_internal_config(tmp_path)
+    assert audit["status"] == "FAIL"
+    assert next(row for row in audit["comparisons"] if row["variant_id"] == "A6")["CONFIG_DIFF_INVALID"]
 
 
 def test_readiness_and_require_complete_fail_closed(tmp_path: Path):
@@ -166,7 +168,7 @@ def test_metric_directions_rank_and_direction_rows():
     assert {row["horizon"] for row in internal} == {3, 6, 10}
     assert all(row["Score_degradation_absolute"] > 0 and row["r2_drop"] > 0 for row in internal)
     directions = direction_decomposition_rows(evidence, audit)
-    assert len(directions) == 9 and {row["comparison"] for row in directions} == {"A0_vs_A5", "A5_vs_A6", "A0_vs_A6"}
+    assert directions == []
     external = external_context_rows(evidence)
     assert all("Score_rank" in row and "R2_rank" in row for row in external)
 

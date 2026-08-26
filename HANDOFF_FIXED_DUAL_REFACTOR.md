@@ -270,10 +270,10 @@ custom_models/results/st_mgprompt_precision/precision_ablation_fixed_dual_seed20
 | A1 | w/o Spatial Graph | 不执行节点间空间传播 |
 | A2 | w/o Adaptive Graph | 关闭 adaptive graph，只用固定 prior |
 | A3 | w/o Diffusion | Bi-Diffusion -> Simple |
-| A4 | w/o Macro Prompt | 保留 coarse branch，关闭 Macro Prompt |
-| A5 | w/o Reverse Cross | 关闭 fine -> coarse，保留 coarse -> fine |
-| A6 | w/o Cross Fusion | 两分支独立编码，关闭双向融合 |
-| A7 | w/o ST Prompt | 使用普通直接多步预测头 |
+| A4 | Single-token Macro Prompt | `macro_prompt_len: 4 -> 1` |
+| A5 | Short-context Reverse Cross | `cross_fusion_recent_len: 24 -> 6`，Reverse Cross 保持启用 |
+| A6 | Additive Cross Fusion | `fusion_mode: cross -> add`，双向 cross-attention 保持启用 |
+| A7 | Horizon-only Prompt | `st_prompt_mode: full -> horizon_only`，继续使用 STPromptDirectDecoder |
 | A8 | w/o MS-MG-DWU | loss 改为 masked_score_aligned_hybrid |
 
 机器可读矩阵：
@@ -530,7 +530,7 @@ RUNBOOK_FIXED_DUAL_REFACTOR.md
 不要复用旧 A0、A2-A10 数值。
 不要把 A3 做成 w/o Trend Prior。
 不要把 A4 做成删除 coarse branch。
-不要把 A5 和 A6 混为同一消融。
+不要把 A5 和 A6 混为同一消融；两者都保留双向 cross-attention。
 不要把 A8 做成 Static-MG。
 不要修改数据协议、checkpoint 选择标准、batch 或随机种子。
 不要把 smoke 的 COMPLETED 状态冒充正式训练完成。
