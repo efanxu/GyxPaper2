@@ -705,6 +705,7 @@ def save_coupling_diagnostics(model: torch.nn.Module, loader, output_dir, max_ba
             "fusion_mode": getattr(model.config, "fusion_mode", None),
             "disable_reverse_cross": bool(getattr(model.config, "disable_reverse_cross", False)),
             "macro_prompt_len": int(getattr(model.config, "macro_prompt_len", 0)),
+            "macro_prompt_pooling": getattr(model.config, "macro_prompt_pooling", "attention"),
             "cross_fusion_recent_len": int(getattr(model.config, "cross_fusion_recent_len", 0)),
             "cross_fusion_uses_spatial_enhanced_features": bool(
                 getattr(model.config, "use_cross_fusion", True)
@@ -716,6 +717,12 @@ def save_coupling_diagnostics(model: torch.nn.Module, loader, output_dir, max_ba
             "decoder_input_strategy": getattr(model.config, "decoder_input_strategy", None),
             "decoder_context_mode": getattr(model.config, "decoder_context_mode", None),
             "decoder_history_len": getattr(model.config, "decoder_history_len", None),
+            "st_prompt_use_node_identity": bool(getattr(model.config, "st_prompt_use_node_identity", True)),
+            "st_prompt_information": (
+                "node+future+granularity"
+                if bool(getattr(model.config, "st_prompt_use_node_identity", True))
+                else "future+granularity"
+            ),
             "graph_operator": getattr(model.config, "graph_operator", None),
             "diffusion_order_micro": getattr(model.config, "diffusion_order_micro", None),
             "diffusion_order_macro": getattr(model.config, "diffusion_order_macro", None),

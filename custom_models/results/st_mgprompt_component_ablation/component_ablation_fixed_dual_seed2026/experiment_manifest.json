@@ -58,16 +58,16 @@
     },
     {
       "variant_id": "A4",
-      "display_name": "Single-token Macro Prompt",
+      "display_name": "Mean-Pooling Macro Prompt",
       "experiment_family": "component_ablation",
       "trainable": true,
       "canonical_reference": null,
       "base_config": "CANONICAL_FULL",
       "config_overrides": {
-        "macro_prompt_len": 1
+        "macro_prompt_pooling": "mean"
       },
       "expected_unique_diff": [
-        "macro_prompt_len"
+        "macro_prompt_pooling"
       ]
     },
     {
@@ -100,16 +100,16 @@
     },
     {
       "variant_id": "A7",
-      "display_name": "Horizon-only Prompt",
+      "display_name": "Temporal-Granularity Prompt",
       "experiment_family": "component_ablation",
       "trainable": true,
       "canonical_reference": null,
       "base_config": "CANONICAL_FULL",
       "config_overrides": {
-        "st_prompt_mode": "horizon_only"
+        "st_prompt_use_node_identity": false
       },
       "expected_unique_diff": [
-        "st_prompt_mode"
+        "st_prompt_use_node_identity"
       ]
     },
     {

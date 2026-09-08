@@ -36,16 +36,16 @@ CANONICAL_ROOT = (
 INTERNAL_VARIANTS = ("A0", "A4", "A5", "A6", "A7")
 INTERNAL_DISPLAY_NAMES = {
     "A0": "ST-MGPrompt A0",
-    "A4": "A4 Single-token Macro Prompt",
+    "A4": "A4 Mean-Pooling Macro Prompt",
     "A5": "A5 Short-context Reverse Cross",
     "A6": "A6 Additive Cross Fusion",
-    "A7": "A7 Horizon-only Prompt",
+    "A7": "A7 Temporal-Granularity Prompt",
 }
 INTERNAL_TARGETS = {
-    "A4": ("Macro Prompt token count", ("macro_prompt_len",)),
+    "A4": ("Macro Prompt temporal pooling", ("macro_prompt_pooling",)),
     "A5": ("Reverse Cross context length", ("cross_fusion_recent_len",)),
     "A6": ("Cross Fusion aggregation", ("fusion_mode",)),
-    "A7": ("ST Prompt information content", ("st_prompt_mode",)),
+    "A7": ("ST Prompt node identity information", ("st_prompt_use_node_identity",)),
 }
 
 EXTERNAL_MODEL_IDS = ("patchtst", "itransformer", "timexer", "multipatchformer", "timemixer", "timefilter")

@@ -300,6 +300,31 @@ def run_protocol_checks(config: STMGPromptConfig, build_data: bool = True) -> di
                     _check(aux.get("uses_cross_fusion") is bool(config.use_cross_fusion), "cross_fusion_matches_variant"),
                     _check(aux.get("uses_st_prompt") is bool(config.use_st_prompt), "st_prompt_matches_variant"),
                     _check(
+                        (not config.use_macro_prompt)
+                        or aux.get("macro_prompt_pooling") == config.macro_prompt_pooling,
+                        "macro_prompt_pooling_matches_variant",
+                    ),
+                    _check(
+                        (not config.use_macro_prompt)
+                        or aux.get("macro_prompt_attention_enabled") is (config.macro_prompt_pooling == "attention"),
+                        "macro_prompt_attention_path_matches_variant",
+                    ),
+                    _check(
+                        (not config.use_st_prompt)
+                        or aux.get("st_prompt_use_node_identity") is bool(config.st_prompt_use_node_identity),
+                        "st_prompt_node_identity_matches_variant",
+                    ),
+                    _check(
+                        (not config.use_st_prompt)
+                        or aux.get("st_prompt_information")
+                        == (
+                            "node+future+granularity"
+                            if config.st_prompt_use_node_identity
+                            else "future+granularity"
+                        ),
+                        "st_prompt_information_matches_variant",
+                    ),
+                    _check(
                         aux.get("macro_prompt_from_spatial_enhanced_coarse") is bool(config.use_macro_prompt),
                         "macro_prompt_source_matches_variant",
                     ),
@@ -344,6 +369,15 @@ def run_protocol_checks(config: STMGPromptConfig, build_data: bool = True) -> di
                         "st_prompt_shape_1hn",
                     )
                 )
+                if config.diagnostics_level not in {"none", "minimal"} and not config.st_prompt_use_node_identity:
+                    prompt = aux.get("st_prompt")
+                    checks.append(
+                        _check(
+                            prompt is not None
+                            and torch.allclose(prompt, prompt[:, :, :1, :].expand_as(prompt)),
+                            "st_prompt_shared_across_nodes_without_identity",
+                        )
+                    )
             if config.use_cross_fusion:
                 checks.append(
                     _check(

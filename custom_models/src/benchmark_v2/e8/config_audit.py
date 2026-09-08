@@ -64,9 +64,9 @@ def audit_internal_config(root=INTERNAL_ROOT) -> dict:
             "reason": "A5 shortens Reverse Cross context and A6 changes fusion aggregation; neither removes a direction.",
         },
         "source_semantics": {
-            "A4_change": "macro_prompt_len: 4 -> 1",
+            "A4_change": "macro_prompt_pooling: attention -> mean; macro_prompt_len remains 4",
             "A5_change": "cross_fusion_recent_len: 24 -> 6; both attention directions remain active",
             "A6_change": "fusion_mode: cross -> add; both attention directions remain active",
-            "A7_change": "st_prompt_mode: full -> horizon_only; STPromptDirectDecoder remains active",
+            "A7_change": "st_prompt_use_node_identity: true -> false; future-step + granularity embeddings and STPrompt decoder remain active",
         },
     }

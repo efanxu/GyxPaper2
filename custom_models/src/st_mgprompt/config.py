@@ -160,9 +160,11 @@ class STMGPromptConfig:
     use_cross_fusion: bool = True
     use_st_prompt: bool = False
     st_prompt_mode: str = "full"
+    st_prompt_use_node_identity: bool = True
     decoder_context_mode: str = "last_state"
     decoder_history_len: int | None = None
     macro_prompt_len: int = 4
+    macro_prompt_pooling: str = "attention"
     cross_attention_heads: int = 4
     cross_fusion_recent_len: int = 24
     fusion_mode: str = "cross"
@@ -425,6 +427,8 @@ class STMGPromptConfig:
             raise ValueError("Step 4 coupling_mode must be graph_then_cross.")
         if self.macro_prompt_len <= 0:
             raise ValueError("macro_prompt_len must be positive.")
+        if self.macro_prompt_pooling not in {"attention", "mean"}:
+            raise ValueError("macro_prompt_pooling must be attention or mean.")
         if self.cross_attention_heads <= 0:
             raise ValueError("cross_attention_heads must be positive.")
         if self.cross_fusion_recent_len <= 0:
@@ -433,6 +437,8 @@ class STMGPromptConfig:
             raise ValueError("fusion_mode must be cross, add, or concat.")
         if self.st_prompt_mode not in {"full", "horizon_only"}:
             raise ValueError("st_prompt_mode must be full or horizon_only.")
+        if not isinstance(self.st_prompt_use_node_identity, bool):
+            raise ValueError("st_prompt_use_node_identity must be a boolean.")
         if self.decoder_context_mode not in {"last_state", "full_history_cross_attention"}:
             raise ValueError("decoder_context_mode must be last_state or full_history_cross_attention.")
         if self.decoder_input_strategy not in {

@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+import json
+import tempfile
 import unittest
+from pathlib import Path
 
 import torch
 
@@ -15,7 +18,8 @@ from st_mgprompt.experiment_protocol import (
     get_variant,
     matrix_row,
 )
-from st_mgprompt.prompt_alignment import STPromptEmbedding
+from st_mgprompt.formal_runner import _current_variant_metrics
+from st_mgprompt.prompt_alignment import MacroTrendPrompt, STPromptEmbedding
 from st_mgprompt.registry import build_model
 
 
@@ -38,9 +42,11 @@ class FixedDualProtocolTests(unittest.TestCase):
         self.assertEqual(cfg.site_weight_mode, "dynamic")
         self.assertEqual(cfg.loss_function, "msmg_dwu_loss")
         self.assertEqual(cfg.macro_prompt_len, 4)
+        self.assertEqual(cfg.macro_prompt_pooling, "attention")
         self.assertEqual(cfg.cross_fusion_recent_len, 24)
         self.assertEqual(cfg.fusion_mode, "cross")
         self.assertEqual(cfg.st_prompt_mode, "full")
+        self.assertTrue(cfg.st_prompt_use_node_identity)
         self.assertTrue(cfg.use_macro_prompt)
         self.assertFalse(cfg.disable_reverse_cross)
         self.assertTrue(cfg.use_cross_fusion)
@@ -67,10 +73,10 @@ class FixedDualProtocolTests(unittest.TestCase):
             "A1": ("use_graph_in_temporal_encoder", False),
             "A2": ("use_adaptive_graph", False),
             "A3": ("graph_operator", "simple"),
-            "A4": ("macro_prompt_len", 1),
+            "A4": ("macro_prompt_pooling", "mean"),
             "A5": ("cross_fusion_recent_len", 6),
             "A6": ("fusion_mode", "add"),
-            "A7": ("st_prompt_mode", "horizon_only"),
+            "A7": ("st_prompt_use_node_identity", False),
             "A8": ("loss_function", "masked_score_aligned_hybrid"),
         }
         for name, (field, value) in expected.items():
@@ -79,6 +85,8 @@ class FixedDualProtocolTests(unittest.TestCase):
             self.assertEqual(cfg.vadsp_gate_mode, "fixed_dual", name)
         a4 = apply_component_ablation(STMGPromptConfig(), "A4")
         self.assertTrue(a4.use_macro_prompt)
+        self.assertEqual(a4.macro_prompt_len, 4)
+        self.assertEqual(a4.macro_prompt_pooling, "mean")
         self.assertTrue(a4.use_cross_fusion)
         self.assertTrue(a4.use_st_prompt)
         a5 = apply_component_ablation(STMGPromptConfig(), "A5")
@@ -87,16 +95,18 @@ class FixedDualProtocolTests(unittest.TestCase):
         self.assertTrue(a6.use_cross_fusion)
         a7 = apply_component_ablation(STMGPromptConfig(), "A7")
         self.assertTrue(a7.use_st_prompt)
+        self.assertEqual(a7.st_prompt_mode, "full")
+        self.assertFalse(a7.st_prompt_use_node_identity)
         self.assertEqual(a7.decoder_input_strategy, "direct_multi_output_prompt_query")
         self.assertEqual(a7.decoder_context_mode, "last_state")
         self.assertEqual(apply_component_ablation(STMGPromptConfig(), "A8").loss_protocol, "fair_main")
 
     def test_redesigned_variants_each_have_one_effective_diff(self) -> None:
         expected_fields = {
-            "A4": ["macro_prompt_len"],
+            "A4": ["macro_prompt_pooling"],
             "A5": ["cross_fusion_recent_len"],
             "A6": ["fusion_mode"],
-            "A7": ["st_prompt_mode"],
+            "A7": ["st_prompt_use_node_identity"],
         }
         for name, fields in expected_fields.items():
             cfg = apply_variant(STMGPromptConfig(), name, "component_ablation")
@@ -121,13 +131,61 @@ class FixedDualProtocolTests(unittest.TestCase):
             matches, differences = _config_matches(old, expected)
             self.assertFalse(matches, name)
             self.assertTrue(
-                set(differences) & {"macro_prompt_len", "cross_fusion_recent_len", "fusion_mode", "st_prompt_mode"},
+                set(differences)
+                & {
+                    "use_macro_prompt",
+                    "macro_prompt_len",
+                    "macro_prompt_pooling",
+                    "cross_fusion_recent_len",
+                    "disable_reverse_cross",
+                    "fusion_mode",
+                    "use_cross_fusion",
+                    "st_prompt_mode",
+                    "st_prompt_use_node_identity",
+                    "use_st_prompt",
+                    "decoder_input_strategy",
+                },
                 name,
             )
+
+        legacy_a4 = canonical_config().to_dict()
+        legacy_a4["macro_prompt_len"] = 1
+        matches, differences = _config_matches(
+            legacy_a4,
+            apply_variant(STMGPromptConfig(), "A4", "component_ablation").to_dict(),
+        )
+        self.assertFalse(matches)
+        self.assertIn("macro_prompt_len", differences)
+
+        legacy_a7 = canonical_config().to_dict()
+        legacy_a7["st_prompt_mode"] = "horizon_only"
+        matches, differences = _config_matches(
+            legacy_a7,
+            apply_variant(STMGPromptConfig(), "A7", "component_ablation").to_dict(),
+        )
+        self.assertFalse(matches)
+        self.assertIn("st_prompt_mode", differences)
+        self.assertIn("st_prompt_use_node_identity", differences)
 
         legacy_a1 = apply_variant(STMGPromptConfig(), "A1", "component_ablation").to_dict()
         legacy_a1.pop("st_prompt_mode")
         self.assertTrue(_config_matches(legacy_a1, apply_variant(STMGPromptConfig(), "A1").to_dict())[0])
+
+    def test_pre_redesign_metrics_are_excluded_from_current_summary(self) -> None:
+        legacy_configs = {
+            "A4": {"macro_prompt_len": 1},
+            "A7": {"st_prompt_mode": "horizon_only"},
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            for name, overrides in legacy_configs.items():
+                run_dir = root / name / "STMGPrompt_ComponentAblation"
+                run_dir.mkdir(parents=True)
+                config = canonical_config().to_dict()
+                config.update(overrides)
+                (run_dir / "active_config.json").write_text(json.dumps(config), encoding="utf-8")
+                (run_dir / "metrics_eval_h10.json").write_text("{}", encoding="utf-8")
+                self.assertEqual(_current_variant_metrics(root, get_variant(name, "component_ablation")), [])
 
     def test_obsolete_component_ids_rejected(self) -> None:
         for name in ("A9", "A10"):
@@ -141,21 +199,65 @@ class FixedDualProtocolTests(unittest.TestCase):
         self.assertEqual(row["hidden_dim"], 96)
         self.assertEqual(row["num_coupling_layers"], 2)
         expected = {
-            "A0": (4, 24, "cross", "full"),
-            "A4": (1, 24, "cross", "full"),
-            "A5": (4, 6, "cross", "full"),
-            "A6": (4, 24, "add", "full"),
-            "A7": (4, 24, "cross", "horizon_only"),
+            "A0": (4, "attention", 24, "cross", "full", True),
+            "A4": (4, "mean", 24, "cross", "full", True),
+            "A5": (4, "attention", 6, "cross", "full", True),
+            "A6": (4, "attention", 24, "add", "full", True),
+            "A7": (4, "attention", 24, "cross", "full", False),
         }
         for name, values in expected.items():
             row = matrix_row(COMPONENT_ABLATION_VARIANTS[name])
             self.assertEqual(
-                (row["macro_prompt_len"], row["cross_fusion_recent_len"], row["fusion_mode"], row["st_prompt_mode"]),
+                (
+                    row["macro_prompt_len"],
+                    row["macro_prompt_pooling"],
+                    row["cross_fusion_recent_len"],
+                    row["fusion_mode"],
+                    row["st_prompt_mode"],
+                    row["st_prompt_use_node_identity"],
+                ),
                 values,
                 name,
             )
 
-    def test_st_prompt_modes(self) -> None:
+    def test_macro_prompt_mean_pooling_is_equal_weighted_and_capacity_preserving(self) -> None:
+        attention_encoder = MacroTrendPrompt(
+            hidden_dim=4,
+            prompt_len=4,
+            dropout=0.0,
+            pooling="attention",
+            diagnostics_level="none",
+        )
+        prompt_encoder = MacroTrendPrompt(
+            hidden_dim=4,
+            prompt_len=4,
+            dropout=0.0,
+            pooling="mean",
+            diagnostics_level="none",
+        ).eval()
+        self.assertEqual(
+            sum(parameter.numel() for parameter in attention_encoder.parameters()),
+            sum(parameter.numel() for parameter in prompt_encoder.parameters()),
+        )
+        with torch.no_grad():
+            prompt_encoder.project.weight.zero_()
+            prompt_encoder.project.bias.zero_()
+            eye = torch.eye(4)
+            for token in range(4):
+                prompt_encoder.project.weight[token * 4 : (token + 1) * 4] = eye
+        h_coarse = torch.tensor(
+            [[[[1.0, 2.0, 3.0, 4.0]], [[5.0, 6.0, 7.0, 8.0]], [[9.0, 10.0, 11.0, 12.0]]]]
+        )
+        prompt, aux = prompt_encoder(h_coarse)
+        pooled = h_coarse.mean(dim=1).unsqueeze(2).expand(1, 1, 4, 4)
+        expected = prompt_encoder.norm(pooled)
+        self.assertTrue(torch.allclose(prompt, expected))
+        self.assertEqual(tuple(prompt.shape), (1, 1, 4, 4))
+        self.assertEqual(aux["macro_prompt_pooling"], "mean")
+        self.assertFalse(aux["macro_prompt_attention_enabled"])
+        self.assertIsNone(aux["macro_prompt_attn_entropy"])
+
+    def test_st_prompt_node_identity_modes(self) -> None:
         full = STPromptEmbedding(num_nodes=3, max_pred_len=2, hidden_dim=4, dropout=0.0, mode="full")
         full.eval()
         full_prompt = full(num_nodes=3, horizon=2, granularity_index=0)
@@ -166,27 +268,42 @@ class FixedDualProtocolTests(unittest.TestCase):
         self.assertTrue(torch.allclose(full_prompt, full.norm(node + step + granularity)))
         self.assertFalse(torch.allclose(full_prompt[:, :, 0], full_prompt[:, :, 1]))
 
-        horizon_only = STPromptEmbedding(
+        temporal_granularity = STPromptEmbedding(
             num_nodes=3,
             max_pred_len=2,
             hidden_dim=4,
             dropout=0.0,
-            mode="horizon_only",
+            mode="full",
+            use_node_identity=False,
         )
         with torch.no_grad():
-            horizon_only.future_step_embedding.weight.copy_(
+            temporal_granularity.future_step_embedding.weight.copy_(
                 torch.tensor([[1.0, 0.0, 0.0, 0.0], [0.0, 1.0, 0.0, 0.0]])
             )
-        prompt = horizon_only(num_nodes=3, horizon=2)
+            temporal_granularity.granularity_embedding.weight.zero_()
+        prompt = temporal_granularity(num_nodes=3, horizon=2)
         self.assertEqual(tuple(prompt.shape), (1, 2, 3, 4))
+        self.assertIsNone(temporal_granularity.node_embedding)
         self.assertTrue(torch.allclose(prompt[:, :, 0], prompt[:, :, 1]))
         self.assertTrue(torch.allclose(prompt[:, :, 1], prompt[:, :, 2]))
         self.assertFalse(torch.allclose(prompt[:, 0], prompt[:, 1]))
+        expected_temporal = temporal_granularity.norm(
+            temporal_granularity.future_step_embedding.weight[:2].view(1, 2, 1, 4)
+        ).expand(1, 2, 3, 4)
+        self.assertTrue(torch.allclose(prompt, expected_temporal))
 
     def test_st_prompt_mode_validation(self) -> None:
         cfg = canonical_config()
         cfg.st_prompt_mode = "invalid"
         with self.assertRaisesRegex(ValueError, "st_prompt_mode"):
+            cfg.validate()
+        cfg = canonical_config()
+        cfg.macro_prompt_pooling = "invalid"
+        with self.assertRaisesRegex(ValueError, "macro_prompt_pooling"):
+            cfg.validate()
+        cfg = canonical_config()
+        cfg.st_prompt_use_node_identity = 1
+        with self.assertRaisesRegex(ValueError, "st_prompt_use_node_identity"):
             cfg.validate()
         with self.assertRaisesRegex(ValueError, "mode"):
             STPromptEmbedding(num_nodes=2, max_pred_len=2, hidden_dim=4, mode="invalid")
@@ -213,6 +330,8 @@ class FixedDualProtocolTests(unittest.TestCase):
                 output = model(x)
             self.assertEqual(tuple(output["pred"].shape), (1, 10, num_nodes), name)
             self.assertEqual(output["aux"]["st_prompt_mode"], cfg.st_prompt_mode, name)
+            self.assertEqual(output["aux"]["st_prompt_use_node_identity"], cfg.st_prompt_use_node_identity, name)
+            self.assertEqual(output["aux"]["macro_prompt_pooling"], cfg.macro_prompt_pooling, name)
             self.assertEqual(
                 output["aux"]["decoder_metadata"]["decoder_input_strategy"],
                 "direct_multi_output_prompt_query",

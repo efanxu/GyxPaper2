@@ -148,6 +148,10 @@ def run(
                 "num_coupling_layers": cfg.num_coupling_layers,
                 "graph_operator": cfg.graph_operator,
                 "decoder_context_mode": cfg.decoder_context_mode,
+                "macro_prompt_len": cfg.macro_prompt_len,
+                "macro_prompt_pooling": cfg.macro_prompt_pooling,
+                "st_prompt_mode": cfg.st_prompt_mode,
+                "st_prompt_use_node_identity": bool(cfg.st_prompt_use_node_identity),
                 "loss_name": cfg.loss_function,
                 "peak_allocated_mib": peak_mib,
             }

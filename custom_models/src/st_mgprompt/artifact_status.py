@@ -16,9 +16,11 @@ CONFIG_FIELDS = (
     "graph_operator",
     "decoder_context_mode",
     "macro_prompt_len",
+    "macro_prompt_pooling",
     "cross_fusion_recent_len",
     "fusion_mode",
     "st_prompt_mode",
+    "st_prompt_use_node_identity",
     "hidden_dim",
     "num_coupling_layers",
     "lookback",
@@ -36,6 +38,12 @@ CONFIG_FIELDS = (
     "prediction_accumulation",
     "windows_safe_mode",
 )
+
+_CONFIG_DEFAULTS = {
+    "st_prompt_mode": "full",
+    "macro_prompt_pooling": "attention",
+    "st_prompt_use_node_identity": True,
+}
 
 _WINDOWS_EXCEPTIONS = {
     0xC0000005: "access_violation",
@@ -155,7 +163,7 @@ def _config_matches(actual: dict[str, Any] | None, expected: dict[str, Any]) -> 
         return False, ["config.json or active_config.json missing/invalid"]
     differences = []
     for key in CONFIG_FIELDS:
-        actual_value = actual.get(key, "full") if key == "st_prompt_mode" else actual.get(key)
+        actual_value = actual.get(key, _CONFIG_DEFAULTS.get(key))
         if actual_value != expected.get(key):
             differences.append(key)
     return not differences, differences

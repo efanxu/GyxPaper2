@@ -14,7 +14,7 @@ The available A0/A4/A5/A6/A7 fixed-dual artifacts record train batch32, lack the
 
 Static config/source audit passes. A5 disables Fine-to-Coarse while retaining Coarse/Macro-to-Fine; A6 disables both directions while retaining both branches. The direction decomposition predicate is statically valid, but the result table remains blocked until authentic current-batch4 internal evidence exists.
 
-Macro Prompt is latent only; no physical trend sign result is allowed. ST Prompt is genuinely horizon-conditioned. Cross Fusion is real attention + gate + residual + LayerNorm. Fine and Coarse both preserve length 144.
+Macro Prompt is latent only; no physical trend sign result is allowed. A0 uses attention temporal pooling, while current A4 uses equal-weight mean pooling with the same four-token capacity. A0 ST Prompt is node + future-step + granularity; current A7 removes only node identity and remains future-step + granularity, with the same ST Prompt decoder. Cross Fusion is real attention + gate + residual + LayerNorm. Fine and Coarse both preserve length 144.
 
 Grouped analysis is `BLOCKED_DEFINITION_MISSING`, and paired-window analysis is blocked by missing current-protocol common prediction/window exports.
 

@@ -402,6 +402,7 @@ class STMGPrompt_FairFull(nn.Module):
                 hidden_dim=self.hidden_dim,
                 dropout=config.dropout,
                 mode=config.st_prompt_mode,
+                use_node_identity=config.st_prompt_use_node_identity,
             )
             if config.use_st_prompt
             else None
@@ -439,9 +440,17 @@ class STMGPrompt_FairFull(nn.Module):
             "diffusion_use_bidirectional": bool(config.diffusion_use_bidirectional),
             "diffusion_beta_init": float(config.diffusion_beta_init),
             "macro_prompt_from_spatial_enhanced_coarse": bool(config.use_macro_prompt),
+            "macro_prompt_pooling": config.macro_prompt_pooling,
+            "macro_prompt_attention_enabled": config.macro_prompt_pooling == "attention",
             "cross_fusion_uses_spatial_enhanced_features": bool(config.use_cross_fusion),
             "serial_graph_then_fusion": False,
             "st_prompt_direct_decoder_enabled": bool(config.use_st_prompt),
+            "st_prompt_use_node_identity": bool(config.st_prompt_use_node_identity),
+            "st_prompt_information": (
+                "node+future+granularity"
+                if config.st_prompt_use_node_identity
+                else "future+granularity"
+            ),
             "decoder_context_mode": config.decoder_context_mode,
             "decoder_history_len": config.decoder_history_len,
             "decoder_input_strategy": config.decoder_input_strategy,
@@ -559,6 +568,14 @@ class STMGPrompt_FairFull(nn.Module):
                 "uses_cross_fusion": bool(self.config.use_cross_fusion),
                 "uses_st_prompt": bool(self.config.use_st_prompt),
                 "st_prompt_mode": self.config.st_prompt_mode,
+                "st_prompt_use_node_identity": bool(self.config.st_prompt_use_node_identity),
+                "st_prompt_information": (
+                    "node+future+granularity"
+                    if self.config.st_prompt_use_node_identity
+                    else "future+granularity"
+                ),
+                "macro_prompt_pooling": last_aux.get("macro_prompt_pooling"),
+                "macro_prompt_attention_enabled": last_aux.get("macro_prompt_attention_enabled"),
                 "uses_direct_decoder": True,
                 "x_fine_coupled": x_fine,
                 "x_coarse_coupled": x_coarse,

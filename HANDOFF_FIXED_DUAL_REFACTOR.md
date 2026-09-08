@@ -270,10 +270,10 @@ custom_models/results/st_mgprompt_precision/precision_ablation_fixed_dual_seed20
 | A1 | w/o Spatial Graph | 不执行节点间空间传播 |
 | A2 | w/o Adaptive Graph | 关闭 adaptive graph，只用固定 prior |
 | A3 | w/o Diffusion | Bi-Diffusion -> Simple |
-| A4 | Single-token Macro Prompt | `macro_prompt_len: 4 -> 1` |
+| A4 | Mean-Pooling Macro Prompt | `macro_prompt_pooling: attention -> mean`，`macro_prompt_len=4` 保持不变 |
 | A5 | Short-context Reverse Cross | `cross_fusion_recent_len: 24 -> 6`，Reverse Cross 保持启用 |
 | A6 | Additive Cross Fusion | `fusion_mode: cross -> add`，双向 cross-attention 保持启用 |
-| A7 | Horizon-only Prompt | `st_prompt_mode: full -> horizon_only`，继续使用 STPromptDirectDecoder |
+| A7 | Temporal-Granularity Prompt | `st_prompt_use_node_identity: true -> false`，保留 future-step + granularity，继续使用 STPromptDirectDecoder |
 | A8 | w/o MS-MG-DWU | loss 改为 masked_score_aligned_hybrid |
 
 机器可读矩阵：
@@ -529,8 +529,9 @@ RUNBOOK_FIXED_DUAL_REFACTOR.md
 不要复用旧 P0-P5 数值。
 不要复用旧 A0、A2-A10 数值。
 不要把 A3 做成 w/o Trend Prior。
-不要把 A4 做成删除 coarse branch。
+不要把 A4 做成删除 coarse branch 或把 Macro Prompt 缩成 single token；A4 只比较 attention pooling 与 mean pooling。
 不要把 A5 和 A6 混为同一消融；两者都保留双向 cross-attention。
+不要把 A7 做成 horizon-only 或关闭 ST Prompt；A7 只移除最终 ST Prompt 中的 node identity embedding。
 不要把 A8 做成 Static-MG。
 不要修改数据协议、checkpoint 选择标准、batch 或随机种子。
 不要把 smoke 的 COMPLETED 状态冒充正式训练完成。

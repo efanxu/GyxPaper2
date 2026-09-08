@@ -2,10 +2,10 @@
   "schema_version": "e8_internal_config_diff_v2",
   "status": "PENDING_REDESIGNED_A4_A7_RESULTS",
   "formal_protocol": {
-    "A4": {"display_name": "Single-token Macro Prompt", "expected_diff_fields": ["macro_prompt_len"]},
+    "A4": {"display_name": "Mean-Pooling Macro Prompt", "expected_diff_fields": ["macro_prompt_pooling"]},
     "A5": {"display_name": "Short-context Reverse Cross", "expected_diff_fields": ["cross_fusion_recent_len"]},
     "A6": {"display_name": "Additive Cross Fusion", "expected_diff_fields": ["fusion_mode"]},
-    "A7": {"display_name": "Horizon-only Prompt", "expected_diff_fields": ["st_prompt_mode"]}
+    "A7": {"display_name": "Temporal-Granularity Prompt", "expected_diff_fields": ["st_prompt_use_node_identity"]}
   },
   "comparisons": [],
   "note": "Pre-redesign A4-A7 evidence was invalidated and is not transferable to the current formal variants."

@@ -51,7 +51,7 @@ class STMGPromptCouplingBlock(nn.Module):
                 hidden_dim=D,
                 prompt_len=config.macro_prompt_len,
                 dropout=config.dropout,
-                pooling="attention",
+                pooling=config.macro_prompt_pooling,
                 diagnostics_level=config.diagnostics_level,
             )
             if self.use_macro_prompt
@@ -96,6 +96,8 @@ class STMGPromptCouplingBlock(nn.Module):
             prompt_aux = {
                 "macro_prompt_attn_entropy": None,
                 "macro_prompt_norm_mean": None,
+                "macro_prompt_pooling": None,
+                "macro_prompt_attention_enabled": False,
             }
         else:
             macro_prompt, prompt_aux = self.macro_prompt_encoder(h_coarse)

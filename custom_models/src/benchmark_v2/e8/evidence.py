@@ -13,6 +13,7 @@ from .constants import (
 )
 from .io_utils import file_identity, forbidden_source, read_json, read_metrics_csv
 from .original26_loader import Original26Model
+from st_mgprompt.experiment_protocol import semantic_config
 
 
 def metrics_equal(left: dict[int, dict[str, float]], right: dict[int, dict[str, float]]) -> bool:
@@ -44,6 +45,14 @@ def _resource_stats(run_dir: Path, status: dict[str, Any], checkpoint: Path) -> 
         "throughput": inference.get("inference_windows_per_sec"),
         "checkpoint_size": checkpoint.stat().st_size if checkpoint.is_file() else None,
     }
+
+
+def _actual_run_config(run_dir: Path) -> tuple[Path | None, dict[str, Any]]:
+    for name in ("active_config.json", "config.json", "resolved_config.json"):
+        path = run_dir / name
+        if path.is_file():
+            return path, read_json(path)
+    return None, {}
 
 
 def _external_entry(entry: dict[str, Any], workbook: Original26Model) -> dict[str, Any]:
@@ -120,6 +129,7 @@ def _internal_entry(variant: str, root=INTERNAL_ROOT, canonical=CANONICAL_ROOT) 
         if not path.is_file():
             errors.append(code)
     effective = read_json(effective_path) if effective_path.is_file() else {}
+    run_config_path, run_config = _actual_run_config(run_dir)
     status = read_json(status_path) if status_path.is_file() else {}
     protocol = read_json(protocol_path) if protocol_path.is_file() else {}
     status_value = status.get("status")
@@ -132,6 +142,16 @@ def _internal_entry(variant: str, root=INTERNAL_ROOT, canonical=CANONICAL_ROOT) 
             errors.append(f"INTERNAL_BATCH_PROFILE_MISMATCH:{key}")
     if effective.get("training_batch_profile_id") != EXPECTED_BATCH["profile_id"]:
         errors.append("INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id")
+    expected_semantic = semantic_config(effective)
+    actual_semantic = semantic_config(run_config)
+    if run_config_path is None and variant != "A0":
+        errors.append("MISSING_RUN_CONFIG")
+    elif variant != "A0" and actual_semantic != expected_semantic:
+        differing_fields = sorted(
+            key for key, expected in expected_semantic.items()
+            if actual_semantic.get(key) != expected
+        )
+        errors.append(f"INTERNAL_RUN_CONFIG_MISMATCH:{','.join(differing_fields)}")
     metrics = None
     if metrics_path.is_file():
         try:
@@ -147,6 +167,7 @@ def _internal_entry(variant: str, root=INTERNAL_ROOT, canonical=CANONICAL_ROOT) 
         "checkpoint_path": str(checkpoint.resolve()), "checkpoint_identity": file_identity(checkpoint),
         "protocol_identity": {key: effective.get(key) for key in ("protocol_version", "training_batch_profile_id", "train_batch_size", "val_batch_size", "test_batch_size")},
         "resolved_config_identity": file_identity(resolved_path), "effective_config_identity": file_identity(effective_path),
+        "run_config_identity": file_identity(run_config_path) if run_config_path else None,
         "metrics": metrics, "resource_stats": _resource_stats(run_dir, status, checkpoint),
         "validation_status": "PASS" if not errors else "FAIL", "validation_errors": errors, "ready": not errors,
     }

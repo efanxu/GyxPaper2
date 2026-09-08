@@ -8,10 +8,10 @@ The external table is native-training-system architecture/end-to-end context. It
 
 ## Frozen internal semantics
 
-- A4 changes only `macro_prompt_len`, from 4 to 1.
+- A4 changes only `macro_prompt_pooling`, from attention pooling to equal-weight mean pooling; `macro_prompt_len=4` remains unchanged.
 - A5 changes only `cross_fusion_recent_len`, from 24 to 6; both Reverse Cross directions remain enabled.
 - A6 changes only `fusion_mode`, from adaptive gated `cross` to `add`; both cross-attention paths remain enabled.
-- A7 changes only `st_prompt_mode`, from `full` to `horizon_only`; it retains `STPromptDirectDecoder` and the prompt-query prediction strategy.
+- A7 changes only `st_prompt_use_node_identity`, from true to false; `STPromptDirectDecoder`, future-step embedding, granularity embedding, and the prompt-query prediction strategy remain active.
 
 The earlier direction-removal decomposition is obsolete and must not be reported under A5/A6. E8 internal causal evidence remains pending until the redesigned A4–A7 formal runs finish.
 
@@ -23,7 +23,7 @@ Cross Fusion is two `MultiheadAttention` paths plus a learned sigmoid gate, resi
 
 Macro Prompt is a latent `[B,N,4,D]` projection of attention-pooled graph-enhanced Coarse history. It has no physical trend scalar/logit/head, so sign accuracy, physical trend correlation, and confusion matrix are `NOT_APPLICABLE`.
 
-ST Prompt is horizon-conditioned: node, future-step, and granularity embeddings form `[1,H,N,D]` in A0. A7 keeps the same tensor shape and decoder but constructs the prompt from future-step embedding only, shared across nodes at each horizon.
+ST Prompt is horizon-conditioned: node, future-step, and granularity embeddings form `[1,H,N,D]` in A0. A7 keeps the same tensor shape and decoder but constructs the prompt from future-step plus granularity embeddings, shared across nodes at each horizon. The node identity contribution is the only removed ST Prompt mechanism.
 
 ## Read-only diagnostics
 

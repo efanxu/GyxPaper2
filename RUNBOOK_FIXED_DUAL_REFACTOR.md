@@ -178,6 +178,8 @@ A0: REFERENCE_ONLY
 A1-A8: TRAIN
 ```
 
+当前 A4/A7 语义：A4 保持 `macro_prompt_len=4`，仅将 Macro Prompt 的 temporal pooling 从 `attention` 改为等权 `mean`；A7 保持完整 ST Prompt、future-step + granularity embedding、`STPromptDirectDecoder` 和原 decoder input strategy，仅将 `st_prompt_use_node_identity` 设为 `false`。
+
 ### 3.5 中断续跑
 
 在原参数末尾增加：
@@ -211,6 +213,13 @@ A0/A1-A8：
 
 ```powershell
 & 'D:\Apps\Miniconda3\envs\env_tslib\python.exe' -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 A8 --run-full
+```
+
+仅运行当前新定义的 A4 与 A7 时，分别执行以下 fresh Full 命令（不要追加 `--resume`）：
+
+```powershell
+& 'D:\Apps\Miniconda3\envs\env_tslib\python.exe' -m st_mgprompt.run_ablation --variants A4 --run-full
+& 'D:\Apps\Miniconda3\envs\env_tslib\python.exe' -m st_mgprompt.run_ablation --variants A7 --run-full
 ```
 
 ## 5. Linux JupyterLab Terminal

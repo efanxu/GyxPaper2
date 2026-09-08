@@ -101,9 +101,9 @@ _COMPONENT = (
         ("graph_operator",),
     ),
     ExperimentVariant(
-        "A4", "Single-token Macro Prompt", "component_ablation", True,
-        None, "CANONICAL_FULL", {"macro_prompt_len": 1},
-        ("macro_prompt_len",),
+        "A4", "Mean-Pooling Macro Prompt", "component_ablation", True,
+        None, "CANONICAL_FULL", {"macro_prompt_pooling": "mean"},
+        ("macro_prompt_pooling",),
     ),
     ExperimentVariant(
         "A5", "Short-context Reverse Cross", "component_ablation", True,
@@ -116,9 +116,9 @@ _COMPONENT = (
         ("fusion_mode",),
     ),
     ExperimentVariant(
-        "A7", "Horizon-only Prompt", "component_ablation", True,
-        None, "CANONICAL_FULL", {"st_prompt_mode": "horizon_only"},
-        ("st_prompt_mode",),
+        "A7", "Temporal-Granularity Prompt", "component_ablation", True,
+        None, "CANONICAL_FULL", {"st_prompt_use_node_identity": False},
+        ("st_prompt_use_node_identity",),
     ),
     ExperimentVariant(
         "A8", "w/o MS-MG-DWU", "component_ablation", True,
@@ -155,10 +155,19 @@ ARCHITECTURE_AND_LOSS_FIELDS = (
     "hidden_dim", "num_coupling_layers", "use_graph_in_temporal_encoder",
     "use_adaptive_graph", "use_trend_prior_graph", "use_macro_prompt",
     "disable_reverse_cross", "use_cross_fusion", "use_st_prompt",
-    "macro_prompt_len", "cross_fusion_recent_len", "fusion_mode", "st_prompt_mode",
+    "macro_prompt_len", "macro_prompt_pooling", "cross_fusion_recent_len", "fusion_mode", "st_prompt_mode",
+    "st_prompt_use_node_identity",
     "decoder_input_strategy", "use_msmg_dwu", "loss_function", "loss_protocol",
     "granularity_weight_mode", "site_weight_mode",
 )
+
+SEMANTIC_CONFIG_DEFAULTS = {
+    # Pre-field formal artifacts remain readable, while old A4/A7 values still
+    # fail the semantic audit through their other changed fields.
+    "st_prompt_mode": "full",
+    "macro_prompt_pooling": "attention",
+    "st_prompt_use_node_identity": True,
+}
 
 
 def canonical_overrides() -> dict[str, Any]:
@@ -208,10 +217,12 @@ def canonical_overrides() -> dict[str, Any]:
         "use_cross_fusion": True,
         "use_st_prompt": True,
         "macro_prompt_len": 4,
+        "macro_prompt_pooling": "attention",
         "cross_fusion_recent_len": 24,
         "disable_reverse_cross": False,
         "fusion_mode": "cross",
         "st_prompt_mode": "full",
+        "st_prompt_use_node_identity": True,
         "graph_operator": GRAPH_BI_DIFFUSION,
         "decoder_context_mode": "last_state",
         "decoder_history_len": None,
@@ -267,7 +278,10 @@ def apply_variant(config: STMGPromptConfig, variant_id: str, family: str | None 
 
 def semantic_config(config: STMGPromptConfig | dict[str, Any]) -> dict[str, Any]:
     raw = config if isinstance(config, dict) else config.to_dict()
-    value = {key: deepcopy(raw.get(key)) for key in (*FORMAL_PROTOCOL_FIELDS, *ARCHITECTURE_AND_LOSS_FIELDS)}
+    value = {
+        key: deepcopy(raw.get(key, SEMANTIC_CONFIG_DEFAULTS.get(key)))
+        for key in (*FORMAL_PROTOCOL_FIELDS, *ARCHITECTURE_AND_LOSS_FIELDS)
+    }
     value["graph_operator"] = (
         GRAPH_BI_DIFFUSION_DISPLAY
         if value.get("graph_operator") == GRAPH_BI_DIFFUSION
@@ -367,7 +381,8 @@ MATRIX_FIELDS = (
     "vadsp_gate_mode", "graph_operator", "decoder_context_mode", "hidden_dim",
     "num_coupling_layers", "spatial_graph", "adaptive_graph", "diffusion",
     "macro_prompt", "reverse_cross", "cross_fusion", "st_prompt", "loss_name",
-    "macro_prompt_len", "cross_fusion_recent_len", "fusion_mode", "st_prompt_mode",
+    "macro_prompt_len", "macro_prompt_pooling", "cross_fusion_recent_len", "fusion_mode", "st_prompt_mode",
+    "st_prompt_use_node_identity",
     "granularity_weight_mode", "site_weight_mode", "seed",
 )
 
@@ -394,9 +409,11 @@ def matrix_row(variant: ExperimentVariant) -> dict[str, Any]:
         "cross_fusion": config.use_cross_fusion,
         "st_prompt": config.use_st_prompt,
         "macro_prompt_len": config.macro_prompt_len,
+        "macro_prompt_pooling": config.macro_prompt_pooling,
         "cross_fusion_recent_len": config.cross_fusion_recent_len,
         "fusion_mode": config.fusion_mode,
         "st_prompt_mode": config.st_prompt_mode,
+        "st_prompt_use_node_identity": config.st_prompt_use_node_identity,
         "loss_name": config.loss_function,
         "granularity_weight_mode": config.granularity_weight_mode,
         "site_weight_mode": config.site_weight_mode,

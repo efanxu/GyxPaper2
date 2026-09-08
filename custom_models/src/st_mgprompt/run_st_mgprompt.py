@@ -1426,6 +1426,17 @@ def _run_once(args: argparse.Namespace, cfg: STMGPromptConfig, run_dir: Path) ->
             "seed": cfg.seed,
             "checkpoint": str(checkpoint_path),
             "loss_function": cfg.loss_function,
+            "macro_prompt_len": cfg.macro_prompt_len,
+            "macro_prompt_pooling": cfg.macro_prompt_pooling,
+            "macro_prompt_attention_enabled": cfg.macro_prompt_pooling == "attention",
+            "st_prompt_mode": cfg.st_prompt_mode,
+            "st_prompt_use_node_identity": bool(cfg.st_prompt_use_node_identity),
+            "st_prompt_information": (
+                "node+future+granularity"
+                if cfg.st_prompt_use_node_identity
+                else "future+granularity"
+            ),
+            "decoder_input_strategy": cfg.decoder_input_strategy,
             "eligible_for_fair_main_table": cfg.eligible_for_fair_main_table,
             **get_loss_metadata(cfg),
             "skipped_all_invalid_batches": skipped,
