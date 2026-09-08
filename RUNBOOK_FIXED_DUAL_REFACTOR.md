@@ -180,15 +180,30 @@ A1-A8: TRAIN
 
 当前 A4/A7 语义：A4 保持 `macro_prompt_len=4`，仅将 Macro Prompt 的 temporal pooling 从 `attention` 改为等权 `mean`；A7 保持完整 ST Prompt、future-step + granularity embedding、`STPromptDirectDecoder` 和原 decoder input strategy，仅将 `st_prompt_use_node_identity` 设为 `false`。
 
-### 3.5 中断续跑
+### 3.5 中断续跑与 checkpoint 断点续跑
 
-在原参数末尾增加：
+正式 runner 为每个可训练变体在固定的变体输出目录中维护：
+
+```text
+last_checkpoint.pt   # 最近一个完整 epoch，供训练续跑
+best_checkpoint.pt   # 当前正式评估使用的最佳 checkpoint
+train_log.csv        # 已完成 epoch 的训练日志
+```
+
+每个 epoch 结束后，`last_checkpoint.pt` 会原子更新。使用 `--resume` 时，runner 会在同一个变体目录中自动读取它，并恢复模型、loss、optimizer、AMP scaler、随机数状态、early-stopping 状态和已有训练日志，从下一个 epoch 继续。若训练已经完成但评估未完成，component-ablation runner 会自动改为使用 `best_checkpoint.pt` 的 evaluate-only 路径。
+
+断点续跑必须满足以下规则：
+
+1. 保持原来的 `output-root`、`run-id` 和 `--variants` 不变；`--resume` 不能用来创建新的 run-id。
+2. 只对当前正式定义且配置匹配的 checkpoint 使用 `--resume`。配置审计或严格 checkpoint 校验发现不匹配时，续跑会被拒绝，不得把旧语义结果当作新实验继续使用。
+3. 当前正式 A4/A7 若目录中仍是旧版 Single-token Macro Prompt 或 Horizon-only Prompt 产物，必须先用下一节的 fresh Full 命令重建；重建出当前定义的 checkpoint 后，后续中断才使用 `--resume`。
+4. 不要对 P0/A0 启动训练。Formal A8 Batch4 也不允许加载历史 checkpoint，继续使用 fresh Full 协议。
+
+因此，续跑时是在原命令末尾增加：
 
 ```text
 --resume
 ```
-
-不要用 `--resume` 创建新的 run-id，也不要为 P0/A0 启动训练。
 
 ## 4. Windows PowerShell 等价命令
 
@@ -221,6 +236,21 @@ A0/A1-A8：
 & 'D:\Apps\Miniconda3\envs\env_tslib\python.exe' -m st_mgprompt.run_ablation --variants A4 --run-full
 & 'D:\Apps\Miniconda3\envs\env_tslib\python.exe' -m st_mgprompt.run_ablation --variants A7 --run-full
 ```
+
+当前正式 A4/A7 已经各自启动过并产生匹配的 `last_checkpoint.pt` 后，发生中断时执行以下续跑命令。命令会复用同一正式输出目录和同一固定 run-id：
+
+```powershell
+& 'D:\Apps\Miniconda3\envs\env_tslib\python.exe' -m st_mgprompt.run_ablation --variants A4 --run-full --resume
+& 'D:\Apps\Miniconda3\envs\env_tslib\python.exe' -m st_mgprompt.run_ablation --variants A7 --run-full --resume
+```
+
+若要在同一轮中续跑已经采用当前定义的 A1-A7，可使用：
+
+```powershell
+& 'D:\Apps\Miniconda3\envs\env_tslib\python.exe' -m st_mgprompt.run_ablation --variants A1 A2 A3 A4 A5 A6 A7 --run-full --resume --skip-completed
+```
+
+其中 `--skip-completed` 只跳过审计为 completed 的当前定义变体；不要用它掩盖 A4/A7 的旧配置不匹配。
 
 ## 5. Linux JupyterLab Terminal
 
@@ -264,7 +294,18 @@ python -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 A8 --run-f
 
 建议先完成 P0/P1-P5，再启动 A0/A1-A8。
 
-### 5.2 无论成功或失败都自动关机
+### 5.2 Linux 中断续跑
+
+在同一 `PROJECT_ROOT`、同一固定 run-id 下，当前正式 A4/A7 的续跑命令为：
+
+```bash
+python -m st_mgprompt.run_ablation --variants A4 --run-full --resume
+python -m st_mgprompt.run_ablation --variants A7 --run-full --resume
+```
+
+不要把 `--resume` 与新的 `--run-id` 或新的 `--output-root` 组合使用。旧语义 A4/A7 先按 Windows 部分的 fresh 命令重建；Formal A8 Batch4 不使用 `--resume`。
+
+### 5.3 无论成功或失败都自动关机
 
 P0/P1-P5：
 
@@ -280,7 +321,7 @@ python -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 A8 --run-f
 
 这里使用分号语义；Python 成功或失败都会记录 exit code、执行 `sync`，然后调用 `/usr/bin/shutdown -h now`。不要改为仅成功时才执行的 `&& shutdown`。
 
-### 5.3 `nohup bash -lc` 后台运行并自动关机
+### 5.4 `nohup bash -lc` 后台运行并自动关机
 
 先确保 `PROJECT_ROOT` 已 `export`。
 
@@ -296,7 +337,7 @@ A0/A1-A8：
 nohup bash -lc 'cd "$PROJECT_ROOT"; export PYTHONPATH="$PROJECT_ROOT/custom_models/src${PYTHONPATH:+:$PYTHONPATH}"; export PYTHONUTF8=1 PYTHONIOENCODING=utf-8 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0; python -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 A8 --run-full ; run_code=$?; printf "%s\n" "$run_code" > "$PROJECT_ROOT/custom_models/logs/component_fixed_dual.exit_code"; sync; /usr/bin/shutdown -h now' > "$PROJECT_ROOT/custom_models/logs/component_fixed_dual.nohup.log" 2>&1 &
 ```
 
-### 5.4 日志、进程与 exit code
+### 5.5 日志、进程与 exit code
 
 查看 P0/P1-P5 日志：
 

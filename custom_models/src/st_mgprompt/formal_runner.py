@@ -153,6 +153,7 @@ def _command(
     variant,
     *,
     evaluate_only: bool = False,
+    resume: bool = False,
 ) -> list[str]:
     if not variant.trainable:
         raise ValueError(f"{variant.variant_id} is REFERENCE_ONLY.")
@@ -187,11 +188,42 @@ def _command(
                 "streaming",
             ]
         )
-    elif args.resume:
+    elif resume:
         command.append("--resume")
     if args.extra_args:
         command.extend(args.extra_args)
     return command
+
+
+def _resume_plan(
+    args: argparse.Namespace,
+    existing_audit: dict[str, Any] | None,
+    variant_dir: Path,
+    variant_id: str,
+) -> tuple[bool, str]:
+    """Resolve whether a formal variant may reuse its last checkpoint.
+
+    A missing checkpoint is treated as a fresh start so a single continuation
+    command can cover both unfinished and not-yet-started variants. Existing
+    artifacts with a mismatched protocol are different: silently passing them
+    to ``--resume`` could mix an obsolete ablation definition into the current
+    run, so the caller must start that variant explicitly without ``--resume``.
+    """
+
+    if not args.resume:
+        return False, "not_requested"
+    if existing_audit is None:
+        return False, "no_existing_artifacts"
+    if not existing_audit.get("config_match") or not existing_audit.get("protocol_consistent"):
+        differences = ", ".join(existing_audit.get("config_differences") or []) or "protocol audit failed"
+        raise ValueError(
+            f"{variant_id}: refusing --resume because existing artifacts do not match "
+            f"the current formal definition ({differences}). Run this variant fresh "
+            "without --resume before attempting continuation."
+        )
+    if not (variant_dir / "last_checkpoint.pt").is_file():
+        return False, "missing_last_checkpoint"
+    return True, "last_checkpoint"
 
 
 def _metrics_files(directory: Path) -> list[Path]:
@@ -430,9 +462,31 @@ def run_family(family: str, argv: list[str] | None = None) -> dict[str, Any]:
             _write_precision_status_files(root, manifest, statuses)
             continue
 
-        evaluate_only = bool(existing_audit and existing_audit["training_complete"] and not existing_audit["evaluation_complete"] and args.resume)
-        print(f"{variant.variant_id}: {'EVALUATE_ONLY' if evaluate_only else 'TRAIN'}", flush=True)
-        command = _command(args, family, root, variant, evaluate_only=evaluate_only)
+        evaluate_only = bool(
+            existing_audit
+            and existing_audit["training_complete"]
+            and not existing_audit["evaluation_complete"]
+            and args.resume
+        )
+        resume_used, resume_reason = _resume_plan(
+            args,
+            existing_audit,
+            variant_dir,
+            variant.variant_id,
+        )
+        if evaluate_only:
+            resume_used = False
+            resume_reason = "evaluate_only_best_checkpoint"
+        action = "EVALUATE_ONLY" if evaluate_only else ("RESUME" if resume_used else "TRAIN")
+        print(f"{variant.variant_id}: {action}", flush=True)
+        command = _command(
+            args,
+            family,
+            root,
+            variant,
+            evaluate_only=evaluate_only,
+            resume=resume_used,
+        )
         write_json(root / variant.variant_id / "run_command.json", command)
         command = normalize_python_command(command)
         print(
@@ -467,7 +521,10 @@ def run_family(family: str, argv: list[str] | None = None) -> dict[str, Any]:
             "pid": pid,
             "start_time": start_time,
             "end_time": end_time,
-            "decision": "EVALUATE_ONLY" if evaluate_only else "TRAIN",
+            "decision": action,
+            "resume_requested": bool(args.resume),
+            "resume_used": resume_used,
+            "resume_reason": resume_reason,
         }
         statuses = record_status(variant_status)
         write_json(root / "experiment_status.json", statuses)
