@@ -34,7 +34,7 @@ FORBIDDEN_INPUT_COLS = {
 }
 FORBIDDEN_INPUT_SUBSTRINGS = ("anomaly", "audit", "mask", "imputation", "imputed")
 
-COMPONENT_ABLATION_IDS = tuple(f"A{i}" for i in range(9))
+COMPONENT_ABLATION_IDS = tuple(f"A{i}" for i in range(10))
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
@@ -496,7 +496,7 @@ def is_forbidden_input_col(col: str) -> bool:
 
 
 def apply_component_ablation(config: STMGPromptConfig, variant: str) -> STMGPromptConfig:
-    """Apply the canonical Fixed-Dual A0-A8 component protocol from one source."""
+    """Apply the canonical Fixed-Dual A0-A9 component protocol from one source."""
     from .experiment_protocol import apply_variant
 
     resolved = apply_variant(config, variant, family="component_ablation")

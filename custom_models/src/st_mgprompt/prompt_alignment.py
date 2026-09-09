@@ -118,8 +118,8 @@ class STPromptEmbedding(nn.Module):
         step_ids = torch.arange(H, device=device)
         step = self.future_step_embedding(step_ids).view(1, H, 1, self.hidden_dim)
         if self.mode == "horizon_only":
-            # Legacy compatibility only. The formal A7 uses mode="full" with
-            # use_node_identity=False so the granularity embedding is retained.
+            # Legacy compatibility only. Formal node-identity ablations use
+            # mode="full" with use_node_identity=False so granularity is retained.
             prompt = step.expand(1, H, N, self.hidden_dim)
         else:
             granularity_id = torch.tensor(int(granularity_index), device=device)
@@ -129,8 +129,8 @@ class STPromptEmbedding(nn.Module):
                 node = self.node_embedding(node_ids).view(1, 1, N, self.hidden_dim)
                 prompt = self.dropout(self.norm(node + step + granularity))
                 return prompt
-            # Expand after dropout so the formal A7 prompt is exactly shared
-            # across nodes even when the module is in training mode.
+            # Expand after dropout so node-identity ablation prompts are exactly
+            # shared across nodes even when the module is in training mode.
             prompt = self.dropout(self.norm(step + granularity))
             return prompt.expand(1, H, N, self.hidden_dim)
         prompt = self.norm(prompt)

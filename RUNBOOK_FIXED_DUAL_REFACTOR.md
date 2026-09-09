@@ -151,7 +151,7 @@ P4: TRAIN
 P5: TRAIN
 ```
 
-### 3.4 A0 reference + A1-A8 正式训练
+### 3.4 A0 reference + A1-A9 正式训练
 
 Script path：
 
@@ -162,7 +162,7 @@ D:\PaperProject\GyxPaper2\custom_models\src\st_mgprompt\run_ablation.py
 Script parameters：
 
 ```text
---variants A0 A1 A2 A3 A4 A5 A6 A7 A8 --run-full
+--variants A0 A1 A2 A3 A4 A5 A6 A7 A8 A9 --run-full
 ```
 
 正式输出目录：
@@ -175,10 +175,10 @@ D:\PaperProject\GyxPaper2\custom_models\results\st_mgprompt_component_ablation\c
 
 ```text
 A0: REFERENCE_ONLY
-A1-A8: TRAIN
+A1-A9: TRAIN
 ```
 
-当前 A4/A7 语义：A4 保持 `macro_prompt_len=4`，仅将 Macro Prompt 的 temporal pooling 从 `attention` 改为等权 `mean`；A7 保持完整 ST Prompt、future-step + granularity embedding、`STPromptDirectDecoder` 和原 decoder input strategy，仅将 `st_prompt_use_node_identity` 设为 `false`。
+当前 A4/A7 语义保持不变。新增 A9（Node-Temporal Prompt）以 A0 为基线，仅将 `st_prompt_use_node_identity` 设为 `false`；它保留 future-step + granularity embedding、完整 ST Prompt 机制、`STPromptDirectDecoder` 和 `direct_multi_output_prompt_query` 输出路径，并写入独立的 `A9` 结果目录。
 
 ### 3.5 中断续跑与 checkpoint 断点续跑
 
@@ -224,10 +224,16 @@ P0/P1-P5：
 & 'D:\Apps\Miniconda3\envs\env_tslib\python.exe' -m st_mgprompt.run_precision_ablation --variants P0 P1 P2 P3 P4 P5 --run-full
 ```
 
-A0/A1-A8：
+A0/A1-A9：
 
 ```powershell
-& 'D:\Apps\Miniconda3\envs\env_tslib\python.exe' -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 A8 --run-full
+& 'D:\Apps\Miniconda3\envs\env_tslib\python.exe' -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 A8 A9 --run-full
+```
+
+仅运行新增 A9：
+
+```powershell
+& 'D:\Apps\Miniconda3\envs\env_tslib\python.exe' -m st_mgprompt.run_ablation --variants A9 --run-full
 ```
 
 仅运行当前新定义的 A4 与 A7 时，分别执行以下 fresh Full 命令（不要追加 `--resume`）：
@@ -286,13 +292,13 @@ P0/P1-P5：
 python -m st_mgprompt.run_precision_ablation --variants P0 P1 P2 P3 P4 P5 --run-full
 ```
 
-A0/A1-A8：
+A0/A1-A9：
 
 ```bash
-python -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 A8 --run-full
+python -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 A8 A9 --run-full
 ```
 
-建议先完成 P0/P1-P5，再启动 A0/A1-A8。
+建议先完成 P0/P1-P5，再启动 A0/A1-A9。
 
 ### 5.2 Linux 中断续跑
 
@@ -313,10 +319,10 @@ P0/P1-P5：
 python -m st_mgprompt.run_precision_ablation --variants P0 P1 P2 P3 P4 P5 --run-full ; run_code=$?; printf '%s\n' "$run_code" > "$PROJECT_ROOT/custom_models/logs/precision_fixed_dual.exit_code"; sync; /usr/bin/shutdown -h now
 ```
 
-A0/A1-A8：
+A0/A1-A9：
 
 ```bash
-python -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 A8 --run-full ; run_code=$?; printf '%s\n' "$run_code" > "$PROJECT_ROOT/custom_models/logs/component_fixed_dual.exit_code"; sync; /usr/bin/shutdown -h now
+python -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 A8 A9 --run-full ; run_code=$?; printf '%s\n' "$run_code" > "$PROJECT_ROOT/custom_models/logs/component_fixed_dual.exit_code"; sync; /usr/bin/shutdown -h now
 ```
 
 这里使用分号语义；Python 成功或失败都会记录 exit code、执行 `sync`，然后调用 `/usr/bin/shutdown -h now`。不要改为仅成功时才执行的 `&& shutdown`。
@@ -331,10 +337,10 @@ P0/P1-P5：
 nohup bash -lc 'cd "$PROJECT_ROOT"; export PYTHONPATH="$PROJECT_ROOT/custom_models/src${PYTHONPATH:+:$PYTHONPATH}"; export PYTHONUTF8=1 PYTHONIOENCODING=utf-8 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0; python -m st_mgprompt.run_precision_ablation --variants P0 P1 P2 P3 P4 P5 --run-full ; run_code=$?; printf "%s\n" "$run_code" > "$PROJECT_ROOT/custom_models/logs/precision_fixed_dual.exit_code"; sync; /usr/bin/shutdown -h now' > "$PROJECT_ROOT/custom_models/logs/precision_fixed_dual.nohup.log" 2>&1 &
 ```
 
-A0/A1-A8：
+A0/A1-A9：
 
 ```bash
-nohup bash -lc 'cd "$PROJECT_ROOT"; export PYTHONPATH="$PROJECT_ROOT/custom_models/src${PYTHONPATH:+:$PYTHONPATH}"; export PYTHONUTF8=1 PYTHONIOENCODING=utf-8 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0; python -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 A8 --run-full ; run_code=$?; printf "%s\n" "$run_code" > "$PROJECT_ROOT/custom_models/logs/component_fixed_dual.exit_code"; sync; /usr/bin/shutdown -h now' > "$PROJECT_ROOT/custom_models/logs/component_fixed_dual.nohup.log" 2>&1 &
+nohup bash -lc 'cd "$PROJECT_ROOT"; export PYTHONPATH="$PROJECT_ROOT/custom_models/src${PYTHONPATH:+:$PYTHONPATH}"; export PYTHONUTF8=1 PYTHONIOENCODING=utf-8 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0; python -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 A8 A9 --run-full ; run_code=$?; printf "%s\n" "$run_code" > "$PROJECT_ROOT/custom_models/logs/component_fixed_dual.exit_code"; sync; /usr/bin/shutdown -h now' > "$PROJECT_ROOT/custom_models/logs/component_fixed_dual.nohup.log" 2>&1 &
 ```
 
 ### 5.5 日志、进程与 exit code
@@ -345,7 +351,7 @@ nohup bash -lc 'cd "$PROJECT_ROOT"; export PYTHONPATH="$PROJECT_ROOT/custom_mode
 tail -f "$PROJECT_ROOT/custom_models/logs/precision_fixed_dual.nohup.log"
 ```
 
-查看 A0/A1-A8 日志：
+查看 A0/A1-A9 日志：
 
 ```bash
 tail -f "$PROJECT_ROOT/custom_models/logs/component_fixed_dual.nohup.log"
@@ -385,7 +391,8 @@ cat "$PROJECT_ROOT/custom_models/logs/component_fixed_dual.exit_code"
 15. 训练 A6
 16. 训练 A7
 17. 训练 A8
-18. 汇总 A0-A8
+18. 训练 A9
+19. 汇总 A0-A9
 ```
 
 不要重新训练 Canonical Full、P0 或 A0。
@@ -396,7 +403,7 @@ cat "$PROJECT_ROOT/custom_models/logs/component_fixed_dual.exit_code"
 python -m compileall -q "$PROJECT_ROOT/custom_models/src/st_mgprompt"
 python -m unittest st_mgprompt.test_component_ablation
 python -m st_mgprompt.run_precision_ablation --variants P0 P1 P2 P3 P4 P5 --dry-run
-python -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 A8 --dry-run
+python -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 A8 A9 --dry-run
 ```
 
 确认：
@@ -405,5 +412,5 @@ python -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 A8 --dry-r
 P0/A0 = REFERENCE_ONLY
 其余变体 = DRY_RUN
 unexpected_effective_diff_count = 0
-正式目录中没有预先存在的 P1-P5/A1-A8 checkpoint 或 metrics
+正式目录中没有预先存在的 P1-P5/A1-A9 checkpoint 或 metrics
 ```

@@ -65,8 +65,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--enable-faulthandler", action="store_true")
     parser.add_argument("--model-name", "--model", dest="model_name", default=None)
     parser.add_argument("--run-id", default=None)
-    parser.add_argument("--component-ablation", default=None, help="Formal component variant A0-A8.")
-    parser.add_argument("--experiment-variant", default=None, help="Formal variant P0-P5 or A0-A8.")
+    parser.add_argument("--component-ablation", default=None, help="Formal component variant A0-A9.")
+    parser.add_argument("--experiment-variant", default=None, help="Formal variant P0-P5 or A0-A9.")
     parser.add_argument("--checkpoint", default=None)
     parser.add_argument("--model-input-path", default=None)
     parser.add_argument("--eval-target-path", default=None)
@@ -407,7 +407,7 @@ def build_config(args: argparse.Namespace) -> STMGPromptConfig:
         cfg.smoke_use_synthetic = False
         # apply_component_ablation() deliberately assigns the shared formal
         # component-ablation registry name. A full-shape preflight must keep
-        # that name or config validation rejects the valid A0-A8 protocol.
+        # that name or config validation rejects the valid A0-A9 protocol.
         if args.model_name is None and args.component_ablation is None and args.experiment_variant is None:
             cfg.model_name = "STMGPrompt_FairFull"
         if cfg.model_name == "STMGPrompt_Full_MSMGDWU_DiffusionHistory":

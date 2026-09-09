@@ -28,7 +28,10 @@ from st_mgprompt.run_st_mgprompt import (
 )
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
-REQUIRED_VARIANTS = ("P1", "P2", "P4", "P5", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8")
+REQUIRED_VARIANTS = (
+    "P1", "P2", "P4", "P5",
+    "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9",
+)
 
 
 def _preflight_autocast_context(

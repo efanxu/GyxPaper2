@@ -19,6 +19,7 @@ from st_mgprompt.experiment_protocol import (
     matrix_row,
 )
 from st_mgprompt.formal_runner import _current_variant_metrics
+from st_mgprompt.full_shape_matrix_smoke import REQUIRED_VARIANTS
 from st_mgprompt.prompt_alignment import MacroTrendPrompt, STPromptEmbedding
 from st_mgprompt.registry import build_model
 
@@ -28,8 +29,9 @@ class FixedDualProtocolTests(unittest.TestCase):
         self.assertEqual(tuple(PRECISION_VARIANTS), ("P0", "P1", "P2", "P3", "P4", "P5"))
         self.assertEqual(
             tuple(COMPONENT_ABLATION_VARIANTS),
-            ("A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8"),
+            ("A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9"),
         )
+        self.assertIn("A9", REQUIRED_VARIANTS)
 
     def test_canonical_full(self) -> None:
         cfg = canonical_config()
@@ -78,6 +80,7 @@ class FixedDualProtocolTests(unittest.TestCase):
             "A6": ("fusion_mode", "add"),
             "A7": ("st_prompt_use_node_identity", False),
             "A8": ("loss_function", "masked_score_aligned_hybrid"),
+            "A9": ("st_prompt_use_node_identity", False),
         }
         for name, (field, value) in expected.items():
             cfg = apply_component_ablation(STMGPromptConfig(), name)
@@ -100,6 +103,19 @@ class FixedDualProtocolTests(unittest.TestCase):
         self.assertEqual(a7.decoder_input_strategy, "direct_multi_output_prompt_query")
         self.assertEqual(a7.decoder_context_mode, "last_state")
         self.assertEqual(apply_component_ablation(STMGPromptConfig(), "A8").loss_protocol, "fair_main")
+        a9 = apply_component_ablation(STMGPromptConfig(), "A9")
+        self.assertEqual(get_variant("A9", "component_ablation").display_name, "Node-Temporal Prompt")
+        self.assertTrue(a9.use_st_prompt)
+        self.assertEqual(a9.st_prompt_mode, "full")
+        self.assertFalse(a9.st_prompt_use_node_identity)
+        self.assertEqual(a9.decoder_input_strategy, "direct_multi_output_prompt_query")
+        self.assertEqual(a9.decoder_context_mode, "last_state")
+        self.assertTrue(a9.use_graph_in_temporal_encoder)
+        self.assertTrue(a9.use_adaptive_graph)
+        self.assertEqual(a9.graph_operator, "bidirectional_diffusion")
+        self.assertTrue(a9.use_macro_prompt)
+        self.assertTrue(a9.use_cross_fusion)
+        self.assertTrue(a9.use_msmg_dwu)
 
     def test_redesigned_variants_each_have_one_effective_diff(self) -> None:
         expected_fields = {
@@ -107,6 +123,7 @@ class FixedDualProtocolTests(unittest.TestCase):
             "A5": ["cross_fusion_recent_len"],
             "A6": ["fusion_mode"],
             "A7": ["st_prompt_use_node_identity"],
+            "A9": ["st_prompt_use_node_identity"],
         }
         for name, fields in expected_fields.items():
             cfg = apply_variant(STMGPromptConfig(), name, "component_ablation")
@@ -188,7 +205,8 @@ class FixedDualProtocolTests(unittest.TestCase):
                 self.assertEqual(_current_variant_metrics(root, get_variant(name, "component_ablation")), [])
 
     def test_obsolete_component_ids_rejected(self) -> None:
-        for name in ("A9", "A10"):
+        self.assertEqual(get_variant("A9", "component_ablation").variant_id, "A9")
+        for name in ("A10",):
             with self.assertRaisesRegex(ValueError, "Obsolete component-ablation variant"):
                 get_variant(name, "component_ablation")
 
@@ -204,6 +222,7 @@ class FixedDualProtocolTests(unittest.TestCase):
             "A5": (4, "attention", 6, "cross", "full", True),
             "A6": (4, "attention", 24, "add", "full", True),
             "A7": (4, "attention", 24, "cross", "full", False),
+            "A9": (4, "attention", 24, "cross", "full", False),
         }
         for name, values in expected.items():
             row = matrix_row(COMPONENT_ABLATION_VARIANTS[name])
@@ -318,7 +337,7 @@ class FixedDualProtocolTests(unittest.TestCase):
             "metadata": {"source": "synthetic_component_ablation_test", "train_only": True},
         }
         x = torch.randn(1, 36, num_nodes, len(STMGPromptConfig().feature_cols))
-        for name in ("A0", "A4", "A5", "A6", "A7"):
+        for name in ("A0", "A4", "A5", "A6", "A7", "A9"):
             cfg = apply_variant(STMGPromptConfig(), name, "component_ablation")
             cfg.num_nodes = num_nodes
             cfg.hidden_dim = 8
@@ -335,6 +354,11 @@ class FixedDualProtocolTests(unittest.TestCase):
             self.assertEqual(
                 output["aux"]["decoder_metadata"]["decoder_input_strategy"],
                 "direct_multi_output_prompt_query",
+                name,
+            )
+            self.assertEqual(
+                output["aux"]["decoder_metadata"]["decoder_type"],
+                "STPromptDirectDecoder",
                 name,
             )
 

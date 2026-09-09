@@ -72,7 +72,7 @@ def _validate_python_override(value: str) -> None:
 
 
 def parser_for(family: str) -> argparse.ArgumentParser:
-    label = "P0-P5 precision" if family == "precision" else "A0-A8 component"
+    label = "P0-P5 precision" if family == "precision" else "A0-A9 component"
     parser = argparse.ArgumentParser(description=f"Run formal Fixed-Dual {label} experiments.")
     parser.add_argument("--variants", nargs="+", default=None)
     parser.add_argument("--run-id", default=None)
@@ -323,7 +323,7 @@ def _ordered_statuses(mapping, by_variant: dict[str, dict[str, Any]]) -> list[di
 
 
 def _current_variant_metrics(root: Path, variant) -> list[Path]:
-    if variant.variant_id not in {"A4", "A5", "A6", "A7"}:
+    if variant.variant_id not in {"A4", "A5", "A6", "A7", "A9"}:
         return _metrics_files(root / variant.variant_id)
     expected_config = apply_variant(STMGPromptConfig(), variant.variant_id, variant.experiment_family)
     run_dir = _variant_run_dir(root, variant, expected_config)

@@ -130,13 +130,18 @@ _COMPONENT = (
         },
         ("use_msmg_dwu", "loss_function", "loss_protocol"),
     ),
+    ExperimentVariant(
+        "A9", "Node-Temporal Prompt", "component_ablation", True,
+        None, "CANONICAL_FULL", {"st_prompt_use_node_identity": False},
+        ("st_prompt_use_node_identity",),
+    ),
 )
 
 PRECISION_VARIANTS = {item.variant_id: item for item in _PRECISION}
 COMPONENT_ABLATION_VARIANTS = {item.variant_id: item for item in _COMPONENT}
 ALL_VARIANTS = {**PRECISION_VARIANTS, **COMPONENT_ABLATION_VARIANTS}
 
-OBSOLETE_COMPONENT_VARIANTS = {"A9", "A10"}
+OBSOLETE_COMPONENT_VARIANTS = {"A10"}
 OBSOLETE_COMPONENT_NAMES = {"w/o VADSP", "w/o Trend Prior"}
 
 FORMAL_PROTOCOL_FIELDS = (
@@ -251,7 +256,7 @@ def get_variant(variant_id: str, family: str | None = None) -> ExperimentVariant
     variant_id = str(variant_id).upper()
     if family == "component_ablation":
         if variant_id in OBSOLETE_COMPONENT_VARIANTS:
-            raise ValueError("Obsolete component-ablation variant. Valid variants are A0-A8.")
+            raise ValueError("Obsolete component-ablation variant. Valid variants are A0-A9.")
         mapping = COMPONENT_ABLATION_VARIANTS
     elif family == "precision":
         mapping = PRECISION_VARIANTS
