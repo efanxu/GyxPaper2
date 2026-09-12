@@ -131,7 +131,12 @@ def test_fixed_whitelist_excluded_and_e5_rejection():
 def test_config_diff_and_redesigned_semantics():
     audit = audit_internal_config()
     assert audit["status"] == "PASS"
-    assert [row["allowed_differences"] for row in audit["comparisons"]] == [["macro_prompt_pooling"], ["cross_fusion_recent_len"], ["fusion_mode"], ["st_prompt_use_node_identity"]]
+    assert [row["allowed_differences"] for row in audit["comparisons"]] == [
+        ["macro_prompt_pooling"],
+        ["cross_fusion_recent_len"],
+        ["cross_fusion_gate_strategy"],
+        ["use_msmg_dwu", "loss_function", "loss_protocol"],
+    ]
     assert not audit["direction_decomposition"]["DIRECTION_DECOMPOSITION_VALID"]
     assert "both attention directions" in audit["source_semantics"]["A6_change"]
 

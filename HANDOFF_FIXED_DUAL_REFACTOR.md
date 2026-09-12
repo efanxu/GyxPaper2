@@ -262,7 +262,7 @@ CANONICAL_FULL = A0 = P0
 custom_models/results/st_mgprompt_precision/precision_ablation_fixed_dual_seed2026/variant_config_matrix.csv
 ```
 
-## 10. 最终 A0-A8 配置矩阵
+## 10. 最终 A0-A7 配置矩阵
 
 | 变体 | 正式含义 | 唯一变化 |
 | --- | --- | --- |
@@ -272,9 +272,8 @@ custom_models/results/st_mgprompt_precision/precision_ablation_fixed_dual_seed20
 | A3 | w/o Diffusion | Bi-Diffusion -> Simple |
 | A4 | Mean-Pooling Macro Prompt | `macro_prompt_pooling: attention -> mean`，`macro_prompt_len=4` 保持不变 |
 | A5 | Short-context Reverse Cross | `cross_fusion_recent_len: 24 -> 6`，Reverse Cross 保持启用 |
-| A6 | Additive Cross Fusion | `fusion_mode: cross -> add`，双向 cross-attention 保持启用 |
-| A7 | Temporal-Granularity Prompt | `st_prompt_use_node_identity: true -> false`，保留 future-step + granularity，继续使用 STPromptDirectDecoder |
-| A8 | w/o MS-MG-DWU | loss 改为 masked_score_aligned_hybrid |
+| A6 | Fixed-Gate Cross Fusion | `cross_fusion_gate_strategy: adaptive -> fixed_half`，双向 cross-attention、残差和 LayerNorm 保持启用 |
+| A7 | w/o MS-MG-DWU | 继承原 A8：关闭 MS-MG-DWU，使用 masked_score_aligned_hybrid / fair_main |
 
 机器可读矩阵：
 
@@ -282,10 +281,10 @@ custom_models/results/st_mgprompt_precision/precision_ablation_fixed_dual_seed20
 custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/variant_config_matrix.csv
 ```
 
-A9、A10 会返回：
+A8、A9、A10 会返回：
 
 ```text
-Obsolete component-ablation variant. Valid variants are A0-A8.
+Obsolete component-ablation variant. Valid variants are A0-A7.
 ```
 
 ## 11. 已修改或新增的主要文件

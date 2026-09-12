@@ -5,12 +5,12 @@ import math
 from pathlib import Path
 from typing import Any
 
-from .a8_batch4_contract import (
-    A8_DEFINITION,
-    A8_MODEL_ID,
-    A8_RUN_ID,
-    A8_SCOPE_ID,
-    A8_VARIANT,
+from .a7_batch4_contract import (
+    A7_DEFINITION,
+    A7_MODEL_ID,
+    A7_RUN_ID,
+    A7_SCOPE_ID,
+    A7_VARIANT,
     LOSS_ID,
     PRECISION_POLICY,
     TRAINING_PROFILE_ID,
@@ -18,13 +18,13 @@ from .a8_batch4_contract import (
 
 
 REQUIRED_HORIZONS = (3, 6, 10)
-A8_EXPLICIT_CONFIG = {
-    "scope_id": A8_SCOPE_ID,
-    "model_id": A8_MODEL_ID,
-    "run_id": A8_RUN_ID,
-    "component_ablation": A8_VARIANT,
-    "variant": A8_VARIANT,
-    "definition": A8_DEFINITION,
+A7_EXPLICIT_CONFIG = {
+    "scope_id": A7_SCOPE_ID,
+    "model_id": A7_MODEL_ID,
+    "run_id": A7_RUN_ID,
+    "component_ablation": A7_VARIANT,
+    "variant": A7_VARIANT,
+    "definition": A7_DEFINITION,
     "training_batch_profile_id": TRAINING_PROFILE_ID,
     "train_batch_size": 4,
     "val_batch_size": 4,
@@ -94,7 +94,7 @@ def checkpoint_loadable(path: str | Path) -> bool:
         return False
 
 
-def inspect_a8_run(run_root: str | Path) -> dict[str, Any]:
+def inspect_a7_run(run_root: str | Path) -> dict[str, Any]:
     root = Path(run_root)
     reasons: list[str] = []
     try:
@@ -107,10 +107,10 @@ def inspect_a8_run(run_root: str | Path) -> dict[str, Any]:
     except (FileNotFoundError, OSError, ValueError):
         effective = {}
         reasons.append("MISSING_OR_INVALID:effective_config.json")
-    missing_fields = [key for key in A8_EXPLICIT_CONFIG if key not in effective]
+    missing_fields = [key for key in A7_EXPLICIT_CONFIG if key not in effective]
     conflicts = {
         key: {"expected": expected, "actual": effective.get(key)}
-        for key, expected in A8_EXPLICIT_CONFIG.items()
+        for key, expected in A7_EXPLICIT_CONFIG.items()
         if key in effective and effective.get(key) != expected
     }
     if status.get("status") != "COMPLETED" or status.get("exit_code") != 0:
@@ -129,9 +129,9 @@ def inspect_a8_run(run_root: str | Path) -> dict[str, Any]:
     return {
         "status": "READY" if ready else "NOT_READY",
         "ready": ready,
-        "scope_id": A8_SCOPE_ID,
-        "model_id": A8_MODEL_ID,
-        "run_id": A8_RUN_ID,
+        "scope_id": A7_SCOPE_ID,
+        "model_id": A7_MODEL_ID,
+        "run_id": A7_RUN_ID,
         "run_dir": str(root),
         "metrics": metrics,
         "metrics_complete": metrics_complete,
@@ -145,6 +145,6 @@ def inspect_a8_run(run_root: str | Path) -> dict[str, Any]:
 
 
 __all__ = [
-    "A8_EXPLICIT_CONFIG", "REQUIRED_HORIZONS", "checkpoint_loadable",
-    "inspect_a8_run", "validate_metrics",
+    "A7_EXPLICIT_CONFIG", "REQUIRED_HORIZONS", "checkpoint_loadable",
+    "inspect_a7_run", "validate_metrics",
 ]

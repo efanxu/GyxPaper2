@@ -61,12 +61,12 @@ def audit_internal_config(root=INTERNAL_ROOT) -> dict:
             "A5_A6_non_direction_differences": _diff(a5, a6),
             "DIRECTION_DECOMPOSITION_VALID": False,
             "allowed_conclusions": [],
-            "reason": "A5 shortens Reverse Cross context and A6 changes fusion aggregation; neither removes a direction.",
+            "reason": "A5 shortens Reverse Cross context and A6 fixes the complementary gate at 0.5; neither removes a direction.",
         },
         "source_semantics": {
             "A4_change": "macro_prompt_pooling: attention -> mean; macro_prompt_len remains 4",
             "A5_change": "cross_fusion_recent_len: 24 -> 6; both attention directions remain active",
-            "A6_change": "fusion_mode: cross -> add; both attention directions remain active",
-            "A7_change": "st_prompt_use_node_identity: true -> false; future-step + granularity embeddings and STPrompt decoder remain active",
+            "A6_change": "cross_fusion_gate_strategy: adaptive -> fixed_half; both attention directions remain active",
+            "A7_change": "use_msmg_dwu: true -> false; loss_function/loss_protocol inherit the former A8 definition",
         },
     }

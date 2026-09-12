@@ -293,15 +293,15 @@
       "loss_id": "msmg_dwu_loss"
     },
     {
-      "model_id": "st_mgprompt_a8",
-      "experiment_type": "st_mgprompt_a8",
-      "base_run_id": "component_ablation_fixed_dual_seed2026/A8",
-      "new_run_id": "component_ablation_a8_bs4_seed2026",
+      "model_id": "st_mgprompt_a7",
+      "experiment_type": "st_mgprompt_a7",
+      "base_run_id": "component_ablation_fixed_dual_seed2026/A7",
+      "new_run_id": "component_ablation_a7_bs4_seed2026",
       "batch_profile_id": "uniform_train_batch4_v1",
       "output_root": "custom_models/results/st_mgprompt_uniform_bs4",
       "mode": "TRAIN",
       "loss_id": "masked_score_aligned_hybrid",
-      "reference_id": "STMGPrompt_A8_loss_msa_hybrid_bs4_seed2026"
+      "reference_id": "STMGPrompt_A7_loss_msa_hybrid_bs4_seed2026"
     }
   ]
 }

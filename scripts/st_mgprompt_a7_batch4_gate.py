@@ -16,9 +16,9 @@ if str(SOURCE_ROOT) not in sys.path:
     sys.path.insert(0, str(SOURCE_ROOT))
 
 from benchmark_v2.artifacts import atomic_write_json
-from st_mgprompt.a8_batch4_reference import (
-    build_a8_reference,
-    create_a8_reference,
+from st_mgprompt.a7_batch4_reference import (
+    build_a7_reference,
+    create_a7_reference,
 )
 from benchmark_v2.process_lock import (
     ProcessLockError,
@@ -27,19 +27,19 @@ from benchmark_v2.process_lock import (
     lock_status as process_lock_status,
     release_lock as release_process_lock,
 )
-from st_mgprompt.a8_batch4_contract import (
-    A8_DEFINITION, A8_MODEL_ID, A8_OUTPUT_ROOT, A8_REFERENCE_ID,
-    A8_REFERENCE_RELATIVE_PATH, A8_RUN_ID, A8_RUN_RELATIVE_PATH,
-    A8_SCOPE_ID, A8_VARIANT, EXPECTED_CONFIG, FEATURE_ORDER,
+from st_mgprompt.a7_batch4_contract import (
+    A7_DEFINITION, A7_MODEL_ID, A7_OUTPUT_ROOT, A7_REFERENCE_ID,
+    A7_REFERENCE_RELATIVE_PATH, A7_RUN_ID, A7_RUN_RELATIVE_PATH,
+    A7_SCOPE_ID, A7_VARIANT, EXPECTED_CONFIG, FEATURE_ORDER,
     LOSS_ID, PRECISION_POLICY, TRAINING_PROFILE_ID, graph_identity,
     loss_identity, precision_identity, variant_contract,
 )
-from st_mgprompt.a8_batch4_readiness import inspect_a8_run
+from st_mgprompt.a7_batch4_readiness import inspect_a7_run
 
 
-A8_RUN_ROOT = PROJECT_ROOT / A8_RUN_RELATIVE_PATH
-LOCK_PATH = PROJECT_ROOT / "custom_models/logs/uniform_bs4/a8.lock.json"
-AUDIT_ROOT = PROJECT_ROOT / "custom_models/logs/uniform_bs4/audit/a8"
+A7_RUN_ROOT = PROJECT_ROOT / A7_RUN_RELATIVE_PATH
+LOCK_PATH = PROJECT_ROOT / "custom_models/logs/uniform_bs4/a7.lock.json"
+AUDIT_ROOT = PROJECT_ROOT / "custom_models/logs/uniform_bs4/audit/a7"
 PREFLIGHT_RESULT_PATH = AUDIT_ROOT / "preflight/latest.json"
 PREFLIGHT_OUTPUT_ROOT = AUDIT_ROOT / "preflight/artifacts"
 ARCHIVE_DIRECTORY = "_archived_attempts"
@@ -47,7 +47,7 @@ QUARANTINE_DIRECTORY = "_quarantine"
 REQUIRED_HORIZONS = (3, 6, 10)
 
 
-class A8GateError(RuntimeError):
+class A7GateError(RuntimeError):
     pass
 
 
@@ -73,7 +73,7 @@ def validate_contract(project_root: str | Path | None = None) -> dict[str, Any]:
     if len(FEATURE_ORDER) != 16:
         reasons.append("FEATURE_COUNT_INVALID")
     if reasons:
-        raise A8GateError(f"A8 contract invalid: {reasons}")
+        raise A7GateError(f"A7 contract invalid: {reasons}")
     return {
         "status": "PASS", **variant_contract(), "graph": graph,
         "loss": loss_identity(root), "precision_policy": precision_identity(),
@@ -81,25 +81,25 @@ def validate_contract(project_root: str | Path | None = None) -> dict[str, Any]:
     }
 
 
-def inspect_a8_artifact(output_root: str | Path | None = None, project_root: str | Path | None = None) -> dict[str, Any]:
+def inspect_a7_artifact(output_root: str | Path | None = None, project_root: str | Path | None = None) -> dict[str, Any]:
     root = Path(project_root or PROJECT_ROOT)
-    run_dir = Path(output_root) if output_root else root / A8_RUN_RELATIVE_PATH
+    run_dir = Path(output_root) if output_root else root / A7_RUN_RELATIVE_PATH
     if not run_dir.is_dir():
         return {
             "status": "RUN_MISSING", "ready": False,
-            "scope_id": A8_SCOPE_ID, "model_id": A8_MODEL_ID,
-            "run_id": A8_RUN_ID, "batch_size": 4, "lookback": 144,
+            "scope_id": A7_SCOPE_ID, "model_id": A7_MODEL_ID,
+            "run_id": A7_RUN_ID, "batch_size": 4, "lookback": 144,
             "node_count": 134, "feature_count": 16, "horizon": 10,
             "loss_id": LOSS_ID, "precision": PRECISION_POLICY,
             "formal_training": True, "run_dir": str(run_dir),
             "metrics_complete": False, "checkpoint_loadable": False,
             "explicit_config_conflicts": [], "reasons": ["RUN_MISSING"],
         }
-    inspected = inspect_a8_run(run_dir)
+    inspected = inspect_a7_run(run_dir)
     return {
         **inspected,
-        "scope_id": A8_SCOPE_ID, "model_id": A8_MODEL_ID,
-        "run_id": A8_RUN_ID, "batch_size": 4, "lookback": 144,
+        "scope_id": A7_SCOPE_ID, "model_id": A7_MODEL_ID,
+        "run_id": A7_RUN_ID, "batch_size": 4, "lookback": 144,
         "node_count": 134, "feature_count": 16, "horizon": 10,
         "loss_id": LOSS_ID, "precision": PRECISION_POLICY,
         "formal_training": True, "run_dir": str(run_dir),
@@ -107,12 +107,12 @@ def inspect_a8_artifact(output_root: str | Path | None = None, project_root: str
 
 
 def build_readiness() -> dict[str, Any]:
-    inspected = inspect_a8_artifact()
-    return {"status": "READY" if inspected["ready"] else "NOT_READY", "reference_id": A8_REFERENCE_ID, "artifact": inspected}
+    inspected = inspect_a7_artifact()
+    return {"status": "READY" if inspected["ready"] else "NOT_READY", "reference_id": A7_REFERENCE_ID, "artifact": inspected}
 
 
 def build_freeze_plan() -> dict[str, Any]:
-    return {"status": "PASS", "schema_version": "a8_explicit_snapshot_v2", **variant_contract(), "expected_config": dict(EXPECTED_CONFIG), "graph": graph_identity(), "loss": loss_identity(), "precision_policy": precision_identity()}
+    return {"status": "PASS", "schema_version": "a7_explicit_snapshot_v2", **variant_contract(), "expected_config": dict(EXPECTED_CONFIG), "graph": graph_identity(), "loss": loss_identity(), "precision_policy": precision_identity()}
 
 
 def build_preflight_plan() -> dict[str, Any]:
@@ -124,8 +124,8 @@ def read_matching_preflight_pass(path: Path = PREFLIGHT_RESULT_PATH) -> dict[str
     if error or not isinstance(payload, dict):
         return None
     expected = {
-        "status": "PASS", "scope_id": A8_SCOPE_ID, "model_id": A8_MODEL_ID,
-        "run_id": A8_RUN_ID, "batch_size": 4, "lookback": 144,
+        "status": "PASS", "scope_id": A7_SCOPE_ID, "model_id": A7_MODEL_ID,
+        "run_id": A7_RUN_ID, "batch_size": 4, "lookback": 144,
         "node_count": 134, "feature_count": 16, "horizon": 10,
         "precision": PRECISION_POLICY, "amp_enabled": False,
         "loss_id": LOSS_ID, "training_profile_id": TRAINING_PROFILE_ID,
@@ -139,8 +139,8 @@ def _preflight_command() -> list[str]:
     return [
         sys.executable,
         str(PROJECT_ROOT / "custom_models/src/st_mgprompt/run_st_mgprompt.py"),
-        "--preflight-full-shape", "--component-ablation", A8_VARIANT,
-        "--training-profile", TRAINING_PROFILE_ID, "--run-id", A8_RUN_ID,
+        "--preflight-full-shape", "--component-ablation", A7_VARIANT,
+        "--training-profile", TRAINING_PROFILE_ID, "--run-id", A7_RUN_ID,
         "--output-root", str(PREFLIGHT_OUTPUT_ROOT),
         "--model-input-path", str(PROJECT_ROOT / "dataset/sdwpf_model_input_base.parquet"),
         "--eval-target-path", str(PROJECT_ROOT / "dataset/sdwpf_eval_target.parquet"),
@@ -153,7 +153,7 @@ def run_preflight(*, report_path: Path | None = None, child_log_root: Path | Non
     validate_contract()
     child_root = Path(child_log_root or AUDIT_ROOT / "preflight").resolve()
     child_root.mkdir(parents=True, exist_ok=True)
-    log_path = child_root / "a8_preflight.log"
+    log_path = child_root / "a7_preflight.log"
     started_at = utc_now()
     with log_path.open("w", encoding="utf-8", newline="") as handle:
         completed = runner(
@@ -162,7 +162,7 @@ def run_preflight(*, report_path: Path | None = None, child_log_root: Path | Non
             stdout=handle, stderr=subprocess.STDOUT, check=False,
         )
     exit_code = int(completed.returncode)
-    child_path = PREFLIGHT_OUTPUT_ROOT / A8_RUN_ID / "STMGPrompt_ComponentAblation/full_shape_smoke_report.json"
+    child_path = PREFLIGHT_OUTPUT_ROOT / A7_RUN_ID / "STMGPrompt_ComponentAblation/full_shape_smoke_report.json"
     child, error = _read_json(child_path)
     child = child if isinstance(child, dict) else {}
     gradients = child.get("gradient_checks") or {}
@@ -179,9 +179,9 @@ def run_preflight(*, report_path: Path | None = None, child_log_root: Path | Non
         and output_shape == [4, 134, 10]
     )
     payload = {
-        "schema_version": "st_mgprompt_a8_batch4_preflight_result_v2",
-        "status": "PASS" if passed else "FAILED", "scope_id": A8_SCOPE_ID,
-        "model_id": A8_MODEL_ID, "run_id": A8_RUN_ID, "batch_size": 4,
+        "schema_version": "st_mgprompt_a7_batch4_preflight_result_v2",
+        "status": "PASS" if passed else "FAILED", "scope_id": A7_SCOPE_ID,
+        "model_id": A7_MODEL_ID, "run_id": A7_RUN_ID, "batch_size": 4,
         "lookback": 144, "node_count": 134, "feature_count": 16, "horizon": 10,
         "precision": PRECISION_POLICY, "amp_enabled": False,
         "loss_id": LOSS_ID, "training_profile_id": TRAINING_PROFILE_ID,
@@ -202,8 +202,8 @@ def run_preflight(*, report_path: Path | None = None, child_log_root: Path | Non
 def _formal_command(input_path: str | None, target_path: str | None) -> list[str]:
     command = [
         sys.executable, str(PROJECT_ROOT / "custom_models/src/st_mgprompt/run_st_mgprompt.py"),
-        "--component-ablation", A8_VARIANT, "--training-profile", TRAINING_PROFILE_ID,
-        "--run-id", A8_RUN_ID, "--output-root", str(PROJECT_ROOT / A8_OUTPUT_ROOT),
+        "--component-ablation", A7_VARIANT, "--training-profile", TRAINING_PROFILE_ID,
+        "--run-id", A7_RUN_ID, "--output-root", str(PROJECT_ROOT / A7_OUTPUT_ROOT),
         "--model-name", "STMGPrompt_ComponentAblation", "--device", "cuda",
         "--no-amp", "--windows-safe-mode",
     ]
@@ -219,25 +219,25 @@ def run(*, input_path: str | None = None, target_path: str | None = None,
     validate_contract()
     state = lock_status()
     if state["status"] != "ABSENT":
-        return 74, {"status": f"LOCK_{state['status']}", "scope_id": A8_SCOPE_ID, "lock": state}
+        return 74, {"status": f"LOCK_{state['status']}", "scope_id": A7_SCOPE_ID, "lock": state}
     if read_matching_preflight_pass() is None:
-        return 74, {"status": "PREFLIGHT_MISSING", "scope_id": A8_SCOPE_ID, "child_started": False}
+        return 74, {"status": "PREFLIGHT_MISSING", "scope_id": A7_SCOPE_ID, "child_started": False}
     plan = build_plan()
     if plan["action"] == "SKIP_COMPLETED":
-        return 0, {"status": "SKIP_COMPLETED", "scope_id": A8_SCOPE_ID, "readiness": build_readiness()}
+        return 0, {"status": "SKIP_COMPLETED", "scope_id": A7_SCOPE_ID, "readiness": build_readiness()}
     if plan["action"] == "BLOCK_EXPLICIT_CONFIG_CONFLICT":
         return 74, {"status": "BLOCK_EXPLICIT_CONFIG_CONFLICT", "plan": plan}
     try:
         owner = acquire_lock()
     except ProcessLockError:
         raced = lock_status()
-        return 74, {"status": f"LOCK_{raced['status']}", "scope_id": A8_SCOPE_ID, "lock": raced}
+        return 74, {"status": f"LOCK_{raced['status']}", "scope_id": A7_SCOPE_ID, "lock": raced}
     try:
         if plan["action"] == "ARCHIVE_AND_RUN":
             archive_or_quarantine(apply=True)
         logs = Path(log_root or AUDIT_ROOT / "formal").resolve()
         logs.mkdir(parents=True, exist_ok=True)
-        log_path = logs / "a8_batch4_formal.log"
+        log_path = logs / "a7_batch4_formal.log"
         command = _formal_command(input_path, target_path)
         with log_path.open("w", encoding="utf-8", newline="") as handle:
             completed = runner(command, cwd=str(PROJECT_ROOT),
@@ -247,7 +247,7 @@ def run(*, input_path: str | None = None, target_path: str | None = None,
         readiness = build_readiness()
         return (0 if exit_code == 0 and readiness["status"] == "READY" else exit_code or 74), {
             "status": "COMPLETED" if exit_code == 0 and readiness["status"] == "READY" else "FAILED",
-            "scope_id": A8_SCOPE_ID, "run_id": A8_RUN_ID, "exit_code": exit_code,
+            "scope_id": A7_SCOPE_ID, "run_id": A7_RUN_ID, "exit_code": exit_code,
             "log_path": str(log_path), "readiness": readiness,
         }
     finally:
@@ -255,17 +255,17 @@ def run(*, input_path: str | None = None, target_path: str | None = None,
 
 
 def build_plan() -> dict[str, Any]:
-    inspected = inspect_a8_artifact()
+    inspected = inspect_a7_artifact()
     action = "SKIP_COMPLETED" if inspected["ready"] else "RUN_MISSING" if inspected["status"] == "RUN_MISSING" else "BLOCK_EXPLICIT_CONFIG_CONFLICT" if inspected["explicit_config_conflicts"] else "ARCHIVE_AND_RUN"
-    return {"status": "PASS", "scope_id": A8_SCOPE_ID, "action": action, "artifact": inspected}
+    return {"status": "PASS", "scope_id": A7_SCOPE_ID, "action": action, "artifact": inspected}
 
 
 def build_inventory() -> dict[str, Any]:
-    return {"scope_id": A8_SCOPE_ID, "entries": [inspect_a8_artifact()]}
+    return {"scope_id": A7_SCOPE_ID, "entries": [inspect_a7_artifact()]}
 
 
-def archive_or_quarantine(*, kind: str = ARCHIVE_DIRECTORY, apply: bool = False, reason: str = "explicit A8 action") -> dict[str, Any]:
-    source = A8_RUN_ROOT
+def archive_or_quarantine(*, kind: str = ARCHIVE_DIRECTORY, apply: bool = False, reason: str = "explicit A7 action") -> dict[str, Any]:
+    source = A7_RUN_ROOT
     if source.is_dir():
         status, _ = _read_json(source / "run_status.json")
         status = status if isinstance(status, dict) else {}
@@ -274,10 +274,10 @@ def archive_or_quarantine(*, kind: str = ARCHIVE_DIRECTORY, apply: bool = False,
         if isinstance(pid, int) and _pid_alive(pid):
             actual_start = _process_start_time(pid)
             if expected_start is None or actual_start is None or abs(float(expected_start) - actual_start) < 1:
-                raise A8GateError("BLOCK_ACTIVE_PROCESS: active A8 run directory cannot be archived.")
+                raise A7GateError("BLOCK_ACTIVE_PROCESS: active A7 run directory cannot be archived.")
     target = source.parent / kind / f"{source.name}__{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}"
     files = [path for path in source.rglob("*") if path.is_file()] if source.is_dir() else []
-    result = {"schema_version": "a8_archive_receipt_v2", "scope_id": A8_SCOPE_ID, "model_id": A8_MODEL_ID, "run_id": A8_RUN_ID, "action": kind, "source": str(source), "target": str(target), "status": "PREVIEW", "started_at": utc_now(), "finished_at": None, "exit_code": None, "file_count": len(files), "total_size_bytes": sum(path.stat().st_size for path in files), "message": reason}
+    result = {"schema_version": "a7_archive_receipt_v2", "scope_id": A7_SCOPE_ID, "model_id": A7_MODEL_ID, "run_id": A7_RUN_ID, "action": kind, "source": str(source), "target": str(target), "status": "PREVIEW", "started_at": utc_now(), "finished_at": None, "exit_code": None, "file_count": len(files), "total_size_bytes": sum(path.stat().st_size for path in files), "message": reason}
     if apply and source.is_dir():
         target.parent.mkdir(parents=True, exist_ok=True)
         os.replace(source, target)
@@ -286,12 +286,12 @@ def archive_or_quarantine(*, kind: str = ARCHIVE_DIRECTORY, apply: bool = False,
 
 
 def build_reference_payload() -> dict[str, Any]:
-    return build_a8_reference(A8_RUN_ROOT)
+    return build_a7_reference(A7_RUN_ROOT)
 
 
 def write_reference(path: Path | None = None) -> dict[str, Any]:
-    target = path or PROJECT_ROOT / A8_REFERENCE_RELATIVE_PATH
-    return create_a8_reference(target, run_root=A8_RUN_ROOT)
+    target = path or PROJECT_ROOT / A7_REFERENCE_RELATIVE_PATH
+    return create_a7_reference(target, run_root=A7_RUN_ROOT)
 
 
 def _pid_alive(pid: int) -> bool:
@@ -311,11 +311,11 @@ def _process_start_time(pid: int) -> float | None:
 
 
 def lock_status(path: Path = LOCK_PATH) -> dict[str, Any]:
-    return process_lock_status(path, scope_id=A8_SCOPE_ID)
+    return process_lock_status(path, scope_id=A7_SCOPE_ID)
 
 
 def acquire_lock(path: Path = LOCK_PATH) -> dict[str, Any]:
-    return acquire_process_lock(path, scope_id=A8_SCOPE_ID)
+    return acquire_process_lock(path, scope_id=A7_SCOPE_ID)
 
 
 def release_lock(owner: Mapping[str, Any], path: Path = LOCK_PATH) -> bool:
@@ -323,7 +323,7 @@ def release_lock(owner: Mapping[str, Any], path: Path = LOCK_PATH) -> bool:
 
 
 def clear_stale_lock(path: Path = LOCK_PATH) -> dict[str, Any]:
-    return clear_process_stale_lock(path, scope_id=A8_SCOPE_ID)
+    return clear_process_stale_lock(path, scope_id=A7_SCOPE_ID)
 
 
 def _parser() -> argparse.ArgumentParser:
@@ -365,7 +365,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         elif args.command == "run":
             code, result = run(input_path=args.input_path, target_path=args.target_path, log_root=Path(args.log_root))
             print(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False)); return code
-        else: raise A8GateError(f"Unsupported command: {args.command}")
+        else: raise A7GateError(f"Unsupported command: {args.command}")
         if args.command == "readiness":
             if args.report_path: atomic_write_json(Path(args.report_path), result)
             if args.reference_path and result["status"] == "READY": write_reference(Path(args.reference_path))

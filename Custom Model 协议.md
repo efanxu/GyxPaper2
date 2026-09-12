@@ -420,6 +420,7 @@ future_query: [B, H, N, D]
 2. `fusion_mode=concat`：拼接后线性映射。
 3. `fusion_mode=cross`：完整交叉注意力，默认用于本文主模型。
 4. `disable_reverse_cross=True/False`：是否关闭反向细节修正分支。
+5. `cross_fusion_gate_strategy=adaptive/fixed_half`：分别表示学习型互补门控与固定 0.5/0.5 门控。
 
 建议输出：
 
@@ -434,6 +435,7 @@ fusion_gate: [B, H, N, D] or summary statistics
 2. 分支 A 使用 `future_query` attend to `macro_prompt`，其中 `macro_prompt` 来自空间增强后的 `h_coarse`。
 3. 分支 B 使用 `future_query` 或 coarse query attend to `h_fine_recent`，其中 `h_fine_recent` 必须来自空间增强后的 `h_fine`。
 4. 直接 `concat/add` 只能作为消融或轻量 baseline；完整主模型默认使用 cross。
+5. 正式 A6 Fixed-Gate Cross Fusion 必须继续使用 `fusion_mode=cross`，并且仅将 `cross_fusion_gate_strategy` 从 `adaptive` 改为 `fixed_half`；两个 cross-attention 分支、残差连接和 LayerNorm 均保持开启。
 
 ### 4.7 MS-MG-DWU Loss
 

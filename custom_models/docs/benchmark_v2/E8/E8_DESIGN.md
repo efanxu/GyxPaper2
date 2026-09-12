@@ -10,8 +10,8 @@ The external table is native-training-system architecture/end-to-end context. It
 
 - A4 changes only `macro_prompt_pooling`, from attention pooling to equal-weight mean pooling; `macro_prompt_len=4` remains unchanged.
 - A5 changes only `cross_fusion_recent_len`, from 24 to 6; both Reverse Cross directions remain enabled.
-- A6 changes only `fusion_mode`, from adaptive gated `cross` to `add`; both cross-attention paths remain enabled.
-- A7 changes only `st_prompt_use_node_identity`, from true to false; `STPromptDirectDecoder`, future-step embedding, granularity embedding, and the prompt-query prediction strategy remain active.
+- A6 changes only `cross_fusion_gate_strategy`, from learned `adaptive` gating to a fixed `0.5` gate; both cross-attention paths, residuals, and normalizations remain enabled.
+- A7 inherits the former A8 `w/o MS-MG-DWU` definition: `use_msmg_dwu=false`, `loss_function=masked_score_aligned_hybrid`, and `loss_protocol=fair_main`.
 
 The earlier direction-removal decomposition is obsolete and must not be reported under A5/A6. E8 internal causal evidence remains pending until the redesigned A4–A7 formal runs finish.
 
@@ -23,7 +23,7 @@ Cross Fusion is two `MultiheadAttention` paths plus a learned sigmoid gate, resi
 
 Macro Prompt is a latent `[B,N,4,D]` projection of attention-pooled graph-enhanced Coarse history. It has no physical trend scalar/logit/head, so sign accuracy, physical trend correlation, and confusion matrix are `NOT_APPLICABLE`.
 
-ST Prompt is horizon-conditioned: node, future-step, and granularity embeddings form `[1,H,N,D]` in A0. A7 keeps the same tensor shape and decoder but constructs the prompt from future-step plus granularity embeddings, shared across nodes at each horizon. The node identity contribution is the only removed ST Prompt mechanism.
+ST Prompt remains horizon-conditioned with node, future-step, and granularity embeddings in all current A0–A7 variants. The former Temporal-Granularity Prompt A7 and Node-Temporal Prompt A9 are not part of the formal component-ablation set.
 
 ## Read-only diagnostics
 

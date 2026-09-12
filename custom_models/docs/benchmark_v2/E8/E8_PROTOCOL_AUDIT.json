@@ -156,7 +156,7 @@
   },
   "old_batch32_accepted": false,
   "original26_audit": {
-    "path": "C:\\Users\\12811\\Desktop\\实验结果\\original26_filtered20.xlsx",
+    "path": "D:\\PaperProject\\GyxPaper2\\work\\exp_data\\original26_filtered20.xlsx",
     "sheets": [
       "原始指标",
       "模型明细"

@@ -72,7 +72,7 @@ def _validate_python_override(value: str) -> None:
 
 
 def parser_for(family: str) -> argparse.ArgumentParser:
-    label = "P0-P5 precision" if family == "precision" else "A0-A9 component"
+    label = "P0-P5 precision" if family == "precision" else "A0-A7 component"
     parser = argparse.ArgumentParser(description=f"Run formal Fixed-Dual {label} experiments.")
     parser.add_argument("--variants", nargs="+", default=None)
     parser.add_argument("--run-id", default=None)
@@ -323,8 +323,6 @@ def _ordered_statuses(mapping, by_variant: dict[str, dict[str, Any]]) -> list[di
 
 
 def _current_variant_metrics(root: Path, variant) -> list[Path]:
-    if variant.variant_id not in {"A4", "A5", "A6", "A7", "A9"}:
-        return _metrics_files(root / variant.variant_id)
     expected_config = apply_variant(STMGPromptConfig(), variant.variant_id, variant.experiment_family)
     run_dir = _variant_run_dir(root, variant, expected_config)
     config_path = run_dir / "active_config.json"
@@ -333,11 +331,45 @@ def _current_variant_metrics(root: Path, variant) -> list[Path]:
     try:
         actual = json.loads(config_path.read_text(encoding="utf-8"))
     except Exception:
+        if variant.variant_id == "A7":
+            migrated = _renumbered_a7_run_dir(root)
+            return _metrics_files(migrated) if migrated is not None else []
         return []
     if "st_prompt_mode" not in actual:
         actual["st_prompt_mode"] = "full"
     report = config_diff(actual, variant.variant_id, variant.experiment_family)
-    return _metrics_files(run_dir) if report["passed"] else []
+    if report["passed"]:
+        return _metrics_files(run_dir)
+    if variant.variant_id == "A7":
+        migrated = _renumbered_a7_run_dir(root)
+        return _metrics_files(migrated) if migrated is not None else []
+    return []
+
+
+def _renumbered_a7_run_dir(root: Path) -> Path | None:
+    """Resolve the former A8 result only through an explicit, audited A7 reference."""
+
+    reference_path = root / "A7" / "renumbered_reference.json"
+    if not reference_path.is_file():
+        return None
+    reference = json.loads(reference_path.read_text(encoding="utf-8"))
+    if (
+        reference.get("formal_variant") != "A7"
+        or reference.get("source_variant") != "A8"
+        or reference.get("definition") != "w/o MS-MG-DWU"
+    ):
+        return None
+    source = (reference_path.parent / reference["source_run_directory"]).resolve()
+    expected_source = (root / "A8" / "STMGPrompt_ComponentAblation").resolve()
+    if source != expected_source:
+        return None
+    config_path = source / "active_config.json"
+    if not config_path.is_file():
+        config_path = source / "config.json"
+    actual = json.loads(config_path.read_text(encoding="utf-8"))
+    if actual.get("component_ablation") != "A8":
+        return None
+    return source if config_diff(actual, "A7", "component_ablation")["passed"] else None
 
 
 def _summary_rows(root: Path, variants) -> list[dict[str, Any]]:
@@ -353,6 +385,11 @@ def _summary_rows(root: Path, variants) -> list[dict[str, Any]]:
                 "trainable": variant.trainable,
                 "canonical_reference": variant.canonical_reference or "",
                 "metrics_source": str(path.resolve()),
+                "renumbered_from": (
+                    "A8"
+                    if variant.variant_id == "A7" and "A8" in path.parts
+                    else ""
+                ),
                 **metric,
             }
             rows.append(row)

@@ -30,10 +30,10 @@ P0、A0 只生成或刷新 `reference.json`，不训练，也不复制 checkpoin
 Canonical 已迁移并验证
 P0/A0 reference 已生成并验证
 P1-P5 普通 smoke 已通过
-A1-A8 普通 smoke 已通过
+A1-A7 历史普通 smoke 已通过；A6/A7 新定义需重新验证
 指令要求的 12 个 full-shape preflight 已通过
 P1-P5 正式长训未启动
-A1-A8 正式长训未启动
+A1-A7 正式长训未启动
 ```
 
 本地显卡是 6 GiB NVIDIA GeForce GTX 1060。P2/P4/P5 的 Full-History Cross-Attn 在本地 CUDA 正式形状下显存不足；P2/P4 使用 CPU FP32 完成 preflight，P5 使用 CPU bfloat16 autocast 完成 preflight。正式训练应使用显存更充足的 Linux GPU 服务器，不得缩小正式 batch 或把 micro-batch 冒充正式形状。
@@ -61,7 +61,7 @@ physical clip = [0, 1500] kW
 checkpoint selection = val_official_score_h10, min
 ```
 
-除 A8 外，P1-P5、A1-A7 均使用：
+除 A7 外，P1-P5、A1-A6 均使用：
 
 ```text
 loss = msmg_dwu_loss
@@ -70,7 +70,7 @@ site_weight_mode = dynamic
 vadsp_gate_mode = fixed_dual
 ```
 
-A8 唯一使用：
+A7 唯一使用：
 
 ```text
 loss = masked_score_aligned_hybrid
@@ -151,7 +151,7 @@ P4: TRAIN
 P5: TRAIN
 ```
 
-### 3.4 A0 reference + A1-A9 正式训练
+### 3.4 A0 reference + A1-A7 正式训练
 
 Script path：
 
@@ -162,7 +162,7 @@ D:\PaperProject\GyxPaper2\custom_models\src\st_mgprompt\run_ablation.py
 Script parameters：
 
 ```text
---variants A0 A1 A2 A3 A4 A5 A6 A7 A8 A9 --run-full
+--variants A0 A1 A2 A3 A4 A5 A6 A7 --run-full
 ```
 
 正式输出目录：
@@ -175,10 +175,10 @@ D:\PaperProject\GyxPaper2\custom_models\results\st_mgprompt_component_ablation\c
 
 ```text
 A0: REFERENCE_ONLY
-A1-A9: TRAIN
+A1-A7: TRAIN
 ```
 
-当前 A4/A7 语义保持不变。新增 A9（Node-Temporal Prompt）以 A0 为基线，仅将 `st_prompt_use_node_identity` 设为 `false`；它保留 future-step + granularity embedding、完整 ST Prompt 机制、`STPromptDirectDecoder` 和 `direct_multi_output_prompt_query` 输出路径，并写入独立的 `A9` 结果目录。
+当前正式集合仅为 A0–A7。A6 为 Fixed-Gate Cross Fusion，仅将 A0 的 `cross_fusion_gate_strategy=adaptive` 改为 `fixed_half`；A7 继承原 A8 的 `w/o MS-MG-DWU` 配置。旧 Prompt A7、旧 A8 编号及 A9 不再是正式入口。
 
 ### 3.5 中断续跑与 checkpoint 断点续跑
 
@@ -197,7 +197,7 @@ train_log.csv        # 已完成 epoch 的训练日志
 1. 保持原来的 `output-root`、`run-id` 和 `--variants` 不变；`--resume` 不能用来创建新的 run-id。
 2. 只对当前正式定义且配置匹配的 checkpoint 使用 `--resume`。配置审计或严格 checkpoint 校验发现不匹配时，续跑会被拒绝，不得把旧语义结果当作新实验继续使用。
 3. 当前正式 A4/A7 若目录中仍是旧版 Single-token Macro Prompt 或 Horizon-only Prompt 产物，必须先用下一节的 fresh Full 命令重建；重建出当前定义的 checkpoint 后，后续中断才使用 `--resume`。
-4. 不要对 P0/A0 启动训练。Formal A8 Batch4 也不允许加载历史 checkpoint，继续使用 fresh Full 协议。
+4. 不要对 P0/A0 启动训练。Formal A7 Batch4 也不允许加载历史 checkpoint，继续使用 fresh Full 协议。
 
 因此，续跑时是在原命令末尾增加：
 
@@ -224,26 +224,20 @@ P0/P1-P5：
 & 'D:\Apps\Miniconda3\envs\env_tslib\python.exe' -m st_mgprompt.run_precision_ablation --variants P0 P1 P2 P3 P4 P5 --run-full
 ```
 
-A0/A1-A9：
+A0/A1-A7：
 
 ```powershell
-& 'D:\Apps\Miniconda3\envs\env_tslib\python.exe' -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 A8 A9 --run-full
+& 'D:\Apps\Miniconda3\envs\env_tslib\python.exe' -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 --run-full
 ```
 
-仅运行新增 A9：
+仅运行当前新定义的 A6 与 A7 时，分别执行以下 fresh Full 命令（不要追加 `--resume`）：
 
 ```powershell
-& 'D:\Apps\Miniconda3\envs\env_tslib\python.exe' -m st_mgprompt.run_ablation --variants A9 --run-full
-```
-
-仅运行当前新定义的 A4 与 A7 时，分别执行以下 fresh Full 命令（不要追加 `--resume`）：
-
-```powershell
-& 'D:\Apps\Miniconda3\envs\env_tslib\python.exe' -m st_mgprompt.run_ablation --variants A4 --run-full
+& 'D:\Apps\Miniconda3\envs\env_tslib\python.exe' -m st_mgprompt.run_ablation --variants A6 --run-full
 & 'D:\Apps\Miniconda3\envs\env_tslib\python.exe' -m st_mgprompt.run_ablation --variants A7 --run-full
 ```
 
-当前正式 A4/A7 已经各自启动过并产生匹配的 `last_checkpoint.pt` 后，发生中断时执行以下续跑命令。命令会复用同一正式输出目录和同一固定 run-id：
+当前正式 A6/A7 已经各自启动过并产生匹配的 `last_checkpoint.pt` 后，发生中断时执行以下续跑命令。命令会复用同一正式输出目录和同一固定 run-id：
 
 ```powershell
 & 'D:\Apps\Miniconda3\envs\env_tslib\python.exe' -m st_mgprompt.run_ablation --variants A4 --run-full --resume
@@ -292,24 +286,24 @@ P0/P1-P5：
 python -m st_mgprompt.run_precision_ablation --variants P0 P1 P2 P3 P4 P5 --run-full
 ```
 
-A0/A1-A9：
+A0/A1-A7：
 
 ```bash
-python -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 A8 A9 --run-full
+python -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 --run-full
 ```
 
-建议先完成 P0/P1-P5，再启动 A0/A1-A9。
+建议先完成 P0/P1-P5，再启动 A0/A1-A7。
 
 ### 5.2 Linux 中断续跑
 
-在同一 `PROJECT_ROOT`、同一固定 run-id 下，当前正式 A4/A7 的续跑命令为：
+在同一 `PROJECT_ROOT`、同一固定 run-id 下，当前正式 A6/A7 的续跑命令为：
 
 ```bash
-python -m st_mgprompt.run_ablation --variants A4 --run-full --resume
+python -m st_mgprompt.run_ablation --variants A6 --run-full --resume
 python -m st_mgprompt.run_ablation --variants A7 --run-full --resume
 ```
 
-不要把 `--resume` 与新的 `--run-id` 或新的 `--output-root` 组合使用。旧语义 A4/A7 先按 Windows 部分的 fresh 命令重建；Formal A8 Batch4 不使用 `--resume`。
+不要把 `--resume` 与新的 `--run-id` 或新的 `--output-root` 组合使用。旧语义 A6/A7 必须按 Windows 部分的 fresh 命令重建；Formal A7 Batch4 不使用 `--resume`。
 
 ### 5.3 无论成功或失败都自动关机
 
@@ -319,10 +313,10 @@ P0/P1-P5：
 python -m st_mgprompt.run_precision_ablation --variants P0 P1 P2 P3 P4 P5 --run-full ; run_code=$?; printf '%s\n' "$run_code" > "$PROJECT_ROOT/custom_models/logs/precision_fixed_dual.exit_code"; sync; /usr/bin/shutdown -h now
 ```
 
-A0/A1-A9：
+A0/A1-A7：
 
 ```bash
-python -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 A8 A9 --run-full ; run_code=$?; printf '%s\n' "$run_code" > "$PROJECT_ROOT/custom_models/logs/component_fixed_dual.exit_code"; sync; /usr/bin/shutdown -h now
+python -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 --run-full ; run_code=$?; printf '%s\n' "$run_code" > "$PROJECT_ROOT/custom_models/logs/component_fixed_dual.exit_code"; sync; /usr/bin/shutdown -h now
 ```
 
 这里使用分号语义；Python 成功或失败都会记录 exit code、执行 `sync`，然后调用 `/usr/bin/shutdown -h now`。不要改为仅成功时才执行的 `&& shutdown`。
@@ -337,10 +331,10 @@ P0/P1-P5：
 nohup bash -lc 'cd "$PROJECT_ROOT"; export PYTHONPATH="$PROJECT_ROOT/custom_models/src${PYTHONPATH:+:$PYTHONPATH}"; export PYTHONUTF8=1 PYTHONIOENCODING=utf-8 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0; python -m st_mgprompt.run_precision_ablation --variants P0 P1 P2 P3 P4 P5 --run-full ; run_code=$?; printf "%s\n" "$run_code" > "$PROJECT_ROOT/custom_models/logs/precision_fixed_dual.exit_code"; sync; /usr/bin/shutdown -h now' > "$PROJECT_ROOT/custom_models/logs/precision_fixed_dual.nohup.log" 2>&1 &
 ```
 
-A0/A1-A9：
+A0/A1-A7：
 
 ```bash
-nohup bash -lc 'cd "$PROJECT_ROOT"; export PYTHONPATH="$PROJECT_ROOT/custom_models/src${PYTHONPATH:+:$PYTHONPATH}"; export PYTHONUTF8=1 PYTHONIOENCODING=utf-8 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0; python -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 A8 A9 --run-full ; run_code=$?; printf "%s\n" "$run_code" > "$PROJECT_ROOT/custom_models/logs/component_fixed_dual.exit_code"; sync; /usr/bin/shutdown -h now' > "$PROJECT_ROOT/custom_models/logs/component_fixed_dual.nohup.log" 2>&1 &
+nohup bash -lc 'cd "$PROJECT_ROOT"; export PYTHONPATH="$PROJECT_ROOT/custom_models/src${PYTHONPATH:+:$PYTHONPATH}"; export PYTHONUTF8=1 PYTHONIOENCODING=utf-8 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0; python -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 --run-full ; run_code=$?; printf "%s\n" "$run_code" > "$PROJECT_ROOT/custom_models/logs/component_fixed_dual.exit_code"; sync; /usr/bin/shutdown -h now' > "$PROJECT_ROOT/custom_models/logs/component_fixed_dual.nohup.log" 2>&1 &
 ```
 
 ### 5.5 日志、进程与 exit code
@@ -351,7 +345,7 @@ nohup bash -lc 'cd "$PROJECT_ROOT"; export PYTHONPATH="$PROJECT_ROOT/custom_mode
 tail -f "$PROJECT_ROOT/custom_models/logs/precision_fixed_dual.nohup.log"
 ```
 
-查看 A0/A1-A9 日志：
+查看 A0/A1-A7 日志：
 
 ```bash
 tail -f "$PROJECT_ROOT/custom_models/logs/component_fixed_dual.nohup.log"
@@ -390,9 +384,7 @@ cat "$PROJECT_ROOT/custom_models/logs/component_fixed_dual.exit_code"
 14. 训练 A5
 15. 训练 A6
 16. 训练 A7
-17. 训练 A8
-18. 训练 A9
-19. 汇总 A0-A9
+17. 汇总 A0-A7
 ```
 
 不要重新训练 Canonical Full、P0 或 A0。
@@ -403,7 +395,7 @@ cat "$PROJECT_ROOT/custom_models/logs/component_fixed_dual.exit_code"
 python -m compileall -q "$PROJECT_ROOT/custom_models/src/st_mgprompt"
 python -m unittest st_mgprompt.test_component_ablation
 python -m st_mgprompt.run_precision_ablation --variants P0 P1 P2 P3 P4 P5 --dry-run
-python -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 A8 A9 --dry-run
+python -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 --dry-run
 ```
 
 确认：
@@ -412,5 +404,5 @@ python -m st_mgprompt.run_ablation --variants A0 A1 A2 A3 A4 A5 A6 A7 A8 A9 --dr
 P0/A0 = REFERENCE_ONLY
 其余变体 = DRY_RUN
 unexpected_effective_diff_count = 0
-正式目录中没有预先存在的 P1-P5/A1-A9 checkpoint 或 metrics
+正式目录中的旧 A6/A7 checkpoint 或 metrics 不会通过当前 config identity 审计
 ```

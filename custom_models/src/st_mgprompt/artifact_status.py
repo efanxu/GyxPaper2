@@ -13,12 +13,16 @@ METRIC_HORIZONS = (3, 6, 10)
 METRIC_FIELDS = ("MAE", "RMSE", "R2")
 CONFIG_FIELDS = (
     "model_name",
+    "component_ablation",
     "graph_operator",
     "decoder_context_mode",
     "macro_prompt_len",
     "macro_prompt_pooling",
     "cross_fusion_recent_len",
     "fusion_mode",
+    "cross_fusion_gate_strategy",
+    "use_cross_fusion",
+    "disable_reverse_cross",
     "st_prompt_mode",
     "st_prompt_use_node_identity",
     "hidden_dim",
@@ -29,6 +33,9 @@ CONFIG_FIELDS = (
     "test_sample_stride",
     "test_batch_size",
     "seed",
+    "use_msmg_dwu",
+    "loss_function",
+    "loss_protocol",
     "feature_cols",
     "target_col",
     "target_mask_col",
@@ -43,6 +50,7 @@ _CONFIG_DEFAULTS = {
     "st_prompt_mode": "full",
     "macro_prompt_pooling": "attention",
     "st_prompt_use_node_identity": True,
+    "cross_fusion_gate_strategy": "adaptive",
 }
 
 _WINDOWS_EXCEPTIONS = {

@@ -9,19 +9,24 @@
   {
     "variant": "A1",
     "status": "DRY_RUN",
-    "final_status": "completed",
+    "final_status": "failed_protocol_mismatch",
     "returncode": null,
     "decision": "DRY_RUN",
     "artifact_audit": {
       "variant": "A1",
       "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A1\\STMGPrompt_ComponentAblation",
-      "training_complete": true,
-      "evaluation_complete": true,
+      "training_complete": false,
+      "evaluation_complete": false,
       "checkpoint_valid": true,
       "metrics_complete": true,
-      "protocol_consistent": true,
-      "config_match": true,
-      "config_differences": [],
+      "protocol_consistent": false,
+      "config_match": false,
+      "config_differences": [
+        "component_ablation",
+        "use_msmg_dwu",
+        "loss_function",
+        "loss_protocol"
+      ],
       "train_log_nonempty": true,
       "last_epoch": 16,
       "best_epoch": 10,
@@ -62,8 +67,11 @@
         "returncode_hex": "0x00000000",
         "windows_exception_classification": "none"
       },
-      "artifact_errors": [],
-      "final_status": "completed",
+      "artifact_errors": [
+        "config mismatch: component_ablation, use_msmg_dwu, loss_function, loss_protocol",
+        "variant/config protocol mismatch"
+      ],
+      "final_status": "failed_protocol_mismatch",
       "returncode_signed": 0,
       "returncode_unsigned": 0,
       "returncode_hex": "0x00000000",
@@ -201,26 +209,23 @@
   {
     "variant": "A4",
     "status": "DRY_RUN",
-    "final_status": "failed_protocol_mismatch",
+    "final_status": "completed",
     "returncode": null,
     "decision": "DRY_RUN",
     "artifact_audit": {
       "variant": "A4",
       "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A4\\STMGPrompt_ComponentAblation",
-      "training_complete": false,
-      "evaluation_complete": false,
+      "training_complete": true,
+      "evaluation_complete": true,
       "checkpoint_valid": true,
       "metrics_complete": true,
-      "protocol_consistent": false,
-      "config_match": false,
-      "config_differences": [
-        "macro_prompt_len",
-        "macro_prompt_pooling"
-      ],
+      "protocol_consistent": true,
+      "config_match": true,
+      "config_differences": [],
       "train_log_nonempty": true,
-      "last_epoch": 16,
-      "best_epoch": 10,
-      "best_val_score_h10": 14.142392594472575,
+      "last_epoch": 20,
+      "best_epoch": 20,
+      "best_val_score_h10": 13.69516892095838,
       "metrics_horizons": [
         3,
         6,
@@ -251,17 +256,14 @@
           "scalers"
         ],
         "model_id": null,
-        "best_epoch": 10,
+        "best_epoch": 20,
         "returncode_signed": 0,
         "returncode_unsigned": 0,
         "returncode_hex": "0x00000000",
         "windows_exception_classification": "none"
       },
-      "artifact_errors": [
-        "config mismatch: macro_prompt_len, macro_prompt_pooling",
-        "variant/config protocol mismatch"
-      ],
-      "final_status": "failed_protocol_mismatch",
+      "artifact_errors": [],
+      "final_status": "completed",
       "returncode_signed": 0,
       "returncode_unsigned": 0,
       "returncode_hex": "0x00000000",
@@ -335,19 +337,22 @@
   {
     "variant": "A6",
     "status": "DRY_RUN",
-    "final_status": "completed",
+    "final_status": "failed_protocol_mismatch",
     "returncode": null,
     "decision": "DRY_RUN",
     "artifact_audit": {
       "variant": "A6",
       "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6\\STMGPrompt_ComponentAblation",
-      "training_complete": true,
-      "evaluation_complete": true,
+      "training_complete": false,
+      "evaluation_complete": false,
       "checkpoint_valid": true,
       "metrics_complete": true,
-      "protocol_consistent": true,
-      "config_match": true,
-      "config_differences": [],
+      "protocol_consistent": false,
+      "config_match": false,
+      "config_differences": [
+        "fusion_mode",
+        "cross_fusion_gate_strategy"
+      ],
       "train_log_nonempty": true,
       "last_epoch": 18,
       "best_epoch": 12,
@@ -388,8 +393,11 @@
         "returncode_hex": "0x00000000",
         "windows_exception_classification": "none"
       },
-      "artifact_errors": [],
-      "final_status": "completed",
+      "artifact_errors": [
+        "config mismatch: fusion_mode, cross_fusion_gate_strategy",
+        "variant/config protocol mismatch"
+      ],
+      "final_status": "failed_protocol_mismatch",
       "returncode_signed": 0,
       "returncode_unsigned": 0,
       "returncode_hex": "0x00000000",
@@ -412,13 +420,15 @@
       "protocol_consistent": false,
       "config_match": false,
       "config_differences": [
-        "st_prompt_mode",
-        "st_prompt_use_node_identity"
+        "st_prompt_use_node_identity",
+        "use_msmg_dwu",
+        "loss_function",
+        "loss_protocol"
       ],
       "train_log_nonempty": true,
-      "last_epoch": 20,
-      "best_epoch": 14,
-      "best_val_score_h10": 14.032621530148083,
+      "last_epoch": 16,
+      "best_epoch": 10,
+      "best_val_score_h10": 13.512963254318498,
       "metrics_horizons": [
         3,
         6,
@@ -449,81 +459,17 @@
           "scalers"
         ],
         "model_id": null,
-        "best_epoch": 14,
-        "returncode_signed": 0,
-        "returncode_unsigned": 0,
-        "returncode_hex": "0x00000000",
-        "windows_exception_classification": "none"
-      },
-      "artifact_errors": [
-        "config mismatch: st_prompt_mode, st_prompt_use_node_identity",
-        "variant/config protocol mismatch"
-      ],
-      "final_status": "failed_protocol_mismatch",
-      "returncode_signed": 0,
-      "returncode_unsigned": 0,
-      "returncode_hex": "0x00000000",
-      "windows_exception_classification": "none"
-    }
-  },
-  {
-    "variant": "A8",
-    "status": "DRY_RUN",
-    "final_status": "completed",
-    "returncode": null,
-    "decision": "DRY_RUN",
-    "artifact_audit": {
-      "variant": "A8",
-      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A8\\STMGPrompt_ComponentAblation",
-      "training_complete": true,
-      "evaluation_complete": true,
-      "checkpoint_valid": true,
-      "metrics_complete": true,
-      "protocol_consistent": true,
-      "config_match": true,
-      "config_differences": [],
-      "train_log_nonempty": true,
-      "last_epoch": 16,
-      "best_epoch": 10,
-      "best_val_score_h10": 13.989129084162645,
-      "metrics_horizons": [
-        3,
-        6,
-        10
-      ],
-      "checkpoint_probe": {
-        "valid": true,
-        "keys": [
-          "epoch",
-          "best_epoch",
-          "best_metric_name",
-          "best_metric_value",
-          "best_val_score_h3",
-          "best_val_score_h6",
-          "best_val_score_h10",
-          "model_state_dict",
-          "loss_state_dict",
-          "optimizer_state_dict",
-          "scheduler_state_dict",
-          "grad_scaler_state_dict",
-          "early_stopping_counter",
-          "config",
-          "config_hash",
-          "input_dim",
-          "num_nodes",
-          "feature_cols",
-          "turbine_ids",
-          "scalers"
-        ],
-        "model_id": null,
         "best_epoch": 10,
         "returncode_signed": 0,
         "returncode_unsigned": 0,
         "returncode_hex": "0x00000000",
         "windows_exception_classification": "none"
       },
-      "artifact_errors": [],
-      "final_status": "completed",
+      "artifact_errors": [
+        "config mismatch: st_prompt_use_node_identity, use_msmg_dwu, loss_function, loss_protocol",
+        "variant/config protocol mismatch"
+      ],
+      "final_status": "failed_protocol_mismatch",
       "returncode_signed": 0,
       "returncode_unsigned": 0,
       "returncode_hex": "0x00000000",

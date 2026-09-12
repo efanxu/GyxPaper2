@@ -13,7 +13,7 @@ if str(SOURCE_ROOT) not in sys.path:
     sys.path.insert(0, str(SOURCE_ROOT))
 
 from scripts import original_batch4_scope26_gate as original_gate
-from scripts import st_mgprompt_a8_batch4_gate as a8_gate
+from scripts import st_mgprompt_a7_batch4_gate as a7_gate
 
 
 PROFILE_ID = "uniform_train_batch4_v1"
@@ -32,7 +32,7 @@ def current_freeze_identity() -> dict[str, Any]:
         "max_pred_len": 10,
         "eval_horizons": [3, 6, 10],
         "original": original_gate.validate_manifest(original),
-        "a8": a8_gate.validate_contract(),
+        "a7": a7_gate.validate_contract(),
     }
 
 
@@ -49,13 +49,13 @@ def preflight_inventory(suite: str) -> dict[str, Any]:
 
 
 def st_preflight_inventory(suite: str) -> dict[str, Any]:
-    a8 = a8_gate.build_preflight_plan()
-    if suite == "a8":
-        return a8
+    a7 = a7_gate.build_preflight_plan()
+    if suite == "a7":
+        return a7
     return {
         "status": "PLANNED",
         "scope": "full",
-        "a8": a8,
+        "a7": a7,
         "original": preflight_inventory("original"),
     }
 
@@ -64,19 +64,19 @@ def verify(suite: str) -> dict[str, Any]:
     if suite == "original":
         manifest = original_gate.load_current_scope_manifest(original_gate.CURRENT_MANIFEST)
         return original_gate.build_readiness(manifest, original_gate.RESULT_ROOT)
-    if suite == "a8":
-        return a8_gate.build_readiness()
+    if suite == "a7":
+        return a7_gate.build_readiness()
     return {
         "status": "REPORT",
         "original": verify("original"),
-        "a8": verify("a8"),
+        "a7": verify("a7"),
     }
 
 
 def formal_guidance(suite: str) -> dict[str, Any]:
     launchers = {
         "original": "custom_models/docs/benchmark_v2/BATCH4/ORIGINAL_SCOPE26_WINDOWS_FORMAL_COMMANDS.ps1",
-        "a8": "custom_models/docs/benchmark_v2/A8/A8_BATCH4_LINUX.sh",
+        "a7": "custom_models/docs/benchmark_v2/A7/A7_BATCH4_LINUX.sh",
     }
     return {
         "status": "USE_SCOPE_LAUNCHER",
@@ -103,11 +103,11 @@ def parser() -> argparse.ArgumentParser:
     inventory = sub.add_parser("preflight-inventory")
     inventory.add_argument("--suite", choices=("original",), required=True)
     st = sub.add_parser("preflight-st")
-    st.add_argument("--suite", choices=("full", "a8"), required=True)
+    st.add_argument("--suite", choices=("full", "a7"), required=True)
     verify_parser = sub.add_parser("verify")
-    verify_parser.add_argument("--suite", choices=("original", "full", "a8"), required=True)
+    verify_parser.add_argument("--suite", choices=("original", "full", "a7"), required=True)
     formal = sub.add_parser("formal-exec")
-    formal.add_argument("--suite", choices=("original", "a8"), required=True)
+    formal.add_argument("--suite", choices=("original", "a7"), required=True)
     formal.add_argument("--python")
     compare = sub.add_parser("compare-manifests")
     compare.add_argument("left")

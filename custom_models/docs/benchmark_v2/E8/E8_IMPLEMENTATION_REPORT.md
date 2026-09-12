@@ -6,7 +6,7 @@ No training entry point exists.
 
 Current audit result is intentionally incomplete. The six external original26 artifacts are valid batch4 formal evidence and match the workbook. Available A0/A4/A5/A6/A7 artifacts record train batch32, lack `uniform_train_batch4_v1`, lack `resolved_config.json`, and do not expose the current formal run-status schema. They are retained as read-only historical component artifacts but rejected from current E8 readiness. Therefore current readiness is internal 0/5, external 6/6, core 6/11.
 
-Static source audit confirms the intended A4/A5/A6/A7 differences: A4 changes only Macro Prompt temporal pooling, A5 shortens Reverse Cross context, A6 changes only fusion aggregation, and A7 removes only ST Prompt node identity while retaining future-step and granularity information. This static result does not override the formal protocol evidence gap.
+Static source audit confirms the intended A4/A5/A6/A7 differences: A4 changes only Macro Prompt temporal pooling, A5 shortens Reverse Cross context, A6 replaces the learned complementary gate with a fixed 0.5 gate, and A7 inherits the former A8 `w/o MS-MG-DWU` loss configuration. This static result does not override the formal protocol evidence gap.
 
 Formal mechanism export and paired-window analysis are blocked. The existing group-analysis directory has training-fitted thresholds but lacks the complete frozen public group/window definition set.
 

@@ -5,21 +5,21 @@ from pathlib import Path
 from typing import Any
 
 
-A8_SCOPE_ID = "st_mgprompt_a8_batch4_seed2026"
-A8_MODEL_ID = "st_mgprompt_a8"
-A8_VARIANT = "A8"
-A8_DEFINITION = "w/o MS-MG-DWU"
-A8_RUN_ID = "component_ablation_a8_bs4_seed2026"
-A8_OUTPUT_ROOT = "custom_models/results/st_mgprompt_uniform_bs4"
-A8_RUN_RELATIVE_PATH = f"{A8_OUTPUT_ROOT}/{A8_RUN_ID}/STMGPrompt_ComponentAblation"
-A8_REFERENCE_ID = "STMGPrompt_A8_loss_msa_hybrid_bs4_seed2026"
-A8_REFERENCE_RELATIVE_PATH = "custom_models/logs/uniform_bs4/audit/a8/A8_BATCH4_REFERENCE.json"
+A7_SCOPE_ID = "st_mgprompt_a7_batch4_seed2026"
+A7_MODEL_ID = "st_mgprompt_a7"
+A7_VARIANT = "A7"
+A7_DEFINITION = "w/o MS-MG-DWU"
+A7_RUN_ID = "component_ablation_a7_bs4_seed2026"
+A7_OUTPUT_ROOT = "custom_models/results/st_mgprompt_uniform_bs4"
+A7_RUN_RELATIVE_PATH = f"{A7_OUTPUT_ROOT}/{A7_RUN_ID}/STMGPrompt_ComponentAblation"
+A7_REFERENCE_ID = "STMGPrompt_A7_loss_msa_hybrid_bs4_seed2026"
+A7_REFERENCE_RELATIVE_PATH = "custom_models/logs/uniform_bs4/audit/a7/A7_BATCH4_REFERENCE.json"
 TRAINING_ROLE = "ST_MGPROMPT_COMPONENT_ABLATION"
 TRAINING_PROFILE_ID = "uniform_train_batch4_v1"
 LOSS_ID = "masked_score_aligned_hybrid"
 LOSS_PROTOCOL = "fair_main"
 PRECISION_POLICY = "fp32"
-DATA_SIGNATURE_SCHEMA_VERSION = "st_mgprompt_a8_data_signature_v2"
+DATA_SIGNATURE_SCHEMA_VERSION = "st_mgprompt_a7_data_signature_v2"
 DATASET_ID = "SDWPF"
 INPUT_RELATIVE_PATH = "dataset/sdwpf_model_input_base.parquet"
 TARGET_RELATIVE_PATH = "dataset/sdwpf_eval_target.parquet"
@@ -31,9 +31,9 @@ DATA_SPLIT_RATIOS = [0.8, 0.1, 0.1]
 DATA_STRIDES = {"train": 6, "val": 3, "test": 1}
 
 EXPECTED_CONFIG = {
-    "scope_id": A8_SCOPE_ID, "model_id": A8_MODEL_ID, "run_id": A8_RUN_ID,
-    "component_ablation": A8_VARIANT, "variant": A8_VARIANT,
-    "definition": A8_DEFINITION,
+    "scope_id": A7_SCOPE_ID, "model_id": A7_MODEL_ID, "run_id": A7_RUN_ID,
+    "component_ablation": A7_VARIANT, "variant": A7_VARIANT,
+    "definition": A7_DEFINITION,
     "training_batch_profile_id": TRAINING_PROFILE_ID, "train_batch_size": 4,
     "val_batch_size": 4, "test_batch_size": 4,
     "gradient_accumulation_steps": 1, "seed": 2026, "lookback": 144,
@@ -43,7 +43,7 @@ EXPECTED_CONFIG = {
 }
 
 
-class A8ContractError(ValueError):
+class A7ContractError(ValueError):
     pass
 
 
@@ -67,8 +67,8 @@ def graph_identity(project_root: str | Path | None = None) -> dict[str, Any]:
 
 def variant_contract() -> dict[str, Any]:
     return {
-        "scope_id": A8_SCOPE_ID, "model_id": A8_MODEL_ID, "run_id": A8_RUN_ID,
-        "variant": A8_VARIANT, "definition": A8_DEFINITION,
+        "scope_id": A7_SCOPE_ID, "model_id": A7_MODEL_ID, "run_id": A7_RUN_ID,
+        "variant": A7_VARIANT, "definition": A7_DEFINITION,
         "training_role": TRAINING_ROLE, "training_profile_id": TRAINING_PROFILE_ID,
         "batch_size": 4, "lookback": 144, "node_count": 134,
         "feature_count": len(FEATURE_ORDER), "horizon": 10,
@@ -85,4 +85,4 @@ def precision_identity() -> dict[str, Any]:
     return {"precision_policy": PRECISION_POLICY, "amp_enabled": False}
 
 
-__all__ = [name for name in globals() if name.isupper()] + ["A8ContractError", "graph_identity", "loss_identity", "precision_identity", "variant_contract"]
+__all__ = [name for name in globals() if name.isupper()] + ["A7ContractError", "graph_identity", "loss_identity", "precision_identity", "variant_contract"]

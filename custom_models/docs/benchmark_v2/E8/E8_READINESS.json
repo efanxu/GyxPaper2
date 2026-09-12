@@ -44,7 +44,8 @@
         "MISSING_RESOLVED_CONFIG",
         "FORMAL_RUN_STATUS_INVALID",
         "INTERNAL_BATCH_PROFILE_MISMATCH:train_batch_size",
-        "INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id"
+        "INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id",
+        "INTERNAL_RUN_CONFIG_MISMATCH:cross_fusion_gate_strategy,fusion_mode"
       ]
     },
     {
@@ -53,7 +54,8 @@
         "MISSING_RESOLVED_CONFIG",
         "FORMAL_RUN_STATUS_INVALID",
         "INTERNAL_BATCH_PROFILE_MISMATCH:train_batch_size",
-        "INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id"
+        "INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id",
+        "INTERNAL_RUN_CONFIG_MISMATCH:loss_function,loss_protocol,st_prompt_use_node_identity,use_msmg_dwu"
       ]
     }
   ],

@@ -30,7 +30,7 @@ from st_mgprompt.run_st_mgprompt import (
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 REQUIRED_VARIANTS = (
     "P1", "P2", "P4", "P5",
-    "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9",
+    "A1", "A2", "A3", "A4", "A5", "A6", "A7",
 )
 
 
@@ -153,6 +153,7 @@ def run(
                 "decoder_context_mode": cfg.decoder_context_mode,
                 "macro_prompt_len": cfg.macro_prompt_len,
                 "macro_prompt_pooling": cfg.macro_prompt_pooling,
+                "cross_fusion_gate_strategy": cfg.cross_fusion_gate_strategy,
                 "st_prompt_mode": cfg.st_prompt_mode,
                 "st_prompt_use_node_identity": bool(cfg.st_prompt_use_node_identity),
                 "loss_name": cfg.loss_function,

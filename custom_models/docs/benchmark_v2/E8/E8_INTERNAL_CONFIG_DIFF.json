@@ -1,12 +1,161 @@
 {
   "schema_version": "e8_internal_config_diff_v2",
-  "status": "PENDING_REDESIGNED_A4_A7_RESULTS",
-  "formal_protocol": {
-    "A4": {"display_name": "Mean-Pooling Macro Prompt", "expected_diff_fields": ["macro_prompt_pooling"]},
-    "A5": {"display_name": "Short-context Reverse Cross", "expected_diff_fields": ["cross_fusion_recent_len"]},
-    "A6": {"display_name": "Additive Cross Fusion", "expected_diff_fields": ["fusion_mode"]},
-    "A7": {"display_name": "Temporal-Granularity Prompt", "expected_diff_fields": ["st_prompt_use_node_identity"]}
+  "status": "PASS",
+  "comparisons": [
+    {
+      "comparison": "A0_vs_A4",
+      "variant_id": "A4",
+      "target_component": "Macro Prompt temporal pooling",
+      "allowed_differences": [
+        "macro_prompt_pooling"
+      ],
+      "actual_differences": {
+        "macro_prompt_pooling": {
+          "A0": "attention",
+          "ablation": "mean"
+        }
+      },
+      "unexpected_differences": [],
+      "missing_expected_differences": [],
+      "config_diff_valid": true,
+      "CONFIG_DIFF_INVALID": false,
+      "source_evidence": [
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\experiment_manifest.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A0\\effective_config.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A4\\effective_config.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A4\\effective_config_diff.json",
+        "custom_models/src/st_mgprompt/model.py",
+        "custom_models/src/st_mgprompt/coupling_block.py",
+        "custom_models/src/st_mgprompt/cross_fusion.py",
+        "custom_models/src/st_mgprompt/decoder.py"
+      ]
+    },
+    {
+      "comparison": "A0_vs_A5",
+      "variant_id": "A5",
+      "target_component": "Reverse Cross context length",
+      "allowed_differences": [
+        "cross_fusion_recent_len"
+      ],
+      "actual_differences": {
+        "cross_fusion_recent_len": {
+          "A0": 24,
+          "ablation": 6
+        }
+      },
+      "unexpected_differences": [],
+      "missing_expected_differences": [],
+      "config_diff_valid": true,
+      "CONFIG_DIFF_INVALID": false,
+      "source_evidence": [
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\experiment_manifest.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A0\\effective_config.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A5\\effective_config.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A5\\effective_config_diff.json",
+        "custom_models/src/st_mgprompt/model.py",
+        "custom_models/src/st_mgprompt/coupling_block.py",
+        "custom_models/src/st_mgprompt/cross_fusion.py",
+        "custom_models/src/st_mgprompt/decoder.py"
+      ]
+    },
+    {
+      "comparison": "A0_vs_A6",
+      "variant_id": "A6",
+      "target_component": "Cross Fusion gate strategy",
+      "allowed_differences": [
+        "cross_fusion_gate_strategy"
+      ],
+      "actual_differences": {
+        "cross_fusion_gate_strategy": {
+          "A0": "adaptive",
+          "ablation": "fixed_half"
+        }
+      },
+      "unexpected_differences": [],
+      "missing_expected_differences": [],
+      "config_diff_valid": true,
+      "CONFIG_DIFF_INVALID": false,
+      "source_evidence": [
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\experiment_manifest.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A0\\effective_config.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6\\effective_config.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6\\effective_config_diff.json",
+        "custom_models/src/st_mgprompt/model.py",
+        "custom_models/src/st_mgprompt/coupling_block.py",
+        "custom_models/src/st_mgprompt/cross_fusion.py",
+        "custom_models/src/st_mgprompt/decoder.py"
+      ]
+    },
+    {
+      "comparison": "A0_vs_A7",
+      "variant_id": "A7",
+      "target_component": "MS-MG-DWU loss",
+      "allowed_differences": [
+        "use_msmg_dwu",
+        "loss_function",
+        "loss_protocol"
+      ],
+      "actual_differences": {
+        "loss_function": {
+          "A0": "msmg_dwu_loss",
+          "ablation": "masked_score_aligned_hybrid"
+        },
+        "loss_protocol": {
+          "A0": "method_full",
+          "ablation": "fair_main"
+        },
+        "use_msmg_dwu": {
+          "A0": true,
+          "ablation": false
+        }
+      },
+      "unexpected_differences": [],
+      "missing_expected_differences": [],
+      "config_diff_valid": true,
+      "CONFIG_DIFF_INVALID": false,
+      "source_evidence": [
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\experiment_manifest.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A0\\effective_config.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A7\\effective_config.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A7\\effective_config_diff.json",
+        "custom_models/src/st_mgprompt/model.py",
+        "custom_models/src/st_mgprompt/coupling_block.py",
+        "custom_models/src/st_mgprompt/cross_fusion.py",
+        "custom_models/src/st_mgprompt/decoder.py"
+      ]
+    }
+  ],
+  "direction_decomposition": {
+    "A0_directions": {
+      "fine_to_coarse": true,
+      "coarse_to_fine": true
+    },
+    "A5_directions": {
+      "fine_to_coarse": true,
+      "coarse_to_fine": true
+    },
+    "A6_directions": {
+      "fine_to_coarse": true,
+      "coarse_to_fine": true
+    },
+    "A5_A6_non_direction_differences": {
+      "cross_fusion_gate_strategy": {
+        "A0": "adaptive",
+        "ablation": "fixed_half"
+      },
+      "cross_fusion_recent_len": {
+        "A0": 6,
+        "ablation": 24
+      }
+    },
+    "DIRECTION_DECOMPOSITION_VALID": false,
+    "allowed_conclusions": [],
+    "reason": "A5 shortens Reverse Cross context and A6 fixes the complementary gate at 0.5; neither removes a direction."
   },
-  "comparisons": [],
-  "note": "Pre-redesign A4-A7 evidence was invalidated and is not transferable to the current formal variants."
+  "source_semantics": {
+    "A4_change": "macro_prompt_pooling: attention -> mean; macro_prompt_len remains 4",
+    "A5_change": "cross_fusion_recent_len: 24 -> 6; both attention directions remain active",
+    "A6_change": "cross_fusion_gate_strategy: adaptive -> fixed_half; both attention directions remain active",
+    "A7_change": "use_msmg_dwu: true -> false; loss_function/loss_protocol inherit the former A8 definition"
+  }
 }

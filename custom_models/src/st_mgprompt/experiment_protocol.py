@@ -24,6 +24,12 @@ GRAPH_SIMPLE = "simple"
 GRAPH_BI_DIFFUSION = "bidirectional_diffusion"
 GRAPH_BI_DIFFUSION_DISPLAY = "bi_diffusion"
 
+LEGACY_A8_CONFIG_OVERRIDES = {
+    "use_msmg_dwu": False,
+    "loss_function": "masked_score_aligned_hybrid",
+    "loss_protocol": "fair_main",
+}
+
 
 @dataclass(frozen=True)
 class ExperimentVariant:
@@ -111,29 +117,14 @@ _COMPONENT = (
         ("cross_fusion_recent_len",),
     ),
     ExperimentVariant(
-        "A6", "Additive Cross Fusion", "component_ablation", True,
-        None, "CANONICAL_FULL", {"fusion_mode": "add"},
-        ("fusion_mode",),
+        "A6", "Fixed-Gate Cross Fusion", "component_ablation", True,
+        None, "CANONICAL_FULL", {"cross_fusion_gate_strategy": "fixed_half"},
+        ("cross_fusion_gate_strategy",),
     ),
     ExperimentVariant(
-        "A7", "Temporal-Granularity Prompt", "component_ablation", True,
-        None, "CANONICAL_FULL", {"st_prompt_use_node_identity": False},
-        ("st_prompt_use_node_identity",),
-    ),
-    ExperimentVariant(
-        "A8", "w/o MS-MG-DWU", "component_ablation", True,
-        None, "CANONICAL_FULL",
-        {
-            "use_msmg_dwu": False,
-            "loss_function": "masked_score_aligned_hybrid",
-            "loss_protocol": "fair_main",
-        },
+        "A7", "w/o MS-MG-DWU", "component_ablation", True,
+        None, "CANONICAL_FULL", LEGACY_A8_CONFIG_OVERRIDES,
         ("use_msmg_dwu", "loss_function", "loss_protocol"),
-    ),
-    ExperimentVariant(
-        "A9", "Node-Temporal Prompt", "component_ablation", True,
-        None, "CANONICAL_FULL", {"st_prompt_use_node_identity": False},
-        ("st_prompt_use_node_identity",),
     ),
 )
 
@@ -141,7 +132,7 @@ PRECISION_VARIANTS = {item.variant_id: item for item in _PRECISION}
 COMPONENT_ABLATION_VARIANTS = {item.variant_id: item for item in _COMPONENT}
 ALL_VARIANTS = {**PRECISION_VARIANTS, **COMPONENT_ABLATION_VARIANTS}
 
-OBSOLETE_COMPONENT_VARIANTS = {"A10"}
+OBSOLETE_COMPONENT_VARIANTS = {"A8", "A9", "A10"}
 OBSOLETE_COMPONENT_NAMES = {"w/o VADSP", "w/o Trend Prior"}
 
 FORMAL_PROTOCOL_FIELDS = (
@@ -160,7 +151,8 @@ ARCHITECTURE_AND_LOSS_FIELDS = (
     "hidden_dim", "num_coupling_layers", "use_graph_in_temporal_encoder",
     "use_adaptive_graph", "use_trend_prior_graph", "use_macro_prompt",
     "disable_reverse_cross", "use_cross_fusion", "use_st_prompt",
-    "macro_prompt_len", "macro_prompt_pooling", "cross_fusion_recent_len", "fusion_mode", "st_prompt_mode",
+    "macro_prompt_len", "macro_prompt_pooling", "cross_fusion_recent_len", "fusion_mode",
+    "cross_fusion_gate_strategy", "st_prompt_mode",
     "st_prompt_use_node_identity",
     "decoder_input_strategy", "use_msmg_dwu", "loss_function", "loss_protocol",
     "granularity_weight_mode", "site_weight_mode",
@@ -172,6 +164,7 @@ SEMANTIC_CONFIG_DEFAULTS = {
     "st_prompt_mode": "full",
     "macro_prompt_pooling": "attention",
     "st_prompt_use_node_identity": True,
+    "cross_fusion_gate_strategy": "adaptive",
 }
 
 
@@ -226,6 +219,7 @@ def canonical_overrides() -> dict[str, Any]:
         "cross_fusion_recent_len": 24,
         "disable_reverse_cross": False,
         "fusion_mode": "cross",
+        "cross_fusion_gate_strategy": "adaptive",
         "st_prompt_mode": "full",
         "st_prompt_use_node_identity": True,
         "graph_operator": GRAPH_BI_DIFFUSION,
@@ -256,7 +250,7 @@ def get_variant(variant_id: str, family: str | None = None) -> ExperimentVariant
     variant_id = str(variant_id).upper()
     if family == "component_ablation":
         if variant_id in OBSOLETE_COMPONENT_VARIANTS:
-            raise ValueError("Obsolete component-ablation variant. Valid variants are A0-A9.")
+            raise ValueError("Obsolete component-ablation variant. Valid variants are A0-A7.")
         mapping = COMPONENT_ABLATION_VARIANTS
     elif family == "precision":
         mapping = PRECISION_VARIANTS
@@ -386,7 +380,8 @@ MATRIX_FIELDS = (
     "vadsp_gate_mode", "graph_operator", "decoder_context_mode", "hidden_dim",
     "num_coupling_layers", "spatial_graph", "adaptive_graph", "diffusion",
     "macro_prompt", "reverse_cross", "cross_fusion", "st_prompt", "loss_name",
-    "macro_prompt_len", "macro_prompt_pooling", "cross_fusion_recent_len", "fusion_mode", "st_prompt_mode",
+    "macro_prompt_len", "macro_prompt_pooling", "cross_fusion_recent_len", "fusion_mode",
+    "cross_fusion_gate_strategy", "st_prompt_mode",
     "st_prompt_use_node_identity",
     "granularity_weight_mode", "site_weight_mode", "seed",
 )
@@ -417,6 +412,7 @@ def matrix_row(variant: ExperimentVariant) -> dict[str, Any]:
         "macro_prompt_pooling": config.macro_prompt_pooling,
         "cross_fusion_recent_len": config.cross_fusion_recent_len,
         "fusion_mode": config.fusion_mode,
+        "cross_fusion_gate_strategy": config.cross_fusion_gate_strategy,
         "st_prompt_mode": config.st_prompt_mode,
         "st_prompt_use_node_identity": config.st_prompt_use_node_identity,
         "loss_name": config.loss_function,

@@ -1,6 +1,6 @@
 {
   "schema_version": "st_mgprompt_batch4_preflight_v1",
-  "object_id": "st_mgprompt_a8",
+  "object_id": "st_mgprompt_a7",
   "status": "NOT_RUN_BLOCKED_BY_KNOWN_OOM6",
   "training_batch_profile_id": "uniform_train_batch4_v1",
   "train_batch_size": 4,

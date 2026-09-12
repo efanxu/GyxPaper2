@@ -86,34 +86,20 @@
     },
     {
       "variant_id": "A6",
-      "display_name": "Additive Cross Fusion",
+      "display_name": "Fixed-Gate Cross Fusion",
       "experiment_family": "component_ablation",
       "trainable": true,
       "canonical_reference": null,
       "base_config": "CANONICAL_FULL",
       "config_overrides": {
-        "fusion_mode": "add"
+        "cross_fusion_gate_strategy": "fixed_half"
       },
       "expected_unique_diff": [
-        "fusion_mode"
+        "cross_fusion_gate_strategy"
       ]
     },
     {
       "variant_id": "A7",
-      "display_name": "Temporal-Granularity Prompt",
-      "experiment_family": "component_ablation",
-      "trainable": true,
-      "canonical_reference": null,
-      "base_config": "CANONICAL_FULL",
-      "config_overrides": {
-        "st_prompt_use_node_identity": false
-      },
-      "expected_unique_diff": [
-        "st_prompt_use_node_identity"
-      ]
-    },
-    {
-      "variant_id": "A8",
       "display_name": "w/o MS-MG-DWU",
       "experiment_family": "component_ablation",
       "trainable": true,
@@ -139,7 +125,6 @@
     "A4",
     "A5",
     "A6",
-    "A7",
-    "A8"
+    "A7"
   ]
 }
