@@ -157,7 +157,6 @@
   "cross_attention_heads": 4,
   "cross_fusion_recent_len": 24,
   "fusion_mode": "cross",
-  "cross_fusion_gate_strategy": "adaptive",
   "disable_reverse_cross": false,
   "use_msmg_dwu": false,
   "loss_protocol": "fair_main",

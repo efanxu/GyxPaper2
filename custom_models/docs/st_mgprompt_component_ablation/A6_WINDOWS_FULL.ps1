@@ -23,5 +23,5 @@ $env:PYTORCH_CUDA_ALLOC_CONF = 'expandable_segments:True'
 Set-Location -LiteralPath $ProjectRoot
 & $Python -m st_mgprompt.run_ablation --variants A6 --run-full
 if ($LASTEXITCODE -ne 0) {
-    throw "A6 Fixed-Gate Cross Fusion Full run failed with exit code $LASTEXITCODE."
+    throw "A6 Single-direction Cross Fusion Full run failed with exit code $LASTEXITCODE."
 }

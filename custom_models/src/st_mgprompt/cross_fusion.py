@@ -26,7 +26,7 @@ def _attention_entropy(weights: Tensor, max_rows: int = 4096) -> Tensor:
 
 
 class SymmetricCrossFusion(nn.Module):
-    """Node-wise symmetric cross-fusion for graph-enhanced fine/coarse histories."""
+    """Node-wise cross-fusion for graph-enhanced fine/coarse histories."""
 
     def __init__(
         self,
@@ -35,24 +35,18 @@ class SymmetricCrossFusion(nn.Module):
         dropout: float = 0.0,
         recent_len: int = 24,
         fusion_mode: str = "cross",
-        gate_strategy: str = "adaptive",
         disable_reverse_cross: bool = False,
         diagnostics_level: str = "standard",
     ) -> None:
         super().__init__()
         if fusion_mode not in {"cross", "add", "concat"}:
             raise ValueError("fusion_mode must be cross, add, or concat.")
-        if gate_strategy not in {"adaptive", "fixed_half"}:
-            raise ValueError("gate_strategy must be adaptive or fixed_half.")
-        if gate_strategy == "fixed_half" and fusion_mode != "cross":
-            raise ValueError("fixed_half gate requires fusion_mode=cross.")
         if recent_len <= 0:
             raise ValueError("recent_len must be positive.")
         heads = _valid_num_heads(int(hidden_dim), int(num_heads))
         self.hidden_dim = int(hidden_dim)
         self.recent_len = int(recent_len)
         self.fusion_mode = fusion_mode
-        self.gate_strategy = gate_strategy
         self.disable_reverse_cross = bool(disable_reverse_cross)
         if diagnostics_level not in {"none", "minimal", "standard", "full"}:
             raise ValueError("diagnostics_level must be none, minimal, standard, or full.")
@@ -70,15 +64,11 @@ class SymmetricCrossFusion(nn.Module):
             dropout=dropout,
             batch_first=True,
         )
-        self.gate = (
-            nn.Sequential(
-                nn.Linear(self.hidden_dim * 3, self.hidden_dim),
-                nn.GELU(),
-                nn.Linear(self.hidden_dim, self.hidden_dim),
-                nn.Sigmoid(),
-            )
-            if self.gate_strategy == "adaptive"
-            else None
+        self.gate = nn.Sequential(
+            nn.Linear(self.hidden_dim * 3, self.hidden_dim),
+            nn.GELU(),
+            nn.Linear(self.hidden_dim, self.hidden_dim),
+            nn.Sigmoid(),
         )
         self.fine_concat = nn.Linear(self.hidden_dim * 2, self.hidden_dim)
         self.coarse_concat = nn.Linear(self.hidden_dim * 2, self.hidden_dim)
@@ -142,11 +132,7 @@ class SymmetricCrossFusion(nn.Module):
         out_a = self.dropout(out_a)
         out_b = self.dropout(out_b)
         if self.fusion_mode == "cross":
-            gate = (
-                self.gate(torch.cat([out_a, out_b, h_fine], dim=-1))
-                if self.gate is not None
-                else torch.full_like(h_fine, 0.5)
-            )
+            gate = self.gate(torch.cat([out_a, out_b, h_fine], dim=-1))
             new_fine = self.fine_norm(gate * out_a + h_fine)
             if self.disable_reverse_cross:
                 new_coarse = self.coarse_norm(h_coarse)
@@ -196,7 +182,6 @@ class SymmetricCrossFusion(nn.Module):
             "cross_fusion_uses_spatial_enhanced_features": True,
             "disable_reverse_cross": self.disable_reverse_cross,
             "fusion_mode": self.fusion_mode,
-            "cross_fusion_gate_strategy": self.gate_strategy,
             "coarse_to_fine_source": "macro_prompt" if macro_prompt is not None else "coarse_history",
         }
         return new_fine, new_coarse, aux

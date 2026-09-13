@@ -20,7 +20,6 @@ CONFIG_FIELDS = (
     "macro_prompt_pooling",
     "cross_fusion_recent_len",
     "fusion_mode",
-    "cross_fusion_gate_strategy",
     "use_cross_fusion",
     "disable_reverse_cross",
     "st_prompt_mode",
@@ -50,7 +49,6 @@ _CONFIG_DEFAULTS = {
     "st_prompt_mode": "full",
     "macro_prompt_pooling": "attention",
     "st_prompt_use_node_identity": True,
-    "cross_fusion_gate_strategy": "adaptive",
 }
 
 _WINDOWS_EXCEPTIONS = {

@@ -157,11 +157,6 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--cross-attention-heads", type=int, default=None)
     parser.add_argument("--cross-fusion-recent-len", type=int, default=None)
     parser.add_argument("--fusion-mode", choices=["cross", "add", "concat"], default=None)
-    parser.add_argument(
-        "--cross-fusion-gate-strategy",
-        choices=["adaptive", "fixed_half"],
-        default=None,
-    )
     parser.add_argument("--disable-reverse-cross", action="store_true")
     parser.add_argument("--enable-physical-clip-eval", action="store_true")
     parser.add_argument("--disable-physical-clip-eval", action="store_true")
@@ -270,7 +265,6 @@ def build_config(args: argparse.Namespace) -> STMGPromptConfig:
         "cross_attention_heads",
         "cross_fusion_recent_len",
         "fusion_mode",
-        "cross_fusion_gate_strategy",
         "macro_graph_source",
         "micro_graph_source",
         "macro_top_k",

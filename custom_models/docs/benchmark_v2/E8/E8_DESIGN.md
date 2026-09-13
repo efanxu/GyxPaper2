@@ -10,10 +10,10 @@ The external table is native-training-system architecture/end-to-end context. It
 
 - A4 changes only `macro_prompt_pooling`, from attention pooling to equal-weight mean pooling; `macro_prompt_len=4` remains unchanged.
 - A5 changes only `cross_fusion_recent_len`, from 24 to 6; both Reverse Cross directions remain enabled.
-- A6 changes only `cross_fusion_gate_strategy`, from learned `adaptive` gating to a fixed `0.5` gate; both cross-attention paths, residuals, and normalizations remain enabled.
+- A6 changes only `disable_reverse_cross`, from `false` to `true`; Coarse/Macro-to-Fine attention, the learned adaptive gate, residuals, and normalizations remain enabled.
 - A7 inherits the former A8 `w/o MS-MG-DWU` definition: `use_msmg_dwu=false`, `loss_function=masked_score_aligned_hybrid`, and `loss_protocol=fair_main`.
 
-The earlier direction-removal decomposition is obsolete and must not be reported under A5/A6. E8 internal causal evidence remains pending until the redesigned A4–A7 formal runs finish.
+A0 versus A6 is the controlled direction-removal comparison: it isolates the Fine-to-Coarse reverse interaction. A5 answers a different question by retaining both directions and shortening only the reverse context. E8 internal causal evidence remains pending until the redesigned A4–A7 formal runs finish.
 
 ## Real tensor and mechanism contract
 

@@ -178,7 +178,7 @@ A0: REFERENCE_ONLY
 A1-A7: TRAIN
 ```
 
-当前正式集合仅为 A0–A7。A6 为 Fixed-Gate Cross Fusion，仅将 A0 的 `cross_fusion_gate_strategy=adaptive` 改为 `fixed_half`；A7 继承原 A8 的 `w/o MS-MG-DWU` 配置。旧 Prompt A7、旧 A8 编号及 A9 不再是正式入口。
+当前正式集合仅为 A0–A7。A6 为 Single-direction Cross Fusion，仅将 A0 的 `disable_reverse_cross=false` 改为 `true`，保留 Coarse/Macro→Fine attention 与 adaptive gate；A7 继承原 A8 的 `w/o MS-MG-DWU` 配置。旧 Fixed-Gate/Additive A6、旧 Prompt A7、旧 A8 编号及 A9 不再是正式入口。
 
 ### 3.5 中断续跑与 checkpoint 断点续跑
 

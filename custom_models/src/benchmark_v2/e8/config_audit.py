@@ -52,21 +52,33 @@ def audit_internal_config(root=INTERNAL_ROOT) -> dict:
         })
     a5 = read_json(root / "A5" / "effective_config.json")
     a6 = read_json(root / "A6" / "effective_config.json")
+    a0_a6_differences = _diff(a0, a6)
+    direction_valid = (
+        set(a0_a6_differences) == {"disable_reverse_cross"}
+        and _directions(a0) == {"fine_to_coarse": True, "coarse_to_fine": True}
+        and _directions(a6) == {"fine_to_coarse": False, "coarse_to_fine": True}
+    )
     return {
         "schema_version": "e8_internal_config_diff_v2",
         "status": "PASS" if all(row["config_diff_valid"] for row in comparisons) else "FAIL",
         "comparisons": comparisons,
         "direction_decomposition": {
             "A0_directions": _directions(a0), "A5_directions": _directions(a5), "A6_directions": _directions(a6),
+            "A0_A6_differences": a0_a6_differences,
             "A5_A6_non_direction_differences": _diff(a5, a6),
-            "DIRECTION_DECOMPOSITION_VALID": False,
-            "allowed_conclusions": [],
-            "reason": "A5 shortens Reverse Cross context and A6 fixes the complementary gate at 0.5; neither removes a direction.",
+            "DIRECTION_DECOMPOSITION_VALID": direction_valid,
+            "allowed_conclusions": [
+                "A0 versus A6 isolates the contribution of Fine-to-Coarse reverse cross interaction."
+            ] if direction_valid else [],
+            "reason": (
+                "A6 matches A0 except that Fine-to-Coarse reverse cross interaction is disabled; "
+                "A5 instead tests reverse-context length while retaining both directions."
+            ),
         },
         "source_semantics": {
             "A4_change": "macro_prompt_pooling: attention -> mean; macro_prompt_len remains 4",
             "A5_change": "cross_fusion_recent_len: 24 -> 6; both attention directions remain active",
-            "A6_change": "cross_fusion_gate_strategy: adaptive -> fixed_half; both attention directions remain active",
+            "A6_change": "disable_reverse_cross: false -> true; Coarse-to-Fine attention and adaptive gate remain active",
             "A7_change": "use_msmg_dwu: true -> false; loss_function/loss_protocol inherit the former A8 definition",
         },
     }

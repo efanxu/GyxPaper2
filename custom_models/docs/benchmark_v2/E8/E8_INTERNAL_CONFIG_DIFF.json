@@ -61,14 +61,14 @@
     {
       "comparison": "A0_vs_A6",
       "variant_id": "A6",
-      "target_component": "Cross Fusion gate strategy",
+      "target_component": "Fine-to-Coarse reverse interaction",
       "allowed_differences": [
-        "cross_fusion_gate_strategy"
+        "disable_reverse_cross"
       ],
       "actual_differences": {
-        "cross_fusion_gate_strategy": {
-          "A0": "adaptive",
-          "ablation": "fixed_half"
+        "disable_reverse_cross": {
+          "A0": false,
+          "ablation": true
         }
       },
       "unexpected_differences": [],
@@ -135,27 +135,35 @@
       "coarse_to_fine": true
     },
     "A6_directions": {
-      "fine_to_coarse": true,
+      "fine_to_coarse": false,
       "coarse_to_fine": true
     },
+    "A0_A6_differences": {
+      "disable_reverse_cross": {
+        "A0": false,
+        "ablation": true
+      }
+    },
     "A5_A6_non_direction_differences": {
-      "cross_fusion_gate_strategy": {
-        "A0": "adaptive",
-        "ablation": "fixed_half"
-      },
       "cross_fusion_recent_len": {
         "A0": 6,
         "ablation": 24
+      },
+      "disable_reverse_cross": {
+        "A0": false,
+        "ablation": true
       }
     },
-    "DIRECTION_DECOMPOSITION_VALID": false,
-    "allowed_conclusions": [],
-    "reason": "A5 shortens Reverse Cross context and A6 fixes the complementary gate at 0.5; neither removes a direction."
+    "DIRECTION_DECOMPOSITION_VALID": true,
+    "allowed_conclusions": [
+      "A0 versus A6 isolates the contribution of Fine-to-Coarse reverse cross interaction."
+    ],
+    "reason": "A6 matches A0 except that Fine-to-Coarse reverse cross interaction is disabled; A5 instead tests reverse-context length while retaining both directions."
   },
   "source_semantics": {
     "A4_change": "macro_prompt_pooling: attention -> mean; macro_prompt_len remains 4",
     "A5_change": "cross_fusion_recent_len: 24 -> 6; both attention directions remain active",
-    "A6_change": "cross_fusion_gate_strategy: adaptive -> fixed_half; both attention directions remain active",
+    "A6_change": "disable_reverse_cross: false -> true; Coarse-to-Fine attention and adaptive gate remain active",
     "A7_change": "use_msmg_dwu: true -> false; loss_function/loss_protocol inherit the former A8 definition"
   }
 }

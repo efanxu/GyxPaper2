@@ -64,7 +64,6 @@ class STMGPromptCouplingBlock(nn.Module):
                 dropout=config.dropout,
                 recent_len=config.cross_fusion_recent_len,
                 fusion_mode=config.fusion_mode,
-                gate_strategy=config.cross_fusion_gate_strategy,
                 disable_reverse_cross=config.disable_reverse_cross,
                 diagnostics_level=config.diagnostics_level,
             )
@@ -116,7 +115,6 @@ class STMGPromptCouplingBlock(nn.Module):
                 "cross_fusion_uses_spatial_enhanced_features": False,
                 "disable_reverse_cross": bool(self.config.disable_reverse_cross),
                 "fusion_mode": "independent",
-                "cross_fusion_gate_strategy": None,
                 "coarse_to_fine_source": "none",
             }
         else:

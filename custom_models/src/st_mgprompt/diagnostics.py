@@ -703,9 +703,6 @@ def save_coupling_diagnostics(model: torch.nn.Module, loader, output_dir, max_ba
     metadata.update(
         {
             "fusion_mode": getattr(model.config, "fusion_mode", None),
-            "cross_fusion_gate_strategy": getattr(
-                model.config, "cross_fusion_gate_strategy", None
-            ),
             "disable_reverse_cross": bool(getattr(model.config, "disable_reverse_cross", False)),
             "macro_prompt_len": int(getattr(model.config, "macro_prompt_len", 0)),
             "macro_prompt_pooling": getattr(model.config, "macro_prompt_pooling", "attention"),

@@ -168,7 +168,6 @@ class STMGPromptConfig:
     cross_attention_heads: int = 4
     cross_fusion_recent_len: int = 24
     fusion_mode: str = "cross"
-    cross_fusion_gate_strategy: str = "adaptive"
     disable_reverse_cross: bool = False
     use_msmg_dwu: bool = False
     loss_protocol: str = "fair_main"
@@ -436,10 +435,6 @@ class STMGPromptConfig:
             raise ValueError("cross_fusion_recent_len must be positive.")
         if self.fusion_mode not in {"cross", "add", "concat"}:
             raise ValueError("fusion_mode must be cross, add, or concat.")
-        if self.cross_fusion_gate_strategy not in {"adaptive", "fixed_half"}:
-            raise ValueError("cross_fusion_gate_strategy must be adaptive or fixed_half.")
-        if self.cross_fusion_gate_strategy == "fixed_half" and self.fusion_mode != "cross":
-            raise ValueError("fixed_half cross-fusion gate requires fusion_mode=cross.")
         if self.st_prompt_mode not in {"full", "horizon_only"}:
             raise ValueError("st_prompt_mode must be full or horizon_only.")
         if not isinstance(self.st_prompt_use_node_identity, bool):

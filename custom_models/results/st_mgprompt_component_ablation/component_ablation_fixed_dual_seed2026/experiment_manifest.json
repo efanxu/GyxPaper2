@@ -86,16 +86,16 @@
     },
     {
       "variant_id": "A6",
-      "display_name": "Fixed-Gate Cross Fusion",
+      "display_name": "Single-direction Cross Fusion",
       "experiment_family": "component_ablation",
       "trainable": true,
       "canonical_reference": null,
       "base_config": "CANONICAL_FULL",
       "config_overrides": {
-        "cross_fusion_gate_strategy": "fixed_half"
+        "disable_reverse_cross": true
       },
       "expected_unique_diff": [
-        "cross_fusion_gate_strategy"
+        "disable_reverse_cross"
       ]
     },
     {

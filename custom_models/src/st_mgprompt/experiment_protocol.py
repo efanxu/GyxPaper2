@@ -117,9 +117,9 @@ _COMPONENT = (
         ("cross_fusion_recent_len",),
     ),
     ExperimentVariant(
-        "A6", "Fixed-Gate Cross Fusion", "component_ablation", True,
-        None, "CANONICAL_FULL", {"cross_fusion_gate_strategy": "fixed_half"},
-        ("cross_fusion_gate_strategy",),
+        "A6", "Single-direction Cross Fusion", "component_ablation", True,
+        None, "CANONICAL_FULL", {"disable_reverse_cross": True},
+        ("disable_reverse_cross",),
     ),
     ExperimentVariant(
         "A7", "w/o MS-MG-DWU", "component_ablation", True,
@@ -151,8 +151,7 @@ ARCHITECTURE_AND_LOSS_FIELDS = (
     "hidden_dim", "num_coupling_layers", "use_graph_in_temporal_encoder",
     "use_adaptive_graph", "use_trend_prior_graph", "use_macro_prompt",
     "disable_reverse_cross", "use_cross_fusion", "use_st_prompt",
-    "macro_prompt_len", "macro_prompt_pooling", "cross_fusion_recent_len", "fusion_mode",
-    "cross_fusion_gate_strategy", "st_prompt_mode",
+    "macro_prompt_len", "macro_prompt_pooling", "cross_fusion_recent_len", "fusion_mode", "st_prompt_mode",
     "st_prompt_use_node_identity",
     "decoder_input_strategy", "use_msmg_dwu", "loss_function", "loss_protocol",
     "granularity_weight_mode", "site_weight_mode",
@@ -164,7 +163,6 @@ SEMANTIC_CONFIG_DEFAULTS = {
     "st_prompt_mode": "full",
     "macro_prompt_pooling": "attention",
     "st_prompt_use_node_identity": True,
-    "cross_fusion_gate_strategy": "adaptive",
 }
 
 
@@ -219,7 +217,6 @@ def canonical_overrides() -> dict[str, Any]:
         "cross_fusion_recent_len": 24,
         "disable_reverse_cross": False,
         "fusion_mode": "cross",
-        "cross_fusion_gate_strategy": "adaptive",
         "st_prompt_mode": "full",
         "st_prompt_use_node_identity": True,
         "graph_operator": GRAPH_BI_DIFFUSION,
@@ -380,8 +377,7 @@ MATRIX_FIELDS = (
     "vadsp_gate_mode", "graph_operator", "decoder_context_mode", "hidden_dim",
     "num_coupling_layers", "spatial_graph", "adaptive_graph", "diffusion",
     "macro_prompt", "reverse_cross", "cross_fusion", "st_prompt", "loss_name",
-    "macro_prompt_len", "macro_prompt_pooling", "cross_fusion_recent_len", "fusion_mode",
-    "cross_fusion_gate_strategy", "st_prompt_mode",
+    "macro_prompt_len", "macro_prompt_pooling", "cross_fusion_recent_len", "fusion_mode", "st_prompt_mode",
     "st_prompt_use_node_identity",
     "granularity_weight_mode", "site_weight_mode", "seed",
 )
@@ -412,7 +408,6 @@ def matrix_row(variant: ExperimentVariant) -> dict[str, Any]:
         "macro_prompt_pooling": config.macro_prompt_pooling,
         "cross_fusion_recent_len": config.cross_fusion_recent_len,
         "fusion_mode": config.fusion_mode,
-        "cross_fusion_gate_strategy": config.cross_fusion_gate_strategy,
         "st_prompt_mode": config.st_prompt_mode,
         "st_prompt_use_node_identity": config.st_prompt_use_node_identity,
         "loss_name": config.loss_function,

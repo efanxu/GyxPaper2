@@ -42,9 +42,7 @@ def direction_decomposition_rows(evidence: list[dict[str, Any]], config_audit: d
         return []
     by_variant = {row["variant_id"]: row for row in evidence if row.get("variant_id")}
     comparisons = (
-        ("A0_vs_A5", "A0", "A5", "Fine-to-Coarse contribution"),
-        ("A5_vs_A6", "A5", "A6", "Coarse-to-Fine marginal contribution"),
-        ("A0_vs_A6", "A0", "A6", "Bidirectional Cross Fusion total contribution"),
+        ("A0_vs_A6", "A0", "A6", "Fine-to-Coarse reverse interaction contribution"),
     )
     rows = []
     for comparison, reference, ablation, meaning in comparisons:
