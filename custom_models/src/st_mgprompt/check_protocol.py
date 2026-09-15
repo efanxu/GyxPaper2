@@ -298,6 +298,14 @@ def run_protocol_checks(config: STMGPromptConfig, build_data: bool = True) -> di
                     _check(aux.get("uses_stmg_coupling_block") is True, "coupling_block_used"),
                     _check(aux.get("uses_macro_prompt") is bool(config.use_macro_prompt), "macro_prompt_matches_variant"),
                     _check(aux.get("uses_cross_fusion") is bool(config.use_cross_fusion), "cross_fusion_matches_variant"),
+                    _check(
+                        aux.get("disable_reverse_cross") is bool(config.disable_reverse_cross),
+                        "reverse_cross_direction_matches_variant",
+                    ),
+                    _check(
+                        aux.get("disable_macro_to_fine_cross") is bool(config.disable_macro_to_fine_cross),
+                        "macro_to_fine_cross_direction_matches_variant",
+                    ),
                     _check(aux.get("uses_st_prompt") is bool(config.use_st_prompt), "st_prompt_matches_variant"),
                     _check(
                         (not config.use_macro_prompt)

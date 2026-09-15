@@ -65,6 +65,7 @@ class STMGPromptCouplingBlock(nn.Module):
                 recent_len=config.cross_fusion_recent_len,
                 fusion_mode=config.fusion_mode,
                 disable_reverse_cross=config.disable_reverse_cross,
+                disable_macro_to_fine_cross=config.disable_macro_to_fine_cross,
                 diagnostics_level=config.diagnostics_level,
             )
             if self.use_cross_fusion
@@ -114,6 +115,7 @@ class STMGPromptCouplingBlock(nn.Module):
                 "entropy_called": False,
                 "cross_fusion_uses_spatial_enhanced_features": False,
                 "disable_reverse_cross": bool(self.config.disable_reverse_cross),
+                "disable_macro_to_fine_cross": bool(self.config.disable_macro_to_fine_cross),
                 "fusion_mode": "independent",
                 "coarse_to_fine_source": "none",
             }

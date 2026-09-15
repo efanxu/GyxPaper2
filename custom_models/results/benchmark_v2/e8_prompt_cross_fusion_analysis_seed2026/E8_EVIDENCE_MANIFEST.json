@@ -35,8 +35,8 @@
       "resolved_config_identity": null,
       "effective_config_identity": {
         "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A0\\effective_config.json",
-        "size_bytes": 5668,
-        "mtime_ns": 1789290128795852000
+        "size_bytes": 5709,
+        "mtime_ns": 1789464589332578600
       },
       "run_config_identity": {
         "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\active_config.json",
@@ -114,8 +114,8 @@
       "resolved_config_identity": null,
       "effective_config_identity": {
         "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A4\\effective_config.json",
-        "size_bytes": 5663,
-        "mtime_ns": 1789290142887222700
+        "size_bytes": 5704,
+        "mtime_ns": 1789464606420858300
       },
       "run_config_identity": {
         "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A4\\STMGPrompt_ComponentAblation\\active_config.json",
@@ -193,8 +193,8 @@
       "resolved_config_identity": null,
       "effective_config_identity": {
         "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A5\\effective_config.json",
-        "size_bytes": 5667,
-        "mtime_ns": 1789290147455779500
+        "size_bytes": 5708,
+        "mtime_ns": 1789464611658296100
       },
       "run_config_identity": {
         "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A5\\STMGPrompt_ComponentAblation\\active_config.json",
@@ -244,7 +244,7 @@
       "evidence_id": "E8_INTERNAL_A6",
       "evidence_role": "INTERNAL_CAUSAL_ABLATION",
       "model_id": "st_mgprompt",
-      "display_name": "A6 Single-direction Cross Fusion",
+      "display_name": "A6 Fine-to-Coarse Only Cross Fusion",
       "variant_id": "A6",
       "source_type": "formal_component_ablation_artifact",
       "source_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6\\STMGPrompt_ComponentAblation",
@@ -272,8 +272,8 @@
       "resolved_config_identity": null,
       "effective_config_identity": {
         "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6\\effective_config.json",
-        "size_bytes": 5667,
-        "mtime_ns": 1789290151991439600
+        "size_bytes": 5708,
+        "mtime_ns": 1789464616548719600
       },
       "run_config_identity": {
         "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6\\STMGPrompt_ComponentAblation\\active_config.json",
@@ -316,7 +316,7 @@
         "FORMAL_RUN_STATUS_INVALID",
         "INTERNAL_BATCH_PROFILE_MISMATCH:train_batch_size",
         "INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id",
-        "INTERNAL_RUN_CONFIG_MISMATCH:disable_reverse_cross,fusion_mode"
+        "INTERNAL_RUN_CONFIG_MISMATCH:disable_macro_to_fine_cross,fusion_mode"
       ],
       "ready": false
     },
@@ -352,8 +352,8 @@
       "resolved_config_identity": null,
       "effective_config_identity": {
         "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A7\\effective_config.json",
-        "size_bytes": 5681,
-        "mtime_ns": 1789290156589334400
+        "size_bytes": 5722,
+        "mtime_ns": 1789464621259596200
       },
       "run_config_identity": {
         "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A7\\STMGPrompt_ComponentAblation\\active_config.json",

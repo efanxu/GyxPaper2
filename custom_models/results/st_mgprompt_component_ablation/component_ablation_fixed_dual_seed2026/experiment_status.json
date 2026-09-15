@@ -351,7 +351,7 @@
       "config_match": false,
       "config_differences": [
         "fusion_mode",
-        "disable_reverse_cross"
+        "disable_macro_to_fine_cross"
       ],
       "train_log_nonempty": true,
       "last_epoch": 18,
@@ -394,7 +394,7 @@
         "windows_exception_classification": "none"
       },
       "artifact_errors": [
-        "config mismatch: fusion_mode, disable_reverse_cross",
+        "config mismatch: fusion_mode, disable_macro_to_fine_cross",
         "variant/config protocol mismatch"
       ],
       "final_status": "failed_protocol_mismatch",

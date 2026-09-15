@@ -22,6 +22,7 @@ CONFIG_FIELDS = (
     "fusion_mode",
     "use_cross_fusion",
     "disable_reverse_cross",
+    "disable_macro_to_fine_cross",
     "st_prompt_mode",
     "st_prompt_use_node_identity",
     "hidden_dim",
@@ -49,6 +50,7 @@ _CONFIG_DEFAULTS = {
     "st_prompt_mode": "full",
     "macro_prompt_pooling": "attention",
     "st_prompt_use_node_identity": True,
+    "disable_macro_to_fine_cross": False,
 }
 
 _WINDOWS_EXCEPTIONS = {

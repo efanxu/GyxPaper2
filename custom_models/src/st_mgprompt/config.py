@@ -169,6 +169,7 @@ class STMGPromptConfig:
     cross_fusion_recent_len: int = 24
     fusion_mode: str = "cross"
     disable_reverse_cross: bool = False
+    disable_macro_to_fine_cross: bool = False
     use_msmg_dwu: bool = False
     loss_protocol: str = "fair_main"
     msmg_base_loss: str = "smooth_l1"
@@ -435,6 +436,8 @@ class STMGPromptConfig:
             raise ValueError("cross_fusion_recent_len must be positive.")
         if self.fusion_mode not in {"cross", "add", "concat"}:
             raise ValueError("fusion_mode must be cross, add, or concat.")
+        if not isinstance(self.disable_macro_to_fine_cross, bool):
+            raise ValueError("disable_macro_to_fine_cross must be a boolean.")
         if self.st_prompt_mode not in {"full", "horizon_only"}:
             raise ValueError("st_prompt_mode must be full or horizon_only.")
         if not isinstance(self.st_prompt_use_node_identity, bool):

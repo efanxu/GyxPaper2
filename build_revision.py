@@ -373,7 +373,7 @@ add_table(doc, ["编号", "变体", "所检验的机制"], [
     ("A3", "w/o Diffusion", "用 Simple Graph Operator 替代 Bi-Diffusion，检验方向性传播"),
     ("A4", "Mean-Pooling Macro Prompt", "保持 4 个 Macro Prompt token，仅将 attention temporal pooling 改为等权 mean pooling"),
     ("A5", "Short-context Reverse Cross", "保留双向 Cross，将 Fine→Coarse 近期上下文从 24 steps 缩短为 6 steps"),
-    ("A6", "Single-direction Cross Fusion", "保留 Coarse/Macro→Fine cross-attention 与 adaptive gate，仅关闭 Fine→Coarse 反向信息传播"),
+    ("A6", "Fine-to-Coarse Only Cross Fusion", "保留 Fine→Coarse Reverse Cross 与 adaptive gate，仅关闭 Macro/Coarse→Fine 正向信息传播"),
     ("A7", "w/o MS-MG-DWU", "关闭 MS-MG-DWU，使用 masked_score_aligned_hybrid / fair_main 训练"),
 ], [1100, 4660, 3900])
 add_para(doc, "原稿中还记录了 w/o VADSP、Fine-only、Coarse-only、Fixed Dual、Random Gate 和 Shuffled Volatility 等机制诊断。由于最终正式模型采用固定双分支，Dynamic VADSP 不再是 Full 模型的一部分；这些变体应作为额外的分支机制实验，用来回答“动态波动率门控是否真的利用了波动条件信息”，而不能与 A0 的最终定义混写。")

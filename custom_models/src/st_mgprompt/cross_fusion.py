@@ -36,6 +36,7 @@ class SymmetricCrossFusion(nn.Module):
         recent_len: int = 24,
         fusion_mode: str = "cross",
         disable_reverse_cross: bool = False,
+        disable_macro_to_fine_cross: bool = False,
         diagnostics_level: str = "standard",
     ) -> None:
         super().__init__()
@@ -48,6 +49,7 @@ class SymmetricCrossFusion(nn.Module):
         self.recent_len = int(recent_len)
         self.fusion_mode = fusion_mode
         self.disable_reverse_cross = bool(disable_reverse_cross)
+        self.disable_macro_to_fine_cross = bool(disable_macro_to_fine_cross)
         if diagnostics_level not in {"none", "minimal", "standard", "full"}:
             raise ValueError("diagnostics_level must be none, minimal, standard, or full.")
         self.diagnostics_level = diagnostics_level
@@ -105,14 +107,19 @@ class SymmetricCrossFusion(nn.Module):
             else coarse_seq
         )
         need_attention_diagnostics = self.diagnostics_level in {"standard", "full"}
-        out_a_seq, macro_attn = self.macro_to_fine(
-            fine_seq,
-            prompt_seq,
-            prompt_seq,
-            need_weights=need_attention_diagnostics,
-            average_attn_weights=True,
-        )
-        out_a = out_a_seq.reshape(B, N, L, D).permute(0, 2, 1, 3).contiguous()
+        if self.disable_macro_to_fine_cross:
+            out_a = torch.zeros_like(h_fine)
+            macro_attn = None
+            out_a_seq = None
+        else:
+            out_a_seq, macro_attn = self.macro_to_fine(
+                fine_seq,
+                prompt_seq,
+                prompt_seq,
+                need_weights=need_attention_diagnostics,
+                average_attn_weights=True,
+            )
+            out_a = out_a_seq.reshape(B, N, L, D).permute(0, 2, 1, 3).contiguous()
 
         if self.disable_reverse_cross:
             out_b = torch.zeros_like(h_coarse)
@@ -133,32 +140,40 @@ class SymmetricCrossFusion(nn.Module):
         out_b = self.dropout(out_b)
         if self.fusion_mode == "cross":
             gate = self.gate(torch.cat([out_a, out_b, h_fine], dim=-1))
-            new_fine = self.fine_norm(gate * out_a + h_fine)
+            new_fine = self.fine_norm(h_fine if self.disable_macro_to_fine_cross else gate * out_a + h_fine)
             if self.disable_reverse_cross:
                 new_coarse = self.coarse_norm(h_coarse)
             else:
                 new_coarse = self.coarse_norm((1.0 - gate) * out_b + h_coarse)
         elif self.fusion_mode == "add":
             gate = torch.ones_like(h_fine)
-            new_fine = self.fine_norm(h_fine + out_a)
+            new_fine = self.fine_norm(h_fine if self.disable_macro_to_fine_cross else h_fine + out_a)
             new_coarse = self.coarse_norm(h_coarse if self.disable_reverse_cross else h_coarse + out_b)
         else:
             gate = torch.ones_like(h_fine)
-            new_fine = self.fine_norm(self.fine_concat(torch.cat([h_fine, out_a], dim=-1)) + h_fine)
-            coarse_mix = torch.cat([h_coarse, out_b], dim=-1)
-            new_coarse = self.coarse_norm(self.coarse_concat(coarse_mix) + h_coarse)
+            new_fine = self.fine_norm(
+                h_fine
+                if self.disable_macro_to_fine_cross
+                else self.fine_concat(torch.cat([h_fine, out_a], dim=-1)) + h_fine
+            )
+            new_coarse = self.coarse_norm(
+                h_coarse
+                if self.disable_reverse_cross
+                else self.coarse_concat(torch.cat([h_coarse, out_b], dim=-1)) + h_coarse
+            )
 
         macro_attn_entropy = None
         fine_attn_entropy = None
         if need_attention_diagnostics:
-            macro_attn_entropy = float(_attention_entropy(macro_attn).cpu().item())
+            if macro_attn is not None:
+                macro_attn_entropy = float(_attention_entropy(macro_attn).cpu().item())
             if fine_attn is not None:
                 fine_attn_entropy = float(_attention_entropy(fine_attn).cpu().item())
         self.last_attention_diagnostics = {
             "attention_weights_requested": need_attention_diagnostics,
             "entropy_called": need_attention_diagnostics,
-            "macro_attention_output_shape": list(out_a_seq.shape),
-            "macro_attention_output_dtype": str(out_a_seq.dtype),
+            "macro_attention_output_shape": list(out_a_seq.shape) if out_a_seq is not None else None,
+            "macro_attention_output_dtype": str(out_a_seq.dtype) if out_a_seq is not None else None,
             "macro_attention_weights_shape": list(macro_attn.shape) if macro_attn is not None else None,
             "macro_attention_weights_dtype": str(macro_attn.dtype) if macro_attn is not None else None,
             "fine_attention_output_shape": list(out_b_seq.shape) if not self.disable_reverse_cross else None,
@@ -181,7 +196,12 @@ class SymmetricCrossFusion(nn.Module):
             "entropy_called": need_attention_diagnostics,
             "cross_fusion_uses_spatial_enhanced_features": True,
             "disable_reverse_cross": self.disable_reverse_cross,
+            "disable_macro_to_fine_cross": self.disable_macro_to_fine_cross,
             "fusion_mode": self.fusion_mode,
-            "coarse_to_fine_source": "macro_prompt" if macro_prompt is not None else "coarse_history",
+            "coarse_to_fine_source": (
+                "none"
+                if self.disable_macro_to_fine_cross
+                else "macro_prompt" if macro_prompt is not None else "coarse_history"
+            ),
         }
         return new_fine, new_coarse, aux

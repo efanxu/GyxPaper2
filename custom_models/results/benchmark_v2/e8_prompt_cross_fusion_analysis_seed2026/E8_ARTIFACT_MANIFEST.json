@@ -6,7 +6,7 @@
     {
       "relative_path": "E8_ARTIFACT_MANIFEST.json",
       "size_bytes": 1542,
-      "mtime_ns": 1789217756707114000
+      "mtime_ns": 1789290233624070300
     },
     {
       "relative_path": "E8_DIAGNOSTIC_SIDE_EFFECT_AUDIT.json",
@@ -15,33 +15,33 @@
     },
     {
       "relative_path": "E8_EVIDENCE_MANIFEST.json",
-      "size_bytes": 43171,
-      "mtime_ns": 1789290233578573600
+      "size_bytes": 43180,
+      "mtime_ns": 1789464646095572300
     },
     {
       "relative_path": "E8_INTERNAL_CONFIG_DIFF.json",
-      "size_bytes": 7483,
-      "mtime_ns": 1789290233596442400
+      "size_bytes": 7513,
+      "mtime_ns": 1789464646113371800
     },
     {
       "relative_path": "e8_mechanism_capability_matrix.csv",
       "size_bytes": 2869,
-      "mtime_ns": 1789290233611665600
+      "mtime_ns": 1789464646129523600
     },
     {
       "relative_path": "E8_MECHANISM_CAPABILITY_MATRIX.json",
       "size_bytes": 6953,
-      "mtime_ns": 1789290233601752800
+      "mtime_ns": 1789464646117556100
     },
     {
       "relative_path": "E8_PROTOCOL_AUDIT.json",
       "size_bytes": 4741,
-      "mtime_ns": 1789290233591322300
+      "mtime_ns": 1789464646107736200
     },
     {
       "relative_path": "E8_READINESS.json",
-      "size_bytes": 2289,
-      "mtime_ns": 1789290233585883800
+      "size_bytes": 2295,
+      "mtime_ns": 1789464646101076300
     },
     {
       "relative_path": "mechanism_diagnostics/diagnostics_manifest.json",

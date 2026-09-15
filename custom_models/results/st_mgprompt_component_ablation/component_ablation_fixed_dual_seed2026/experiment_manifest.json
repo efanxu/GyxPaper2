@@ -86,16 +86,16 @@
     },
     {
       "variant_id": "A6",
-      "display_name": "Single-direction Cross Fusion",
+      "display_name": "Fine-to-Coarse Only Cross Fusion",
       "experiment_family": "component_ablation",
       "trainable": true,
       "canonical_reference": null,
       "base_config": "CANONICAL_FULL",
       "config_overrides": {
-        "disable_reverse_cross": true
+        "disable_macro_to_fine_cross": true
       },
       "expected_unique_diff": [
-        "disable_reverse_cross"
+        "disable_macro_to_fine_cross"
       ]
     },
     {
@@ -118,13 +118,6 @@
     }
   ],
   "selected_variants": [
-    "A0",
-    "A1",
-    "A2",
-    "A3",
-    "A4",
-    "A5",
-    "A6",
-    "A7"
+    "A6"
   ]
 }

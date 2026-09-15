@@ -38,13 +38,13 @@ INTERNAL_DISPLAY_NAMES = {
     "A0": "ST-MGPrompt A0",
     "A4": "A4 Mean-Pooling Macro Prompt",
     "A5": "A5 Short-context Reverse Cross",
-    "A6": "A6 Single-direction Cross Fusion",
+    "A6": "A6 Fine-to-Coarse Only Cross Fusion",
     "A7": "A7 w/o MS-MG-DWU",
 }
 INTERNAL_TARGETS = {
     "A4": ("Macro Prompt temporal pooling", ("macro_prompt_pooling",)),
     "A5": ("Reverse Cross context length", ("cross_fusion_recent_len",)),
-    "A6": ("Fine-to-Coarse reverse interaction", ("disable_reverse_cross",)),
+    "A6": ("Macro/Coarse-to-Fine cross interaction", ("disable_macro_to_fine_cross",)),
     "A7": ("MS-MG-DWU loss", ("use_msmg_dwu", "loss_function", "loss_protocol")),
 }
 

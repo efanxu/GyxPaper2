@@ -158,6 +158,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--cross-fusion-recent-len", type=int, default=None)
     parser.add_argument("--fusion-mode", choices=["cross", "add", "concat"], default=None)
     parser.add_argument("--disable-reverse-cross", action="store_true")
+    parser.add_argument("--disable-macro-to-fine-cross", action="store_true")
     parser.add_argument("--enable-physical-clip-eval", action="store_true")
     parser.add_argument("--disable-physical-clip-eval", action="store_true")
     parser.add_argument("--physical-power-min-kw", type=float, default=None)
@@ -371,6 +372,8 @@ def build_config(args: argparse.Namespace) -> STMGPromptConfig:
         cfg.use_st_prompt = True
     if args.disable_reverse_cross:
         cfg.disable_reverse_cross = True
+    if args.disable_macro_to_fine_cross:
+        cfg.disable_macro_to_fine_cross = True
     if args.enable_physical_clip_eval:
         cfg.enable_physical_clip_eval = True
     if args.disable_physical_clip_eval:

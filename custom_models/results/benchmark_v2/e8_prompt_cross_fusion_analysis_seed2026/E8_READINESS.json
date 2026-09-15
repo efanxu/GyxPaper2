@@ -45,7 +45,7 @@
         "FORMAL_RUN_STATUS_INVALID",
         "INTERNAL_BATCH_PROFILE_MISMATCH:train_batch_size",
         "INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id",
-        "INTERNAL_RUN_CONFIG_MISMATCH:disable_reverse_cross,fusion_mode"
+        "INTERNAL_RUN_CONFIG_MISMATCH:disable_macro_to_fine_cross,fusion_mode"
       ]
     },
     {

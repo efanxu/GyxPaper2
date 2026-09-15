@@ -272,7 +272,7 @@ custom_models/results/st_mgprompt_precision/precision_ablation_fixed_dual_seed20
 | A3 | w/o Diffusion | Bi-Diffusion -> Simple |
 | A4 | Mean-Pooling Macro Prompt | `macro_prompt_pooling: attention -> mean`，`macro_prompt_len=4` 保持不变 |
 | A5 | Short-context Reverse Cross | `cross_fusion_recent_len: 24 -> 6`，Reverse Cross 保持启用 |
-| A6 | Single-direction Cross Fusion | `disable_reverse_cross: false -> true`，保留 Coarse/Macro→Fine cross-attention 和 adaptive gate |
+| A6 | Fine-to-Coarse Only Cross Fusion | `disable_macro_to_fine_cross: false -> true`，保留 Fine→Coarse Reverse Cross 和 adaptive gate |
 | A7 | w/o MS-MG-DWU | 继承原 A8：关闭 MS-MG-DWU，使用 masked_score_aligned_hybrid / fair_main |
 
 机器可读矩阵：
@@ -529,8 +529,8 @@ RUNBOOK_FIXED_DUAL_REFACTOR.md
 不要复用旧 A0、A2-A10 数值。
 不要把 A3 做成 w/o Trend Prior。
 不要把 A4 做成删除 coarse branch 或把 Macro Prompt 缩成 single token；A4 只比较 attention pooling 与 mean pooling。
-不要把 A5 和 A6 混为同一消融；A5 保留双向 cross-attention 并缩短 reverse context，A6 关闭 Fine→Coarse 方向。
-不要把 A6 做成 Additive、Fixed-Gate 或完全关闭 Cross Fusion；它保留 Coarse/Macro→Fine attention 和 adaptive gate。
+不要把 A5 和 A6 混为同一消融；A5 保留双向 cross-attention 并缩短 reverse context，A6 关闭 Macro/Coarse→Fine 方向。
+不要把 A6 做成 Additive、Fixed-Gate 或完全关闭 Cross Fusion；它保留 Fine→Coarse Reverse Cross 和 adaptive gate。
 不要把 A7 做成 Prompt 消融；当前 A7 仅关闭 MS-MG-DWU，并使用 masked_score_aligned_hybrid / fair_main。
 不要修改数据协议、checkpoint 选择标准、batch 或随机种子。
 不要把 smoke 的 COMPLETED 状态冒充正式训练完成。

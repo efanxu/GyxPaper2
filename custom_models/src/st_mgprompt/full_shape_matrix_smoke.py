@@ -153,6 +153,7 @@ def run(
                 "decoder_context_mode": cfg.decoder_context_mode,
                 "macro_prompt_len": cfg.macro_prompt_len,
                 "macro_prompt_pooling": cfg.macro_prompt_pooling,
+                "disable_macro_to_fine_cross": bool(cfg.disable_macro_to_fine_cross),
                 "st_prompt_mode": cfg.st_prompt_mode,
                 "st_prompt_use_node_identity": bool(cfg.st_prompt_use_node_identity),
                 "loss_name": cfg.loss_function,

@@ -117,9 +117,9 @@ _COMPONENT = (
         ("cross_fusion_recent_len",),
     ),
     ExperimentVariant(
-        "A6", "Single-direction Cross Fusion", "component_ablation", True,
-        None, "CANONICAL_FULL", {"disable_reverse_cross": True},
-        ("disable_reverse_cross",),
+        "A6", "Fine-to-Coarse Only Cross Fusion", "component_ablation", True,
+        None, "CANONICAL_FULL", {"disable_macro_to_fine_cross": True},
+        ("disable_macro_to_fine_cross",),
     ),
     ExperimentVariant(
         "A7", "w/o MS-MG-DWU", "component_ablation", True,
@@ -150,7 +150,7 @@ ARCHITECTURE_AND_LOSS_FIELDS = (
     "vadsp_gate_mode", "use_vadsp", "graph_operator", "decoder_context_mode",
     "hidden_dim", "num_coupling_layers", "use_graph_in_temporal_encoder",
     "use_adaptive_graph", "use_trend_prior_graph", "use_macro_prompt",
-    "disable_reverse_cross", "use_cross_fusion", "use_st_prompt",
+    "disable_reverse_cross", "disable_macro_to_fine_cross", "use_cross_fusion", "use_st_prompt",
     "macro_prompt_len", "macro_prompt_pooling", "cross_fusion_recent_len", "fusion_mode", "st_prompt_mode",
     "st_prompt_use_node_identity",
     "decoder_input_strategy", "use_msmg_dwu", "loss_function", "loss_protocol",
@@ -163,6 +163,7 @@ SEMANTIC_CONFIG_DEFAULTS = {
     "st_prompt_mode": "full",
     "macro_prompt_pooling": "attention",
     "st_prompt_use_node_identity": True,
+    "disable_macro_to_fine_cross": False,
 }
 
 
@@ -216,6 +217,7 @@ def canonical_overrides() -> dict[str, Any]:
         "macro_prompt_pooling": "attention",
         "cross_fusion_recent_len": 24,
         "disable_reverse_cross": False,
+        "disable_macro_to_fine_cross": False,
         "fusion_mode": "cross",
         "st_prompt_mode": "full",
         "st_prompt_use_node_identity": True,
@@ -376,7 +378,7 @@ MATRIX_FIELDS = (
     "variant", "display_name", "experiment_family", "trainable", "canonical_reference",
     "vadsp_gate_mode", "graph_operator", "decoder_context_mode", "hidden_dim",
     "num_coupling_layers", "spatial_graph", "adaptive_graph", "diffusion",
-    "macro_prompt", "reverse_cross", "cross_fusion", "st_prompt", "loss_name",
+    "macro_prompt", "macro_to_fine_cross", "reverse_cross", "cross_fusion", "st_prompt", "loss_name",
     "macro_prompt_len", "macro_prompt_pooling", "cross_fusion_recent_len", "fusion_mode", "st_prompt_mode",
     "st_prompt_use_node_identity",
     "granularity_weight_mode", "site_weight_mode", "seed",
@@ -401,6 +403,7 @@ def matrix_row(variant: ExperimentVariant) -> dict[str, Any]:
         "adaptive_graph": config.use_adaptive_graph,
         "diffusion": graph_operator == GRAPH_BI_DIFFUSION_DISPLAY,
         "macro_prompt": config.use_macro_prompt,
+        "macro_to_fine_cross": config.use_cross_fusion and not config.disable_macro_to_fine_cross,
         "reverse_cross": config.use_cross_fusion and not config.disable_reverse_cross,
         "cross_fusion": config.use_cross_fusion,
         "st_prompt": config.use_st_prompt,

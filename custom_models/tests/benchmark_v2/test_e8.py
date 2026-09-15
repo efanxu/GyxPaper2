@@ -134,13 +134,13 @@ def test_config_diff_and_redesigned_semantics():
     assert [row["allowed_differences"] for row in audit["comparisons"]] == [
         ["macro_prompt_pooling"],
         ["cross_fusion_recent_len"],
-        ["disable_reverse_cross"],
+        ["disable_macro_to_fine_cross"],
         ["use_msmg_dwu", "loss_function", "loss_protocol"],
     ]
     assert audit["direction_decomposition"]["DIRECTION_DECOMPOSITION_VALID"]
     assert audit["direction_decomposition"]["A6_directions"] == {
-        "fine_to_coarse": False,
-        "coarse_to_fine": True,
+        "fine_to_coarse": True,
+        "coarse_to_fine": False,
     }
     assert "adaptive gate remain active" in audit["source_semantics"]["A6_change"]
 
@@ -179,7 +179,9 @@ def test_metric_directions_rank_and_direction_rows():
     directions = direction_decomposition_rows(evidence, audit)
     assert len(directions) == 3
     assert {row["comparison"] for row in directions} == {"A0_vs_A6"}
-    assert {row["meaning"] for row in directions} == {"Fine-to-Coarse reverse interaction contribution"}
+    assert {row["meaning"] for row in directions} == {
+        "Macro/Coarse-to-Fine cross interaction contribution"
+    }
     external = external_context_rows(evidence)
     assert all("Score_rank" in row and "R2_rank" in row for row in external)
 
