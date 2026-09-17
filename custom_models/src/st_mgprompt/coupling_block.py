@@ -63,9 +63,12 @@ class STMGPromptCouplingBlock(nn.Module):
                 num_heads=config.cross_attention_heads,
                 dropout=config.dropout,
                 recent_len=config.cross_fusion_recent_len,
+                macro_to_fine_exclude_recent_len=config.macro_to_fine_exclude_recent_len,
                 fusion_mode=config.fusion_mode,
                 disable_reverse_cross=config.disable_reverse_cross,
                 disable_macro_to_fine_cross=config.disable_macro_to_fine_cross,
+                macro_to_fine_mode=config.macro_to_fine_mode,
+                share_cross_attention_projections=config.share_cross_attention_projections,
                 diagnostics_level=config.diagnostics_level,
             )
             if self.use_cross_fusion
@@ -116,6 +119,11 @@ class STMGPromptCouplingBlock(nn.Module):
                 "cross_fusion_uses_spatial_enhanced_features": False,
                 "disable_reverse_cross": bool(self.config.disable_reverse_cross),
                 "disable_macro_to_fine_cross": bool(self.config.disable_macro_to_fine_cross),
+                "macro_to_fine_mode": self.config.macro_to_fine_mode,
+                "macro_to_fine_exclude_recent_len": self.config.macro_to_fine_exclude_recent_len,
+                "share_cross_attention_projections": bool(
+                    self.config.share_cross_attention_projections
+                ),
                 "fusion_mode": "independent",
                 "coarse_to_fine_source": "none",
             }

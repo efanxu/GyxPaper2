@@ -34,7 +34,9 @@ FORBIDDEN_INPUT_COLS = {
 }
 FORBIDDEN_INPUT_SUBSTRINGS = ("anomaly", "audit", "mask", "imputation", "imputed")
 
-COMPONENT_ABLATION_IDS = tuple(f"A{i}" for i in range(8))
+FORMAL_COMPONENT_ABLATION_IDS = tuple(f"A{i}" for i in range(8))
+CROSS_FUSION_CANDIDATE_IDS = ("A6-C1", "A6-C2", "A6-C3")
+COMPONENT_ABLATION_IDS = (*FORMAL_COMPONENT_ABLATION_IDS, *CROSS_FUSION_CANDIDATE_IDS)
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
@@ -167,9 +169,12 @@ class STMGPromptConfig:
     macro_prompt_pooling: str = "attention"
     cross_attention_heads: int = 4
     cross_fusion_recent_len: int = 24
+    macro_to_fine_exclude_recent_len: int = 0
     fusion_mode: str = "cross"
     disable_reverse_cross: bool = False
     disable_macro_to_fine_cross: bool = False
+    macro_to_fine_mode: str = "query_attention"
+    share_cross_attention_projections: bool = False
     use_msmg_dwu: bool = False
     loss_protocol: str = "fair_main"
     msmg_base_loss: str = "smooth_l1"
@@ -434,10 +439,16 @@ class STMGPromptConfig:
             raise ValueError("cross_attention_heads must be positive.")
         if self.cross_fusion_recent_len <= 0:
             raise ValueError("cross_fusion_recent_len must be positive.")
+        if self.macro_to_fine_exclude_recent_len < 0:
+            raise ValueError("macro_to_fine_exclude_recent_len cannot be negative.")
         if self.fusion_mode not in {"cross", "add", "concat"}:
             raise ValueError("fusion_mode must be cross, add, or concat.")
         if not isinstance(self.disable_macro_to_fine_cross, bool):
             raise ValueError("disable_macro_to_fine_cross must be a boolean.")
+        if self.macro_to_fine_mode not in {"query_attention", "static_mean"}:
+            raise ValueError("macro_to_fine_mode must be query_attention or static_mean.")
+        if not isinstance(self.share_cross_attention_projections, bool):
+            raise ValueError("share_cross_attention_projections must be a boolean.")
         if self.st_prompt_mode not in {"full", "horizon_only"}:
             raise ValueError("st_prompt_mode must be full or horizon_only.")
         if not isinstance(self.st_prompt_use_node_identity, bool):
@@ -499,7 +510,7 @@ def is_forbidden_input_col(col: str) -> bool:
 
 
 def apply_component_ablation(config: STMGPromptConfig, variant: str) -> STMGPromptConfig:
-    """Apply the canonical Fixed-Dual A0-A7 component protocol from one source."""
+    """Apply a formal A0-A7 or opt-in Cross-Fusion candidate protocol."""
     from .experiment_protocol import apply_variant
 
     resolved = apply_variant(config, variant, family="component_ablation")

@@ -306,6 +306,20 @@ def run_protocol_checks(config: STMGPromptConfig, build_data: bool = True) -> di
                         aux.get("disable_macro_to_fine_cross") is bool(config.disable_macro_to_fine_cross),
                         "macro_to_fine_cross_direction_matches_variant",
                     ),
+                    _check(
+                        aux.get("macro_to_fine_mode") == config.macro_to_fine_mode,
+                        "macro_to_fine_mode_matches_variant",
+                    ),
+                    _check(
+                        aux.get("macro_to_fine_exclude_recent_len")
+                        == config.macro_to_fine_exclude_recent_len,
+                        "macro_to_fine_query_coverage_matches_variant",
+                    ),
+                    _check(
+                        aux.get("share_cross_attention_projections")
+                        is bool(config.share_cross_attention_projections),
+                        "cross_attention_projection_sharing_matches_variant",
+                    ),
                     _check(aux.get("uses_st_prompt") is bool(config.use_st_prompt), "st_prompt_matches_variant"),
                     _check(
                         (not config.use_macro_prompt)

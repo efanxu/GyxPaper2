@@ -445,6 +445,9 @@ class STMGPrompt_FairFull(nn.Module):
             "cross_fusion_uses_spatial_enhanced_features": bool(config.use_cross_fusion),
             "disable_reverse_cross": bool(config.disable_reverse_cross),
             "disable_macro_to_fine_cross": bool(config.disable_macro_to_fine_cross),
+            "macro_to_fine_exclude_recent_len": config.macro_to_fine_exclude_recent_len,
+            "macro_to_fine_mode": config.macro_to_fine_mode,
+            "share_cross_attention_projections": bool(config.share_cross_attention_projections),
             "serial_graph_then_fusion": False,
             "st_prompt_direct_decoder_enabled": bool(config.use_st_prompt),
             "st_prompt_use_node_identity": bool(config.st_prompt_use_node_identity),
@@ -608,6 +611,11 @@ class STMGPrompt_FairFull(nn.Module):
                 "cross_fusion_uses_spatial_enhanced_features": bool(self.config.use_cross_fusion),
                 "disable_reverse_cross": bool(self.config.disable_reverse_cross),
                 "disable_macro_to_fine_cross": bool(self.config.disable_macro_to_fine_cross),
+                "macro_to_fine_exclude_recent_len": self.config.macro_to_fine_exclude_recent_len,
+                "macro_to_fine_mode": self.config.macro_to_fine_mode,
+                "share_cross_attention_projections": bool(
+                    self.config.share_cross_attention_projections
+                ),
                 "macro_prompt_from_spatial_enhanced_coarse": bool(self.config.use_macro_prompt),
                 "coupling_metadata": self.coupling_metadata,
                 "decoder_metadata": self.direct_decoder.metadata,

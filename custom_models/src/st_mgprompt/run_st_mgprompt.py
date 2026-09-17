@@ -65,8 +65,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--enable-faulthandler", action="store_true")
     parser.add_argument("--model-name", "--model", dest="model_name", default=None)
     parser.add_argument("--run-id", default=None)
-    parser.add_argument("--component-ablation", default=None, help="Formal component variant A0-A7.")
-    parser.add_argument("--experiment-variant", default=None, help="Formal variant P0-P5 or A0-A7.")
+    parser.add_argument(
+        "--component-ablation",
+        default=None,
+        help="Formal component variant A0-A7 or opt-in A6-C1/A6-C2/A6-C3 candidate.",
+    )
+    parser.add_argument(
+        "--experiment-variant",
+        default=None,
+        help="Formal variant P0-P5/A0-A7 or opt-in A6-C1/A6-C2/A6-C3 candidate.",
+    )
     parser.add_argument("--checkpoint", default=None)
     parser.add_argument("--model-input-path", default=None)
     parser.add_argument("--eval-target-path", default=None)

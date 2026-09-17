@@ -15,8 +15,11 @@ from .artifact_status import inspect_variant_artifacts, is_completed_status
 from .experiment_protocol import (
     CANONICAL_ID,
     COMPONENT_ABLATION_VARIANTS,
+    COMPONENT_RUNNABLE_VARIANTS,
     COMPONENT_RESULT_ROOT,
     COMPONENT_RUN_ID,
+    CROSS_FUSION_CANDIDATE_VARIANTS,
+    CROSS_FUSION_COMPARISON_IDS,
     PRECISION_RESULT_ROOT,
     PRECISION_RUN_ID,
     PRECISION_VARIANTS,
@@ -72,7 +75,11 @@ def _validate_python_override(value: str) -> None:
 
 
 def parser_for(family: str) -> argparse.ArgumentParser:
-    label = "P0-P5 precision" if family == "precision" else "A0-A7 component"
+    label = (
+        "P0-P5 precision"
+        if family == "precision"
+        else "A0-A7 component plus opt-in A6-C1/A6-C2/A6-C3 candidates"
+    )
     parser = argparse.ArgumentParser(description=f"Run formal Fixed-Dual {label} experiments.")
     parser.add_argument("--variants", nargs="+", default=None)
     parser.add_argument("--run-id", default=None)
@@ -143,7 +150,48 @@ def _effective_artifacts(root: Path, variant) -> tuple[dict[str, Any], dict[str,
     variant_dir = root / variant.variant_id
     write_json(variant_dir / "effective_config.json", effective)
     write_json(variant_dir / "effective_config_diff.json", diff)
+    if variant.variant_id in CROSS_FUSION_CANDIDATE_VARIANTS:
+        write_json(
+            variant_dir / "candidate_manifest.json",
+            {
+                "experiment_family": "cross_fusion_candidate",
+                "variant": variant.to_dict(),
+                "base_variant": "A0",
+                "official_a6_unchanged": True,
+                "result_directory": str(variant_dir.resolve()),
+                "effective_config": str((variant_dir / "effective_config.json").resolve()),
+                "effective_config_diff": str(
+                    (variant_dir / "effective_config_diff.json").resolve()
+                ),
+            },
+        )
     return effective, diff
+
+
+def _expected_run_config(
+    args: argparse.Namespace,
+    root: Path,
+    variant,
+) -> STMGPromptConfig:
+    """Build the config identity expected from the child execution mode."""
+
+    config = apply_variant(STMGPromptConfig(), variant.variant_id, variant.experiment_family)
+    if args.run_smoke:
+        config.smoke = True
+        config.smoke_use_synthetic = True
+        config.lookback = min(config.lookback, 12)
+        config.batch_size = min(config.batch_size, 4)
+        config.eval_batch_size = min(config.eval_batch_size, 4)
+        config.hidden_dim = min(config.hidden_dim, 16)
+        config.epochs = 1
+        config.patience = 1
+        config.train_sample_stride = 2
+        config.val_sample_stride = 1
+        config.test_sample_stride = 1
+        config.smoke_num_time_steps = max(config.smoke_num_time_steps, 240)
+    config.output_root = str(root.parent.resolve())
+    config.run_id = f"{root.name}/{variant.variant_id}"
+    return config
 
 
 def _command(
@@ -396,10 +444,10 @@ def _summary_rows(root: Path, variants) -> list[dict[str, Any]]:
     return rows
 
 
-def write_summary(root: Path, variants) -> None:
+def write_summary(root: Path, variants, stem: str = "metrics_summary") -> None:
     rows = _summary_rows(root, variants)
-    write_json(root / "metrics_summary.json", rows)
-    path = root / "metrics_summary.csv"
+    write_json(root / f"{stem}.json", rows)
+    path = root / f"{stem}.csv"
     if not rows:
         path.write_text("", encoding="utf-8-sig")
         return
@@ -420,6 +468,7 @@ def run_family(family: str, argv: list[str] | None = None) -> dict[str, Any]:
     if sum(bool(value) for value in (args.run_full, args.run_smoke, args.full_shape_smoke, args.dry_run)) > 1:
         raise ValueError("Choose only one of --run-full, --run-smoke, --full-shape-smoke, or --dry-run.")
     mapping, _, _, _ = _family_data(family)
+    runnable_mapping = COMPONENT_RUNNABLE_VARIANTS if family == "component_ablation" else mapping
     variants = selected_variants(family, args.variants)
     all_variants = list(mapping.values())
     selected_ids = {item.variant_id for item in variants}
@@ -434,22 +483,44 @@ def run_family(family: str, argv: list[str] | None = None) -> dict[str, Any]:
         "variants": [item.to_dict() for item in all_variants],
         "selected_variants": [item.variant_id for item in variants],
     }
+    if family == "component_ablation":
+        manifest["candidate_variants"] = [
+            item.to_dict() for item in CROSS_FUSION_CANDIDATE_VARIANTS.values()
+        ]
+        candidate_comparison = [
+            COMPONENT_RUNNABLE_VARIANTS[name] for name in CROSS_FUSION_COMPARISON_IDS
+        ]
+        write_variant_matrix(root / "cross_fusion_candidate_config_matrix.csv", candidate_comparison)
+        write_json(
+            root / "cross_fusion_candidate_manifest.json",
+            {
+                "canonical_id": CANONICAL_ID,
+                "experiment_family": "cross_fusion_candidate",
+                "official_component_ids_unchanged": list(COMPONENT_ABLATION_VARIANTS),
+                "comparison_variants": [item.to_dict() for item in candidate_comparison],
+                "selected_candidates": [
+                    item.variant_id
+                    for item in variants
+                    if item.variant_id in CROSS_FUSION_CANDIDATE_VARIANTS
+                ],
+            },
+        )
     write_json(root / "experiment_manifest.json", manifest)
     statuses_by_variant = _load_statuses(root)
-    statuses_by_variant = {name: value for name, value in statuses_by_variant.items() if name in mapping}
+    statuses_by_variant = {
+        name: value for name, value in statuses_by_variant.items() if name in runnable_mapping
+    }
     for name in selected_ids:
         statuses_by_variant.pop(name, None)
 
     def record_status(value: dict[str, Any]) -> list[dict[str, Any]]:
         statuses_by_variant[value["variant"]] = value
-        return _ordered_statuses(mapping, statuses_by_variant)
+        return _ordered_statuses(runnable_mapping, statuses_by_variant)
 
     execute = args.run_full or args.run_smoke or args.full_shape_smoke
     for variant in variants:
         effective_dict, _ = _effective_artifacts(root, variant)
-        expected_config = apply_variant(STMGPromptConfig(), variant.variant_id, variant.experiment_family)
-        expected_config.output_root = str(root.parent.resolve())
-        expected_config.run_id = f"{root.name}/{variant.variant_id}"
+        expected_config = _expected_run_config(args, root, variant)
         variant_dir = _variant_run_dir(root, variant, expected_config)
         if not variant.trainable:
             print(f"{variant.variant_id}: REFERENCE_ONLY", flush=True)
@@ -568,10 +639,16 @@ def run_family(family: str, argv: list[str] | None = None) -> dict[str, Any]:
         _write_precision_status_files(root, manifest, statuses)
         if returncode and not is_completed_status(final_audit["final_status"]) and not args.continue_on_error:
             break
-    statuses = _ordered_statuses(mapping, statuses_by_variant)
+    statuses = _ordered_statuses(runnable_mapping, statuses_by_variant)
     write_json(root / "experiment_status.json", statuses)
     _write_precision_status_files(root, manifest, statuses)
     write_summary(root, all_variants)
+    if family == "component_ablation":
+        write_summary(
+            root,
+            [COMPONENT_RUNNABLE_VARIANTS[name] for name in CROSS_FUSION_COMPARISON_IDS],
+            stem="cross_fusion_candidate_metrics_summary",
+        )
     failed = [
         item["variant"]
         for item in statuses

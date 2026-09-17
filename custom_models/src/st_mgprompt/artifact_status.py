@@ -19,10 +19,13 @@ CONFIG_FIELDS = (
     "macro_prompt_len",
     "macro_prompt_pooling",
     "cross_fusion_recent_len",
+    "macro_to_fine_exclude_recent_len",
     "fusion_mode",
     "use_cross_fusion",
     "disable_reverse_cross",
     "disable_macro_to_fine_cross",
+    "macro_to_fine_mode",
+    "share_cross_attention_projections",
     "st_prompt_mode",
     "st_prompt_use_node_identity",
     "hidden_dim",
@@ -51,6 +54,9 @@ _CONFIG_DEFAULTS = {
     "macro_prompt_pooling": "attention",
     "st_prompt_use_node_identity": True,
     "disable_macro_to_fine_cross": False,
+    "macro_to_fine_mode": "query_attention",
+    "share_cross_attention_projections": False,
+    "macro_to_fine_exclude_recent_len": 0,
 }
 
 _WINDOWS_EXCEPTIONS = {

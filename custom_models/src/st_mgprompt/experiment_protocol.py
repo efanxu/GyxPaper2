@@ -128,9 +128,33 @@ _COMPONENT = (
     ),
 )
 
+_CROSS_FUSION_CANDIDATES = (
+    ExperimentVariant(
+        "A6-C1", "Early-History Macro Cross Fusion", "component_ablation", True,
+        None, "CANONICAL_FULL", {"macro_to_fine_exclude_recent_len": 24},
+        ("macro_to_fine_exclude_recent_len",),
+    ),
+    ExperimentVariant(
+        "A6-C2", "Static Macro Injection Cross Fusion", "component_ablation", True,
+        None, "CANONICAL_FULL", {"macro_to_fine_mode": "static_mean"},
+        ("macro_to_fine_mode",),
+    ),
+    ExperimentVariant(
+        "A6-C3", "Shared-Projection Cross Fusion", "component_ablation", True,
+        None, "CANONICAL_FULL", {"share_cross_attention_projections": True},
+        ("share_cross_attention_projections",),
+    ),
+)
+
 PRECISION_VARIANTS = {item.variant_id: item for item in _PRECISION}
 COMPONENT_ABLATION_VARIANTS = {item.variant_id: item for item in _COMPONENT}
-ALL_VARIANTS = {**PRECISION_VARIANTS, **COMPONENT_ABLATION_VARIANTS}
+CROSS_FUSION_CANDIDATE_VARIANTS = {item.variant_id: item for item in _CROSS_FUSION_CANDIDATES}
+COMPONENT_RUNNABLE_VARIANTS = {
+    **COMPONENT_ABLATION_VARIANTS,
+    **CROSS_FUSION_CANDIDATE_VARIANTS,
+}
+CROSS_FUSION_COMPARISON_IDS = ("A0", "A6", "A6-C1", "A6-C2", "A6-C3")
+ALL_VARIANTS = {**PRECISION_VARIANTS, **COMPONENT_RUNNABLE_VARIANTS}
 
 OBSOLETE_COMPONENT_VARIANTS = {"A8", "A9", "A10"}
 OBSOLETE_COMPONENT_NAMES = {"w/o VADSP", "w/o Trend Prior"}
@@ -151,7 +175,9 @@ ARCHITECTURE_AND_LOSS_FIELDS = (
     "hidden_dim", "num_coupling_layers", "use_graph_in_temporal_encoder",
     "use_adaptive_graph", "use_trend_prior_graph", "use_macro_prompt",
     "disable_reverse_cross", "disable_macro_to_fine_cross", "use_cross_fusion", "use_st_prompt",
-    "macro_prompt_len", "macro_prompt_pooling", "cross_fusion_recent_len", "fusion_mode", "st_prompt_mode",
+    "macro_to_fine_mode", "share_cross_attention_projections",
+    "macro_prompt_len", "macro_prompt_pooling", "cross_fusion_recent_len",
+    "macro_to_fine_exclude_recent_len", "fusion_mode", "st_prompt_mode",
     "st_prompt_use_node_identity",
     "decoder_input_strategy", "use_msmg_dwu", "loss_function", "loss_protocol",
     "granularity_weight_mode", "site_weight_mode",
@@ -164,6 +190,9 @@ SEMANTIC_CONFIG_DEFAULTS = {
     "macro_prompt_pooling": "attention",
     "st_prompt_use_node_identity": True,
     "disable_macro_to_fine_cross": False,
+    "macro_to_fine_mode": "query_attention",
+    "share_cross_attention_projections": False,
+    "macro_to_fine_exclude_recent_len": 0,
 }
 
 
@@ -216,8 +245,11 @@ def canonical_overrides() -> dict[str, Any]:
         "macro_prompt_len": 4,
         "macro_prompt_pooling": "attention",
         "cross_fusion_recent_len": 24,
+        "macro_to_fine_exclude_recent_len": 0,
         "disable_reverse_cross": False,
         "disable_macro_to_fine_cross": False,
+        "macro_to_fine_mode": "query_attention",
+        "share_cross_attention_projections": False,
         "fusion_mode": "cross",
         "st_prompt_mode": "full",
         "st_prompt_use_node_identity": True,
@@ -249,8 +281,10 @@ def get_variant(variant_id: str, family: str | None = None) -> ExperimentVariant
     variant_id = str(variant_id).upper()
     if family == "component_ablation":
         if variant_id in OBSOLETE_COMPONENT_VARIANTS:
-            raise ValueError("Obsolete component-ablation variant. Valid variants are A0-A7.")
-        mapping = COMPONENT_ABLATION_VARIANTS
+            raise ValueError(
+                "Obsolete component-ablation variant. Valid variants are A0-A7 and A6-C1/A6-C2/A6-C3."
+            )
+        mapping = COMPONENT_RUNNABLE_VARIANTS
     elif family == "precision":
         mapping = PRECISION_VARIANTS
     else:
@@ -379,7 +413,9 @@ MATRIX_FIELDS = (
     "vadsp_gate_mode", "graph_operator", "decoder_context_mode", "hidden_dim",
     "num_coupling_layers", "spatial_graph", "adaptive_graph", "diffusion",
     "macro_prompt", "macro_to_fine_cross", "reverse_cross", "cross_fusion", "st_prompt", "loss_name",
-    "macro_prompt_len", "macro_prompt_pooling", "cross_fusion_recent_len", "fusion_mode", "st_prompt_mode",
+    "macro_prompt_len", "macro_prompt_pooling", "cross_fusion_recent_len",
+    "macro_to_fine_exclude_recent_len", "fusion_mode", "st_prompt_mode",
+    "macro_to_fine_mode", "share_cross_attention_projections",
     "st_prompt_use_node_identity",
     "granularity_weight_mode", "site_weight_mode", "seed",
 )
@@ -410,7 +446,10 @@ def matrix_row(variant: ExperimentVariant) -> dict[str, Any]:
         "macro_prompt_len": config.macro_prompt_len,
         "macro_prompt_pooling": config.macro_prompt_pooling,
         "cross_fusion_recent_len": config.cross_fusion_recent_len,
+        "macro_to_fine_exclude_recent_len": config.macro_to_fine_exclude_recent_len,
         "fusion_mode": config.fusion_mode,
+        "macro_to_fine_mode": config.macro_to_fine_mode,
+        "share_cross_attention_projections": config.share_cross_attention_projections,
         "st_prompt_mode": config.st_prompt_mode,
         "st_prompt_use_node_identity": config.st_prompt_use_node_identity,
         "loss_name": config.loss_function,

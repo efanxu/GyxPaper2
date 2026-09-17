@@ -34,9 +34,12 @@ class SymmetricCrossFusion(nn.Module):
         num_heads: int = 4,
         dropout: float = 0.0,
         recent_len: int = 24,
+        macro_to_fine_exclude_recent_len: int = 0,
         fusion_mode: str = "cross",
         disable_reverse_cross: bool = False,
         disable_macro_to_fine_cross: bool = False,
+        macro_to_fine_mode: str = "query_attention",
+        share_cross_attention_projections: bool = False,
         diagnostics_level: str = "standard",
     ) -> None:
         super().__init__()
@@ -44,12 +47,19 @@ class SymmetricCrossFusion(nn.Module):
             raise ValueError("fusion_mode must be cross, add, or concat.")
         if recent_len <= 0:
             raise ValueError("recent_len must be positive.")
+        if macro_to_fine_exclude_recent_len < 0:
+            raise ValueError("macro_to_fine_exclude_recent_len cannot be negative.")
         heads = _valid_num_heads(int(hidden_dim), int(num_heads))
         self.hidden_dim = int(hidden_dim)
         self.recent_len = int(recent_len)
+        self.macro_to_fine_exclude_recent_len = int(macro_to_fine_exclude_recent_len)
         self.fusion_mode = fusion_mode
         self.disable_reverse_cross = bool(disable_reverse_cross)
         self.disable_macro_to_fine_cross = bool(disable_macro_to_fine_cross)
+        if macro_to_fine_mode not in {"query_attention", "static_mean"}:
+            raise ValueError("macro_to_fine_mode must be query_attention or static_mean.")
+        self.macro_to_fine_mode = macro_to_fine_mode
+        self.share_cross_attention_projections = bool(share_cross_attention_projections)
         if diagnostics_level not in {"none", "minimal", "standard", "full"}:
             raise ValueError("diagnostics_level must be none, minimal, standard, or full.")
         self.diagnostics_level = diagnostics_level
@@ -60,11 +70,15 @@ class SymmetricCrossFusion(nn.Module):
             dropout=dropout,
             batch_first=True,
         )
-        self.fine_to_coarse = nn.MultiheadAttention(
-            embed_dim=self.hidden_dim,
-            num_heads=heads,
-            dropout=dropout,
-            batch_first=True,
+        self.fine_to_coarse = (
+            self.macro_to_fine
+            if self.share_cross_attention_projections
+            else nn.MultiheadAttention(
+                embed_dim=self.hidden_dim,
+                num_heads=heads,
+                dropout=dropout,
+                batch_first=True,
+            )
         )
         self.gate = nn.Sequential(
             nn.Linear(self.hidden_dim * 3, self.hidden_dim),
@@ -111,15 +125,33 @@ class SymmetricCrossFusion(nn.Module):
             out_a = torch.zeros_like(h_fine)
             macro_attn = None
             out_a_seq = None
-        else:
-            out_a_seq, macro_attn = self.macro_to_fine(
-                fine_seq,
-                prompt_seq,
-                prompt_seq,
-                need_weights=need_attention_diagnostics,
-                average_attn_weights=True,
-            )
+        elif self.macro_to_fine_mode == "static_mean":
+            static_summary = prompt_seq.mean(dim=1)
+            out_a_seq = static_summary.unsqueeze(1).expand(B * N, L, D)
             out_a = out_a_seq.reshape(B, N, L, D).permute(0, 2, 1, 3).contiguous()
+            macro_attn = None
+        else:
+            excluded_recent = min(self.macro_to_fine_exclude_recent_len, L)
+            query_count = L - excluded_recent
+            if query_count == 0:
+                out_a = torch.zeros_like(h_fine)
+                out_a_seq = None
+                macro_attn = None
+            else:
+                macro_query_seq = fine_seq[:, :query_count, :]
+                out_a_seq, macro_attn = self.macro_to_fine(
+                    macro_query_seq,
+                    prompt_seq,
+                    prompt_seq,
+                    need_weights=need_attention_diagnostics,
+                    average_attn_weights=True,
+                )
+                early_out_a = out_a_seq.reshape(B, N, query_count, D).permute(0, 2, 1, 3)
+                if query_count == L:
+                    out_a = early_out_a.contiguous()
+                else:
+                    out_a = torch.zeros_like(h_fine)
+                    out_a[:, :query_count, :, :] = early_out_a
 
         if self.disable_reverse_cross:
             out_b = torch.zeros_like(h_coarse)
@@ -197,10 +229,29 @@ class SymmetricCrossFusion(nn.Module):
             "cross_fusion_uses_spatial_enhanced_features": True,
             "disable_reverse_cross": self.disable_reverse_cross,
             "disable_macro_to_fine_cross": self.disable_macro_to_fine_cross,
+            "macro_to_fine_mode": self.macro_to_fine_mode,
+            "macro_to_fine_exclude_recent_len": self.macro_to_fine_exclude_recent_len,
+            "macro_to_fine_query_count": (
+                0
+                if self.disable_macro_to_fine_cross
+                else L
+                if self.macro_to_fine_mode == "static_mean"
+                else L - min(self.macro_to_fine_exclude_recent_len, L)
+            ),
+            "macro_to_fine_excluded_recent_count": (
+                0
+                if self.disable_macro_to_fine_cross or self.macro_to_fine_mode == "static_mean"
+                else min(self.macro_to_fine_exclude_recent_len, L)
+            ),
+            "share_cross_attention_projections": self.share_cross_attention_projections,
             "fusion_mode": self.fusion_mode,
             "coarse_to_fine_source": (
                 "none"
                 if self.disable_macro_to_fine_cross
+                else "macro_prompt_static_mean"
+                if self.macro_to_fine_mode == "static_mean" and macro_prompt is not None
+                else "coarse_history_static_mean"
+                if self.macro_to_fine_mode == "static_mean"
                 else "macro_prompt" if macro_prompt is not None else "coarse_history"
             ),
         }
