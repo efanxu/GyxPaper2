@@ -178,7 +178,7 @@ A0: REFERENCE_ONLY
 A1-A7: TRAIN
 ```
 
-当前正式集合仅为 A0–A7。A6 为 Fine-to-Coarse Only Cross Fusion，仅将 A0 的 `disable_macro_to_fine_cross=false` 改为 `true`，保留 Fine→Coarse Reverse Cross 与 adaptive gate；A7 继承原 A8 的 `w/o MS-MG-DWU` 配置。旧 A6 语义、旧 Prompt A7、旧 A8 编号及 A9 不再是正式入口。
+当前正式集合为 A0–A8。A6 为 Early-History Macro Cross Fusion（原 A6-C1），A7 为 Shared-Projection Cross Fusion（原 A6-C3），A8 为原 A7 的 `w/o MS-MG-DWU` 损失消融；A6-C2 已移除。
 
 ### 3.5 中断续跑与 checkpoint 断点续跑
 
@@ -197,7 +197,7 @@ train_log.csv        # 已完成 epoch 的训练日志
 1. 保持原来的 `output-root`、`run-id` 和 `--variants` 不变；`--resume` 不能用来创建新的 run-id。
 2. 只对当前正式定义且配置匹配的 checkpoint 使用 `--resume`。配置审计或严格 checkpoint 校验发现不匹配时，续跑会被拒绝，不得把旧语义结果当作新实验继续使用。
 3. 当前正式 A4/A7 若目录中仍是旧版 Single-token Macro Prompt 或 Horizon-only Prompt 产物，必须先用下一节的 fresh Full 命令重建；重建出当前定义的 checkpoint 后，后续中断才使用 `--resume`。
-4. 不要对 P0/A0 启动训练。Formal A7 Batch4 也不允许加载历史 checkpoint，继续使用 fresh Full 协议。
+4. 不要对 P0/A0 启动训练。Formal A8 Batch4 也不允许加载历史 checkpoint，继续使用 fresh Full 协议。
 
 因此，续跑时是在原命令末尾增加：
 
@@ -303,7 +303,7 @@ python -m st_mgprompt.run_ablation --variants A6 --run-full --resume
 python -m st_mgprompt.run_ablation --variants A7 --run-full --resume
 ```
 
-不要把 `--resume` 与新的 `--run-id` 或新的 `--output-root` 组合使用。旧语义 A6/A7 必须按 Windows 部分的 fresh 命令重建；Formal A7 Batch4 不使用 `--resume`。
+不要把 `--resume` 与新的 `--run-id` 或新的 `--output-root` 组合使用。A6/A7 必须按 Windows 部分的 fresh 命令重建；Formal A8 Batch4 不使用 `--resume`。
 
 ### 5.3 无论成功或失败都自动关机
 
@@ -384,7 +384,7 @@ cat "$PROJECT_ROOT/custom_models/logs/component_fixed_dual.exit_code"
 14. 训练 A5
 15. 训练 A6
 16. 训练 A7
-17. 汇总 A0-A7
+17. 汇总 A0-A8
 ```
 
 不要重新训练 Canonical Full、P0 或 A0。

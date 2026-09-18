@@ -18,8 +18,6 @@ from .experiment_protocol import (
     COMPONENT_RUNNABLE_VARIANTS,
     COMPONENT_RESULT_ROOT,
     COMPONENT_RUN_ID,
-    CROSS_FUSION_CANDIDATE_VARIANTS,
-    CROSS_FUSION_COMPARISON_IDS,
     PRECISION_RESULT_ROOT,
     PRECISION_RUN_ID,
     PRECISION_VARIANTS,
@@ -78,7 +76,7 @@ def parser_for(family: str) -> argparse.ArgumentParser:
     label = (
         "P0-P5 precision"
         if family == "precision"
-        else "A0-A7 component plus opt-in A6-C1/A6-C2/A6-C3 candidates"
+        else "A0-A8 component"
     )
     parser = argparse.ArgumentParser(description=f"Run formal Fixed-Dual {label} experiments.")
     parser.add_argument("--variants", nargs="+", default=None)
@@ -150,21 +148,6 @@ def _effective_artifacts(root: Path, variant) -> tuple[dict[str, Any], dict[str,
     variant_dir = root / variant.variant_id
     write_json(variant_dir / "effective_config.json", effective)
     write_json(variant_dir / "effective_config_diff.json", diff)
-    if variant.variant_id in CROSS_FUSION_CANDIDATE_VARIANTS:
-        write_json(
-            variant_dir / "candidate_manifest.json",
-            {
-                "experiment_family": "cross_fusion_candidate",
-                "variant": variant.to_dict(),
-                "base_variant": "A0",
-                "official_a6_unchanged": True,
-                "result_directory": str(variant_dir.resolve()),
-                "effective_config": str((variant_dir / "effective_config.json").resolve()),
-                "effective_config_diff": str(
-                    (variant_dir / "effective_config_diff.json").resolve()
-                ),
-            },
-        )
     return effective, diff
 
 
@@ -379,45 +362,13 @@ def _current_variant_metrics(root: Path, variant) -> list[Path]:
     try:
         actual = json.loads(config_path.read_text(encoding="utf-8"))
     except Exception:
-        if variant.variant_id == "A7":
-            migrated = _renumbered_a7_run_dir(root)
-            return _metrics_files(migrated) if migrated is not None else []
         return []
     if "st_prompt_mode" not in actual:
         actual["st_prompt_mode"] = "full"
     report = config_diff(actual, variant.variant_id, variant.experiment_family)
     if report["passed"]:
         return _metrics_files(run_dir)
-    if variant.variant_id == "A7":
-        migrated = _renumbered_a7_run_dir(root)
-        return _metrics_files(migrated) if migrated is not None else []
     return []
-
-
-def _renumbered_a7_run_dir(root: Path) -> Path | None:
-    """Resolve the former A8 result only through an explicit, audited A7 reference."""
-
-    reference_path = root / "A7" / "renumbered_reference.json"
-    if not reference_path.is_file():
-        return None
-    reference = json.loads(reference_path.read_text(encoding="utf-8"))
-    if (
-        reference.get("formal_variant") != "A7"
-        or reference.get("source_variant") != "A8"
-        or reference.get("definition") != "w/o MS-MG-DWU"
-    ):
-        return None
-    source = (reference_path.parent / reference["source_run_directory"]).resolve()
-    expected_source = (root / "A8" / "STMGPrompt_ComponentAblation").resolve()
-    if source != expected_source:
-        return None
-    config_path = source / "active_config.json"
-    if not config_path.is_file():
-        config_path = source / "config.json"
-    actual = json.loads(config_path.read_text(encoding="utf-8"))
-    if actual.get("component_ablation") != "A8":
-        return None
-    return source if config_diff(actual, "A7", "component_ablation")["passed"] else None
 
 
 def _summary_rows(root: Path, variants) -> list[dict[str, Any]]:
@@ -433,11 +384,6 @@ def _summary_rows(root: Path, variants) -> list[dict[str, Any]]:
                 "trainable": variant.trainable,
                 "canonical_reference": variant.canonical_reference or "",
                 "metrics_source": str(path.resolve()),
-                "renumbered_from": (
-                    "A8"
-                    if variant.variant_id == "A7" and "A8" in path.parts
-                    else ""
-                ),
                 **metric,
             }
             rows.append(row)
@@ -483,28 +429,6 @@ def run_family(family: str, argv: list[str] | None = None) -> dict[str, Any]:
         "variants": [item.to_dict() for item in all_variants],
         "selected_variants": [item.variant_id for item in variants],
     }
-    if family == "component_ablation":
-        manifest["candidate_variants"] = [
-            item.to_dict() for item in CROSS_FUSION_CANDIDATE_VARIANTS.values()
-        ]
-        candidate_comparison = [
-            COMPONENT_RUNNABLE_VARIANTS[name] for name in CROSS_FUSION_COMPARISON_IDS
-        ]
-        write_variant_matrix(root / "cross_fusion_candidate_config_matrix.csv", candidate_comparison)
-        write_json(
-            root / "cross_fusion_candidate_manifest.json",
-            {
-                "canonical_id": CANONICAL_ID,
-                "experiment_family": "cross_fusion_candidate",
-                "official_component_ids_unchanged": list(COMPONENT_ABLATION_VARIANTS),
-                "comparison_variants": [item.to_dict() for item in candidate_comparison],
-                "selected_candidates": [
-                    item.variant_id
-                    for item in variants
-                    if item.variant_id in CROSS_FUSION_CANDIDATE_VARIANTS
-                ],
-            },
-        )
     write_json(root / "experiment_manifest.json", manifest)
     statuses_by_variant = _load_statuses(root)
     statuses_by_variant = {
@@ -643,12 +567,6 @@ def run_family(family: str, argv: list[str] | None = None) -> dict[str, Any]:
     write_json(root / "experiment_status.json", statuses)
     _write_precision_status_files(root, manifest, statuses)
     write_summary(root, all_variants)
-    if family == "component_ablation":
-        write_summary(
-            root,
-            [COMPONENT_RUNNABLE_VARIANTS[name] for name in CROSS_FUSION_COMPARISON_IDS],
-            stem="cross_fusion_candidate_metrics_summary",
-        )
     failed = [
         item["variant"]
         for item in statuses

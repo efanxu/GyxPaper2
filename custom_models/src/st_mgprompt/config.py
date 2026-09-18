@@ -34,9 +34,8 @@ FORBIDDEN_INPUT_COLS = {
 }
 FORBIDDEN_INPUT_SUBSTRINGS = ("anomaly", "audit", "mask", "imputation", "imputed")
 
-FORMAL_COMPONENT_ABLATION_IDS = tuple(f"A{i}" for i in range(8))
-CROSS_FUSION_CANDIDATE_IDS = ("A6-C1", "A6-C2", "A6-C3")
-COMPONENT_ABLATION_IDS = (*FORMAL_COMPONENT_ABLATION_IDS, *CROSS_FUSION_CANDIDATE_IDS)
+FORMAL_COMPONENT_ABLATION_IDS = tuple(f"A{i}" for i in range(9))
+COMPONENT_ABLATION_IDS = FORMAL_COMPONENT_ABLATION_IDS
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
@@ -510,7 +509,7 @@ def is_forbidden_input_col(col: str) -> bool:
 
 
 def apply_component_ablation(config: STMGPromptConfig, variant: str) -> STMGPromptConfig:
-    """Apply a formal A0-A7 or opt-in Cross-Fusion candidate protocol."""
+    """Apply the formal A0-A8 component-ablation protocol."""
     from .experiment_protocol import apply_variant
 
     resolved = apply_variant(config, variant, family="component_ablation")

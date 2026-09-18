@@ -24,7 +24,7 @@ GRAPH_SIMPLE = "simple"
 GRAPH_BI_DIFFUSION = "bidirectional_diffusion"
 GRAPH_BI_DIFFUSION_DISPLAY = "bi_diffusion"
 
-LEGACY_A8_CONFIG_OVERRIDES = {
+LOSS_ABLATION_CONFIG_OVERRIDES = {
     "use_msmg_dwu": False,
     "loss_function": "masked_score_aligned_hybrid",
     "loss_protocol": "fair_main",
@@ -117,46 +117,28 @@ _COMPONENT = (
         ("cross_fusion_recent_len",),
     ),
     ExperimentVariant(
-        "A6", "Fine-to-Coarse Only Cross Fusion", "component_ablation", True,
-        None, "CANONICAL_FULL", {"disable_macro_to_fine_cross": True},
-        ("disable_macro_to_fine_cross",),
-    ),
-    ExperimentVariant(
-        "A7", "w/o MS-MG-DWU", "component_ablation", True,
-        None, "CANONICAL_FULL", LEGACY_A8_CONFIG_OVERRIDES,
-        ("use_msmg_dwu", "loss_function", "loss_protocol"),
-    ),
-)
-
-_CROSS_FUSION_CANDIDATES = (
-    ExperimentVariant(
-        "A6-C1", "Early-History Macro Cross Fusion", "component_ablation", True,
+        "A6", "Early-History Macro Cross Fusion", "component_ablation", True,
         None, "CANONICAL_FULL", {"macro_to_fine_exclude_recent_len": 24},
         ("macro_to_fine_exclude_recent_len",),
     ),
     ExperimentVariant(
-        "A6-C2", "Static Macro Injection Cross Fusion", "component_ablation", True,
-        None, "CANONICAL_FULL", {"macro_to_fine_mode": "static_mean"},
-        ("macro_to_fine_mode",),
-    ),
-    ExperimentVariant(
-        "A6-C3", "Shared-Projection Cross Fusion", "component_ablation", True,
+        "A7", "Shared-Projection Cross Fusion", "component_ablation", True,
         None, "CANONICAL_FULL", {"share_cross_attention_projections": True},
         ("share_cross_attention_projections",),
+    ),
+    ExperimentVariant(
+        "A8", "w/o MS-MG-DWU", "component_ablation", True,
+        None, "CANONICAL_FULL", LOSS_ABLATION_CONFIG_OVERRIDES,
+        ("use_msmg_dwu", "loss_function", "loss_protocol"),
     ),
 )
 
 PRECISION_VARIANTS = {item.variant_id: item for item in _PRECISION}
 COMPONENT_ABLATION_VARIANTS = {item.variant_id: item for item in _COMPONENT}
-CROSS_FUSION_CANDIDATE_VARIANTS = {item.variant_id: item for item in _CROSS_FUSION_CANDIDATES}
-COMPONENT_RUNNABLE_VARIANTS = {
-    **COMPONENT_ABLATION_VARIANTS,
-    **CROSS_FUSION_CANDIDATE_VARIANTS,
-}
-CROSS_FUSION_COMPARISON_IDS = ("A0", "A6", "A6-C1", "A6-C2", "A6-C3")
+COMPONENT_RUNNABLE_VARIANTS = COMPONENT_ABLATION_VARIANTS
 ALL_VARIANTS = {**PRECISION_VARIANTS, **COMPONENT_RUNNABLE_VARIANTS}
 
-OBSOLETE_COMPONENT_VARIANTS = {"A8", "A9", "A10"}
+OBSOLETE_COMPONENT_VARIANTS = {"A9", "A10", "A6-C1", "A6-C2", "A6-C3"}
 OBSOLETE_COMPONENT_NAMES = {"w/o VADSP", "w/o Trend Prior"}
 
 FORMAL_PROTOCOL_FIELDS = (
@@ -282,7 +264,7 @@ def get_variant(variant_id: str, family: str | None = None) -> ExperimentVariant
     if family == "component_ablation":
         if variant_id in OBSOLETE_COMPONENT_VARIANTS:
             raise ValueError(
-                "Obsolete component-ablation variant. Valid variants are A0-A7 and A6-C1/A6-C2/A6-C3."
+                "Obsolete component-ablation variant. Valid variants are A0-A8."
             )
         mapping = COMPONENT_RUNNABLE_VARIANTS
     elif family == "precision":

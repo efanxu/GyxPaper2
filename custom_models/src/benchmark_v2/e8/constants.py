@@ -38,14 +38,14 @@ INTERNAL_DISPLAY_NAMES = {
     "A0": "ST-MGPrompt A0",
     "A4": "A4 Mean-Pooling Macro Prompt",
     "A5": "A5 Short-context Reverse Cross",
-    "A6": "A6 Fine-to-Coarse Only Cross Fusion",
-    "A7": "A7 w/o MS-MG-DWU",
+    "A6": "A6 Early-History Macro Cross Fusion",
+    "A7": "A7 Shared-Projection Cross Fusion",
 }
 INTERNAL_TARGETS = {
     "A4": ("Macro Prompt temporal pooling", ("macro_prompt_pooling",)),
     "A5": ("Reverse Cross context length", ("cross_fusion_recent_len",)),
-    "A6": ("Macro/Coarse-to-Fine cross interaction", ("disable_macro_to_fine_cross",)),
-    "A7": ("MS-MG-DWU loss", ("use_msmg_dwu", "loss_function", "loss_protocol")),
+    "A6": ("Macro-to-Fine early-history query window", ("macro_to_fine_exclude_recent_len",)),
+    "A7": ("Shared cross-attention projections", ("share_cross_attention_projections",)),
 }
 
 EXTERNAL_MODEL_IDS = ("patchtst", "itransformer", "timexer", "multipatchformer", "timemixer", "timefilter")

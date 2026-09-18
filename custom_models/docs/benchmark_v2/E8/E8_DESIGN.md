@@ -10,10 +10,10 @@ The external table is native-training-system architecture/end-to-end context. It
 
 - A4 changes only `macro_prompt_pooling`, from attention pooling to equal-weight mean pooling; `macro_prompt_len=4` remains unchanged.
 - A5 changes only `cross_fusion_recent_len`, from 24 to 6; both Reverse Cross directions remain enabled.
-- A6 changes only `disable_macro_to_fine_cross`, from `false` to `true`; Fine-to-Coarse Reverse Cross, the learned adaptive gate, residuals, and normalizations remain enabled.
-- A7 inherits the former A8 `w/o MS-MG-DWU` definition: `use_msmg_dwu=false`, `loss_function=masked_score_aligned_hybrid`, and `loss_protocol=fair_main`.
+- A6 changes only `macro_to_fine_exclude_recent_len`, from 0 to 24, so Macro-to-Fine attention uses the early-history query window while retaining both directions.
+- A7 changes only `share_cross_attention_projections`, from `false` to `true`, so both Cross Fusion directions share the same attention projection module.
 
-A0 versus A6 is the controlled direction-removal comparison: it isolates the Macro/Coarse-to-Fine cross interaction. A5 answers a different question by retaining both directions and shortening only the reverse context. E8 internal causal evidence remains pending until the redesigned A4–A7 formal runs finish.
+A0 versus A6 isolates the Macro-to-Fine query-window change, while A0 versus A7 isolates projection sharing. A5 answers a different question by shortening only the reverse context. E8 internal causal evidence remains pending until the A4–A7 formal runs satisfy the Batch4 protocol.
 
 ## Real tensor and mechanism contract
 
@@ -23,7 +23,7 @@ Cross Fusion is two `MultiheadAttention` paths plus a learned sigmoid gate, resi
 
 Macro Prompt is a latent `[B,N,4,D]` projection of attention-pooled graph-enhanced Coarse history. It has no physical trend scalar/logit/head, so sign accuracy, physical trend correlation, and confusion matrix are `NOT_APPLICABLE`.
 
-ST Prompt remains horizon-conditioned with node, future-step, and granularity embeddings in all current A0–A7 variants. The former Temporal-Granularity Prompt A7 and Node-Temporal Prompt A9 are not part of the formal component-ablation set.
+ST Prompt remains horizon-conditioned with node, future-step, and granularity embeddings in all current A0–A8 variants. The former Temporal-Granularity Prompt definition and Node-Temporal Prompt A9 are not part of the formal component-ablation set.
 
 ## Read-only diagnostics
 

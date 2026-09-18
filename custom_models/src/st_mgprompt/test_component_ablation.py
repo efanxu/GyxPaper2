@@ -11,7 +11,7 @@ from st_mgprompt.artifact_status import _config_matches
 from st_mgprompt.config import STMGPromptConfig, apply_component_ablation
 from st_mgprompt.experiment_protocol import (
     COMPONENT_ABLATION_VARIANTS,
-    LEGACY_A8_CONFIG_OVERRIDES,
+    LOSS_ABLATION_CONFIG_OVERRIDES,
     PRECISION_VARIANTS,
     apply_variant,
     assert_expected_diff,
@@ -31,9 +31,9 @@ class FixedDualProtocolTests(unittest.TestCase):
         self.assertEqual(tuple(PRECISION_VARIANTS), ("P0", "P1", "P2", "P3", "P4", "P5"))
         self.assertEqual(
             tuple(COMPONENT_ABLATION_VARIANTS),
-            ("A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7"),
+            ("A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8"),
         )
-        self.assertNotIn("A8", REQUIRED_VARIANTS)
+        self.assertIn("A8", COMPONENT_ABLATION_VARIANTS)
         self.assertNotIn("A9", REQUIRED_VARIANTS)
 
     def test_canonical_full(self) -> None:
@@ -81,8 +81,9 @@ class FixedDualProtocolTests(unittest.TestCase):
             "A3": ("graph_operator", "simple"),
             "A4": ("macro_prompt_pooling", "mean"),
             "A5": ("cross_fusion_recent_len", 6),
-            "A6": ("disable_macro_to_fine_cross", True),
-            "A7": ("loss_function", "masked_score_aligned_hybrid"),
+            "A6": ("macro_to_fine_exclude_recent_len", 24),
+            "A7": ("share_cross_attention_projections", True),
+            "A8": ("loss_function", "masked_score_aligned_hybrid"),
         }
         for name, (field, value) in expected.items():
             cfg = apply_component_ablation(STMGPromptConfig(), name)
@@ -100,26 +101,29 @@ class FixedDualProtocolTests(unittest.TestCase):
         self.assertTrue(a6.use_cross_fusion)
         self.assertEqual(a6.fusion_mode, "cross")
         self.assertFalse(a6.disable_reverse_cross)
-        self.assertTrue(a6.disable_macro_to_fine_cross)
+        self.assertEqual(a6.macro_to_fine_exclude_recent_len, 24)
         a7 = apply_component_ablation(STMGPromptConfig(), "A7")
-        self.assertTrue(a7.use_st_prompt)
-        self.assertEqual(a7.st_prompt_mode, "full")
-        self.assertTrue(a7.st_prompt_use_node_identity)
-        self.assertEqual(a7.decoder_input_strategy, "direct_multi_output_prompt_query")
-        self.assertEqual(a7.decoder_context_mode, "last_state")
-        self.assertEqual(a7.loss_protocol, "fair_main")
-        self.assertFalse(a7.use_msmg_dwu)
-        self.assertEqual(get_variant("A7", "component_ablation").display_name, "w/o MS-MG-DWU")
+        self.assertTrue(a7.share_cross_attention_projections)
+        a8 = apply_component_ablation(STMGPromptConfig(), "A8")
+        self.assertTrue(a8.use_st_prompt)
+        self.assertEqual(a8.st_prompt_mode, "full")
+        self.assertTrue(a8.st_prompt_use_node_identity)
+        self.assertEqual(a8.decoder_input_strategy, "direct_multi_output_prompt_query")
+        self.assertEqual(a8.decoder_context_mode, "last_state")
+        self.assertEqual(a8.loss_protocol, "fair_main")
+        self.assertFalse(a8.use_msmg_dwu)
+        self.assertEqual(get_variant("A8", "component_ablation").display_name, "w/o MS-MG-DWU")
         self.assertEqual(
-            COMPONENT_ABLATION_VARIANTS["A7"].config_overrides,
-            LEGACY_A8_CONFIG_OVERRIDES,
+            COMPONENT_ABLATION_VARIANTS["A8"].config_overrides,
+            LOSS_ABLATION_CONFIG_OVERRIDES,
         )
 
     def test_redesigned_variants_each_have_one_effective_diff(self) -> None:
         expected_fields = {
             "A4": ["macro_prompt_pooling"],
             "A5": ["cross_fusion_recent_len"],
-            "A6": ["disable_macro_to_fine_cross"],
+            "A6": ["macro_to_fine_exclude_recent_len"],
+            "A7": ["share_cross_attention_projections"],
         }
         for name, fields in expected_fields.items():
             cfg = apply_variant(STMGPromptConfig(), name, "component_ablation")
@@ -132,7 +136,7 @@ class FixedDualProtocolTests(unittest.TestCase):
             "A4": {"use_macro_prompt": False},
             "A5": {"disable_reverse_cross": True},
             "A6": {"use_cross_fusion": False},
-            "A7": {
+            "A8": {
                 "use_msmg_dwu": True,
                 "loss_function": "msmg_dwu_loss",
                 "loss_protocol": "method_full",
@@ -144,7 +148,7 @@ class FixedDualProtocolTests(unittest.TestCase):
         }
         for name, overrides in old_overrides.items():
             if name == "FORMER_A7":
-                name = "A7"
+                name = "A8"
             old = canonical_config().to_dict()
             old.update(overrides)
             expected = apply_variant(STMGPromptConfig(), name, "component_ablation").to_dict()
@@ -188,8 +192,9 @@ class FixedDualProtocolTests(unittest.TestCase):
     def test_pre_redesign_metrics_are_excluded_from_current_summary(self) -> None:
         legacy_configs = {
             "A4": {"macro_prompt_len": 1},
-            "A6": {"fusion_mode": "add"},
-            "A7": {"st_prompt_use_node_identity": False},
+            "A6": {"macro_to_fine_exclude_recent_len": 0},
+            "A7": {"share_cross_attention_projections": False},
+            "A8": {"st_prompt_use_node_identity": False},
         }
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -205,47 +210,18 @@ class FixedDualProtocolTests(unittest.TestCase):
     def test_old_a6_artifacts_are_rejected(self) -> None:
         expected = apply_variant(STMGPromptConfig(), "A6", "component_ablation").to_dict()
         for overrides in (
-            {"cross_fusion_gate_strategy": "fixed_half"},
-            {"disable_reverse_cross": True},
+            {"macro_to_fine_exclude_recent_len": 0},
+            {"disable_macro_to_fine_cross": True},
         ):
             legacy = canonical_config().to_dict()
             legacy["component_ablation"] = "A6"
-            legacy.pop("disable_macro_to_fine_cross")
             legacy.update(overrides)
             matches, differences = _config_matches(legacy, expected)
             self.assertFalse(matches)
-            self.assertIn("disable_macro_to_fine_cross", differences)
-
-    def test_a7_can_explicitly_reference_semantically_identical_former_a8_metrics(self) -> None:
-        with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp)
-            source = root / "A8" / "STMGPrompt_ComponentAblation"
-            source.mkdir(parents=True)
-            former_a8 = canonical_config().to_dict()
-            former_a8.update(LEGACY_A8_CONFIG_OVERRIDES)
-            former_a8["component_ablation"] = "A8"
-            (source / "active_config.json").write_text(json.dumps(former_a8), encoding="utf-8")
-            (source / "metrics_eval_h10.json").write_text("{}", encoding="utf-8")
-            target = root / "A7"
-            target.mkdir()
-            (target / "renumbered_reference.json").write_text(
-                json.dumps(
-                    {
-                        "formal_variant": "A7",
-                        "source_variant": "A8",
-                        "definition": "w/o MS-MG-DWU",
-                        "source_run_directory": "../A8/STMGPrompt_ComponentAblation",
-                    }
-                ),
-                encoding="utf-8",
-            )
-            self.assertEqual(
-                _current_variant_metrics(root, get_variant("A7", "component_ablation")),
-                [source / "metrics_eval_h10.json"],
-            )
+            self.assertIn("macro_to_fine_exclude_recent_len", differences)
 
     def test_obsolete_component_ids_rejected(self) -> None:
-        for name in ("A8", "A9", "A10"):
+        for name in ("A9", "A10", "A6-C1", "A6-C2", "A6-C3"):
             with self.assertRaisesRegex(ValueError, "Obsolete component-ablation variant"):
                 get_variant(name, "component_ablation")
 
@@ -259,8 +235,9 @@ class FixedDualProtocolTests(unittest.TestCase):
             "A0": (4, "attention", 24, "cross", True, True, "full", True),
             "A4": (4, "mean", 24, "cross", True, True, "full", True),
             "A5": (4, "attention", 6, "cross", True, True, "full", True),
-            "A6": (4, "attention", 24, "cross", False, True, "full", True),
+            "A6": (4, "attention", 24, "cross", True, True, "full", True),
             "A7": (4, "attention", 24, "cross", True, True, "full", True),
+            "A8": (4, "attention", 24, "cross", True, True, "full", True),
         }
         for name, values in expected.items():
             row = matrix_row(COMPONENT_ABLATION_VARIANTS[name])
@@ -279,7 +256,7 @@ class FixedDualProtocolTests(unittest.TestCase):
                 name,
             )
 
-    def test_a6_disables_only_macro_to_fine_interaction(self) -> None:
+    def test_a6_excludes_recent_macro_to_fine_queries(self) -> None:
         torch.manual_seed(2026)
         h_fine = torch.randn(2, 5, 3, 4)
         h_coarse = torch.randn(2, 5, 3, 4)
@@ -293,7 +270,9 @@ class FixedDualProtocolTests(unittest.TestCase):
             "diagnostics_level": "standard",
         }
         a0 = SymmetricCrossFusion(**kwargs).eval()
-        a6 = SymmetricCrossFusion(**kwargs, disable_macro_to_fine_cross=True).eval()
+        a6 = SymmetricCrossFusion(
+            **kwargs, macro_to_fine_exclude_recent_len=2
+        ).eval()
         a6.load_state_dict(a0.state_dict())
         self.assertEqual(
             sum(parameter.numel() for parameter in a0.parameters()),
@@ -301,13 +280,11 @@ class FixedDualProtocolTests(unittest.TestCase):
         )
         self.assertTrue(all(parameter.requires_grad for parameter in a6.gate.parameters()))
 
-        captured: dict[str, torch.Tensor] = {}
-        calls = {"A0_macro": 0, "A0_reverse": 0, "A6_macro": 0, "A6_reverse": 0}
+        calls: dict[str, tuple[int, ...]] = {}
 
         def capture(name):
-            def hook(_module, _inputs, output):
-                calls[name] += 1
-                captured[name] = output[0].detach()
+            def hook(_module, inputs, _output):
+                calls[name] = tuple(inputs[0].shape)
             return hook
 
         handles = [
@@ -317,36 +294,26 @@ class FixedDualProtocolTests(unittest.TestCase):
             a6.fine_to_coarse.register_forward_hook(capture("A6_reverse")),
         ]
         with torch.inference_mode():
-            a0_fine, a0_coarse, a0_aux = a0(h_fine, h_coarse, macro_prompt)
+            a0_fine, a0_coarse, _ = a0(h_fine, h_coarse, macro_prompt)
             a6_fine, a6_coarse, a6_aux = a6(h_fine, h_coarse, macro_prompt)
         for handle in handles:
             handle.remove()
 
-        a0_out_a = captured["A0_macro"].reshape(2, 3, 5, 4).permute(0, 2, 1, 3)
-        a0_out_b = captured["A0_reverse"].reshape(2, 3, 5, 4).permute(0, 2, 1, 3)
-        a6_out_b = captured["A6_reverse"].reshape(2, 3, 5, 4).permute(0, 2, 1, 3)
-        with torch.inference_mode():
-            a0_gate = a0.gate(torch.cat([a0_out_a, a0_out_b, h_fine], dim=-1))
-            a6_gate = a6.gate(torch.cat([torch.zeros_like(h_fine), a6_out_b, h_fine], dim=-1))
-            expected_a0_fine = a0.fine_norm(h_fine + a0_gate * a0_out_a)
-            expected_a0_coarse = a0.coarse_norm(h_coarse + (1.0 - a0_gate) * a0_out_b)
-            expected_a6_fine = a6.fine_norm(h_fine)
-            expected_a6_coarse = a6.coarse_norm(h_coarse + (1.0 - a6_gate) * a6_out_b)
-
-        self.assertEqual(calls, {"A0_macro": 1, "A0_reverse": 1, "A6_macro": 0, "A6_reverse": 1})
+        self.assertEqual(calls["A0_macro"], (6, 5, 4))
+        self.assertEqual(calls["A0_reverse"], (6, 5, 4))
+        self.assertEqual(calls["A6_macro"], (6, 3, 4))
+        self.assertEqual(calls["A6_reverse"], (6, 5, 4))
         self.assertEqual(tuple(a0_fine.shape), tuple(a6_fine.shape))
         self.assertEqual(tuple(a0_coarse.shape), tuple(a6_coarse.shape))
-        self.assertTrue(torch.allclose(a0_fine, expected_a0_fine))
-        self.assertTrue(torch.allclose(a0_coarse, expected_a0_coarse))
-        self.assertTrue(torch.allclose(a6_fine, expected_a6_fine))
-        self.assertTrue(torch.allclose(a6_coarse, expected_a6_coarse))
-        self.assertGreater(float(a6_gate.std(unbiased=False)), 0.0)
-        self.assertIsNotNone(a0_aux["macro_attn_entropy"])
-        self.assertIsNotNone(a0_aux["fine_attn_entropy"])
-        self.assertIsNone(a6_aux["macro_attn_entropy"])
+        self.assertFalse(torch.allclose(a0_fine, a6_fine))
+        expected_recent = a6.fine_norm(h_fine[:, -2:])
+        self.assertTrue(torch.allclose(a6_fine[:, -2:], expected_recent))
+        self.assertEqual(a6_aux["macro_to_fine_query_count"], 3)
+        self.assertEqual(a6_aux["macro_to_fine_excluded_recent_count"], 2)
+        self.assertIsNotNone(a6_aux["macro_attn_entropy"])
         self.assertIsNotNone(a6_aux["fine_attn_entropy"])
         self.assertFalse(a6_aux["disable_reverse_cross"])
-        self.assertTrue(a6_aux["disable_macro_to_fine_cross"])
+        self.assertFalse(a6_aux["disable_macro_to_fine_cross"])
 
     def test_macro_prompt_mean_pooling_is_equal_weighted_and_capacity_preserving(self) -> None:
         attention_encoder = MacroTrendPrompt(
@@ -446,7 +413,7 @@ class FixedDualProtocolTests(unittest.TestCase):
             "metadata": {"source": "synthetic_component_ablation_test", "train_only": True},
         }
         x = torch.randn(1, 36, num_nodes, len(STMGPromptConfig().feature_cols))
-        for name in ("A0", "A4", "A5", "A6", "A7"):
+        for name in ("A0", "A4", "A5", "A6", "A7", "A8"):
             cfg = apply_variant(STMGPromptConfig(), name, "component_ablation")
             cfg.num_nodes = num_nodes
             cfg.hidden_dim = 8

@@ -14,7 +14,7 @@ The available A0/A4/A5/A6/A7 fixed-dual artifacts record train batch32, lack the
 
 Static config/source audit passes. A5 shortens the Fine-to-Coarse context while retaining both directions; A6 disables only Macro/Coarse-to-Fine interaction and retains Fine-to-Coarse Reverse Cross with the adaptive gate. A0 versus A6 is therefore the controlled direction-removal comparison, while the result table remains blocked until authentic current-batch4 internal evidence exists.
 
-Macro Prompt is latent only; no physical trend sign result is allowed. A0 uses attention temporal pooling, while current A4 uses equal-weight mean pooling with the same four-token capacity. ST Prompt remains node + future-step + granularity across the current set; A7 now denotes `w/o MS-MG-DWU`. Cross Fusion is real attention + adaptive gate + residual + LayerNorm; A6 keeps the Fine-to-Coarse path and disables the Macro/Coarse-to-Fine update. Fine and Coarse both preserve length 144.
+Macro Prompt is latent only; no physical trend sign result is allowed. A0 uses attention temporal pooling, while current A4 uses equal-weight mean pooling with the same four-token capacity. ST Prompt remains node + future-step + granularity across the current set; A8 denotes `w/o MS-MG-DWU`. Cross Fusion is real attention + adaptive gate + residual + LayerNorm; A6 restricts Macro-to-Fine queries to early history, while A7 shares the two attention projection modules. Fine and Coarse both preserve length 144.
 
 Grouped analysis is `BLOCKED_DEFINITION_MISSING`, and paired-window analysis is blocked by missing current-protocol common prediction/window exports.
 

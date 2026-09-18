@@ -244,7 +244,7 @@
       "evidence_id": "E8_INTERNAL_A6",
       "evidence_role": "INTERNAL_CAUSAL_ABLATION",
       "model_id": "st_mgprompt",
-      "display_name": "A6 Fine-to-Coarse Only Cross Fusion",
+      "display_name": "A6 Early-History Macro Cross Fusion",
       "variant_id": "A6",
       "source_type": "formal_component_ablation_artifact",
       "source_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6\\STMGPrompt_ComponentAblation",
@@ -253,14 +253,14 @@
       "metrics_source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6\\STMGPrompt_ComponentAblation\\metrics.csv",
       "metrics_identity": {
         "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6\\STMGPrompt_ComponentAblation\\metrics.csv",
-        "size_bytes": 576,
-        "mtime_ns": 1788626576000000000
+        "size_bytes": 579,
+        "mtime_ns": 1789653912000000000
       },
       "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
       "checkpoint_identity": {
         "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
-        "size_bytes": 3374492,
-        "mtime_ns": 1788626000000000000
+        "size_bytes": 3510344,
+        "mtime_ns": 1789653190000000000
       },
       "protocol_identity": {
         "protocol_version": "custom_model_stmgprompt_coupled_mask_aware_fair_v4_3_corrected",
@@ -272,51 +272,50 @@
       "resolved_config_identity": null,
       "effective_config_identity": {
         "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6\\effective_config.json",
-        "size_bytes": 5708,
-        "mtime_ns": 1789464616548719600
+        "size_bytes": 5837,
+        "mtime_ns": 1789712629764606900
       },
       "run_config_identity": {
         "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6\\STMGPrompt_ComponentAblation\\active_config.json",
-        "size_bytes": 5675,
-        "mtime_ns": 1788624862000000000
+        "size_bytes": 5919,
+        "mtime_ns": 1789712629764606900
       },
       "metrics": {
         "3": {
-          "Score": 8.265,
-          "MAE": 81.725,
-          "RMSE": 118.813,
-          "R2": 0.919
+          "Score": 8.39,
+          "MAE": 82.208,
+          "RMSE": 120.163,
+          "R2": 0.917
         },
         "6": {
-          "Score": 9.885,
-          "MAE": 94.13,
-          "RMSE": 138.611,
-          "R2": 0.89
+          "Score": 10.114,
+          "MAE": 95.02,
+          "RMSE": 140.415,
+          "R2": 0.887
         },
         "10": {
-          "Score": 11.787,
-          "MAE": 108.351,
-          "RMSE": 158.89,
-          "R2": 0.855
+          "Score": 11.957,
+          "MAE": 109.007,
+          "RMSE": 160.769,
+          "R2": 0.852
         }
       },
       "resource_stats": {
         "parameter_count": 278534,
         "trainable_parameter_count": 278534,
         "best_epoch": 12,
-        "training_time": 1642.361908999941,
+        "training_time": 2042.9675115999707,
         "peak_memory": null,
-        "inference_time": 26.165030800009845,
-        "throughput": 195.0695200403922,
-        "checkpoint_size": 3374492
+        "inference_time": 41.234224999992875,
+        "throughput": 123.78067006233006,
+        "checkpoint_size": 3510344
       },
       "validation_status": "FAIL",
       "validation_errors": [
         "MISSING_RESOLVED_CONFIG",
         "FORMAL_RUN_STATUS_INVALID",
         "INTERNAL_BATCH_PROFILE_MISMATCH:train_batch_size",
-        "INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id",
-        "INTERNAL_RUN_CONFIG_MISMATCH:disable_macro_to_fine_cross,fusion_mode"
+        "INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id"
       ],
       "ready": false
     },
@@ -324,7 +323,7 @@
       "evidence_id": "E8_INTERNAL_A7",
       "evidence_role": "INTERNAL_CAUSAL_ABLATION",
       "model_id": "st_mgprompt",
-      "display_name": "A7 w/o MS-MG-DWU",
+      "display_name": "A7 Shared-Projection Cross Fusion",
       "variant_id": "A7",
       "source_type": "formal_component_ablation_artifact",
       "source_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A7\\STMGPrompt_ComponentAblation",
@@ -333,14 +332,14 @@
       "metrics_source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A7\\STMGPrompt_ComponentAblation\\metrics.csv",
       "metrics_identity": {
         "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A7\\STMGPrompt_ComponentAblation\\metrics.csv",
-        "size_bytes": 576,
-        "mtime_ns": 1788877436000000000
+        "size_bytes": 579,
+        "mtime_ns": 1789657656000000000
       },
       "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A7\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
       "checkpoint_identity": {
         "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A7\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
-        "size_bytes": 3405988,
-        "mtime_ns": 1788876838000000000
+        "size_bytes": 3306360,
+        "mtime_ns": 1789657038000000000
       },
       "protocol_identity": {
         "protocol_version": "custom_model_stmgprompt_coupled_mask_aware_fair_v4_3_corrected",
@@ -352,51 +351,50 @@
       "resolved_config_identity": null,
       "effective_config_identity": {
         "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A7\\effective_config.json",
-        "size_bytes": 5722,
-        "mtime_ns": 1789464621259596200
+        "size_bytes": 5835,
+        "mtime_ns": 1789712629783095700
       },
       "run_config_identity": {
         "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A7\\STMGPrompt_ComponentAblation\\active_config.json",
-        "size_bytes": 5758,
-        "mtime_ns": 1788875820000000000
+        "size_bytes": 5917,
+        "mtime_ns": 1789712629786819200
       },
       "metrics": {
         "3": {
-          "Score": 8.318,
-          "MAE": 82.545,
-          "RMSE": 118.365,
-          "R2": 0.92
+          "Score": 8.866,
+          "MAE": 88.215,
+          "RMSE": 124.104,
+          "R2": 0.912
         },
         "6": {
-          "Score": 9.854,
-          "MAE": 94.209,
-          "RMSE": 137.987,
-          "R2": 0.891
+          "Score": 10.273,
+          "MAE": 98.795,
+          "RMSE": 142.75,
+          "R2": 0.883
         },
         "10": {
-          "Score": 11.735,
-          "MAE": 107.635,
-          "RMSE": 158.129,
-          "R2": 0.857
+          "Score": 12.123,
+          "MAE": 111.336,
+          "RMSE": 162.035,
+          "R2": 0.849
         }
       },
       "resource_stats": {
-        "parameter_count": 269958,
-        "trainable_parameter_count": 269958,
-        "best_epoch": 10,
-        "training_time": 1546.6576079999213,
+        "parameter_count": 261894,
+        "trainable_parameter_count": 261894,
+        "best_epoch": 11,
+        "training_time": 1733.263893899988,
         "peak_memory": null,
-        "inference_time": 25.474266699980944,
-        "throughput": 200.3590548890586,
-        "checkpoint_size": 3405988
+        "inference_time": 27.164508500005468,
+        "throughput": 187.89222709473918,
+        "checkpoint_size": 3306360
       },
       "validation_status": "FAIL",
       "validation_errors": [
         "MISSING_RESOLVED_CONFIG",
         "FORMAL_RUN_STATUS_INVALID",
         "INTERNAL_BATCH_PROFILE_MISMATCH:train_batch_size",
-        "INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id",
-        "INTERNAL_RUN_CONFIG_MISMATCH:loss_function,loss_protocol,st_prompt_use_node_identity,use_msmg_dwu"
+        "INTERNAL_BATCH_PROFILE_MISMATCH:training_batch_profile_id"
       ],
       "ready": false
     },
