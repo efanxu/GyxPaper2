@@ -1,0 +1,28 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "D5",
+  "family": "D",
+  "implementation_status": "ready",
+  "expected_diff_fields": [
+    "diffusion_order_macro",
+    "diffusion_order_micro"
+  ],
+  "actual_diff_fields": [
+    "diffusion_order_macro",
+    "diffusion_order_micro"
+  ],
+  "missing_expected_diff_fields": [],
+  "unexpected_diff_fields": [],
+  "frozen_protocol_changes": [],
+  "differences": {
+    "diffusion_order_micro": {
+      "canonical": 2,
+      "effective": 3
+    },
+    "diffusion_order_macro": {
+      "canonical": 2,
+      "effective": 3
+    }
+  },
+  "passed": true
+}

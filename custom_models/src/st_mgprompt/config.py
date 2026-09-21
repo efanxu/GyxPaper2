@@ -149,6 +149,8 @@ class STMGPromptConfig:
     diffusion_order_micro: int = 2
     diffusion_order_macro: int = 2
     diffusion_use_bidirectional: bool = True
+    diffusion_direction: str = "bidirectional"
+    diffusion_projection_mode: str = "shared_output_dim"
     diffusion_beta_init: float = 0.05
     node_embed_dim: int = 10
     adaptive_graph_temperature: float = 1.0
@@ -401,6 +403,18 @@ class STMGPromptConfig:
             raise ValueError("graph_operator must be simple or bidirectional_diffusion.")
         if not (1 <= self.diffusion_order_micro <= 3 and 1 <= self.diffusion_order_macro <= 3):
             raise ValueError("diffusion_order_micro/macro must be in [1, 3].")
+        if self.diffusion_direction not in {"forward", "reverse", "bidirectional"}:
+            raise ValueError("diffusion_direction must be forward, reverse, or bidirectional.")
+        if self.diffusion_projection_mode != "shared_output_dim":
+            raise ValueError("diffusion_projection_mode must be shared_output_dim.")
+        if self.diffusion_direction == "bidirectional" and not self.diffusion_use_bidirectional:
+            raise ValueError(
+                "diffusion_use_bidirectional must be true when diffusion_direction is bidirectional."
+            )
+        if self.diffusion_direction != "bidirectional" and self.diffusion_use_bidirectional:
+            raise ValueError(
+                "diffusion_use_bidirectional must be false for a single diffusion direction."
+            )
         if self.diffusion_beta_init < 0:
             raise ValueError("diffusion_beta_init must be non-negative.")
         if self.node_embed_dim <= 0:
@@ -539,6 +553,10 @@ class STMGPromptConfig:
     def from_json(cls, path: str | Path) -> "STMGPromptConfig":
         data = json.loads(resolve_project_path(path).read_text(encoding="utf-8"))
         data.pop("eligible_for_fair_main_table", None)
+        if "diffusion_direction" not in data:
+            data["diffusion_direction"] = (
+                "bidirectional" if data.get("diffusion_use_bidirectional", True) else "forward"
+            )
         return cls(**data)
 
 

@@ -1,0 +1,50 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "D1",
+  "family": "D",
+  "implementation_status": "ready",
+  "expected_diff_fields": [
+    "diffusion_direction",
+    "diffusion_order_macro",
+    "diffusion_order_micro",
+    "diffusion_use_bidirectional"
+  ],
+  "actual_diff_fields": [
+    "diffusion_direction",
+    "diffusion_order_macro",
+    "diffusion_order_micro",
+    "diffusion_use_bidirectional"
+  ],
+  "missing_expected_diff_fields": [],
+  "unexpected_diff_fields": [],
+  "frozen_protocol_changes": [],
+  "differences": {
+    "diffusion_order_micro": {
+      "canonical": 2,
+      "effective": 1
+    },
+    "diffusion_order_macro": {
+      "canonical": 2,
+      "effective": 1
+    },
+    "diffusion_use_bidirectional": {
+      "canonical": true,
+      "effective": false
+    },
+    "diffusion_direction": {
+      "canonical": "bidirectional",
+      "effective": "forward"
+    }
+  },
+  "passed": true,
+  "display_name": "Forward first-order diffusion",
+  "trainable": true,
+  "paired_reference": "D4",
+  "declared_overrides": {
+    "diffusion_order_micro": 1,
+    "diffusion_order_macro": 1,
+    "diffusion_use_bidirectional": false,
+    "diffusion_direction": "forward"
+  },
+  "execution_ready": true
+}

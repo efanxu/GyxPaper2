@@ -134,6 +134,63 @@ _G_VARIANTS = (
     _variant("G8", "Degree-preserving random rewiring", "G", {"graph_rewire_mode": "degree_preserving_random"}, paired_reference="G0"),
 )
 
+_D_VARIANTS = (
+    _variant(
+        "D0",
+        "No diffusion state",
+        "D",
+        {"graph_operator": "simple"},
+        paired_reference="D4",
+        note="Uses the existing simple/local graph control and creates no diffusion state.",
+    ),
+    _variant(
+        "D1",
+        "Forward first-order diffusion",
+        "D",
+        {
+            "diffusion_order_micro": 1,
+            "diffusion_order_macro": 1,
+            "diffusion_use_bidirectional": False,
+            "diffusion_direction": "forward",
+        },
+        paired_reference="D4",
+    ),
+    _variant(
+        "D2",
+        "Transpose-direction first-order diffusion",
+        "D",
+        {
+            "diffusion_order_micro": 1,
+            "diffusion_order_macro": 1,
+            "diffusion_use_bidirectional": False,
+            "diffusion_direction": "reverse",
+        },
+        paired_reference="D4",
+    ),
+    _variant(
+        "D3",
+        "Bidirectional first-order diffusion",
+        "D",
+        {"diffusion_order_micro": 1, "diffusion_order_macro": 1},
+        paired_reference="D4",
+    ),
+    _variant(
+        "D4",
+        "Bidirectional second-order canonical reference",
+        "D",
+        trainable=False,
+        paired_reference=CANONICAL_ID,
+        status="reference",
+    ),
+    _variant(
+        "D5",
+        "Bidirectional third-order diffusion",
+        "D",
+        {"diffusion_order_micro": 3, "diffusion_order_macro": 3},
+        paired_reference="D4",
+    ),
+)
+
 _F_VARIANTS = (
     _variant("F0", "Independent dual branches", "F", {"use_macro_prompt": False, "use_cross_fusion": False}, paired_reference="F7"),
     _variant("F1", "Element-wise add", "F", {"fusion_mode": "add"}, paired_reference="F7"),
@@ -178,6 +235,7 @@ EMPIRICAL_FAMILIES: dict[str, dict[str, EmpiricalVariant]] = {
     for family, variants in {
         "T": _T_VARIANTS,
         "G": _G_VARIANTS,
+        "D": _D_VARIANTS,
         "F": _F_VARIANTS,
         "L": _L_VARIANTS,
         "R": _R_VARIANTS,

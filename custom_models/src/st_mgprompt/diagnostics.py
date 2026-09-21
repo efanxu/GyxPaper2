@@ -214,6 +214,21 @@ def model_summary(model: torch.nn.Module, data: STMGPromptDataBundle) -> dict[st
     non_trainable = total - trainable
     shared_parameter_count = 0
     branch_output_dimensions = None
+    diffusion_contract: dict[str, Any] = {
+        "graph_operator": getattr(getattr(model, "config", None), "graph_operator", None),
+        "operator_direction": "none",
+        "diffusion_order_micro": 0,
+        "diffusion_order_macro": 0,
+        "diffusion_state_count": 0,
+        "diffusion_state_count_micro": 0,
+        "diffusion_state_count_macro": 0,
+        "diffusion_stream_count_micro": 1,
+        "diffusion_stream_count_macro": 1,
+        "state_concat_order": ["input"],
+        "projection_mode": "not_applicable",
+        "projection_output_dim": int(getattr(model, "hidden_dim", 0)),
+        "normalization": "simple_local_graph_control",
+    }
     temporal_branch_transform = getattr(getattr(model, "config", None), "temporal_branch_transform", None)
     coupling_blocks = getattr(model, "coupling_blocks", None)
     if coupling_blocks:
@@ -224,6 +239,30 @@ def model_summary(model: torch.nn.Module, data: STMGPromptDataBundle) -> dict[st
             shared_parameter_count = sum(parameter.numel() for parameter in fine_temporal.parameters())
         hidden_dim = int(getattr(model, "hidden_dim", 0))
         branch_output_dimensions = {"fine": hidden_dim, "coarse": hidden_dim}
+        fine_graph_conv = first_block.fine_micro_graph_temporal_encoder.block.graph_conv
+        coarse_graph_conv = first_block.coarse_macro_graph_temporal_encoder.block.graph_conv
+        if hasattr(fine_graph_conv, "propagation_contract") and hasattr(coarse_graph_conv, "propagation_contract"):
+            fine_contract = fine_graph_conv.propagation_contract()
+            coarse_contract = coarse_graph_conv.propagation_contract()
+            diffusion_contract = {
+                "graph_operator": fine_contract["graph_operator"],
+                "operator_direction": fine_contract["operator_direction"],
+                "diffusion_order_micro": fine_contract["diffusion_order"],
+                "diffusion_order_macro": coarse_contract["diffusion_order"],
+                "diffusion_state_count": fine_contract["diffusion_state_count"],
+                "diffusion_state_count_micro": fine_contract["diffusion_state_count"],
+                "diffusion_state_count_macro": coarse_contract["diffusion_state_count"],
+                "diffusion_stream_count_micro": fine_contract["diffusion_stream_count"],
+                "diffusion_stream_count_macro": coarse_contract["diffusion_stream_count"],
+                "state_concat_order": fine_contract["state_concat_order"],
+                "projection_mode": fine_contract["projection_mode"],
+                "projection_input_dim_micro": fine_contract["projection_input_dim"],
+                "projection_input_dim_macro": coarse_contract["projection_input_dim"],
+                "projection_output_dim": fine_contract["projection_output_dim"],
+                "forward_normalization": fine_contract["forward_normalization"],
+                "reverse_normalization": fine_contract["reverse_normalization"],
+                "transpose_topk_recomputed": fine_contract["transpose_topk_recomputed"],
+            }
     return {
         "trainable_parameters": trainable,
         "non_trainable_parameters": non_trainable,
@@ -231,6 +270,7 @@ def model_summary(model: torch.nn.Module, data: STMGPromptDataBundle) -> dict[st
         "shared_parameter_count": shared_parameter_count,
         "temporal_branch_transform": temporal_branch_transform,
         "branch_output_dimensions": branch_output_dimensions,
+        **diffusion_contract,
         "parameter_memory_mb": float(sum(p.numel() * p.element_size() for p in model.parameters()) / (1024**2)),
         "input_dim": data.input_dim,
         "num_nodes": data.num_nodes,
@@ -692,6 +732,8 @@ def save_coupling_diagnostics(model: torch.nn.Module, loader, output_dir, max_ba
                     "batch": batch_idx,
                     "branch": branch,
                     "diffusion_order": int(aux[f"{branch}_diffusion_order"].detach().cpu()),
+                    "operator_direction": aux.get(f"{branch}_operator_direction"),
+                    "diffusion_state_count": int(aux[f"{branch}_diffusion_state_count"].detach().cpu()),
                     "beta_graph": float(aux[f"{branch}_beta_graph"].detach().cpu()),
                     "input_node_cosine_similarity": float(aux[f"{branch}_input_node_cosine_similarity"].detach().cpu()),
                     "hop1_node_cosine_similarity": float(aux[f"{branch}_hop1_node_cosine_similarity"].detach().cpu()),
@@ -701,8 +743,12 @@ def save_coupling_diagnostics(model: torch.nn.Module, loader, output_dir, max_ba
                     "graph_delta_ratio": float(aux[f"{branch}_graph_delta_ratio"].detach().cpu()),
                 }
                 for hop in range(1, int(row["diffusion_order"]) + 1):
-                    row[f"forward_hop{hop}_norm"] = float(aux[f"{branch}_forward_hop{hop}_norm"].detach().cpu())
-                    row[f"backward_hop{hop}_norm"] = float(aux[f"{branch}_backward_hop{hop}_norm"].detach().cpu())
+                    forward_key = f"{branch}_forward_hop{hop}_norm"
+                    backward_key = f"{branch}_backward_hop{hop}_norm"
+                    if forward_key in aux:
+                        row[f"forward_hop{hop}_norm"] = float(aux[forward_key].detach().cpu())
+                    if backward_key in aux:
+                        row[f"backward_hop{hop}_norm"] = float(aux[backward_key].detach().cpu())
                 diffusion_rows.append(row)
         for prefix in layer_prefixes:
             layer_row = {"batch": batch_idx, "layer": int(prefix.rsplit("_", 1)[-1])}
@@ -751,6 +797,8 @@ def save_coupling_diagnostics(model: torch.nn.Module, loader, output_dir, max_ba
             "graph_operator": getattr(model.config, "graph_operator", None),
             "diffusion_order_micro": getattr(model.config, "diffusion_order_micro", None),
             "diffusion_order_macro": getattr(model.config, "diffusion_order_macro", None),
+            "diffusion_direction": getattr(model.config, "diffusion_direction", None),
+            "diffusion_projection_mode": getattr(model.config, "diffusion_projection_mode", None),
             "teacher_forcing": False,
             "future_observed_features_used": False,
         }
@@ -842,6 +890,11 @@ def save_coupling_diagnostics(model: torch.nn.Module, loader, output_dir, max_ba
             "diffusion_order_micro": getattr(model.config, "diffusion_order_micro", None),
             "diffusion_order_macro": getattr(model.config, "diffusion_order_macro", None),
             "diffusion_use_bidirectional": getattr(model.config, "diffusion_use_bidirectional", None),
+            "diffusion_direction": getattr(model.config, "diffusion_direction", None),
+            "diffusion_projection_mode": getattr(model.config, "diffusion_projection_mode", None),
+            "diffusion_state_count": (
+                int(diffusion_rows[0]["diffusion_state_count"]) if diffusion_rows else 0
+            ),
             "mean_graph_delta_ratio": float(np.mean([float(row["graph_delta_ratio"]) for row in diffusion_rows])),
             "mean_beta_graph": float(np.mean([float(row["beta_graph"]) for row in diffusion_rows])),
             "oversmoothing_warning": bool(

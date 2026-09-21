@@ -1,0 +1,157 @@
+{
+  "pid": 16488,
+  "process_start_time": 1789995225.3267293,
+  "events": [
+    {
+      "stage": "TRAIN_STARTED",
+      "time": "2026-09-21T20:53:58"
+    },
+    {
+      "stage": "TRAIN_FINISHED",
+      "time": "2026-09-21T20:54:00",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d2_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+      "last_completed_epoch": 1
+    },
+    {
+      "stage": "BEST_CHECKPOINT_SAVED",
+      "time": "2026-09-21T20:54:00",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d2_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt"
+    },
+    {
+      "stage": "FINAL_VALIDATION_STARTED",
+      "time": "2026-09-21T20:54:00"
+    },
+    {
+      "stage": "FINAL_VALIDATION_FINISHED",
+      "time": "2026-09-21T20:54:00"
+    },
+    {
+      "stage": "PROCESS_EXCEPTION",
+      "time": "2026-09-21T20:54:00",
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "D2",
+      "seed": 2026,
+      "status": "failed",
+      "started_at": "2026-09-21T12:53:58.890373+00:00",
+      "finished_at": "2026-09-21T12:54:00.973657+00:00",
+      "error_type": "PermissionError",
+      "error": "[WinError 5] 拒绝访问。: 'D:\\\\PaperProject\\\\GyxPaper2\\\\custom_models\\\\results\\\\empirical_analysis_v1\\\\D\\\\d2_smoke_v1\\\\seed_2026\\\\STMGPrompt_ComponentAblation\\\\run_status.json.tmp' -> 'D:\\\\PaperProject\\\\GyxPaper2\\\\custom_models\\\\results\\\\empirical_analysis_v1\\\\D\\\\d2_smoke_v1\\\\seed_2026\\\\STMGPrompt_ComponentAblation\\\\run_status.json'"
+    },
+    {
+      "stage": "TRAIN_STARTED",
+      "time": "2026-09-21T20:54:19"
+    },
+    {
+      "stage": "TRAIN_FINISHED",
+      "time": "2026-09-21T20:54:25",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d2_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+      "last_completed_epoch": 1
+    },
+    {
+      "stage": "BEST_CHECKPOINT_SAVED",
+      "time": "2026-09-21T20:54:25",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d2_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt"
+    },
+    {
+      "stage": "FINAL_VALIDATION_STARTED",
+      "time": "2026-09-21T20:54:25"
+    },
+    {
+      "stage": "FINAL_VALIDATION_FINISHED",
+      "time": "2026-09-21T20:54:25"
+    },
+    {
+      "stage": "TEST_STARTED",
+      "time": "2026-09-21T20:54:25",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d2_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt"
+    },
+    {
+      "stage": "TEST_METRICS_WRITE_STARTED",
+      "time": "2026-09-21T20:54:25",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d2_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt"
+    },
+    {
+      "stage": "TEST_METRICS_WRITE_FINISHED",
+      "time": "2026-09-21T20:54:25",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d2_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt"
+    },
+    {
+      "stage": "PREDICTION_METADATA_WRITE_STARTED",
+      "time": "2026-09-21T20:54:25",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d2_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt"
+    },
+    {
+      "stage": "PREDICTION_METADATA_WRITE_FINISHED",
+      "time": "2026-09-21T20:54:25",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d2_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt"
+    },
+    {
+      "stage": "EVALUATION_COMPLETE_WRITE_STARTED",
+      "time": "2026-09-21T20:54:25",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d2_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt"
+    },
+    {
+      "stage": "EVALUATION_COMPLETE_WRITE_FINISHED",
+      "time": "2026-09-21T20:54:25",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d2_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt"
+    },
+    {
+      "stage": "TEST_FINISHED",
+      "time": "2026-09-21T20:54:25"
+    },
+    {
+      "stage": "FINAL_ARTIFACT_VALIDATION_STARTED",
+      "time": "2026-09-21T20:54:25"
+    },
+    {
+      "stage": "FINAL_ARTIFACT_VALIDATION_FINISHED",
+      "time": "2026-09-21T20:54:25",
+      "artifact_validation": {
+        "best_checkpoint.pt": true,
+        "metrics.csv": true,
+        "metrics_eval_h3.json": true,
+        "metrics_eval_h6.json": true,
+        "metrics_eval_h10.json": true,
+        "prediction_metadata.json": true,
+        "evaluation_complete.json": true
+      },
+      "artifacts_complete": true
+    },
+    {
+      "stage": "PROTOCOL_CHECK_STARTED",
+      "time": "2026-09-21T20:54:25"
+    },
+    {
+      "stage": "PROTOCOL_CHECK_FINISHED",
+      "time": "2026-09-21T20:54:25",
+      "protocol_passed": true
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-09-21T20:54:25"
+    }
+  ],
+  "current_stage": "PROCESS_FINISHED",
+  "updated_at": "2026-09-21T20:54:25",
+  "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d2_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+  "last_completed_epoch": 1,
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "D2",
+  "seed": 2026,
+  "status": "failed",
+  "started_at": "2026-09-21T12:53:58.890373+00:00",
+  "finished_at": "2026-09-21T12:54:00.973657+00:00",
+  "error_type": "PermissionError",
+  "error": "[WinError 5] 拒绝访问。: 'D:\\\\PaperProject\\\\GyxPaper2\\\\custom_models\\\\results\\\\empirical_analysis_v1\\\\D\\\\d2_smoke_v1\\\\seed_2026\\\\STMGPrompt_ComponentAblation\\\\run_status.json.tmp' -> 'D:\\\\PaperProject\\\\GyxPaper2\\\\custom_models\\\\results\\\\empirical_analysis_v1\\\\D\\\\d2_smoke_v1\\\\seed_2026\\\\STMGPrompt_ComponentAblation\\\\run_status.json'",
+  "artifact_validation": {
+    "best_checkpoint.pt": true,
+    "metrics.csv": true,
+    "metrics_eval_h3.json": true,
+    "metrics_eval_h6.json": true,
+    "metrics_eval_h10.json": true,
+    "prediction_metadata.json": true,
+    "evaluation_complete.json": true
+  },
+  "artifacts_complete": true,
+  "protocol_passed": true
+}

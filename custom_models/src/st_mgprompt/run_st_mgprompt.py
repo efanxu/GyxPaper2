@@ -18,7 +18,7 @@ from benchmark_v2.training_profiles import (
     PROFILE_ALLOWLIST,
     load_training_profile,
 )
-from st_mgprompt.experiment_protocol import apply_variant, assert_expected_diff, canonical_config, config_diff, get_variant, write_json
+from st_mgprompt.experiment_protocol import apply_variant, assert_expected_diff, canonical_config, canonical_directory, config_diff, get_variant, write_json
 from st_mgprompt.data import make_dataloaders
 from st_mgprompt.diagnostics import (
     save_coupling_diagnostics,
@@ -143,6 +143,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--graph-operator", choices=["simple", "bidirectional_diffusion"], default=None)
     parser.add_argument("--diffusion-order-micro", type=int, default=None)
     parser.add_argument("--diffusion-order-macro", type=int, default=None)
+    parser.add_argument(
+        "--diffusion-direction",
+        choices=["forward", "reverse", "bidirectional"],
+        default=None,
+    )
+    parser.add_argument(
+        "--diffusion-projection-mode",
+        choices=["shared_output_dim"],
+        default=None,
+    )
     parser.add_argument("--disable-diffusion-bidirectional", action="store_true")
     parser.add_argument("--diffusion-beta-init", type=float, default=None)
     parser.add_argument("--node-embed-dim", type=int, default=None)
@@ -259,6 +269,8 @@ def build_config(args: argparse.Namespace) -> STMGPromptConfig:
         "graph_operator",
         "diffusion_order_micro",
         "diffusion_order_macro",
+        "diffusion_direction",
+        "diffusion_projection_mode",
         "diffusion_beta_init",
         "node_embed_dim",
         "adaptive_graph_temperature",
@@ -374,6 +386,9 @@ def build_config(args: argparse.Namespace) -> STMGPromptConfig:
         cfg.loss_protocol = "method_full"
     if args.disable_diffusion_bidirectional:
         cfg.diffusion_use_bidirectional = False
+        cfg.diffusion_direction = "forward"
+    elif args.diffusion_direction is not None:
+        cfg.diffusion_use_bidirectional = cfg.diffusion_direction == "bidirectional"
     if args.use_macro_prompt:
         cfg.use_macro_prompt = True
     if args.use_st_prompt:
@@ -845,6 +860,33 @@ def _build_graph_data(cfg: STMGPromptConfig, data):
             / "_smoke_graph_artifacts"
             / safe_run_id
         )
+    elif str(cfg.variant or "").upper().startswith("D"):
+        import torch
+
+        checkpoint_path = canonical_directory(resolve_project_path(".")) / "best_checkpoint.pt"
+        payload = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
+        state = payload.get("model_state_dict") if isinstance(payload, dict) else None
+        if not isinstance(state, dict) or not {"A_macro_prior", "A_micro_prior"}.issubset(state):
+            raise ValueError(f"Canonical checkpoint lacks frozen G0 graph buffers: {checkpoint_path}")
+        macro = state["A_macro_prior"].detach().cpu().numpy()
+        micro = state["A_micro_prior"].detach().cpu().numpy()
+        expected_shape = (int(data.num_nodes), int(data.num_nodes))
+        if macro.shape != expected_shape or micro.shape != expected_shape:
+            raise ValueError(
+                f"Frozen G0 graph shape mismatch: macro={macro.shape}, micro={micro.shape}, expected={expected_shape}"
+            )
+        return {
+            "A_macro_trend": macro,
+            "A_micro_local": micro,
+            "metadata": {
+                **payload.get("graph_metadata", {}),
+                "graph_identity_reference": "G0/CANONICAL",
+                "graph_source": "canonical_checkpoint_buffers",
+                "canonical_checkpoint": str(checkpoint_path.resolve()),
+                "graph_reconstructed": False,
+                "transpose_topk_recomputed": False,
+            },
+        }
     return prepare_graph_artifacts(data, cfg) if _graph_required(cfg) else None
 
 

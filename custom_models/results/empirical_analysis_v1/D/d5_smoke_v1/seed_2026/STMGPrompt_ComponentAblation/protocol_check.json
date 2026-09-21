@@ -1,0 +1,160 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "model_input_path_exists",
+      "passed": true,
+      "details": "smoke synthetic mode; file existence not required"
+    },
+    {
+      "name": "eval_target_path_exists",
+      "passed": true,
+      "details": "smoke synthetic mode; file existence not required"
+    },
+    {
+      "name": "location_path_exists",
+      "passed": true,
+      "details": "D:\\PaperProject\\GyxPaper2\\dataset\\sdwpf_turb_location_elevation.csv"
+    },
+    {
+      "name": "target_is_patv_raw",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "target_mask_is_valid_target_mask",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "default_16_features",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "no_forbidden_input_features",
+      "passed": true,
+      "details": "[]"
+    },
+    {
+      "name": "method_full_loss_name",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "msmg_dwu_model_name",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "msmg_dwu_method_full_protocol",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "msmg_dwu_not_fair_main_table",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "test_uses_full_windows",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "direct_decoder_strategy",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "no_fake_coupling_block_for_non_coupled_models",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_sources_in_base_features",
+      "passed": true,
+      "details": "['Wspd', 'Patv_clean_for_input']"
+    },
+    {
+      "name": "physical_clip_eval_enabled",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "physical_clip_uniform_protocol",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "checkpoint_metric_declared",
+      "passed": true,
+      "details": ""
+    }
+  ],
+  "data_summary": null,
+  "protocol_id": "empirical_analysis_v1",
+  "protocol_profile": "STMG_FORMAL_V2",
+  "source_scope": "internal_diffusion",
+  "empirical_unique_difference_audit": {
+    "protocol_id": "empirical_analysis_v1",
+    "variant_id": "D5",
+    "family": "D",
+    "implementation_status": "ready",
+    "expected_diff_fields": [
+      "diffusion_order_macro",
+      "diffusion_order_micro"
+    ],
+    "actual_diff_fields": [
+      "diffusion_order_macro",
+      "diffusion_order_micro"
+    ],
+    "missing_expected_diff_fields": [],
+    "unexpected_diff_fields": [],
+    "frozen_protocol_changes": [],
+    "differences": {
+      "diffusion_order_micro": {
+        "canonical": 2,
+        "effective": 3
+      },
+      "diffusion_order_macro": {
+        "canonical": 2,
+        "effective": 3
+      }
+    },
+    "passed": true
+  },
+  "effective_batch": {
+    "train": 4,
+    "val": 4,
+    "test": 4
+  },
+  "mask": "valid_target_mask",
+  "prediction_start_index_rule": "[t-lookback,t)->[t,t+max_pred_len)",
+  "graph_identity_reference": "G0/CANONICAL",
+  "graph_operator": "bidirectional_diffusion",
+  "operator_direction": "bidirectional",
+  "diffusion_order_micro": 3,
+  "diffusion_order_macro": 3,
+  "diffusion_state_count": 6,
+  "diffusion_state_count_micro": 6,
+  "diffusion_state_count_macro": 6,
+  "diffusion_stream_count_micro": 7,
+  "diffusion_stream_count_macro": 7,
+  "state_concat_order": [
+    "input",
+    "forward_hop_1",
+    "forward_hop_2",
+    "forward_hop_3",
+    "reverse_hop_1",
+    "reverse_hop_2",
+    "reverse_hop_3"
+  ],
+  "projection_mode": "shared_output_dim",
+  "projection_input_dim_micro": 112,
+  "projection_input_dim_macro": 112,
+  "projection_output_dim": 16,
+  "forward_normalization": "row_normalize(A)",
+  "reverse_normalization": "row_normalize(A_transpose)",
+  "transpose_topk_recomputed": false
+}

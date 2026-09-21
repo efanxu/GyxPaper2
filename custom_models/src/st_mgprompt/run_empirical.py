@@ -42,11 +42,69 @@ from st_mgprompt.registry import build_model
 from st_mgprompt.run_st_mgprompt import _autocast_context, _run_once, resolve_device, update_run_status
 from st_mgprompt.step3_reporting import write_step3_reports
 from st_mgprompt.step4_reporting import write_step4_reports
+from st_mgprompt.step5_reporting import write_step5_reports
 from st_mgprompt.summarize_empirical import summarize_empirical
 
 
 def _utc_now() -> str:
     return datetime.now(timezone.utc).isoformat()
+
+
+def _effective_source_scope(args: argparse.Namespace, variant: EmpiricalVariant) -> str:
+    if variant.family == "D" and args.source_scope == "internal_mechanism":
+        return "internal_diffusion"
+    return str(args.source_scope)
+
+
+def _diffusion_config_contract(config: STMGPromptConfig) -> dict[str, Any]:
+    if config.graph_operator != "bidirectional_diffusion":
+        return {
+            "graph_operator": config.graph_operator,
+            "operator_direction": "none",
+            "diffusion_order_micro": 0,
+            "diffusion_order_macro": 0,
+            "diffusion_state_count": 0,
+            "diffusion_state_count_micro": 0,
+            "diffusion_state_count_macro": 0,
+            "diffusion_stream_count_micro": 1,
+            "diffusion_stream_count_macro": 1,
+            "state_concat_order": ["input"],
+            "projection_mode": "not_applicable",
+            "projection_input_dim_micro": config.hidden_dim,
+            "projection_input_dim_macro": config.hidden_dim,
+            "projection_output_dim": config.hidden_dim,
+            "forward_normalization": "simple_local_graph_control",
+            "reverse_normalization": "not_applicable",
+            "transpose_topk_recomputed": False,
+        }
+    directions = ("forward", "reverse") if config.diffusion_direction == "bidirectional" else (config.diffusion_direction,)
+    concat_order = ["input"]
+    for direction in directions:
+        concat_order.extend(
+            f"{direction}_hop_{hop}"
+            for hop in range(1, config.diffusion_order_micro + 1)
+        )
+    micro_count = len(directions) * config.diffusion_order_micro
+    macro_count = len(directions) * config.diffusion_order_macro
+    return {
+        "graph_operator": config.graph_operator,
+        "operator_direction": config.diffusion_direction,
+        "diffusion_order_micro": config.diffusion_order_micro,
+        "diffusion_order_macro": config.diffusion_order_macro,
+        "diffusion_state_count": micro_count,
+        "diffusion_state_count_micro": micro_count,
+        "diffusion_state_count_macro": macro_count,
+        "diffusion_stream_count_micro": 1 + micro_count,
+        "diffusion_stream_count_macro": 1 + macro_count,
+        "state_concat_order": concat_order,
+        "projection_mode": config.diffusion_projection_mode,
+        "projection_input_dim_micro": config.hidden_dim * (1 + micro_count),
+        "projection_input_dim_macro": config.hidden_dim * (1 + macro_count),
+        "projection_output_dim": config.hidden_dim,
+        "forward_normalization": "row_normalize(A)",
+        "reverse_normalization": "row_normalize(A_transpose)",
+        "transpose_topk_recomputed": False,
+    }
 
 
 def _atomic_json(path: Path, payload: Any) -> None:
@@ -153,7 +211,13 @@ def _reference_source(variant: EmpiricalVariant) -> Path:
     return resolve_project_path(EMPIRICAL_RESULT_ROOT) / variant.family / str(target)
 
 
-def _write_reference(variant: EmpiricalVariant, run_root: Path) -> dict[str, Any]:
+def _write_reference(
+    variant: EmpiricalVariant,
+    run_root: Path,
+    *,
+    protocol_profile: str = "STMG_FORMAL_V2",
+    source_scope: str = "internal_mechanism",
+) -> dict[str, Any]:
     source = _reference_source(variant)
     formal_variant = variant.paired_reference if variant.paired_reference in {"A4", "A7", "A8"} else "A0"
     source_config_path = source / "effective_config.json"
@@ -178,14 +242,23 @@ def _write_reference(variant: EmpiricalVariant, run_root: Path) -> dict[str, Any
         "family": variant.family,
         "reference_only": True,
         "paired_reference": variant.paired_reference,
-        "protocol_profile": "STMG_FORMAL_V2",
-        "source_scope": "internal_mechanism",
+        "protocol_profile": protocol_profile,
+        "source_scope": source_scope,
         "source_run_dir": str(source.resolve()),
         "source_exists": source.is_dir(),
         "source_semantic_audit": source_audit,
         "created_at": _utc_now(),
         "note": "This is a reference; no checkpoint or metrics were copied.",
     }
+    if variant.family == "D":
+        reference_config = apply_empirical_variant(None, variant.variant_id, variant.family)
+        payload.update(
+            {
+                "paired_reference": "D4/T0",
+                "graph_identity_reference": "G0/CANONICAL",
+                **_diffusion_config_contract(reference_config),
+            }
+        )
     _atomic_json(run_root / "reference.json", payload)
     if not source.is_dir() or not source_audit.get("passed"):
         raise RuntimeError(
@@ -256,6 +329,7 @@ def _write_identity_contract(
     mode: str,
 ) -> None:
     run_dir.mkdir(parents=True, exist_ok=True)
+    diffusion_contract = _diffusion_config_contract(effective_config)
     _atomic_json(run_dir / "resolved_config.json", formal_config.to_dict())
     _atomic_json(run_dir / "effective_config.json", effective_config.to_dict())
     _atomic_json(
@@ -278,6 +352,8 @@ def _write_identity_contract(
             },
             "mask": formal_config.target_mask_col,
             "prediction_start_index_rule": "[t-lookback,t)->[t,t+max_pred_len)",
+            "graph_identity_reference": "G0/CANONICAL" if variant.family == "D" else None,
+            **(diffusion_contract if variant.family == "D" else {}),
             "passed": bool(audit.get("passed")),
         },
     )
@@ -288,12 +364,16 @@ def _write_identity_contract(
             "protocol_profile": formal_config.protocol_profile,
             "source_scope": formal_config.source_scope,
             "variant_id": variant.variant_id,
-            "paired_reference": "T0" if variant.family == "T" else variant.paired_reference,
+            "paired_reference": (
+                "T0" if variant.family == "T" else ("D4/T0" if variant.family == "D" else variant.paired_reference)
+            ),
+            "graph_identity_reference": "G0/CANONICAL" if variant.family == "D" else None,
             "reference_only": variant.reference_only,
             "formal_training": mode == "full",
             "smoke_or_preflight": mode in {"smoke", "full_shape"},
             "checkpoint_copied": False,
             "metrics_copied": False,
+            **(diffusion_contract if variant.family == "D" else {}),
         },
     )
 
@@ -304,6 +384,7 @@ def _augment_completed_run_artifacts(
     variant: EmpiricalVariant,
     audit: dict[str, Any],
 ) -> None:
+    diffusion_contract = _diffusion_config_contract(config) if variant.family == "D" else {}
     protocol = {}
     protocol_path = run_dir / "protocol_check.json"
     if protocol_path.is_file():
@@ -321,6 +402,8 @@ def _augment_completed_run_artifacts(
             },
             "mask": config.target_mask_col,
             "prediction_start_index_rule": "[t-lookback,t)->[t,t+max_pred_len)",
+            "graph_identity_reference": "G0/CANONICAL" if variant.family == "D" else None,
+            **diffusion_contract,
         }
     )
     _atomic_json(protocol_path, protocol)
@@ -335,6 +418,8 @@ def _augment_completed_run_artifacts(
                 "prediction_start_index_rule": "[t-lookback,t)->[t,t+max_pred_len)",
                 "node_count": config.num_nodes,
                 "horizon": config.max_pred_len,
+                "graph_identity_reference": "G0/CANONICAL" if variant.family == "D" else None,
+                **diffusion_contract,
                 "effective_batch": {
                     "train": config.train_batch_size or config.batch_size,
                     "val": config.val_batch_size or config.eval_batch_size,
@@ -354,6 +439,7 @@ def _augment_completed_run_artifacts(
                 "output_shape": [config.batch_size, config.max_pred_len, config.num_nodes]
                 if not config.smoke
                 else [min(config.batch_size, 4), config.max_pred_len, min(config.num_nodes, 8)],
+                **diffusion_contract,
             }
         )
         _atomic_json(summary_path, summary)
@@ -393,6 +479,135 @@ def _write_graph_audit_artifacts(run_dir: Path, config: STMGPromptConfig) -> Non
                     **trace,
                 },
             )
+
+
+def _write_diffusion_audit_artifacts(
+    run_dir: Path,
+    config: STMGPromptConfig,
+    *,
+    checkpoint_path: Path | None = None,
+) -> None:
+    if not str(config.variant or "").upper().startswith("D"):
+        return
+    contract = _diffusion_config_contract(config)
+    _atomic_json(
+        run_dir / "operator_trace.json",
+        {
+            "protocol_id": EMPIRICAL_PROTOCOL_ID,
+            "variant_id": config.variant,
+            "protocol_profile": config.protocol_profile,
+            "source_scope": config.source_scope,
+            "paired_reference": "D4/T0",
+            "graph_identity_reference": "G0/CANONICAL",
+            **contract,
+        },
+    )
+    selected_checkpoint = checkpoint_path
+    if selected_checkpoint is None:
+        for name in ("best_checkpoint.pt", "last_checkpoint.pt"):
+            candidate = run_dir / name
+            if candidate.is_file():
+                selected_checkpoint = candidate
+                break
+    graph_identity: dict[str, Any] = {
+        "protocol_id": EMPIRICAL_PROTOCOL_ID,
+        "variant_id": config.variant,
+        "graph_identity_reference": "G0/CANONICAL",
+        "graph_operator": config.graph_operator,
+        "operator_direction": contract["operator_direction"],
+        "graph_reconstructed": False,
+        "transpose_topk_recomputed": False,
+    }
+    if selected_checkpoint is not None and selected_checkpoint.is_file():
+        import torch
+
+        payload = torch.load(selected_checkpoint, map_location="cpu", weights_only=False)
+        state = payload.get("model_state_dict") if isinstance(payload, dict) else None
+        if isinstance(state, dict) and {"A_macro_prior", "A_micro_prior"}.issubset(state):
+            macro = state["A_macro_prior"].detach().cpu().numpy().astype(np.float32)
+            micro = state["A_micro_prior"].detach().cpu().numpy().astype(np.float32)
+            graph_identity.update(
+                summarize_graph_identity(
+                    macro,
+                    micro,
+                    config,
+                    fit_split=(
+                        "synthetic_smoke_preflight"
+                        if config.smoke
+                        else "canonical_train_only_checkpoint"
+                    ),
+                )
+            )
+            graph_identity.update(
+                {
+                    "checkpoint_path": str(selected_checkpoint.resolve()),
+                    "macro_buffer": "A_macro_prior",
+                    "micro_buffer": "A_micro_prior",
+                    "macro_shape": list(macro.shape),
+                    "micro_shape": list(micro.shape),
+                    "formal_graph_identity_match": not config.smoke and macro.shape == (134, 134),
+                }
+            )
+    _atomic_json(run_dir / "graph_identity.json", graph_identity)
+    _atomic_json(
+        run_dir / "node_order_manifest.json",
+        {
+            "protocol_id": EMPIRICAL_PROTOCOL_ID,
+            "variant_id": config.variant,
+            "graph_identity_reference": "G0/CANONICAL",
+            "node_count": graph_identity.get("node_count"),
+            "node_order": graph_identity.get("node_order", []),
+            "node_order_source": graph_identity.get("node_order_source"),
+            "fit_split": graph_identity.get("fit_split"),
+        },
+    )
+
+    summary_path = run_dir / "model_summary.json"
+    summary = json.loads(summary_path.read_text(encoding="utf-8")) if summary_path.is_file() else {}
+    summary.update(contract)
+    summary.update(
+        {
+            "variant_id": config.variant,
+            "graph_identity_reference": "G0/CANONICAL",
+            "paired_reference": "D4/T0",
+        }
+    )
+    _atomic_json(summary_path, summary)
+
+    prediction = {}
+    prediction_path = run_dir / "prediction_metadata.json"
+    if prediction_path.is_file():
+        prediction = json.loads(prediction_path.read_text(encoding="utf-8"))
+    environment_path = run_dir / "environment.json"
+    efficiency = {
+        "protocol_id": EMPIRICAL_PROTOCOL_ID,
+        "variant_id": config.variant,
+        "projection_mode": contract["projection_mode"],
+        "diffusion_state_count": contract["diffusion_state_count"],
+        "projection_input_dim_micro": contract["projection_input_dim_micro"],
+        "projection_input_dim_macro": contract["projection_input_dim_macro"],
+        "projection_output_dim": contract["projection_output_dim"],
+        "parameter_count": summary.get("total_parameters"),
+        "trainable_parameter_count": summary.get("trainable_parameters"),
+        "model_file_size_bytes": (
+            selected_checkpoint.stat().st_size
+            if selected_checkpoint is not None and selected_checkpoint.is_file()
+            else None
+        ),
+        "total_train_seconds": summary.get("train_time_sec"),
+        "best_epoch": summary.get("best_epoch"),
+        "inference_latency_ms": prediction.get("inference_time_ms_per_window"),
+        "throughput": prediction.get("inference_windows_per_sec"),
+        "peak_memory_mb": summary.get("peak_memory_mb"),
+        "effective_batch": {
+            "train": config.train_batch_size or config.batch_size,
+            "val": config.val_batch_size or config.eval_batch_size,
+            "test": config.test_batch_size or config.eval_batch_size,
+        },
+        "hardware_software_environment": str(environment_path.resolve()) if environment_path.is_file() else None,
+        "measurement_scope": "smoke_preflight" if config.smoke else "full_shape_or_formal",
+    }
+    _atomic_json(run_dir / "efficiency.json", efficiency)
 
 
 def _write_alignment_trace(
@@ -495,7 +710,12 @@ def _run_full_shape(
     run_dir: Path,
 ) -> dict[str, Any]:
     if variant.reference_only:
-        reference = _write_reference(variant, run_dir)
+        reference = _write_reference(
+            variant,
+            run_dir,
+            protocol_profile=args.profile,
+            source_scope=_effective_source_scope(args, variant),
+        )
         return {
             "variant_id": variant.variant_id,
             "family": variant.family,
@@ -505,9 +725,9 @@ def _run_full_shape(
         }
     formal = apply_empirical_variant(None, variant.variant_id, variant.family)
     formal.protocol_profile = args.profile
-    formal.source_scope = args.source_scope
     formal.device = args.device
     audit = assert_empirical_expected_diff(formal, variant.variant_id, variant.family)
+    formal.source_scope = _effective_source_scope(args, variant)
     effective = deepcopy(formal)
     effective.diagnostics_level = "minimal"
     effective.prediction_accumulation = "streaming"
@@ -650,8 +870,14 @@ def _run_full_shape(
             "graph_prior_component": effective.graph_prior_component,
             "adaptive_support_mode": effective.adaptive_support_mode,
             "graph_rewire_mode": effective.graph_rewire_mode,
+            **(_diffusion_config_contract(effective) if variant.family == "D" else {}),
         }
         _atomic_json(run_dir / "model_summary.json", summary)
+        _write_diffusion_audit_artifacts(
+            run_dir,
+            effective,
+            checkpoint_path=canonical_checkpoint,
+        )
         trace = output["aux"].get("branch_graph_assignment_trace")
         if isinstance(trace, dict):
             _atomic_json(
@@ -733,8 +959,8 @@ def _run_seed(
 ) -> dict[str, Any]:
     formal_config = apply_empirical_variant(None, variant.variant_id, variant.family)
     formal_config.protocol_profile = args.profile
-    formal_config.source_scope = args.source_scope
     audit = assert_empirical_expected_diff(formal_config, variant.variant_id, variant.family)
+    formal_config.source_scope = _effective_source_scope(args, variant)
     config = deepcopy(formal_config)
     config.seed = int(seed)
     config.device = args.device
@@ -792,6 +1018,7 @@ def _run_seed(
         return {**failure, "run_dir": str(run_dir.resolve())}
     _augment_completed_run_artifacts(run_dir, config, variant, audit)
     _write_graph_audit_artifacts(run_dir, config)
+    _write_diffusion_audit_artifacts(run_dir, config)
     trace_summary = None
     if variant.variant_id == "T4":
         trace_summary = _write_alignment_trace(
@@ -873,7 +1100,12 @@ def run_empirical(argv: list[str] | None = None) -> dict[str, Any]:
             print(json.dumps(status, ensure_ascii=False), flush=True)
             continue
         if variant.reference_only:
-            reference = _write_reference(variant, run_root)
+            reference = _write_reference(
+                variant,
+                run_root,
+                protocol_profile=args.profile,
+                source_scope=_effective_source_scope(args, variant),
+            )
             status = {
                 "variant_id": variant.variant_id,
                 "family": variant.family,
@@ -926,12 +1158,18 @@ def run_empirical(argv: list[str] | None = None) -> dict[str, Any]:
         if any(variant.family == "G" for variant in variants) and not args.dry_run
         else None
     )
+    step5 = (
+        write_step5_reports(output_root)
+        if any(variant.family == "D" for variant in variants) and not args.dry_run
+        else None
+    )
     summary = summarize_empirical(output_root)
     return {
         "output_root": str(output_root.resolve()),
         "statuses": statuses,
         "step3": step3,
         "step4": step4,
+        "step5": step5,
         "summary": summary,
     }
 

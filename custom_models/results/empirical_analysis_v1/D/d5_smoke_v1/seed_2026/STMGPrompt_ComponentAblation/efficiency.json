@@ -1,0 +1,24 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "D5",
+  "projection_mode": "shared_output_dim",
+  "diffusion_state_count": 6,
+  "projection_input_dim_micro": 112,
+  "projection_input_dim_macro": 112,
+  "projection_output_dim": 16,
+  "parameter_count": 19254,
+  "trainable_parameter_count": 19254,
+  "model_file_size_bytes": 377771,
+  "total_train_seconds": 1.4866774000001897,
+  "best_epoch": 1,
+  "inference_latency_ms": 6.872366666357266,
+  "throughput": 145.51028030785432,
+  "peak_memory_mb": null,
+  "effective_batch": {
+    "train": 4,
+    "val": 4,
+    "test": 4
+  },
+  "hardware_software_environment": null,
+  "measurement_scope": "smoke_preflight"
+}

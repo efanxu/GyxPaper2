@@ -1,8 +1,55 @@
 {
   "protocol_id": "empirical_analysis_v1",
-  "updated_at": "2026-09-21T12:01:58.886773+00:00",
+  "updated_at": "2026-09-21T12:55:37.690802+00:00",
   "mode": "full_shape",
   "statuses": [
+    {
+      "variant_id": "D0",
+      "seed": 2026,
+      "status": "completed",
+      "decision": "SKIP_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d0_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation"
+    },
+    {
+      "variant_id": "D1",
+      "seed": 2026,
+      "status": "completed",
+      "decision": "SKIP_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d1_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation"
+    },
+    {
+      "variant_id": "D2",
+      "seed": 2026,
+      "status": "smoke_completed",
+      "decision": "TRAIN",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d2_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation",
+      "protocol_passed": true,
+      "started_at": "2026-09-21T12:54:19.536000+00:00",
+      "finished_at": "2026-09-21T12:54:25.475683+00:00",
+      "trace_summary": null
+    },
+    {
+      "variant_id": "D3",
+      "seed": 2026,
+      "status": "smoke_completed",
+      "decision": "TRAIN",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d3_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation",
+      "protocol_passed": true,
+      "started_at": "2026-09-21T12:54:25.518011+00:00",
+      "finished_at": "2026-09-21T12:54:27.795820+00:00",
+      "trace_summary": null
+    },
+    {
+      "variant_id": "D5",
+      "seed": 2026,
+      "status": "smoke_completed",
+      "decision": "TRAIN",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d5_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation",
+      "protocol_passed": true,
+      "started_at": "2026-09-21T12:54:27.852257+00:00",
+      "finished_at": "2026-09-21T12:54:30.189477+00:00",
+      "trace_summary": null
+    },
     {
       "variant_id": "F0",
       "seed": 2026,
@@ -241,6 +288,80 @@
       "started_at": "2026-09-21T11:13:34.037881+00:00",
       "finished_at": "2026-09-21T11:13:40.089526+00:00",
       "trace_summary": null
+    },
+    {
+      "variant_id": "D0",
+      "family": "D",
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d0_empirical_v1",
+      "output_shape": [
+        32,
+        10,
+        134
+      ],
+      "peak_memory_mb": 7556.013671875
+    },
+    {
+      "variant_id": "D1",
+      "family": "D",
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d1_empirical_v1",
+      "output_shape": [
+        32,
+        10,
+        134
+      ],
+      "peak_memory_mb": 8404.640625
+    },
+    {
+      "variant_id": "D2",
+      "family": "D",
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d2_empirical_v1",
+      "output_shape": [
+        32,
+        10,
+        134
+      ],
+      "peak_memory_mb": 8404.640625
+    },
+    {
+      "variant_id": "D3",
+      "family": "D",
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d3_empirical_v1",
+      "output_shape": [
+        32,
+        10,
+        134
+      ],
+      "peak_memory_mb": 8702.9833984375
+    },
+    {
+      "variant_id": "D4",
+      "family": "D",
+      "status": "REFERENCE_ONLY",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d4_empirical_v1",
+      "source_exists": true
+    },
+    {
+      "variant_id": "D4",
+      "family": "D",
+      "status": "REFERENCE_ONLY",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d4_smoke_v1",
+      "source_exists": true
+    },
+    {
+      "variant_id": "D5",
+      "family": "D",
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d5_empirical_v1",
+      "output_shape": [
+        32,
+        10,
+        134
+      ],
+      "peak_memory_mb": 9911.1474609375
     },
     {
       "protocol_id": "empirical_analysis_v1",

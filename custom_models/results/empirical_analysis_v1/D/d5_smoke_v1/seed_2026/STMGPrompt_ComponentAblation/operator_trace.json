@@ -1,0 +1,33 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "D5",
+  "protocol_profile": "STMG_FORMAL_V2",
+  "source_scope": "internal_diffusion",
+  "paired_reference": "D4/T0",
+  "graph_identity_reference": "G0/CANONICAL",
+  "graph_operator": "bidirectional_diffusion",
+  "operator_direction": "bidirectional",
+  "diffusion_order_micro": 3,
+  "diffusion_order_macro": 3,
+  "diffusion_state_count": 6,
+  "diffusion_state_count_micro": 6,
+  "diffusion_state_count_macro": 6,
+  "diffusion_stream_count_micro": 7,
+  "diffusion_stream_count_macro": 7,
+  "state_concat_order": [
+    "input",
+    "forward_hop_1",
+    "forward_hop_2",
+    "forward_hop_3",
+    "reverse_hop_1",
+    "reverse_hop_2",
+    "reverse_hop_3"
+  ],
+  "projection_mode": "shared_output_dim",
+  "projection_input_dim_micro": 112,
+  "projection_input_dim_macro": 112,
+  "projection_output_dim": 16,
+  "forward_normalization": "row_normalize(A)",
+  "reverse_normalization": "row_normalize(A_transpose)",
+  "transpose_topk_recomputed": false
+}

@@ -1,0 +1,160 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "canonical_run_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+  "paired_reference": "D4/T0",
+  "graph_identity_reference": "G0/CANONICAL",
+  "variants": [
+    {
+      "variant_id": "D0",
+      "display_name": "No diffusion state",
+      "family": "D",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "graph_operator": "simple"
+      },
+      "expected_unique_diff": [
+        "graph_operator"
+      ],
+      "trainable": true,
+      "paired_reference": "D4/T0",
+      "implementation_status": "ready",
+      "implementation_note": "Uses the existing simple/local graph control and creates no diffusion state.",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_diffusion",
+      "graph_identity_reference": "G0/CANONICAL",
+      "formal_result_status": "preflight-only",
+      "model_summary_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d0_empirical_v1\\model_summary.json",
+      "graph_identity_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d0_empirical_v1\\graph_identity.json"
+    },
+    {
+      "variant_id": "D1",
+      "display_name": "Forward first-order diffusion",
+      "family": "D",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "diffusion_order_micro": 1,
+        "diffusion_order_macro": 1,
+        "diffusion_use_bidirectional": false,
+        "diffusion_direction": "forward"
+      },
+      "expected_unique_diff": [
+        "diffusion_order_micro",
+        "diffusion_order_macro",
+        "diffusion_use_bidirectional",
+        "diffusion_direction"
+      ],
+      "trainable": true,
+      "paired_reference": "D4/T0",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_diffusion",
+      "graph_identity_reference": "G0/CANONICAL",
+      "formal_result_status": "preflight-only",
+      "model_summary_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d1_empirical_v1\\model_summary.json",
+      "graph_identity_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d1_empirical_v1\\graph_identity.json"
+    },
+    {
+      "variant_id": "D2",
+      "display_name": "Transpose-direction first-order diffusion",
+      "family": "D",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "diffusion_order_micro": 1,
+        "diffusion_order_macro": 1,
+        "diffusion_use_bidirectional": false,
+        "diffusion_direction": "reverse"
+      },
+      "expected_unique_diff": [
+        "diffusion_order_micro",
+        "diffusion_order_macro",
+        "diffusion_use_bidirectional",
+        "diffusion_direction"
+      ],
+      "trainable": true,
+      "paired_reference": "D4/T0",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_diffusion",
+      "graph_identity_reference": "G0/CANONICAL",
+      "formal_result_status": "preflight-only",
+      "model_summary_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d2_empirical_v1\\model_summary.json",
+      "graph_identity_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d2_empirical_v1\\graph_identity.json"
+    },
+    {
+      "variant_id": "D3",
+      "display_name": "Bidirectional first-order diffusion",
+      "family": "D",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "diffusion_order_micro": 1,
+        "diffusion_order_macro": 1
+      },
+      "expected_unique_diff": [
+        "diffusion_order_micro",
+        "diffusion_order_macro"
+      ],
+      "trainable": true,
+      "paired_reference": "D4/T0",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_diffusion",
+      "graph_identity_reference": "G0/CANONICAL",
+      "formal_result_status": "preflight-only",
+      "model_summary_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d3_empirical_v1\\model_summary.json",
+      "graph_identity_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d3_empirical_v1\\graph_identity.json"
+    },
+    {
+      "variant_id": "D4",
+      "display_name": "Bidirectional second-order canonical reference",
+      "family": "D",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {},
+      "expected_unique_diff": [],
+      "trainable": false,
+      "paired_reference": "D4/T0",
+      "implementation_status": "reference",
+      "implementation_note": "",
+      "reference_only": true,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_diffusion",
+      "graph_identity_reference": "G0/CANONICAL",
+      "formal_result_status": "reference-only",
+      "model_summary_path": "",
+      "graph_identity_path": ""
+    },
+    {
+      "variant_id": "D5",
+      "display_name": "Bidirectional third-order diffusion",
+      "family": "D",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "diffusion_order_micro": 3,
+        "diffusion_order_macro": 3
+      },
+      "expected_unique_diff": [
+        "diffusion_order_micro",
+        "diffusion_order_macro"
+      ],
+      "trainable": true,
+      "paired_reference": "D4/T0",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_diffusion",
+      "graph_identity_reference": "G0/CANONICAL",
+      "formal_result_status": "preflight-only",
+      "model_summary_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d5_empirical_v1\\model_summary.json",
+      "graph_identity_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d5_empirical_v1\\graph_identity.json"
+    }
+  ],
+  "formal_training_started": false,
+  "updated_at": "2026-09-21T13:02:59.333776+00:00"
+}

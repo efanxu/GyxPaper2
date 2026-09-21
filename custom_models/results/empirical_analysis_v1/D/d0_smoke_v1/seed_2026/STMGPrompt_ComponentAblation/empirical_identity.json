@@ -1,0 +1,22 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant": {
+    "variant_id": "D0",
+    "display_name": "No diffusion state",
+    "family": "D",
+    "base_config": "CANONICAL_FULL",
+    "config_overrides": {
+      "graph_operator": "simple"
+    },
+    "expected_unique_diff": [
+      "graph_operator"
+    ],
+    "trainable": true,
+    "paired_reference": "D4",
+    "implementation_status": "ready",
+    "implementation_note": "Uses the existing simple/local graph control and creates no diffusion state.",
+    "reference_only": false
+  },
+  "seed": 2026,
+  "mode": "smoke"
+}

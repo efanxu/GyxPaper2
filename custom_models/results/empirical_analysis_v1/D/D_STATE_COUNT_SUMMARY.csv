@@ -1,0 +1,7 @@
+﻿variant_id,diffusion_state_count,diffusion_state_count_micro,diffusion_state_count_macro,diffusion_stream_count_micro,diffusion_stream_count_macro,projection_mode,projection_input_dim_micro,projection_input_dim_macro,projection_output_dim,parameter_count,peak_memory_mb
+D0,0,0,0,1,1,not_applicable,64,64,64,245382,7556.013671875
+D1,1,1,1,2,2,shared_output_dim,128,128,64,253958,8404.640625
+D2,1,1,1,2,2,shared_output_dim,128,128,64,253958,8404.640625
+D3,2,2,2,3,3,shared_output_dim,192,192,64,262150,8702.9833984375
+D4,4,4,4,5,5,shared_output_dim,320,320,64,,
+D5,6,6,6,7,7,shared_output_dim,448,448,64,294918,9911.1474609375

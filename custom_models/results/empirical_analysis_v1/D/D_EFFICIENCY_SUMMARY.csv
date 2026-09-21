@@ -1,0 +1,7 @@
+﻿variant_id,status,projection_mode,diffusion_state_count,parameter_count,trainable_parameter_count,model_file_size_bytes,total_train_seconds,best_epoch,inference_latency_ms,throughput,peak_memory_mb,source
+D0,full_shape_or_formal,not_applicable,0,245382,245382,3509704,,,,,7556.013671875,D:\PaperProject\GyxPaper2\custom_models\results\empirical_analysis_v1\D\d0_empirical_v1\efficiency.json
+D1,full_shape_or_formal,shared_output_dim,1,253958,253958,3509704,,,,,8404.640625,D:\PaperProject\GyxPaper2\custom_models\results\empirical_analysis_v1\D\d1_empirical_v1\efficiency.json
+D2,full_shape_or_formal,shared_output_dim,1,253958,253958,3509704,,,,,8404.640625,D:\PaperProject\GyxPaper2\custom_models\results\empirical_analysis_v1\D\d2_empirical_v1\efficiency.json
+D3,full_shape_or_formal,shared_output_dim,2,262150,262150,3509704,,,,,8702.9833984375,D:\PaperProject\GyxPaper2\custom_models\results\empirical_analysis_v1\D\d3_empirical_v1\efficiency.json
+D4,canonical_reference,shared_output_dim,4,278534,278534,3509704,2103.9356914999953,12,7.542580152822498,132.5806262232151,,D:\PaperProject\GyxPaper2\custom_models\results\st_mgprompt_canonical\full_fixed_dual_keep_msmgdwu_seed2026
+D5,full_shape_or_formal,shared_output_dim,6,294918,294918,3509704,,,,,9911.1474609375,D:\PaperProject\GyxPaper2\custom_models\results\empirical_analysis_v1\D\d5_empirical_v1\efficiency.json

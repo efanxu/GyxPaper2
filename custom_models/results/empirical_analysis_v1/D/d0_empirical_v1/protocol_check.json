@@ -1,0 +1,61 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "protocol_profile": "STMG_FORMAL_V2",
+  "source_scope": "internal_diffusion",
+  "mode": "full_shape",
+  "unique_difference_audit": {
+    "protocol_id": "empirical_analysis_v1",
+    "variant_id": "D0",
+    "family": "D",
+    "implementation_status": "ready",
+    "expected_diff_fields": [
+      "graph_operator"
+    ],
+    "actual_diff_fields": [
+      "graph_operator"
+    ],
+    "missing_expected_diff_fields": [],
+    "unexpected_diff_fields": [],
+    "frozen_protocol_changes": [],
+    "differences": {
+      "graph_operator": {
+        "canonical": "bidirectional_diffusion",
+        "effective": "simple"
+      }
+    },
+    "passed": true
+  },
+  "formal_batch": {
+    "train": 32,
+    "val": 4,
+    "test": 4
+  },
+  "effective_batch": {
+    "train": 32,
+    "val": 4,
+    "test": 4
+  },
+  "mask": "valid_target_mask",
+  "prediction_start_index_rule": "[t-lookback,t)->[t,t+max_pred_len)",
+  "graph_identity_reference": "G0/CANONICAL",
+  "graph_operator": "simple",
+  "operator_direction": "none",
+  "diffusion_order_micro": 0,
+  "diffusion_order_macro": 0,
+  "diffusion_state_count": 0,
+  "diffusion_state_count_micro": 0,
+  "diffusion_state_count_macro": 0,
+  "diffusion_stream_count_micro": 1,
+  "diffusion_stream_count_macro": 1,
+  "state_concat_order": [
+    "input"
+  ],
+  "projection_mode": "not_applicable",
+  "projection_input_dim_micro": 64,
+  "projection_input_dim_macro": 64,
+  "projection_output_dim": 64,
+  "forward_normalization": "simple_local_graph_control",
+  "reverse_normalization": "not_applicable",
+  "transpose_topk_recomputed": false,
+  "passed": true
+}

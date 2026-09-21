@@ -1,0 +1,28 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant": {
+    "variant_id": "D1",
+    "display_name": "Forward first-order diffusion",
+    "family": "D",
+    "base_config": "CANONICAL_FULL",
+    "config_overrides": {
+      "diffusion_order_micro": 1,
+      "diffusion_order_macro": 1,
+      "diffusion_use_bidirectional": false,
+      "diffusion_direction": "forward"
+    },
+    "expected_unique_diff": [
+      "diffusion_order_micro",
+      "diffusion_order_macro",
+      "diffusion_use_bidirectional",
+      "diffusion_direction"
+    ],
+    "trainable": true,
+    "paired_reference": "D4",
+    "implementation_status": "ready",
+    "implementation_note": "",
+    "reference_only": false
+  },
+  "seed": 2026,
+  "mode": "smoke"
+}

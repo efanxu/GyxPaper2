@@ -1,0 +1,27 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "D0",
+  "protocol_profile": "STMG_FORMAL_V2",
+  "source_scope": "internal_diffusion",
+  "paired_reference": "D4/T0",
+  "graph_identity_reference": "G0/CANONICAL",
+  "graph_operator": "simple",
+  "operator_direction": "none",
+  "diffusion_order_micro": 0,
+  "diffusion_order_macro": 0,
+  "diffusion_state_count": 0,
+  "diffusion_state_count_micro": 0,
+  "diffusion_state_count_macro": 0,
+  "diffusion_stream_count_micro": 1,
+  "diffusion_stream_count_macro": 1,
+  "state_concat_order": [
+    "input"
+  ],
+  "projection_mode": "not_applicable",
+  "projection_input_dim_micro": 16,
+  "projection_input_dim_macro": 16,
+  "projection_output_dim": 16,
+  "forward_normalization": "simple_local_graph_control",
+  "reverse_normalization": "not_applicable",
+  "transpose_topk_recomputed": false
+}

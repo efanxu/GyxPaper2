@@ -1,0 +1,128 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "passed": true,
+  "frozen_fields": [
+    "model_input_path",
+    "eval_target_path",
+    "target_col",
+    "target_mask_col",
+    "input_patv_col",
+    "feature_cols",
+    "lookback",
+    "max_pred_len",
+    "eval_horizons",
+    "split_ratios",
+    "train_sample_stride",
+    "val_sample_stride",
+    "test_sample_stride",
+    "batch_size",
+    "eval_batch_size",
+    "train_batch_size",
+    "val_batch_size",
+    "test_batch_size",
+    "epochs",
+    "patience",
+    "early_stopping_min_delta",
+    "seed",
+    "enable_physical_clip_eval",
+    "physical_power_min_kw",
+    "physical_power_max_kw",
+    "physical_clip_protocol",
+    "checkpoint_selection_metric",
+    "checkpoint_selection_mode",
+    "primary_val_horizon",
+    "result_protocol",
+    "protocol_profile",
+    "source_scope"
+  ],
+  "variant_audits": [
+    {
+      "variant_id": "D0",
+      "passed": true,
+      "execution_ready": true,
+      "expected_diff_fields": [
+        "graph_operator"
+      ],
+      "actual_diff_fields": [
+        "graph_operator"
+      ],
+      "frozen_protocol_changes": []
+    },
+    {
+      "variant_id": "D1",
+      "passed": true,
+      "execution_ready": true,
+      "expected_diff_fields": [
+        "diffusion_direction",
+        "diffusion_order_macro",
+        "diffusion_order_micro",
+        "diffusion_use_bidirectional"
+      ],
+      "actual_diff_fields": [
+        "diffusion_direction",
+        "diffusion_order_macro",
+        "diffusion_order_micro",
+        "diffusion_use_bidirectional"
+      ],
+      "frozen_protocol_changes": []
+    },
+    {
+      "variant_id": "D2",
+      "passed": true,
+      "execution_ready": true,
+      "expected_diff_fields": [
+        "diffusion_direction",
+        "diffusion_order_macro",
+        "diffusion_order_micro",
+        "diffusion_use_bidirectional"
+      ],
+      "actual_diff_fields": [
+        "diffusion_direction",
+        "diffusion_order_macro",
+        "diffusion_order_micro",
+        "diffusion_use_bidirectional"
+      ],
+      "frozen_protocol_changes": []
+    },
+    {
+      "variant_id": "D3",
+      "passed": true,
+      "execution_ready": true,
+      "expected_diff_fields": [
+        "diffusion_order_macro",
+        "diffusion_order_micro"
+      ],
+      "actual_diff_fields": [
+        "diffusion_order_macro",
+        "diffusion_order_micro"
+      ],
+      "frozen_protocol_changes": []
+    },
+    {
+      "variant_id": "D4",
+      "passed": true,
+      "execution_ready": true,
+      "expected_diff_fields": [],
+      "actual_diff_fields": [],
+      "frozen_protocol_changes": []
+    },
+    {
+      "variant_id": "D5",
+      "passed": true,
+      "execution_ready": true,
+      "expected_diff_fields": [
+        "diffusion_order_macro",
+        "diffusion_order_micro"
+      ],
+      "actual_diff_fields": [
+        "diffusion_order_macro",
+        "diffusion_order_micro"
+      ],
+      "frozen_protocol_changes": []
+    }
+  ],
+  "graph_reconstruction_prohibited": true,
+  "physical_direction_interpretation_prohibited": true,
+  "future_target_access_prohibited": true,
+  "updated_at": "2026-09-21T13:02:59.334822+00:00"
+}

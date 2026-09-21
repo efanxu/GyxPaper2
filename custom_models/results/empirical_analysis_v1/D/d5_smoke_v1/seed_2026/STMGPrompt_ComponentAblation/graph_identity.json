@@ -1,0 +1,77 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "D5",
+  "graph_identity_reference": "G0/CANONICAL",
+  "graph_operator": "bidirectional_diffusion",
+  "operator_direction": "bidirectional",
+  "graph_reconstructed": false,
+  "transpose_topk_recomputed": false,
+  "node_count": 8,
+  "node_order_source": "canonical_1_based_order",
+  "node_order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "coordinate_columns": [
+    "x",
+    "y"
+  ],
+  "location_file": "D:\\PaperProject\\GyxPaper2\\dataset\\sdwpf_turb_location_elevation.csv",
+  "distance_definition": "exp(-squared_euclidean_distance/sigma^2)",
+  "micro_top_k": 5,
+  "macro_top_k": 10,
+  "distance_top_k": 5,
+  "self_loop": false,
+  "normalization": "row_sum_one",
+  "elevation_used": false,
+  "micro_source": "distance_delta_wspd",
+  "macro_source": "causal_trend_similarity",
+  "source_components": [
+    "distance",
+    "train_statistics"
+  ],
+  "fit_split": "synthetic_smoke_preflight",
+  "edge_count": {
+    "micro": 55,
+    "macro": 56
+  },
+  "row_degree_summary": {
+    "micro": {
+      "min": 6,
+      "median": 7.0,
+      "mean": 6.875,
+      "max": 7
+    },
+    "macro": {
+      "min": 7,
+      "median": 7.0,
+      "mean": 7.0,
+      "max": 7
+    }
+  },
+  "branch_graph_assignment": "matched",
+  "adaptive_support_mode": "prior_constrained",
+  "graph_prior_component": "fused",
+  "graph_rewire_mode": "none",
+  "graph_rewire_seed": null,
+  "directionality": "directed_rowwise_top_k",
+  "not_applicable_reason": null,
+  "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\D\\d5_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+  "macro_buffer": "A_macro_prior",
+  "micro_buffer": "A_micro_prior",
+  "macro_shape": [
+    8,
+    8
+  ],
+  "micro_shape": [
+    8,
+    8
+  ],
+  "formal_graph_identity_match": false
+}

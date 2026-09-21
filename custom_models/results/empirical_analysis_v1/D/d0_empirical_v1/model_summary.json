@@ -1,0 +1,73 @@
+{
+  "total_parameters": 245382,
+  "trainable_parameters": 245382,
+  "shared_parameter_count": 0,
+  "branch_output_dimensions": {
+    "fine": 64,
+    "coarse": 64
+  },
+  "input_shape": [
+    32,
+    144,
+    134,
+    16
+  ],
+  "output_shape": [
+    32,
+    10,
+    134
+  ],
+  "loss": 0.5560977458953857,
+  "loss_finite": true,
+  "gradient_finite": true,
+  "device": "cuda",
+  "amp_enabled": true,
+  "peak_memory_mb": 7556.013671875,
+  "temporal_branch_transform": "independent",
+  "coarse_alignment_mode": "same_axis",
+  "cross_granularity_interaction": "cross_fusion",
+  "direct_concat_mlp": {
+    "layers": 2,
+    "hidden_dim": 432,
+    "activation": "gelu",
+    "dropout": 0.1,
+    "output_dim": 64,
+    "macro_prompt_instantiated": true,
+    "cross_fusion_instantiated": true
+  },
+  "branch_graph_assignment_trace": {
+    "assignment": "matched",
+    "fine_graph_id": "micro",
+    "coarse_graph_id": "macro",
+    "fine_builder": "AdaptiveGraphBuilder",
+    "coarse_builder": "AdaptiveGraphBuilder",
+    "adaptive_support_mode": "prior_constrained",
+    "fine_edges_outside_assigned_prior": 0,
+    "coarse_edges_outside_assigned_prior": 0
+  },
+  "graph_prior_component": "fused",
+  "adaptive_support_mode": "prior_constrained",
+  "graph_rewire_mode": "none",
+  "graph_operator": "simple",
+  "operator_direction": "none",
+  "diffusion_order_micro": 0,
+  "diffusion_order_macro": 0,
+  "diffusion_state_count": 0,
+  "diffusion_state_count_micro": 0,
+  "diffusion_state_count_macro": 0,
+  "diffusion_stream_count_micro": 1,
+  "diffusion_stream_count_macro": 1,
+  "state_concat_order": [
+    "input"
+  ],
+  "projection_mode": "not_applicable",
+  "projection_input_dim_micro": 64,
+  "projection_input_dim_macro": 64,
+  "projection_output_dim": 64,
+  "forward_normalization": "simple_local_graph_control",
+  "reverse_normalization": "not_applicable",
+  "transpose_topk_recomputed": false,
+  "variant_id": "D0",
+  "graph_identity_reference": "G0/CANONICAL",
+  "paired_reference": "D4/T0"
+}

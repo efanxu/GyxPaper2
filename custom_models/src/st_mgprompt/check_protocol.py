@@ -419,6 +419,8 @@ def run_protocol_checks(config: STMGPromptConfig, build_data: bool = True) -> di
                             _check(abs(float(aux["micro_diffusion_backward_row_sum_min"]) - 1.0) < 1e-5, "diffusion_reverse_normalized_micro"),
                             _check(int(aux["micro_diffusion_order"]) == config.diffusion_order_micro, "diffusion_order_matches_config_micro"),
                             _check(int(aux["macro_diffusion_order"]) == config.diffusion_order_macro, "diffusion_order_matches_config_macro"),
+                            _check(aux.get("micro_operator_direction") == config.diffusion_direction, "diffusion_direction_matches_config_micro"),
+                            _check(aux.get("macro_operator_direction") == config.diffusion_direction, "diffusion_direction_matches_config_macro"),
                             _check(torch.isfinite(aux["micro_beta_graph"]).all().item(), "diffusion_beta_finite_micro"),
                             _check(torch.isfinite(aux["macro_beta_graph"]).all().item(), "diffusion_beta_finite_macro"),
                             _check("micro_hop2_node_cosine_similarity" in aux, "diffusion_oversmoothing_diagnostic_present"),
@@ -439,6 +441,14 @@ def run_protocol_checks(config: STMGPromptConfig, build_data: bool = True) -> di
                             _check(
                                 int(macro_block.graph_conv.diffusion_order) == config.diffusion_order_macro,
                                 "diffusion_order_matches_config_macro",
+                            ),
+                            _check(
+                                micro_block.graph_conv.direction == config.diffusion_direction,
+                                "diffusion_direction_matches_config_micro",
+                            ),
+                            _check(
+                                macro_block.graph_conv.direction == config.diffusion_direction,
+                                "diffusion_direction_matches_config_macro",
                             ),
                         ]
                     )
