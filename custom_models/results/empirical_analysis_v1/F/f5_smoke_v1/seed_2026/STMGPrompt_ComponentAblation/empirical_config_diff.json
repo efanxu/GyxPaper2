@@ -1,0 +1,22 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "F5",
+  "family": "F",
+  "implementation_status": "ready",
+  "expected_diff_fields": [
+    "disable_macro_to_fine_cross"
+  ],
+  "actual_diff_fields": [
+    "disable_macro_to_fine_cross"
+  ],
+  "missing_expected_diff_fields": [],
+  "unexpected_diff_fields": [],
+  "frozen_protocol_changes": [],
+  "differences": {
+    "disable_macro_to_fine_cross": {
+      "canonical": false,
+      "effective": true
+    }
+  },
+  "passed": true
+}

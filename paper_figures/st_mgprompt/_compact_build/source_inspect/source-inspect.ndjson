@@ -1,0 +1,637 @@
+{"kind":"deck","id":"pr/okiowu","name":"Deck"}
+{"kind":"layout","layoutId":"/ppt/slideMasters/slideMaster1.xml","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout1.xml","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/y90nupkv","slide":1,"title":"ST-MGPrompt Overall Framework","textShapes":78}
+{"kind":"textbox","id":"sh/i18729cr","slide":1,"name":"FIGURE_TITLE","text":"ST-MGPrompt Overall Framework","textPreview":"ST-MGPrompt Overall Framework","textChars":29,"textLines":1,"bbox":[18,8,1244,42]}
+{"kind":"shape","id":"sh/547294r6","slide":1,"name":"FIG1_PANEL_A__BACKGROUND","bbox":[18,58,280,646]}
+{"kind":"textbox","id":"sh/k3yl0zql","slide":1,"name":"FIG1_PANEL_A__TITLE","text":"1. Feature Input and\nTemporal Decomposition","textPreview":"1. Feature Input and | Temporal Decomposition","textChars":43,"textLines":2,"bbox":[22,58.52,272,56]}
+{"kind":"shape","id":"sh/wn6dc7eh","slide":1,"name":"FIG1_PANEL_A__INPUT__SHEET_2","bbox":[44,117,68,58]}
+{"kind":"shape","id":"sh/hofulsf2","slide":1,"name":"FIG1_PANEL_A__INPUT__SHEET_1","bbox":[38,122,68,58]}
+{"kind":"shape","id":"sh/ul4vaxgb","slide":1,"name":"FIG1_PANEL_A__INPUT__SHEET_0","bbox":[32,127,68,58]}
+{"kind":"shape","id":"sh/vmdcj2xw","slide":1,"name":"FIG1_PANEL_A__INPUT__GRID_V_1","bbox":[49,127,0.1,58]}
+{"kind":"shape","id":"sh/4r6dg7et","slide":1,"name":"FIG1_PANEL_A__INPUT__GRID_V_2","bbox":[66,127,0.1,58]}
+{"kind":"shape","id":"sh/5sfepcfe","slide":1,"name":"FIG1_PANEL_A__INPUT__GRID_V_3","bbox":[83,127,0.1,58]}
+{"kind":"shape","id":"sh/ipovexwn","slide":1,"name":"FIG1_PANEL_A__INPUT__GRID_H_1","bbox":[32,146.33,68,0.1]}
+{"kind":"shape","id":"sh/3qxwn2x8","slide":1,"name":"FIG1_PANEL_A__INPUT__GRID_H_2","bbox":[32,165.67,68,0.1]}
+{"kind":"textbox","id":"sh/sfqdkrep","slide":1,"name":"FIG1_PANEL_A__INPUT_LABEL","text":"Historical\nWind-Farm Input","textPreview":"Historical | Wind-Farm Input","textChars":26,"textLines":2,"bbox":[20,185,100,31]}
+{"kind":"textbox","id":"sh/dgzetcfa","slide":1,"name":"FIG1_PANEL_A__INPUT_META","text":"134 turbines\n16 variables","textPreview":"134 turbines | 16 variables","textChars":25,"textLines":2,"bbox":[20,216,100,42]}
+{"kind":"textbox","id":"sh/1cvuxc7e","slide":1,"name":"FIG1_PANEL_A__PROJECTION","text":"16 \n 64","textPreview":"16  |  64","textChars":7,"textLines":2,"bbox":[117.4,138.3,60.5,42]}
+{"kind":"textbox","id":"sh/0bmd476t","slide":1,"name":"FIG1_PANEL_A__PROJECTION_LABEL","text":"Shared Input Projection","textPreview":"Shared Input Projection","textChars":23,"textLines":1,"bbox":[108,183,94,42]}
+{"kind":"textbox","id":"sh/zadcv2p8","slide":1,"name":"FIG1_PANEL_A__DECOMP","text":"Fine\n+\nCoarse","textPreview":"Fine | + | Coarse","textChars":13,"textLines":3,"bbox":[211,127,72,64]}
+{"kind":"textbox","id":"sh/e94v2hon","slide":1,"name":"FIG1_PANEL_A__DECOMP_LABEL","text":"Same-Time-Axis Fixed Dual-Granularity Decomposition","textPreview":"Same-Time-Axis Fixed Dual-Granularity Decomposition","textChars":51,"textLines":1,"bbox":[190,196,104,58]}
+{"kind":"shape","id":"sh/90ve1w7q","slide":1,"name":"FIG1_PANEL_A__TIMELINE","bbox":[35,280,241,0.1]}
+{"kind":"shape","id":"sh/ozmd8r65","slide":1,"name":"FIG1_PANEL_A__TICK_0","bbox":[35,276,0.1,8]}
+{"kind":"shape","id":"sh/nydczmpk","slide":1,"name":"FIG1_PANEL_A__TICK_1","bbox":[55,276,0.1,8]}
+{"kind":"shape","id":"sh/mx4v6hoz","slide":1,"name":"FIG1_PANEL_A__TICK_2","bbox":[75,276,0.1,8]}
+{"kind":"shape","id":"sh/p4bu5s76","slide":1,"name":"FIG1_PANEL_A__TICK_3","bbox":[95,276,0.1,8]}
+{"kind":"shape","id":"sh/432dwn6l","slide":1,"name":"FIG1_PANEL_A__TICK_4","bbox":[115,276,0.1,8]}
+{"kind":"shape","id":"sh/uxgjq907","slide":1,"name":"FIG1_PANEL_A__TICK_5","bbox":[135,276,0.1,8]}
+{"kind":"shape","id":"sh/vyp0je1s","slide":1,"name":"FIG1_PANEL_A__TICK_6","bbox":[155,276,0.1,8]}
+{"kind":"shape","id":"sh/wzy1szid","slide":1,"name":"FIG1_PANEL_A__TICK_7","bbox":[175,276,0.1,8]}
+{"kind":"shape","id":"sh/h072l4jy","slide":1,"name":"FIG1_PANEL_A__TICK_8","bbox":[195,276,0.1,8]}
+{"kind":"shape","id":"sh/i1gje90j","slide":1,"name":"FIG1_PANEL_A__TICK_9","bbox":[215,276,0.1,8]}
+{"kind":"shape","id":"sh/j2pkne14","slide":1,"name":"FIG1_PANEL_A__TICK_10","bbox":[235,276,0.1,8]}
+{"kind":"shape","id":"sh/43y1gji9","slide":1,"name":"FIG1_PANEL_A__TICK_11","bbox":[255,276,0.1,8]}
+{"kind":"shape","id":"sh/54r2poju","slide":1,"name":"FIG1_PANEL_A__TICK_12","bbox":[275,276,0.1,8]}
+{"kind":"textbox","id":"sh/y5wjip0z","slide":1,"name":"FIG1_PANEL_A__SAME_TIME","text":"Same-Time-Axis · 144 timestamps","textPreview":"Same-Time-Axis · 144 timestamps","textChars":31,"textLines":1,"bbox":[50,260,220,20]}
+{"kind":"textbox","id":"sh/z650ba1k","slide":1,"name":"FIG1_PANEL_A__FINE_LABEL","text":"Fine","textPreview":"Fine","textChars":4,"textLines":1,"bbox":[31,297,44,26]}
+{"kind":"shape","id":"sh/z2xgf6to","slide":1,"name":"FIG1_PANEL_A__FINE_WAVE__SEG_1","bbox":[77,303.7,10.88,15.8]}
+{"kind":"shape","id":"sh/e1oz61c3","slide":1,"name":"FIG1_PANEL_A__FINE_WAVE__SEG_2","bbox":[87.88,303.7,10.88,21.19]}
+{"kind":"shape","id":"sh/14fyhgbe","slide":1,"name":"FIG1_PANEL_A__FINE_WAVE__SEG_3","bbox":[98.76,324.89,10.88,2.04]}
+{"kind":"shape","id":"sh/036h8but","slide":1,"name":"FIG1_PANEL_A__FINE_WAVE__SEG_4","bbox":[109.65,323.81,10.88,3.11]}
+{"kind":"shape","id":"sh/nqxgjqtk","slide":1,"name":"FIG1_PANEL_A__FINE_WAVE__SEG_5","bbox":[120.53,301.58,10.88,22.22]}
+{"kind":"shape","id":"sh/mpozalcz","slide":1,"name":"FIG1_PANEL_A__FINE_WAVE__SEG_6","bbox":[131.41,301.58,10.88,23.05]}
+{"kind":"shape","id":"sh/9sfylgbq","slide":1,"name":"FIG1_PANEL_A__FINE_WAVE__SEG_7","bbox":[142.29,324.63,10.88,7.55]}
+{"kind":"shape","id":"sh/or6hcvu5","slide":1,"name":"FIG1_PANEL_A__FINE_WAVE__SEG_8","bbox":[153.18,314.16,10.88,18.03]}
+{"kind":"shape","id":"sh/buh0nqtg","slide":1,"name":"FIG1_PANEL_A__FINE_WAVE__SEG_9","bbox":[164.06,311.11,10.88,3.05]}
+{"kind":"shape","id":"sh/at8zelcb","slide":1,"name":"FIG1_PANEL_A__FINE_WAVE__SEG_10","bbox":[174.94,311.11,10.88,6.5]}
+{"kind":"shape","id":"sh/8zqx4vq9","slide":1,"name":"FIG1_PANEL_A__FINE_WAVE__SEG_11","bbox":[185.82,317.61,10.88,20.38]}
+{"kind":"shape","id":"sh/t0jyd0ru","slide":1,"name":"FIG1_PANEL_A__FINE_WAVE__SEG_12","bbox":[196.71,309.98,10.88,28.01]}
+{"kind":"shape","id":"sh/6x8f2583","slide":1,"name":"FIG1_PANEL_A__FINE_WAVE__SEG_13","bbox":[207.59,309.98,10.88,0.29]}
+{"kind":"shape","id":"sh/7yhgbq9o","slide":1,"name":"FIG1_PANEL_A__FINE_WAVE__SEG_14","bbox":[218.47,310.26,10.88,13.91]}
+{"kind":"shape","id":"sh/kvqx0vqd","slide":1,"name":"FIG1_PANEL_A__FINE_WAVE__SEG_15","bbox":[229.35,324.17,10.88,5.34]}
+{"kind":"shape","id":"sh/lwzy90ry","slide":1,"name":"FIG1_PANEL_A__FINE_WAVE__SEG_16","bbox":[240.24,317.73,10.88,11.78]}
+{"kind":"shape","id":"sh/yt8fyl87","slide":1,"name":"FIG1_PANEL_A__FINE_WAVE__SEG_17","bbox":[251.12,302.23,10.88,15.5]}
+{"kind":"textbox","id":"sh/juhg7q9s","slide":1,"name":"FIG1_PANEL_A__FINE_METHOD","text":"Causal Depthwise Separable TCN","textPreview":"Causal Depthwise Separable TCN","textChars":30,"textLines":1,"bbox":[44.4,337.4,222,30]}
+{"kind":"textbox","id":"sh/wr6xwbq1","slide":1,"name":"FIG1_PANEL_A__FINE_PLUS","text":"+","textPreview":"+","textChars":1,"textLines":1,"bbox":[150.8,366.4,15.87,16.63]}
+{"kind":"textbox","id":"sh/xsfy5grm","slide":1,"name":"FIG1_PANEL_A__FINE_RESIDUAL","text":"Scale-Learned Residual Connection","textPreview":"Scale-Learned Residual Connection","textChars":33,"textLines":1,"bbox":[44.4,378,229.4,39]}
+{"kind":"textbox","id":"sh/dc7md8fe","slide":1,"name":"FIG1_PANEL_A__FINE_OUT","text":"Fine representation","textPreview":"Fine representation","textChars":19,"textLines":1,"bbox":[64.56,431.54,183,30]}
+{"kind":"textbox","id":"sh/cby5k3yt","slide":1,"name":"FIG1_PANEL_A__COARSE_LABEL","text":"Coarse","textPreview":"Coarse","textChars":6,"textLines":1,"bbox":[29,475,54,26]}
+{"kind":"shape","id":"sh/ra54bix8","slide":1,"name":"FIG1_PANEL_A__COARSE_W1__SEG_1","bbox":[86,479.11,10.35,3.39]}
+{"kind":"shape","id":"sh/q9wnidgn","slide":1,"name":"FIG1_PANEL_A__COARSE_W1__SEG_2","bbox":[96.35,476.45,10.35,2.66]}
+{"kind":"shape","id":"sh/5onm98f2","slide":1,"name":"FIG1_PANEL_A__COARSE_W1__SEG_3","bbox":[106.71,475.06,10.35,1.39]}
+{"kind":"shape","id":"sh/4ne5g3yh","slide":1,"name":"FIG1_PANEL_A__COARSE_W1__SEG_4","bbox":[117.06,475.06,10.35,0.13]}
+{"kind":"shape","id":"sh/3m547yxw","slide":1,"name":"FIG1_PANEL_A__COARSE_W1__SEG_5","bbox":[127.41,475.18,10.35,1.53]}
+{"kind":"shape","id":"sh/ilw3etgr","slide":1,"name":"FIG1_PANEL_A__COARSE_W1__SEG_6","bbox":[137.76,476.71,10.35,2.49]}
+{"kind":"shape","id":"sh/9kr6lsfm","slide":1,"name":"FIG1_PANEL_A__COARSE_W1__SEG_7","bbox":[148.12,479.2,10.35,2.78]}
+{"kind":"shape","id":"sh/oji5sne1","slide":1,"name":"FIG1_PANEL_A__COARSE_W1__SEG_8","bbox":[158.47,481.98,10.35,2.36]}
+{"kind":"shape","id":"sh/6psjmpwj","slide":1,"name":"FIG1_PANEL_A__COARSE_W1__SEG_9","bbox":[168.82,484.34,10.35,1.35]}
+{"kind":"shape","id":"sh/7q1kfudo","slide":1,"name":"FIG1_PANEL_A__COARSE_W1__SEG_10","bbox":[179.18,485.69,10.35,0.1]}
+{"kind":"shape","id":"sh/8ra1oze9","slide":1,"name":"FIG1_PANEL_A__COARSE_W1__SEG_11","bbox":[189.53,484.39,10.35,1.31]}
+{"kind":"shape","id":"sh/ts32h4vu","slide":1,"name":"FIG1_PANEL_A__COARSE_W1__SEG_12","bbox":[199.88,482.13,10.35,2.26]}
+{"kind":"shape","id":"sh/ylsjipw7","slide":1,"name":"FIG1_PANEL_A__COARSE_W1__SEG_13","bbox":[210.24,479.53,10.35,2.6]}
+{"kind":"shape","id":"sh/jm1kbuds","slide":1,"name":"FIG1_PANEL_A__COARSE_W1__SEG_14","bbox":[220.59,477.31,10.35,2.22]}
+{"kind":"shape","id":"sh/kna1kzed","slide":1,"name":"FIG1_PANEL_A__COARSE_W1__SEG_15","bbox":[230.94,476.1,10.35,1.21]}
+{"kind":"shape","id":"sh/loj2dkvy","slide":1,"name":"FIG1_PANEL_A__COARSE_W1__SEG_16","bbox":[241.29,476.1,10.35,0.19]}
+{"kind":"shape","id":"sh/ihc3u9cr","slide":1,"name":"FIG1_PANEL_A__COARSE_W1__SEG_17","bbox":[251.65,476.29,10.35,1.66]}
+{"kind":"shape","id":"sh/3ilknedw","slide":1,"name":"FIG1_PANEL_A__COARSE_W2__SEG_1","bbox":[86,500.11,10.35,3.39]}
+{"kind":"shape","id":"sh/rehk7e50","slide":1,"name":"FIG1_PANEL_A__COARSE_W2__SEG_2","bbox":[96.35,497.45,10.35,2.66]}
+{"kind":"shape","id":"sh/qd8jy94v","slide":1,"name":"FIG1_PANEL_A__COARSE_W2__SEG_3","bbox":[106.71,496.06,10.35,1.39]}
+{"kind":"shape","id":"sh/d0j29on6","slide":1,"name":"FIG1_PANEL_A__COARSE_W2__SEG_4","bbox":[117.06,496.06,10.35,0.13]}
+{"kind":"shape","id":"sh/cfa10jml","slide":1,"name":"FIG1_PANEL_A__COARSE_W2__SEG_5","bbox":[127.41,496.18,10.35,1.53]}
+{"kind":"shape","id":"sh/3ahk3u54","slide":1,"name":"FIG1_PANEL_A__COARSE_W2__SEG_6","bbox":[137.76,497.71,10.35,2.49]}
+{"kind":"shape","id":"sh/298ju94j","slide":1,"name":"FIG1_PANEL_A__COARSE_W2__SEG_7","bbox":[148.12,500.2,10.35,2.78]}
+{"kind":"shape","id":"sh/pcz254na","slide":1,"name":"FIG1_PANEL_A__COARSE_W2__SEG_8","bbox":[158.47,502.98,10.35,2.36]}
+{"kind":"shape","id":"sh/4bq1wzmp","slide":1,"name":"FIG1_PANEL_A__COARSE_W2__SEG_9","bbox":[168.82,505.34,10.35,1.35]}
+{"kind":"shape","id":"sh/f6x0zu58","slide":1,"name":"FIG1_PANEL_A__COARSE_W2__SEG_10","bbox":[179.18,506.69,10.35,0.1]}
+{"kind":"shape","id":"sh/u5ojqpon","slide":1,"name":"FIG1_PANEL_A__COARSE_W2__SEG_11","bbox":[189.53,505.39,10.35,1.31]}
+{"kind":"shape","id":"sh/kbmh0v25","slide":1,"name":"FIG1_PANEL_A__COARSE_W2__SEG_12","bbox":[199.88,503.13,10.35,2.26]}
+{"kind":"shape","id":"sh/5cvy903q","slide":1,"name":"FIG1_PANEL_A__COARSE_W2__SEG_13","bbox":[210.24,500.53,10.35,2.6]}
+{"kind":"shape","id":"sh/ip4zyl4f","slide":1,"name":"FIG1_PANEL_A__COARSE_W2__SEG_14","bbox":[220.59,498.31,10.35,2.22]}
+{"kind":"shape","id":"sh/jadg7ql0","slide":1,"name":"FIG1_PANEL_A__COARSE_W2__SEG_15","bbox":[230.94,497.1,10.35,1.21]}
+{"kind":"shape","id":"sh/sf6h4v2h","slide":1,"name":"FIG1_PANEL_A__COARSE_W2__SEG_16","bbox":[241.29,497.1,10.35,0.19]}
+{"kind":"shape","id":"sh/tgfyd032","slide":1,"name":"FIG1_PANEL_A__COARSE_W2__SEG_17","bbox":[251.65,497.29,10.35,1.66]}
+{"kind":"shape","id":"sh/6d4z25kb","slide":1,"name":"FIG1_PANEL_A__COARSE_W3__SEG_1","bbox":[86,521.11,10.35,3.39]}
+{"kind":"shape","id":"sh/7edgbalw","slide":1,"name":"FIG1_PANEL_A__COARSE_W3__SEG_2","bbox":[96.35,518.45,10.35,2.66]}
+{"kind":"shape","id":"sh/8j2xsbmd","slide":1,"name":"FIG1_PANEL_A__COARSE_W3__SEG_3","bbox":[106.71,517.06,10.35,1.39]}
+{"kind":"shape","id":"sh/9kby1g3i","slide":1,"name":"FIG1_PANEL_A__COARSE_W3__SEG_4","bbox":[117.06,517.06,10.35,0.13]}
+{"kind":"shape","id":"sh/yhkza1wv","slide":1,"name":"FIG1_PANEL_A__COARSE_W3__SEG_5","bbox":[127.41,517.18,10.35,1.53]}
+{"kind":"shape","id":"sh/jitg36dg","slide":1,"name":"FIG1_PANEL_A__COARSE_W3__SEG_6","bbox":[137.76,518.71,10.35,2.49]}
+{"kind":"shape","id":"sh/kj2hcbel","slide":1,"name":"FIG1_PANEL_A__COARSE_W3__SEG_7","bbox":[148.12,521.2,10.35,2.78]}
+{"kind":"shape","id":"sh/l4by5wv6","slide":1,"name":"FIG1_PANEL_A__COARSE_W3__SEG_8","bbox":[158.47,523.98,10.35,2.36]}
+{"kind":"shape","id":"sh/654ze1wr","slide":1,"name":"FIG1_PANEL_A__COARSE_W3__SEG_9","bbox":[168.82,526.34,10.35,1.35]}
+{"kind":"shape","id":"sh/76dg76dc","slide":1,"name":"FIG1_PANEL_A__COARSE_W3__SEG_10","bbox":[179.18,527.69,10.35,0.1]}
+{"kind":"shape","id":"sh/87mhgbex","slide":1,"name":"FIG1_PANEL_A__COARSE_W3__SEG_11","bbox":[189.53,526.39,10.35,1.31]}
+{"kind":"shape","id":"sh/t8vy9gvi","slide":1,"name":"FIG1_PANEL_A__COARSE_W3__SEG_12","bbox":[199.88,524.13,10.35,2.26]}
+{"kind":"shape","id":"sh/m90f2hwn","slide":1,"name":"FIG1_PANEL_A__COARSE_W3__SEG_13","bbox":[210.24,521.53,10.35,2.6]}
+{"kind":"shape","id":"sh/na9gvmd8","slide":1,"name":"FIG1_PANEL_A__COARSE_W3__SEG_14","bbox":[220.59,519.31,10.35,2.22]}
+{"kind":"shape","id":"sh/pgzax4jm","slide":1,"name":"FIG1_PANEL_A__COARSE_W3__SEG_15","bbox":[230.94,518.1,10.35,1.21]}
+{"kind":"shape","id":"sh/ofqtoj2h","slide":1,"name":"FIG1_PANEL_A__COARSE_W3__SEG_16","bbox":[241.29,518.1,10.35,0.19]}
+{"kind":"shape","id":"sh/3ehsve1w","slide":1,"name":"FIG1_PANEL_A__COARSE_W3__SEG_17","bbox":[251.65,518.29,10.35,1.66]}
+{"kind":"textbox","id":"sh/2d8rm9kb","slide":1,"name":"FIG1_PANEL_A__COARSE_METHOD","text":"Multi-Window Causal Rolling Mean","textPreview":"Multi-Window Causal Rolling Mean","textChars":32,"textLines":1,"bbox":[36,542,234.7,31]}
+{"kind":"textbox","id":"sh/dkja1ojy","slide":1,"name":"FIG1_PANEL_A__COARSE_WINDOWS","text":"w = 6 / 18 / 36","textPreview":"w = 6 / 18 / 36","textChars":15,"textLines":1,"bbox":[55,572,186,23]}
+{"kind":"textbox","id":"sh/cjatsj2d","slide":1,"name":"FIG1_PANEL_A__COARSE_PLUS","text":"+","textPreview":"+","textChars":1,"textLines":1,"bbox":[148.79,593.73,16.04,16.52]}
+{"kind":"textbox","id":"sh/bi1sze1s","slide":1,"name":"FIG1_PANEL_A__COARSE_RESIDUAL","text":"Scale-Learned Residual Connection","textPreview":"Scale-Learned Residual Connection","textChars":33,"textLines":1,"bbox":[42.67,603.93,232.73,39]}
+{"kind":"textbox","id":"sh/qhsbq9k7","slide":1,"name":"FIG1_PANEL_A__COARSE_OUT","text":"Coarse representation","textPreview":"Coarse representation","textChars":21,"textLines":1,"bbox":[64.4,653.64,183,30]}
+{"kind":"shape","id":"sh/lsja54ra","slide":1,"name":"FIG1_PANEL_A__FLOW_2__LINE","bbox":[182.2,159,26,0.1]}
+{"kind":"shape","id":"sh/ypsbupsz","slide":1,"name":"FIG1_PANEL_A__FLOW_2__HEAD","bbox":[200,154,10,10]}
+{"kind":"shape","id":"sh/7qp4be9c","slide":1,"name":"FIG1_PANEL_B__BACKGROUND","bbox":[310,58,290,646]}
+{"kind":"textbox","id":"sh/65g3298r","slide":1,"name":"FIG1_PANEL_B__TITLE","text":"2.Dual-Semantic Graph-\nTemporal Encoding","textPreview":"2.Dual-Semantic Graph- | Temporal Encoding","textChars":40,"textLines":2,"bbox":[314,60.44,282,56]}
+{"kind":"textbox","id":"sh/jq1s3u9k","slide":1,"name":"FIG1_PANEL_B__MICRO_LANE","text":"Fine / Micro","textPreview":"Fine / Micro","textChars":12,"textLines":1,"bbox":[322,122,88,26]}
+{"kind":"shape","id":"sh/svut0za1","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH_ANCHOR","bbox":[325,151,62,78]}
+{"kind":"shape","id":"sh/tw3a94rm","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__EDGE_0_1","bbox":[333.24,166.8,12.72,21.6]}
+{"kind":"shape","id":"sh/6tsbypsv","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__EDGE_0_2","bbox":[333.24,188.4,18.55,4.8]}
+{"kind":"shape","id":"sh/7u1s7u9g","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__EDGE_1_2","bbox":[345.96,166.8,5.83,26.4]}
+{"kind":"shape","id":"sh/gzut4jax","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__EDGE_1_3","bbox":[345.96,166.8,18.55,2.4]}
+{"kind":"shape","id":"sh/hk3adori","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__EDGE_2_3","bbox":[351.79,169.2,12.72,24]}
+{"kind":"shape","id":"sh/repw3it0","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__EDGE_2_4","bbox":[351.79,193.2,17.49,4.8]}
+{"kind":"shape","id":"sh/qtwvadcf","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__EDGE_3_5","bbox":[364.51,169.2,14.31,14.4]}
+{"kind":"shape","id":"sh/dg7e5sbq","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__EDGE_4_5","bbox":[369.28,183.6,9.54,14.4]}
+{"kind":"shape","id":"sh/cfydcnu5","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__EDGE_1_5","bbox":[345.96,166.8,32.86,16.8]}
+{"kind":"shape","id":"sh/3q5czyto","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__NODE_1","bbox":[328.04,183.2,10.4,10.4]}
+{"kind":"shape","id":"sh/2pwv6tc3","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__NODE_2","bbox":[340.76,161.6,10.4,10.4]}
+{"kind":"shape","id":"sh/psne18bu","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__NODE_3","bbox":[346.59,188,10.4,10.4]}
+{"kind":"shape","id":"sh/4red83u9","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__NODE_4","bbox":[359.31,164,10.4,10.4]}
+{"kind":"shape","id":"sh/nm9wb2ts","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__NODE_5","bbox":[364.08,192.8,10.4,10.4]}
+{"kind":"shape","id":"sh/ml0v2xcn","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__NODE_6","bbox":[373.62,178.4,10.4,10.4]}
+{"kind":"textbox","id":"sh/atgz6h8r","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH_LABEL","text":"Micro Local Graph","textPreview":"Micro Local Graph","textChars":17,"textLines":1,"bbox":[320.57,210.22,76,27]}
+{"kind":"textbox","id":"sh/vupgzmpc","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH_NOTE","text":"1st-order ΔWspd\n+ distance","textPreview":"1st-order ΔWspd | + distance","textChars":26,"textLines":2,"bbox":[319.43,246.64,79,38]}
+{"kind":"textbox","id":"sh/wvyh8rqx","slide":1,"name":"FIG1_PANEL_B__MICRO_ADAPT","text":"Prior ×\nlearned weights","textPreview":"Prior × | learned weights","textChars":23,"textLines":2,"bbox":[398.33,170,68,48]}
+{"kind":"shape","id":"sh/xw7i1w7i","slide":1,"name":"FIG1_PANEL_B__MICRO_DIFF","bbox":[482,161,86,66]}
+{"kind":"shape","id":"sh/8reh4rql","slide":1,"name":"FIG1_PANEL_B__MICRO_TCN__LAYER_1","bbox":[484.8,268.08,78.03,42]}
+{"kind":"textbox","id":"sh/m5wz2h8v","slide":1,"name":"FIG1_PANEL_B__MICRO_DIFF_LABEL","text":"Bidirectional 2nd-Order Graph Diffusion","textPreview":"Bidirectional 2nd-Order Graph Diffusion","textChars":39,"textLines":1,"bbox":[479.33,169.07,92.4,52.69]}
+{"kind":"textbox","id":"sh/9s7yxw76","slide":1,"name":"FIG1_PANEL_B__MICRO_TCN_PARAM","text":"k = 3 d = {1,2}","textPreview":"k = 3 d = {1,2}","textChars":15,"textLines":1,"bbox":[479.78,314.58,93.45,24.87]}
+{"kind":"textbox","id":"sh/tsb2t0rq","slide":1,"name":"FIG1_PANEL_B__MACRO_LANE","text":"Coarse / Macro","textPreview":"Coarse / Macro","textChars":14,"textLines":1,"bbox":[322,437.68,114.91,26.24]}
+{"kind":"shape","id":"sh/sri10va5","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH_ANCHOR","bbox":[325,462,62,78]}
+{"kind":"shape","id":"sh/7q9krq9k","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__EDGE_0_1","bbox":[333.24,477.8,12.72,21.6]}
+{"kind":"textbox","id":"sh/610ze18z","slide":1,"name":"FIG1_PANEL_B__MICRO_TCN_LABEL","text":"Asymmetric Causal TCN","textPreview":"Asymmetric Causal TCN","textChars":21,"textLines":1,"bbox":[485.18,269.55,75.62,37.4]}
+{"kind":"shape","id":"sh/6p0jylsz","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__EDGE_0_2","bbox":[333.24,499.4,18.55,4.8]}
+{"kind":"shape","id":"sh/dov254ru","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__EDGE_1_2","bbox":[345.96,477.8,5.83,26.4]}
+{"kind":"shape","id":"sh/cnmlcza9","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__EDGE_1_3","bbox":[345.96,477.8,18.55,2.4]}
+{"kind":"shape","id":"sh/w3edon2h","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__EDGE_2_3","bbox":[351.79,480.2,12.72,24]}
+{"kind":"shape","id":"sh/x4nexs32","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__EDGE_2_4","bbox":[351.79,504.2,17.49,4.8]}
+{"kind":"shape","id":"sh/a1wvmx4r","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__EDGE_3_5","bbox":[364.51,480.2,14.31,14.4]}
+{"kind":"shape","id":"sh/v25wv2lc","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__EDGE_4_5","bbox":[369.28,494.6,9.54,14.4]}
+{"kind":"shape","id":"sh/8zudknml","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__EDGE_1_5","bbox":[345.96,477.8,32.86,16.8]}
+{"kind":"shape","id":"sh/90nuts36","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__NODE_1","bbox":[328.04,494.2,10.4,10.4]}
+{"kind":"shape","id":"sh/mdcvid4f","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__NODE_2","bbox":[340.76,472.6,10.4,10.4]}
+{"kind":"shape","id":"sh/nelcril0","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__NODE_3","bbox":[346.59,499,10.4,10.4]}
+{"kind":"shape","id":"sh/0budg3mp","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__NODE_4","bbox":[359.31,475,10.4,10.4]}
+{"kind":"shape","id":"sh/lc3up83u","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__NODE_5","bbox":[364.08,503.8,10.4,10.4]}
+{"kind":"shape","id":"sh/361wzy5w","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__NODE_6","bbox":[373.62,489.4,10.4,10.4]}
+{"kind":"textbox","id":"sh/25sv6dob","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH_LABEL","text":"Macro Trend Graph","textPreview":"Macro Trend Graph","textChars":17,"textLines":1,"bbox":[320.2,523,82,27]}
+{"kind":"textbox","id":"sh/p8je18n2","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH_NOTE","text":"Patv trend\n+ distance","textPreview":"Patv trend | + distance","textChars":21,"textLines":2,"bbox":[323.8,556.2,78,38]}
+{"kind":"textbox","id":"sh/o7ad836h","slide":1,"name":"FIG1_PANEL_B__MACRO_ADAPT","text":"Prior ×\nlearned weights","textPreview":"Prior × | learned weights","textChars":23,"textLines":2,"bbox":[406.2,466.4,73.9,49.8]}
+{"kind":"shape","id":"sh/balw3i5s","slide":1,"name":"FIG1_PANEL_B__MACRO_DIFF","bbox":[501.2,456.8,86,66]}
+{"kind":"textbox","id":"sh/mlsz2hkn","slide":1,"name":"FIG1_PANEL_B__MACRO_TCN_PARAM","text":"k = 5  d = {1,2,4,8}","textPreview":"k = 5  d = {1,2,4,8}","textChars":20,"textLines":1,"bbox":[470.8,604.93,119,30]}
+{"kind":"shape","id":"sh/ts7md4r2","slide":1,"name":"FIG1_PANEL_C__BACKGROUND","bbox":[612,58,292,646]}
+{"kind":"textbox","id":"sh/sryl4zqx","slide":1,"name":"FIG1_PANEL_C__TITLE","text":"3.Prompt-Guided Cross-\nGranularity Fusion","textPreview":"3.Prompt-Guided Cross- | Granularity Fusion","textChars":41,"textLines":2,"bbox":[616,60.44,284,56]}
+{"kind":"shape","id":"sh/65w3y547","slide":1,"name":"FIG1_PANEL_C__COARSE_SOURCE__TOKEN_7","bbox":[642.06,133,152.04,32]}
+{"kind":"textbox","id":"sh/1c72xk3u","slide":1,"name":"FIG1_PANEL_C__PROMPT_METHOD","text":"Macro-Trend Prompt","textPreview":"Macro-Trend Prompt","textChars":18,"textLines":1,"bbox":[665,188,184,30]}
+{"kind":"textbox","id":"sh/wbuh8r2p","slide":1,"name":"FIG1_PANEL_C__COARSE_SOURCE_LABEL","text":"Coarse representation","textPreview":"Coarse representation","textChars":21,"textLines":1,"bbox":[642.4,133,152.7,32.52]}
+{"kind":"textbox","id":"sh/0byl4fm9","slide":1,"name":"FIG1_PANEL_C__PROMPTS__TOKEN_1","text":"P1","textPreview":"P1","textChars":2,"textLines":1,"bbox":[681,225,37,30]}
+{"kind":"textbox","id":"sh/fapkvalo","slide":1,"name":"FIG1_PANEL_C__PROMPTS__TOKEN_2","text":"P2","textPreview":"P2","textChars":2,"textLines":1,"bbox":[723,225,37,30]}
+{"kind":"textbox","id":"sh/e9g32543","slide":1,"name":"FIG1_PANEL_C__PROMPTS__TOKEN_3","text":"P3","textPreview":"P3","textChars":2,"textLines":1,"bbox":[765,225,37,30]}
+{"kind":"textbox","id":"sh/p0rm1k3q","slide":1,"name":"FIG1_PANEL_C__PROMPTS__TOKEN_4","text":"P4","textPreview":"P4","textChars":2,"textLines":1,"bbox":[807,225,37,30]}
+{"kind":"textbox","id":"sh/ofil8fm5","slide":1,"name":"FIG1_PANEL_C__PROMPT_NOTE","text":"4 prompt tokens\n/ turbine","textPreview":"4 prompt tokens | / turbine","textChars":25,"textLines":2,"bbox":[644.8,257.2,138.4,35]}
+{"kind":"textbox","id":"sh/pgnqdgn6","slide":1,"name":"FIG1_PANEL_C__FUSION_TITLE","text":"Bidirectional Cross-Fusion","textPreview":"Bidirectional Cross-Fusion","textChars":26,"textLines":1,"bbox":[649.4,292.2,230,31]}
+{"kind":"textbox","id":"sh/ofepkb6l","slide":1,"name":"FIG1_PANEL_C__ATTN_FINE","text":"Attn","textPreview":"Attn","textChars":4,"textLines":1,"bbox":[669,350,46,46]}
+{"kind":"textbox","id":"sh/3el8b650","slide":1,"name":"FIG1_PANEL_C__GATE","text":"G","textPreview":"G","textChars":1,"textLines":1,"bbox":[735,349,48,48]}
+{"kind":"textbox","id":"sh/2tc7i1of","slide":1,"name":"FIG1_PANEL_C__ATTN_COARSE","text":"Attn","textPreview":"Attn","textChars":4,"textLines":1,"bbox":[805,350,46,46]}
+{"kind":"textbox","id":"sh/dknqhgn2","slide":1,"name":"FIG1_PANEL_C__DIRECTION1","text":"Macro-Trend Prompt → Fine","textPreview":"Macro-Trend Prompt → Fine","textChars":25,"textLines":1,"bbox":[624,417.47,138.61,40]}
+{"kind":"textbox","id":"sh/cjepob6x","slide":1,"name":"FIG1_PANEL_C__DIRECTION2","text":"Recent Fine → Coarse","textPreview":"Recent Fine → Coarse","textChars":20,"textLines":1,"bbox":[760,417.47,128,40]}
+{"kind":"textbox","id":"sh/qhw7mlor","slide":1,"name":"FIG1_PANEL_C__UPDATED_FINE","text":"Updated Fine","textPreview":"Updated Fine","textChars":12,"textLines":1,"bbox":[638,548,112,34]}
+{"kind":"textbox","id":"sh/lo7ql0ne","slide":1,"name":"FIG1_PANEL_C__UPDATED_COARSE","text":"Updated Coarse","textPreview":"Updated Coarse","textChars":14,"textLines":1,"bbox":[770,548,112,34]}
+{"kind":"textbox","id":"sh/qpc3ihkr","slide":1,"name":"FIG1_PANEL_C__SEPARATE_NOTE","text":"Updated Fine and Updated Coarse remain separate","textPreview":"Updated Fine and Updated Coarse remain separate","textChars":47,"textLines":1,"bbox":[662.18,595.04,221.87,42]}
+{"kind":"shape","id":"sh/ds3mdcj2","slide":1,"name":"FIG1_PANEL_C__PROMPT_FLOW__LINE","bbox":[721,167.84,36,20.16]}
+{"kind":"shape","id":"sh/crulkr2h","slide":1,"name":"FIG1_PANEL_C__PROMPT_FLOW__HEAD","bbox":[752,183,10,10]}
+{"kind":"shape","id":"sh/yp4rmpwz","slide":1,"name":"FIG1_PANEL_C__GATE_TO_FINE__1","bbox":[759,397,0.1,75.5]}
+{"kind":"shape","id":"sh/jqxsvudk","slide":1,"name":"FIG1_PANEL_C__GATE_TO_FINE__2","bbox":[694,472.5,65,0.1]}
+{"kind":"shape","id":"sh/8v69sju1","slide":1,"name":"FIG1_PANEL_C__GATE_TO_FINE__3","bbox":[693.9,472.5,0.1,69.9]}
+{"kind":"shape","id":"sh/6torq9wv","slide":1,"name":"FIG1_PANEL_C__GATE_TO_COARSE__1","bbox":[759,397,0.1,75.5]}
+{"kind":"shape","id":"sh/7uxszedg","slide":1,"name":"FIG1_PANEL_C__GATE_TO_COARSE__2","bbox":[759,472.5,67,0.1]}
+{"kind":"shape","id":"sh/ozm9gfex","slide":1,"name":"FIG1_PANEL_C__GATE_TO_COARSE__3","bbox":[826,472.5,0.01,73.1]}
+{"kind":"shape","id":"sh/fu94fe98","slide":1,"name":"FIG1_PANEL_D__BACKGROUND","bbox":[916,58,346,646]}
+{"kind":"textbox","id":"sh/utg3698n","slide":1,"name":"FIG1_PANEL_D__TITLE","text":"4.Multi-Horizon Forecasting and\nDifficulty-Aware Training","textPreview":"4.Multi-Horizon Forecasting and | Difficulty-Aware Training","textChars":57,"textLines":2,"bbox":[920,63,338,56]}
+{"kind":"textbox","id":"sh/1sra54zy","slide":1,"name":"FIG1_PANEL_D__INFERENCE_LABEL","text":"Inference / Forecasting","textPreview":"Inference / Forecasting","textChars":23,"textLines":1,"bbox":[942,119.6,172,28]}
+{"kind":"textbox","id":"sh/grytcjid","slide":1,"name":"FIG1_PANEL_D__DUAL_UPDATED","text":"Updated Fine + Updated Coarse","textPreview":"Updated Fine + Updated Coarse","textChars":29,"textLines":1,"bbox":[958,145,260,34]}
+{"kind":"textbox","id":"sh/fqps3ehs","slide":1,"name":"FIG1_PANEL_D__LAST_STATE","text":"Last-State Context","textPreview":"Last-State Context","textChars":18,"textLines":1,"bbox":[993,194,190,32]}
+{"kind":"textbox","id":"sh/epgba907","slide":1,"name":"FIG1_PANEL_D__ST_PROMPT","text":"Node-Horizon ST Prompt","textPreview":"Node-Horizon ST Prompt","textChars":22,"textLines":1,"bbox":[976,242,224,34]}
+{"kind":"textbox","id":"sh/to7a14zm","slide":1,"name":"FIG1_PANEL_D__DECODER","text":"Last-State Direct Multi-Output Decoding","textPreview":"Last-State Direct Multi-Output Decoding","textChars":39,"textLines":1,"bbox":[954,291,268,38]}
+{"kind":"textbox","id":"sh/s3y98zih","slide":1,"name":"FIG1_PANEL_D__FORECAST_LABEL","text":"10-Step Forecast","textPreview":"10-Step Forecast","textChars":16,"textLines":1,"bbox":[1034,331.6,120,26]}
+{"kind":"textbox","id":"sh/r2pszuhw","slide":1,"name":"FIG1_PANEL_D__FORECAST__TOKEN_1","text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[950,360.33,24,27]}
+{"kind":"textbox","id":"sh/61gr6p0b","slide":1,"name":"FIG1_PANEL_D__FORECAST__TOKEN_2","text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[977,360.33,24,27]}
+{"kind":"textbox","id":"sh/507axkzq","slide":1,"name":"FIG1_PANEL_D__FORECAST__TOKEN_3","text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[1004,360.33,24,27]}
+{"kind":"textbox","id":"sh/4ze94zi5","slide":1,"name":"FIG1_PANEL_D__FORECAST__TOKEN_4","text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[1031,360.33,24,27]}
+{"kind":"textbox","id":"sh/u5c7elg3","slide":1,"name":"FIG1_PANEL_D__FORECAST__TOKEN_5","text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[1058,360.33,24,27]}
+{"kind":"textbox","id":"sh/v6l87qxo","slide":1,"name":"FIG1_PANEL_D__FORECAST__TOKEN_6","text":"6","textPreview":"6","textChars":1,"textLines":1,"bbox":[1085,360.33,24,27]}
+{"kind":"textbox","id":"sh/w7upgvy9","slide":1,"name":"FIG1_PANEL_D__FORECAST__TOKEN_7","text":"7","textPreview":"7","textChars":1,"textLines":1,"bbox":[1112,360.33,24,27]}
+{"kind":"textbox","id":"sh/h8nq90fe","slide":1,"name":"FIG1_PANEL_D__FORECAST__TOKEN_8","text":"8","textPreview":"8","textChars":1,"textLines":1,"bbox":[1139,360.33,24,27]}
+{"kind":"textbox","id":"sh/m1c7algr","slide":1,"name":"FIG1_PANEL_D__FORECAST__TOKEN_9","text":"9","textPreview":"9","textChars":1,"textLines":1,"bbox":[1166,360.33,24,27]}
+{"kind":"textbox","id":"sh/72l83qxc","slide":1,"name":"FIG1_PANEL_D__FORECAST__TOKEN_10","text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1193,360.33,24,27]}
+{"kind":"shape","id":"sh/83upcvyx","slide":1,"name":"FIG1_PANEL_D__H3","bbox":[950,391.53,78,0.1]}
+{"kind":"textbox","id":"sh/943q50fi","slide":1,"name":"FIG1_PANEL_D__H3_LABEL","text":"H3","textPreview":"H3","textChars":2,"textLines":1,"bbox":[973,393.53,34,19]}
+{"kind":"shape","id":"sh/yds761gv","slide":1,"name":"FIG1_PANEL_D__H6","bbox":[950,416.53,156,0.1]}
+{"kind":"textbox","id":"sh/ze1oz6xg","slide":1,"name":"FIG1_PANEL_D__H6_LABEL","text":"H6","textPreview":"H6","textChars":2,"textLines":1,"bbox":[1010,418.53,34,19]}
+{"kind":"shape","id":"sh/36xwri9w","slide":1,"name":"FIG1_PANEL_D__H10","bbox":[950,441.53,260,0.1]}
+{"kind":"textbox","id":"sh/25ovidsb","slide":1,"name":"FIG1_PANEL_D__H10_LABEL","text":"H10","textPreview":"H10","textChars":3,"textLines":1,"bbox":[1060,443.53,40,19]}
+{"kind":"shape","id":"sh/p8fetsr2","slide":1,"name":"FIG1_PANEL_D__FORECAST_FLOW_1__LINE","bbox":[1088,179,0.1,15]}
+{"kind":"shape","id":"sh/476dknah","slide":1,"name":"FIG1_PANEL_D__FORECAST_FLOW_1__HEAD","bbox":[1083.53,189,10,10]}
+{"kind":"shape","id":"sh/ruxwvi9s","slide":1,"name":"FIG1_PANEL_D__FORECAST_FLOW_2__LINE","bbox":[1088,226,0.1,16]}
+{"kind":"shape","id":"sh/qtovmdsn","slide":1,"name":"FIG1_PANEL_D__FORECAST_FLOW_2__HEAD","bbox":[1083.53,237,10,10]}
+{"kind":"shape","id":"sh/dwzexsry","slide":1,"name":"FIG1_PANEL_D__FORECAST_FLOW_3__LINE","bbox":[1088,276,0.1,15]}
+{"kind":"shape","id":"sh/cv6donad","slide":1,"name":"FIG1_PANEL_D__FORECAST_FLOW_3__HEAD","bbox":[1083.53,286,10,10]}
+{"kind":"shape","id":"sh/7ydcjy9o","slide":1,"name":"FIG1_PANEL_D__DIVIDER","bbox":[932,460.13,314,0.1]}
+{"kind":"textbox","id":"sh/x4rat47m","slide":1,"name":"FIG1_PANEL_D__SMOOTH_L1","text":"Masked Smooth L1 Loss","textPreview":"Masked Smooth L1 Loss","textChars":21,"textLines":1,"bbox":[985,485.4,208,32]}
+{"kind":"textbox","id":"sh/ah0bip8v","slide":1,"name":"FIG1_PANEL_D__H_BRANCH","text":"Horizon Difficulty-Rate EMA\nWeighting + Clipping\nand Normalization","textPreview":"Horizon Difficulty-Rate EMA | Weighting + Clipping | and Normalization","textChars":66,"textLines":3,"bbox":[936,550.8,147.94,55]}
+{"kind":"textbox","id":"sh/vi9srupg","slide":1,"name":"FIG1_PANEL_D__S_BRANCH","text":"Dynamic Site EMA Weighting\nWeight Clipping\nand Normalization","textPreview":"Dynamic Site EMA Weighting | Weight Clipping | and Normalization","textChars":60,"textLines":3,"bbox":[1098.6,547.6,149.2,55]}
+{"kind":"textbox","id":"sh/8fitgfq5","slide":1,"name":"FIG1_PANEL_D__LOSS_MERGE","text":"+","textPreview":"+","textChars":1,"textLines":1,"bbox":[1079,611.6,22,22]}
+{"kind":"shape","id":"sh/9grapk7a","slide":1,"name":"FIG1_PANEL_D__MSMG","bbox":[970,643.2,250,48.2]}
+{"kind":"textbox","id":"sh/mdgre58z","slide":1,"name":"FIG1_PANEL_D__MSMG_TITLE","text":"MS-MG-DWU","textPreview":"MS-MG-DWU","textChars":9,"textLines":1,"bbox":[978,650.6,224,17]}
+{"kind":"textbox","id":"sh/ne9snapk","slide":1,"name":"FIG1_PANEL_D__MSMG_SUBTITLE","text":"Difficulty-Rate Dynamic Weighting Loss","textPreview":"Difficulty-Rate Dynamic Weighting Loss","textChars":38,"textLines":1,"bbox":[978,662.4,241.2,27.8]}
+{"kind":"shape","id":"sh/1cf6lgzy","slide":1,"name":"FIG1_PANEL_D__LOSS_SPLIT_H__3","bbox":[1011,582,0.1,1]}
+{"kind":"shape","id":"sh/yxg3mdgv","slide":1,"name":"FIG1_MAIN_FLOW_C_D__1","bbox":[870.27,610.17,51.07,0]}
+{"kind":"shape","id":"sh/zypkfixg","slide":1,"name":"FIG1_MAIN_FLOW_C_D__2","bbox":[920,162,0.1,447.91]}
+{"kind":"shape","id":"sh/43qp4zux","slide":1,"name":"FIG1_MAIN_FLOW_C_D__3","bbox":[920,162,38,0.1]}
+{"kind":"shape","id":"sh/8b6pwfup","slide":1,"name":"直接箭头连接符 307","bbox":[140.82,159,14.78,0]}
+{"kind":"shape","id":"sh/dsnadsfy","slide":1,"name":"直接箭头连接符 311","bbox":[160.04,408.01,0,17.32]}
+{"kind":"shape","id":"sh/3mls7ixg","slide":1,"name":"直接箭头连接符 313","bbox":[157.44,632.01,0,18.39]}
+{"kind":"shape","id":"sh/ju1cfyhc","slide":1,"name":"连接符: 肘形 320","bbox":[166.1,296.29,264.96,39.73]}
+{"kind":"shape","id":"sh/fmlcnihk","slide":1,"name":"直接箭头连接符 328","bbox":[317.78,183.68,11.02,0.22]}
+{"kind":"shape","id":"sh/2pgny1on","slide":1,"name":"直接连接符 332","bbox":[247.73,448.64,30.98,0]}
+{"kind":"shape","id":"sh/bupovq54","slide":1,"name":"连接符: 肘形 335","bbox":[215.79,569.59,174.51,23.07]}
+{"kind":"shape","id":"sh/l0r610n6","slide":1,"name":"直接连接符 337","bbox":[247.73,668.77,44.18,0]}
+{"kind":"shape","id":"sh/hgvqt47e","slide":1,"name":"直接箭头连接符 340","bbox":[313.98,493.08,14.39,0]}
+{"kind":"shape","id":"sh/vet8rup8","slide":1,"name":"直接箭头连接符 342","bbox":[387.78,496.28,14.39,0]}
+{"kind":"shape","id":"sh/8r2pwfqx","slide":1,"name":"直接箭头连接符 343","bbox":[482.78,495.95,14.39,0]}
+{"kind":"shape","id":"sh/tsbqpk7i","slide":1,"name":"直接箭头连接符 344","bbox":[381.8,191.07,16.91,0]}
+{"kind":"shape","id":"sh/snm98j61","slide":1,"name":"直接箭头连接符 347","bbox":[467.67,193.6,13.8,0.4]}
+{"kind":"shape","id":"sh/nihc7i9o","slide":1,"name":"直接箭头连接符 349","bbox":[524.31,235.2,0,22.99]}
+{"kind":"textbox","id":"sh/b6hcbi90","slide":1,"name":"FIG1_PANEL_B__MICRO_DIFF_LABEL","text":"Bidirectional 2nd-Order Graph Diffusion","textPreview":"Bidirectional 2nd-Order Graph Diffusion","textChars":39,"textLines":1,"bbox":[497.89,463.47,92.4,52.69]}
+{"kind":"shape","id":"sh/x8judsrq","slide":1,"name":"FIG1_PANEL_B__MICRO_TCN__LAYER_1","bbox":[505.6,564.67,78.03,42]}
+{"kind":"textbox","id":"sh/raxszy9g","slide":1,"name":"FIG1_PANEL_B__MICRO_TCN_LABEL","text":"Asymmetric Causal TCN","textPreview":"Asymmetric Causal TCN","textChars":21,"textLines":1,"bbox":[505.98,565.6,75.62,37.4]}
+{"kind":"shape","id":"sh/q9obqtsv","slide":1,"name":"直接箭头连接符 358","bbox":[545.01,531.3,0,21.12]}
+{"kind":"shape","id":"sh/h8ne9gba","slide":1,"name":"连接符: 肘形 362","bbox":[398.19,359.06,435.96,21.07]}
+{"kind":"shape","id":"sh/m1cvuhcn","slide":1,"name":"直接连接符 363","bbox":[584,586.91,21.07,0.13]}
+{"kind":"shape","id":"sh/0329sjy5","slide":1,"name":"直接箭头连接符 370","bbox":[625.98,151.31,14.39,0]}
+{"kind":"shape","id":"sh/z298jehk","slide":1,"name":"直接箭头连接符 371","bbox":[762.71,261.6,0,34.4]}
+{"kind":"shape","id":"sh/czipozi9","slide":1,"name":"直接箭头连接符 374","bbox":[708.04,320,53.86,25.6]}
+{"kind":"shape","id":"sh/pcrqd4zi","slide":1,"name":"直接箭头连接符 377","bbox":[716.84,373.33,17.29,0]}
+{"kind":"shape","id":"sh/gzqlgb69","slide":1,"name":"直接箭头连接符 379","bbox":[784.58,373.33,18.09,0]}
+{"kind":"shape","id":"sh/vyh476po","slide":1,"name":"直接箭头连接符 382","bbox":[693.9,530.27,0.01,16.8]}
+{"kind":"shape","id":"sh/i1sniloz","slide":1,"name":"直接箭头连接符 385","bbox":[826.21,526.5,0,21.12]}
+{"kind":"shape","id":"sh/s7u5ov61","slide":1,"name":"FIG1_PANEL_D__FORECAST_FLOW_1__HEAD","bbox":[948.6,157,10,10]}
+{"kind":"shape","id":"sh/d83mh07m","slide":1,"name":"直接箭头连接符 388","bbox":[1009.97,520.9,59.63,29.9]}
+{"kind":"shape","id":"sh/mdgfutcv","slide":1,"name":"直接箭头连接符 390","bbox":[1101.5,520.9,65.7,26.16]}
+{"kind":"notes","id":"nt/y90nupkv","slide":1,"text":"[Sources]\n- D:/PaperProject/GyxPaper2/custom_models/src/st_mgprompt/model.py\n- D:/PaperProject/GyxPaper2/custom_models/src/st_mgprompt/volatility_patching.py\n- D:/PaperProject/GyxPaper2/custom_models/src/st_mgprompt/temporal_layers.py\n- D:/PaperProject/GyxPaper2/custom_models/src/st_mgprompt/cross_fusion.py\n- D:/PaperProject/GyxPaper2/custom_models/src/st_mgprompt/decoder.py\n- D:/PaperProject/GyxPaper2/custom_models/src/st_mgprompt/losses.py\n- D:/PaperProject/GyxPaper2/custom_models/src/st_mgprompt/experiment_protocol.py"}
+{"kind":"slide","id":"sl/hwbqtkby","slide":2,"title":"Dual Semantic Spatial Graph Construction","textShapes":57}
+{"kind":"textbox","id":"sh/ny1czapg","slide":2,"name":"FIGURE_TITLE","text":"Dual Semantic Spatial Graph Construction","textPreview":"Dual Semantic Spatial Graph Construction","textChars":40,"textLines":1,"bbox":[18,8,1244,42]}
+{"kind":"shape","id":"sh/9072xkry","slide":2,"name":"FIG2_DISTANCE__BACKGROUND","bbox":[18,58,254,566]}
+{"kind":"textbox","id":"sh/ozy1ofad","slide":2,"name":"FIG2_DISTANCE__TITLE","text":"(A) Gaussian Kernel\nDistance Graph","textPreview":"(A) Gaussian Kernel | Distance Graph","textChars":34,"textLines":2,"bbox":[22,62.38,246,49.06]}
+{"kind":"textbox","id":"sh/r65knqtk","slide":2,"name":"FIG2_DISTANCE__COORD_LABEL","text":"Turbine Coordinates","textPreview":"Turbine Coordinates","textChars":19,"textLines":1,"bbox":[58,112.32,170,24.53]}
+{"kind":"shape","id":"sh/q5wjelsz","slide":2,"name":"FIG2_DISTANCE__COORD_1","bbox":[64,164.02,12,10.51]}
+{"kind":"shape","id":"sh/ove9o7yd","slide":2,"name":"FIG2_DISTANCE__COORD_2","bbox":[99,142.99,12,10.51]}
+{"kind":"shape","id":"sh/9wnqhczy","slide":2,"name":"FIG2_DISTANCE__COORD_3","bbox":[120,181.54,12,10.51]}
+{"kind":"shape","id":"sh/mtwrmxg7","slide":2,"name":"FIG2_DISTANCE__COORD_4","bbox":[157,153.5,12,10.51]}
+{"kind":"shape","id":"sh/nu58f2hs","slide":2,"name":"FIG2_DISTANCE__COORD_5","bbox":[191,191.18,12,10.51]}
+{"kind":"shape","id":"sh/wjy9sry9","slide":2,"name":"FIG2_DISTANCE__COORD_6","bbox":[214,162.26,12,10.51]}
+{"kind":"textbox","id":"sh/xk7qlczu","slide":2,"name":"FIG2_DISTANCE__XY","text":"(x, y) positions","textPreview":"(x, y) positions","textChars":16,"textLines":1,"bbox":[72,213.08,150,21.03]}
+{"kind":"textbox","id":"sh/ahwrqhgj","slide":2,"name":"FIG2_DISTANCE__KERNEL","text":"Gaussian Kernel Distance Graph","textPreview":"Gaussian Kernel Distance Graph","textChars":30,"textLines":1,"bbox":[45,257.76,200,35.05]}
+{"kind":"textbox","id":"sh/bip8jmho","slide":2,"name":"FIG2_DISTANCE__TOPK","text":"Top-K Sparsification & Row Normalization","textPreview":"Top-K Sparsification & Row Normalization","textChars":40,"textLines":1,"bbox":[38,319.97,214,42.06]}
+{"kind":"textbox","id":"sh/cnupgny5","slide":2,"name":"FIG2_DISTANCE__K","text":"K = 5","textPreview":"K = 5","textChars":5,"textLines":1,"bbox":[99,364.66,92,19.28]}
+{"kind":"shape","id":"sh/do3q9szq","slide":2,"name":"FIG2_DISTANCE__GRAPH_ANCHOR","bbox":[58,406.71,174,124.41]}
+{"kind":"shape","id":"sh/t8byxkn2","slide":2,"name":"FIG2_DISTANCE__GRAPH__EDGE_0_1","bbox":[82.52,434.89,34.56,35.33]}
+{"kind":"shape","id":"sh/s72xofmh","slide":2,"name":"FIG2_DISTANCE__GRAPH__EDGE_0_2","bbox":[82.52,470.22,50.4,7.85]}
+{"kind":"shape","id":"sh/76twva5c","slide":2,"name":"FIG2_DISTANCE__GRAPH__EDGE_1_2","bbox":[117.08,434.89,15.84,43.18]}
+{"kind":"shape","id":"sh/65kfmpor","slide":2,"name":"FIG2_DISTANCE__GRAPH__EDGE_1_3","bbox":[117.08,434.89,50.4,3.93]}
+{"kind":"shape","id":"sh/hcvy14ne","slide":2,"name":"FIG2_DISTANCE__GRAPH__EDGE_2_3","bbox":[132.92,438.81,34.56,39.25]}
+{"kind":"shape","id":"sh/gbmxszmt","slide":2,"name":"FIG2_DISTANCE__GRAPH__EDGE_2_4","bbox":[132.92,478.07,47.52,7.85]}
+{"kind":"shape","id":"sh/fadgzu58","slide":2,"name":"FIG2_DISTANCE__GRAPH__EDGE_3_5","bbox":[167.48,438.81,38.88,23.55]}
+{"kind":"shape","id":"sh/u94fqp4n","slide":2,"name":"FIG2_DISTANCE__GRAPH__EDGE_4_5","bbox":[180.44,462.37,25.92,23.55]}
+{"kind":"shape","id":"sh/p0vy54na","slide":2,"name":"FIG2_DISTANCE__GRAPH__EDGE_1_5","bbox":[117.08,434.89,89.28,27.48]}
+{"kind":"shape","id":"sh/4zmxwzmp","slide":2,"name":"FIG2_DISTANCE__GRAPH__NODE_1","bbox":[77.32,465.66,10.4,9.11]}
+{"kind":"shape","id":"sh/mlgvq147","slide":2,"name":"FIG2_DISTANCE__GRAPH__NODE_2","bbox":[111.88,430.33,10.4,9.11]}
+{"kind":"shape","id":"sh/nmpcj6ls","slide":2,"name":"FIG2_DISTANCE__GRAPH__NODE_3","bbox":[127.72,473.51,10.4,9.11]}
+{"kind":"shape","id":"sh/onydsbmd","slide":2,"name":"FIG2_DISTANCE__GRAPH__NODE_4","bbox":[162.28,434.26,10.4,9.11]}
+{"kind":"shape","id":"sh/9o7ulg3y","slide":2,"name":"FIG2_DISTANCE__GRAPH__NODE_5","bbox":[175.24,481.36,10.4,9.11]}
+{"kind":"shape","id":"sh/a9gvulkj","slide":2,"name":"FIG2_DISTANCE__GRAPH__NODE_6","bbox":[201.16,457.81,10.4,9.11]}
+{"kind":"textbox","id":"sh/ba9cn6l4","slide":2,"name":"FIG2_DISTANCE__GRAPH_LABEL","text":"Distance Graph","textPreview":"Distance Graph","textChars":14,"textLines":1,"bbox":[72,539.89,146,25.41]}
+{"kind":"shape","id":"sh/wbidwb29","slide":2,"name":"FIG2_DISTANCE__FLOW_1__LINE","bbox":[145,292.81,0.1,27.16]}
+{"kind":"shape","id":"sh/xcrupg3u","slide":2,"name":"FIG2_DISTANCE__FLOW_1__HEAD","bbox":[140,315.59,10,8.76]}
+{"kind":"shape","id":"sh/id0vylkf","slide":2,"name":"FIG2_DISTANCE__FLOW_2__LINE","bbox":[145,362.03,0.1,44.68]}
+{"kind":"shape","id":"sh/je9crql0","slide":2,"name":"FIG2_DISTANCE__FLOW_2__HEAD","bbox":[140,402.33,10,8.76]}
+{"kind":"shape","id":"sh/b29kza94","slide":2,"name":"FIG2_PRIOR__BACKGROUND","bbox":[284,58,456,566]}
+{"kind":"textbox","id":"sh/a10jqpsj","slide":2,"name":"FIG2_PRIOR__TITLE","text":"(B) Dual Semantic Prior Graph Construction","textPreview":"(B) Dual Semantic Prior Graph Construction","textChars":42,"textLines":1,"bbox":[288,62.38,448,49.06]}
+{"kind":"textbox","id":"sh/ru5cbqd4","slide":2,"name":"FIG2_PRIOR__MACRO_TAG","text":"Macro prior","textPreview":"Macro prior","textChars":11,"textLines":1,"bbox":[300,105.31,102,22.78]}
+{"kind":"textbox","id":"sh/69wbilcj","slide":2,"name":"FIG2_PRIOR__MACRO_INPUT","text":"Train-only Patv_raw","textPreview":"Train-only Patv_raw","textChars":19,"textLines":1,"bbox":[296,134.23,130,29.79]}
+{"kind":"shape","id":"sh/tw7ud0va","slide":2,"name":"FIG2_PRIOR__MACRO_TREND__SEG_1","bbox":[310,188.34,5.88,4.15]}
+{"kind":"shape","id":"sh/svedkvup","slide":2,"name":"FIG2_PRIOR__MACRO_TREND__SEG_2","bbox":[315.88,185.07,5.88,3.27]}
+{"kind":"shape","id":"sh/fypcfqdg","slide":2,"name":"FIG2_PRIOR__MACRO_TREND__SEG_3","bbox":[321.76,183.36,5.88,1.71]}
+{"kind":"shape","id":"sh/exgvmlcv","slide":2,"name":"FIG2_PRIOR__MACRO_TREND__SEG_4","bbox":[327.65,183.36,5.88,0.15]}
+{"kind":"shape","id":"sh/107uh0v6","slide":2,"name":"FIG2_PRIOR__MACRO_TREND__SEG_5","bbox":[333.53,183.52,5.88,1.88]}
+{"kind":"shape","id":"sh/gzydovul","slide":2,"name":"FIG2_PRIOR__MACRO_TREND__SEG_6","bbox":[339.41,185.39,5.88,3.05]}
+{"kind":"shape","id":"sh/v2lc36dw","slide":2,"name":"FIG2_PRIOR__MACRO_TREND__SEG_7","bbox":[345.29,188.44,5.88,3.41]}
+{"kind":"shape","id":"sh/a1cba1wb","slide":2,"name":"FIG2_PRIOR__MACRO_TREND__SEG_8","bbox":[351.18,191.86,5.88,2.9]}
+{"kind":"shape","id":"sh/0vq1o36x","slide":2,"name":"FIG2_PRIOR__MACRO_TREND__SEG_9","bbox":[357.06,194.75,5.88,1.65]}
+{"kind":"shape","id":"sh/1wzix87i","slide":2,"name":"FIG2_PRIOR__MACRO_TREND__SEG_10","bbox":[362.94,196.41,5.88,0.09]}
+{"kind":"shape","id":"sh/et8zmto7","slide":2,"name":"FIG2_PRIOR__MACRO_TREND__SEG_11","bbox":[368.82,194.81,5.88,1.61]}
+{"kind":"shape","id":"sh/zuh0vypc","slide":2,"name":"FIG2_PRIOR__MACRO_TREND__SEG_12","bbox":[374.71,192.03,5.88,2.77]}
+{"kind":"shape","id":"sh/c76hk361","slide":2,"name":"FIG2_PRIOR__MACRO_TREND__SEG_13","bbox":[380.59,188.85,5.88,3.19]}
+{"kind":"shape","id":"sh/d8zit87m","slide":2,"name":"FIG2_PRIOR__MACRO_TREND__SEG_14","bbox":[386.47,186.12,5.88,2.73]}
+{"kind":"shape","id":"sh/q5ozitov","slide":2,"name":"FIG2_PRIOR__MACRO_TREND__SEG_15","bbox":[392.35,184.64,5.88,1.49]}
+{"kind":"shape","id":"sh/r6x0rypg","slide":2,"name":"FIG2_PRIOR__MACRO_TREND__SEG_16","bbox":[398.24,184.64,5.88,0.24]}
+{"kind":"shape","id":"sh/w3a1wn65","slide":2,"name":"FIG2_PRIOR__MACRO_TREND__SEG_17","bbox":[404.12,184.87,5.88,2.03]}
+{"kind":"textbox","id":"sh/xoji5s7q","slide":2,"name":"FIG2_PRIOR__MACRO_TREND_LABEL","text":"Multi-Window / Trend extraction","textPreview":"Multi-Window / Trend extraction","textChars":31,"textLines":1,"bbox":[294,208.7,134,32.42]}
+{"kind":"textbox","id":"sh/5kfipszu","slide":2,"name":"FIG2_PRIOR__PEARSON","text":"Trend Pearson Correlation Graph","textPreview":"Trend Pearson Correlation Graph","textChars":31,"textLines":1,"bbox":[437,134.23,132,47.31]}
+{"kind":"textbox","id":"sh/kj6hgny9","slide":2,"name":"FIG2_PRIOR__MACRO_TOPK","text":"Top-K Sparsification &\nRow Normalization","textPreview":"Top-K Sparsification & | Row Normalization","textChars":40,"textLines":2,"bbox":[437,193.8,132,42.93]}
+{"kind":"textbox","id":"sh/jix0niho","slide":2,"name":"FIG2_PRIOR__MACRO_K","text":"K = 10","textPreview":"K = 10","textChars":6,"textLines":1,"bbox":[472,236.74,65,17.52]}
+{"kind":"shape","id":"sh/ihozedgj","slide":2,"name":"FIG2_PRIOR__TREND_GRAPH_ANCHOR","bbox":[585,134.23,68,68.34]}
+{"kind":"shape","id":"sh/xgfil8zy","slide":2,"name":"FIG2_PRIOR__TREND_GRAPH__EDGE_0_1","bbox":[593.64,147.91,13.92,18.61]}
+{"kind":"shape","id":"sh/wf6hcnyd","slide":2,"name":"FIG2_PRIOR__TREND_GRAPH__EDGE_0_2","bbox":[593.64,166.52,20.3,4.14]}
+{"kind":"shape","id":"sh/ved0jihs","slide":2,"name":"FIG2_PRIOR__TREND_GRAPH__EDGE_1_2","bbox":[607.56,147.91,6.38,22.75]}
+{"kind":"shape","id":"sh/ad4zadg7","slide":2,"name":"FIG2_PRIOR__TREND_GRAPH__EDGE_1_3","bbox":[607.56,147.91,20.3,2.07]}
+{"kind":"shape","id":"sh/9svih8zm","slide":2,"name":"FIG2_PRIOR__TREND_GRAPH__EDGE_2_3","bbox":[613.94,149.98,13.92,20.68]}
+{"kind":"shape","id":"sh/8rmh83y1","slide":2,"name":"FIG2_PRIOR__TREND_GRAPH__EDGE_2_4","bbox":[613.94,170.66,19.14,4.14]}
+{"kind":"shape","id":"sh/yxkfi9wz","slide":2,"name":"FIG2_PRIOR__TREND_GRAPH__EDGE_3_5","bbox":[627.86,149.98,15.66,12.41]}
+{"kind":"shape","id":"sh/zytgbexk","slide":2,"name":"FIG2_PRIOR__TREND_GRAPH__EDGE_4_5","bbox":[633.08,162.39,10.44,12.41]}
+{"kind":"shape","id":"sh/0j2xkje5","slide":2,"name":"FIG2_PRIOR__TREND_GRAPH__EDGE_1_5","bbox":[607.56,147.91,35.96,14.47]}
+{"kind":"shape","id":"sh/lkbyd4fq","slide":2,"name":"FIG2_PRIOR__TREND_GRAPH__NODE_1","bbox":[588.44,161.97,10.4,9.11]}
+{"kind":"shape","id":"sh/qt0fepw3","slide":2,"name":"FIG2_PRIOR__TREND_GRAPH__NODE_2","bbox":[602.36,143.36,10.4,9.11]}
+{"kind":"shape","id":"sh/bu9w7uxo","slide":2,"name":"FIG2_PRIOR__TREND_GRAPH__NODE_3","bbox":[608.74,166.1,10.4,9.11]}
+{"kind":"shape","id":"sh/cv2xgzet","slide":2,"name":"FIG2_PRIOR__TREND_GRAPH__NODE_4","bbox":[622.66,145.42,10.4,9.11]}
+{"kind":"shape","id":"sh/dwbe94fe","slide":2,"name":"FIG2_PRIOR__TREND_GRAPH__NODE_5","bbox":[627.88,170.24,10.4,9.11]}
+{"kind":"shape","id":"sh/2p0fapwr","slide":2,"name":"FIG2_PRIOR__TREND_GRAPH__NODE_6","bbox":[638.32,157.83,10.4,9.11]}
+{"kind":"textbox","id":"sh/3q9w3uxc","slide":2,"name":"FIG2_PRIOR__TREND_GRAPH_LABEL","text":"Trend Graph\n0.7","textPreview":"Trend Graph | 0.7","textChars":15,"textLines":2,"bbox":[580,201.69,80,33.29]}
+{"kind":"textbox","id":"sh/ret8r2dk","slide":2,"name":"FIG2_PRIOR__MACRO_SIGMA","text":"Σ","textPreview":"Σ","textChars":1,"textLines":1,"bbox":[663,174.53,28,24.53]}
+{"kind":"textbox","id":"sh/6tk7yxcz","slide":2,"name":"FIG2_PRIOR__MACRO_DIST","text":"Distance Graph 0.3","textPreview":"Distance Graph 0.3","textChars":18,"textLines":1,"bbox":[625,219.21,103,21.9]}
+{"kind":"textbox","id":"sh/tgvqtcva","slide":2,"name":"FIG2_PRIOR__MACRO_PRIOR","text":"Macro Prior Graph","textPreview":"Macro Prior Graph","textChars":17,"textLines":1,"bbox":[590,270.03,128,31.54]}
+{"kind":"textbox","id":"sh/sf2p07up","slide":2,"name":"FIG2_PRIOR__MACRO_FUSION","text":"Prior Graph Fusion","textPreview":"Prior Graph Fusion","textChars":18,"textLines":1,"bbox":[560,245.5,122,21.9]}
+{"kind":"shape","id":"sh/jqt8nid8","slide":2,"name":"FIG2_PRIOR__MACRO_FLOW_1__LINE","bbox":[426,149.12,11,8.76]}
+{"kind":"shape","id":"sh/ipk7udcn","slide":2,"name":"FIG2_PRIOR__MACRO_FLOW_1__HEAD","bbox":[432,153.5,10,8.76]}
+{"kind":"shape","id":"sh/5sbqpsve","slide":2,"name":"FIG2_PRIOR__MACRO_FLOW_2__LINE","bbox":[503,181.54,0.1,12.27]}
+{"kind":"shape","id":"sh/4r2pwnut","slide":2,"name":"FIG2_PRIOR__MACRO_FLOW_2__HEAD","bbox":[498,189.42,10,8.76]}
+{"kind":"shape","id":"sh/3md8zmtc","slide":2,"name":"FIG2_PRIOR__MACRO_FLOW_3__LINE","bbox":[569,168.4,16,46.87]}
+{"kind":"shape","id":"sh/2l4r6hc7","slide":2,"name":"FIG2_PRIOR__MACRO_FLOW_3__HEAD","bbox":[580,164.02,10,8.76]}
+{"kind":"shape","id":"sh/kry50jap","slide":2,"name":"FIG2_PRIOR__MACRO_FLOW_4__LINE","bbox":[653,168.4,10,18.4]}
+{"kind":"shape","id":"sh/ls7mtobu","slide":2,"name":"FIG2_PRIOR__MACRO_FLOW_4__HEAD","bbox":[658,182.41,10,8.76]}
+{"kind":"shape","id":"sh/ypgny9sj","slide":2,"name":"FIG2_PRIOR__MACRO_FLOW_5__1","bbox":[691,186.8,13.5,0.09]}
+{"kind":"shape","id":"sh/zqp4ret4","slide":2,"name":"FIG2_PRIOR__MACRO_FLOW_5__2","bbox":[704.5,186.8,0.1,99.01]}
+{"kind":"shape","id":"sh/8vy54jal","slide":2,"name":"FIG2_PRIOR__MACRO_FLOW_5__3","bbox":[704.5,285.8,13.5,0.09]}
+{"kind":"shape","id":"sh/9w76xob6","slide":2,"name":"FIG2_PRIOR__MACRO_FLOW_5__HEAD","bbox":[713,281.42,10,8.76]}
+{"kind":"shape","id":"sh/mtgn29sf","slide":2,"name":"FIG2_PRIOR__DIVIDER","bbox":[298,319.97,428,0.09]}
+{"kind":"textbox","id":"sh/7up4vet0","slide":2,"name":"FIG2_PRIOR__MICRO_TAG","text":"Micro prior","textPreview":"Micro prior","textChars":11,"textLines":1,"bbox":[300,332.24,102,22.78]}
+{"kind":"textbox","id":"sh/wzi583ah","slide":2,"name":"FIG2_PRIOR__MICRO_INPUT","text":"Train-only Wspd","textPreview":"Train-only Wspd","textChars":15,"textLines":1,"bbox":[302,362.03,118,29.79]}
+{"kind":"shape","id":"sh/hkr618b2","slide":2,"name":"FIG2_PRIOR__MICRO_DIFF_WAVE__SEG_1","bbox":[310,406.11,5.88,12.43]}
+{"kind":"shape","id":"sh/uxwf6xgz","slide":2,"name":"FIG2_PRIOR__MICRO_DIFF_WAVE__SEG_2","bbox":[315.88,406.11,5.88,16.66]}
+{"kind":"shape","id":"sh/fi5gz2hk","slide":2,"name":"FIG2_PRIOR__MICRO_DIFF_WAVE__SEG_3","bbox":[321.76,422.77,5.88,1.6]}
+{"kind":"shape","id":"sh/gjyx87y5","slide":2,"name":"FIG2_PRIOR__MICRO_DIFF_WAVE__SEG_4","bbox":[327.65,421.93,5.88,2.45]}
+{"kind":"shape","id":"sh/hk7y1czq","slide":2,"name":"FIG2_PRIOR__MICRO_DIFF_WAVE__SEG_5","bbox":[333.53,404.45,5.88,17.47]}
+{"kind":"shape","id":"sh/2lgfahgb","slide":2,"name":"FIG2_PRIOR__MICRO_DIFF_WAVE__SEG_6","bbox":[339.41,404.45,5.88,18.12]}
+{"kind":"shape","id":"sh/3mpg3mhw","slide":2,"name":"FIG2_PRIOR__MICRO_DIFF_WAVE__SEG_7","bbox":[345.29,422.57,5.88,5.94]}
+{"kind":"shape","id":"sh/4nyxcryh","slide":2,"name":"FIG2_PRIOR__MICRO_DIFF_WAVE__SEG_8","bbox":[351.18,414.34,5.88,14.18]}
+{"kind":"shape","id":"sh/po7y5czm","slide":2,"name":"FIG2_PRIOR__MICRO_DIFF_WAVE__SEG_9","bbox":[357.06,411.94,5.88,2.39]}
+{"kind":"shape","id":"sh/qpgfehg7","slide":2,"name":"FIG2_PRIOR__MICRO_DIFF_WAVE__SEG_10","bbox":[362.94,411.94,5.88,5.11]}
+{"kind":"shape","id":"sh/rq9g7mhs","slide":2,"name":"FIG2_PRIOR__MICRO_DIFF_WAVE__SEG_11","bbox":[368.82,417.05,5.88,16.02]}
+{"kind":"shape","id":"sh/1kbidgju","slide":2,"name":"FIG2_PRIOR__MICRO_DIFF_WAVE__SEG_12","bbox":[374.71,411.05,5.88,22.02]}
+{"kind":"shape","id":"sh/0j214bip","slide":2,"name":"FIG2_PRIOR__MICRO_DIFF_WAVE__SEG_13","bbox":[380.59,411.05,5.88,0.22]}
+{"kind":"shape","id":"sh/zit0bq14","slide":2,"name":"FIG2_PRIOR__MICRO_DIFF_WAVE__SEG_14","bbox":[386.47,411.28,5.88,10.93]}
+{"kind":"shape","id":"sh/eh0z2l0j","slide":2,"name":"FIG2_PRIOR__MICRO_DIFF_WAVE__SEG_15","bbox":[392.35,422.21,5.88,4.2]}
+{"kind":"shape","id":"sh/98bih0j6","slide":2,"name":"FIG2_PRIOR__MICRO_DIFF_WAVE__SEG_16","bbox":[398.24,417.15,5.88,9.26]}
+{"kind":"shape","id":"sh/on218vil","slide":2,"name":"FIG2_PRIOR__MICRO_DIFF_WAVE__SEG_17","bbox":[404.12,404.96,5.88,12.19]}
+{"kind":"textbox","id":"sh/nmt0fq10","slide":2,"name":"FIG2_PRIOR__MICRO_DIFF_LABEL","text":"1st-Order Difference","textPreview":"1st-Order Difference","textChars":20,"textLines":1,"bbox":[302,437.38,118,23.66]}
+{"kind":"textbox","id":"sh/mlkj6l0f","slide":2,"name":"FIG2_PRIOR__COSINE","text":"Cosine Similarity on 1st-Order Difference","textPreview":"Cosine Similarity on 1st-Order Difference","textChars":41,"textLines":1,"bbox":[437,362.03,132,50.82]}
+{"kind":"textbox","id":"sh/xcvil0j2","slide":2,"name":"FIG2_PRIOR__MICRO_TOPK","text":"Top-K Sparsification &\nRow Normalization","textPreview":"Top-K Sparsification & | Row Normalization","textChars":40,"textLines":2,"bbox":[437,425.99,132,42.93]}
+{"kind":"textbox","id":"sh/wbm1cvix","slide":2,"name":"FIG2_PRIOR__MICRO_K","text":"K = 5","textPreview":"K = 5","textChars":5,"textLines":1,"bbox":[472,468.92,65,17.52]}
+{"kind":"shape","id":"sh/gful8jqt","slide":2,"name":"FIG2_PRIOR__LOCAL_GRAPH_ANCHOR","bbox":[585,362.03,68,68.34]}
+{"kind":"shape","id":"sh/hg32ho7e","slide":2,"name":"FIG2_PRIOR__LOCAL_GRAPH__EDGE_0_1","bbox":[593.64,375.71,13.92,18.61]}
+{"kind":"shape","id":"sh/uts3698n","slide":2,"name":"FIG2_PRIOR__LOCAL_GRAPH__EDGE_0_2","bbox":[593.64,394.32,20.3,4.14]}
+{"kind":"shape","id":"sh/vulkfep8","slide":2,"name":"FIG2_PRIOR__LOCAL_GRAPH__EDGE_1_2","bbox":[607.56,375.71,6.38,22.75]}
+{"kind":"shape","id":"sh/4julcjq5","slide":2,"name":"FIG2_PRIOR__LOCAL_GRAPH__EDGE_1_3","bbox":[607.56,375.71,20.3,2.07]}
+{"kind":"shape","id":"sh/5k32lo7a","slide":2,"name":"FIG2_PRIOR__LOCAL_GRAPH__EDGE_2_3","bbox":[613.94,377.78,13.92,20.68]}
+{"kind":"shape","id":"sh/ihc3at8z","slide":2,"name":"FIG2_PRIOR__LOCAL_GRAPH__EDGE_2_4","bbox":[613.94,398.46,19.14,4.14]}
+{"kind":"shape","id":"sh/3ilkjepk","slide":2,"name":"FIG2_PRIOR__LOCAL_GRAPH__EDGE_3_5","bbox":[627.86,377.78,15.66,12.41]}
+{"kind":"shape","id":"sh/kna10zql","slide":2,"name":"FIG2_PRIOR__LOCAL_GRAPH__EDGE_4_5","bbox":[633.08,390.19,10.44,12.41]}
+{"kind":"shape","id":"sh/loj294r6","slide":2,"name":"FIG2_PRIOR__LOCAL_GRAPH__EDGE_1_5","bbox":[607.56,375.71,35.96,14.47]}
+{"kind":"shape","id":"sh/nu9wvmd0","slide":2,"name":"FIG2_PRIOR__LOCAL_GRAPH__NODE_1","bbox":[588.44,389.77,10.4,9.11]}
+{"kind":"shape","id":"sh/mt0f2hwf","slide":2,"name":"FIG2_PRIOR__LOCAL_GRAPH__NODE_2","bbox":[602.36,371.16,10.4,9.11]}
+{"kind":"shape","id":"sh/9grexwv6","slide":2,"name":"FIG2_PRIOR__LOCAL_GRAPH__NODE_3","bbox":[608.74,393.9,10.4,9.11]}
+{"kind":"shape","id":"sh/ovix4rel","slide":2,"name":"FIG2_PRIOR__LOCAL_GRAPH__NODE_4","bbox":[622.66,373.23,10.4,9.11]}
+{"kind":"shape","id":"sh/zq9wrmd4","slide":2,"name":"FIG2_PRIOR__LOCAL_GRAPH__NODE_5","bbox":[627.88,398.04,10.4,9.11]}
+{"kind":"shape","id":"sh/epgfyhwj","slide":2,"name":"FIG2_PRIOR__LOCAL_GRAPH__NODE_6","bbox":[638.32,385.63,10.4,9.11]}
+{"kind":"textbox","id":"sh/1sretwvu","slide":2,"name":"FIG2_PRIOR__LOCAL_GRAPH_LABEL","text":"Local-Change\nGraph 0.3","textPreview":"Local-Change | Graph 0.3","textChars":22,"textLines":2,"bbox":[579,428.62,82,35.05]}
+{"kind":"textbox","id":"sh/0rix0re9","slide":2,"name":"FIG2_PRIOR__MICRO_SIGMA","text":"Σ","textPreview":"Σ","textChars":1,"textLines":1,"bbox":[663,402.33,28,24.53]}
+{"kind":"textbox","id":"sh/rmpwn2ds","slide":2,"name":"FIG2_PRIOR__MICRO_DIST","text":"Distance Graph 0.7","textPreview":"Distance Graph 0.7","textChars":18,"textLines":1,"bbox":[625,451.4,103,21.9]}
+{"kind":"textbox","id":"sh/qlgvuxw7","slide":2,"name":"FIG2_PRIOR__MICRO_PRIOR","text":"Micro Prior Graph","textPreview":"Micro Prior Graph","textChars":17,"textLines":1,"bbox":[590,502.21,128,31.54]}
+{"kind":"textbox","id":"sh/6t0jy5sr","slide":2,"name":"FIG2_PRIOR__MICRO_FUSION","text":"Prior Graph Fusion","textPreview":"Prior Graph Fusion","textChars":18,"textLines":1,"bbox":[560,477.68,122,21.9]}
+{"kind":"shape","id":"sh/ru90ratc","slide":2,"name":"FIG2_PRIOR__MICRO_FLOW_1__LINE","bbox":[420,376.92,17,10.51]}
+{"kind":"shape","id":"sh/svi10fax","slide":2,"name":"FIG2_PRIOR__MICRO_FLOW_1__HEAD","bbox":[432,383.06,10,8.76]}
+{"kind":"shape","id":"sh/twbitkri","slide":2,"name":"FIG2_PRIOR__MICRO_FLOW_2__LINE","bbox":[503,412.85,0.1,13.14]}
+{"kind":"shape","id":"sh/i50zu5sv","slide":2,"name":"FIG2_PRIOR__MICRO_FLOW_2__HEAD","bbox":[498,421.61,10,8.76]}
+{"kind":"shape","id":"sh/j690nqtg","slide":2,"name":"FIG2_PRIOR__MICRO_FLOW_3__LINE","bbox":[569,396.2,16,51.26]}
+{"kind":"shape","id":"sh/47ihwva1","slide":2,"name":"FIG2_PRIOR__MICRO_FLOW_3__HEAD","bbox":[580,391.82,10,8.76]}
+{"kind":"shape","id":"sh/5srip0b6","slide":2,"name":"FIG2_PRIOR__MICRO_FLOW_4__LINE","bbox":[653,396.2,10,18.4]}
+{"kind":"shape","id":"sh/a1gzqlsj","slide":2,"name":"FIG2_PRIOR__MICRO_FLOW_4__HEAD","bbox":[658,410.22,10,8.76]}
+{"kind":"shape","id":"sh/v2p0jqt4","slide":2,"name":"FIG2_PRIOR__MICRO_FLOW_5__1","bbox":[691,414.6,13.5,0.09]}
+{"kind":"shape","id":"sh/dwfmpobm","slide":2,"name":"FIG2_PRIOR__MICRO_FLOW_5__2","bbox":[704.5,414.6,0.1,103.39]}
+{"kind":"shape","id":"sh/cv6lwjuh","slide":2,"name":"FIG2_PRIOR__MICRO_FLOW_5__3","bbox":[704.5,517.98,13.5,0.09]}
+{"kind":"shape","id":"sh/budknetw","slide":2,"name":"FIG2_PRIOR__MICRO_FLOW_5__HEAD","bbox":[713,513.6,10,8.76]}
+{"kind":"shape","id":"sh/x4r21kru","slide":2,"name":"FIG2_ADAPTIVE__BACKGROUND","bbox":[752,58,510,568.13]}
+{"kind":"textbox","id":"sh/w3i1sfa9","slide":2,"name":"FIG2_ADAPTIVE__TITLE","text":"(C) Prior-Constrained Adaptive Edge Re-weighting","textPreview":"(C) Prior-Constrained Adaptive Edge Re-weighting","textChars":48,"textLines":1,"bbox":[756,62.4,502,49.25]}
+{"kind":"textbox","id":"sh/qt43u9cb","slide":2,"name":"FIG2_ADAPTIVE__SUBTITLE","text":"Learn edge importance without creating unsupported connections","textPreview":"Learn edge importance without creating unsupported connections","textChars":62,"textLines":1,"bbox":[780,105.49,455,26.38]}
+{"kind":"textbox","id":"sh/psv2lovq","slide":2,"name":"FIG2_ADAPTIVE__STEP_1_NUM","text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[804,146.83,36,31.66]}
+{"kind":"textbox","id":"sh/ormlsju5","slide":2,"name":"FIG2_ADAPTIVE__STEP_1_TITLE","text":"Prior Graph Defines\nAllowed Edges","textPreview":"Prior Graph Defines | Allowed Edges","textChars":33,"textLines":2,"bbox":[770,184.64,105,41.33]}
+{"kind":"textbox","id":"sh/3qdkjedk","slide":2,"name":"FIG2_ADAPTIVE__STEP_2_NUM","text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[925,146.83,36,31.66]}
+{"kind":"textbox","id":"sh/2p43q9cz","slide":2,"name":"FIG2_ADAPTIVE__STEP_2_TITLE","text":"Learn Adaptive\nEdge Importance","textPreview":"Learn Adaptive | Edge Importance","textChars":30,"textLines":2,"bbox":[891,184.64,105,41.33]}
+{"kind":"textbox","id":"sh/1ov2h4ve","slide":2,"name":"FIG2_ADAPTIVE__STEP_3_NUM","text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[1046,146.83,36,31.66]}
+{"kind":"textbox","id":"sh/gn2lozu9","slide":2,"name":"FIG2_ADAPTIVE__STEP_3_TITLE","text":"Mask Unsupported\nEdges","textPreview":"Mask Unsupported | Edges","textChars":22,"textLines":2,"bbox":[1012,184.64,105,41.33]}
+{"kind":"textbox","id":"sh/s76l4z25","slide":2,"name":"FIG2_ADAPTIVE__STEP_4_NUM","text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[1167,146.83,36,31.66]}
+{"kind":"textbox","id":"sh/t8fmd43a","slide":2,"name":"FIG2_ADAPTIVE__STEP_4_TITLE","text":"Re-weight &\nRow Normalize","textPreview":"Re-weight & | Row Normalize","textChars":25,"textLines":2,"bbox":[1133,184.64,105,41.33]}
+{"kind":"shape","id":"sh/65o329kz","slide":2,"name":"FIG2_ADAPTIVE__STEP1_ANCHOR","bbox":[783,241.81,90,103.78]}
+{"kind":"shape","id":"sh/76x4belk","slide":2,"name":"FIG2_ADAPTIVE__STEP1_GRAPH__EDGE_0_1","bbox":[796.08,261.6,18.24,23.75]}
+{"kind":"shape","id":"sh/k36l0z2t","slide":2,"name":"FIG2_ADAPTIVE__STEP1_GRAPH__EDGE_0_2","bbox":[796.08,285.34,26.6,5.28]}
+{"kind":"shape","id":"sh/54f2943e","slide":2,"name":"FIG2_ADAPTIVE__STEP1_GRAPH__EDGE_1_2","bbox":[814.32,261.6,8.36,29.02]}
+{"kind":"shape","id":"sh/iho3ypkn","slide":2,"name":"FIG2_ADAPTIVE__STEP1_GRAPH__EDGE_1_3","bbox":[814.32,261.6,26.6,2.64]}
+{"kind":"shape","id":"sh/j2xk7ul8","slide":2,"name":"FIG2_ADAPTIVE__STEP1_GRAPH__EDGE_2_3","bbox":[822.68,264.23,18.24,26.38]}
+{"kind":"shape","id":"sh/4zqlcj2x","slide":2,"name":"FIG2_ADAPTIVE__STEP1_GRAPH__EDGE_2_4","bbox":[822.68,290.62,25.08,5.28]}
+{"kind":"shape","id":"sh/p0jmloji","slide":2,"name":"FIG2_ADAPTIVE__STEP1_GRAPH__EDGE_3_5","bbox":[840.92,264.23,20.52,15.83]}
+{"kind":"shape","id":"sh/zulobi50","slide":2,"name":"FIG2_ADAPTIVE__STEP1_GRAPH__EDGE_4_5","bbox":[847.76,280.06,13.68,15.83]}
+{"kind":"shape","id":"sh/etc72x4f","slide":2,"name":"FIG2_ADAPTIVE__STEP1_GRAPH__EDGE_1_5","bbox":[814.32,261.6,47.12,18.47]}
+{"kind":"shape","id":"sh/1w36dsnq","slide":2,"name":"FIG2_ADAPTIVE__STEP1_GRAPH__NODE_1","bbox":[790.88,280.77,10.4,9.15]}
+{"kind":"shape","id":"sh/0vup4nm5","slide":2,"name":"FIG2_ADAPTIVE__STEP1_GRAPH__NODE_2","bbox":[809.12,257.02,10.4,9.15]}
+{"kind":"shape","id":"sh/nylof2lw","slide":2,"name":"FIG2_ADAPTIVE__STEP1_GRAPH__NODE_3","bbox":[817.48,286.04,10.4,9.15]}
+{"kind":"shape","id":"sh/mxc76x4b","slide":2,"name":"FIG2_ADAPTIVE__STEP1_GRAPH__NODE_4","bbox":[835.72,259.66,10.4,9.15]}
+{"kind":"shape","id":"sh/90n6hc32","slide":2,"name":"FIG2_ADAPTIVE__STEP1_GRAPH__NODE_5","bbox":[842.56,291.32,10.4,9.15]}
+{"kind":"shape","id":"sh/ozep87mh","slide":2,"name":"FIG2_ADAPTIVE__STEP1_GRAPH__NODE_6","bbox":[856.24,275.49,10.4,9.15]}
+{"kind":"textbox","id":"sh/321o3y5s","slide":2,"name":"FIG2_ADAPTIVE__STEP1_ALLOWED","text":"Allowed connections","textPreview":"Allowed connections","textChars":19,"textLines":1,"bbox":[781,323.6,94,24.62]}
+{"kind":"textbox","id":"sh/21snud47","slide":2,"name":"FIG2_ADAPTIVE__STEP2_E_LABEL","text":"Independent node embeddings","textPreview":"Independent node embeddings","textChars":27,"textLines":1,"bbox":[891,237.41,105,29.9]}
+{"kind":"textbox","id":"sh/6dovehs7","slide":2,"name":"FIG2_ADAPTIVE__STEP2_EM_LABEL","text":"Macro: E1ᵐ / E2ᵐ","textPreview":"Macro: E1ᵐ / E2ᵐ","textChars":16,"textLines":1,"bbox":[891,269.07,105,19.35]}
+{"kind":"shape","id":"sh/rexw7m9s","slide":2,"name":"FIG2_ADAPTIVE__STEP2_EM__TOKEN_1","bbox":[918,290.18,20,31.66]}
+{"kind":"shape","id":"sh/sf6dgrax","slide":2,"name":"FIG2_ADAPTIVE__STEP2_EM__TOKEN_2","bbox":[946,290.18,20,31.66]}
+{"kind":"textbox","id":"sh/tgze9wri","slide":2,"name":"FIG2_ADAPTIVE__STEP2_EU_LABEL","text":"Micro: E1μ / E2μ","textPreview":"Micro: E1μ / E2μ","textChars":16,"textLines":1,"bbox":[891,325.36,105,19.35]}
+{"kind":"shape","id":"sh/eh8fi1s3","slide":2,"name":"FIG2_ADAPTIVE__STEP2_EU__TOKEN_1","bbox":[918,346.46,20,31.66]}
+{"kind":"shape","id":"sh/fihwbm9o","slide":2,"name":"FIG2_ADAPTIVE__STEP2_EU__TOKEN_2","bbox":[946,346.46,20,31.66]}
+{"kind":"textbox","id":"sh/gjqxkra9","slide":2,"name":"FIG2_ADAPTIVE__STEP2_DIM","text":"dₑ = 10","textPreview":"dₑ = 10","textChars":7,"textLines":1,"bbox":[913,380.76,70,19.35]}
+{"kind":"textbox","id":"sh/1kzedwru","slide":2,"name":"FIG2_ADAPTIVE__STEP2_SCORE","text":"Adaptive\nedge scores","textPreview":"Adaptive | edge scores","textChars":20,"textLines":2,"bbox":[911,403.63,72,39.58]}
+{"kind":"textbox","id":"sh/ul4v6xsz","slide":2,"name":"FIG2_ADAPTIVE__STEP3_SCORE","text":"Adaptive scores","textPreview":"Adaptive scores","textChars":15,"textLines":1,"bbox":[1018,251.48,92,28.14]}
+{"kind":"textbox","id":"sh/vmdwz29k","slide":2,"name":"FIG2_ADAPTIVE__STEP3_MASK","text":"Prior support mask","textPreview":"Prior support mask","textChars":18,"textLines":1,"bbox":[1018,293.7,92,28.14]}
+{"kind":"textbox","id":"sh/dg3y50b2","slide":2,"name":"FIG2_ADAPTIVE__STEP3_OVERLAY","text":"×","textPreview":"×","textChars":1,"textLines":1,"bbox":[1047,321.84,34,26.38]}
+{"kind":"shape","id":"sh/cfuhcvuh","slide":2,"name":"FIG2_ADAPTIVE__STEP3_ANCHOR","bbox":[1021,352.62,86,78.27]}
+{"kind":"shape","id":"sh/be1g3qtw","slide":2,"name":"FIG2_ADAPTIVE__STEP3_GRAPH__EDGE_0_1","bbox":[1031.08,367.62,18.24,21.21]}
+{"kind":"shape","id":"sh/qdszalcb","slide":2,"name":"FIG2_ADAPTIVE__STEP3_GRAPH__EDGE_0_2","bbox":[1031.08,388.84,26.6,4.71]}
+{"kind":"shape","id":"sh/l43i9kby","slide":2,"name":"FIG2_ADAPTIVE__STEP3_GRAPH__EDGE_1_2","bbox":[1049.32,367.62,8.36,25.93]}
+{"kind":"shape","id":"sh/k3uhgfud","slide":2,"name":"FIG2_ADAPTIVE__STEP3_GRAPH__EDGE_1_3","bbox":[1049.32,367.62,26.6,2.36]}
+{"kind":"shape","id":"sh/z2lg7at8","slide":2,"name":"FIG2_ADAPTIVE__STEP3_GRAPH__EDGE_2_3","bbox":[1057.68,369.98,18.24,23.57]}
+{"kind":"shape","id":"sh/yhcze5cn","slide":2,"name":"FIG2_ADAPTIVE__STEP3_GRAPH__EDGE_2_4","bbox":[1057.68,393.55,25.08,4.71]}
+{"kind":"shape","id":"sh/18jyxgbu","slide":2,"name":"FIG2_ADAPTIVE__STEP3_GRAPH__EDGE_3_5","bbox":[1075.92,369.98,20.52,14.14]}
+{"kind":"shape","id":"sh/g7qh4bu9","slide":2,"name":"FIG2_ADAPTIVE__STEP3_GRAPH__EDGE_4_5","bbox":[1082.76,384.12,13.68,14.14]}
+{"kind":"shape","id":"sh/x8nu5kba","slide":2,"name":"FIG2_ADAPTIVE__STEP3_GRAPH__EDGE_1_5","bbox":[1049.32,367.62,47.12,16.5]}
+{"kind":"shape","id":"sh/c7etcfup","slide":2,"name":"FIG2_ADAPTIVE__STEP3_GRAPH__NODE_1","bbox":[1025.88,384.26,10.4,9.15]}
+{"kind":"shape","id":"sh/b65c3at4","slide":2,"name":"FIG2_ADAPTIVE__STEP3_GRAPH__NODE_2","bbox":[1044.12,363.05,10.4,9.15]}
+{"kind":"shape","id":"sh/a5wba5cj","slide":2,"name":"FIG2_ADAPTIVE__STEP3_GRAPH__NODE_3","bbox":[1052.48,388.98,10.4,9.15]}
+{"kind":"shape","id":"sh/lc7u9kb6","slide":2,"name":"FIG2_ADAPTIVE__STEP3_GRAPH__NODE_4","bbox":[1070.72,365.41,10.4,9.15]}
+{"kind":"shape","id":"sh/kbytgfu1","slide":2,"name":"FIG2_ADAPTIVE__STEP3_GRAPH__NODE_5","bbox":[1077.56,393.69,10.4,9.15]}
+{"kind":"shape","id":"sh/zapc7atg","slide":2,"name":"FIG2_ADAPTIVE__STEP3_GRAPH__NODE_6","bbox":[1091.24,379.55,10.4,9.15]}
+{"kind":"textbox","id":"sh/y9wbepcv","slide":2,"name":"FIG2_ADAPTIVE__STEP3_REMOVED","text":"Unsupported edges removed","textPreview":"Unsupported edges removed","textChars":25,"textLines":1,"bbox":[1017,420.34,96,30.78]}
+{"kind":"textbox","id":"sh/1g3ax0b2","slide":2,"name":"FIG2_ADAPTIVE__STEP3_X","text":"×","textPreview":"×","textChars":1,"textLines":1,"bbox":[1084,369.33,24,21.11]}
+{"kind":"shape","id":"sh/0fut4vuh","slide":2,"name":"FIG2_ADAPTIVE__STEP4_ANCHOR","bbox":[1141,248.84,94,124.88]}
+{"kind":"shape","id":"sh/qlsry1sf","slide":2,"name":"FIG2_ADAPTIVE__STEP4_GRAPH__EDGE_0_1","bbox":[1154.4,269.74,19.2,25.96]}
+{"kind":"shape","id":"sh/rm187690","slide":2,"name":"FIG2_ADAPTIVE__STEP4_GRAPH__EDGE_0_2","bbox":[1154.4,295.7,28,5.77]}
+{"kind":"shape","id":"sh/sna90ral","slide":2,"name":"FIG2_ADAPTIVE__STEP4_GRAPH__EDGE_1_2","bbox":[1173.6,269.74,8.8,31.73]}
+{"kind":"shape","id":"sh/dojq9wr6","slide":2,"name":"FIG2_ADAPTIVE__STEP4_GRAPH__EDGE_1_3","bbox":[1173.6,269.74,28,2.88]}
+{"kind":"shape","id":"sh/epsr21sb","slide":2,"name":"FIG2_ADAPTIVE__STEP4_GRAPH__EDGE_2_3","bbox":[1182.4,272.62,19.2,28.85]}
+{"kind":"shape","id":"sh/fql8b69w","slide":2,"name":"FIG2_ADAPTIVE__STEP4_GRAPH__EDGE_2_4","bbox":[1182.4,301.47,26.4,5.77]}
+{"kind":"shape","id":"sh/0bu94bah","slide":2,"name":"FIG2_ADAPTIVE__STEP4_GRAPH__EDGE_3_5","bbox":[1201.6,272.62,21.6,17.31]}
+{"kind":"shape","id":"sh/1c3qdgr2","slide":2,"name":"FIG2_ADAPTIVE__STEP4_GRAPH__EDGE_4_5","bbox":[1208.8,289.93,14.4,17.31]}
+{"kind":"shape","id":"sh/ut87qhs7","slide":2,"name":"FIG2_ADAPTIVE__STEP4_GRAPH__EDGE_1_5","bbox":[1173.6,269.74,49.6,20.19]}
+{"kind":"shape","id":"sh/vuh8zm9s","slide":2,"name":"FIG2_ADAPTIVE__STEP4_GRAPH__NODE_1","bbox":[1149.2,291.13,10.4,9.15]}
+{"kind":"shape","id":"sh/zmtwbel8","slide":2,"name":"FIG2_ADAPTIVE__STEP4_GRAPH__NODE_2","bbox":[1168.4,265.17,10.4,9.15]}
+{"kind":"shape","id":"sh/ylkfi94n","slide":2,"name":"FIG2_ADAPTIVE__STEP4_GRAPH__NODE_3","bbox":[1177.2,296.9,10.4,9.15]}
+{"kind":"shape","id":"sh/lovedo3e","slide":2,"name":"FIG2_ADAPTIVE__STEP4_GRAPH__NODE_4","bbox":[1196.4,268.05,10.4,9.15]}
+{"kind":"shape","id":"sh/knmxkjmt","slide":2,"name":"FIG2_ADAPTIVE__STEP4_GRAPH__NODE_5","bbox":[1203.6,302.67,10.4,9.15]}
+{"kind":"shape","id":"sh/bitw7elc","slide":2,"name":"FIG2_ADAPTIVE__STEP4_GRAPH__NODE_6","bbox":[1218,285.36,10.4,9.15]}
+{"kind":"textbox","id":"sh/qhkfe94r","slide":2,"name":"FIG2_ADAPTIVE__STEP4_ROW","text":"Row Normalization","textPreview":"Row Normalization","textChars":17,"textLines":1,"bbox":[1141,335.03,94,23.75]}
+{"kind":"textbox","id":"sh/dkbe9432","slide":2,"name":"FIG2_ADAPTIVE__STEP4_EFFECTIVE","text":"Effective Graph","textPreview":"Effective Graph","textChars":15,"textLines":1,"bbox":[1141,365.81,94,26.38]}
+{"kind":"textbox","id":"sh/cj2xgzmx","slide":2,"name":"FIG2_ADAPTIVE__STEP4_SAME","text":"Same connectivity\nnew edge strengths","textPreview":"Same connectivity | new edge strengths","textChars":36,"textLines":2,"bbox":[1141,396.59,94,37.82]}
+{"kind":"shape","id":"sh/vexwjylg","slide":2,"name":"FIG2_ADAPTIVE__FLOW_1__1","bbox":[873,293.7,19,0.09]}
+{"kind":"shape","id":"sh/ud4fqt4v","slide":2,"name":"FIG2_ADAPTIVE__FLOW_1__2","bbox":[892,293.7,0.1,129.72]}
+{"kind":"shape","id":"sh/szytkv2d","slide":2,"name":"FIG2_ADAPTIVE__FLOW_1__3","bbox":[892,423.42,19,0.09]}
+{"kind":"shape","id":"sh/tk7ud0jy","slide":2,"name":"FIG2_ADAPTIVE__FLOW_1__HEAD","bbox":[906,419.02,10,8.79]}
+{"kind":"shape","id":"sh/6xgbilk7","slide":2,"name":"FIG2_ADAPTIVE__FLOW_2__1","bbox":[983,423.42,19,0.09]}
+{"kind":"shape","id":"sh/rypcbq1s","slide":2,"name":"FIG2_ADAPTIVE__FLOW_2__2","bbox":[1002,391.76,0.1,31.66]}
+{"kind":"shape","id":"sh/gnitof2p","slide":2,"name":"FIG2_ADAPTIVE__FLOW_2__3","bbox":[1002,391.76,19,0.09]}
+{"kind":"shape","id":"sh/1oruh0ju","slide":2,"name":"FIG2_ADAPTIVE__FLOW_2__HEAD","bbox":[1016,387.36,10,8.79]}
+{"kind":"shape","id":"sh/elgbm5kj","slide":2,"name":"FIG2_ADAPTIVE__FLOW_3__1","bbox":[1107,391.76,17,0.09]}
+{"kind":"shape","id":"sh/fmpcfa14","slide":2,"name":"FIG2_ADAPTIVE__FLOW_3__2","bbox":[1124,311.29,0.1,80.47]}
+{"kind":"shape","id":"sh/oritsf2l","slide":2,"name":"FIG2_ADAPTIVE__FLOW_3__3","bbox":[1124,311.29,17,0.09]}
+{"kind":"shape","id":"sh/psrulkj6","slide":2,"name":"FIG2_ADAPTIVE__FLOW_3__HEAD","bbox":[1136,306.89,10,8.79]}
+{"kind":"textbox","id":"sh/90ju1076","slide":2,"name":"FIG2_ADAPTIVE__EXPLAIN","text":"Prior fixes connectivity; learning only adjusts the strength of supported edges.","textPreview":"Prior fixes connectivity; learning only adjusts the strength of supported edges.","textChars":80,"textLines":1,"bbox":[785,539.07,444,36.94]}
+{"kind":"textbox","id":"sh/ozat8v6l","slide":2,"name":"FIG2_ADAPTIVE__BRANCH_NOTE","text":"Macro and Micro use independent adaptive embeddings","textPreview":"Macro and Micro use independent adaptive embeddings","textChars":51,"textLines":1,"bbox":[835,583.04,345,24.62]}
+{"kind":"notes","id":"nt/hwbqtkby","slide":2,"text":"[Sources]\n- D:/PaperProject/GyxPaper2/custom_models/src/st_mgprompt/graph_prior.py\n- D:/PaperProject/GyxPaper2/custom_models/src/st_mgprompt/graph_layers.py\n- D:/PaperProject/GyxPaper2/custom_models/src/st_mgprompt/config.py"}
+{"kind":"slide","id":"sl/ofy9wn61","slide":3,"title":"Macro-Trend Prompt and Bidirectional Cross-Fusion","textShapes":34}
+{"kind":"textbox","id":"sh/el0jux8b","slide":3,"name":"FIGURE_TITLE","text":"Macro-Trend Prompt and Bidirectional Cross-Fusion","textPreview":"Macro-Trend Prompt and Bidirectional Cross-Fusion","textChars":49,"textLines":1,"bbox":[18,8,1244,42]}
+{"kind":"shape","id":"sh/cza94vmx","slide":3,"name":"FIG3_CANVAS","bbox":[18,58,1244,646]}
+{"kind":"textbox","id":"sh/d0jax03i","slide":3,"name":"FIG3_PROMPT__BAND_TITLE","text":"Macro-Trend Prompt Generation","textPreview":"Macro-Trend Prompt Generation","textChars":29,"textLines":1,"bbox":[42,72,500,34]}
+{"kind":"shape","id":"sh/obq90bml","slide":3,"name":"FIG3_PROMPT__DIVIDER","bbox":[40,224,1200,0.1]}
+{"kind":"textbox","id":"sh/m5cra54z","slide":3,"name":"FIG3_PROMPT__COARSE_HISTORY_LABEL","text":"Coarse History","textPreview":"Coarse History","textChars":14,"textLines":1,"bbox":[75,116,150,26]}
+{"kind":"shape","id":"sh/n6ls3alk","slide":3,"name":"FIG3_PROMPT__COARSE_HISTORY__TOKEN_1","bbox":[70,151,24,31]}
+{"kind":"shape","id":"sh/n2l4fq98","slide":3,"name":"FIG3_PROMPT__COARSE_HISTORY__TOKEN_2","bbox":[98,151,24,31]}
+{"kind":"shape","id":"sh/m1c3mlsn","slide":3,"name":"FIG3_PROMPT__COARSE_HISTORY__TOKEN_3","bbox":[126,151,24,31]}
+{"kind":"shape","id":"sh/943mhgre","slide":3,"name":"FIG3_PROMPT__COARSE_HISTORY__TOKEN_4","bbox":[154,151,24,31]}
+{"kind":"shape","id":"sh/83ulovat","slide":3,"name":"FIG3_PROMPT__COARSE_HISTORY__TOKEN_5","bbox":[182,151,24,31]}
+{"kind":"shape","id":"sh/v6l4jq94","slide":3,"name":"FIG3_PROMPT__COARSE_HISTORY__TOKEN_6","bbox":[210,151,24,31]}
+{"kind":"shape","id":"sh/a5c3ql8z","slide":3,"name":"FIG3_PROMPT__COARSE_HISTORY__TOKEN_7","bbox":[238,151,24,31]}
+{"kind":"shape","id":"sh/x8nml0ra","slide":3,"name":"FIG3_PROMPT__COARSE_HISTORY__TOKEN_8","bbox":[266,151,24,31]}
+{"kind":"shape","id":"sh/w7ulsvqp","slide":3,"name":"FIG3_PROMPT__COARSE_HISTORY__TOKEN_9","bbox":[294,151,24,31]}
+{"kind":"shape","id":"sh/ja54na9g","slide":3,"name":"FIG3_PROMPT__COARSE_HISTORY__TOKEN_10","bbox":[322,151,24,31]}
+{"kind":"textbox","id":"sh/i9w3u58v","slide":3,"name":"FIG3_PROMPT__POOL","text":"Pool","textPreview":"Pool","textChars":4,"textLines":1,"bbox":[398,134,64,64]}
+{"kind":"textbox","id":"sh/e10f2twf","slide":3,"name":"FIG3_PROMPT__POOL_LABEL","text":"Temporal Weighted Pooling","textPreview":"Temporal Weighted Pooling","textChars":25,"textLines":1,"bbox":[340,197,180,24]}
+{"kind":"textbox","id":"sh/f29gbyx0","slide":3,"name":"FIG3_PROMPT__MACRO_LABEL","text":"Macro-Trend Prompt","textPreview":"Macro-Trend Prompt","textChars":18,"textLines":1,"bbox":[570,113,185,29]}
+{"kind":"textbox","id":"sh/03ix43e5","slide":3,"name":"FIG3_PROMPT__TOKENS__TOKEN_1","text":"P1","textPreview":"P1","textChars":2,"textLines":1,"bbox":[578,151,39,32]}
+{"kind":"textbox","id":"sh/14ryd8fq","slide":3,"name":"FIG3_PROMPT__TOKENS__TOKEN_2","text":"P2","textPreview":"P2","textChars":2,"textLines":1,"bbox":[624,151,39,32]}
+{"kind":"textbox","id":"sh/6d0fytg3","slide":3,"name":"FIG3_PROMPT__TOKENS__TOKEN_3","text":"P3","textPreview":"P3","textChars":2,"textLines":1,"bbox":[670,151,39,32]}
+{"kind":"textbox","id":"sh/re9g7yxo","slide":3,"name":"FIG3_PROMPT__TOKENS__TOKEN_4","text":"P4","textPreview":"P4","textChars":2,"textLines":1,"bbox":[716,151,39,32]}
+{"kind":"textbox","id":"sh/sfix03y9","slide":3,"name":"FIG3_PROMPT__TOKEN_NOTE","text":"4 tokens / turbine","textPreview":"4 tokens / turbine","textChars":18,"textLines":1,"bbox":[760,202,120,20]}
+{"kind":"textbox","id":"sh/tgry9ofu","slide":3,"name":"FIG3_PROMPT__NODE_SPECIFIC","text":"Node-Specific Macro-Trend Prompt","textPreview":"Node-Specific Macro-Trend Prompt","textChars":32,"textLines":1,"bbox":[850,134,294,38]}
+{"kind":"shape","id":"sh/a9kfadwn","slide":3,"name":"FIG3_PROMPT__NODE_PROMPT__TOKEN_1","bbox":[892,179,27,25]}
+{"kind":"shape","id":"sh/batgjixs","slide":3,"name":"FIG3_PROMPT__NODE_PROMPT__TOKEN_2","bbox":[924,179,27,25]}
+{"kind":"shape","id":"sh/l4fi9cza","slide":3,"name":"FIG3_PROMPT__NODE_PROMPT__TOKEN_3","bbox":[956,179,27,25]}
+{"kind":"shape","id":"sh/k3m1g7yp","slide":3,"name":"FIG3_PROMPT__NODE_PROMPT__TOKEN_4","bbox":[988,179,27,25]}
+{"kind":"shape","id":"sh/z2d07mh4","slide":3,"name":"FIG3_PROMPT__NODE_PROMPT__TOKEN_5","bbox":[1020,179,27,25]}
+{"kind":"shape","id":"sh/y14jehgj","slide":3,"name":"FIG3_PROMPT__NODE_PROMPT__TOKEN_6","bbox":[1052,179,27,25]}
+{"kind":"shape","id":"sh/x0vi5czy","slide":3,"name":"FIG3_PROMPT__FLOW_1__LINE","bbox":[346,166,52,0.5]}
+{"kind":"shape","id":"sh/czmhc7id","slide":3,"name":"FIG3_PROMPT__FLOW_1__HEAD","bbox":[393,161,10,10]}
+{"kind":"shape","id":"sh/byd032h8","slide":3,"name":"FIG3_PROMPT__FLOW_2__LINE","bbox":[462,127.5,108,38.5]}
+{"kind":"shape","id":"sh/ax4zax0n","slide":3,"name":"FIG3_PROMPT__FLOW_2__HEAD","bbox":[565,122.5,10,10]}
+{"kind":"shape","id":"sh/hwzihwzi","slide":3,"name":"FIG3_PROMPT__FLOW_3__LINE","bbox":[755,167,137,24.5]}
+{"kind":"shape","id":"sh/wv61obyx","slide":3,"name":"FIG3_PROMPT__FLOW_3__HEAD","bbox":[887,186.5,10,10]}
+{"kind":"textbox","id":"sh/298ryl4v","slide":3,"name":"FIG3_CROSSFUSION__BAND_TITLE","text":"Bidirectional Cross-Fusion","textPreview":"Bidirectional Cross-Fusion","textChars":26,"textLines":1,"bbox":[42,236,420,34]}
+{"kind":"shape","id":"sh/pcjqtg36","slide":3,"name":"FIG3_CROSSFUSION__DIVIDER","bbox":[40,532,1200,0.1]}
+{"kind":"textbox","id":"sh/4nuhs7uh","slide":3,"name":"FIG3_CROSSFUSION__FINE_LABEL","text":"Fine History","textPreview":"Fine History","textChars":12,"textLines":1,"bbox":[68,279,145,26]}
+{"kind":"shape","id":"sh/po3ilcvm","slide":3,"name":"FIG3_CROSSFUSION__FINE_HISTORY__TOKEN_1","bbox":[65,314,21,29]}
+{"kind":"shape","id":"sh/21szqxcb","slide":3,"name":"FIG3_CROSSFUSION__FINE_HISTORY__TOKEN_2","bbox":[89,314,21,29]}
+{"kind":"shape","id":"sh/32l0j2dw","slide":3,"name":"FIG3_CROSSFUSION__FINE_HISTORY__TOKEN_3","bbox":[113,314,21,29]}
+{"kind":"shape","id":"sh/cruhwrud","slide":3,"name":"FIG3_CROSSFUSION__FINE_HISTORY__TOKEN_4","bbox":[137,314,21,29]}
+{"kind":"shape","id":"sh/ds3ipcvy","slide":3,"name":"FIG3_CROSSFUSION__FINE_HISTORY__TOKEN_5","bbox":[161,314,21,29]}
+{"kind":"shape","id":"sh/qpczuhc7","slide":3,"name":"FIG3_CROSSFUSION__FINE_HISTORY__TOKEN_6","bbox":[185,314,21,29]}
+{"kind":"shape","id":"sh/rql0nmds","slide":3,"name":"FIG3_CROSSFUSION__FINE_HISTORY__TOKEN_7","bbox":[209,314,21,29]}
+{"kind":"shape","id":"sh/0ve10ru9","slide":3,"name":"FIG3_CROSSFUSION__FINE_HISTORY__TOKEN_8","bbox":[233,314,21,29]}
+{"kind":"shape","id":"sh/1wnitwvu","slide":3,"name":"FIG3_CROSSFUSION__FINE_HISTORY__TOKEN_9","bbox":[257,314,21,29]}
+{"kind":"shape","id":"sh/v29cfu18","slide":3,"name":"FIG3_CROSSFUSION__FINE_HISTORY__TOKEN_10","bbox":[281,314,21,29]}
+{"kind":"shape","id":"sh/a10b6p03","slide":3,"name":"FIG3_CROSSFUSION__FINE_HISTORY__TOKEN_11","bbox":[305,314,21,29]}
+{"kind":"shape","id":"sh/xoruhkje","slide":3,"name":"FIG3_CROSSFUSION__FINE_HISTORY__TOKEN_12","bbox":[329,314,21,29]}
+{"kind":"shape","id":"sh/w3it8zit","slide":3,"name":"FIG3_CROSSFUSION__RECENT_BRACKET","bbox":[256,351,94,0.1]}
+{"kind":"shape","id":"sh/nypcba1c","slide":3,"name":"FIG3_CROSSFUSION__RECENT_BRACKET_L","bbox":[256,345,0.1,12]}
+{"kind":"shape","id":"sh/mxgb250r","slide":3,"name":"FIG3_CROSSFUSION__RECENT_BRACKET_R","bbox":[350,345,0.1,12]}
+{"kind":"textbox","id":"sh/90rudkji","slide":3,"name":"FIG3_CROSSFUSION__RECENT_FINE","text":"Recent Fine","textPreview":"Recent Fine","textChars":11,"textLines":1,"bbox":[257,358,92,24]}
+{"kind":"textbox","id":"sh/8zit4fix","slide":3,"name":"FIG3_CROSSFUSION__RECENT_NOTE","text":"24 steps ≈ 4 h","textPreview":"24 steps ≈ 4 h","textChars":14,"textLines":1,"bbox":[257,381,92,21]}
+{"kind":"textbox","id":"sh/7utcne1g","slide":3,"name":"FIG3_CROSSFUSION__COARSE_LABEL","text":"Coarse History","textPreview":"Coarse History","textChars":14,"textLines":1,"bbox":[1040,279,160,26]}
+{"kind":"shape","id":"sh/6tkve90v","slide":3,"name":"FIG3_CROSSFUSION__COARSE_HISTORY__TOKEN_1","bbox":[905,314,21,29]}
+{"kind":"shape","id":"sh/2p4f6dk3","slide":3,"name":"FIG3_CROSSFUSION__COARSE_HISTORY__TOKEN_2","bbox":[929,314,21,29]}
+{"kind":"shape","id":"sh/3qxwfilo","slide":3,"name":"FIG3_CROSSFUSION__COARSE_HISTORY__TOKEN_3","bbox":[953,314,21,29]}
+{"kind":"shape","id":"sh/or6x8329","slide":3,"name":"FIG3_CROSSFUSION__COARSE_HISTORY__TOKEN_4","bbox":[977,314,21,29]}
+{"kind":"shape","id":"sh/psfeh83u","slide":3,"name":"FIG3_CROSSFUSION__COARSE_HISTORY__TOKEN_5","bbox":[1001,314,21,29]}
+{"kind":"shape","id":"sh/qtofadkf","slide":3,"name":"FIG3_CROSSFUSION__COARSE_HISTORY__TOKEN_6","bbox":[1025,314,21,29]}
+{"kind":"shape","id":"sh/bexwjil0","slide":3,"name":"FIG3_CROSSFUSION__COARSE_HISTORY__TOKEN_7","bbox":[1049,314,21,29]}
+{"kind":"shape","id":"sh/cf6xcn2l","slide":3,"name":"FIG3_CROSSFUSION__COARSE_HISTORY__TOKEN_8","bbox":[1073,314,21,29]}
+{"kind":"shape","id":"sh/dgfyls3q","slide":3,"name":"FIG3_CROSSFUSION__COARSE_HISTORY__TOKEN_9","bbox":[1097,314,21,29]}
+{"kind":"shape","id":"sh/6xkvytkb","slide":3,"name":"FIG3_CROSSFUSION__COARSE_HISTORY__TOKEN_10","bbox":[1121,314,21,29]}
+{"kind":"shape","id":"sh/7idw7ylg","slide":3,"name":"FIG3_CROSSFUSION__COARSE_HISTORY__TOKEN_11","bbox":[1145,314,21,29]}
+{"kind":"shape","id":"sh/9cjidwny","slide":3,"name":"FIG3_CROSSFUSION__COARSE_HISTORY__TOKEN_12","bbox":[1169,314,21,29]}
+{"kind":"textbox","id":"sh/8bahkrmt","slide":3,"name":"FIG3_CROSSFUSION__DIR1","text":"Macro-Trend Prompt → Fine","textPreview":"Macro-Trend Prompt → Fine","textChars":25,"textLines":1,"bbox":[270,270,220,31]}
+{"kind":"textbox","id":"sh/na10bm58","slide":3,"name":"FIG3_CROSSFUSION__ATTN1","text":"Attn","textPreview":"Attn","textChars":4,"textLines":1,"bbox":[488,301,56,56]}
+{"kind":"textbox","id":"sh/m9szih4n","slide":3,"name":"FIG3_CROSSFUSION__ATTN1_QKV","text":"Q: Fine\nK,V: Macro Prompt","textPreview":"Q: Fine | K,V: Macro Prompt","textChars":25,"textLines":2,"bbox":[350,398,150,38]}
+{"kind":"textbox","id":"sh/xg3ihwna","slide":3,"name":"FIG3_CROSSFUSION__DIR1_OUT","text":"Trend-guided Fine update","textPreview":"Trend-guided Fine update","textChars":24,"textLines":1,"bbox":[350,442,188,29]}
+{"kind":"textbox","id":"sh/wfahormp","slide":3,"name":"FIG3_CROSSFUSION__DIR2","text":"Recent Fine → Coarse","textPreview":"Recent Fine → Coarse","textChars":20,"textLines":1,"bbox":[701,270,220,31]}
+{"kind":"textbox","id":"sh/ve10fm54","slide":3,"name":"FIG3_CROSSFUSION__ATTN2","text":"Attn","textPreview":"Attn","textChars":4,"textLines":1,"bbox":[778,377,56,56]}
+{"kind":"textbox","id":"sh/adszm14j","slide":3,"name":"FIG3_CROSSFUSION__ATTN2_QKV","text":"Q: Coarse\nK,V: Recent Fine","textPreview":"Q: Coarse | K,V: Recent Fine","textChars":26,"textLines":2,"bbox":[835,421,135,43]}
+{"kind":"textbox","id":"sh/dkzy5cn6","slide":3,"name":"FIG3_CROSSFUSION__DIR2_OUT","text":"Coarse update","textPreview":"Coarse update","textChars":13,"textLines":1,"bbox":[760,482,122,25]}
+{"kind":"textbox","id":"sh/cjqhc7ml","slide":3,"name":"FIG3_CROSSFUSION__GATE","text":"G","textPreview":"G","textChars":1,"textLines":1,"bbox":[629,443,62,62]}
+{"kind":"textbox","id":"sh/436lcve1","slide":3,"name":"FIG3_CROSSFUSION__GATE_LABEL","text":"Fusion Gate","textPreview":"Fusion Gate","textChars":11,"textLines":1,"bbox":[606,434,108,25]}
+{"kind":"textbox","id":"sh/54fm50vm","slide":3,"name":"FIG3_CROSSFUSION__G_LABEL","text":"G","textPreview":"G","textChars":1,"textLines":1,"bbox":[568,508,28,21]}
+{"kind":"textbox","id":"sh/ih43alwv","slide":3,"name":"FIG3_CROSSFUSION__ONE_MINUS_G","text":"1−G","textPreview":"1−G","textChars":3,"textLines":1,"bbox":[720,508,42,21]}
+{"kind":"shape","id":"sh/3id43qdg","slide":3,"name":"FIG3_CROSSFUSION__FINE_Q__LINE","bbox":[350,328.5,138,0.5]}
+{"kind":"shape","id":"sh/gfml8ve5","slide":3,"name":"FIG3_CROSSFUSION__FINE_Q__HEAD","bbox":[483,324,10,10]}
+{"kind":"shape","id":"sh/hgvm1gvq","slide":3,"name":"FIG3_CROSSFUSION__PROMPT_KV__1","bbox":[597.5,183,0.1,59]}
+{"kind":"shape","id":"sh/ud436lwz","slide":3,"name":"FIG3_CROSSFUSION__PROMPT_KV__2","bbox":[516,242,81.5,0.1]}
+{"kind":"shape","id":"sh/ved4zqdk","slide":3,"name":"FIG3_CROSSFUSION__PROMPT_KV__3","bbox":[516,242,0.1,59]}
+{"kind":"shape","id":"sh/0bq5kfu9","slide":3,"name":"FIG3_CROSSFUSION__PROMPT_KV__HEAD","bbox":[511,296,10,10]}
+{"kind":"shape","id":"sh/1czmdkvu","slide":3,"name":"FIG3_CROSSFUSION__COARSE_Q__LINE","bbox":[834,328.5,71,76.5]}
+{"kind":"shape","id":"sh/b61o3exw","slide":3,"name":"FIG3_CROSSFUSION__COARSE_Q__HEAD","bbox":[829,400,10,10]}
+{"kind":"shape","id":"sh/a5s7a9gb","slide":3,"name":"FIG3_CROSSFUSION__RECENT_KV__1","bbox":[339.5,343,0.1,31]}
+{"kind":"shape","id":"sh/x8jq5of2","slide":3,"name":"FIG3_CROSSFUSION__RECENT_KV__2","bbox":[339.5,374,438.5,0.1]}
+{"kind":"shape","id":"sh/w7apcjyh","slide":3,"name":"FIG3_CROSSFUSION__RECENT_KV__3","bbox":[778,374,0.1,31]}
+{"kind":"shape","id":"sh/jul87yx8","slide":3,"name":"FIG3_CROSSFUSION__RECENT_KV__HEAD","bbox":[773,400,10,10]}
+{"kind":"shape","id":"sh/ytc7etwn","slide":3,"name":"FIG3_CROSSFUSION__ATTN1_GATE__LINE","bbox":[516,357,113,117]}
+{"kind":"shape","id":"sh/lw3q9ofy","slide":3,"name":"FIG3_CROSSFUSION__ATTN1_GATE__HEAD","bbox":[624,469,10,10]}
+{"kind":"shape","id":"sh/kvupg3ed","slide":3,"name":"FIG3_CROSSFUSION__ATTN2_GATE__LINE","bbox":[691,433,115,41]}
+{"kind":"shape","id":"sh/fyhovuxo","slide":3,"name":"FIG3_CROSSFUSION__ATTN2_GATE__HEAD","bbox":[686,469,10,10]}
+{"kind":"textbox","id":"sh/3ah8rqlg","slide":3,"name":"FIG3_OUTPUT__BAND_TITLE","text":"Updated Dual Representations","textPreview":"Updated Dual Representations","textChars":28,"textLines":1,"bbox":[42,544,420,34]}
+{"kind":"textbox","id":"sh/ex872pg3","slide":3,"name":"FIG3_OUTPUT__FINE_LABEL","text":"Updated Fine Representation","textPreview":"Updated Fine Representation","textChars":27,"textLines":1,"bbox":[180,588,275,38]}
+{"kind":"shape","id":"sh/fuhcnq50","slide":3,"name":"FIG3_OUTPUT__FINE_STRIP__TOKEN_1","bbox":[208,638,23,28]}
+{"kind":"shape","id":"sh/et8vel4f","slide":3,"name":"FIG3_OUTPUT__FINE_STRIP__TOKEN_2","bbox":[235,638,23,28]}
+{"kind":"shape","id":"sh/1wzup0nq","slide":3,"name":"FIG3_OUTPUT__FINE_STRIP__TOKEN_3","bbox":[262,638,23,28]}
+{"kind":"shape","id":"sh/0vqdgvml","slide":3,"name":"FIG3_OUTPUT__FINE_STRIP__TOKEN_4","bbox":[289,638,23,28]}
+{"kind":"shape","id":"sh/r6xcjq5o","slide":3,"name":"FIG3_OUTPUT__FINE_STRIP__TOKEN_5","bbox":[316,638,23,28]}
+{"kind":"shape","id":"sh/q5oval43","slide":3,"name":"FIG3_OUTPUT__FINE_STRIP__TOKEN_6","bbox":[343,638,23,28]}
+{"kind":"shape","id":"sh/d8zul0nu","slide":3,"name":"FIG3_OUTPUT__FINE_STRIP__TOKEN_7","bbox":[370,638,23,28]}
+{"kind":"shape","id":"sh/s7qdcvm9","slide":3,"name":"FIG3_OUTPUT__FINE_STRIP__TOKEN_8","bbox":[397,638,23,28]}
+{"kind":"shape","id":"sh/b21wva58","slide":3,"name":"FIG3_OUTPUT__FINE_STRIP__TOKEN_9","bbox":[424,638,23,28]}
+{"kind":"textbox","id":"sh/a1svm54n","slide":3,"name":"FIG3_OUTPUT__COARSE_LABEL","text":"Updated Coarse Representation","textPreview":"Updated Coarse Representation","textChars":29,"textLines":1,"bbox":[760,588,290,38]}
+{"kind":"shape","id":"sh/8v210nyt","slide":3,"name":"FIG3_OUTPUT__COARSE_STRIP__TOKEN_1","bbox":[797,638,23,28]}
+{"kind":"shape","id":"sh/9wbitsze","slide":3,"name":"FIG3_OUTPUT__COARSE_STRIP__TOKEN_2","bbox":[824,638,23,28]}
+{"kind":"shape","id":"sh/mt0jydgn","slide":3,"name":"FIG3_OUTPUT__COARSE_STRIP__TOKEN_3","bbox":[851,638,23,28]}
+{"kind":"shape","id":"sh/7u90rih8","slide":3,"name":"FIG3_OUTPUT__COARSE_STRIP__TOKEN_4","bbox":[878,638,23,28]}
+{"kind":"shape","id":"sh/wz214nyp","slide":3,"name":"FIG3_OUTPUT__COARSE_STRIP__TOKEN_5","bbox":[905,638,23,28]}
+{"kind":"shape","id":"sh/h0bixsza","slide":3,"name":"FIG3_OUTPUT__COARSE_STRIP__TOKEN_6","bbox":[932,638,23,28]}
+{"kind":"shape","id":"sh/uxkj2xgz","slide":3,"name":"FIG3_OUTPUT__COARSE_STRIP__TOKEN_7","bbox":[959,638,23,28]}
+{"kind":"shape","id":"sh/vyt0vihk","slide":3,"name":"FIG3_OUTPUT__COARSE_STRIP__TOKEN_8","bbox":[986,638,23,28]}
+{"kind":"shape","id":"sh/43m187y1","slide":3,"name":"FIG3_OUTPUT__COARSE_STRIP__TOKEN_9","bbox":[1013,638,23,28]}
+{"kind":"textbox","id":"sh/5ov21czm","slide":3,"name":"FIG3_OUTPUT__SEPARATE","text":"Representations remain separate after fusion","textPreview":"Representations remain separate after fusion","textChars":44,"textLines":1,"bbox":[470,633,280,28]}
+{"kind":"textbox","id":"sh/dkrilsrq","slide":3,"name":"FIG3_OUTPUT__DECODER_EXIT","text":"To Last-State Direct\nMulti-Output Decoder","textPreview":"To Last-State Direct | Multi-Output Decoder","textChars":41,"textLines":2,"bbox":[1084,606,148,52]}
+{"kind":"shape","id":"sh/sji1s7q5","slide":3,"name":"FIG3_OUTPUT__GATE_FINE__LINE","bbox":[317.5,505,342.5,83]}
+{"kind":"shape","id":"sh/ri90j29k","slide":3,"name":"FIG3_OUTPUT__GATE_FINE__HEAD","bbox":[312.5,583,10,10]}
+{"kind":"shape","id":"sh/qh0jqx8z","slide":3,"name":"FIG3_OUTPUT__GATE_COARSE__LINE","bbox":[660,505,245,83]}
+{"kind":"shape","id":"sh/1oripcrm","slide":3,"name":"FIG3_OUTPUT__GATE_COARSE__HEAD","bbox":[900,583,10,10]}
+{"kind":"shape","id":"sh/0ni1w7q1","slide":3,"name":"FIG3_OUTPUT__TO_DECODER__LINE","bbox":[1050,607,34,25]}
+{"kind":"shape","id":"sh/fm90n29w","slide":3,"name":"FIG3_OUTPUT__TO_DECODER__HEAD","bbox":[1079,627,10,10]}
+{"kind":"notes","id":"nt/ofy9wn61","slide":3,"text":"[Sources]\n- D:/PaperProject/GyxPaper2/custom_models/src/st_mgprompt/coupling_block.py\n- D:/PaperProject/GyxPaper2/custom_models/src/st_mgprompt/cross_fusion.py\n- D:/PaperProject/GyxPaper2/custom_models/src/st_mgprompt/prompt_alignment.py\n- D:/PaperProject/GyxPaper2/custom_models/src/st_mgprompt/decoder.py"}

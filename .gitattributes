@@ -5,3 +5,4 @@
 *.bat text eol=crlf
 *.cmd text eol=crlf
 .gitattributes text eol=lf
+dataset/sdwpf_turb_location_elevation.csv text eol=lf

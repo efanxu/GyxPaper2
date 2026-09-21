@@ -1,0 +1,6 @@
+{
+  "training_batch_profile_id": null,
+  "train_batch_size": null,
+  "val_batch_size": null,
+  "test_batch_size": null
+}

@@ -104,6 +104,8 @@ class STMGPromptConfig:
     vol_window: int = 6
     fine_kernel_size: int = 3
     coarse_windows: list[int] = field(default_factory=lambda: [6, 18, 36])
+    coarse_alignment_mode: str = "same_axis"
+    coarse_upsample_rule: str = "causal_repeat"
     use_train_robust_volatility: bool = True
     volatility_scale_eps: float = 1e-6
     vadsp_tau_min: float = 0.5
@@ -154,6 +156,7 @@ class STMGPromptConfig:
     coarse_tcn_kernel_size: int = 5
     fine_tcn_dilations: list[int] = field(default_factory=lambda: [1, 2])
     coarse_tcn_dilations: list[int] = field(default_factory=lambda: [1, 2, 4, 8])
+    temporal_branch_transform: str = "independent"
     use_stmg_coupling_block: bool = False
     num_coupling_layers: int = 1
     coupling_mode: str = "graph_then_cross"
@@ -174,6 +177,10 @@ class STMGPromptConfig:
     disable_macro_to_fine_cross: bool = False
     macro_to_fine_mode: str = "query_attention"
     share_cross_attention_projections: bool = False
+    cross_granularity_interaction: str = "cross_fusion"
+    direct_concat_mlp_layers: int = 2
+    direct_concat_mlp_hidden_dim: int = 432
+    direct_concat_mlp_activation: str = "gelu"
     use_msmg_dwu: bool = False
     loss_protocol: str = "fair_main"
     msmg_base_loss: str = "smooth_l1"
@@ -220,6 +227,8 @@ class STMGPromptConfig:
 
     input_scaler_type: str = "standard"
     target_scaler_type: str = "standard"
+    protocol_profile: str = "STMG_FORMAL_V2"
+    source_scope: str = "internal_mechanism"
 
     @property
     def eligible_for_fair_main_table(self) -> bool:
@@ -320,6 +329,10 @@ class STMGPromptConfig:
             raise ValueError("fine_kernel_size must be positive.")
         if any(w <= 0 for w in self.coarse_windows):
             raise ValueError("coarse_windows must contain positive values.")
+        if self.coarse_alignment_mode not in {"same_axis", "causal_downsample_upsample"}:
+            raise ValueError("coarse_alignment_mode must be same_axis or causal_downsample_upsample.")
+        if self.coarse_upsample_rule != "causal_repeat":
+            raise ValueError("coarse_upsample_rule must be causal_repeat.")
         if self.volatility_scale_eps <= 0:
             raise ValueError("volatility_scale_eps must be positive.")
         if not (0.0 < self.vadsp_tau_min <= self.vadsp_tau_max):
@@ -388,6 +401,8 @@ class STMGPromptConfig:
             raise ValueError("TCN dilation lists must not be empty.")
         if any(d <= 0 for d in [*self.fine_tcn_dilations, *self.coarse_tcn_dilations]):
             raise ValueError("TCN dilations must be positive.")
+        if self.temporal_branch_transform not in {"independent", "shared"}:
+            raise ValueError("temporal_branch_transform must be independent or shared.")
         bad_vol_cols = [c for c in self.volatility_source_cols if c not in self.feature_cols]
         if bad_vol_cols:
             raise ValueError(f"volatility_source_cols must be in feature_cols: {bad_vol_cols}")
@@ -448,6 +463,18 @@ class STMGPromptConfig:
             raise ValueError("macro_to_fine_mode must be query_attention or static_mean.")
         if not isinstance(self.share_cross_attention_projections, bool):
             raise ValueError("share_cross_attention_projections must be a boolean.")
+        if self.cross_granularity_interaction not in {"cross_fusion", "direct_concat_mlp"}:
+            raise ValueError("cross_granularity_interaction must be cross_fusion or direct_concat_mlp.")
+        if self.direct_concat_mlp_layers not in {1, 2}:
+            raise ValueError("direct_concat_mlp_layers must be 1 or 2.")
+        if self.direct_concat_mlp_hidden_dim <= 0:
+            raise ValueError("direct_concat_mlp_hidden_dim must be positive.")
+        if self.direct_concat_mlp_activation not in {"gelu", "relu"}:
+            raise ValueError("direct_concat_mlp_activation must be gelu or relu.")
+        if not self.protocol_profile:
+            raise ValueError("protocol_profile must be explicit.")
+        if not self.source_scope:
+            raise ValueError("source_scope must be explicit.")
         if self.st_prompt_mode not in {"full", "horizon_only"}:
             raise ValueError("st_prompt_mode must be full or horizon_only.")
         if not isinstance(self.st_prompt_use_node_identity, bool):

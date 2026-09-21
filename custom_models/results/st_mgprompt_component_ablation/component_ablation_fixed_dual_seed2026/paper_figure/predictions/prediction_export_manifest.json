@@ -1,0 +1,761 @@
+{
+  "task": "ST-MGPrompt A0-A8 evaluation-only prediction export",
+  "training_performed": false,
+  "source_artifacts_modified": false,
+  "shape_protocol": "[sample,node,horizon]",
+  "target": "Patv_raw",
+  "mask": "valid_target_mask",
+  "physical_clipping_applied": true,
+  "expected_shape": [
+    5104,
+    134,
+    10
+  ],
+  "valid_counts": {
+    "3": 1256027,
+    "6": 2512061,
+    "10": 4186848
+  },
+  "common_target_file": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\paper_figure\\predictions\\common_test_targets.npz",
+  "variants": [
+    {
+      "variant": "A0",
+      "display_name": "Canonical Full",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026",
+      "prediction_file": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\paper_figure\\predictions\\A0_predictions.npz",
+      "prediction_shape": [
+        5104,
+        134,
+        10
+      ],
+      "checkpoint_epoch": 12,
+      "checkpoint_best_epoch": 12,
+      "metric_comparison": [
+        {
+          "horizon": 3,
+          "official": {
+            "MAE": 76.33942955875908,
+            "RMSE": 117.75677038705155,
+            "R2": 0.9204713645191344,
+            "Score": 7.783623200734026
+          },
+          "recomputed": {
+            "MAE": 76.33717563329937,
+            "RMSE": 117.75440541077661,
+            "R2": 0.9204745589248026,
+            "Score": 7.783483508605396
+          },
+          "absolute_difference": {
+            "MAE": 0.002253925459712036,
+            "RMSE": 0.0023649762749329284,
+            "R2": 3.194405668205391e-06,
+            "Score": 0.00013969212862985358
+          },
+          "mae_same_at_one_decimal": true
+        },
+        {
+          "horizon": 6,
+          "official": {
+            "MAE": 90.46171513146376,
+            "RMSE": 138.8132223588933,
+            "R2": 0.8894869334438604,
+            "Score": 9.684446283949155
+          },
+          "recomputed": {
+            "MAE": 90.46015193352376,
+            "RMSE": 138.81109477993235,
+            "R2": 0.889490321067452,
+            "Score": 9.684453556918312
+          },
+          "absolute_difference": {
+            "MAE": 0.0015631979400012597,
+            "RMSE": 0.002127578960966048,
+            "R2": 3.3876235915331065e-06,
+            "Score": 7.272969156701947e-06
+          },
+          "mae_same_at_one_decimal": true
+        },
+        {
+          "horizon": 10,
+          "official": {
+            "MAE": 105.41287395398908,
+            "RMSE": 159.3411440391301,
+            "R2": 0.8543832008369954,
+            "Score": 11.706390557819958
+          },
+          "recomputed": {
+            "MAE": 105.41181837233835,
+            "RMSE": 159.3392077434314,
+            "R2": 0.8543867398534926,
+            "Score": 11.706453606515803
+          },
+          "absolute_difference": {
+            "MAE": 0.0010555816507320515,
+            "RMSE": 0.0019362956987265534,
+            "R2": 3.539016497189351e-06,
+            "Score": 6.304869584461414e-05
+          },
+          "mae_same_at_one_decimal": true
+        }
+      ],
+      "mean_annotation_gate_pass": true
+    },
+    {
+      "variant": "A1",
+      "display_name": "w/o Spatial Graph",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A1\\STMGPrompt_ComponentAblation",
+      "prediction_file": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\paper_figure\\predictions\\A1_predictions.npz",
+      "prediction_shape": [
+        5104,
+        134,
+        10
+      ],
+      "checkpoint_epoch": 10,
+      "checkpoint_best_epoch": 10,
+      "metric_comparison": [
+        {
+          "horizon": 3,
+          "official": {
+            "MAE": 85.87967738074794,
+            "RMSE": 127.56604924494697,
+            "R2": 0.9066698487092509,
+            "Score": 8.552596687922987
+          },
+          "recomputed": {
+            "MAE": 85.88014654055203,
+            "RMSE": 127.56648143150605,
+            "R2": 0.906669216313633,
+            "Score": 8.552687717316058
+          },
+          "absolute_difference": {
+            "MAE": 0.0004691598040977851,
+            "RMSE": 0.0004321865590810603,
+            "R2": 6.32395617983228e-07,
+            "Score": 9.10293930704853e-05
+          },
+          "mae_same_at_one_decimal": true
+        },
+        {
+          "horizon": 6,
+          "official": {
+            "MAE": 98.38567411534402,
+            "RMSE": 147.45863539644495,
+            "R2": 0.8752925556114803,
+            "Score": 10.149118927576428
+          },
+          "recomputed": {
+            "MAE": 98.38637133368286,
+            "RMSE": 147.45910865830766,
+            "R2": 0.8752917551243204,
+            "Score": 10.149259450243559
+          },
+          "absolute_difference": {
+            "MAE": 0.0006972183388427311,
+            "RMSE": 0.0004732618627087959,
+            "R2": 8.004871598910057e-07,
+            "Score": 0.00014052266713093786
+          },
+          "mae_same_at_one_decimal": true
+        },
+        {
+          "horizon": 10,
+          "official": {
+            "MAE": 111.97175038372599,
+            "RMSE": 166.57408957517086,
+            "R2": 0.8408632387515791,
+            "Score": 11.992751897629923
+          },
+          "recomputed": {
+            "MAE": 111.97243471396462,
+            "RMSE": 166.57433072496707,
+            "R2": 0.840862777985737,
+            "Score": 11.992884128435467
+          },
+          "absolute_difference": {
+            "MAE": 0.0006843302386272399,
+            "RMSE": 0.0002411497962100384,
+            "R2": 4.607658420363592e-07,
+            "Score": 0.00013223080554425337
+          },
+          "mae_same_at_one_decimal": true
+        }
+      ],
+      "mean_annotation_gate_pass": true
+    },
+    {
+      "variant": "A2",
+      "display_name": "w/o Adaptive Graph",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A2\\STMGPrompt_ComponentAblation",
+      "prediction_file": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\paper_figure\\predictions\\A2_predictions.npz",
+      "prediction_shape": [
+        5104,
+        134,
+        10
+      ],
+      "checkpoint_epoch": 19,
+      "checkpoint_best_epoch": 19,
+      "metric_comparison": [
+        {
+          "horizon": 3,
+          "official": {
+            "MAE": 82.41692721724712,
+            "RMSE": 122.34237818448734,
+            "R2": 0.9141568598897714,
+            "Score": 8.392516839326268
+          },
+          "recomputed": {
+            "MAE": 82.417941862889,
+            "RMSE": 122.34244766737248,
+            "R2": 0.9141567623825817,
+            "Score": 8.392632031897126
+          },
+          "absolute_difference": {
+            "MAE": 0.0010146456418738126,
+            "RMSE": 6.948288513797252e-05,
+            "R2": 9.750718965584326e-08,
+            "Score": 0.00011519257085801371
+          },
+          "mae_same_at_one_decimal": true
+        },
+        {
+          "horizon": 6,
+          "official": {
+            "MAE": 96.78146369258228,
+            "RMSE": 144.1948793398465,
+            "R2": 0.8807518543943123,
+            "Score": 10.185922283389775
+          },
+          "recomputed": {
+            "MAE": 96.78232465552031,
+            "RMSE": 144.19461157062858,
+            "R2": 0.8807522972804006,
+            "Score": 10.186025885097012
+          },
+          "absolute_difference": {
+            "MAE": 0.0008609629380345041,
+            "RMSE": 0.0002677692179133828,
+            "R2": 4.4288608835874044e-07,
+            "Score": 0.00010360170723622275
+          },
+          "mae_same_at_one_decimal": true
+        },
+        {
+          "horizon": 10,
+          "official": {
+            "MAE": 111.83473093814827,
+            "RMSE": 166.0972751551815,
+            "R2": 0.8417729853058576,
+            "Score": 12.08672365933792
+          },
+          "recomputed": {
+            "MAE": 111.83538298221406,
+            "RMSE": 166.09678976874488,
+            "R2": 0.8417739100788204,
+            "Score": 12.0868167832772
+          },
+          "absolute_difference": {
+            "MAE": 0.0006520440657880044,
+            "RMSE": 0.000485386436622548,
+            "R2": 9.2477296276261e-07,
+            "Score": 9.312393927984886e-05
+          },
+          "mae_same_at_one_decimal": true
+        }
+      ],
+      "mean_annotation_gate_pass": true
+    },
+    {
+      "variant": "A3",
+      "display_name": "w/o Diffusion",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A3\\STMGPrompt_ComponentAblation",
+      "prediction_file": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\paper_figure\\predictions\\A3_predictions.npz",
+      "prediction_shape": [
+        5104,
+        134,
+        10
+      ],
+      "checkpoint_epoch": 12,
+      "checkpoint_best_epoch": 12,
+      "metric_comparison": [
+        {
+          "horizon": 3,
+          "official": {
+            "MAE": 80.4141367030879,
+            "RMSE": 120.2315697228554,
+            "R2": 0.9170934595330679,
+            "Score": 8.667672368489564
+          },
+          "recomputed": {
+            "MAE": 80.41364992257449,
+            "RMSE": 120.23160559291604,
+            "R2": 0.9170934100641458,
+            "Score": 8.667684220277218
+          },
+          "absolute_difference": {
+            "MAE": 0.0004867805134125547,
+            "RMSE": 3.587006064265097e-05,
+            "R2": 4.9468922069806354e-08,
+            "Score": 1.185178765439332e-05
+          },
+          "mae_same_at_one_decimal": true
+        },
+        {
+          "horizon": 6,
+          "official": {
+            "MAE": 95.436681716849,
+            "RMSE": 141.6010779516188,
+            "R2": 0.8850033795964893,
+            "Score": 10.750682489077263
+          },
+          "recomputed": {
+            "MAE": 95.43629560384612,
+            "RMSE": 141.60123220531108,
+            "R2": 0.8850031290523097,
+            "Score": 10.750719260396753
+          },
+          "absolute_difference": {
+            "MAE": 0.00038611300287527683,
+            "RMSE": 0.00015425369227273222,
+            "R2": 2.505441796252228e-07,
+            "Score": 3.677131948975898e-05
+          },
+          "mae_same_at_one_decimal": true
+        },
+        {
+          "horizon": 10,
+          "official": {
+            "MAE": 110.56446379556643,
+            "RMSE": 162.67658914404117,
+            "R2": 0.84822308038268,
+            "Score": 12.804321088853088
+          },
+          "recomputed": {
+            "MAE": 110.56404232633423,
+            "RMSE": 162.67654417996994,
+            "R2": 0.8482231642854384,
+            "Score": 12.804379155321119
+          },
+          "absolute_difference": {
+            "MAE": 0.00042146923219377186,
+            "RMSE": 4.4964071236108794e-05,
+            "R2": 8.390275840763906e-08,
+            "Score": 5.806646803030446e-05
+          },
+          "mae_same_at_one_decimal": true
+        }
+      ],
+      "mean_annotation_gate_pass": true
+    },
+    {
+      "variant": "A4",
+      "display_name": "Mean-Pooling Macro Prompt",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A4\\STMGPrompt_ComponentAblation",
+      "prediction_file": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\paper_figure\\predictions\\A4_predictions.npz",
+      "prediction_shape": [
+        5104,
+        134,
+        10
+      ],
+      "checkpoint_epoch": 20,
+      "checkpoint_best_epoch": 20,
+      "metric_comparison": [
+        {
+          "horizon": 3,
+          "official": {
+            "MAE": 87.20905019788103,
+            "RMSE": 122.98050546498504,
+            "R2": 0.9132590236495819,
+            "Score": 8.686288168116317
+          },
+          "recomputed": {
+            "MAE": 87.21021088593743,
+            "RMSE": 122.98158909907741,
+            "R2": 0.9132574950187969,
+            "Score": 8.686407691503836
+          },
+          "absolute_difference": {
+            "MAE": 0.001160688056401682,
+            "RMSE": 0.001083634092367447,
+            "R2": 1.5286307849526892e-06,
+            "Score": 0.00011952338751974878
+          },
+          "mae_same_at_one_decimal": true
+        },
+        {
+          "horizon": 6,
+          "official": {
+            "MAE": 100.72851391348726,
+            "RMSE": 144.48679314910723,
+            "R2": 0.8802685443607982,
+            "Score": 10.273729380301448
+          },
+          "recomputed": {
+            "MAE": 100.72937557134769,
+            "RMSE": 144.48757466252638,
+            "R2": 0.8802672491283372,
+            "Score": 10.27383747150114
+          },
+          "absolute_difference": {
+            "MAE": 0.0008616578604261349,
+            "RMSE": 0.0007815134191559991,
+            "R2": 1.2952324609516452e-06,
+            "Score": 0.00010809119969223957
+          },
+          "mae_same_at_one_decimal": true
+        },
+        {
+          "horizon": 10,
+          "official": {
+            "MAE": 115.02377220373323,
+            "RMSE": 165.8443135741673,
+            "R2": 0.8422545690886247,
+            "Score": 12.019996458418124
+          },
+          "recomputed": {
+            "MAE": 115.02448223278604,
+            "RMSE": 165.84489974831445,
+            "R2": 0.8422534539891094,
+            "Score": 12.020095039875471
+          },
+          "absolute_difference": {
+            "MAE": 0.0007100290528114783,
+            "RMSE": 0.0005861741471449022,
+            "R2": 1.1150995152808818e-06,
+            "Score": 9.85814573475352e-05
+          },
+          "mae_same_at_one_decimal": true
+        }
+      ],
+      "mean_annotation_gate_pass": true
+    },
+    {
+      "variant": "A5",
+      "display_name": "Short-context Reverse Cross",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A5\\STMGPrompt_ComponentAblation",
+      "prediction_file": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\paper_figure\\predictions\\A5_predictions.npz",
+      "prediction_shape": [
+        5104,
+        134,
+        10
+      ],
+      "checkpoint_epoch": 13,
+      "checkpoint_best_epoch": 13,
+      "metric_comparison": [
+        {
+          "horizon": 3,
+          "official": {
+            "MAE": 85.17045994968592,
+            "RMSE": 123.69644728071648,
+            "R2": 0.912246143494033,
+            "Score": 8.632801404510682
+          },
+          "recomputed": {
+            "MAE": 85.17190429052029,
+            "RMSE": 123.69716661504387,
+            "R2": 0.9122451228576884,
+            "Score": 8.632891638215323
+          },
+          "absolute_difference": {
+            "MAE": 0.001444340834368063,
+            "RMSE": 0.000719334327385468,
+            "R2": 1.0206363445508515e-06,
+            "Score": 9.023370464156244e-05
+          },
+          "mae_same_at_one_decimal": true
+        },
+        {
+          "horizon": 6,
+          "official": {
+            "MAE": 97.3863861549692,
+            "RMSE": 144.29936648819853,
+            "R2": 0.8805789715137016,
+            "Score": 10.251626931962743
+          },
+          "recomputed": {
+            "MAE": 97.38722259270087,
+            "RMSE": 144.29957832934164,
+            "R2": 0.8805786208772938,
+            "Score": 10.25166200487126
+          },
+          "absolute_difference": {
+            "MAE": 0.0008364377316638638,
+            "RMSE": 0.00021184114311267876,
+            "R2": 3.5063640779764427e-07,
+            "Score": 3.507290851700873e-05
+          },
+          "mae_same_at_one_decimal": true
+        },
+        {
+          "horizon": 10,
+          "official": {
+            "MAE": 110.79384044345592,
+            "RMSE": 164.41945239404728,
+            "R2": 0.8449534834342178,
+            "Score": 12.118879182918263
+          },
+          "recomputed": {
+            "MAE": 110.79423275555678,
+            "RMSE": 164.4193698774163,
+            "R2": 0.8449536390595139,
+            "Score": 12.118883556559132
+          },
+          "absolute_difference": {
+            "MAE": 0.00039231210085688417,
+            "RMSE": 8.25166309823544e-05,
+            "R2": 1.5562529609436382e-07,
+            "Score": 4.3736408681382954e-06
+          },
+          "mae_same_at_one_decimal": true
+        }
+      ],
+      "mean_annotation_gate_pass": true
+    },
+    {
+      "variant": "A6",
+      "display_name": "Early-History Macro Cross Fusion",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6\\STMGPrompt_ComponentAblation",
+      "prediction_file": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\paper_figure\\predictions\\A6_predictions.npz",
+      "prediction_shape": [
+        5104,
+        134,
+        10
+      ],
+      "checkpoint_epoch": 12,
+      "checkpoint_best_epoch": 12,
+      "metric_comparison": [
+        {
+          "horizon": 3,
+          "official": {
+            "MAE": 82.20814262394342,
+            "RMSE": 120.16296134319332,
+            "R2": 0.9171880513363239,
+            "Score": 8.390117184798424
+          },
+          "recomputed": {
+            "MAE": 82.20776481625603,
+            "RMSE": 120.16266579186968,
+            "R2": 0.9171884587022987,
+            "Score": 8.390091749064359
+          },
+          "absolute_difference": {
+            "MAE": 0.0003778076873857117,
+            "RMSE": 0.000295551323631571,
+            "R2": 4.073659748415892e-07,
+            "Score": 2.543573406477151e-05
+          },
+          "mae_same_at_one_decimal": true
+        },
+        {
+          "horizon": 6,
+          "official": {
+            "MAE": 95.01996914308968,
+            "RMSE": 140.4145631095156,
+            "R2": 0.886922482794376,
+            "Score": 10.113822098255651
+          },
+          "recomputed": {
+            "MAE": 95.01968120547178,
+            "RMSE": 140.41448115627136,
+            "R2": 0.8869226147901815,
+            "Score": 10.113845061297003
+          },
+          "absolute_difference": {
+            "MAE": 0.00028793761789813743,
+            "RMSE": 8.195324423354577e-05,
+            "R2": 1.31995805507934e-07,
+            "Score": 2.2963041351076185e-05
+          },
+          "mae_same_at_one_decimal": true
+        },
+        {
+          "horizon": 10,
+          "official": {
+            "MAE": 109.0069387460383,
+            "RMSE": 160.7691592719296,
+            "R2": 0.8517614699442431,
+            "Score": 11.957278103768038
+          },
+          "recomputed": {
+            "MAE": 109.00652934890535,
+            "RMSE": 160.76893972438808,
+            "R2": 0.8517618748152116,
+            "Score": 11.95729783674081
+          },
+          "absolute_difference": {
+            "MAE": 0.00040939713295529145,
+            "RMSE": 0.00021954754151920497,
+            "R2": 4.0487096852892535e-07,
+            "Score": 1.973297277224617e-05
+          },
+          "mae_same_at_one_decimal": true
+        }
+      ],
+      "mean_annotation_gate_pass": true
+    },
+    {
+      "variant": "A7",
+      "display_name": "Shared-Projection Cross Fusion",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A7\\STMGPrompt_ComponentAblation",
+      "prediction_file": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\paper_figure\\predictions\\A7_predictions.npz",
+      "prediction_shape": [
+        5104,
+        134,
+        10
+      ],
+      "checkpoint_epoch": 11,
+      "checkpoint_best_epoch": 11,
+      "metric_comparison": [
+        {
+          "horizon": 3,
+          "official": {
+            "MAE": 88.2153250062636,
+            "RMSE": 124.10425344973805,
+            "R2": 0.911666570580872,
+            "Score": 8.865939135045293
+          },
+          "recomputed": {
+            "MAE": 88.217297389748,
+            "RMSE": 124.10555388504547,
+            "R2": 0.9116647193548406,
+            "Score": 8.866121052399727
+          },
+          "absolute_difference": {
+            "MAE": 0.0019723834844000976,
+            "RMSE": 0.0013004353074137498,
+            "R2": 1.8512260313574558e-06,
+            "Score": 0.00018191735443373602
+          },
+          "mae_same_at_one_decimal": true
+        },
+        {
+          "horizon": 6,
+          "official": {
+            "MAE": 98.79487221977995,
+            "RMSE": 142.75014566646448,
+            "R2": 0.883129452537973,
+            "Score": 10.273207336648829
+          },
+          "recomputed": {
+            "MAE": 98.79633616402417,
+            "RMSE": 142.75095639652443,
+            "R2": 0.8831281250334081,
+            "Score": 10.273313330280171
+          },
+          "absolute_difference": {
+            "MAE": 0.0014639442442216932,
+            "RMSE": 0.0008107300599533573,
+            "R2": 1.3275045649407957e-06,
+            "Score": 0.00010599363134211615
+          },
+          "mae_same_at_one_decimal": true
+        },
+        {
+          "horizon": 10,
+          "official": {
+            "MAE": 111.33556602248989,
+            "RMSE": 162.03500249420836,
+            "R2": 0.8494179175663651,
+            "Score": 12.122797466479286
+          },
+          "recomputed": {
+            "MAE": 111.33669538951204,
+            "RMSE": 162.0356627965075,
+            "R2": 0.8494166903019309,
+            "Score": 12.122841780712646
+          },
+          "absolute_difference": {
+            "MAE": 0.0011293670221590446,
+            "RMSE": 0.0006603022991384933,
+            "R2": 1.2272644341893013e-06,
+            "Score": 4.4314233360154276e-05
+          },
+          "mae_same_at_one_decimal": true
+        }
+      ],
+      "mean_annotation_gate_pass": true
+    },
+    {
+      "variant": "A8",
+      "display_name": "w/o MS-MG-DWU",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A8\\STMGPrompt_ComponentAblation",
+      "prediction_file": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\paper_figure\\predictions\\A8_predictions.npz",
+      "prediction_shape": [
+        5104,
+        134,
+        10
+      ],
+      "checkpoint_epoch": 10,
+      "checkpoint_best_epoch": 10,
+      "metric_comparison": [
+        {
+          "horizon": 3,
+          "official": {
+            "MAE": 89.50451403834093,
+            "RMSE": 133.17619822877575,
+            "R2": 0.8982803201266027,
+            "Score": 8.884828093762186
+          },
+          "recomputed": {
+            "MAE": 89.50132317627146,
+            "RMSE": 133.17137935800642,
+            "R2": 0.8982876812786743,
+            "Score": 8.884545553788904
+          },
+          "absolute_difference": {
+            "MAE": 0.00319086206947361,
+            "RMSE": 0.004818870769327077,
+            "R2": 7.361152071561072e-06,
+            "Score": 0.0002825399732824252
+          },
+          "mae_same_at_one_decimal": true
+        },
+        {
+          "horizon": 6,
+          "official": {
+            "MAE": 101.47805400478595,
+            "RMSE": 152.50310676627103,
+            "R2": 0.8666142790329614,
+            "Score": 10.329835015443575
+          },
+          "recomputed": {
+            "MAE": 101.47545088899012,
+            "RMSE": 152.49901821894687,
+            "R2": 0.8666214309727973,
+            "Score": 10.329602365137255
+          },
+          "absolute_difference": {
+            "MAE": 0.002603115795821509,
+            "RMSE": 0.004088547324158753,
+            "R2": 7.151939835914334e-06,
+            "Score": 0.0002326503063194707
+          },
+          "mae_same_at_one_decimal": true
+        },
+        {
+          "horizon": 10,
+          "official": {
+            "MAE": 113.78496839750896,
+            "RMSE": 170.60372330285324,
+            "R2": 0.8330706782894107,
+            "Score": 11.876274868676012
+          },
+          "recomputed": {
+            "MAE": 113.78286211555577,
+            "RMSE": 170.60035139246304,
+            "R2": 0.8330772767989972,
+            "Score": 11.87609780740436
+          },
+          "absolute_difference": {
+            "MAE": 0.002106281953189182,
+            "RMSE": 0.003371910390200128,
+            "R2": 6.5985095865084276e-06,
+            "Score": 0.000177061271651624
+          },
+          "mae_same_at_one_decimal": true
+        }
+      ],
+      "mean_annotation_gate_pass": true
+    }
+  ],
+  "all_mean_annotation_gates_pass": true
+}

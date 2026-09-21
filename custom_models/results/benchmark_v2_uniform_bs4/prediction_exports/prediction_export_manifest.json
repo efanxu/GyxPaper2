@@ -1,0 +1,4008 @@
+{
+  "task": "formal checkpoint inference-only prediction backfill and two-run diagnosis",
+  "training_performed": false,
+  "figures_generated": false,
+  "formal_results_modified": false,
+  "runtime_environment": {
+    "python_executable": "D:\\Apps\\Miniconda3\\python.exe",
+    "python_version": "3.11.15",
+    "torch_version": "2.5.1+cu124",
+    "torch_cuda_version": "12.4",
+    "cuda_device": "NVIDIA GeForce GTX 1060",
+    "cudnn_version": 90100,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": false
+  },
+  "shape_protocol": "[sample,node,horizon]",
+  "horizon_evaluation_protocol": {
+    "H3": "[:, :, :3]",
+    "H6": "[:, :, :6]",
+    "H10": "[:, :, :10]"
+  },
+  "expected_shape": [
+    5104,
+    134,
+    10
+  ],
+  "expected_valid_counts": {
+    "H3": 1256027,
+    "H6": 2512061,
+    "H10": 4186848
+  },
+  "exact_metric_tolerance": 1e-05,
+  "alignment_reference": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\prediction_exports\\lightts_predictions.npz",
+  "classification_policy": {
+    "EXACT_PASS": "All 12 official metric comparisons have absolute difference <= 1e-5.",
+    "VISUALIZATION_PASS_NUMERICAL_DRIFT": "Strong data/protocol gates pass and two independent runs show numerical variation comparable to the official mismatch without changing conclusions.",
+    "PROTOCOL_MISMATCH": "Strong alignment failed, or two independent runs are effectively identical while both systematically differ from the stored official metrics.",
+    "RECOVERY_FAILED": "A required inference export could not be produced."
+  },
+  "official_figure_metric_policy": "Any later figure must display Score/R2/RMSE/MAE from the formal metrics JSON, never values recomputed from a candidate export.",
+  "models": [
+    {
+      "model_key": "proposed_model",
+      "display_name": "Proposed model",
+      "formal_run_directory": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026",
+      "formal_checkpoint_identified": true,
+      "formal_checkpoint_status": "IDENTIFIED",
+      "formal_state_audit": {
+        "formal_prediction_metadata_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\prediction_metadata.json",
+        "formal_source_checkpoint": "best_checkpoint.pt",
+        "exporter_loaded_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\best_checkpoint.pt",
+        "checkpoint_selection_matches_formal_metadata": true,
+        "effective_config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\config.json",
+        "formal_test_batch_size": 4,
+        "formal_amp_enabled_config": true,
+        "evaluation_autocast_enabled": true,
+        "evaluation_autocast_dtype": "float16",
+        "model_eval_called": true,
+        "torch_inference_mode_or_no_grad": true,
+        "strict_checkpoint_load": true,
+        "physical_clipping_matches_protocol": true,
+        "valid_target_mask_preserved": true,
+        "test_sample_stride": 1,
+        "node_order_preserved": true,
+        "test_split_signature_preserved": true,
+        "seed": 2026
+      },
+      "model_specific_diagnostic": {
+        "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+        "source_experiment": "old A1",
+        "source_directory": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A1\\STMGPrompt_ComponentAblation",
+        "canonical_is_unique_real_artifact": true,
+        "canonical_verification_passed": true,
+        "state_dict_strict_load_verified": true,
+        "parameter_count_match_verified": true,
+        "source_best_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A1\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+        "source_last_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A1\\STMGPrompt_ComponentAblation\\last_checkpoint.pt",
+        "source_best_epoch": 12,
+        "source_last_epoch": 18,
+        "source_best_val_score_h10": 14.157005642150047,
+        "formal_evaluation_checkpoint": "best_checkpoint.pt",
+        "formal_evaluation_amp_enabled": true,
+        "formal_test_checkpoint_from_run_status": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_p1_seed2026\\A1\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+        "checkpoint_selection_metric": "val_official_score_h10",
+        "graph_operator": "bi_diffusion",
+        "graph_resource_protocol_recovered_from_canonical_config": true,
+        "same_named_canonical_directory_count": 1,
+        "diagnostic_conclusion_before_two_run_evidence": "No wrong-directory, wrong-best/last-checkpoint, graph protocol, mask, split, clipping, or AMP restoration error was found."
+      },
+      "checkpoint_identity": {
+        "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\best_checkpoint.pt",
+        "checkpoint_epoch": 12,
+        "checkpoint_best_epoch": 12,
+        "checkpoint_best_metric_name": "val_official_score_h10",
+        "checkpoint_best_metric_value": 14.157005642150047,
+        "checkpoint_file_size": 3509704,
+        "checkpoint_last_write_time": 1784556404.0,
+        "checkpoint_strict_load": true
+      },
+      "checkpoint_hash": null,
+      "checkpoint_hash_note": "Not computed: workspace instructions prohibit hash/SHA256 generation; path, epoch, file size, modification time, monitor metadata, and strict state-dict loading are recorded instead.",
+      "config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\config.json",
+      "formal_metric_source": [
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\metrics_eval_h3.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\metrics_eval_h6.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\metrics_eval_h10.json"
+      ],
+      "prediction_generated": true,
+      "prediction_run_a_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\prediction_exports\\candidates\\proposed_model_predictions_candidate.npz",
+      "prediction_run_b_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\prediction_exports\\candidates\\proposed_model_predictions_candidate_run_b.npz",
+      "prediction_role": "candidate_visualization_prediction",
+      "prediction_shape": [
+        5104,
+        134,
+        10
+      ],
+      "dtype": {
+        "y_true_snh": "float32",
+        "y_pred_eval_snh": "float32",
+        "valid_target_mask_snh": "bool"
+      },
+      "physical_clipping_applied": true,
+      "physical_clip_range_kw": [
+        0.0,
+        1500.0
+      ],
+      "batch_size": 4,
+      "seed": 2026,
+      "dataset_signature": {
+        "dataset_id": "SDWPF",
+        "timeline_shape": [
+          52559,
+          134,
+          16
+        ],
+        "timestamp_count": 52559,
+        "first_timestamp": "2021-01-01 00:10:00",
+        "last_timestamp": "2021-12-31 23:50:00",
+        "node_count": 134,
+        "node_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134
+        ],
+        "feature_names": [
+          "Wspd",
+          "Wdir",
+          "Etmp",
+          "Itmp",
+          "Ndir",
+          "Pab1",
+          "Pab2",
+          "Pab3",
+          "Prtv",
+          "T2m",
+          "Sp",
+          "RelH",
+          "Wspd_w",
+          "Wdir_w",
+          "Tp",
+          "Patv_clean_for_input"
+        ],
+        "split_ratio": [
+          0.8,
+          0.1,
+          0.1
+        ],
+        "lookback": 144,
+        "max_pred_len": 10,
+        "test_sample_stride": 1
+      },
+      "runtime_run_a": {
+        "python_executable": "D:\\Apps\\Miniconda3\\python.exe",
+        "python_version": "3.11.15",
+        "torch_version": "2.5.1+cu124",
+        "torch_cuda_version": "12.4",
+        "cuda_device": "NVIDIA GeForce GTX 1060"
+      },
+      "runtime_run_b": {
+        "python_executable": "D:\\Apps\\Miniconda3\\python.exe",
+        "python_version": "3.11.15",
+        "torch_version": "2.5.1+cu124",
+        "torch_cuda_version": "12.4",
+        "cuda_device": "NVIDIA GeForce GTX 1060"
+      },
+      "official_metrics": {
+        "H3": {
+          "Score": 7.783623200734026,
+          "MAE": 76.33942955875908,
+          "RMSE": 117.75677038705155,
+          "R2": 0.9204713645191344
+        },
+        "H6": {
+          "Score": 9.684446283949155,
+          "MAE": 90.46171513146376,
+          "RMSE": 138.8132223588933,
+          "R2": 0.8894869334438604
+        },
+        "H10": {
+          "Score": 11.706390557819958,
+          "MAE": 105.41287395398908,
+          "RMSE": 159.3411440391301,
+          "R2": 0.8543832008369954
+        }
+      },
+      "recomputed_metrics_run_a": {
+        "H3": {
+          "Score": 7.783483508605396,
+          "MAE": 76.33717563329937,
+          "RMSE": 117.75440541077661,
+          "R2": 0.9204745589248026
+        },
+        "H6": {
+          "Score": 9.684453556918312,
+          "MAE": 90.46015193352376,
+          "RMSE": 138.81109477993235,
+          "R2": 0.889490321067452
+        },
+        "H10": {
+          "Score": 11.706453606515803,
+          "MAE": 105.41181837233835,
+          "RMSE": 159.3392077434314,
+          "R2": 0.8543867398534926
+        }
+      },
+      "recomputed_metrics_run_b": {
+        "H3": {
+          "Score": 7.783483508605396,
+          "MAE": 76.33717563329937,
+          "RMSE": 117.75440541077661,
+          "R2": 0.9204745589248026
+        },
+        "H6": {
+          "Score": 9.684453556918312,
+          "MAE": 90.46015193352376,
+          "RMSE": 138.81109477993235,
+          "R2": 0.889490321067452
+        },
+        "H10": {
+          "Score": 11.706453606515803,
+          "MAE": 105.41181837233835,
+          "RMSE": 159.3392077434314,
+          "R2": 0.8543867398534926
+        }
+      },
+      "metric_abs_diff": {
+        "H3": {
+          "Score": 0.00013969212862985358,
+          "MAE": 0.002253925459712036,
+          "RMSE": 0.0023649762749329284,
+          "R2": 3.194405668205391e-06
+        },
+        "H6": {
+          "Score": 7.272969156701947e-06,
+          "MAE": 0.0015631979400012597,
+          "RMSE": 0.002127578960966048,
+          "R2": 3.3876235915331065e-06
+        },
+        "H10": {
+          "Score": 6.304869584461414e-05,
+          "MAE": 0.0010555816507320515,
+          "RMSE": 0.0019362956987265534,
+          "R2": 3.539016497189351e-06
+        }
+      },
+      "metric_rel_diff": {
+        "H3": {
+          "Score": 1.7946928445441714e-05,
+          "MAE": 2.9525049803747504e-05,
+          "RMSE": 2.0083569438594077e-05,
+          "R2": 3.4704020041668413e-06
+        },
+        "H6": {
+          "Score": 7.50994836819535e-07,
+          "MAE": 1.7280215588766336e-05,
+          "RMSE": 1.5326918609131624e-05,
+          "R2": 3.8085141716664856e-06
+        },
+        "H10": {
+          "Score": 5.385835670970087e-06,
+          "MAE": 1.0013783052654411e-05,
+          "RMSE": 1.2151887765102582e-05,
+          "R2": 4.142188766963534e-06
+        }
+      },
+      "metric_max_abs_diff_by_horizon": {
+        "H3": 0.0023649762749329284,
+        "H6": 0.002127578960966048,
+        "H10": 0.0019362956987265534
+      },
+      "run_a_vs_run_b_prediction": {
+        "shape_equal": true,
+        "mask_equal": true,
+        "sample_index_equal": true,
+        "y_true_equal": true,
+        "max_abs_pred_diff": 0.0,
+        "mean_abs_pred_diff": 0.0,
+        "rmse_pred_diff": 0.0,
+        "valid_max_abs_pred_diff": 0.0,
+        "valid_mean_abs_pred_diff": 0.0,
+        "valid_rmse_pred_diff": 0.0
+      },
+      "run_a_vs_run_b_pred_max_abs_diff": 0.0,
+      "run_a_vs_run_b_pred_mean_abs_diff": 0.0,
+      "run_a_vs_run_b_pred_rmse": 0.0,
+      "run_a_vs_run_b_metric_comparison": {
+        "H3": {
+          "Score": {
+            "run_a": 7.783483508605396,
+            "run_b": 7.783483508605396,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "MAE": {
+            "run_a": 76.33717563329937,
+            "run_b": 76.33717563329937,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "RMSE": {
+            "run_a": 117.75440541077661,
+            "run_b": 117.75440541077661,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "R2": {
+            "run_a": 0.9204745589248026,
+            "run_b": 0.9204745589248026,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          }
+        },
+        "H6": {
+          "Score": {
+            "run_a": 9.684453556918312,
+            "run_b": 9.684453556918312,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "MAE": {
+            "run_a": 90.46015193352376,
+            "run_b": 90.46015193352376,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "RMSE": {
+            "run_a": 138.81109477993235,
+            "run_b": 138.81109477993235,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "R2": {
+            "run_a": 0.889490321067452,
+            "run_b": 0.889490321067452,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          }
+        },
+        "H10": {
+          "Score": {
+            "run_a": 11.706453606515803,
+            "run_b": 11.706453606515803,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "MAE": {
+            "run_a": 105.41181837233835,
+            "run_b": 105.41181837233835,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "RMSE": {
+            "run_a": 159.3392077434314,
+            "run_b": 159.3392077434314,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "R2": {
+            "run_a": 0.8543867398534926,
+            "run_b": 0.8543867398534926,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          }
+        }
+      },
+      "alignment": {
+        "shape_ok": true,
+        "mask_exact": true,
+        "sample_index_exact": true,
+        "y_true_exact_on_valid_positions": true,
+        "y_true_aligned_within_float32_precision": true,
+        "y_true_valid_max_abs_diff": 0.0,
+        "valid_counts": {
+          "H3": 1256027,
+          "H6": 2512061,
+          "H10": 4186848
+        },
+        "valid_counts_exact": true,
+        "strong_alignment_gate_pass": true,
+        "alignment_reference": "LightTS exact export"
+      },
+      "classification": "PROTOCOL_MISMATCH",
+      "exact_reproduction_pass": false,
+      "visualization_reproduction_pass": false,
+      "figure_metric_policy": "Always read official metrics_eval_h3/h6/h10 JSON values."
+    },
+    {
+      "model_key": "lightts",
+      "display_name": "LightTS",
+      "formal_run_directory": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\LightTS_node_shared_chunk8_bs4_seed2026",
+      "formal_checkpoint_identified": true,
+      "formal_checkpoint_status": "IDENTIFIED",
+      "formal_state_audit": {
+        "formal_prediction_metadata_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\LightTS_node_shared_chunk8_bs4_seed2026\\prediction_metadata.json",
+        "formal_source_checkpoint": "best_checkpoint.pt",
+        "exporter_loaded_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\LightTS_node_shared_chunk8_bs4_seed2026\\best_checkpoint.pt",
+        "checkpoint_selection_matches_formal_metadata": true,
+        "effective_config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\LightTS_node_shared_chunk8_bs4_seed2026\\effective_config.json",
+        "formal_test_batch_size": 4,
+        "formal_amp_enabled_config": true,
+        "evaluation_autocast_enabled": false,
+        "evaluation_autocast_dtype": null,
+        "model_eval_called": true,
+        "torch_inference_mode_or_no_grad": true,
+        "strict_checkpoint_load": true,
+        "physical_clipping_matches_protocol": true,
+        "valid_target_mask_preserved": true,
+        "test_sample_stride": 1,
+        "node_order_preserved": true,
+        "test_split_signature_preserved": true,
+        "seed": 2026
+      },
+      "model_specific_diagnostic": null,
+      "checkpoint_identity": {
+        "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\LightTS_node_shared_chunk8_bs4_seed2026\\best_checkpoint.pt",
+        "checkpoint_epoch": 18,
+        "checkpoint_global_step": 29880,
+        "checkpoint_monitor_name": "validation_official_score_h10",
+        "checkpoint_monitor_value": 14.700723581093344,
+        "checkpoint_file_size": 1303848,
+        "checkpoint_last_write_time": 1785934650.0,
+        "checkpoint_strict_load": true
+      },
+      "checkpoint_hash": null,
+      "checkpoint_hash_note": "Not computed: workspace instructions prohibit hash/SHA256 generation; path, epoch, file size, modification time, monitor metadata, and strict state-dict loading are recorded instead.",
+      "config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\LightTS_node_shared_chunk8_bs4_seed2026\\effective_config.json",
+      "formal_metric_source": [
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\LightTS_node_shared_chunk8_bs4_seed2026\\metrics_eval_h3.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\LightTS_node_shared_chunk8_bs4_seed2026\\metrics_eval_h6.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\LightTS_node_shared_chunk8_bs4_seed2026\\metrics_eval_h10.json"
+      ],
+      "prediction_generated": true,
+      "prediction_run_a_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\prediction_exports\\lightts_predictions.npz",
+      "prediction_run_b_path": null,
+      "prediction_role": "exact_formal_reproduction",
+      "prediction_shape": [
+        5104,
+        134,
+        10
+      ],
+      "dtype": {
+        "y_true_snh": "float32",
+        "y_pred_eval_snh": "float32",
+        "valid_target_mask_snh": "bool"
+      },
+      "physical_clipping_applied": true,
+      "physical_clip_range_kw": [
+        0.0,
+        1500.0
+      ],
+      "batch_size": 4,
+      "seed": 2026,
+      "dataset_signature": {
+        "dataset_id": "SDWPF",
+        "timeline_shape": [
+          52559,
+          134,
+          16
+        ],
+        "timestamp_count": 52559,
+        "first_timestamp": "2021-01-01 00:10:00",
+        "last_timestamp": "2021-12-31 23:50:00",
+        "node_count": 134,
+        "node_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134
+        ],
+        "feature_names": [
+          "Wspd",
+          "Wdir",
+          "Etmp",
+          "Itmp",
+          "Ndir",
+          "Pab1",
+          "Pab2",
+          "Pab3",
+          "Prtv",
+          "T2m",
+          "Sp",
+          "RelH",
+          "Wspd_w",
+          "Wdir_w",
+          "Tp",
+          "Patv_clean_for_input"
+        ],
+        "split_ratio": [
+          0.8,
+          0.1,
+          0.1
+        ],
+        "lookback": 144,
+        "max_pred_len": 10,
+        "test_sample_stride": 1
+      },
+      "runtime_run_a": {
+        "python_executable": "D:\\Apps\\Miniconda3\\python.exe",
+        "python_version": "3.11.15",
+        "torch_version": "2.5.1+cu124",
+        "torch_cuda_version": "12.4",
+        "cuda_device": "NVIDIA GeForce GTX 1060"
+      },
+      "runtime_run_b": null,
+      "official_metrics": {
+        "H3": {
+          "Score": 8.434614931692057,
+          "MAE": 77.88972747387862,
+          "RMSE": 117.41574441494649,
+          "R2": 0.920931330569112
+        },
+        "H6": {
+          "Score": 10.246191468822579,
+          "MAE": 93.14628452130985,
+          "RMSE": 140.21684072062385,
+          "R2": 0.8872407149612956
+        },
+        "H10": {
+          "Score": 12.187578974514407,
+          "MAE": 110.53334343314117,
+          "RMSE": 165.5065463884479,
+          "R2": 0.8428964599252122
+        }
+      },
+      "recomputed_metrics_run_a": {
+        "H3": {
+          "Score": 8.434614941619257,
+          "MAE": 77.8897275811009,
+          "RMSE": 117.41574461758141,
+          "R2": 0.9209313302962002
+        },
+        "H6": {
+          "Score": 10.246191526389785,
+          "MAE": 93.14628466410241,
+          "RMSE": 140.21684092965583,
+          "R2": 0.8872407146250978
+        },
+        "H10": {
+          "Score": 12.187579038673912,
+          "MAE": 110.53334361370945,
+          "RMSE": 165.50654658139632,
+          "R2": 0.8428964595589079
+        }
+      },
+      "recomputed_metrics_run_b": null,
+      "metric_abs_diff": {
+        "H3": {
+          "Score": 9.92720039505457e-09,
+          "MAE": 1.0722227727910649e-07,
+          "RMSE": 2.0263492217509338e-07,
+          "R2": 2.7291180426658457e-10
+        },
+        "H6": {
+          "Score": 5.7567206113162683e-08,
+          "MAE": 1.4279255822202686e-07,
+          "RMSE": 2.090319810577057e-07,
+          "R2": 3.3619784733929237e-10
+        },
+        "H10": {
+          "Score": 6.415950437599349e-08,
+          "MAE": 1.8056827855161828e-07,
+          "RMSE": 1.9294841990813438e-07,
+          "R2": 3.6630432020956505e-10
+        }
+      },
+      "metric_rel_diff": {
+        "H3": {
+          "Score": 1.1769595263625256e-09,
+          "MAE": 1.3765907361155544e-09,
+          "RMSE": 1.7257900393577787e-09,
+          "R2": 2.9634327251949616e-10
+        },
+        "H6": {
+          "Score": 5.618400386946693e-09,
+          "MAE": 1.5329925284283242e-09,
+          "RMSE": 1.490776571369149e-09,
+          "R2": 3.7892517968357487e-10
+        },
+        "H10": {
+          "Score": 5.264335477140965e-09,
+          "MAE": 1.6336091259271413e-09,
+          "RMSE": 1.1658053661229794e-09,
+          "R2": 4.3457807408761236e-10
+        }
+      },
+      "metric_max_abs_diff_by_horizon": {
+        "H3": 2.0263492217509338e-07,
+        "H6": 2.090319810577057e-07,
+        "H10": 1.9294841990813438e-07
+      },
+      "run_a_vs_run_b_prediction": null,
+      "run_a_vs_run_b_pred_max_abs_diff": null,
+      "run_a_vs_run_b_pred_mean_abs_diff": null,
+      "run_a_vs_run_b_pred_rmse": null,
+      "run_a_vs_run_b_metric_comparison": null,
+      "alignment": {
+        "shape_ok": true,
+        "mask_exact": true,
+        "sample_index_exact": true,
+        "y_true_exact_on_valid_positions": true,
+        "y_true_aligned_within_float32_precision": true,
+        "y_true_valid_max_abs_diff": 0.0,
+        "valid_counts": {
+          "H3": 1256027,
+          "H6": 2512061,
+          "H10": 4186848
+        },
+        "valid_counts_exact": true,
+        "strong_alignment_gate_pass": true,
+        "alignment_reference": "LightTS exact export"
+      },
+      "classification": "EXACT_PASS",
+      "exact_reproduction_pass": true,
+      "visualization_reproduction_pass": true,
+      "figure_metric_policy": "Always read official metrics_eval_h3/h6/h10 JSON values."
+    },
+    {
+      "model_key": "movingaverage",
+      "display_name": "MovingAverage",
+      "formal_run_directory": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\MovingAverage_w144_bs4_seed2026",
+      "formal_checkpoint_identified": null,
+      "formal_checkpoint_status": "NOT_APPLICABLE_PARAMETER_FREE_BASELINE",
+      "formal_state_audit": {
+        "formal_prediction_metadata_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\MovingAverage_w144_bs4_seed2026\\prediction_metadata.json",
+        "formal_source_checkpoint": null,
+        "exporter_loaded_checkpoint": null,
+        "checkpoint_selection_matches_formal_metadata": true,
+        "effective_config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\MovingAverage_w144_bs4_seed2026\\effective_config.json",
+        "formal_test_batch_size": 4,
+        "formal_amp_enabled_config": true,
+        "evaluation_autocast_enabled": false,
+        "evaluation_autocast_dtype": null,
+        "model_eval_called": true,
+        "torch_inference_mode_or_no_grad": true,
+        "strict_checkpoint_load": true,
+        "physical_clipping_matches_protocol": true,
+        "valid_target_mask_preserved": true,
+        "test_sample_stride": 1,
+        "node_order_preserved": true,
+        "test_split_signature_preserved": true,
+        "seed": 2026
+      },
+      "model_specific_diagnostic": null,
+      "checkpoint_identity": {
+        "checkpoint_path": null,
+        "checkpoint_epoch": null,
+        "checkpoint_file_size": null,
+        "checkpoint_last_write_time": null,
+        "checkpoint_strict_load": true
+      },
+      "checkpoint_hash": null,
+      "checkpoint_hash_note": "Not computed: workspace instructions prohibit hash/SHA256 generation; path, epoch, file size, modification time, monitor metadata, and strict state-dict loading are recorded instead.",
+      "config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\MovingAverage_w144_bs4_seed2026\\effective_config.json",
+      "formal_metric_source": [
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\MovingAverage_w144_bs4_seed2026\\metrics_eval_h3.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\MovingAverage_w144_bs4_seed2026\\metrics_eval_h6.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\MovingAverage_w144_bs4_seed2026\\metrics_eval_h10.json"
+      ],
+      "prediction_generated": true,
+      "prediction_run_a_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\prediction_exports\\movingaverage_predictions.npz",
+      "prediction_run_b_path": null,
+      "prediction_role": "exact_formal_reproduction",
+      "prediction_shape": [
+        5104,
+        134,
+        10
+      ],
+      "dtype": {
+        "y_true_snh": "float32",
+        "y_pred_eval_snh": "float32",
+        "valid_target_mask_snh": "bool"
+      },
+      "physical_clipping_applied": true,
+      "physical_clip_range_kw": [
+        0.0,
+        1500.0
+      ],
+      "batch_size": 4,
+      "seed": 2026,
+      "dataset_signature": {
+        "dataset_id": "SDWPF",
+        "timeline_shape": [
+          52559,
+          134,
+          16
+        ],
+        "timestamp_count": 52559,
+        "first_timestamp": "2021-01-01 00:10:00",
+        "last_timestamp": "2021-12-31 23:50:00",
+        "node_count": 134,
+        "node_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134
+        ],
+        "feature_names": [
+          "Wspd",
+          "Wdir",
+          "Etmp",
+          "Itmp",
+          "Ndir",
+          "Pab1",
+          "Pab2",
+          "Pab3",
+          "Prtv",
+          "T2m",
+          "Sp",
+          "RelH",
+          "Wspd_w",
+          "Wdir_w",
+          "Tp",
+          "Patv_clean_for_input"
+        ],
+        "split_ratio": [
+          0.8,
+          0.1,
+          0.1
+        ],
+        "lookback": 144,
+        "max_pred_len": 10,
+        "test_sample_stride": 1
+      },
+      "runtime_run_a": {
+        "python_executable": "D:\\Apps\\Miniconda3\\python.exe",
+        "python_version": "3.11.15",
+        "torch_version": "2.5.1+cu124",
+        "torch_cuda_version": "12.4",
+        "cuda_device": "NVIDIA GeForce GTX 1060"
+      },
+      "runtime_run_b": null,
+      "official_metrics": {
+        "H3": {
+          "Score": 28.67948758409598,
+          "MAE": 259.96074745601453,
+          "RMSE": 368.64090918677175,
+          "R2": 0.22060284561054133
+        },
+        "H6": {
+          "Score": 29.126859528854077,
+          "MAE": 262.6765806720949,
+          "RMSE": 372.69897670658116,
+          "R2": 0.20334853531695118
+        },
+        "H10": {
+          "Score": 29.63469357964836,
+          "MAE": 266.0884998988033,
+          "RMSE": 377.8585097033941,
+          "R2": 0.18113174870439908
+        }
+      },
+      "recomputed_metrics_run_a": {
+        "H3": {
+          "Score": 28.67948759775525,
+          "MAE": 259.9607487553162,
+          "RMSE": 368.6409105501396,
+          "R2": 0.2206028398455543
+        },
+        "H6": {
+          "Score": 29.126859549408017,
+          "MAE": 262.6765820147142,
+          "RMSE": 372.6989781409515,
+          "R2": 0.20334852918496094
+        },
+        "H10": {
+          "Score": 29.634693618194746,
+          "MAE": 266.08850131634415,
+          "RMSE": 377.85851124535674,
+          "R2": 0.18113174202113413
+        }
+      },
+      "recomputed_metrics_run_b": null,
+      "metric_abs_diff": {
+        "H3": {
+          "Score": 1.3659271047572474e-08,
+          "MAE": 1.2993016866857943e-06,
+          "RMSE": 1.363367857720732e-06,
+          "R2": 5.764987043299641e-09
+        },
+        "H6": {
+          "Score": 2.0553940771605994e-08,
+          "MAE": 1.3426193277155107e-06,
+          "RMSE": 1.4343703469421598e-06,
+          "R2": 6.1319902489032074e-09
+        },
+        "H10": {
+          "Score": 3.8546385638937863e-08,
+          "MAE": 1.417540829606878e-06,
+          "RMSE": 1.5419626606671955e-06,
+          "R2": 6.683264941464984e-09
+        }
+      },
+      "metric_rel_diff": {
+        "H3": {
+          "Score": 4.762731902904406e-10,
+          "MAE": 4.998068744611671e-09,
+          "RMSE": 3.6983628885040057e-09,
+          "R2": 2.6132877059425228e-08
+        },
+        "H6": {
+          "Score": 7.056696500782911e-10,
+          "MAE": 5.111301983146845e-09,
+          "RMSE": 3.8486028580416855e-09,
+          "R2": 3.015507458337736e-08
+        },
+        "H10": {
+          "Score": 1.300718211758721e-09,
+          "MAE": 5.327328426993223e-09,
+          "RMSE": 4.080793792040262e-09,
+          "R2": 3.689725842801776e-08
+        }
+      },
+      "metric_max_abs_diff_by_horizon": {
+        "H3": 1.363367857720732e-06,
+        "H6": 1.4343703469421598e-06,
+        "H10": 1.5419626606671955e-06
+      },
+      "run_a_vs_run_b_prediction": null,
+      "run_a_vs_run_b_pred_max_abs_diff": null,
+      "run_a_vs_run_b_pred_mean_abs_diff": null,
+      "run_a_vs_run_b_pred_rmse": null,
+      "run_a_vs_run_b_metric_comparison": null,
+      "alignment": {
+        "shape_ok": true,
+        "mask_exact": true,
+        "sample_index_exact": true,
+        "y_true_exact_on_valid_positions": true,
+        "y_true_aligned_within_float32_precision": true,
+        "y_true_valid_max_abs_diff": 0.0,
+        "valid_counts": {
+          "H3": 1256027,
+          "H6": 2512061,
+          "H10": 4186848
+        },
+        "valid_counts_exact": true,
+        "strong_alignment_gate_pass": true,
+        "alignment_reference": "LightTS exact export"
+      },
+      "classification": "EXACT_PASS",
+      "exact_reproduction_pass": true,
+      "visualization_reproduction_pass": true,
+      "figure_metric_policy": "Always read official metrics_eval_h3/h6/h10 JSON values."
+    },
+    {
+      "model_key": "tide",
+      "display_name": "TiDE",
+      "formal_run_directory": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\TiDE_node_shared_d512_bs4_seed2026",
+      "formal_checkpoint_identified": true,
+      "formal_checkpoint_status": "IDENTIFIED",
+      "formal_state_audit": {
+        "formal_prediction_metadata_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\TiDE_node_shared_d512_bs4_seed2026\\prediction_metadata.json",
+        "formal_source_checkpoint": "best_checkpoint.pt",
+        "exporter_loaded_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\TiDE_node_shared_d512_bs4_seed2026\\best_checkpoint.pt",
+        "checkpoint_selection_matches_formal_metadata": true,
+        "effective_config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\TiDE_node_shared_d512_bs4_seed2026\\effective_config.json",
+        "formal_test_batch_size": 4,
+        "formal_amp_enabled_config": true,
+        "evaluation_autocast_enabled": false,
+        "evaluation_autocast_dtype": null,
+        "model_eval_called": true,
+        "torch_inference_mode_or_no_grad": true,
+        "strict_checkpoint_load": true,
+        "physical_clipping_matches_protocol": true,
+        "valid_target_mask_preserved": true,
+        "test_sample_stride": 1,
+        "node_order_preserved": true,
+        "test_split_signature_preserved": true,
+        "seed": 2026
+      },
+      "model_specific_diagnostic": null,
+      "checkpoint_identity": {
+        "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\TiDE_node_shared_d512_bs4_seed2026\\best_checkpoint.pt",
+        "checkpoint_epoch": 12,
+        "checkpoint_global_step": 19920,
+        "checkpoint_monitor_name": "validation_official_score_h10",
+        "checkpoint_monitor_value": 17.910811585941012,
+        "checkpoint_file_size": 21723416,
+        "checkpoint_last_write_time": 1785936884.0,
+        "checkpoint_strict_load": true
+      },
+      "checkpoint_hash": null,
+      "checkpoint_hash_note": "Not computed: workspace instructions prohibit hash/SHA256 generation; path, epoch, file size, modification time, monitor metadata, and strict state-dict loading are recorded instead.",
+      "config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\TiDE_node_shared_d512_bs4_seed2026\\effective_config.json",
+      "formal_metric_source": [
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\TiDE_node_shared_d512_bs4_seed2026\\metrics_eval_h3.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\TiDE_node_shared_d512_bs4_seed2026\\metrics_eval_h6.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\TiDE_node_shared_d512_bs4_seed2026\\metrics_eval_h10.json"
+      ],
+      "prediction_generated": true,
+      "prediction_run_a_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\prediction_exports\\tide_predictions.npz",
+      "prediction_run_b_path": null,
+      "prediction_role": "exact_formal_reproduction",
+      "prediction_shape": [
+        5104,
+        134,
+        10
+      ],
+      "dtype": {
+        "y_true_snh": "float32",
+        "y_pred_eval_snh": "float32",
+        "valid_target_mask_snh": "bool"
+      },
+      "physical_clipping_applied": true,
+      "physical_clip_range_kw": [
+        0.0,
+        1500.0
+      ],
+      "batch_size": 4,
+      "seed": 2026,
+      "dataset_signature": {
+        "dataset_id": "SDWPF",
+        "timeline_shape": [
+          52559,
+          134,
+          16
+        ],
+        "timestamp_count": 52559,
+        "first_timestamp": "2021-01-01 00:10:00",
+        "last_timestamp": "2021-12-31 23:50:00",
+        "node_count": 134,
+        "node_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134
+        ],
+        "feature_names": [
+          "Wspd",
+          "Wdir",
+          "Etmp",
+          "Itmp",
+          "Ndir",
+          "Pab1",
+          "Pab2",
+          "Pab3",
+          "Prtv",
+          "T2m",
+          "Sp",
+          "RelH",
+          "Wspd_w",
+          "Wdir_w",
+          "Tp",
+          "Patv_clean_for_input"
+        ],
+        "split_ratio": [
+          0.8,
+          0.1,
+          0.1
+        ],
+        "lookback": 144,
+        "max_pred_len": 10,
+        "test_sample_stride": 1
+      },
+      "runtime_run_a": {
+        "python_executable": "D:\\Apps\\Miniconda3\\python.exe",
+        "python_version": "3.11.15",
+        "torch_version": "2.5.1+cu124",
+        "torch_cuda_version": "12.4",
+        "cuda_device": "NVIDIA GeForce GTX 1060"
+      },
+      "runtime_run_b": null,
+      "official_metrics": {
+        "H3": {
+          "Score": 12.67839440678158,
+          "MAE": 102.28874585113441,
+          "RMSE": 135.49220492468783,
+          "R2": 0.8947116355529883
+        },
+        "H6": {
+          "Score": 14.194262411478794,
+          "MAE": 115.68431134725337,
+          "RMSE": 156.81718107332563,
+          "R2": 0.8589609922904445
+        },
+        "H10": {
+          "Score": 15.820669712908952,
+          "MAE": 130.81836004360457,
+          "RMSE": 179.4664294469951,
+          "R2": 0.8152765362703072
+        }
+      },
+      "recomputed_metrics_run_a": {
+        "H3": {
+          "Score": 12.678394405134428,
+          "MAE": 102.28874588167562,
+          "RMSE": 135.4922050134066,
+          "R2": 0.894711635415105
+        },
+        "H6": {
+          "Score": 14.194262409147525,
+          "MAE": 115.6843113666787,
+          "RMSE": 156.81718115005984,
+          "R2": 0.8589609921524173
+        },
+        "H10": {
+          "Score": 15.820669712560965,
+          "MAE": 130.81836007136806,
+          "RMSE": 179.4664294932746,
+          "R2": 0.8152765361750368
+        }
+      },
+      "recomputed_metrics_run_b": null,
+      "metric_abs_diff": {
+        "H3": {
+          "Score": 1.6471517483296338e-09,
+          "MAE": 3.054121577861224e-08,
+          "RMSE": 8.871876389093813e-08,
+          "R2": 1.3788326036490162e-10
+        },
+        "H6": {
+          "Score": 2.331269399746816e-09,
+          "MAE": 1.9425328900979366e-08,
+          "RMSE": 7.673421009712911e-08,
+          "R2": 1.380272562911955e-10
+        },
+        "H10": {
+          "Score": 3.4798652848166967e-10,
+          "MAE": 2.776349106170528e-08,
+          "RMSE": 4.62794957911683e-08,
+          "R2": 9.527034716683147e-11
+        }
+      },
+      "metric_rel_diff": {
+        "H3": {
+          "Score": 1.2991800818631927e-10,
+          "MAE": 2.9857845576736564e-10,
+          "RMSE": 6.547886938606667e-10,
+          "R2": 1.5410916197561357e-10
+        },
+        "H6": {
+          "Score": 1.6424026357731246e-10,
+          "MAE": 1.6791670948941142e-10,
+          "RMSE": 4.893227232623778e-10,
+          "R2": 1.606909481688357e-10
+        },
+        "H10": {
+          "Score": 2.1995688854924286e-11,
+          "MAE": 2.122293159190431e-10,
+          "RMSE": 2.5787271710800274e-10,
+          "R2": 1.168564811182599e-10
+        }
+      },
+      "metric_max_abs_diff_by_horizon": {
+        "H3": 8.871876389093813e-08,
+        "H6": 7.673421009712911e-08,
+        "H10": 4.62794957911683e-08
+      },
+      "run_a_vs_run_b_prediction": null,
+      "run_a_vs_run_b_pred_max_abs_diff": null,
+      "run_a_vs_run_b_pred_mean_abs_diff": null,
+      "run_a_vs_run_b_pred_rmse": null,
+      "run_a_vs_run_b_metric_comparison": null,
+      "alignment": {
+        "shape_ok": true,
+        "mask_exact": true,
+        "sample_index_exact": true,
+        "y_true_exact_on_valid_positions": true,
+        "y_true_aligned_within_float32_precision": true,
+        "y_true_valid_max_abs_diff": 0.0,
+        "valid_counts": {
+          "H3": 1256027,
+          "H6": 2512061,
+          "H10": 4186848
+        },
+        "valid_counts_exact": true,
+        "strong_alignment_gate_pass": true,
+        "alignment_reference": "LightTS exact export"
+      },
+      "classification": "EXACT_PASS",
+      "exact_reproduction_pass": true,
+      "visualization_reproduction_pass": true,
+      "figure_metric_policy": "Always read official metrics_eval_h3/h6/h10 JSON values."
+    },
+    {
+      "model_key": "transformer",
+      "display_name": "Transformer",
+      "formal_run_directory": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\Transformer_node_shared_d512_bs4_seed2026",
+      "formal_checkpoint_identified": true,
+      "formal_checkpoint_status": "IDENTIFIED",
+      "formal_state_audit": {
+        "formal_prediction_metadata_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\Transformer_node_shared_d512_bs4_seed2026\\prediction_metadata.json",
+        "formal_source_checkpoint": "best_checkpoint.pt",
+        "exporter_loaded_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\Transformer_node_shared_d512_bs4_seed2026\\best_checkpoint.pt",
+        "checkpoint_selection_matches_formal_metadata": true,
+        "effective_config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\Transformer_node_shared_d512_bs4_seed2026\\effective_config.json",
+        "formal_test_batch_size": 4,
+        "formal_amp_enabled_config": false,
+        "evaluation_autocast_enabled": false,
+        "evaluation_autocast_dtype": null,
+        "model_eval_called": true,
+        "torch_inference_mode_or_no_grad": true,
+        "strict_checkpoint_load": true,
+        "physical_clipping_matches_protocol": true,
+        "valid_target_mask_preserved": true,
+        "test_sample_stride": 1,
+        "node_order_preserved": true,
+        "test_split_signature_preserved": true,
+        "seed": 2026
+      },
+      "model_specific_diagnostic": null,
+      "checkpoint_identity": {
+        "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\Transformer_node_shared_d512_bs4_seed2026\\best_checkpoint.pt",
+        "checkpoint_epoch": 4,
+        "checkpoint_global_step": 6640,
+        "checkpoint_monitor_name": "validation_official_score_h10",
+        "checkpoint_monitor_value": 31.066013797462407,
+        "checkpoint_file_size": 147357970,
+        "checkpoint_last_write_time": 1785961342.0,
+        "checkpoint_strict_load": true
+      },
+      "checkpoint_hash": null,
+      "checkpoint_hash_note": "Not computed: workspace instructions prohibit hash/SHA256 generation; path, epoch, file size, modification time, monitor metadata, and strict state-dict loading are recorded instead.",
+      "config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\Transformer_node_shared_d512_bs4_seed2026\\effective_config.json",
+      "formal_metric_source": [
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\Transformer_node_shared_d512_bs4_seed2026\\metrics_eval_h3.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\Transformer_node_shared_d512_bs4_seed2026\\metrics_eval_h6.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\Transformer_node_shared_d512_bs4_seed2026\\metrics_eval_h10.json"
+      ],
+      "prediction_generated": true,
+      "prediction_run_a_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\prediction_exports\\candidates\\transformer_predictions_candidate.npz",
+      "prediction_run_b_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\prediction_exports\\candidates\\transformer_predictions_candidate_run_b.npz",
+      "prediction_role": "candidate_visualization_prediction",
+      "prediction_shape": [
+        5104,
+        134,
+        10
+      ],
+      "dtype": {
+        "y_true_snh": "float32",
+        "y_pred_eval_snh": "float32",
+        "valid_target_mask_snh": "bool"
+      },
+      "physical_clipping_applied": true,
+      "physical_clip_range_kw": [
+        0.0,
+        1500.0
+      ],
+      "batch_size": 4,
+      "seed": 2026,
+      "dataset_signature": {
+        "dataset_id": "SDWPF",
+        "timeline_shape": [
+          52559,
+          134,
+          16
+        ],
+        "timestamp_count": 52559,
+        "first_timestamp": "2021-01-01 00:10:00",
+        "last_timestamp": "2021-12-31 23:50:00",
+        "node_count": 134,
+        "node_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134
+        ],
+        "feature_names": [
+          "Wspd",
+          "Wdir",
+          "Etmp",
+          "Itmp",
+          "Ndir",
+          "Pab1",
+          "Pab2",
+          "Pab3",
+          "Prtv",
+          "T2m",
+          "Sp",
+          "RelH",
+          "Wspd_w",
+          "Wdir_w",
+          "Tp",
+          "Patv_clean_for_input"
+        ],
+        "split_ratio": [
+          0.8,
+          0.1,
+          0.1
+        ],
+        "lookback": 144,
+        "max_pred_len": 10,
+        "test_sample_stride": 1
+      },
+      "runtime_run_a": {
+        "python_executable": "D:\\Apps\\Miniconda3\\python.exe",
+        "python_version": "3.11.15",
+        "torch_version": "2.5.1+cu124",
+        "torch_cuda_version": "12.4",
+        "cuda_device": "NVIDIA GeForce GTX 1060"
+      },
+      "runtime_run_b": {
+        "python_executable": "D:\\Apps\\Miniconda3\\python.exe",
+        "python_version": "3.11.15",
+        "torch_version": "2.5.1+cu124",
+        "torch_cuda_version": "12.4",
+        "cuda_device": "NVIDIA GeForce GTX 1060"
+      },
+      "official_metrics": {
+        "H3": {
+          "Score": 31.37106596957245,
+          "MAE": 300.718348990772,
+          "RMSE": 480.0919420178601,
+          "R2": -0.3219060561169593
+        },
+        "H6": {
+          "Score": 31.406028620762772,
+          "MAE": 300.7643262848185,
+          "RMSE": 480.1477338007675,
+          "R2": -0.3222139202854353
+        },
+        "H10": {
+          "Score": 31.401971618688776,
+          "MAE": 300.8137049335209,
+          "RMSE": 480.2013826097908,
+          "R2": -0.3225205553886872
+        }
+      },
+      "recomputed_metrics_run_a": {
+        "H3": {
+          "Score": 31.371055589799344,
+          "MAE": 300.71833262179626,
+          "RMSE": 480.0919729730081,
+          "R2": -0.32190622658346935
+        },
+        "H6": {
+          "Score": 31.40601789662457,
+          "MAE": 300.7643174000819,
+          "RMSE": 480.1477696511792,
+          "R2": -0.32221411773264497
+        },
+        "H10": {
+          "Score": 31.40196315861635,
+          "MAE": 300.8136975431153,
+          "RMSE": 480.2014203546523,
+          "R2": -0.3225207632946161
+        }
+      },
+      "recomputed_metrics_run_b": {
+        "H3": {
+          "Score": 31.371055589799344,
+          "MAE": 300.71833262179626,
+          "RMSE": 480.0919729730081,
+          "R2": -0.32190622658346935
+        },
+        "H6": {
+          "Score": 31.40601789662457,
+          "MAE": 300.7643174000819,
+          "RMSE": 480.1477696511792,
+          "R2": -0.32221411773264497
+        },
+        "H10": {
+          "Score": 31.40196315861635,
+          "MAE": 300.8136975431153,
+          "RMSE": 480.2014203546523,
+          "R2": -0.3225207632946161
+        }
+      },
+      "metric_abs_diff": {
+        "H3": {
+          "Score": 1.0379773105029244e-05,
+          "MAE": 1.6368975707337086e-05,
+          "RMSE": 3.0955148019984335e-05,
+          "R2": 1.7046651001884072e-07
+        },
+        "H6": {
+          "Score": 1.0724138203244138e-05,
+          "MAE": 8.884736587333464e-06,
+          "RMSE": 3.585041167752934e-05,
+          "R2": 1.9744720969328e-07
+        },
+        "H10": {
+          "Score": 8.46007242572e-06,
+          "MAE": 7.390405585283588e-06,
+          "RMSE": 3.774486151542078e-05,
+          "R2": 2.0790592891728465e-07
+        }
+      },
+      "metric_rel_diff": {
+        "H3": {
+          "Score": 3.308709087251557e-07,
+          "MAE": 5.443291293089466e-08,
+          "RMSE": 6.44775413015217e-08,
+          "R2": 5.29553597329354e-07
+        },
+        "H6": {
+          "Score": 3.4146750398598076e-07,
+          "MAE": 2.954052662123159e-08,
+          "RMSE": 7.466537724492334e-08,
+          "R2": 6.127829906242726e-07
+        },
+        "H10": {
+          "Score": 2.694121416467053e-07,
+          "MAE": 2.4568048144338534e-08,
+          "RMSE": 7.860215085238948e-08,
+          "R2": 6.446284599340524e-07
+        }
+      },
+      "metric_max_abs_diff_by_horizon": {
+        "H3": 3.0955148019984335e-05,
+        "H6": 3.585041167752934e-05,
+        "H10": 3.774486151542078e-05
+      },
+      "run_a_vs_run_b_prediction": {
+        "shape_equal": true,
+        "mask_equal": true,
+        "sample_index_equal": true,
+        "y_true_equal": true,
+        "max_abs_pred_diff": 0.0,
+        "mean_abs_pred_diff": 0.0,
+        "rmse_pred_diff": 0.0,
+        "valid_max_abs_pred_diff": 0.0,
+        "valid_mean_abs_pred_diff": 0.0,
+        "valid_rmse_pred_diff": 0.0
+      },
+      "run_a_vs_run_b_pred_max_abs_diff": 0.0,
+      "run_a_vs_run_b_pred_mean_abs_diff": 0.0,
+      "run_a_vs_run_b_pred_rmse": 0.0,
+      "run_a_vs_run_b_metric_comparison": {
+        "H3": {
+          "Score": {
+            "run_a": 31.371055589799344,
+            "run_b": 31.371055589799344,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "MAE": {
+            "run_a": 300.71833262179626,
+            "run_b": 300.71833262179626,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "RMSE": {
+            "run_a": 480.0919729730081,
+            "run_b": 480.0919729730081,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "R2": {
+            "run_a": -0.32190622658346935,
+            "run_b": -0.32190622658346935,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          }
+        },
+        "H6": {
+          "Score": {
+            "run_a": 31.40601789662457,
+            "run_b": 31.40601789662457,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "MAE": {
+            "run_a": 300.7643174000819,
+            "run_b": 300.7643174000819,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "RMSE": {
+            "run_a": 480.1477696511792,
+            "run_b": 480.1477696511792,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "R2": {
+            "run_a": -0.32221411773264497,
+            "run_b": -0.32221411773264497,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          }
+        },
+        "H10": {
+          "Score": {
+            "run_a": 31.40196315861635,
+            "run_b": 31.40196315861635,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "MAE": {
+            "run_a": 300.8136975431153,
+            "run_b": 300.8136975431153,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "RMSE": {
+            "run_a": 480.2014203546523,
+            "run_b": 480.2014203546523,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "R2": {
+            "run_a": -0.3225207632946161,
+            "run_b": -0.3225207632946161,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          }
+        }
+      },
+      "alignment": {
+        "shape_ok": true,
+        "mask_exact": true,
+        "sample_index_exact": true,
+        "y_true_exact_on_valid_positions": true,
+        "y_true_aligned_within_float32_precision": true,
+        "y_true_valid_max_abs_diff": 0.0,
+        "valid_counts": {
+          "H3": 1256027,
+          "H6": 2512061,
+          "H10": 4186848
+        },
+        "valid_counts_exact": true,
+        "strong_alignment_gate_pass": true,
+        "alignment_reference": "LightTS exact export"
+      },
+      "classification": "PROTOCOL_MISMATCH",
+      "exact_reproduction_pass": false,
+      "visualization_reproduction_pass": false,
+      "figure_metric_policy": "Always read official metrics_eval_h3/h6/h10 JSON values."
+    },
+    {
+      "model_key": "micn",
+      "display_name": "MICN",
+      "formal_run_directory": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\MICN_node_shared_k12_16_d32_bs4_seed2026",
+      "formal_checkpoint_identified": true,
+      "formal_checkpoint_status": "IDENTIFIED",
+      "formal_state_audit": {
+        "formal_prediction_metadata_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\MICN_node_shared_k12_16_d32_bs4_seed2026\\prediction_metadata.json",
+        "formal_source_checkpoint": "best_checkpoint.pt",
+        "exporter_loaded_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\MICN_node_shared_k12_16_d32_bs4_seed2026\\best_checkpoint.pt",
+        "checkpoint_selection_matches_formal_metadata": true,
+        "effective_config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\MICN_node_shared_k12_16_d32_bs4_seed2026\\effective_config.json",
+        "formal_test_batch_size": 4,
+        "formal_amp_enabled_config": true,
+        "evaluation_autocast_enabled": false,
+        "evaluation_autocast_dtype": null,
+        "model_eval_called": true,
+        "torch_inference_mode_or_no_grad": true,
+        "strict_checkpoint_load": true,
+        "physical_clipping_matches_protocol": true,
+        "valid_target_mask_preserved": true,
+        "test_sample_stride": 1,
+        "node_order_preserved": true,
+        "test_split_signature_preserved": true,
+        "seed": 2026
+      },
+      "model_specific_diagnostic": null,
+      "checkpoint_identity": {
+        "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\MICN_node_shared_k12_16_d32_bs4_seed2026\\best_checkpoint.pt",
+        "checkpoint_epoch": 12,
+        "checkpoint_global_step": 19920,
+        "checkpoint_monitor_name": "validation_official_score_h10",
+        "checkpoint_monitor_value": 15.184009217198723,
+        "checkpoint_file_size": 1840625,
+        "checkpoint_last_write_time": 1786347972.0,
+        "checkpoint_strict_load": true
+      },
+      "checkpoint_hash": null,
+      "checkpoint_hash_note": "Not computed: workspace instructions prohibit hash/SHA256 generation; path, epoch, file size, modification time, monitor metadata, and strict state-dict loading are recorded instead.",
+      "config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\MICN_node_shared_k12_16_d32_bs4_seed2026\\effective_config.json",
+      "formal_metric_source": [
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\MICN_node_shared_k12_16_d32_bs4_seed2026\\metrics_eval_h3.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\MICN_node_shared_k12_16_d32_bs4_seed2026\\metrics_eval_h6.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\MICN_node_shared_k12_16_d32_bs4_seed2026\\metrics_eval_h10.json"
+      ],
+      "prediction_generated": true,
+      "prediction_run_a_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\prediction_exports\\candidates\\micn_predictions_candidate.npz",
+      "prediction_run_b_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\prediction_exports\\candidates\\micn_predictions_candidate_run_b.npz",
+      "prediction_role": "candidate_visualization_prediction",
+      "prediction_shape": [
+        5104,
+        134,
+        10
+      ],
+      "dtype": {
+        "y_true_snh": "float32",
+        "y_pred_eval_snh": "float32",
+        "valid_target_mask_snh": "bool"
+      },
+      "physical_clipping_applied": true,
+      "physical_clip_range_kw": [
+        0.0,
+        1500.0
+      ],
+      "batch_size": 4,
+      "seed": 2026,
+      "dataset_signature": {
+        "dataset_id": "SDWPF",
+        "timeline_shape": [
+          52559,
+          134,
+          16
+        ],
+        "timestamp_count": 52559,
+        "first_timestamp": "2021-01-01 00:10:00",
+        "last_timestamp": "2021-12-31 23:50:00",
+        "node_count": 134,
+        "node_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134
+        ],
+        "feature_names": [
+          "Wspd",
+          "Wdir",
+          "Etmp",
+          "Itmp",
+          "Ndir",
+          "Pab1",
+          "Pab2",
+          "Pab3",
+          "Prtv",
+          "T2m",
+          "Sp",
+          "RelH",
+          "Wspd_w",
+          "Wdir_w",
+          "Tp",
+          "Patv_clean_for_input"
+        ],
+        "split_ratio": [
+          0.8,
+          0.1,
+          0.1
+        ],
+        "lookback": 144,
+        "max_pred_len": 10,
+        "test_sample_stride": 1
+      },
+      "runtime_run_a": {
+        "python_executable": "D:\\Apps\\Miniconda3\\python.exe",
+        "python_version": "3.11.15",
+        "torch_version": "2.5.1+cu124",
+        "torch_cuda_version": "12.4",
+        "cuda_device": "NVIDIA GeForce GTX 1060"
+      },
+      "runtime_run_b": {
+        "python_executable": "D:\\Apps\\Miniconda3\\python.exe",
+        "python_version": "3.11.15",
+        "torch_version": "2.5.1+cu124",
+        "torch_cuda_version": "12.4",
+        "cuda_device": "NVIDIA GeForce GTX 1060"
+      },
+      "official_metrics": {
+        "H3": {
+          "Score": 8.217346203923176,
+          "MAE": 77.37569451492026,
+          "RMSE": 118.15964943431953,
+          "R2": 0.919926253941875
+        },
+        "H6": {
+          "Score": 10.801057897138683,
+          "MAE": 99.43001949409533,
+          "RMSE": 148.01268882327193,
+          "R2": 0.8743536564695427
+        },
+        "H10": {
+          "Score": 13.745027899258561,
+          "MAE": 122.21004136268577,
+          "RMSE": 177.23770631906388,
+          "R2": 0.8198360642289512
+        }
+      },
+      "recomputed_metrics_run_a": {
+        "H3": {
+          "Score": 8.217370475908004,
+          "MAE": 77.3758453919901,
+          "RMSE": 118.15977740274232,
+          "R2": 0.9199260804999836
+        },
+        "H6": {
+          "Score": 10.801105333412185,
+          "MAE": 99.4302025564816,
+          "RMSE": 148.0127708005439,
+          "R2": 0.8743535172902952
+        },
+        "H10": {
+          "Score": 13.745065847299564,
+          "MAE": 122.2101985978356,
+          "RMSE": 177.2377385132089,
+          "R2": 0.8198359987775918
+        }
+      },
+      "recomputed_metrics_run_b": {
+        "H3": {
+          "Score": 8.217370475908004,
+          "MAE": 77.3758453919901,
+          "RMSE": 118.15977740274232,
+          "R2": 0.9199260804999836
+        },
+        "H6": {
+          "Score": 10.801105333412185,
+          "MAE": 99.4302025564816,
+          "RMSE": 148.0127708005439,
+          "R2": 0.8743535172902952
+        },
+        "H10": {
+          "Score": 13.745065847299564,
+          "MAE": 122.2101985978356,
+          "RMSE": 177.2377385132089,
+          "R2": 0.8198359987775918
+        }
+      },
+      "metric_abs_diff": {
+        "H3": {
+          "Score": 2.4271984827350934e-05,
+          "MAE": 0.0001508770698421813,
+          "RMSE": 0.00012796842278817167,
+          "R2": 1.7344189140455768e-07
+        },
+        "H6": {
+          "Score": 4.743627350123347e-05,
+          "MAE": 0.0001830623862701941,
+          "RMSE": 8.197727197511995e-05,
+          "R2": 1.391792474603193e-07
+        },
+        "H10": {
+          "Score": 3.794804100287763e-05,
+          "MAE": 0.00015723514982823872,
+          "RMSE": 3.219414503519147e-05,
+          "R2": 6.545135933233581e-08
+        }
+      },
+      "metric_rel_diff": {
+        "H3": {
+          "Score": 2.9537498147227692e-06,
+          "MAE": 1.9499284728628556e-06,
+          "RMSE": 1.0830128846929634e-06,
+          "R2": 1.8853890804981472e-07
+        },
+        "H6": {
+          "Score": 4.391817352798364e-06,
+          "MAE": 1.8411178756840663e-06,
+          "RMSE": 5.538530015693541e-07,
+          "R2": 1.5917957960202968e-07
+        },
+        "H10": {
+          "Score": 2.7608558731935814e-06,
+          "MAE": 1.286597632035882e-06,
+          "RMSE": 1.8164388212762958e-07,
+          "R2": 7.983469157811721e-08
+        }
+      },
+      "metric_max_abs_diff_by_horizon": {
+        "H3": 0.0001508770698421813,
+        "H6": 0.0001830623862701941,
+        "H10": 0.00015723514982823872
+      },
+      "run_a_vs_run_b_prediction": {
+        "shape_equal": true,
+        "mask_equal": true,
+        "sample_index_equal": true,
+        "y_true_equal": true,
+        "max_abs_pred_diff": 0.0,
+        "mean_abs_pred_diff": 0.0,
+        "rmse_pred_diff": 0.0,
+        "valid_max_abs_pred_diff": 0.0,
+        "valid_mean_abs_pred_diff": 0.0,
+        "valid_rmse_pred_diff": 0.0
+      },
+      "run_a_vs_run_b_pred_max_abs_diff": 0.0,
+      "run_a_vs_run_b_pred_mean_abs_diff": 0.0,
+      "run_a_vs_run_b_pred_rmse": 0.0,
+      "run_a_vs_run_b_metric_comparison": {
+        "H3": {
+          "Score": {
+            "run_a": 8.217370475908004,
+            "run_b": 8.217370475908004,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "MAE": {
+            "run_a": 77.3758453919901,
+            "run_b": 77.3758453919901,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "RMSE": {
+            "run_a": 118.15977740274232,
+            "run_b": 118.15977740274232,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "R2": {
+            "run_a": 0.9199260804999836,
+            "run_b": 0.9199260804999836,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          }
+        },
+        "H6": {
+          "Score": {
+            "run_a": 10.801105333412185,
+            "run_b": 10.801105333412185,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "MAE": {
+            "run_a": 99.4302025564816,
+            "run_b": 99.4302025564816,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "RMSE": {
+            "run_a": 148.0127708005439,
+            "run_b": 148.0127708005439,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "R2": {
+            "run_a": 0.8743535172902952,
+            "run_b": 0.8743535172902952,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          }
+        },
+        "H10": {
+          "Score": {
+            "run_a": 13.745065847299564,
+            "run_b": 13.745065847299564,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "MAE": {
+            "run_a": 122.2101985978356,
+            "run_b": 122.2101985978356,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "RMSE": {
+            "run_a": 177.2377385132089,
+            "run_b": 177.2377385132089,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "R2": {
+            "run_a": 0.8198359987775918,
+            "run_b": 0.8198359987775918,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          }
+        }
+      },
+      "alignment": {
+        "shape_ok": true,
+        "mask_exact": true,
+        "sample_index_exact": true,
+        "y_true_exact_on_valid_positions": true,
+        "y_true_aligned_within_float32_precision": true,
+        "y_true_valid_max_abs_diff": 0.0,
+        "valid_counts": {
+          "H3": 1256027,
+          "H6": 2512061,
+          "H10": 4186848
+        },
+        "valid_counts_exact": true,
+        "strong_alignment_gate_pass": true,
+        "alignment_reference": "LightTS exact export"
+      },
+      "classification": "PROTOCOL_MISMATCH",
+      "exact_reproduction_pass": false,
+      "visualization_reproduction_pass": false,
+      "figure_metric_policy": "Always read official metrics_eval_h3/h6/h10 JSON values."
+    },
+    {
+      "model_key": "timesnet",
+      "display_name": "TimesNet",
+      "formal_run_directory": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\TimesNet_node_shared_d32_k5_bs4_seed2026",
+      "formal_checkpoint_identified": true,
+      "formal_checkpoint_status": "IDENTIFIED",
+      "formal_state_audit": {
+        "formal_prediction_metadata_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\TimesNet_node_shared_d32_k5_bs4_seed2026\\prediction_metadata.json",
+        "formal_source_checkpoint": "best_checkpoint.pt",
+        "exporter_loaded_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\TimesNet_node_shared_d32_k5_bs4_seed2026\\best_checkpoint.pt",
+        "checkpoint_selection_matches_formal_metadata": true,
+        "effective_config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\TimesNet_node_shared_d32_k5_bs4_seed2026\\effective_config.json",
+        "formal_test_batch_size": 4,
+        "formal_amp_enabled_config": true,
+        "evaluation_autocast_enabled": false,
+        "evaluation_autocast_dtype": null,
+        "model_eval_called": true,
+        "torch_inference_mode_or_no_grad": true,
+        "strict_checkpoint_load": true,
+        "physical_clipping_matches_protocol": true,
+        "valid_target_mask_preserved": true,
+        "test_sample_stride": 1,
+        "node_order_preserved": true,
+        "test_split_signature_preserved": true,
+        "seed": 2026
+      },
+      "model_specific_diagnostic": null,
+      "checkpoint_identity": {
+        "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\TimesNet_node_shared_d32_k5_bs4_seed2026\\best_checkpoint.pt",
+        "checkpoint_epoch": 19,
+        "checkpoint_global_step": 31540,
+        "checkpoint_monitor_name": "validation_official_score_h10",
+        "checkpoint_monitor_value": 17.973926175038503,
+        "checkpoint_file_size": 15088254,
+        "checkpoint_last_write_time": 1786331384.0,
+        "checkpoint_strict_load": true
+      },
+      "checkpoint_hash": null,
+      "checkpoint_hash_note": "Not computed: workspace instructions prohibit hash/SHA256 generation; path, epoch, file size, modification time, monitor metadata, and strict state-dict loading are recorded instead.",
+      "config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\TimesNet_node_shared_d32_k5_bs4_seed2026\\effective_config.json",
+      "formal_metric_source": [
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\TimesNet_node_shared_d32_k5_bs4_seed2026\\metrics_eval_h3.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\TimesNet_node_shared_d32_k5_bs4_seed2026\\metrics_eval_h6.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\TimesNet_node_shared_d32_k5_bs4_seed2026\\metrics_eval_h10.json"
+      ],
+      "prediction_generated": true,
+      "prediction_run_a_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\prediction_exports\\candidates\\timesnet_predictions_candidate.npz",
+      "prediction_run_b_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\prediction_exports\\candidates\\timesnet_predictions_candidate_run_b.npz",
+      "prediction_role": "candidate_visualization_prediction",
+      "prediction_shape": [
+        5104,
+        134,
+        10
+      ],
+      "dtype": {
+        "y_true_snh": "float32",
+        "y_pred_eval_snh": "float32",
+        "valid_target_mask_snh": "bool"
+      },
+      "physical_clipping_applied": true,
+      "physical_clip_range_kw": [
+        0.0,
+        1500.0
+      ],
+      "batch_size": 4,
+      "seed": 2026,
+      "dataset_signature": {
+        "dataset_id": "SDWPF",
+        "timeline_shape": [
+          52559,
+          134,
+          16
+        ],
+        "timestamp_count": 52559,
+        "first_timestamp": "2021-01-01 00:10:00",
+        "last_timestamp": "2021-12-31 23:50:00",
+        "node_count": 134,
+        "node_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134
+        ],
+        "feature_names": [
+          "Wspd",
+          "Wdir",
+          "Etmp",
+          "Itmp",
+          "Ndir",
+          "Pab1",
+          "Pab2",
+          "Pab3",
+          "Prtv",
+          "T2m",
+          "Sp",
+          "RelH",
+          "Wspd_w",
+          "Wdir_w",
+          "Tp",
+          "Patv_clean_for_input"
+        ],
+        "split_ratio": [
+          0.8,
+          0.1,
+          0.1
+        ],
+        "lookback": 144,
+        "max_pred_len": 10,
+        "test_sample_stride": 1
+      },
+      "runtime_run_a": {
+        "python_executable": "D:\\Apps\\Miniconda3\\python.exe",
+        "python_version": "3.11.15",
+        "torch_version": "2.5.1+cu124",
+        "torch_cuda_version": "12.4",
+        "cuda_device": "NVIDIA GeForce GTX 1060"
+      },
+      "runtime_run_b": {
+        "python_executable": "D:\\Apps\\Miniconda3\\python.exe",
+        "python_version": "3.11.15",
+        "torch_version": "2.5.1+cu124",
+        "torch_cuda_version": "12.4",
+        "cuda_device": "NVIDIA GeForce GTX 1060"
+      },
+      "official_metrics": {
+        "H3": {
+          "Score": 13.084111330057713,
+          "MAE": 109.36456974392858,
+          "RMSE": 148.20290788178184,
+          "R2": 0.874030557071878
+        },
+        "H6": {
+          "Score": 14.384845289773184,
+          "MAE": 120.71604566539524,
+          "RMSE": 165.32555821612607,
+          "R2": 0.8432411915121412
+        },
+        "H10": {
+          "Score": 15.715748568587275,
+          "MAE": 132.666798705965,
+          "RMSE": 183.17128008281063,
+          "R2": 0.807571063585997
+        }
+      },
+      "recomputed_metrics_run_a": {
+        "H3": {
+          "Score": 13.084140130710137,
+          "MAE": 109.36522806119838,
+          "RMSE": 148.204211476375,
+          "R2": 0.8740283410046057
+        },
+        "H6": {
+          "Score": 14.384835963510488,
+          "MAE": 120.7162835036609,
+          "RMSE": 165.32617652732225,
+          "R2": 0.8432400189661817
+        },
+        "H10": {
+          "Score": 15.71573117493978,
+          "MAE": 132.66684960901725,
+          "RMSE": 183.17168456763167,
+          "R2": 0.8075702137292966
+        }
+      },
+      "recomputed_metrics_run_b": {
+        "H3": {
+          "Score": 13.084140130710137,
+          "MAE": 109.36522806119838,
+          "RMSE": 148.204211476375,
+          "R2": 0.8740283410046057
+        },
+        "H6": {
+          "Score": 14.384835963510488,
+          "MAE": 120.7162835036609,
+          "RMSE": 165.32617652732225,
+          "R2": 0.8432400189661817
+        },
+        "H10": {
+          "Score": 15.71573117493978,
+          "MAE": 132.66684960901725,
+          "RMSE": 183.17168456763167,
+          "R2": 0.8075702137292966
+        }
+      },
+      "metric_abs_diff": {
+        "H3": {
+          "Score": 2.8800652424720852e-05,
+          "MAE": 0.0006583172697958162,
+          "RMSE": 0.0013035945931676451,
+          "R2": 2.2160672723536834e-06
+        },
+        "H6": {
+          "Score": 9.32626269545267e-06,
+          "MAE": 0.00023783826566159405,
+          "RMSE": 0.0006183111961775012,
+          "R2": 1.1725459594380538e-06
+        },
+        "H10": {
+          "Score": 1.7393647494756692e-05,
+          "MAE": 5.090305225508018e-05,
+          "RMSE": 0.0004044848210469354,
+          "R2": 8.498567003467628e-07
+        }
+      },
+      "metric_rel_diff": {
+        "H3": {
+          "Score": 2.2011928588958143e-06,
+          "MAE": 6.0194747836271985e-06,
+          "RMSE": 8.796012249688741e-06,
+          "R2": 2.535457432721588e-06
+        },
+        "H6": {
+          "Score": 6.483394508304596e-07,
+          "MAE": 1.970229097139597e-06,
+          "RMSE": 3.7399613396084714e-06,
+          "R2": 1.3905226301094083e-06
+        },
+        "H10": {
+          "Score": 1.1067654473375332e-06,
+          "MAE": 3.836909667798554e-07,
+          "RMSE": 2.208232758236282e-06,
+          "R2": 1.052361505590601e-06
+        }
+      },
+      "metric_max_abs_diff_by_horizon": {
+        "H3": 0.0013035945931676451,
+        "H6": 0.0006183111961775012,
+        "H10": 0.0004044848210469354
+      },
+      "run_a_vs_run_b_prediction": {
+        "shape_equal": true,
+        "mask_equal": true,
+        "sample_index_equal": true,
+        "y_true_equal": true,
+        "max_abs_pred_diff": 0.0,
+        "mean_abs_pred_diff": 0.0,
+        "rmse_pred_diff": 0.0,
+        "valid_max_abs_pred_diff": 0.0,
+        "valid_mean_abs_pred_diff": 0.0,
+        "valid_rmse_pred_diff": 0.0
+      },
+      "run_a_vs_run_b_pred_max_abs_diff": 0.0,
+      "run_a_vs_run_b_pred_mean_abs_diff": 0.0,
+      "run_a_vs_run_b_pred_rmse": 0.0,
+      "run_a_vs_run_b_metric_comparison": {
+        "H3": {
+          "Score": {
+            "run_a": 13.084140130710137,
+            "run_b": 13.084140130710137,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "MAE": {
+            "run_a": 109.36522806119838,
+            "run_b": 109.36522806119838,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "RMSE": {
+            "run_a": 148.204211476375,
+            "run_b": 148.204211476375,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "R2": {
+            "run_a": 0.8740283410046057,
+            "run_b": 0.8740283410046057,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          }
+        },
+        "H6": {
+          "Score": {
+            "run_a": 14.384835963510488,
+            "run_b": 14.384835963510488,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "MAE": {
+            "run_a": 120.7162835036609,
+            "run_b": 120.7162835036609,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "RMSE": {
+            "run_a": 165.32617652732225,
+            "run_b": 165.32617652732225,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "R2": {
+            "run_a": 0.8432400189661817,
+            "run_b": 0.8432400189661817,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          }
+        },
+        "H10": {
+          "Score": {
+            "run_a": 15.71573117493978,
+            "run_b": 15.71573117493978,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "MAE": {
+            "run_a": 132.66684960901725,
+            "run_b": 132.66684960901725,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "RMSE": {
+            "run_a": 183.17168456763167,
+            "run_b": 183.17168456763167,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "R2": {
+            "run_a": 0.8075702137292966,
+            "run_b": 0.8075702137292966,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          }
+        }
+      },
+      "alignment": {
+        "shape_ok": true,
+        "mask_exact": true,
+        "sample_index_exact": true,
+        "y_true_exact_on_valid_positions": true,
+        "y_true_aligned_within_float32_precision": true,
+        "y_true_valid_max_abs_diff": 0.0,
+        "valid_counts": {
+          "H3": 1256027,
+          "H6": 2512061,
+          "H10": 4186848
+        },
+        "valid_counts_exact": true,
+        "strong_alignment_gate_pass": true,
+        "alignment_reference": "LightTS exact export"
+      },
+      "classification": "PROTOCOL_MISMATCH",
+      "exact_reproduction_pass": false,
+      "visualization_reproduction_pass": false,
+      "figure_metric_policy": "Always read official metrics_eval_h3/h6/h10 JSON values."
+    },
+    {
+      "model_key": "wpmixer",
+      "display_name": "WPMixer",
+      "formal_run_directory": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\WPMixer_node_shared_db2_l1_p16_s8_d256_bs4_seed2026",
+      "formal_checkpoint_identified": true,
+      "formal_checkpoint_status": "IDENTIFIED",
+      "formal_state_audit": {
+        "formal_prediction_metadata_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\WPMixer_node_shared_db2_l1_p16_s8_d256_bs4_seed2026\\prediction_metadata.json",
+        "formal_source_checkpoint": "best_checkpoint.pt",
+        "exporter_loaded_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\WPMixer_node_shared_db2_l1_p16_s8_d256_bs4_seed2026\\best_checkpoint.pt",
+        "checkpoint_selection_matches_formal_metadata": true,
+        "effective_config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\WPMixer_node_shared_db2_l1_p16_s8_d256_bs4_seed2026\\effective_config.json",
+        "formal_test_batch_size": 4,
+        "formal_amp_enabled_config": false,
+        "evaluation_autocast_enabled": false,
+        "evaluation_autocast_dtype": null,
+        "model_eval_called": true,
+        "torch_inference_mode_or_no_grad": true,
+        "strict_checkpoint_load": true,
+        "physical_clipping_matches_protocol": true,
+        "valid_target_mask_preserved": true,
+        "test_sample_stride": 1,
+        "node_order_preserved": true,
+        "test_split_signature_preserved": true,
+        "seed": 2026
+      },
+      "model_specific_diagnostic": null,
+      "checkpoint_identity": {
+        "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\WPMixer_node_shared_db2_l1_p16_s8_d256_bs4_seed2026\\best_checkpoint.pt",
+        "checkpoint_epoch": 12,
+        "checkpoint_global_step": 19920,
+        "checkpoint_monitor_name": "validation_official_score_h10",
+        "checkpoint_monitor_value": 23.10344800938784,
+        "checkpoint_file_size": 32130200,
+        "checkpoint_last_write_time": 1787052536.0,
+        "checkpoint_strict_load": true
+      },
+      "checkpoint_hash": null,
+      "checkpoint_hash_note": "Not computed: workspace instructions prohibit hash/SHA256 generation; path, epoch, file size, modification time, monitor metadata, and strict state-dict loading are recorded instead.",
+      "config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\WPMixer_node_shared_db2_l1_p16_s8_d256_bs4_seed2026\\effective_config.json",
+      "formal_metric_source": [
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\WPMixer_node_shared_db2_l1_p16_s8_d256_bs4_seed2026\\metrics_eval_h3.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\WPMixer_node_shared_db2_l1_p16_s8_d256_bs4_seed2026\\metrics_eval_h6.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\WPMixer_node_shared_db2_l1_p16_s8_d256_bs4_seed2026\\metrics_eval_h10.json"
+      ],
+      "prediction_generated": true,
+      "prediction_run_a_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\prediction_exports\\wpmixer_predictions.npz",
+      "prediction_run_b_path": null,
+      "prediction_role": "exact_formal_reproduction",
+      "prediction_shape": [
+        5104,
+        134,
+        10
+      ],
+      "dtype": {
+        "y_true_snh": "float32",
+        "y_pred_eval_snh": "float32",
+        "valid_target_mask_snh": "bool"
+      },
+      "physical_clipping_applied": true,
+      "physical_clip_range_kw": [
+        0.0,
+        1500.0
+      ],
+      "batch_size": 4,
+      "seed": 2026,
+      "dataset_signature": {
+        "dataset_id": "SDWPF",
+        "timeline_shape": [
+          52559,
+          134,
+          16
+        ],
+        "timestamp_count": 52559,
+        "first_timestamp": "2021-01-01 00:10:00",
+        "last_timestamp": "2021-12-31 23:50:00",
+        "node_count": 134,
+        "node_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134
+        ],
+        "feature_names": [
+          "Wspd",
+          "Wdir",
+          "Etmp",
+          "Itmp",
+          "Ndir",
+          "Pab1",
+          "Pab2",
+          "Pab3",
+          "Prtv",
+          "T2m",
+          "Sp",
+          "RelH",
+          "Wspd_w",
+          "Wdir_w",
+          "Tp",
+          "Patv_clean_for_input"
+        ],
+        "split_ratio": [
+          0.8,
+          0.1,
+          0.1
+        ],
+        "lookback": 144,
+        "max_pred_len": 10,
+        "test_sample_stride": 1
+      },
+      "runtime_run_a": {
+        "python_executable": "D:\\Apps\\Miniconda3\\python.exe",
+        "python_version": "3.11.15",
+        "torch_version": "2.5.1+cu124",
+        "torch_cuda_version": "12.4",
+        "cuda_device": "NVIDIA GeForce GTX 1060"
+      },
+      "runtime_run_b": null,
+      "official_metrics": {
+        "H3": {
+          "Score": 17.1631357981446,
+          "MAE": 124.69003202737977,
+          "RMSE": 161.00369193179685,
+          "R2": 0.8513299702046473
+        },
+        "H6": {
+          "Score": 20.92502484549638,
+          "MAE": 154.73803380851714,
+          "RMSE": 207.47743674893326,
+          "R2": 0.7531155674391053
+        },
+        "H10": {
+          "Score": 24.130795295133154,
+          "MAE": 182.1514227078401,
+          "RMSE": 248.49758668140333,
+          "R2": 0.6458396246377505
+        }
+      },
+      "recomputed_metrics_run_a": {
+        "H3": {
+          "Score": 17.163135718132068,
+          "MAE": 124.69003154800168,
+          "RMSE": 161.00369155751096,
+          "R2": 0.8513299708958748
+        },
+        "H6": {
+          "Score": 20.925024774714284,
+          "MAE": 154.7380334471623,
+          "RMSE": 207.47743649754585,
+          "R2": 0.7531155680373741
+        },
+        "H10": {
+          "Score": 24.130795253995576,
+          "MAE": 182.15142251332085,
+          "RMSE": 248.49758657484352,
+          "R2": 0.6458396249414898
+        }
+      },
+      "recomputed_metrics_run_b": null,
+      "metric_abs_diff": {
+        "H3": {
+          "Score": 8.001253348766113e-08,
+          "MAE": 4.793780874479125e-07,
+          "RMSE": 3.742858893929224e-07,
+          "R2": 6.912275196668816e-10
+        },
+        "H6": {
+          "Score": 7.078209662836343e-08,
+          "MAE": 3.6135483583166206e-07,
+          "RMSE": 2.5138740511465585e-07,
+          "R2": 5.982687678596221e-10
+        },
+        "H10": {
+          "Score": 4.113757867685308e-08,
+          "MAE": 1.9451925936664338e-07,
+          "RMSE": 1.0655980986484792e-07,
+          "R2": 3.037393669913513e-10
+        }
+      },
+      "metric_rel_diff": {
+        "H3": {
+          "Score": 4.661883144705456e-09,
+          "MAE": 3.844558218917206e-09,
+          "RMSE": 2.3247037686034835e-09,
+          "R2": 8.119384302901031e-10
+        },
+        "H6": {
+          "Score": 3.3826529311671338e-09,
+          "MAE": 2.335268368983064e-09,
+          "RMSE": 1.2116373185140978e-09,
+          "R2": 7.943917158610538e-10
+        },
+        "H10": {
+          "Score": 1.704775088169181e-09,
+          "MAE": 1.0678986552778153e-09,
+          "RMSE": 4.288162766001722e-10,
+          "R2": 4.703015352483487e-10
+        }
+      },
+      "metric_max_abs_diff_by_horizon": {
+        "H3": 4.793780874479125e-07,
+        "H6": 3.6135483583166206e-07,
+        "H10": 1.9451925936664338e-07
+      },
+      "run_a_vs_run_b_prediction": null,
+      "run_a_vs_run_b_pred_max_abs_diff": null,
+      "run_a_vs_run_b_pred_mean_abs_diff": null,
+      "run_a_vs_run_b_pred_rmse": null,
+      "run_a_vs_run_b_metric_comparison": null,
+      "alignment": {
+        "shape_ok": true,
+        "mask_exact": true,
+        "sample_index_exact": true,
+        "y_true_exact_on_valid_positions": true,
+        "y_true_aligned_within_float32_precision": true,
+        "y_true_valid_max_abs_diff": 0.0,
+        "valid_counts": {
+          "H3": 1256027,
+          "H6": 2512061,
+          "H10": 4186848
+        },
+        "valid_counts_exact": true,
+        "strong_alignment_gate_pass": true,
+        "alignment_reference": "LightTS exact export"
+      },
+      "classification": "EXACT_PASS",
+      "exact_reproduction_pass": true,
+      "visualization_reproduction_pass": true,
+      "figure_metric_policy": "Always read official metrics_eval_h3/h6/h10 JSON values."
+    },
+    {
+      "model_key": "frets",
+      "display_name": "FreTS",
+      "formal_run_directory": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_c_seed2026\\FreTS_node_shared_tcfft_e128_h256_bs4_seed2026",
+      "formal_checkpoint_identified": true,
+      "formal_checkpoint_status": "IDENTIFIED",
+      "formal_state_audit": {
+        "formal_prediction_metadata_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_c_seed2026\\FreTS_node_shared_tcfft_e128_h256_bs4_seed2026\\prediction_metadata.json",
+        "formal_source_checkpoint": "best_checkpoint.pt",
+        "exporter_loaded_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_c_seed2026\\FreTS_node_shared_tcfft_e128_h256_bs4_seed2026\\best_checkpoint.pt",
+        "checkpoint_selection_matches_formal_metadata": true,
+        "effective_config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_c_seed2026\\FreTS_node_shared_tcfft_e128_h256_bs4_seed2026\\effective_config.json",
+        "formal_test_batch_size": 4,
+        "formal_amp_enabled_config": true,
+        "evaluation_autocast_enabled": false,
+        "evaluation_autocast_dtype": null,
+        "model_eval_called": true,
+        "torch_inference_mode_or_no_grad": true,
+        "strict_checkpoint_load": true,
+        "physical_clipping_matches_protocol": true,
+        "valid_target_mask_preserved": true,
+        "test_sample_stride": 1,
+        "node_order_preserved": true,
+        "test_split_signature_preserved": true,
+        "seed": 2026
+      },
+      "model_specific_diagnostic": null,
+      "checkpoint_identity": {
+        "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_c_seed2026\\FreTS_node_shared_tcfft_e128_h256_bs4_seed2026\\best_checkpoint.pt",
+        "checkpoint_epoch": 9,
+        "checkpoint_global_step": 14940,
+        "checkpoint_monitor_name": "validation_official_score_h10",
+        "checkpoint_monitor_value": 18.481312535613686,
+        "checkpoint_file_size": 57484658,
+        "checkpoint_last_write_time": 1786747336.0,
+        "checkpoint_strict_load": true
+      },
+      "checkpoint_hash": null,
+      "checkpoint_hash_note": "Not computed: workspace instructions prohibit hash/SHA256 generation; path, epoch, file size, modification time, monitor metadata, and strict state-dict loading are recorded instead.",
+      "config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_c_seed2026\\FreTS_node_shared_tcfft_e128_h256_bs4_seed2026\\effective_config.json",
+      "formal_metric_source": [
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_c_seed2026\\FreTS_node_shared_tcfft_e128_h256_bs4_seed2026\\metrics_eval_h3.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_c_seed2026\\FreTS_node_shared_tcfft_e128_h256_bs4_seed2026\\metrics_eval_h6.json",
+        "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_c_seed2026\\FreTS_node_shared_tcfft_e128_h256_bs4_seed2026\\metrics_eval_h10.json"
+      ],
+      "prediction_generated": true,
+      "prediction_run_a_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\prediction_exports\\candidates\\frets_predictions_candidate.npz",
+      "prediction_run_b_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\prediction_exports\\candidates\\frets_predictions_candidate_run_b.npz",
+      "prediction_role": "candidate_visualization_prediction",
+      "prediction_shape": [
+        5104,
+        134,
+        10
+      ],
+      "dtype": {
+        "y_true_snh": "float32",
+        "y_pred_eval_snh": "float32",
+        "valid_target_mask_snh": "bool"
+      },
+      "physical_clipping_applied": true,
+      "physical_clip_range_kw": [
+        0.0,
+        1500.0
+      ],
+      "batch_size": 4,
+      "seed": 2026,
+      "dataset_signature": {
+        "dataset_id": "SDWPF",
+        "timeline_shape": [
+          52559,
+          134,
+          16
+        ],
+        "timestamp_count": 52559,
+        "first_timestamp": "2021-01-01 00:10:00",
+        "last_timestamp": "2021-12-31 23:50:00",
+        "node_count": 134,
+        "node_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134
+        ],
+        "feature_names": [
+          "Wspd",
+          "Wdir",
+          "Etmp",
+          "Itmp",
+          "Ndir",
+          "Pab1",
+          "Pab2",
+          "Pab3",
+          "Prtv",
+          "T2m",
+          "Sp",
+          "RelH",
+          "Wspd_w",
+          "Wdir_w",
+          "Tp",
+          "Patv_clean_for_input"
+        ],
+        "split_ratio": [
+          0.8,
+          0.1,
+          0.1
+        ],
+        "lookback": 144,
+        "max_pred_len": 10,
+        "test_sample_stride": 1
+      },
+      "runtime_run_a": {
+        "python_executable": "D:\\Apps\\Miniconda3\\python.exe",
+        "python_version": "3.11.15",
+        "torch_version": "2.5.1+cu124",
+        "torch_cuda_version": "12.4",
+        "cuda_device": "NVIDIA GeForce GTX 1060"
+      },
+      "runtime_run_b": {
+        "python_executable": "D:\\Apps\\Miniconda3\\python.exe",
+        "python_version": "3.11.15",
+        "torch_version": "2.5.1+cu124",
+        "torch_cuda_version": "12.4",
+        "cuda_device": "NVIDIA GeForce GTX 1060"
+      },
+      "official_metrics": {
+        "H3": {
+          "Score": 16.307395485789485,
+          "MAE": 175.70665388928106,
+          "RMSE": 238.7568343911772,
+          "R2": 0.6730635196171225
+        },
+        "H6": {
+          "Score": 16.280157825912163,
+          "MAE": 166.76391224248957,
+          "RMSE": 233.66520633878687,
+          "R2": 0.6868589118554931
+        },
+        "H10": {
+          "Score": 17.195629154727452,
+          "MAE": 170.40372779225228,
+          "RMSE": 240.7866957307852,
+          "R2": 0.6674778402833224
+        }
+      },
+      "recomputed_metrics_run_a": {
+        "H3": {
+          "Score": 16.307398376565647,
+          "MAE": 175.70668294885004,
+          "RMSE": 238.7568936135908,
+          "R2": 0.6730633574272533
+        },
+        "H6": {
+          "Score": 16.280162100718222,
+          "MAE": 166.76393410462197,
+          "RMSE": 233.66525327573626,
+          "R2": 0.6868587860525195
+        },
+        "H10": {
+          "Score": 17.19563310513527,
+          "MAE": 170.40374864211364,
+          "RMSE": 240.78673538263152,
+          "R2": 0.6674777307663191
+        }
+      },
+      "recomputed_metrics_run_b": {
+        "H3": {
+          "Score": 16.307398376565647,
+          "MAE": 175.70668294885004,
+          "RMSE": 238.7568936135908,
+          "R2": 0.6730633574272533
+        },
+        "H6": {
+          "Score": 16.280162100718222,
+          "MAE": 166.76393410462197,
+          "RMSE": 233.66525327573626,
+          "R2": 0.6868587860525195
+        },
+        "H10": {
+          "Score": 17.19563310513527,
+          "MAE": 170.40374864211364,
+          "RMSE": 240.78673538263152,
+          "R2": 0.6674777307663191
+        }
+      },
+      "metric_abs_diff": {
+        "H3": {
+          "Score": 2.8907761624452633e-06,
+          "MAE": 2.9059568987577222e-05,
+          "RMSE": 5.922241359712643e-05,
+          "R2": 1.6218986920168987e-07
+        },
+        "H6": {
+          "Score": 4.274806059356706e-06,
+          "MAE": 2.1862132399519396e-05,
+          "RMSE": 4.6936949388509674e-05,
+          "R2": 1.258029735939914e-07
+        },
+        "H10": {
+          "Score": 3.9504078159779965e-06,
+          "MAE": 2.0849861357419286e-05,
+          "RMSE": 3.965184632193086e-05,
+          "R2": 1.0951700324390856e-07
+        }
+      },
+      "metric_rel_diff": {
+        "H3": {
+          "Score": 1.7726780251109565e-07,
+          "MAE": 1.6538684417659378e-07,
+          "RMSE": 2.4804489365986874e-07,
+          "R2": 2.409726043300532e-07
+        },
+        "H6": {
+          "Score": 2.625776792257352e-07,
+          "MAE": 1.3109630318416798e-07,
+          "RMSE": 2.0087265076365995e-07,
+          "R2": 1.831569357586771e-07
+        },
+        "H10": {
+          "Score": 2.297332525859889e-07,
+          "MAE": 1.2235566455939505e-07,
+          "RMSE": 1.6467623429769617e-07,
+          "R2": 1.6407586384803755e-07
+        }
+      },
+      "metric_max_abs_diff_by_horizon": {
+        "H3": 5.922241359712643e-05,
+        "H6": 4.6936949388509674e-05,
+        "H10": 3.965184632193086e-05
+      },
+      "run_a_vs_run_b_prediction": {
+        "shape_equal": true,
+        "mask_equal": true,
+        "sample_index_equal": true,
+        "y_true_equal": true,
+        "max_abs_pred_diff": 0.0,
+        "mean_abs_pred_diff": 0.0,
+        "rmse_pred_diff": 0.0,
+        "valid_max_abs_pred_diff": 0.0,
+        "valid_mean_abs_pred_diff": 0.0,
+        "valid_rmse_pred_diff": 0.0
+      },
+      "run_a_vs_run_b_pred_max_abs_diff": 0.0,
+      "run_a_vs_run_b_pred_mean_abs_diff": 0.0,
+      "run_a_vs_run_b_pred_rmse": 0.0,
+      "run_a_vs_run_b_metric_comparison": {
+        "H3": {
+          "Score": {
+            "run_a": 16.307398376565647,
+            "run_b": 16.307398376565647,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "MAE": {
+            "run_a": 175.70668294885004,
+            "run_b": 175.70668294885004,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "RMSE": {
+            "run_a": 238.7568936135908,
+            "run_b": 238.7568936135908,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "R2": {
+            "run_a": 0.6730633574272533,
+            "run_b": 0.6730633574272533,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          }
+        },
+        "H6": {
+          "Score": {
+            "run_a": 16.280162100718222,
+            "run_b": 16.280162100718222,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "MAE": {
+            "run_a": 166.76393410462197,
+            "run_b": 166.76393410462197,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "RMSE": {
+            "run_a": 233.66525327573626,
+            "run_b": 233.66525327573626,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "R2": {
+            "run_a": 0.6868587860525195,
+            "run_b": 0.6868587860525195,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          }
+        },
+        "H10": {
+          "Score": {
+            "run_a": 17.19563310513527,
+            "run_b": 17.19563310513527,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "MAE": {
+            "run_a": 170.40374864211364,
+            "run_b": 170.40374864211364,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "RMSE": {
+            "run_a": 240.78673538263152,
+            "run_b": 240.78673538263152,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          },
+          "R2": {
+            "run_a": 0.6674777307663191,
+            "run_b": 0.6674777307663191,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0
+          }
+        }
+      },
+      "alignment": {
+        "shape_ok": true,
+        "mask_exact": true,
+        "sample_index_exact": true,
+        "y_true_exact_on_valid_positions": true,
+        "y_true_aligned_within_float32_precision": true,
+        "y_true_valid_max_abs_diff": 0.0,
+        "valid_counts": {
+          "H3": 1256027,
+          "H6": 2512061,
+          "H10": 4186848
+        },
+        "valid_counts_exact": true,
+        "strong_alignment_gate_pass": true,
+        "alignment_reference": "LightTS exact export"
+      },
+      "classification": "PROTOCOL_MISMATCH",
+      "exact_reproduction_pass": false,
+      "visualization_reproduction_pass": false,
+      "figure_metric_policy": "Always read official metrics_eval_h3/h6/h10 JSON values."
+    }
+  ],
+  "final_table": [
+    {
+      "Model": "Proposed model",
+      "Formal checkpoint identified": true,
+      "Prediction generated": true,
+      "Shape OK": true,
+      "Mask exact": true,
+      "y_true aligned": true,
+      "H3 metric max diff": 0.0023649762749329284,
+      "H6 metric max diff": 0.002127578960966048,
+      "H10 metric max diff": 0.0019362956987265534,
+      "RunA-vs-RunB prediction diff": 0.0,
+      "Classification": "PROTOCOL_MISMATCH",
+      "Can use for visualization": false
+    },
+    {
+      "Model": "LightTS",
+      "Formal checkpoint identified": true,
+      "Prediction generated": true,
+      "Shape OK": true,
+      "Mask exact": true,
+      "y_true aligned": true,
+      "H3 metric max diff": 2.0263492217509338e-07,
+      "H6 metric max diff": 2.090319810577057e-07,
+      "H10 metric max diff": 1.9294841990813438e-07,
+      "RunA-vs-RunB prediction diff": null,
+      "Classification": "EXACT_PASS",
+      "Can use for visualization": true
+    },
+    {
+      "Model": "MovingAverage",
+      "Formal checkpoint identified": null,
+      "Prediction generated": true,
+      "Shape OK": true,
+      "Mask exact": true,
+      "y_true aligned": true,
+      "H3 metric max diff": 1.363367857720732e-06,
+      "H6 metric max diff": 1.4343703469421598e-06,
+      "H10 metric max diff": 1.5419626606671955e-06,
+      "RunA-vs-RunB prediction diff": null,
+      "Classification": "EXACT_PASS",
+      "Can use for visualization": true
+    },
+    {
+      "Model": "TiDE",
+      "Formal checkpoint identified": true,
+      "Prediction generated": true,
+      "Shape OK": true,
+      "Mask exact": true,
+      "y_true aligned": true,
+      "H3 metric max diff": 8.871876389093813e-08,
+      "H6 metric max diff": 7.673421009712911e-08,
+      "H10 metric max diff": 4.62794957911683e-08,
+      "RunA-vs-RunB prediction diff": null,
+      "Classification": "EXACT_PASS",
+      "Can use for visualization": true
+    },
+    {
+      "Model": "Transformer",
+      "Formal checkpoint identified": true,
+      "Prediction generated": true,
+      "Shape OK": true,
+      "Mask exact": true,
+      "y_true aligned": true,
+      "H3 metric max diff": 3.0955148019984335e-05,
+      "H6 metric max diff": 3.585041167752934e-05,
+      "H10 metric max diff": 3.774486151542078e-05,
+      "RunA-vs-RunB prediction diff": 0.0,
+      "Classification": "PROTOCOL_MISMATCH",
+      "Can use for visualization": false
+    },
+    {
+      "Model": "MICN",
+      "Formal checkpoint identified": true,
+      "Prediction generated": true,
+      "Shape OK": true,
+      "Mask exact": true,
+      "y_true aligned": true,
+      "H3 metric max diff": 0.0001508770698421813,
+      "H6 metric max diff": 0.0001830623862701941,
+      "H10 metric max diff": 0.00015723514982823872,
+      "RunA-vs-RunB prediction diff": 0.0,
+      "Classification": "PROTOCOL_MISMATCH",
+      "Can use for visualization": false
+    },
+    {
+      "Model": "TimesNet",
+      "Formal checkpoint identified": true,
+      "Prediction generated": true,
+      "Shape OK": true,
+      "Mask exact": true,
+      "y_true aligned": true,
+      "H3 metric max diff": 0.0013035945931676451,
+      "H6 metric max diff": 0.0006183111961775012,
+      "H10 metric max diff": 0.0004044848210469354,
+      "RunA-vs-RunB prediction diff": 0.0,
+      "Classification": "PROTOCOL_MISMATCH",
+      "Can use for visualization": false
+    },
+    {
+      "Model": "WPMixer",
+      "Formal checkpoint identified": true,
+      "Prediction generated": true,
+      "Shape OK": true,
+      "Mask exact": true,
+      "y_true aligned": true,
+      "H3 metric max diff": 4.793780874479125e-07,
+      "H6 metric max diff": 3.6135483583166206e-07,
+      "H10 metric max diff": 1.9451925936664338e-07,
+      "RunA-vs-RunB prediction diff": null,
+      "Classification": "EXACT_PASS",
+      "Can use for visualization": true
+    },
+    {
+      "Model": "FreTS",
+      "Formal checkpoint identified": true,
+      "Prediction generated": true,
+      "Shape OK": true,
+      "Mask exact": true,
+      "y_true aligned": true,
+      "H3 metric max diff": 5.922241359712643e-05,
+      "H6 metric max diff": 4.6936949388509674e-05,
+      "H10 metric max diff": 3.965184632193086e-05,
+      "RunA-vs-RunB prediction diff": 0.0,
+      "Classification": "PROTOCOL_MISMATCH",
+      "Can use for visualization": false
+    }
+  ],
+  "all_nine_predictions_generated": true,
+  "all_models_classified": true,
+  "visualization_ready_model_count": 4,
+  "ready_for_nine_model_joint_distribution_figures": false
+}

@@ -1,0 +1,1 @@
+Source deck: 2 slides, 960 × 537.67 px. Output duplicates source slide 1 as the only deliverable slide, retains its master/theme, changes the viewport to 864 × 480 px (9.0 × 5.0 in at 96 dpi), and replaces slide-local Figure 2 objects under the user's explicit redesign instruction. Source slide 2 (Figure 3) is omitted unchanged.

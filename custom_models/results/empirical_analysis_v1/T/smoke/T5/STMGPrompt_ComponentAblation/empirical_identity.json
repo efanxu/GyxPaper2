@@ -1,0 +1,22 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant": {
+    "variant_id": "T5",
+    "display_name": "Fixed Dual concat/MLP interaction",
+    "family": "T",
+    "base_config": "CANONICAL_FULL",
+    "config_overrides": {
+      "cross_granularity_interaction": "direct_concat_mlp"
+    },
+    "expected_unique_diff": [
+      "cross_granularity_interaction"
+    ],
+    "trainable": true,
+    "paired_reference": "T0",
+    "implementation_status": "ready",
+    "implementation_note": "Bypasses Macro Prompt and Cross-Fusion and uses an explicit capacity-recorded concat/MLP projection.",
+    "reference_only": false
+  },
+  "seed": 2026,
+  "mode": "smoke"
+}

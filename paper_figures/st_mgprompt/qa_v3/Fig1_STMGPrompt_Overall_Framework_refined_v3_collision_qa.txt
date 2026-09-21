@@ -1,0 +1,10 @@
+TEXT_TEXT_COLLISIONS: 0
+TEXT_SHAPE_COLLISIONS: 0
+TEXT_LINE_COLLISIONS: 0
+BOX_OVERFLOWS: 0
+CANVAS_OVERFLOWS: 0
+MIN_FONT_PT: 7.55
+text_text_examples: []
+text_shape_examples: []
+text_line_examples: []
+canvas_examples: []

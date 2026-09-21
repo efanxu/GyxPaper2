@@ -1,0 +1,233 @@
+{
+  "allowed_differences": [
+    {
+      "path": "control_run_reference.loss_id",
+      "control": null,
+      "transfer": "masked_mse",
+      "allowed": true
+    },
+    {
+      "path": "control_run_reference.read_only",
+      "control": null,
+      "transfer": true,
+      "allowed": true
+    },
+    {
+      "path": "control_run_reference.run_id",
+      "control": null,
+      "transfer": "iTransformer_node_shared_d512_bs4_seed2026",
+      "allowed": true
+    },
+    {
+      "path": "e9_provenance.comparison",
+      "control": null,
+      "transfer": "loss-only",
+      "allowed": true
+    },
+    {
+      "path": "e9_provenance.control_retrained",
+      "control": null,
+      "transfer": false,
+      "allowed": true
+    },
+    {
+      "path": "e9_provenance.e5_consumed",
+      "control": null,
+      "transfer": false,
+      "allowed": true
+    },
+    {
+      "path": "e9_provenance.experiment",
+      "control": null,
+      "transfer": "E9-B",
+      "allowed": true
+    },
+    {
+      "path": "entry_id",
+      "control": "original_scope26_itransformer",
+      "transfer": "e9_transfer_itransformer",
+      "allowed": true
+    },
+    {
+      "path": "formal_worker_pid",
+      "control": 25260,
+      "transfer": 39768,
+      "allowed": true
+    },
+    {
+      "path": "loss",
+      "control": "masked_mse",
+      "transfer": "msmg_dwu_loss",
+      "allowed": true
+    },
+    {
+      "path": "loss_id",
+      "control": null,
+      "transfer": "msmg_dwu_loss",
+      "allowed": true
+    },
+    {
+      "path": "loss_profile.adapter_symbol",
+      "control": null,
+      "transfer": "benchmark_v2.losses.BenchmarkMSMGDWULoss",
+      "allowed": true
+    },
+    {
+      "path": "loss_profile.base_loss",
+      "control": null,
+      "transfer": "smooth_l1",
+      "allowed": true
+    },
+    {
+      "path": "loss_profile.difficulty_gamma",
+      "control": null,
+      "transfer": 1.0,
+      "allowed": true
+    },
+    {
+      "path": "loss_profile.difficulty_rate_gamma",
+      "control": null,
+      "transfer": 1.0,
+      "allowed": true
+    },
+    {
+      "path": "loss_profile.difficulty_temperature",
+      "control": null,
+      "transfer": 1.0,
+      "allowed": true
+    },
+    {
+      "path": "loss_profile.ema_alpha",
+      "control": null,
+      "transfer": 0.9,
+      "allowed": true
+    },
+    {
+      "path": "loss_profile.eval_horizons",
+      "control": null,
+      "transfer": [
+        3,
+        6,
+        10
+      ],
+      "allowed": true
+    },
+    {
+      "path": "loss_profile.granularity_weight_clip",
+      "control": null,
+      "transfer": [
+        0.5,
+        3.0
+      ],
+      "allowed": true
+    },
+    {
+      "path": "loss_profile.granularity_weight_mode",
+      "control": null,
+      "transfer": "difficulty_rate",
+      "allowed": true
+    },
+    {
+      "path": "loss_profile.lambda_site",
+      "control": null,
+      "transfer": 0.2,
+      "allowed": true
+    },
+    {
+      "path": "loss_profile.loss_id",
+      "control": null,
+      "transfer": "msmg_dwu_loss",
+      "allowed": true
+    },
+    {
+      "path": "loss_profile.node_weight_clip",
+      "control": null,
+      "transfer": [
+        0.5,
+        3.0
+      ],
+      "allowed": true
+    },
+    {
+      "path": "loss_profile.num_nodes",
+      "control": null,
+      "transfer": 134,
+      "allowed": true
+    },
+    {
+      "path": "loss_profile.site_weight_mode",
+      "control": null,
+      "transfer": "dynamic",
+      "allowed": true
+    },
+    {
+      "path": "loss_profile.source_symbol",
+      "control": null,
+      "transfer": "st_mgprompt.losses.MSMGDWULoss",
+      "allowed": true
+    },
+    {
+      "path": "loss_protocol",
+      "control": null,
+      "transfer": "e9_loss_only_transfer",
+      "allowed": true
+    },
+    {
+      "path": "loss_state_policy.algorithm_shared",
+      "control": null,
+      "transfer": true,
+      "allowed": true
+    },
+    {
+      "path": "loss_state_policy.fit_split",
+      "control": null,
+      "transfer": "train",
+      "allowed": true
+    },
+    {
+      "path": "loss_state_policy.model_output_dependent",
+      "control": null,
+      "transfer": true,
+      "allowed": true
+    },
+    {
+      "path": "loss_state_policy.validation_test_frozen",
+      "control": null,
+      "transfer": true,
+      "allowed": true
+    },
+    {
+      "path": "loss_state_policy.values_shared",
+      "control": null,
+      "transfer": false,
+      "allowed": true
+    },
+    {
+      "path": "output_root",
+      "control": "custom_models/results/benchmark_v2_uniform_bs4/e2_a_seed2026",
+      "transfer": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2\\msmg_dwu_transfer_seed2026",
+      "allowed": true
+    },
+    {
+      "path": "run_id",
+      "control": "iTransformer_node_shared_d512_bs4_seed2026",
+      "transfer": "iTransformer_node_shared_d512_bs4_msmg_dwu_seed2026",
+      "allowed": true
+    },
+    {
+      "path": "scope_id",
+      "control": "benchmark_v2_batch4_scope26_seed2026",
+      "transfer": "e9_msmg_dwu_transfer_seed2026",
+      "allowed": true
+    }
+  ],
+  "unexpected_differences": [],
+  "model_source_match": true,
+  "model_architecture_match": true,
+  "model_hyperparameter_match": true,
+  "data_protocol_match": true,
+  "training_protocol_match": true,
+  "graph_protocol_match": true,
+  "loss_identity_changed": true,
+  "loss_only_diff_valid": true
+}

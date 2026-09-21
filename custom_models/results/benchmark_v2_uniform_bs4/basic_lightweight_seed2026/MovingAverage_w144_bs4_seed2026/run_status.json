@@ -1,0 +1,13 @@
+{
+  "status": "COMPLETED",
+  "run_mode": "formal",
+  "artifact_profile": "NON_TRAINABLE",
+  "started_at": "2026-08-06T08:37:46.551785+00:00",
+  "finished_at": "2026-08-06T08:37:49.391075+00:00",
+  "exit_code": 0,
+  "failure_stage": null,
+  "error_type": null,
+  "error_message": null,
+  "traceback_tail": null,
+  "formal_training": false
+}

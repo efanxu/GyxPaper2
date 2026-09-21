@@ -1,0 +1,344 @@
+{
+  "model_id": "dlinear",
+  "implementation_class": "Model",
+  "parameter_count": 2900,
+  "trainable_parameter_count": 2900,
+  "initialization_policy": "Upstream TSLib initialization after benchmark_v2 seed",
+  "optimizer": "Adam",
+  "learning_rate": 0.001,
+  "weight_decay": 0.0,
+  "scheduler": null,
+  "gradient_clip": null,
+  "node_semantics": "node_shared",
+  "cross_node_interaction": false,
+  "uses_graph": false,
+  "uses_node_embedding": false,
+  "uses_future_covariates": false,
+  "formal_registry_entry": true,
+  "run_mode": "formal",
+  "artifact_profile": "TRAIN",
+  "effective_model_config": {
+    "model_id": "dlinear",
+    "task_name": "long_term_forecast",
+    "run_mode": "formal",
+    "seq_len": 144,
+    "pred_len": 10,
+    "enc_in": 16,
+    "input_mode": "multivariate",
+    "output_mode": "single_target",
+    "target_column": "Patv_raw",
+    "selected_power_feature": "Patv_clean_for_input",
+    "output_policy": "select_power_associated_channel",
+    "node_semantics": "node_shared",
+    "cross_node_interaction": false,
+    "uses_graph": false,
+    "uses_node_embedding": false,
+    "uses_future_target": false,
+    "uses_future_observed_covariates": false,
+    "uses_future_calendar_covariates": false,
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0,
+    "scheduler": null,
+    "gradient_clip": null,
+    "epochs": 20,
+    "patience": 6,
+    "min_delta": 0.01,
+    "seed": 2026,
+    "amp_enabled": true,
+    "loss": "masked_mse",
+    "loss_space": "normalized_target_space",
+    "checkpoint_metric": "validation_official_score_h10",
+    "checkpoint_direction": "lower_is_better",
+    "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+    "upstream_project": "THUML/Time-Series-Library",
+    "upstream_license_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\LICENSE",
+    "source_modified": false,
+    "validation_search_performed": false,
+    "test_result_used": false,
+    "initialization_policy": "Upstream TSLib initialization after benchmark_v2 seed",
+    "moving_avg": 25,
+    "individual": false,
+    "c_out": 16,
+    "raw_output_channels": 16,
+    "wrapper_path": "custom_models/src/benchmark_v2/models/dlinear.py",
+    "adapter_path": "custom_models/src/benchmark_v2/adapters/dlinear.py",
+    "model_specific_parameters": {
+      "moving_avg": 25,
+      "individual": false
+    },
+    "config_resolution_reason": "upstream_run_py_defaults_and_frozen_protocol",
+    "uses_zero_placeholders": false,
+    "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\DLinear.py",
+    "upstream_source_relative_path": "Time-Series-Library/models/DLinear.py",
+    "upstream_source_sha256": "e03acaf97e70c85ea6bda6776b3a62550f84470afa7bc53dffccb6121626e7eb",
+    "upstream_license_sha256": "3892254202fc16573828d34ec901ab765d8eb73a03d174b131a49771adcd8d64",
+    "parameter_count": 2900,
+    "trainable_parameter_count": 2900,
+    "base_benchmark_protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+    "training_batch_profile_id": "uniform_train_batch4_v1",
+    "training_batch_profile_hash": "f58bbc161dfba0f00774879fdf2f78ec7c59a7faff9ef28a1733a2ed6835fe66",
+    "train_batch_size": 4,
+    "val_batch_size": 4,
+    "test_batch_size": 4,
+    "gradient_accumulation_steps": 1,
+    "effective_train_batch_size": 4,
+    "precision_policy": "profile_default",
+    "precision_resolution": {
+      "requested_amp_enabled": true,
+      "effective_amp_enabled": true,
+      "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+    },
+    "active_scope_id": "benchmark_v2_batch4_scope26_seed2026",
+    "current_scope_manifest_hash": "57a93bb4219bfd437d73d34638aed883723511f77120da71ad39e9e5f4f6775f",
+    "current_scope_entry_id": "original_scope26_dlinear",
+    "run_id": "DLinear_node_shared_ma25_bs4_seed2026",
+    "output_root": "custom_models/results/benchmark_v2_uniform_bs4/basic_lightweight_seed2026",
+    "model_config_hash": "5e9af83b52ce477161d1d672c40954fe946dac9f195af72828b0c3b10599a33c",
+    "source_closure_hash": "9b798562e23c8fd984a41c81ab63462a3b4334c24b596ea9dcb632da4fe4fd52",
+    "source_identity": {
+      "source_identity_schema_version": "model_source_identity_v1",
+      "model_id": "dlinear",
+      "source_closure_files": [
+        {
+          "path": "Time-Series-Library/layers/Autoformer_EncDec.py",
+          "sha256": "48745b4bb647355e9845792a855df9c59fd7df7fcc664c765351fec390c4073e",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "Time-Series-Library/models/DLinear.py",
+          "sha256": "e03acaf97e70c85ea6bda6776b3a62550f84470afa7bc53dffccb6121626e7eb",
+          "role": "model implementation source"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/adapters/dlinear.py",
+          "sha256": "ad0b1a703a6ebc5f70b5b26ad74aa456fd433f94e13bfc005bf88725960b84ee",
+          "role": "benchmark adapter implementation"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+          "role": "shared adapter contract used by the model adapter"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/adapters/tslib_channel.py",
+          "sha256": "ee615be94e84efd4ee7891bf675f4822d8ed442bf567e34f512774013c4c9fce",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/configs/dlinear.py",
+          "sha256": "6339f2263e48eaa641579d7f824146eb355a8aed7fbd85af92b00b041608a742",
+          "role": "model-specific config resolver"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/configs/tslib_common.py",
+          "sha256": "a1d3557d64e66a16ddd9a9b229d148c3a578f6b9b61b85a092e9d7cfac1a7571",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/contracts/__init__.py",
+          "sha256": "9ba4e8c4d76989120b710b9ca1db9aa9d4720c5b1983d6eeae127474f9884a01",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/contracts/adapter.py",
+          "sha256": "e2868b37e6e10f5528cd4d558f453796095b4ee7f86c11ea3ea1412b00605e2f",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/contracts/batch.py",
+          "sha256": "f497787a9b5919e2c024fbc6d41f57a9b81e940ec28bc4d053acab1edc5e4769",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/contracts/graph_context.py",
+          "sha256": "efac213ae52c324a31ce633639fde19267406268d3328405fea2ee1dbe093955",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/contracts/output.py",
+          "sha256": "c700fe01bc460e9f906e831a6f7616bb6f054a113be83bdf52164e449c02f582",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/data/signatures.py",
+          "sha256": "a19ce73d14ba575330accd80efbf7197deec5b54b7630c05e55c154a817acc3f",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/errors.py",
+          "sha256": "eefb85b8e9b8157ff8a17ea80cccb877d8b6f15461e78a2beeedafd2229a2a47",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/model_factories/dlinear.py",
+          "sha256": "6fc5b313e19d14a02791a4065c6f99fd2d4b2d7a60c6eaaddc5f5ea6bcd2de3b",
+          "role": "selected fixed model factory boundary"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/model_factories/registry.py",
+          "sha256": "7273c2ad3936113e7a73341aa7640d3c7438c7eb27c1b84084d09e67c410139a",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/model_runtime.py",
+          "sha256": "301ff1f6a833ffdfa2b2d42303c74950366d982bbef194ab314d5ea0bc83f307",
+          "role": "explicit model runtime builder"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/models/dlinear.py",
+          "sha256": "141c83d3ffa7e0e13897380b9feff704a3295851add216575a7a2af1de512a95",
+          "role": "benchmark model wrapper"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/registry/__init__.py",
+          "sha256": "d1e3c099ebb3c5de22b9d017185efb27cd0ac3226739ccf37d3ef0c242e447f5",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/registry/registry.py",
+          "sha256": "fe84aaa9a6b46027dc57729948c8ae1a1c3e8ef2ffc895879f880e40b6a07423",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/upstream/__init__.py",
+          "sha256": "64f21ae3da1938045f3902aecb48b581171286d09303177be369f7544a47b42d",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+          "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9",
+          "role": "audited TSLib loader and source resolver"
+        }
+      ],
+      "canonical_combined_hash": "9b798562e23c8fd984a41c81ab63462a3b4334c24b596ea9dcb632da4fe4fd52",
+      "source_closure_cycles": []
+    },
+    "source_revision": {
+      "git_commit": "41ed7f1145e39945ae6541c3467aaa0d58286122",
+      "source_revision_type": "git"
+    },
+    "formal_training": true,
+    "provenance": {
+      "active_scope_id": "benchmark_v2_batch4_scope26_seed2026",
+      "base_model_id": "dlinear",
+      "base_model_config_hash": "5e9af83b52ce477161d1d672c40954fe946dac9f195af72828b0c3b10599a33c",
+      "base_model_source_closure_hash": "9b798562e23c8fd984a41c81ab63462a3b4334c24b596ea9dcb632da4fe4fd52",
+      "base_model_source_identity_schema_version": "model_source_identity_v1",
+      "base_model_source_closure_files": [
+        {
+          "path": "Time-Series-Library/layers/Autoformer_EncDec.py",
+          "sha256": "48745b4bb647355e9845792a855df9c59fd7df7fcc664c765351fec390c4073e",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "Time-Series-Library/models/DLinear.py",
+          "sha256": "e03acaf97e70c85ea6bda6776b3a62550f84470afa7bc53dffccb6121626e7eb",
+          "role": "model implementation source"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/adapters/dlinear.py",
+          "sha256": "ad0b1a703a6ebc5f70b5b26ad74aa456fd433f94e13bfc005bf88725960b84ee",
+          "role": "benchmark adapter implementation"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+          "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+          "role": "shared adapter contract used by the model adapter"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/adapters/tslib_channel.py",
+          "sha256": "ee615be94e84efd4ee7891bf675f4822d8ed442bf567e34f512774013c4c9fce",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/configs/dlinear.py",
+          "sha256": "6339f2263e48eaa641579d7f824146eb355a8aed7fbd85af92b00b041608a742",
+          "role": "model-specific config resolver"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/configs/tslib_common.py",
+          "sha256": "a1d3557d64e66a16ddd9a9b229d148c3a578f6b9b61b85a092e9d7cfac1a7571",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/contracts/__init__.py",
+          "sha256": "9ba4e8c4d76989120b710b9ca1db9aa9d4720c5b1983d6eeae127474f9884a01",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/contracts/adapter.py",
+          "sha256": "e2868b37e6e10f5528cd4d558f453796095b4ee7f86c11ea3ea1412b00605e2f",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/contracts/batch.py",
+          "sha256": "f497787a9b5919e2c024fbc6d41f57a9b81e940ec28bc4d053acab1edc5e4769",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/contracts/graph_context.py",
+          "sha256": "efac213ae52c324a31ce633639fde19267406268d3328405fea2ee1dbe093955",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/contracts/output.py",
+          "sha256": "c700fe01bc460e9f906e831a6f7616bb6f054a113be83bdf52164e449c02f582",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/data/signatures.py",
+          "sha256": "a19ce73d14ba575330accd80efbf7197deec5b54b7630c05e55c154a817acc3f",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/errors.py",
+          "sha256": "eefb85b8e9b8157ff8a17ea80cccb877d8b6f15461e78a2beeedafd2229a2a47",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/model_factories/dlinear.py",
+          "sha256": "6fc5b313e19d14a02791a4065c6f99fd2d4b2d7a60c6eaaddc5f5ea6bcd2de3b",
+          "role": "selected fixed model factory boundary"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/model_factories/registry.py",
+          "sha256": "7273c2ad3936113e7a73341aa7640d3c7438c7eb27c1b84084d09e67c410139a",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/model_runtime.py",
+          "sha256": "301ff1f6a833ffdfa2b2d42303c74950366d982bbef194ab314d5ea0bc83f307",
+          "role": "explicit model runtime builder"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/models/dlinear.py",
+          "sha256": "141c83d3ffa7e0e13897380b9feff704a3295851add216575a7a2af1de512a95",
+          "role": "benchmark model wrapper"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/registry/__init__.py",
+          "sha256": "d1e3c099ebb3c5de22b9d017185efb27cd0ac3226739ccf37d3ef0c242e447f5",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/registry/registry.py",
+          "sha256": "fe84aaa9a6b46027dc57729948c8ae1a1c3e8ef2ffc895879f880e40b6a07423",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/upstream/__init__.py",
+          "sha256": "64f21ae3da1938045f3902aecb48b581171286d09303177be369f7544a47b42d",
+          "role": "transitive repository-local import"
+        },
+        {
+          "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+          "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9",
+          "role": "audited TSLib loader and source resolver"
+        }
+      ]
+    },
+    "artifact_profile": "TRAIN",
+    "formal_worker_pid": 13980
+  }
+}

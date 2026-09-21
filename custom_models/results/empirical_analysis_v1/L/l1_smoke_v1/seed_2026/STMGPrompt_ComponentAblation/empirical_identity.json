@@ -1,0 +1,22 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant": {
+    "variant_id": "L1",
+    "display_name": "Horizon difficulty-rate only",
+    "family": "L",
+    "base_config": "CANONICAL_FULL",
+    "config_overrides": {
+      "site_weight_mode": "static"
+    },
+    "expected_unique_diff": [
+      "site_weight_mode"
+    ],
+    "trainable": true,
+    "paired_reference": "L3",
+    "implementation_status": "ready",
+    "implementation_note": "",
+    "reference_only": false
+  },
+  "seed": 2026,
+  "mode": "smoke"
+}

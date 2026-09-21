@@ -1,0 +1,12 @@
+﻿evidence_task,required_variants,existing_assets,reusable,missing_items,next_step,efficiency_allowed,limitations
+Canonical/P0/A0 accuracy,"Canonical,A0,P0",custom_models/results/st_mgprompt_canonical/full_fixed_dual_keep_msmgdwu_seed2026,yes,none,aggregate once by Canonical id,conditional,A0/P0 aliases; do not count twice
+Fixed-Dual precision accuracy,"P1,P2,P3",custom_models/results/st_mgprompt_precision/precision_ablation_fixed_dual_seed2026,yes,none,accuracy table,conditional,matched hardware required
+P4/P5 accuracy,"P4,P5",custom_models/results/st_mgprompt_precision/precision_ablation_fixed_dual_seed2026,accuracy-only,clean top-level run state,do not use efficiency; reconcile if needed,no,state conflict/FAILED returncode
+Current component accuracy,"A2,A3,A4,A5,A6,A7,A8",custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026,yes,none,aggregate formal metrics,conditional,A1 excluded
+A1 w/o Spatial Graph,A1,custom_models/results/st_mgprompt_component_ablation/component_ablation_fixed_dual_seed2026/A1,no,reconciled A1 run,rerun/reconcile current A1,no,mixed A1/A8 state
+8正文基准 accuracy/difficulty,"lightts,moving_average,tide,transformer,micn,timesnet,wpmixer,frets",custom_models/results/benchmark_v2_uniform_bs4,yes,none,difficulty/accuracy summaries,conditional,hardware comparability
+E7 graph diagnostics,external six,custom_models/results/benchmark_v2/e7_graph_mechanism_analysis_seed2026,external-only,internal A0-A3 readiness,use read-only external context,no,INTERNAL_GRAPH_READY=0/4
+E8 prompt/cross-fusion diagnostics,external six,custom_models/results/benchmark_v2/e8_prompt_cross_fusion_analysis_seed2026,external-only,internal A0/A4-A7 readiness,use read-only external context,no,INTERNAL_PROMPT_FUSION_READY=0/5
+E9 transfer/control accuracy,six transfer pairs,custom_models/results/benchmark_v2/msmg_dwu_transfer_seed2026,partial,manifest/filesystem mismatch; missing tide; exact initial-state verification,reconcile missing transfer directory then compare,conditional,same seed/source/config/protocol only
+Step2 data-only analyses,data_evidence,custom_models/results/empirical_analysis_v1/data_evidence,yes,none for data-only,no-training figures/tables,n/a,does not repair blocked model runs
+Historical Dynamic-VADSP assets,old A/P/smoke roots,custom_models/results/st_mgprompt_* historical roots,no,current Fixed-Dual reruns,exclude from formal table,no,semantic mismatch

@@ -1,0 +1,34 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "F8",
+  "display_name": "Mean-pooling Macro Prompt",
+  "family": "F",
+  "reference_only": true,
+  "paired_reference": "A4",
+  "source_run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A4\\STMGPrompt_ComponentAblation",
+  "source_exists": true,
+  "source_semantic_audit": {
+    "variant": "A4",
+    "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+    "effective_diff_count": 1,
+    "expected_diff_fields": [
+      "macro_prompt_pooling"
+    ],
+    "actual_diff_fields": [
+      "macro_prompt_pooling"
+    ],
+    "unexpected_diff_fields": [],
+    "missing_expected_diff_fields": [],
+    "unexpected_effective_diff_count": 0,
+    "differences": {
+      "macro_prompt_pooling": {
+        "canonical": "attention",
+        "effective": "mean"
+      }
+    },
+    "passed": true,
+    "config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A4\\STMGPrompt_ComponentAblation\\effective_config.json"
+  },
+  "created_at": "2026-09-20T13:13:43.820322+00:00",
+  "note": "This is a reference; no checkpoint or metrics were copied."
+}

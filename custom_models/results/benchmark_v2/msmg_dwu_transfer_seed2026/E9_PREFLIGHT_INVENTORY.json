@@ -3,37 +3,187 @@
   "inventory": [
     {
       "model_id": "lightts",
-      "status": "NOT_RUN",
-      "formal_training_started": false
+      "run_id": "LightTS_node_shared_chunk8_bs4_msmg_dwu_seed2026",
+      "requested_shape": {
+        "B": 4,
+        "T": 144,
+        "N": 134,
+        "C": 16,
+        "H": 10
+      },
+      "device": "cuda",
+      "loss_id": "msmg_dwu_loss",
+      "formal_training_started": false,
+      "status": "PASS",
+      "output_shape": [
+        4,
+        134,
+        10
+      ],
+      "loss_finite": true,
+      "loss_components_finite": true,
+      "backward_completed": true,
+      "gradient_finite": true,
+      "all_masked_behavior": "PASS",
+      "partial_mask_behavior": "PASS",
+      "amp_enabled": true,
+      "amp_behavior": "PASS",
+      "graph_protocol": "PASS",
+      "elapsed_seconds": 1.1180132000008598
     },
     {
       "model_id": "tide",
-      "status": "NOT_RUN",
-      "formal_training_started": false
+      "run_id": "TiDE_node_shared_d512_bs4_msmg_dwu_seed2026",
+      "requested_shape": {
+        "B": 4,
+        "T": 144,
+        "N": 134,
+        "C": 16,
+        "H": 10
+      },
+      "device": "cuda",
+      "loss_id": "msmg_dwu_loss",
+      "formal_training_started": false,
+      "status": "PASS",
+      "output_shape": [
+        4,
+        134,
+        10
+      ],
+      "loss_finite": true,
+      "loss_components_finite": true,
+      "backward_completed": true,
+      "gradient_finite": true,
+      "all_masked_behavior": "PASS",
+      "partial_mask_behavior": "PASS",
+      "amp_enabled": true,
+      "amp_behavior": "PASS",
+      "graph_protocol": "PASS",
+      "elapsed_seconds": 0.18727950000902638
     },
     {
       "model_id": "patchtst",
-      "status": "NOT_RUN",
-      "formal_training_started": false
+      "run_id": "PatchTST_node_shared_p16_s8_bs4_msmg_dwu_seed2026",
+      "requested_shape": {
+        "B": 4,
+        "T": 144,
+        "N": 134,
+        "C": 16,
+        "H": 10
+      },
+      "device": "cuda",
+      "loss_id": "msmg_dwu_loss",
+      "formal_training_started": false,
+      "status": "PASS",
+      "output_shape": [
+        4,
+        134,
+        10
+      ],
+      "loss_finite": true,
+      "loss_components_finite": true,
+      "backward_completed": true,
+      "gradient_finite": true,
+      "all_masked_behavior": "PASS",
+      "partial_mask_behavior": "PASS",
+      "amp_enabled": false,
+      "amp_behavior": "PASS",
+      "graph_protocol": "PASS",
+      "elapsed_seconds": 34.75174180002068
     },
     {
       "model_id": "itransformer",
-      "status": "NOT_RUN",
-      "formal_training_started": false
+      "run_id": "iTransformer_node_shared_d512_bs4_msmg_dwu_seed2026",
+      "requested_shape": {
+        "B": 4,
+        "T": 144,
+        "N": 134,
+        "C": 16,
+        "H": 10
+      },
+      "device": "cuda",
+      "loss_id": "msmg_dwu_loss",
+      "formal_training_started": false,
+      "status": "PASS",
+      "output_shape": [
+        4,
+        134,
+        10
+      ],
+      "loss_finite": true,
+      "loss_components_finite": true,
+      "backward_completed": true,
+      "gradient_finite": true,
+      "all_masked_behavior": "PASS",
+      "partial_mask_behavior": "PASS",
+      "amp_enabled": false,
+      "amp_behavior": "PASS",
+      "graph_protocol": "PASS",
+      "elapsed_seconds": 0.08413329999893904
     },
     {
       "model_id": "dcrnn",
-      "status": "NOT_RUN",
-      "formal_training_started": false
+      "run_id": "DCRNN_native_dualrw_k2_h64_l2_ar_bs4_msmg_dwu_seed2026",
+      "requested_shape": {
+        "B": 4,
+        "T": 144,
+        "N": 134,
+        "C": 16,
+        "H": 10
+      },
+      "device": "cuda",
+      "loss_id": "msmg_dwu_loss",
+      "formal_training_started": false,
+      "status": "PASS",
+      "output_shape": [
+        4,
+        134,
+        10
+      ],
+      "loss_finite": true,
+      "loss_components_finite": true,
+      "backward_completed": true,
+      "gradient_finite": true,
+      "all_masked_behavior": "PASS",
+      "partial_mask_behavior": "PASS",
+      "amp_enabled": true,
+      "amp_behavior": "PASS",
+      "graph_protocol": "PASS",
+      "elapsed_seconds": 0.9933679000241682
     },
     {
       "model_id": "mtgnn",
-      "status": "NOT_RUN",
-      "formal_training_started": false
+      "run_id": "MTGNN_native_adaptive_k20_gdep2_l3_bs4_msmg_dwu_seed2026",
+      "requested_shape": {
+        "B": 4,
+        "T": 144,
+        "N": 134,
+        "C": 16,
+        "H": 10
+      },
+      "device": "cuda",
+      "loss_id": "msmg_dwu_loss",
+      "formal_training_started": false,
+      "status": "PASS",
+      "output_shape": [
+        4,
+        134,
+        10
+      ],
+      "loss_finite": true,
+      "loss_components_finite": true,
+      "backward_completed": true,
+      "gradient_finite": true,
+      "all_masked_behavior": "PASS",
+      "partial_mask_behavior": "PASS",
+      "amp_enabled": true,
+      "amp_behavior": "PASS",
+      "graph_protocol": "PASS",
+      "elapsed_seconds": 0.19242259999737144
     }
   ],
-  "passed": 0,
+  "passed": 6,
   "expected": 6,
-  "all_passed": false,
+  "all_passed": true,
   "formal_training_started": false
 }

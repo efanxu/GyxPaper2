@@ -1,0 +1,6 @@
+﻿variant_id,run_status,reason,failure_report
+T1,not_started,formal_long_training_requires_explicit_user_approval,D:\PaperProject\GyxPaper2\custom_models\results\empirical_analysis_v1\T\seed_2026\T1\failure_report.json
+T2,not_started,formal_long_training_requires_explicit_user_approval,D:\PaperProject\GyxPaper2\custom_models\results\empirical_analysis_v1\T\seed_2026\T2\failure_report.json
+T3,not_started,formal_long_training_requires_explicit_user_approval,D:\PaperProject\GyxPaper2\custom_models\results\empirical_analysis_v1\T\seed_2026\T3\failure_report.json
+T4,not_started,formal_long_training_requires_explicit_user_approval,D:\PaperProject\GyxPaper2\custom_models\results\empirical_analysis_v1\T\seed_2026\T4\failure_report.json
+T5,not_started,formal_long_training_requires_explicit_user_approval,D:\PaperProject\GyxPaper2\custom_models\results\empirical_analysis_v1\T\seed_2026\T5\failure_report.json

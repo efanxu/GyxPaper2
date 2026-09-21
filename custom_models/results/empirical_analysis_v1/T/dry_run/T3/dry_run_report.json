@@ -1,0 +1,29 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "T3",
+  "family": "T",
+  "implementation_status": "ready",
+  "expected_diff_fields": [
+    "temporal_branch_transform"
+  ],
+  "actual_diff_fields": [
+    "temporal_branch_transform"
+  ],
+  "missing_expected_diff_fields": [],
+  "unexpected_diff_fields": [],
+  "frozen_protocol_changes": [],
+  "differences": {
+    "temporal_branch_transform": {
+      "canonical": "independent",
+      "effective": "shared"
+    }
+  },
+  "passed": true,
+  "display_name": "Shared temporal transform dual",
+  "trainable": true,
+  "paired_reference": "T0",
+  "declared_overrides": {
+    "temporal_branch_transform": "shared"
+  },
+  "execution_ready": true
+}

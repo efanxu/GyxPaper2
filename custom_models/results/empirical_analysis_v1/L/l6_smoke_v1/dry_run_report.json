@@ -1,0 +1,18 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "L6",
+  "display_name": "Dynamic weight average",
+  "family": "L",
+  "implementation_status": "pending",
+  "trainable": true,
+  "paired_reference": "L3",
+  "expected_diff_fields": [
+    "granularity_weight_mode"
+  ],
+  "declared_overrides": {
+    "granularity_weight_mode": "dynamic_weight_average"
+  },
+  "passed": true,
+  "execution_ready": false,
+  "note": "Implemented in empirical step 8."
+}

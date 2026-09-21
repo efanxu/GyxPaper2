@@ -236,11 +236,11 @@
       "output_group": "e2_a_seed2026",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_a_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "AMP non-finite gradients/predictions reproduced during formal benchmark_v2 uniform batch4 training; keep model-specific FP32 policy.",
           "requested_amp_enabled": true
         }
       },
@@ -263,11 +263,11 @@
       "output_group": "e2_a_seed2026",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_a_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "AMP non-finite gradients/predictions reproduced during formal benchmark_v2 uniform batch4 training; keep model-specific FP32 policy.",
           "requested_amp_enabled": true
         }
       },
@@ -290,11 +290,11 @@
       "output_group": "e2_a_seed2026",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_a_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "AMP non-finite gradients/predictions reproduced during formal benchmark_v2 uniform batch4 training; keep model-specific FP32 policy.",
           "requested_amp_enabled": true
         }
       },
@@ -371,11 +371,11 @@
       "output_group": "e2_b_seed2026",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_b_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "AMP non-finite gradients/predictions reproduced during formal benchmark_v2 uniform batch4 training; keep model-specific FP32 policy.",
           "requested_amp_enabled": true
         }
       },
@@ -398,11 +398,11 @@
       "output_group": "e2_b_seed2026",
       "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_b_seed2026",
       "precision_identity": {
-        "amp_enabled": true,
-        "precision_policy": "profile_default",
+        "amp_enabled": false,
+        "precision_policy": "fp32",
         "precision_resolution": {
-          "effective_amp_enabled": true,
-          "reason": "uniform_train_batch4_v1 profile default; no model-specific override.",
+          "effective_amp_enabled": false,
+          "reason": "AMP non-finite gradients/predictions reproduced during formal benchmark_v2 uniform batch4 training; keep model-specific FP32 policy.",
           "requested_amp_enabled": true
         }
       },

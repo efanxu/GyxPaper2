@@ -1,0 +1,22 @@
+{
+  "experiment_family": "cross_fusion_candidate",
+  "variant": {
+    "variant_id": "A6-C3",
+    "display_name": "Shared-Projection Cross Fusion",
+    "experiment_family": "component_ablation",
+    "trainable": true,
+    "canonical_reference": null,
+    "base_config": "CANONICAL_FULL",
+    "config_overrides": {
+      "share_cross_attention_projections": true
+    },
+    "expected_unique_diff": [
+      "share_cross_attention_projections"
+    ]
+  },
+  "base_variant": "A0",
+  "official_a6_unchanged": true,
+  "result_directory": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6-C3",
+  "effective_config": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6-C3\\effective_config.json",
+  "effective_config_diff": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6-C3\\effective_config_diff.json"
+}

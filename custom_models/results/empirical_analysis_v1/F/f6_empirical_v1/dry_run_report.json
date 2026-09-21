@@ -1,0 +1,29 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "F6",
+  "family": "F",
+  "implementation_status": "reference",
+  "expected_diff_fields": [
+    "share_cross_attention_projections"
+  ],
+  "actual_diff_fields": [
+    "share_cross_attention_projections"
+  ],
+  "missing_expected_diff_fields": [],
+  "unexpected_diff_fields": [],
+  "frozen_protocol_changes": [],
+  "differences": {
+    "share_cross_attention_projections": {
+      "canonical": false,
+      "effective": true
+    }
+  },
+  "passed": true,
+  "display_name": "Bidirectional Cross-Fusion, shared projections",
+  "trainable": false,
+  "paired_reference": "A7",
+  "declared_overrides": {
+    "share_cross_attention_projections": true
+  },
+  "execution_ready": true
+}

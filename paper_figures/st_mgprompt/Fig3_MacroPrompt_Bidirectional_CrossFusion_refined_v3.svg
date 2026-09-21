@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180mm" height="103.5mm" viewBox="0 0 2400 1380" role="img" aria-labelledby="title desc">
+<title id="title">Macro-Trend Prompt and Bidirectional Cross-Granularity Fusion</title>
+<desc id="desc">Academic vector diagram for the ST-MGPrompt forecasting model.</desc>
+<style>text{font-family:Arial,Helvetica,Arial,sans-serif;fill:#253244;} .muted{fill:#607086;} .small{font-size:13px;} .tiny{font-size:11px;} .label{font-size:14px;font-weight:700;letter-spacing:.2px;} .title{font-size:23px;font-weight:700;} .section{font-size:12px;font-weight:700;letter-spacing:1.1px;} .math{font-family:Arial,Arial,sans-serif;}</style>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,4 L0,8 Z" fill="#536579"/></marker><marker id="arrowFine" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,4 L0,8 Z" fill="#C97812"/></marker><marker id="arrowCoarse" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,4 L0,8 Z" fill="#277573"/></marker><marker id="arrowPurple" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,4 L0,8 Z" fill="#624486"/></marker><marker id="arrowLoss" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,4 L0,8 Z" fill="#B86770"/></marker></defs>
+<rect x="0" y="0" width="2400" height="1380" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0" opacity="1"/>
+<text x="40" y="62" font-size="51.6px" fill="#253244" font-weight="700" text-anchor="start">Macro-Trend Prompt and Bidirectional Cross-Granularity Fusion</text>
+<text x="2360" y="105" font-size="35.5px" fill="#607086" font-weight="700" text-anchor="end">Fine and coarse historical representations remain separate</text>
+<rect x="45" y="145" width="220" height="40" rx="20.0" fill="#FFF3DE" stroke="#FFF3DE" stroke-width="0" opacity="1"/>
+<text x="155.0" y="175" font-size="35.5px" fill="#C97812" font-weight="700" text-anchor="middle">Fine history</text>
+<rect x="55.0" y="215" width="39.25" height="72" rx="7" fill="#FFFFFF" stroke="#F4A340" stroke-width="1.6" opacity="1"/>
+<path d="M 60.9,253.6 63.1,243.3 65.0,255.7 67.2,238.4 69.4,250.5 71.6,242.9 74.1,257.8 76.5,239.5 79.0,251.2 81.8,242.2 84.5,255.0 88.4,245.4" fill="none" stroke="#C97812" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="102.25" y="215" width="39.25" height="72" rx="7" fill="#FFFFFF" stroke="#F4A340" stroke-width="1.6" opacity="1"/>
+<path d="M 108.1,253.6 110.3,243.3 112.3,255.7 114.5,238.4 116.7,250.5 118.9,242.9 121.3,257.8 123.8,239.5 126.3,251.2 129.0,242.2 131.8,255.0 135.6,245.4" fill="none" stroke="#C97812" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="149.5" y="215" width="39.25" height="72" rx="7" fill="#FFFFFF" stroke="#F4A340" stroke-width="1.6" opacity="1"/>
+<path d="M 155.4,253.6 157.6,243.3 159.5,255.7 161.7,238.4 163.9,250.5 166.1,242.9 168.6,257.8 171.0,239.5 173.5,251.2 176.3,242.2 179.0,255.0 182.9,245.4" fill="none" stroke="#C97812" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="196.75" y="215" width="39.25" height="72" rx="7" fill="#FFFFFF" stroke="#F4A340" stroke-width="1.6" opacity="1"/>
+<path d="M 202.6,253.6 204.8,243.3 206.8,255.7 209.0,238.4 211.2,250.5 213.4,242.9 215.8,257.8 218.3,239.5 220.8,251.2 223.5,242.2 226.3,255.0 230.1,245.4" fill="none" stroke="#C97812" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="244.0" y="215" width="39.25" height="72" rx="7" fill="#FFFFFF" stroke="#F4A340" stroke-width="1.6" opacity="1"/>
+<path d="M 249.9,253.6 252.1,243.3 254.0,255.7 256.2,238.4 258.4,250.5 260.6,242.9 263.1,257.8 265.5,239.5 268.0,251.2 270.8,242.2 273.5,255.0 277.4,245.4" fill="none" stroke="#C97812" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="291.25" y="215" width="39.25" height="72" rx="7" fill="#FFFFFF" stroke="#F4A340" stroke-width="1.6" opacity="1"/>
+<path d="M 297.1,253.6 299.3,243.3 301.3,255.7 303.5,238.4 305.7,250.5 307.9,242.9 310.3,257.8 312.8,239.5 315.3,251.2 318.0,242.2 320.8,255.0 324.6,245.4" fill="none" stroke="#C97812" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="338.5" y="215" width="39.25" height="72" rx="7" fill="#FFFFFF" stroke="#F4A340" stroke-width="1.6" opacity="1"/>
+<path d="M 344.4,253.6 346.6,243.3 348.5,255.7 350.7,238.4 352.9,250.5 355.1,242.9 357.6,257.8 360.0,239.5 362.5,251.2 365.3,242.2 368.0,255.0 371.9,245.4" fill="none" stroke="#C97812" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="385.75" y="215" width="39.25" height="72" rx="7" fill="#FFFFFF" stroke="#F4A340" stroke-width="1.6" opacity="1"/>
+<path d="M 391.6,253.6 393.8,243.3 395.8,255.7 398.0,238.4 400.2,250.5 402.4,242.9 404.8,257.8 407.3,239.5 409.8,251.2 412.5,242.2 415.3,255.0 419.1,245.4" fill="none" stroke="#C97812" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<text x="240" y="330" font-size="37.8px" fill="#C97812" font-weight="700" text-anchor="middle">H_f  -  144 positions</text>
+<line x1="240" y1="370" x2="240" y2="384" stroke="#C97812" stroke-width="2.0" opacity="1"/>
+<line x1="240" y1="384" x2="425" y2="384" stroke="#C97812" stroke-width="2.0" opacity="1"/>
+<line x1="425" y1="384" x2="425" y2="370" stroke="#C97812" stroke-width="2.0" opacity="1"/>
+<text x="332.5" y="422" font-size="37.8px" fill="#C97812" font-weight="700" text-anchor="middle">recent 24</text>
+<rect x="2070" y="145" width="280" height="40" rx="20.0" fill="#E5F4F1" stroke="#E5F4F1" stroke-width="0" opacity="1"/>
+<text x="2210.0" y="175" font-size="35.5px" fill="#277573" font-weight="700" text-anchor="middle">Coarse history</text>
+<rect x="2045.0" y="215" width="66.5" height="72" rx="7" fill="#FFFFFF" stroke="#3E9C9A" stroke-width="1.6" opacity="1"/>
+<path d="M 2055.0,257.1 2061.5,254.3 2068.0,252.3 2074.5,249.5 2081.5,246.7 2088.5,244.0 2095.0,241.6 2101.5,238.8" fill="none" stroke="#277573" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="2119.5" y="215" width="66.5" height="72" rx="7" fill="#FFFFFF" stroke="#3E9C9A" stroke-width="1.6" opacity="1"/>
+<path d="M 2129.5,257.1 2136.0,254.3 2142.5,252.3 2149.0,249.5 2156.0,246.7 2163.0,244.0 2169.5,241.6 2176.0,238.8" fill="none" stroke="#277573" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="2194.0" y="215" width="66.5" height="72" rx="7" fill="#FFFFFF" stroke="#3E9C9A" stroke-width="1.6" opacity="1"/>
+<path d="M 2204.0,257.1 2210.5,254.3 2217.0,252.3 2223.5,249.5 2230.5,246.7 2237.5,244.0 2244.0,241.6 2250.5,238.8" fill="none" stroke="#277573" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="2268.5" y="215" width="66.5" height="72" rx="7" fill="#FFFFFF" stroke="#3E9C9A" stroke-width="1.6" opacity="1"/>
+<path d="M 2278.5,257.1 2285.0,254.3 2291.5,252.3 2298.0,249.5 2305.0,246.7 2312.0,244.0 2318.5,241.6 2325.0,238.8" fill="none" stroke="#277573" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<text x="2190" y="330" font-size="37.8px" fill="#277573" font-weight="700" text-anchor="middle">H_c  -  144 positions</text>
+<rect x="600" y="145" width="1200" height="230" rx="20" fill="#F1EBF8" stroke="#8C6BB1" stroke-width="1.5" opacity="1"/>
+<text x="1200" y="195" font-size="46.8px" fill="#624486" font-weight="700" text-anchor="middle">Node-Specific Macro-Trend Prompt</text>
+<rect x="690" y="250" width="120" height="40" rx="20.0" fill="#E5F4F1" stroke="#E5F4F1" stroke-width="0" opacity="1"/>
+<text x="750.0" y="280" font-size="39.2px" fill="#277573" font-weight="700" text-anchor="middle">H_c</text>
+<line x1="820" y1="278" x2="900" y2="278" stroke="#277573" stroke-width="2.2" opacity="1" marker-end="url(#arrowCoarse)"/>
+<circle cx="925" cy="270" r="6" fill="#8C6BB1" stroke="#FFFFFF" stroke-width="1.0"/>
+<circle cx="949" cy="280" r="7" fill="#8C6BB1" stroke="#FFFFFF" stroke-width="1.0"/>
+<circle cx="973" cy="290" r="8" fill="#8C6BB1" stroke="#FFFFFF" stroke-width="1.0"/>
+<circle cx="997" cy="270" r="6" fill="#8C6BB1" stroke="#FFFFFF" stroke-width="1.0"/>
+<circle cx="1021" cy="280" r="7" fill="#8C6BB1" stroke="#FFFFFF" stroke-width="1.0"/>
+<circle cx="1045" cy="290" r="8" fill="#8C6BB1" stroke="#FFFFFF" stroke-width="1.0"/>
+<circle cx="1069" cy="270" r="6" fill="#8C6BB1" stroke="#FFFFFF" stroke-width="1.0"/>
+<circle cx="1093" cy="280" r="7" fill="#8C6BB1" stroke="#FFFFFF" stroke-width="1.0"/>
+<text x="1015" y="345" font-size="35.5px" fill="#624486" font-weight="700" text-anchor="middle">weighted pooling</text>
+<line x1="1110" y1="278" x2="1190" y2="278" stroke="#624486" stroke-width="2.2" opacity="1" marker-end="url(#arrowPurple)"/>
+<rect x="1200" y="250" width="60" height="52" rx="7" fill="#F1EBF8" stroke="#8C6BB1" stroke-width="1.8" opacity="1"/>
+<text x="1230.0" y="287" font-size="36.0px" fill="#624486" font-weight="700" text-anchor="middle">P1</text>
+<rect x="1270" y="250" width="60" height="52" rx="7" fill="#F1EBF8" stroke="#8C6BB1" stroke-width="1.8" opacity="1"/>
+<text x="1300.0" y="287" font-size="36.0px" fill="#624486" font-weight="700" text-anchor="middle">P2</text>
+<rect x="1340" y="250" width="60" height="52" rx="7" fill="#F1EBF8" stroke="#8C6BB1" stroke-width="1.8" opacity="1"/>
+<text x="1370.0" y="287" font-size="36.0px" fill="#624486" font-weight="700" text-anchor="middle">P3</text>
+<rect x="1410" y="250" width="60" height="52" rx="7" fill="#F1EBF8" stroke="#8C6BB1" stroke-width="1.8" opacity="1"/>
+<text x="1440.0" y="287" font-size="36.0px" fill="#624486" font-weight="700" text-anchor="middle">P4</text>
+<text x="1380" y="350" font-size="35.5px" fill="#624486" font-weight="700" text-anchor="middle">4 tokens / turbine</text>
+<rect x="500" y="430" width="1400" height="700" rx="24" fill="#FCFAFE" stroke="#8C6BB1" stroke-width="1.6" opacity="1"/>
+<text x="1200" y="480" font-size="46.8px" fill="#624486" font-weight="700" text-anchor="middle">Bidirectional Source-Asymmetric Interaction</text>
+<text x="610" y="555" font-size="43.2px" fill="#624486" font-weight="700" text-anchor="start">Macro -&gt; Fine</text>
+<text x="610" y="595" font-size="36.5px" fill="#C97812" font-weight="400" text-anchor="start">Q: Fine</text>
+<text x="1015" y="595" font-size="35.5px" fill="#624486" font-weight="700" text-anchor="middle">K,V: Macro</text>
+<rect x="610.0" y="630" width="49.6" height="60" rx="7" fill="#FFFFFF" stroke="#F4A340" stroke-width="1.6" opacity="1"/>
+<path d="M 617.4,662.2 620.2,653.6 622.6,663.9 625.4,649.5 628.2,659.6 631.0,653.3 634.1,665.7 637.2,650.4 640.4,660.2 643.8,652.7 647.3,663.4 652.2,655.3" fill="none" stroke="#C97812" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="667.6" y="630" width="49.6" height="60" rx="7" fill="#FFFFFF" stroke="#F4A340" stroke-width="1.6" opacity="1"/>
+<path d="M 675.0,662.2 677.8,653.6 680.2,663.9 683.0,649.5 685.8,659.6 688.6,653.3 691.7,665.7 694.8,650.4 698.0,660.2 701.4,652.7 704.9,663.4 709.8,655.3" fill="none" stroke="#C97812" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="725.2" y="630" width="49.6" height="60" rx="7" fill="#FFFFFF" stroke="#F4A340" stroke-width="1.6" opacity="1"/>
+<path d="M 732.6,662.2 735.4,653.6 737.8,663.9 740.6,649.5 743.4,659.6 746.2,653.3 749.3,665.7 752.4,650.4 755.6,660.2 759.0,652.7 762.5,663.4 767.4,655.3" fill="none" stroke="#C97812" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="782.8" y="630" width="49.6" height="60" rx="7" fill="#FFFFFF" stroke="#F4A340" stroke-width="1.6" opacity="1"/>
+<path d="M 790.2,662.2 793.0,653.6 795.4,663.9 798.2,649.5 801.0,659.6 803.8,653.3 806.9,665.7 810.0,650.4 813.2,660.2 816.6,652.7 820.1,663.4 825.0,655.3" fill="none" stroke="#C97812" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="840.4" y="630" width="49.6" height="60" rx="7" fill="#FFFFFF" stroke="#F4A340" stroke-width="1.6" opacity="1"/>
+<path d="M 847.8,662.2 850.6,653.6 853.0,663.9 855.8,649.5 858.6,659.6 861.4,653.3 864.5,665.7 867.6,650.4 870.8,660.2 874.2,652.7 877.7,663.4 882.6,655.3" fill="none" stroke="#C97812" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<line x1="900" y1="660" x2="1088" y2="660" stroke="#C97812" stroke-width="2.4" opacity="1" marker-end="url(#arrowFine)"/>
+<circle cx="1130" cy="660" r="36" fill="#FFFFFF" stroke="#624486" stroke-width="2.5"/>
+<circle cx="1130" cy="660" r="17.28" fill="#F1EBF8" stroke="#624486" stroke-width="1.4"/>
+<text x="1130" y="669" font-size="37.8px" fill="#624486" font-weight="700" text-anchor="middle">A</text>
+<text x="1130" y="730" font-size="35.5px" fill="#624486" font-weight="700" text-anchor="middle">O_mf</text>
+<line x1="1175" y1="660" x2="1435" y2="660" stroke="#624486" stroke-width="2.4" opacity="1" marker-end="url(#arrowPurple)"/>
+<circle cx="1480" cy="660" r="23" fill="#FFFFFF" stroke="#C97812" stroke-width="2.4"/>
+<line x1="1469" y1="660" x2="1491" y2="660" stroke="#C97812" stroke-width="2.2" opacity="1"/>
+<line x1="1480" y1="649" x2="1480" y2="671" stroke="#C97812" stroke-width="2.2" opacity="1"/>
+<line x1="1505" y1="660" x2="1600" y2="660" stroke="#C97812" stroke-width="2.4" opacity="1" marker-end="url(#arrowFine)"/>
+<rect x="1610.0" y="630" width="41.6" height="60" rx="7" fill="#FFF3DE" stroke="#F4A340" stroke-width="1.6" opacity="1"/>
+<path d="M 1616.2,662.2 1618.6,653.6 1620.6,663.9 1622.9,649.5 1625.3,659.6 1627.6,653.3 1630.2,665.7 1632.8,650.4 1635.5,660.2 1638.4,652.7 1641.3,663.4 1645.4,655.3" fill="none" stroke="#C97812" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="1659.6" y="630" width="41.6" height="60" rx="7" fill="#FFF3DE" stroke="#F4A340" stroke-width="1.6" opacity="1"/>
+<path d="M 1665.8,662.2 1668.2,653.6 1670.2,663.9 1672.5,649.5 1674.9,659.6 1677.2,653.3 1679.8,665.7 1682.4,650.4 1685.1,660.2 1688.0,652.7 1690.9,663.4 1695.0,655.3" fill="none" stroke="#C97812" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="1709.2" y="630" width="41.6" height="60" rx="7" fill="#FFF3DE" stroke="#F4A340" stroke-width="1.6" opacity="1"/>
+<path d="M 1715.4,662.2 1717.8,653.6 1719.8,663.9 1722.1,649.5 1724.5,659.6 1726.8,653.3 1729.4,665.7 1732.0,650.4 1734.7,660.2 1737.6,652.7 1740.5,663.4 1744.6,655.3" fill="none" stroke="#C97812" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="1758.8" y="630" width="41.6" height="60" rx="7" fill="#FFF3DE" stroke="#F4A340" stroke-width="1.6" opacity="1"/>
+<path d="M 1765.0,662.2 1767.4,653.6 1769.4,663.9 1771.7,649.5 1774.1,659.6 1776.4,653.3 1779.0,665.7 1781.6,650.4 1784.3,660.2 1787.2,652.7 1790.1,663.4 1794.2,655.3" fill="none" stroke="#C97812" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="1808.4" y="630" width="41.6" height="60" rx="7" fill="#FFF3DE" stroke="#F4A340" stroke-width="1.6" opacity="1"/>
+<path d="M 1814.6,662.2 1817.0,653.6 1819.0,663.9 1821.3,649.5 1823.7,659.6 1826.0,653.3 1828.6,665.7 1831.2,650.4 1833.9,660.2 1836.8,652.7 1839.7,663.4 1843.8,655.3" fill="none" stroke="#C97812" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<text x="1730" y="730" font-size="37.8px" fill="#C97812" font-weight="700" text-anchor="middle">Updated Fine H&#x27;_f</text>
+<line x1="1390" y1="302" x2="1390" y2="510" stroke="#624486" stroke-width="2.0" opacity="1"/>
+<line x1="1390" y1="510" x2="1175" y2="620" stroke="#624486" stroke-width="2.0" opacity="1" marker-end="url(#arrowPurple)"/>
+<text x="1510" y="535" font-size="35.5px" fill="#624486" font-weight="400" text-anchor="middle" font-style="italic">trend guidance</text>
+<text x="610" y="815" font-size="43.2px" fill="#C97812" font-weight="700" text-anchor="start">Recent Fine -&gt; Coarse</text>
+<text x="610" y="855" font-size="36.5px" fill="#277573" font-weight="400" text-anchor="start">Q: Coarse</text>
+<text x="1260" y="770" font-size="35.5px" fill="#C97812" font-weight="700" text-anchor="middle">K,V: Recent Fine - 24</text>
+<rect x="610.0" y="885" width="49.6" height="60" rx="7" fill="#FFFFFF" stroke="#3E9C9A" stroke-width="1.6" opacity="1"/>
+<path d="M 617.4,920.1 622.3,917.8 627.2,916.1 632.0,913.8 637.2,911.4 642.4,909.1 647.3,907.1 652.2,904.8" fill="none" stroke="#277573" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="667.6" y="885" width="49.6" height="60" rx="7" fill="#FFFFFF" stroke="#3E9C9A" stroke-width="1.6" opacity="1"/>
+<path d="M 675.0,920.1 679.9,917.8 684.8,916.1 689.6,913.8 694.8,911.4 700.0,909.1 704.9,907.1 709.8,904.8" fill="none" stroke="#277573" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="725.2" y="885" width="49.6" height="60" rx="7" fill="#FFFFFF" stroke="#3E9C9A" stroke-width="1.6" opacity="1"/>
+<path d="M 732.6,920.1 737.5,917.8 742.4,916.1 747.2,913.8 752.4,911.4 757.6,909.1 762.5,907.1 767.4,904.8" fill="none" stroke="#277573" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="782.8" y="885" width="49.6" height="60" rx="7" fill="#FFFFFF" stroke="#3E9C9A" stroke-width="1.6" opacity="1"/>
+<path d="M 790.2,920.1 795.1,917.8 800.0,916.1 804.8,913.8 810.0,911.4 815.2,909.1 820.1,907.1 825.0,904.8" fill="none" stroke="#277573" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="840.4" y="885" width="49.6" height="60" rx="7" fill="#FFFFFF" stroke="#3E9C9A" stroke-width="1.6" opacity="1"/>
+<path d="M 847.8,920.1 852.7,917.8 857.6,916.1 862.4,913.8 867.6,911.4 872.8,909.1 877.7,907.1 882.6,904.8" fill="none" stroke="#277573" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<line x1="900" y1="915" x2="1088" y2="915" stroke="#277573" stroke-width="2.4" opacity="1" marker-end="url(#arrowCoarse)"/>
+<circle cx="1130" cy="915" r="36" fill="#FFFFFF" stroke="#624486" stroke-width="2.5"/>
+<circle cx="1130" cy="915" r="17.28" fill="#F1EBF8" stroke="#624486" stroke-width="1.4"/>
+<text x="1130" y="924" font-size="37.8px" fill="#624486" font-weight="700" text-anchor="middle">A</text>
+<text x="1130" y="985" font-size="35.5px" fill="#624486" font-weight="700" text-anchor="middle">O_fc</text>
+<line x1="1175" y1="915" x2="1435" y2="915" stroke="#624486" stroke-width="2.4" opacity="1" marker-end="url(#arrowPurple)"/>
+<circle cx="1480" cy="915" r="23" fill="#FFFFFF" stroke="#277573" stroke-width="2.4"/>
+<line x1="1469" y1="915" x2="1491" y2="915" stroke="#277573" stroke-width="2.2" opacity="1"/>
+<line x1="1480" y1="904" x2="1480" y2="926" stroke="#277573" stroke-width="2.2" opacity="1"/>
+<line x1="1505" y1="915" x2="1600" y2="915" stroke="#277573" stroke-width="2.4" opacity="1" marker-end="url(#arrowCoarse)"/>
+<rect x="1610.0" y="885" width="41.6" height="60" rx="7" fill="#E5F4F1" stroke="#3E9C9A" stroke-width="1.6" opacity="1"/>
+<path d="M 1616.2,920.1 1620.3,917.8 1624.4,916.1 1628.5,913.8 1632.8,911.4 1637.2,909.1 1641.3,907.1 1645.4,904.8" fill="none" stroke="#277573" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="1659.6" y="885" width="41.6" height="60" rx="7" fill="#E5F4F1" stroke="#3E9C9A" stroke-width="1.6" opacity="1"/>
+<path d="M 1665.8,920.1 1669.9,917.8 1674.0,916.1 1678.1,913.8 1682.4,911.4 1686.8,909.1 1690.9,907.1 1695.0,904.8" fill="none" stroke="#277573" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="1709.2" y="885" width="41.6" height="60" rx="7" fill="#E5F4F1" stroke="#3E9C9A" stroke-width="1.6" opacity="1"/>
+<path d="M 1715.4,920.1 1719.5,917.8 1723.6,916.1 1727.7,913.8 1732.0,911.4 1736.4,909.1 1740.5,907.1 1744.6,904.8" fill="none" stroke="#277573" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="1758.8" y="885" width="41.6" height="60" rx="7" fill="#E5F4F1" stroke="#3E9C9A" stroke-width="1.6" opacity="1"/>
+<path d="M 1765.0,920.1 1769.1,917.8 1773.2,916.1 1777.3,913.8 1781.6,911.4 1786.0,909.1 1790.1,907.1 1794.2,904.8" fill="none" stroke="#277573" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<rect x="1808.4" y="885" width="41.6" height="60" rx="7" fill="#E5F4F1" stroke="#3E9C9A" stroke-width="1.6" opacity="1"/>
+<path d="M 1814.6,920.1 1818.7,917.8 1822.8,916.1 1826.9,913.8 1831.2,911.4 1835.6,909.1 1839.7,907.1 1843.8,904.8" fill="none" stroke="#277573" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<text x="1690" y="985" font-size="35.5px" fill="#277573" font-weight="700" text-anchor="middle">Updated Coarse H&#x27;_c</text>
+<text x="1510" y="1020" font-size="35.5px" fill="#C97812" font-weight="400" text-anchor="middle" font-style="italic">recent-detail correction</text>
+<line x1="425" y1="415" x2="470" y2="415" stroke="#C97812" stroke-width="2.0" opacity="1"/>
+<line x1="470" y1="415" x2="470" y2="855" stroke="#C97812" stroke-width="2.0" opacity="1"/>
+<line x1="470" y1="855" x2="1030" y2="855" stroke="#C97812" stroke-width="2.0" opacity="1"/>
+<line x1="1030" y1="855" x2="1098" y2="888" stroke="#C97812" stroke-width="2.0" opacity="1" marker-end="url(#arrowFine)"/>
+<line x1="2045" y1="250" x2="1940" y2="250" stroke="#277573" stroke-width="2.0" opacity="1"/>
+<line x1="1940" y1="250" x2="1940" y2="855" stroke="#277573" stroke-width="2.0" opacity="1"/>
+<line x1="1940" y1="855" x2="1880" y2="855" stroke="#277573" stroke-width="2.0" opacity="1" marker-end="url(#arrowCoarse)"/>
+<line x1="1480" y1="763" x2="1502" y2="785" stroke="#624486" stroke-width="2.5" opacity="1"/>
+<line x1="1502" y1="785" x2="1480" y2="807" stroke="#624486" stroke-width="2.5" opacity="1"/>
+<line x1="1480" y1="807" x2="1458" y2="785" stroke="#624486" stroke-width="2.5" opacity="1"/>
+<line x1="1458" y1="785" x2="1480" y2="763" stroke="#624486" stroke-width="2.5" opacity="1"/>
+<circle cx="1480" cy="785" r="11.440000000000001" fill="#F1EBF8" stroke="#624486" stroke-width="1.2"/>
+<text x="1480" y="794" font-size="35.5px" fill="#624486" font-weight="700" text-anchor="middle">G</text>
+<text x="1480" y="840" font-size="35.5px" fill="#624486" font-weight="700" text-anchor="middle">fusion gate</text>
+<line x1="1480" y1="751" x2="1480" y2="700" stroke="#624486" stroke-width="1.5" opacity="1" stroke-dasharray="7 6"/>
+<line x1="1480" y1="819" x2="1480" y2="875" stroke="#624486" stroke-width="1.5" opacity="1" stroke-dasharray="7 6"/>
+<line x1="760" y1="1030" x2="1620" y2="1030" stroke="#D9E2EC" stroke-width="1.4" opacity="1"/>
+<text x="1190" y="1075" font-size="35.5px" fill="#C97812" font-weight="700" text-anchor="middle">H&#x27;_f = LN(H_f + G*O_mf)</text>
+<text x="1190" y="1110" font-size="35.5px" fill="#277573" font-weight="700" text-anchor="middle">H&#x27;_c = LN(H_c + (1-G)*O_fc)</text>
+<line x1="1845" y1="660" x2="1870" y2="660" stroke="#788DA5" stroke-width="1.7" opacity="1"/>
+<line x1="1870" y1="660" x2="1870" y2="1180" stroke="#788DA5" stroke-width="1.7" opacity="1"/>
+<line x1="1845" y1="915" x2="1890" y2="915" stroke="#788DA5" stroke-width="1.7" opacity="1"/>
+<line x1="1890" y1="915" x2="1890" y2="1180" stroke="#788DA5" stroke-width="1.7" opacity="1"/>
+<line x1="1890" y1="1180" x2="1350" y2="1180" stroke="#788DA5" stroke-width="1.7" opacity="1" marker-end="url(#arrow)"/>
+<rect x="930" y="1160" width="520" height="72" rx="12" fill="#FFFFFF" stroke="#788DA5" stroke-width="1.8" opacity="1"/>
+<text x="1190" y="1206" font-size="39.2px" fill="#253244" font-weight="700" text-anchor="middle">Last-State Direct Decoder</text>
+</svg>

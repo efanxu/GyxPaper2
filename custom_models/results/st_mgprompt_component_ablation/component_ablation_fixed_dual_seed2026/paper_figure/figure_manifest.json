@@ -1,0 +1,21 @@
+{
+  "tracking_variants": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "A8"
+  ],
+  "metric_rows": 27,
+  "tracking_rows": 1200,
+  "mean_mae_gate_pass": true,
+  "outputs": {
+    "pdf": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\paper_figure\\figures\\st_mgprompt_component_ablation_A0_A8.pdf",
+    "svg": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\paper_figure\\figures\\st_mgprompt_component_ablation_A0_A8.svg",
+    "png_600dpi": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\paper_figure\\figures\\st_mgprompt_component_ablation_A0_A8_600dpi.png"
+  }
+}

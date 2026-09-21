@@ -1,0 +1,4 @@
+﻿split,start_index_inclusive,end_index_exclusive,start_timestamp,end_timestamp,time_points,window_count,prediction_start_stride,valid_target_count,total_target_count,valid_target_ratio,lookback,max_pred_len,window_rule
+train,0,1440,synthetic_00000,synthetic_01439,1440,215,6,11444,11520,0.9934027777777777,144,10,"[t-lookback,t)->[t,t+max_pred_len)"
+val,1440,1620,synthetic_01440,synthetic_01619,180,9,3,1430,1440,0.9930555555555556,144,10,"[t-lookback,t)->[t,t+max_pred_len)"
+test,1620,1800,synthetic_01620,synthetic_01799,180,27,1,1431,1440,0.99375,144,10,"[t-lookback,t)->[t,t+max_pred_len)"

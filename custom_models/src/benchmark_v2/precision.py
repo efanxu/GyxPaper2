@@ -7,7 +7,19 @@ TRANSFORMER_PRECISION_REASON = (
     "AMP-only forward overflow reproduced in upstream Transformer attention "
     "on benchmark_v2 uniform batch4; keep model-specific FP32 forward policy."
 )
+E9_FP32_PRECISION_REASON = (
+    "AMP non-finite gradients/predictions reproduced during formal "
+    "benchmark_v2 uniform batch4 training; keep model-specific FP32 policy."
+)
 TRANSFORMER_BATCH_PROFILE_ID = "uniform_train_batch4_v1"
+FP32_MODEL_IDS = frozenset({"transformer", "patchtst", "itransformer"})
+E9_FP32_MODEL_IDS = frozenset({"patchtst", "itransformer"})
+
+
+def _fp32_precision_reason(model_id: str) -> str:
+    if model_id in E9_FP32_MODEL_IDS:
+        return E9_FP32_PRECISION_REASON
+    return TRANSFORMER_PRECISION_REASON
 
 
 def expected_model_precision_identity(
@@ -20,14 +32,14 @@ def expected_model_precision_identity(
             "amp_enabled": True,
             "precision_policy": "profile_default",
         }
-    if model_id == "transformer":
+    if model_id in FP32_MODEL_IDS:
         return {
             "amp_enabled": False,
             "precision_policy": "fp32",
             "precision_resolution": {
                 "requested_amp_enabled": True,
                 "effective_amp_enabled": False,
-                "reason": TRANSFORMER_PRECISION_REASON,
+                "reason": _fp32_precision_reason(model_id),
             },
         }
     return {
@@ -44,9 +56,9 @@ def expected_model_precision_identity(
 def apply_model_precision_policy(runtime: Any):
     """Apply only audited model-specific precision overrides.
 
-    The frozen batch profile remains AMP-enabled.  Transformer is the only
-    model with a proven forward overflow, so its effective training precision
-    is recorded separately and all other models retain the profile behavior.
+    The frozen batch profile remains AMP-enabled by default.  The original
+    Transformer entry and the E9 PatchTST/iTransformer controls have audited
+    FP32 exceptions; all other models retain the profile behavior.
     """
 
     if (
@@ -54,7 +66,8 @@ def apply_model_precision_policy(runtime: Any):
         != TRANSFORMER_BATCH_PROFILE_ID
     ):
         return runtime
-    if getattr(runtime, "model_id", None) != "transformer":
+    model_id = getattr(runtime, "model_id", None)
+    if model_id not in FP32_MODEL_IDS:
         runtime.effective_config.setdefault("precision_policy", "profile_default")
         runtime.effective_config.setdefault(
             "precision_resolution",
@@ -76,6 +89,6 @@ def apply_model_precision_policy(runtime: Any):
     runtime.effective_config["precision_resolution"] = {
         "requested_amp_enabled": requested_amp_enabled,
         "effective_amp_enabled": False,
-        "reason": TRANSFORMER_PRECISION_REASON,
+        "reason": _fp32_precision_reason(model_id),
     }
     return runtime

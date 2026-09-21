@@ -1,0 +1,34 @@
+﻿variant_id,display_name,family,base_config,config_overrides,expected_unique_diff,trainable,paired_reference,implementation_status,implementation_note,reference_only
+T0,Canonical Fixed Dual reference,T,CANONICAL_FULL,{},[],False,full_fixed_dual_keep_msmgdwu_seed2026,reference,,True
+T1,Fine-only,T,CANONICAL_FULL,"{""vadsp_gate_mode"": ""fine_only""}","[""vadsp_gate_mode""]",True,T0,ready,,False
+T2,Coarse-only,T,CANONICAL_FULL,"{""vadsp_gate_mode"": ""coarse_only""}","[""vadsp_gate_mode""]",True,T0,ready,,False
+T3,Shared temporal transform dual,T,CANONICAL_FULL,"{""temporal_branch_transform"": ""shared""}","[""temporal_branch_transform""]",True,T0,ready,Shares the temporal transform object and retains explicit branch output projections.,False
+T4,Downsample-upsample Coarse dual,T,CANONICAL_FULL,"{""coarse_alignment_mode"": ""causal_downsample_upsample""}","[""coarse_alignment_mode""]",True,T0,ready,Uses causal anchor aggregation and causal repeat recovery with an access trace.,False
+T5,Fixed Dual concat/MLP interaction,T,CANONICAL_FULL,"{""cross_granularity_interaction"": ""direct_concat_mlp""}","[""cross_granularity_interaction""]",True,T0,ready,Bypasses Macro Prompt and Cross-Fusion and uses an explicit capacity-recorded concat/MLP projection.,False
+G0,Matched Micro/Fine + Macro/Coarse,G,CANONICAL_FULL,{},[],False,full_fixed_dual_keep_msmgdwu_seed2026,reference,,True
+G1,Shared Micro graph,G,CANONICAL_FULL,"{""branch_graph_assignment"": ""shared_micro""}","[""branch_graph_assignment""]",True,G0,pending,Implemented in empirical step 4.,False
+G2,Shared Macro graph,G,CANONICAL_FULL,"{""branch_graph_assignment"": ""shared_macro""}","[""branch_graph_assignment""]",True,G0,pending,Implemented in empirical step 4.,False
+G3,Swapped Micro/Macro graphs,G,CANONICAL_FULL,"{""branch_graph_assignment"": ""swapped""}","[""branch_graph_assignment""]",True,G0,pending,Implemented in empirical step 4.,False
+G4,Distance-only dual graph,G,CANONICAL_FULL,"{""graph_prior_component"": ""distance_only""}","[""graph_prior_component""]",True,G0,pending,Implemented in empirical step 4.,False
+G5,Statistics-only dual graph,G,CANONICAL_FULL,"{""graph_prior_component"": ""statistics_only""}","[""graph_prior_component""]",True,G0,pending,Implemented in empirical step 4.,False
+G6,Free adaptive graph,G,CANONICAL_FULL,"{""use_trend_prior_graph"": false}","[""use_trend_prior_graph""]",True,G0,ready,,False
+G7,Fixed dual graph,G,CANONICAL_FULL,"{""use_adaptive_graph"": false}","[""use_adaptive_graph""]",True,G0,ready,,False
+G8,Degree-preserving random rewiring,G,CANONICAL_FULL,"{""graph_rewire_mode"": ""degree_preserving_random""}","[""graph_rewire_mode""]",True,G0,pending,Implemented in empirical step 4.,False
+F0,Independent dual branches,F,CANONICAL_FULL,"{""use_cross_fusion"": false, ""use_macro_prompt"": false}","[""use_macro_prompt"", ""use_cross_fusion""]",True,F7,ready,,False
+F1,Element-wise add,F,CANONICAL_FULL,"{""fusion_mode"": ""add""}","[""fusion_mode""]",True,F7,ready,,False
+F2,Concat + MLP,F,CANONICAL_FULL,"{""fusion_mode"": ""concat""}","[""fusion_mode""]",True,F7,ready,,False
+F3,Unified gated fusion,F,CANONICAL_FULL,"{""fusion_mode"": ""unified_gated""}","[""fusion_mode""]",True,F7,pending,Implemented in empirical step 6.,False
+F4,Macro-to-Fine only,F,CANONICAL_FULL,"{""disable_reverse_cross"": true}","[""disable_reverse_cross""]",True,F7,ready,,False
+F5,Fine-to-Coarse only,F,CANONICAL_FULL,"{""disable_macro_to_fine_cross"": true}","[""disable_macro_to_fine_cross""]",True,F7,ready,,False
+F6,"Bidirectional Cross-Fusion, shared projections",F,CANONICAL_FULL,"{""share_cross_attention_projections"": true}","[""share_cross_attention_projections""]",False,A7,reference,,True
+F7,"Bidirectional Cross-Fusion, independent projections",F,CANONICAL_FULL,{},[],False,full_fixed_dual_keep_msmgdwu_seed2026,reference,,True
+F8,Mean-pooling Macro Prompt,F,CANONICAL_FULL,"{""macro_prompt_pooling"": ""mean""}","[""macro_prompt_pooling""]",False,A4,reference,,True
+L0,Equal Smooth L1,L,CANONICAL_FULL,"{""granularity_weight_mode"": ""static"", ""site_weight_mode"": ""static""}","[""granularity_weight_mode"", ""site_weight_mode""]",True,L3,ready,,False
+L1,Horizon difficulty-rate only,L,CANONICAL_FULL,"{""site_weight_mode"": ""static""}","[""site_weight_mode""]",True,L3,ready,,False
+L2,Dynamic node difficulty only,L,CANONICAL_FULL,"{""granularity_weight_mode"": ""static""}","[""granularity_weight_mode""]",True,L3,ready,,False
+L3,Complete MS-MG-DWU,L,CANONICAL_FULL,{},[],False,full_fixed_dual_keep_msmgdwu_seed2026,reference,,True
+L4,Static increasing horizon weights,L,CANONICAL_FULL,"{""granularity_weight_mode"": ""static_increasing""}","[""granularity_weight_mode""]",True,L3,pending,Implemented in empirical step 8.,False
+L5,Uncertainty weighting,L,CANONICAL_FULL,"{""granularity_weight_mode"": ""uncertainty_precision"", ""site_weight_mode"": ""static""}","[""granularity_weight_mode"", ""site_weight_mode""]",True,L3,ready,,False
+L6,Dynamic weight average,L,CANONICAL_FULL,"{""granularity_weight_mode"": ""dynamic_weight_average""}","[""granularity_weight_mode""]",True,L3,pending,Implemented in empirical step 8.,False
+L7,Score-aligned hybrid,L,CANONICAL_FULL,"{""loss_function"": ""masked_score_aligned_hybrid"", ""loss_protocol"": ""fair_main"", ""use_msmg_dwu"": false}","[""use_msmg_dwu"", ""loss_function"", ""loss_protocol""]",False,A8,reference,,True
+R0,Canonical robustness reference,R,CANONICAL_FULL,{},[],False,full_fixed_dual_keep_msmgdwu_seed2026,reference,,True

@@ -1,0 +1,18 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "G8",
+  "display_name": "Degree-preserving random rewiring",
+  "family": "G",
+  "implementation_status": "pending",
+  "trainable": true,
+  "paired_reference": "G0",
+  "expected_diff_fields": [
+    "graph_rewire_mode"
+  ],
+  "declared_overrides": {
+    "graph_rewire_mode": "degree_preserving_random"
+  },
+  "passed": true,
+  "execution_ready": false,
+  "note": "Implemented in empirical step 4."
+}

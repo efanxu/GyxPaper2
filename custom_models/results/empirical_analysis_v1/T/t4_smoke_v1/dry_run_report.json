@@ -1,0 +1,18 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "T4",
+  "display_name": "Downsample-upsample Coarse dual",
+  "family": "T",
+  "implementation_status": "pending",
+  "trainable": true,
+  "paired_reference": "T0",
+  "expected_diff_fields": [
+    "coarse_alignment_mode"
+  ],
+  "declared_overrides": {
+    "coarse_alignment_mode": "causal_downsample_upsample"
+  },
+  "passed": true,
+  "execution_ready": false,
+  "note": "Requires the causal resampling implementation and access audit from step 3."
+}

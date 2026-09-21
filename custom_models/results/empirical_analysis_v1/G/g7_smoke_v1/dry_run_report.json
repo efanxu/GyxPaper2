@@ -1,0 +1,29 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "G7",
+  "family": "G",
+  "implementation_status": "ready",
+  "expected_diff_fields": [
+    "use_adaptive_graph"
+  ],
+  "actual_diff_fields": [
+    "use_adaptive_graph"
+  ],
+  "missing_expected_diff_fields": [],
+  "unexpected_diff_fields": [],
+  "frozen_protocol_changes": [],
+  "differences": {
+    "use_adaptive_graph": {
+      "canonical": true,
+      "effective": false
+    }
+  },
+  "passed": true,
+  "display_name": "Fixed dual graph",
+  "trainable": true,
+  "paired_reference": "G0",
+  "declared_overrides": {
+    "use_adaptive_graph": false
+  },
+  "execution_ready": true
+}

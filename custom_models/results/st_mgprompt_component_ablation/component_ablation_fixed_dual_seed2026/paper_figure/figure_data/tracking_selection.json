@@ -1,0 +1,27 @@
+{
+  "selection_rule": "Show the canonical model and every A1-A8 ablation",
+  "selected_variants": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "A8"
+  ],
+  "selected_names": [
+    "Canonical Full",
+    "w/o Spatial Graph",
+    "w/o Adaptive Graph",
+    "w/o Diffusion",
+    "Mean-Pooling Macro Prompt",
+    "Short-context Reverse Cross",
+    "Early-History Macro Cross Fusion",
+    "Shared-Projection Cross Fusion",
+    "w/o MS-MG-DWU"
+  ],
+  "window": "first 400 common target timestamps aligned across H3/H6/H10",
+  "aggregation": "mean Patv over valid_target_mask turbines"
+}

@@ -1,0 +1,7 @@
+﻿variant_id,coarse_alignment_mode,coarse_windows,upsample_rule,causal_access_required,same_history_axis_output,trace_path
+T0,same_axis,"[6, 18, 36]",not_applicable,False,True,
+T1,same_axis,"[6, 18, 36]",not_applicable,False,True,
+T2,same_axis,"[6, 18, 36]",not_applicable,False,True,
+T3,same_axis,"[6, 18, 36]",not_applicable,False,True,
+T4,causal_downsample_upsample,"[6, 18, 36]",causal_repeat,True,False,D:\PaperProject\GyxPaper2\custom_models\results\empirical_analysis_v1\T\smoke\T4\coarse_alignment_trace.csv
+T5,same_axis,"[6, 18, 36]",not_applicable,False,True,

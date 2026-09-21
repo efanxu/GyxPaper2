@@ -1,0 +1,58 @@
+{
+  "outputSlides": [
+    {
+      "outputSlide": 1,
+      "sourceSlide": 2,
+      "narrativeRole": "technical mechanism content",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite-and-reposition",
+          "sourceElementId": "sh/ny1czapg"
+        },
+        {
+          "action": "add",
+          "newPrimitiveAllowed": true,
+          "mustNotOverlapInherited": true,
+          "reason": "User explicitly requested a full compact re-layout on a smaller canvas after replacing inherited slide-local objects.",
+          "zone": {
+            "left": 0,
+            "top": 0,
+            "width": 960,
+            "height": 537.6
+          }
+        }
+      ]
+    },
+    {
+      "outputSlide": 2,
+      "sourceSlide": 3,
+      "narrativeRole": "technical mechanism content",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite-and-reposition",
+          "sourceElementId": "sh/el0jux8b"
+        },
+        {
+          "action": "add",
+          "newPrimitiveAllowed": true,
+          "mustNotOverlapInherited": true,
+          "reason": "User explicitly requested waveform/trend ribbons and a compact cross-fusion re-layout after replacing inherited slide-local objects.",
+          "zone": {
+            "left": 0,
+            "top": 0,
+            "width": 960,
+            "height": 537.6
+          }
+        }
+      ]
+    }
+  ],
+  "omittedSourceSlides": [
+    {
+      "sourceSlide": 1,
+      "reason": "Figure 1 is frozen and explicitly excluded from the final two-slide deck."
+    }
+  ]
+}

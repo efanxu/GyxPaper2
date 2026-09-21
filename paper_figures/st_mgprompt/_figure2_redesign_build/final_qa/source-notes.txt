@@ -1,0 +1,1 @@
+No external sources or assets used. Scientific terminology and parameter values are inherited from the user-provided ST-MGPrompt deck and task specification.

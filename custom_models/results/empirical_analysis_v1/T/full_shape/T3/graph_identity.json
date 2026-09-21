@@ -1,0 +1,17 @@
+{
+  "graph_tag": "trend_prior_v4_2",
+  "source": "canonical_checkpoint_buffers",
+  "checkpoint_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\best_checkpoint.pt",
+  "macro_buffer": "A_macro_prior",
+  "micro_buffer": "A_micro_prior",
+  "macro_shape": [
+    134,
+    134
+  ],
+  "micro_shape": [
+    134,
+    134
+  ],
+  "node_count": 134,
+  "graph_operator": "bidirectional_diffusion"
+}

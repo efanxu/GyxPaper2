@@ -1,0 +1,18 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "F3",
+  "display_name": "Unified gated fusion",
+  "family": "F",
+  "implementation_status": "pending",
+  "trainable": true,
+  "paired_reference": "F7",
+  "expected_diff_fields": [
+    "fusion_mode"
+  ],
+  "declared_overrides": {
+    "fusion_mode": "unified_gated"
+  },
+  "passed": true,
+  "execution_ready": false,
+  "note": "Implemented in empirical step 6."
+}

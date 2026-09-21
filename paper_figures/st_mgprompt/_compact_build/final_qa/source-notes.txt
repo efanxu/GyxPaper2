@@ -1,0 +1,1 @@
+No external sources or assets used. Scientific content and terminology are inherited from the user-provided ST-MGPrompt source deck and task specification.

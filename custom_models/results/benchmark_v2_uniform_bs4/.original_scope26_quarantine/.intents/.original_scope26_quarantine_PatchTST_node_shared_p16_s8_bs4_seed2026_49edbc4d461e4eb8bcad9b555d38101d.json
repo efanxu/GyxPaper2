@@ -1,0 +1,86 @@
+{
+  "schema_version": "original_scope26_archive_intent_v1",
+  "status": "COMPLETED",
+  "attempt_id": "49edbc4d461e4eb8bcad9b555d38101d",
+  "operation": "QUARANTINE",
+  "source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\PatchTST_node_shared_p16_s8_bs4_seed2026",
+  "target": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\.original_scope26_quarantine\\PatchTST_node_shared_p16_s8_bs4_seed2026\\20260806T081826.652898Z_6448_1dc1dc0c62bd46ec962aaf4c9e423fcf",
+  "receipt_name": "quarantine_receipt.json",
+  "receipt": {
+    "schema_version": "original_scope26_quarantine_receipt_v1",
+    "scope_id": "benchmark_v2_batch4_scope26_seed2026",
+    "model_id": "patchtst",
+    "run_id": "PatchTST_node_shared_p16_s8_bs4_seed2026",
+    "original_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\PatchTST_node_shared_p16_s8_bs4_seed2026",
+    "archive_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\.original_scope26_quarantine\\PatchTST_node_shared_p16_s8_bs4_seed2026\\20260806T081826.652898Z_6448_1dc1dc0c62bd46ec962aaf4c9e423fcf",
+    "archive_reason": "explicit quarantine-existing --apply",
+    "original_classification": "CURRENT_SCOPE26_IDENTITY_MISMATCH",
+    "original_rejection_reasons": [
+      "PREDICTION_METADATA_MISSING_FILE",
+      "STATUS_NOT_COMPLETED:FAILED",
+      "EXIT_CODE_NOT_ZERO:1",
+      "PREDICTION_RUN_ID_MISMATCH",
+      "PREDICTION_MODEL_ID_MISMATCH",
+      "METRICS_H3_MISSING_FILE",
+      "METRICS_H6_MISSING_FILE",
+      "METRICS_H10_MISSING_FILE",
+      "METRICS_CSV_MISSING",
+      "METRICS_BUNDLE_HASH_UNAVAILABLE",
+      "BEST_CHECKPOINT.PT_MISSING",
+      "LAST_CHECKPOINT.PT_MISSING",
+      "TRAIN_LOG.CSV_MISSING",
+      "BEST_CHECKPOINT_MISSING_OR_EMPTY",
+      "EXECUTION_RECEIPT_NOT_SUCCESS",
+      "EXECUTION_RECEIPT_EXIT_CODE_MISMATCH"
+    ],
+    "recursive_file_manifest": [
+      {
+        "path": "artifact_manifest.json",
+        "sha256": "8ca98badfc57c6a040408574d5281093e424c7f51e027afa12b27cbf4855697a"
+      },
+      {
+        "path": "data_signature.json",
+        "sha256": "8b2c38ec496adf178dc12eeaf665ff4a7f4f311cb6f4d6d9ced6e83b71f7e60a"
+      },
+      {
+        "path": "effective_config.json",
+        "sha256": "aafdadd1a91a17e8f3d54e08bf6ea4a113607fccfaa4d61147046fd47dcabf24"
+      },
+      {
+        "path": "environment.json",
+        "sha256": "2373a17b6192b49329b4a00e4529025f16f6c0b9ca054192d0396f949c5c55b7"
+      },
+      {
+        "path": "execution_receipt.json",
+        "sha256": "7147ecb767262b4e4feed5b654c1bccc544d18a9f428e572406f0f29269bf15c"
+      },
+      {
+        "path": "model_summary.json",
+        "sha256": "09219fca84972e97efb66f78d0ef2dfed8b7eceaaee61d0914d5c8162d503e5c"
+      },
+      {
+        "path": "protocol_check.json",
+        "sha256": "f7af2fd0e8b4a01cae8c2062cd2608755097f2cb12c057cf1126cc782629d82b"
+      },
+      {
+        "path": "resolved_config.json",
+        "sha256": "aafdadd1a91a17e8f3d54e08bf6ea4a113607fccfaa4d61147046fd47dcabf24"
+      },
+      {
+        "path": "run_status.json",
+        "sha256": "ac411ef92dec046e728cdd9904d62c605c6b1fbd6a3e5dd4465d7612f2ff963b"
+      }
+    ],
+    "current_git_identity": {
+      "git_commit": "41ed7f1145e39945ae6541c3467aaa0d58286122",
+      "source_revision_type": "git"
+    },
+    "current_manifest_hash": "57a93bb4219bfd437d73d34638aed883723511f77120da71ad39e9e5f4f6775f",
+    "current_run_map_hash": "d491de25fc098350b1e4c7934d5a03755b9ba5d8cb39b2cfdcc6cad1fe0b4cc7",
+    "current_freeze_hash": "863df0a3d7c88716e93a1ac15b458b88c5407a0e04613330f75b42dd073f0578",
+    "attempt_id": "49edbc4d461e4eb8bcad9b555d38101d",
+    "timestamp": "2026-08-06T08:18:26.903648+00:00"
+  },
+  "started_at": "2026-08-06T08:18:26.904658+00:00",
+  "finished_at": "2026-08-06T08:18:26.908331+00:00"
+}

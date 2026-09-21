@@ -1,0 +1,22 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant": {
+    "variant_id": "F5",
+    "display_name": "Fine-to-Coarse only",
+    "family": "F",
+    "base_config": "CANONICAL_FULL",
+    "config_overrides": {
+      "disable_macro_to_fine_cross": true
+    },
+    "expected_unique_diff": [
+      "disable_macro_to_fine_cross"
+    ],
+    "trainable": true,
+    "paired_reference": "F7",
+    "implementation_status": "ready",
+    "implementation_note": "",
+    "reference_only": false
+  },
+  "seed": 2026,
+  "mode": "smoke"
+}

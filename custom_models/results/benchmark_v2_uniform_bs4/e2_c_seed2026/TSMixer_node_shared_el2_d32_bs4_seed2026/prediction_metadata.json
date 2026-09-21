@@ -1,0 +1,23 @@
+{
+  "run_mode": "formal",
+  "model_id": "tsmixer",
+  "run_id": "TSMixer_node_shared_el2_d32_bs4_seed2026",
+  "formal_registry_entry": true,
+  "formal_training": true,
+  "protocol_id": "sdwpf_benchmark_v2",
+  "prediction_shape": [
+    5104,
+    134,
+    10
+  ],
+  "target_column": "Patv_raw",
+  "output_space_before_inverse": "normalized_target_space",
+  "output_space_after_inverse": "physical_kW",
+  "source_checkpoint": "best_checkpoint.pt",
+  "training_batch_profile_id": "uniform_train_batch4_v1",
+  "train_batch_size": 4,
+  "val_batch_size": 4,
+  "test_batch_size": 4,
+  "gradient_accumulation_steps": 1,
+  "effective_train_batch_size": 4
+}

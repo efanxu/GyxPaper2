@@ -1,0 +1,29 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "F8",
+  "family": "F",
+  "implementation_status": "reference",
+  "expected_diff_fields": [
+    "macro_prompt_pooling"
+  ],
+  "actual_diff_fields": [
+    "macro_prompt_pooling"
+  ],
+  "missing_expected_diff_fields": [],
+  "unexpected_diff_fields": [],
+  "frozen_protocol_changes": [],
+  "differences": {
+    "macro_prompt_pooling": {
+      "canonical": "attention",
+      "effective": "mean"
+    }
+  },
+  "passed": true,
+  "display_name": "Mean-pooling Macro Prompt",
+  "trainable": false,
+  "paired_reference": "A4",
+  "declared_overrides": {
+    "macro_prompt_pooling": "mean"
+  },
+  "execution_ready": true
+}

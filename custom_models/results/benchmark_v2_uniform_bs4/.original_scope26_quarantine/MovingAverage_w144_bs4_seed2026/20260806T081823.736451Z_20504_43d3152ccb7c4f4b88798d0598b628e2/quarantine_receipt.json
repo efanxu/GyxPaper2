@@ -1,0 +1,87 @@
+{
+  "schema_version": "original_scope26_quarantine_receipt_v1",
+  "scope_id": "benchmark_v2_batch4_scope26_seed2026",
+  "model_id": "moving_average",
+  "run_id": "MovingAverage_w144_bs4_seed2026",
+  "original_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\basic_lightweight_seed2026\\MovingAverage_w144_bs4_seed2026",
+  "archive_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\.original_scope26_quarantine\\MovingAverage_w144_bs4_seed2026\\20260806T081823.736451Z_20504_43d3152ccb7c4f4b88798d0598b628e2",
+  "archive_reason": "explicit quarantine-existing --apply",
+  "original_classification": "CURRENT_SCOPE26_IDENTITY_MISMATCH",
+  "original_rejection_reasons": [
+    "SEED_MISMATCH",
+    "PRECISION_IDENTITY_MISMATCH:amp_enabled",
+    "PRECISION_IDENTITY_MISMATCH:precision_policy",
+    "PRECISION_IDENTITY_MISMATCH:precision_resolution"
+  ],
+  "recursive_file_manifest": [
+    {
+      "path": "artifact_manifest.json",
+      "sha256": "bcd155d35f0dfed9e1d49ef480bfb63329fd007adbbf7aed2963a8cb76f92003"
+    },
+    {
+      "path": "baseline_state.json",
+      "sha256": "119c3124f579ff1125112e62cdcc6cc0178e7a995cdc8c11670fed9119e12bff"
+    },
+    {
+      "path": "data_signature.json",
+      "sha256": "8b2c38ec496adf178dc12eeaf665ff4a7f4f311cb6f4d6d9ced6e83b71f7e60a"
+    },
+    {
+      "path": "effective_config.json",
+      "sha256": "e6f754150b74348e4ce67bf02e7941ec2a3702a8f3525c863ed2815d0812c536"
+    },
+    {
+      "path": "environment.json",
+      "sha256": "2373a17b6192b49329b4a00e4529025f16f6c0b9ca054192d0396f949c5c55b7"
+    },
+    {
+      "path": "execution_receipt.json",
+      "sha256": "1150dda2ed66722c93a9cf895c250aa6b6f15a20f2e4212ed6bf56a7e98ae21e"
+    },
+    {
+      "path": "metrics.csv",
+      "sha256": "f5fc19a35949c80182a6d81b01097fa9167b10094ee03fbe7ca00a8d14965432"
+    },
+    {
+      "path": "metrics_eval_h10.json",
+      "sha256": "2b22f9c230f2b4d691a88675654f8125c8482355e99fd14b90a9e40bbed76013"
+    },
+    {
+      "path": "metrics_eval_h3.json",
+      "sha256": "1dc682bac584e447e2d74f56b0746d64887209e927aab6c441e8a5b632fb912c"
+    },
+    {
+      "path": "metrics_eval_h6.json",
+      "sha256": "3485fb77d0a9db9d74887909e4fba533599bb0d0c059c4194d5d0f2ccebf066f"
+    },
+    {
+      "path": "model_summary.json",
+      "sha256": "fbd1ad04a50241c150e8396c5ec8dfd21b8ed85b3cc46fde59c391958b9e7cc4"
+    },
+    {
+      "path": "prediction_metadata.json",
+      "sha256": "d8a703e18016ff1b511ff7786601395eade7c470f2f5f1e2f0153d5e1b6d809b"
+    },
+    {
+      "path": "protocol_check.json",
+      "sha256": "f7af2fd0e8b4a01cae8c2062cd2608755097f2cb12c057cf1126cc782629d82b"
+    },
+    {
+      "path": "resolved_config.json",
+      "sha256": "e6f754150b74348e4ce67bf02e7941ec2a3702a8f3525c863ed2815d0812c536"
+    },
+    {
+      "path": "run_status.json",
+      "sha256": "57a1635dcbbf9b2b20254bdc3167088e937262161780713d3ae62b3c7b41d22f"
+    }
+  ],
+  "current_git_identity": {
+    "git_commit": "41ed7f1145e39945ae6541c3467aaa0d58286122",
+    "source_revision_type": "git"
+  },
+  "current_manifest_hash": "57a93bb4219bfd437d73d34638aed883723511f77120da71ad39e9e5f4f6775f",
+  "current_run_map_hash": "d491de25fc098350b1e4c7934d5a03755b9ba5d8cb39b2cfdcc6cad1fe0b4cc7",
+  "current_freeze_hash": "863df0a3d7c88716e93a1ac15b458b88c5407a0e04613330f75b42dd073f0578",
+  "attempt_id": "55c3b2f1226c4842b09ad2e9b7b64452",
+  "timestamp": "2026-08-06T08:18:23.979669+00:00"
+}

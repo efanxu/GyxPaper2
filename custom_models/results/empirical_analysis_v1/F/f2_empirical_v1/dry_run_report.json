@@ -1,0 +1,29 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "F2",
+  "family": "F",
+  "implementation_status": "ready",
+  "expected_diff_fields": [
+    "fusion_mode"
+  ],
+  "actual_diff_fields": [
+    "fusion_mode"
+  ],
+  "missing_expected_diff_fields": [],
+  "unexpected_diff_fields": [],
+  "frozen_protocol_changes": [],
+  "differences": {
+    "fusion_mode": {
+      "canonical": "cross",
+      "effective": "concat"
+    }
+  },
+  "passed": true,
+  "display_name": "Concat + MLP",
+  "trainable": true,
+  "paired_reference": "F7",
+  "declared_overrides": {
+    "fusion_mode": "concat"
+  },
+  "execution_ready": true
+}

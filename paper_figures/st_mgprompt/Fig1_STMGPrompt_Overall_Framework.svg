@@ -1,0 +1,217 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180mm" height="85.6731mm" viewBox="0 0 2080 990" role="img" aria-labelledby="title desc">
+<title id="title">Overall Framework of ST-MGPrompt</title>
+<desc id="desc">Academic vector diagram for the ST-MGPrompt forecasting model.</desc>
+<style>text{font-family:Arial,Helvetica,Arial,sans-serif;fill:#253244;} .muted{fill:#607086;} .small{font-size:13px;} .tiny{font-size:11px;} .label{font-size:14px;font-weight:700;letter-spacing:.2px;} .title{font-size:23px;font-weight:700;} .section{font-size:12px;font-weight:700;letter-spacing:1.1px;} .math{font-family:Arial,Arial,sans-serif;}</style>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,4 L0,8 Z" fill="#536579"/></marker><marker id="arrowFine" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,4 L0,8 Z" fill="#C97812"/></marker><marker id="arrowCoarse" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,4 L0,8 Z" fill="#277573"/></marker><marker id="arrowPurple" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,4 L0,8 Z" fill="#624486"/></marker><marker id="arrowLoss" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,4 L0,8 Z" fill="#B86770"/></marker></defs>
+<rect x="0" y="0" width="2080" height="990" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0" opacity="1"/>
+<text x="36" y="40" font-size="25px" fill="#253244" font-weight="700" text-anchor="start">ST-MGPrompt</text>
+<text x="1935" y="40" font-size="14px" fill="#607086" font-weight="700" text-anchor="end">Overall framework</text>
+<rect x="30" y="61" width="180" height="25" rx="7" fill="#E8EEF5" stroke="#D9E2EC" stroke-width="0.8" opacity="1"/>
+<text x="42" y="78" font-size="11px" fill="#607086" font-weight="700" text-anchor="start" letter-spacing="1.1px">HISTORICAL INPUT</text>
+<rect x="30" y="92" width="180" height="635" rx="12" fill="#FFFFFF" stroke="#D9E2EC" stroke-width="1.2" opacity="1"/>
+<rect x="240" y="61" width="230" height="25" rx="7" fill="#E8EEF5" stroke="#D9E2EC" stroke-width="0.8" opacity="1"/>
+<text x="252" y="78" font-size="11px" fill="#607086" font-weight="700" text-anchor="start" letter-spacing="1.1px">FIXED DUAL</text>
+<rect x="240" y="92" width="230" height="635" rx="12" fill="#FFFFFF" stroke="#D9E2EC" stroke-width="1.2" opacity="1"/>
+<rect x="505" y="61" width="390" height="25" rx="7" fill="#E8EEF5" stroke="#D9E2EC" stroke-width="0.8" opacity="1"/>
+<text x="517" y="78" font-size="11px" fill="#607086" font-weight="700" text-anchor="start" letter-spacing="1.1px">SEMANTIC SPATIAL-TEMPORAL ENCODING</text>
+<rect x="505" y="92" width="390" height="635" rx="12" fill="#FFFFFF" stroke="#D9E2EC" stroke-width="1.2" opacity="1"/>
+<rect x="935" y="61" width="405" height="25" rx="7" fill="#F1EBF8" stroke="#D9E2EC" stroke-width="0.8" opacity="1"/>
+<text x="947" y="78" font-size="11px" fill="#607086" font-weight="700" text-anchor="start" letter-spacing="1.1px">CROSS-GRANULARITY COLLABORATION</text>
+<rect x="935" y="92" width="405" height="635" rx="12" fill="#FFFFFF" stroke="#8C6BB1" stroke-width="1.2" opacity="1"/>
+<rect x="1375" y="61" width="375" height="25" rx="7" fill="#E8EEF5" stroke="#D9E2EC" stroke-width="0.8" opacity="1"/>
+<text x="1387" y="78" font-size="11px" fill="#607086" font-weight="700" text-anchor="start" letter-spacing="1.1px">TASK-CONDITIONED FORECASTING</text>
+<rect x="1375" y="92" width="375" height="635" rx="12" fill="#E8EEF5" stroke="#D9E2EC" stroke-width="1.2" opacity="1"/>
+<rect x="1780" y="61" width="270" height="25" rx="7" fill="#E8EEF5" stroke="#D9E2EC" stroke-width="0.8" opacity="1"/>
+<text x="1792" y="78" font-size="11px" fill="#607086" font-weight="700" text-anchor="start" letter-spacing="1.1px">OUTPUT</text>
+<rect x="1780" y="92" width="270" height="635" rx="12" fill="#FFFFFF" stroke="#D9E2EC" stroke-width="1.2" opacity="1"/>
+<rect x="81" y="187" width="118" height="150" rx="4" fill="#FFFFFF" stroke="#788DA5" stroke-width="1.2" opacity="1"/>
+<rect x="74" y="192" width="118" height="150" rx="4" fill="#FFFFFF" stroke="#788DA5" stroke-width="1.2" opacity="1"/>
+<rect x="67" y="197" width="118" height="150" rx="4" fill="#FFFFFF" stroke="#788DA5" stroke-width="1.2" opacity="1"/>
+<rect x="60" y="202" width="118" height="150" rx="4" fill="#E8EEF5" stroke="#788DA5" stroke-width="1.2" opacity="1"/>
+<text x="129.5" y="282.0" font-size="13px" fill="#253244" font-weight="700" text-anchor="middle">X</text>
+<text x="120" y="394" font-size="14px" fill="#253244" font-weight="700" text-anchor="middle">Historical wind-farm</text>
+<text x="120" y="411" font-size="14px" fill="#253244" font-weight="700" text-anchor="middle">observations</text>
+<text x="120" y="440" font-size="12px" fill="#607086" font-weight="400" text-anchor="middle">134 turbines</text>
+<text x="120" y="455" font-size="12px" fill="#607086" font-weight="400" text-anchor="middle">16 variables</text>
+<text x="120" y="470" font-size="12px" fill="#607086" font-weight="400" text-anchor="middle">144 × 10 min = 24 h</text>
+<text x="120" y="520" font-size="12.3px" fill="#253244" font-weight="400" text-anchor="middle">X ∈ R^{B×144×134×16}</text>
+<rect x="48" y="570" width="145" height="84" rx="10" fill="#E8EEF5" stroke="#788DA5" stroke-width="1.5" opacity="1"/>
+<rect x="48" y="570" width="5" height="84" rx="10" fill="#788DA5" stroke="#788DA5" stroke-width="0" opacity="1"/>
+<text x="120.5" y="595" font-size="13px" fill="#253244" font-weight="700" text-anchor="middle">Shared input</text>
+<text x="120.5" y="617" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">Projection</text>
+<text x="120.5" y="633" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">16 → D = 64</text>
+<line x1="120" y1="540" x2="120" y2="570" stroke="#788DA5" stroke-width="1.8" opacity="1" marker-end="url(#arrow)"/>
+<line x1="193" y1="612" x2="242" y2="612" stroke="#91A0B2" stroke-width="1.8" opacity="1" marker-end="url(#arrow)"/>
+<rect x="270" y="170" width="170" height="92" rx="10" fill="#FFF3DE" stroke="#F4A340" stroke-width="1.5" opacity="1"/>
+<rect x="270" y="170" width="5" height="92" rx="10" fill="#F4A340" stroke="#F4A340" stroke-width="0" opacity="1"/>
+<text x="355.0" y="195" font-size="15px" fill="#253244" font-weight="700" text-anchor="middle">Fine / F</text>
+<text x="355.0" y="217" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">same grid</text>
+<text x="355.0" y="233" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">144 steps</text>
+<path d="M 300.0,249.7 313.2,244.3 324.2,250.6 337.4,241.6 351.7,247.7 362.7,243.6 374.8,251.7 388.0,242.5 400.1,247.0 410.0,244.5" fill="none" stroke="#C97812" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<line x1="300" y1="256" x2="410" y2="256" stroke="#D9E2EC" stroke-width="0.8" opacity="1"/>
+<rect x="270" y="490" width="170" height="92" rx="10" fill="#E5F4F1" stroke="#3E9C9A" stroke-width="1.5" opacity="1"/>
+<rect x="270" y="490" width="5" height="92" rx="10" fill="#3E9C9A" stroke="#3E9C9A" stroke-width="0" opacity="1"/>
+<text x="355.0" y="515" font-size="15px" fill="#253244" font-weight="700" text-anchor="middle">Coarse / C</text>
+<text x="355.0" y="537" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">same grid</text>
+<text x="355.0" y="553" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">144 steps</text>
+<path d="M 300.0,571.0 317.6,569.7 334.1,567.4 350.6,568.4 368.2,565.6 386.9,563.6 410.0,562.0" fill="none" stroke="#277573" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<line x1="300" y1="576" x2="410" y2="576" stroke="#D9E2EC" stroke-width="0.8" opacity="1"/>
+<text x="355" y="598" font-size="10.8px" fill="#277573" font-weight="700" text-anchor="middle">w={6,18,36}</text>
+<line x1="440" y1="612" x2="469" y2="612" stroke="#91A0B2" stroke-width="1.8" opacity="1" marker-end="url(#arrow)"/>
+<line x1="505" y1="238" x2="505" y2="540" stroke="#D9E2EC" stroke-width="1.0" opacity="1"/>
+<text x="505" y="332" font-size="12px" fill="#C97812" font-weight="700" text-anchor="middle">1/2</text>
+<text x="505" y="467" font-size="12px" fill="#277573" font-weight="700" text-anchor="middle">1/2</text>
+<line x1="505" y1="612" x2="535" y2="612" stroke="#91A0B2" stroke-width="1.8" opacity="1" marker-end="url(#arrow)"/>
+<path d="M 470 612 C 485 612, 482 216, 505 216" fill="none" stroke="#C97812" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrowFine)"/>
+<path d="M 470 612 C 485 612, 482 536, 505 536" fill="none" stroke="#277573" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrowCoarse)"/>
+<text x="620" y="124" font-size="12.5px" fill="#607086" font-weight="400" text-anchor="middle" font-style="italic">Two semantic views on one 144-step timeline</text>
+<rect x="535" y="162" width="170" height="82" rx="10" fill="#FFF3DE" stroke="#F4A340" stroke-width="1.5" opacity="1"/>
+<rect x="535" y="162" width="5" height="82" rx="10" fill="#F4A340" stroke="#F4A340" stroke-width="0" opacity="1"/>
+<text x="620.0" y="187" font-size="13px" fill="#253244" font-weight="700" text-anchor="middle">Micro Local Graph</text>
+<text x="620.0" y="209" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">ΔWspd + distance</text>
+<text x="620.0" y="225" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">local change relations</text>
+<rect x="725" y="162" width="180" height="82" rx="10" fill="#FFFFFF" stroke="#C97812" stroke-width="1.5" opacity="1"/>
+<rect x="725" y="162" width="5" height="82" rx="10" fill="#F4A340" stroke="#F4A340" stroke-width="0" opacity="1"/>
+<text x="815.0" y="187" font-size="12.5px" fill="#253244" font-weight="700" text-anchor="middle">Prior-constrained</text>
+<text x="815.0" y="209" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">adaptive reweighting</text>
+<text x="815.0" y="225" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">prior × learned weights</text>
+<rect x="925" y="162" width="165" height="82" rx="10" fill="#FFFFFF" stroke="#C97812" stroke-width="1.5" opacity="1"/>
+<rect x="925" y="162" width="5" height="82" rx="10" fill="#F4A340" stroke="#F4A340" stroke-width="0" opacity="1"/>
+<text x="1007.5" y="187" font-size="13px" fill="#253244" font-weight="700" text-anchor="middle">Bi-diffusion</text>
+<text x="1007.5" y="209" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">forward + reverse</text>
+<text x="1007.5" y="225" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">1/2-hop</text>
+<rect x="1110" y="162" width="150" height="82" rx="10" fill="#FFF3DE" stroke="#F4A340" stroke-width="1.5" opacity="1"/>
+<rect x="1110" y="162" width="5" height="82" rx="10" fill="#F4A340" stroke="#F4A340" stroke-width="0" opacity="1"/>
+<text x="1185.0" y="187" font-size="12.5px" fill="#253244" font-weight="700" text-anchor="middle">Fine TCN</text>
+<text x="1185.0" y="209" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">k=3 · d={1,2}</text>
+<text x="1185.0" y="225" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">causal context</text>
+<line x1="705" y1="203" x2="725" y2="203" stroke="#C97812" stroke-width="1.8" opacity="1" marker-end="url(#arrowFine)"/>
+<line x1="905" y1="203" x2="925" y2="203" stroke="#C97812" stroke-width="1.8" opacity="1" marker-end="url(#arrowFine)"/>
+<line x1="1090" y1="203" x2="1110" y2="203" stroke="#C97812" stroke-width="1.8" opacity="1" marker-end="url(#arrowFine)"/>
+<rect x="535" y="490" width="170" height="82" rx="10" fill="#E5F4F1" stroke="#3E9C9A" stroke-width="1.5" opacity="1"/>
+<rect x="535" y="490" width="5" height="82" rx="10" fill="#3E9C9A" stroke="#3E9C9A" stroke-width="0" opacity="1"/>
+<text x="620.0" y="515" font-size="13px" fill="#253244" font-weight="700" text-anchor="middle">Macro Trend Graph</text>
+<text x="620.0" y="537" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">Patv trend + distance</text>
+<text x="620.0" y="553" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">long-range relations</text>
+<rect x="725" y="490" width="180" height="82" rx="10" fill="#FFFFFF" stroke="#277573" stroke-width="1.5" opacity="1"/>
+<rect x="725" y="490" width="5" height="82" rx="10" fill="#3E9C9A" stroke="#3E9C9A" stroke-width="0" opacity="1"/>
+<text x="815.0" y="515" font-size="12.5px" fill="#253244" font-weight="700" text-anchor="middle">Prior-constrained</text>
+<text x="815.0" y="537" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">adaptive reweighting</text>
+<text x="815.0" y="553" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">prior × learned weights</text>
+<rect x="925" y="490" width="165" height="82" rx="10" fill="#FFFFFF" stroke="#277573" stroke-width="1.5" opacity="1"/>
+<rect x="925" y="490" width="5" height="82" rx="10" fill="#3E9C9A" stroke="#3E9C9A" stroke-width="0" opacity="1"/>
+<text x="1007.5" y="515" font-size="13px" fill="#253244" font-weight="700" text-anchor="middle">Bi-diffusion</text>
+<text x="1007.5" y="537" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">forward + reverse</text>
+<text x="1007.5" y="553" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">1/2-hop</text>
+<rect x="1110" y="490" width="150" height="82" rx="10" fill="#E5F4F1" stroke="#3E9C9A" stroke-width="1.5" opacity="1"/>
+<rect x="1110" y="490" width="5" height="82" rx="10" fill="#3E9C9A" stroke="#3E9C9A" stroke-width="0" opacity="1"/>
+<text x="1185.0" y="515" font-size="12.5px" fill="#253244" font-weight="700" text-anchor="middle">Coarse TCN</text>
+<text x="1185.0" y="537" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">k=5 · d={1,2,4,8}</text>
+<text x="1185.0" y="553" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">causal context</text>
+<line x1="705" y1="531" x2="725" y2="531" stroke="#277573" stroke-width="1.8" opacity="1" marker-end="url(#arrowCoarse)"/>
+<line x1="905" y1="531" x2="925" y2="531" stroke="#277573" stroke-width="1.8" opacity="1" marker-end="url(#arrowCoarse)"/>
+<line x1="1090" y1="531" x2="1110" y2="531" stroke="#277573" stroke-width="1.8" opacity="1" marker-end="url(#arrowCoarse)"/>
+<text x="610" y="269" font-size="11.5px" fill="#C97812" font-weight="400" text-anchor="middle" font-style="italic">Micro = local short-term dynamics</text>
+<text x="610" y="597" font-size="11.5px" fill="#277573" font-weight="400" text-anchor="middle" font-style="italic">Macro = long-term trend context</text>
+<path d="M 1330 532 C 1355 532, 1350 422, 1375 422" fill="none" stroke="#277573" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrowCoarse)"/>
+<rect x="1160" y="342" width="180" height="116" rx="10" fill="#F1EBF8" stroke="#8C6BB1" stroke-width="1.5" opacity="1"/>
+<rect x="1160" y="342" width="5" height="116" rx="10" fill="#8C6BB1" stroke="#8C6BB1" stroke-width="0" opacity="1"/>
+<text x="1250.0" y="367" font-size="14px" fill="#253244" font-weight="700" text-anchor="middle">Macro-Trend</text>
+<text x="1250.0" y="389" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">Prompt</text>
+<rect x="1190" y="404" width="22" height="31" rx="4" fill="#F1EBF8" stroke="#8C6BB1" stroke-width="1.2" opacity="1"/>
+<text x="1201" y="425" font-size="9px" fill="#624486" font-weight="700" text-anchor="middle">P1</text>
+<rect x="1218" y="402" width="22" height="31" rx="4" fill="#F1EBF8" stroke="#8C6BB1" stroke-width="1.2" opacity="1"/>
+<text x="1229" y="423" font-size="9px" fill="#624486" font-weight="700" text-anchor="middle">P2</text>
+<rect x="1246" y="400" width="22" height="31" rx="4" fill="#F1EBF8" stroke="#8C6BB1" stroke-width="1.2" opacity="1"/>
+<text x="1257" y="421" font-size="9px" fill="#624486" font-weight="700" text-anchor="middle">P3</text>
+<rect x="1274" y="398" width="22" height="31" rx="4" fill="#F1EBF8" stroke="#8C6BB1" stroke-width="1.2" opacity="1"/>
+<text x="1285" y="419" font-size="9px" fill="#624486" font-weight="700" text-anchor="middle">P4</text>
+<text x="1250" y="449" font-size="10.5px" fill="#624486" font-weight="700" text-anchor="middle">P = 4 tokens / turbine</text>
+<text x="1250" y="329" font-size="10.8px" fill="#277573" font-weight="400" text-anchor="middle" font-style="italic">from coarse graph-temporal history</text>
+<path d="M 1340 400 C 1370 400, 1370 265, 1400 265" fill="none" stroke="#624486" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrowPurple)"/>
+<path d="M 1340 425 C 1370 425, 1370 548, 1400 548" fill="none" stroke="#624486" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrowPurple)"/>
+<rect x="1395" y="158" width="335" height="450" rx="12" fill="#F1EBF8" stroke="#8C6BB1" stroke-width="1.5" opacity="1"/>
+<text x="1562" y="190" font-size="16px" fill="#624486" font-weight="700" text-anchor="middle">Bidirectional Cross-Fusion</text>
+<text x="1430" y="229" font-size="12.5px" fill="#624486" font-weight="700" text-anchor="start">Coarse → Fine</text>
+<text x="1430" y="249" font-size="11.2px" fill="#607086" font-weight="400" text-anchor="start">Macro Prompt as K,V</text>
+<text x="1430" y="269" font-size="11.2px" fill="#624486" font-weight="400" text-anchor="start" font-style="italic">trend guidance</text>
+<text x="1430" y="407" font-size="12.5px" fill="#624486" font-weight="700" text-anchor="start">Fine → Coarse</text>
+<text x="1430" y="427" font-size="11.2px" fill="#607086" font-weight="400" text-anchor="start">Recent Fine as K,V</text>
+<text x="1430" y="447" font-size="11.2px" fill="#624486" font-weight="400" text-anchor="start" font-style="italic">recent-detail correction</text>
+<rect x="1510" y="292" width="105" height="72" rx="10" fill="#FFFFFF" stroke="#8C6BB1" stroke-width="1.5" opacity="1"/>
+<rect x="1510" y="292" width="5" height="72" rx="10" fill="#8C6BB1" stroke="#8C6BB1" stroke-width="0" opacity="1"/>
+<text x="1562.5" y="317" font-size="13px" fill="#253244" font-weight="700" text-anchor="middle">Gated</text>
+<text x="1562.5" y="339" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">fusion G</text>
+<path d="M 1450 290 C 1480 290, 1480 328, 1510 328" fill="none" stroke="#624486" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrowPurple)"/>
+<path d="M 1450 465 C 1480 465, 1480 340, 1510 340" fill="none" stroke="#624486" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrowPurple)"/>
+<path d="M 1615 328 C 1650 328, 1650 280, 1690 280" fill="none" stroke="#624486" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrowPurple)"/>
+<path d="M 1615 340 C 1650 340, 1650 445, 1690 445" fill="none" stroke="#624486" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrowPurple)"/>
+<text x="1660" y="260" font-size="15px" fill="#C97812" font-weight="700" text-anchor="middle">H′f</text>
+<text x="1660" y="465" font-size="15px" fill="#277573" font-weight="700" text-anchor="middle">H′c</text>
+<text x="1562" y="577" font-size="11.2px" fill="#607086" font-weight="400" text-anchor="middle" font-style="italic">recent = 24 steps ≈ 4 h</text>
+<path d="M 1260 203 C 1320 203, 1320 245, 1395 245" fill="none" stroke="#C97812" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrowFine)"/>
+<path d="M 1260 531 C 1320 531, 1320 420, 1395 420" fill="none" stroke="#277573" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrowCoarse)"/>
+<rect x="1418" y="640" width="175" height="68" rx="10" fill="#E8EEF5" stroke="#788DA5" stroke-width="1.5" opacity="1"/>
+<rect x="1418" y="640" width="5" height="68" rx="10" fill="#788DA5" stroke="#788DA5" stroke-width="0" opacity="1"/>
+<text x="1505.5" y="665" font-size="13px" fill="#253244" font-weight="700" text-anchor="middle">Last-State Context</text>
+<text x="1505.5" y="687" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">fine last + coarse last</text>
+<text x="1505.5" y="703" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">+ mean(4 macro tokens)</text>
+<line x1="1630" y1="280" x2="1630" y2="632" stroke="#C97812" stroke-width="1.5" opacity="1" stroke-dasharray="5 4" marker-end="url(#arrowFine)"/>
+<line x1="1680" y1="445" x2="1680" y2="632" stroke="#277573" stroke-width="1.5" opacity="1" stroke-dasharray="5 4" marker-end="url(#arrowCoarse)"/>
+<line x1="1505" y1="708" x2="1505" y2="735" stroke="#788DA5" stroke-width="1.8" opacity="1" marker-end="url(#arrow)"/>
+<rect x="1610" y="640" width="205" height="68" rx="10" fill="#F1EBF8" stroke="#8C6BB1" stroke-width="1.5" opacity="1"/>
+<rect x="1610" y="640" width="5" height="68" rx="10" fill="#8C6BB1" stroke="#8C6BB1" stroke-width="0" opacity="1"/>
+<text x="1712.5" y="665" font-size="12.5px" fill="#253244" font-weight="700" text-anchor="middle">Node-Horizon ST Prompt</text>
+<text x="1712.5" y="687" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">turbine n + future step h</text>
+<text x="1712.5" y="703" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">fixed type / granularity 0</text>
+<line x1="1710" y1="708" x2="1710" y2="735" stroke="#624486" stroke-width="1.8" opacity="1" marker-end="url(#arrowPurple)"/>
+<rect x="1460" y="756" width="300" height="54" rx="10" fill="#FFFFFF" stroke="#788DA5" stroke-width="1.5" opacity="1"/>
+<rect x="1460" y="756" width="5" height="54" rx="10" fill="#788DA5" stroke="#788DA5" stroke-width="0" opacity="1"/>
+<text x="1610.0" y="781" font-size="13px" fill="#253244" font-weight="700" text-anchor="middle">Prompt-conditioned direct decoder</text>
+<text x="1610.0" y="803" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">non-autoregressive · H = 10</text>
+<line x1="1610" y1="810" x2="1610" y2="846" stroke="#788DA5" stroke-width="1.8" opacity="1" marker-end="url(#arrow)"/>
+<rect x="1785" y="550" width="245" height="183" rx="12" fill="#E8EEF5" stroke="#788DA5" stroke-width="1.5" opacity="1"/>
+<text x="1908" y="580" font-size="15px" fill="#253244" font-weight="700" text-anchor="middle">10-step power forecast</text>
+<text x="1908" y="605" font-size="12.5px" fill="#607086" font-weight="400" text-anchor="middle">Ŷ ∈ R^{B×10×134}</text>
+<rect x="1810" y="630" width="194" height="22" rx="5" fill="#FFF3DE" stroke="#F4A340" stroke-width="1.0" opacity="1"/>
+<text x="1907" y="646" font-size="11.2px" fill="#C97812" font-weight="700" text-anchor="middle">steps 1–3  →  H3</text>
+<rect x="1810" y="658" width="194" height="22" rx="5" fill="#E5F4F1" stroke="#3E9C9A" stroke-width="1.0" opacity="1"/>
+<text x="1907" y="674" font-size="11.2px" fill="#277573" font-weight="700" text-anchor="middle">steps 1–6  →  H6</text>
+<rect x="1810" y="686" width="194" height="22" rx="5" fill="#F1EBF8" stroke="#8C6BB1" stroke-width="1.0" opacity="1"/>
+<text x="1907" y="702" font-size="11.2px" fill="#624486" font-weight="700" text-anchor="middle">steps 1–10 → H10</text>
+<line x1="1760" y1="846" x2="1785" y2="690" stroke="#788DA5" stroke-width="1.8" opacity="1" marker-end="url(#arrow)"/>
+<rect x="515" y="6" width="780" height="43" rx="8" fill="#FFFFFF" stroke="#788DA5" stroke-width="1.1" opacity="1" stroke-dasharray="6 5"/>
+<text x="535" y="24" font-size="11px" fill="#607086" font-weight="700" text-anchor="start" letter-spacing="1.0px">TRAIN-ONLY DUAL GRAPH PRIORS</text>
+<text x="790" y="24" font-size="11px" fill="#C97812" font-weight="700" text-anchor="middle">Wspd → local change</text>
+<text x="1000" y="24" font-size="11px" fill="#607086" font-weight="700" text-anchor="middle">+ coordinates</text>
+<text x="1170" y="24" font-size="11px" fill="#277573" font-weight="700" text-anchor="middle">Patv_raw → causal trend</text>
+<path d="M 610 49 C 610 95, 650 95, 650 162" fill="none" stroke="#C97812" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="1" stroke-dasharray="6 5" marker-end="url(#arrowFine)"/>
+<path d="M 1210 49 C 1210 86, 518 86, 518 531 L 535 531" fill="none" stroke="#277573" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="1" stroke-dasharray="6 5" marker-end="url(#arrowCoarse)"/>
+<rect x="30" y="770" width="1360" height="185" rx="12" fill="#FBECEE" stroke="#B86770" stroke-width="1.5" opacity="1" stroke-dasharray="8 6"/>
+<text x="55" y="800" font-size="14px" fill="#B86770" font-weight="700" text-anchor="start" letter-spacing="1.0px">TRAINING ONLY · MS-MG-DWU</text>
+<rect x="75" y="825" width="190" height="82" rx="10" fill="#FFFFFF" stroke="#B86770" stroke-width="1.5" opacity="1"/>
+<rect x="75" y="825" width="5" height="82" rx="10" fill="#B86770" stroke="#B86770" stroke-width="0" opacity="1"/>
+<text x="170.0" y="850" font-size="13px" fill="#253244" font-weight="700" text-anchor="middle">Prediction Ŷ</text>
+<text x="170.0" y="872" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">Target Y</text>
+<text x="170.0" y="888" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">valid_target_mask</text>
+<line x1="265" y1="866" x2="325" y2="866" stroke="#B86770" stroke-width="1.8" opacity="1" marker-end="url(#arrowLoss)"/>
+<rect x="325" y="825" width="215" height="82" rx="10" fill="#FFFFFF" stroke="#B86770" stroke-width="1.5" opacity="1"/>
+<rect x="325" y="825" width="5" height="82" rx="10" fill="#B86770" stroke="#B86770" stroke-width="0" opacity="1"/>
+<text x="432.5" y="850" font-size="13px" fill="#253244" font-weight="700" text-anchor="middle">H3 / H6 / H10</text>
+<text x="432.5" y="872" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">difficulty rate</text>
+<text x="432.5" y="888" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">prefix losses</text>
+<line x1="540" y1="866" x2="605" y2="866" stroke="#B86770" stroke-width="1.8" opacity="1" marker-end="url(#arrowLoss)"/>
+<rect x="605" y="825" width="210" height="82" rx="10" fill="#FFFFFF" stroke="#B86770" stroke-width="1.5" opacity="1"/>
+<rect x="605" y="825" width="5" height="82" rx="10" fill="#B86770" stroke="#B86770" stroke-width="0" opacity="1"/>
+<text x="710.0" y="850" font-size="13px" fill="#253244" font-weight="700" text-anchor="middle">Turbine difficulty</text>
+<text x="710.0" y="872" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">dynamic site weights</text>
+<line x1="815" y1="866" x2="880" y2="866" stroke="#B86770" stroke-width="1.8" opacity="1" marker-end="url(#arrowLoss)"/>
+<rect x="880" y="825" width="250" height="82" rx="10" fill="#FBECEE" stroke="#B86770" stroke-width="1.5" opacity="1"/>
+<rect x="880" y="825" width="5" height="82" rx="10" fill="#B86770" stroke="#B86770" stroke-width="0" opacity="1"/>
+<text x="1005.0" y="850" font-size="15px" fill="#253244" font-weight="700" text-anchor="middle">MS-MG-DWU</text>
+<text x="1005.0" y="872" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">objective only</text>
+<text x="1005.0" y="888" font-size="12.2px" fill="#607086" font-weight="400" text-anchor="middle">not an inference input</text>
+<text x="1210" y="865" font-size="12px" fill="#B86770" font-weight="400" text-anchor="middle" font-style="italic">Dashed boundary = optimization</text>
+<text x="1210" y="885" font-size="12px" fill="#607086" font-weight="400" text-anchor="middle" font-style="italic">does not alter the forward path</text>
+<path d="M 1908 735 C 1908 768, 1388 755, 1390 825" fill="none" stroke="#B86770" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity="1" stroke-dasharray="6 5" marker-end="url(#arrowLoss)"/>
+</svg>

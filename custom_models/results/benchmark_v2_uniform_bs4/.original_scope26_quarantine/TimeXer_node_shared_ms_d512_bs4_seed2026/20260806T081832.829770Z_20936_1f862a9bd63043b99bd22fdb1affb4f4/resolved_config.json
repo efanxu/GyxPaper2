@@ -1,0 +1,387 @@
+{
+  "model_id": "timexer",
+  "task_name": "long_term_forecast",
+  "run_mode": "formal",
+  "seq_len": 144,
+  "pred_len": 10,
+  "enc_in": 16,
+  "input_mode": "multivariate",
+  "output_mode": "single_target",
+  "target_column": "Patv_raw",
+  "selected_power_feature": "Patv_clean_for_input",
+  "output_policy": "select_power_associated_channel",
+  "node_semantics": "node_shared",
+  "cross_node_interaction": false,
+  "uses_graph": false,
+  "uses_node_embedding": false,
+  "uses_future_target": false,
+  "uses_future_observed_covariates": false,
+  "uses_future_calendar_covariates": false,
+  "optimizer": "Adam",
+  "learning_rate": 0.001,
+  "weight_decay": 0.0,
+  "scheduler": null,
+  "gradient_clip": null,
+  "epochs": 20,
+  "patience": 6,
+  "min_delta": 0.01,
+  "seed": 2026,
+  "amp_enabled": true,
+  "loss": "masked_mse",
+  "loss_space": "normalized_target_space",
+  "checkpoint_metric": "validation_official_score_h10",
+  "checkpoint_direction": "lower_is_better",
+  "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "upstream_project": "THUML/Time-Series-Library",
+  "upstream_license_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\LICENSE",
+  "source_modified": false,
+  "validation_search_performed": false,
+  "test_result_used": false,
+  "initialization_policy": "Upstream TSLib initialization after benchmark_v2 seed",
+  "features": "MS",
+  "use_norm": true,
+  "patch_len": 16,
+  "patch_num": 9,
+  "d_model": 512,
+  "n_heads": 8,
+  "e_layers": 2,
+  "d_ff": 2048,
+  "factor": 1,
+  "dropout": 0.1,
+  "activation": "gelu",
+  "embed": "timeF",
+  "freq": "h",
+  "raw_output_channels": 1,
+  "endogenous_feature": "Patv_clean_for_input",
+  "endogenous_feature_index": 15,
+  "exogenous_features": [
+    "Wspd",
+    "Wdir",
+    "Etmp",
+    "Itmp",
+    "Ndir",
+    "Pab1",
+    "Pab2",
+    "Pab3",
+    "Prtv",
+    "T2m",
+    "Sp",
+    "RelH",
+    "Wspd_w",
+    "Wdir_w",
+    "Tp"
+  ],
+  "exogenous_feature_count": 15,
+  "future_exogenous_tensor": null,
+  "time_mark_policy": "none",
+  "wrapper_path": "custom_models/src/benchmark_v2/models/timexer.py",
+  "adapter_path": "custom_models/src/benchmark_v2/adapters/e2_a.py",
+  "model_specific_parameters": {
+    "features": "MS",
+    "use_norm": true,
+    "patch_len": 16,
+    "patch_num": 9,
+    "d_model": 512,
+    "n_heads": 8,
+    "e_layers": 2,
+    "d_ff": 2048,
+    "factor": 1,
+    "dropout": 0.1,
+    "activation": "gelu",
+    "embed": "timeF",
+    "freq": "h"
+  },
+  "config_resolution_reason": "upstream TimeXer MS path; final channel is frozen endogenous power",
+  "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\TimeXer.py",
+  "upstream_source_relative_path": "Time-Series-Library/models/TimeXer.py",
+  "upstream_source_sha256": "b334d7869544d0a5de7a35501d0342d7bd0be4ebda06ccc045855a42819728c0",
+  "upstream_license_sha256": "3892254202fc16573828d34ec901ab765d8eb73a03d174b131a49771adcd8d64",
+  "parameter_count": 8543242,
+  "trainable_parameter_count": 8543242,
+  "base_benchmark_protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "training_batch_profile_id": "uniform_train_batch4_v1",
+  "training_batch_profile_hash": "f58bbc161dfba0f00774879fdf2f78ec7c59a7faff9ef28a1733a2ed6835fe66",
+  "train_batch_size": 4,
+  "val_batch_size": 4,
+  "test_batch_size": 4,
+  "gradient_accumulation_steps": 1,
+  "effective_train_batch_size": 4,
+  "precision_policy": "profile_default",
+  "precision_resolution": {
+    "requested_amp_enabled": true,
+    "effective_amp_enabled": true,
+    "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+  },
+  "active_scope_id": "benchmark_v2_batch4_scope26_seed2026",
+  "current_scope_manifest_hash": "57a93bb4219bfd437d73d34638aed883723511f77120da71ad39e9e5f4f6775f",
+  "current_scope_entry_id": "original_scope26_timexer",
+  "run_id": "TimeXer_node_shared_ms_d512_bs4_seed2026",
+  "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_a_seed2026",
+  "model_config_hash": "3f8e1a0e1d57fdb5e0cc1043bda1b7784c4e11d148a9d7b6be5e460a3dc78eb5",
+  "source_closure_hash": "98e7645ec37a543ef5dd2e5b1e88a2a33f1665bf09396697e5c685fc48aee617",
+  "source_identity": {
+    "source_identity_schema_version": "model_source_identity_v1",
+    "model_id": "timexer",
+    "source_closure_files": [
+      {
+        "path": "Time-Series-Library/layers/Embed.py",
+        "sha256": "17e7c3577324c41a0da427a199c955b782fde905aabb1f7cbc3c4e15ebd4ae35",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "Time-Series-Library/layers/SelfAttention_Family.py",
+        "sha256": "6f6592aed0753e342fc04c01db70528c2eb191eeb067cd5fd4c8d348fddcb794",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "Time-Series-Library/models/TimeXer.py",
+        "sha256": "b334d7869544d0a5de7a35501d0342d7bd0be4ebda06ccc045855a42819728c0",
+        "role": "model implementation source"
+      },
+      {
+        "path": "Time-Series-Library/utils/masking.py",
+        "sha256": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/adapters/e2_a.py",
+        "sha256": "645089703cbaf34ca7331aa714e6eff638a5dd3356d5a4569ee97fd69ef7b892",
+        "role": "benchmark adapter implementation"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+        "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+        "role": "shared adapter contract used by the model adapter"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/adapters/tslib_channel.py",
+        "sha256": "ee615be94e84efd4ee7891bf675f4822d8ed442bf567e34f512774013c4c9fce",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/configs/timexer.py",
+        "sha256": "02aed571aa772289d1f44e36400f0552425f92d91a407af481acbb9b35b96ee3",
+        "role": "model-specific config resolver"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/configs/tslib_common.py",
+        "sha256": "a1d3557d64e66a16ddd9a9b229d148c3a578f6b9b61b85a092e9d7cfac1a7571",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/__init__.py",
+        "sha256": "9ba4e8c4d76989120b710b9ca1db9aa9d4720c5b1983d6eeae127474f9884a01",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/adapter.py",
+        "sha256": "e2868b37e6e10f5528cd4d558f453796095b4ee7f86c11ea3ea1412b00605e2f",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/batch.py",
+        "sha256": "f497787a9b5919e2c024fbc6d41f57a9b81e940ec28bc4d053acab1edc5e4769",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/graph_context.py",
+        "sha256": "efac213ae52c324a31ce633639fde19267406268d3328405fea2ee1dbe093955",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/output.py",
+        "sha256": "c700fe01bc460e9f906e831a6f7616bb6f054a113be83bdf52164e449c02f582",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/data/signatures.py",
+        "sha256": "a19ce73d14ba575330accd80efbf7197deec5b54b7630c05e55c154a817acc3f",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/errors.py",
+        "sha256": "eefb85b8e9b8157ff8a17ea80cccb877d8b6f15461e78a2beeedafd2229a2a47",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/model_factories/registry.py",
+        "sha256": "7273c2ad3936113e7a73341aa7640d3c7438c7eb27c1b84084d09e67c410139a",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/model_factories/timexer.py",
+        "sha256": "957b8c84364550a48f455333722f810ff22e550b690d5ad3a98c10ce8fc4f186",
+        "role": "selected fixed model factory boundary"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/model_runtime.py",
+        "sha256": "301ff1f6a833ffdfa2b2d42303c74950366d982bbef194ab314d5ea0bc83f307",
+        "role": "explicit model runtime builder"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/models/timexer.py",
+        "sha256": "f8d3a12acc7d81191a764658abb06a888956b24ab0e72876a3df146126a119c6",
+        "role": "benchmark model wrapper"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/registry/__init__.py",
+        "sha256": "d1e3c099ebb3c5de22b9d017185efb27cd0ac3226739ccf37d3ef0c242e447f5",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/registry/registry.py",
+        "sha256": "fe84aaa9a6b46027dc57729948c8ae1a1c3e8ef2ffc895879f880e40b6a07423",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/upstream/__init__.py",
+        "sha256": "64f21ae3da1938045f3902aecb48b581171286d09303177be369f7544a47b42d",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+        "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9",
+        "role": "audited TSLib loader and source resolver"
+      }
+    ],
+    "canonical_combined_hash": "98e7645ec37a543ef5dd2e5b1e88a2a33f1665bf09396697e5c685fc48aee617",
+    "source_closure_cycles": []
+  },
+  "source_revision": {
+    "git_commit": "41ed7f1145e39945ae6541c3467aaa0d58286122",
+    "source_revision_type": "git"
+  },
+  "formal_training": true,
+  "provenance": {
+    "active_scope_id": "benchmark_v2_batch4_scope26_seed2026",
+    "base_model_id": "timexer",
+    "base_model_config_hash": "3f8e1a0e1d57fdb5e0cc1043bda1b7784c4e11d148a9d7b6be5e460a3dc78eb5",
+    "base_model_source_closure_hash": "98e7645ec37a543ef5dd2e5b1e88a2a33f1665bf09396697e5c685fc48aee617",
+    "base_model_source_identity_schema_version": "model_source_identity_v1",
+    "base_model_source_closure_files": [
+      {
+        "path": "Time-Series-Library/layers/Embed.py",
+        "sha256": "17e7c3577324c41a0da427a199c955b782fde905aabb1f7cbc3c4e15ebd4ae35",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "Time-Series-Library/layers/SelfAttention_Family.py",
+        "sha256": "6f6592aed0753e342fc04c01db70528c2eb191eeb067cd5fd4c8d348fddcb794",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "Time-Series-Library/models/TimeXer.py",
+        "sha256": "b334d7869544d0a5de7a35501d0342d7bd0be4ebda06ccc045855a42819728c0",
+        "role": "model implementation source"
+      },
+      {
+        "path": "Time-Series-Library/utils/masking.py",
+        "sha256": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/adapters/e2_a.py",
+        "sha256": "645089703cbaf34ca7331aa714e6eff638a5dd3356d5a4569ee97fd69ef7b892",
+        "role": "benchmark adapter implementation"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+        "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+        "role": "shared adapter contract used by the model adapter"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/adapters/tslib_channel.py",
+        "sha256": "ee615be94e84efd4ee7891bf675f4822d8ed442bf567e34f512774013c4c9fce",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/configs/timexer.py",
+        "sha256": "02aed571aa772289d1f44e36400f0552425f92d91a407af481acbb9b35b96ee3",
+        "role": "model-specific config resolver"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/configs/tslib_common.py",
+        "sha256": "a1d3557d64e66a16ddd9a9b229d148c3a578f6b9b61b85a092e9d7cfac1a7571",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/__init__.py",
+        "sha256": "9ba4e8c4d76989120b710b9ca1db9aa9d4720c5b1983d6eeae127474f9884a01",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/adapter.py",
+        "sha256": "e2868b37e6e10f5528cd4d558f453796095b4ee7f86c11ea3ea1412b00605e2f",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/batch.py",
+        "sha256": "f497787a9b5919e2c024fbc6d41f57a9b81e940ec28bc4d053acab1edc5e4769",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/graph_context.py",
+        "sha256": "efac213ae52c324a31ce633639fde19267406268d3328405fea2ee1dbe093955",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/output.py",
+        "sha256": "c700fe01bc460e9f906e831a6f7616bb6f054a113be83bdf52164e449c02f582",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/data/signatures.py",
+        "sha256": "a19ce73d14ba575330accd80efbf7197deec5b54b7630c05e55c154a817acc3f",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/errors.py",
+        "sha256": "eefb85b8e9b8157ff8a17ea80cccb877d8b6f15461e78a2beeedafd2229a2a47",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/model_factories/registry.py",
+        "sha256": "7273c2ad3936113e7a73341aa7640d3c7438c7eb27c1b84084d09e67c410139a",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/model_factories/timexer.py",
+        "sha256": "957b8c84364550a48f455333722f810ff22e550b690d5ad3a98c10ce8fc4f186",
+        "role": "selected fixed model factory boundary"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/model_runtime.py",
+        "sha256": "301ff1f6a833ffdfa2b2d42303c74950366d982bbef194ab314d5ea0bc83f307",
+        "role": "explicit model runtime builder"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/models/timexer.py",
+        "sha256": "f8d3a12acc7d81191a764658abb06a888956b24ab0e72876a3df146126a119c6",
+        "role": "benchmark model wrapper"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/registry/__init__.py",
+        "sha256": "d1e3c099ebb3c5de22b9d017185efb27cd0ac3226739ccf37d3ef0c242e447f5",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/registry/registry.py",
+        "sha256": "fe84aaa9a6b46027dc57729948c8ae1a1c3e8ef2ffc895879f880e40b6a07423",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/upstream/__init__.py",
+        "sha256": "64f21ae3da1938045f3902aecb48b581171286d09303177be369f7544a47b42d",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+        "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9",
+        "role": "audited TSLib loader and source resolver"
+      }
+    ]
+  },
+  "artifact_profile": "TRAIN",
+  "formal_worker_pid": 5800,
+  "formal_registry_entry": true
+}

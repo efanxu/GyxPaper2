@@ -1,0 +1,231 @@
+{
+  "model_id": "moving_average",
+  "baseline_rule": "repeat_physical_trailing_mean_Patv_clean_for_input",
+  "ma_window": 144,
+  "node_semantics": "node_shared",
+  "cross_node_interaction": false,
+  "optimizer": null,
+  "scheduler": null,
+  "epochs": null,
+  "early_stopping": null,
+  "run_mode": "formal",
+  "horizon": 10,
+  "lookback": 144,
+  "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "base_benchmark_protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "training_batch_profile_id": "uniform_train_batch4_v1",
+  "training_batch_profile_hash": "f58bbc161dfba0f00774879fdf2f78ec7c59a7faff9ef28a1733a2ed6835fe66",
+  "train_batch_size": 4,
+  "val_batch_size": 4,
+  "test_batch_size": 4,
+  "gradient_accumulation_steps": 1,
+  "effective_train_batch_size": 4,
+  "amp_enabled": true,
+  "precision_policy": "profile_default",
+  "precision_resolution": {
+    "requested_amp_enabled": true,
+    "effective_amp_enabled": true,
+    "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+  },
+  "active_scope_id": "benchmark_v2_batch4_scope26_seed2026",
+  "current_scope_manifest_hash": "57a93bb4219bfd437d73d34638aed883723511f77120da71ad39e9e5f4f6775f",
+  "current_scope_entry_id": "original_scope26_moving_average",
+  "run_id": "MovingAverage_w144_bs4_seed2026",
+  "output_root": "custom_models/results/benchmark_v2_uniform_bs4/basic_lightweight_seed2026",
+  "model_config_hash": "2cadb7ff357946f0a31ae3b4482d169544acd743bb188a15613a6d57703aa1ba",
+  "source_closure_hash": "172df8ab32639f87072019ce628dc0ceb79bf5fd7e8b91d04a4541cce0e4bbf7",
+  "source_identity": {
+    "source_identity_schema_version": "model_source_identity_v1",
+    "model_id": "moving_average",
+    "source_closure_files": [
+      {
+        "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+        "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+        "role": "shared adapter contract used by the model adapter"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/adapters/statistical_baselines.py",
+        "sha256": "653381543b3bb27c29176c18a1633a3b0f4662d74a60bcbb77432a42e5efbdd7",
+        "role": "benchmark adapter implementation"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/configs/moving_average.py",
+        "sha256": "26bc694d345d268f2dfe66ffdcd5a02bcd13cfc9a138f6d6fa143171b6797d92",
+        "role": "model-specific config resolver"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/__init__.py",
+        "sha256": "9ba4e8c4d76989120b710b9ca1db9aa9d4720c5b1983d6eeae127474f9884a01",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/adapter.py",
+        "sha256": "e2868b37e6e10f5528cd4d558f453796095b4ee7f86c11ea3ea1412b00605e2f",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/batch.py",
+        "sha256": "f497787a9b5919e2c024fbc6d41f57a9b81e940ec28bc4d053acab1edc5e4769",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/graph_context.py",
+        "sha256": "efac213ae52c324a31ce633639fde19267406268d3328405fea2ee1dbe093955",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/output.py",
+        "sha256": "c700fe01bc460e9f906e831a6f7616bb6f054a113be83bdf52164e449c02f582",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/data/signatures.py",
+        "sha256": "a19ce73d14ba575330accd80efbf7197deec5b54b7630c05e55c154a817acc3f",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/errors.py",
+        "sha256": "eefb85b8e9b8157ff8a17ea80cccb877d8b6f15461e78a2beeedafd2229a2a47",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/model_factories/moving_average.py",
+        "sha256": "39c00488213e6eb6c0953959b0a8f928f9c0779144ebe9385d9afb2096f3481d",
+        "role": "selected fixed model factory boundary"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/model_factories/registry.py",
+        "sha256": "7273c2ad3936113e7a73341aa7640d3c7438c7eb27c1b84084d09e67c410139a",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/model_runtime.py",
+        "sha256": "301ff1f6a833ffdfa2b2d42303c74950366d982bbef194ab314d5ea0bc83f307",
+        "role": "explicit model runtime builder"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/models/moving_average.py",
+        "sha256": "25b4126d84bddd7d61eecd650eb5261c3df5de448f18b8c5fe13526793e30a1b",
+        "role": "model implementation source"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/protocol/hashing.py",
+        "sha256": "9c2f98081640822749f696749bdac7c6d2383a31cd3219c4e157a94539278c8f",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/registry/__init__.py",
+        "sha256": "d1e3c099ebb3c5de22b9d017185efb27cd0ac3226739ccf37d3ef0c242e447f5",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/registry/registry.py",
+        "sha256": "fe84aaa9a6b46027dc57729948c8ae1a1c3e8ef2ffc895879f880e40b6a07423",
+        "role": "transitive repository-local import"
+      }
+    ],
+    "canonical_combined_hash": "172df8ab32639f87072019ce628dc0ceb79bf5fd7e8b91d04a4541cce0e4bbf7",
+    "source_closure_cycles": []
+  },
+  "source_revision": {
+    "git_commit": "41ed7f1145e39945ae6541c3467aaa0d58286122",
+    "source_revision_type": "git"
+  },
+  "formal_training": false,
+  "provenance": {
+    "active_scope_id": "benchmark_v2_batch4_scope26_seed2026",
+    "base_model_id": "moving_average",
+    "base_model_config_hash": "2cadb7ff357946f0a31ae3b4482d169544acd743bb188a15613a6d57703aa1ba",
+    "base_model_source_closure_hash": "172df8ab32639f87072019ce628dc0ceb79bf5fd7e8b91d04a4541cce0e4bbf7",
+    "base_model_source_identity_schema_version": "model_source_identity_v1",
+    "base_model_source_closure_files": [
+      {
+        "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+        "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+        "role": "shared adapter contract used by the model adapter"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/adapters/statistical_baselines.py",
+        "sha256": "653381543b3bb27c29176c18a1633a3b0f4662d74a60bcbb77432a42e5efbdd7",
+        "role": "benchmark adapter implementation"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/configs/moving_average.py",
+        "sha256": "26bc694d345d268f2dfe66ffdcd5a02bcd13cfc9a138f6d6fa143171b6797d92",
+        "role": "model-specific config resolver"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/__init__.py",
+        "sha256": "9ba4e8c4d76989120b710b9ca1db9aa9d4720c5b1983d6eeae127474f9884a01",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/adapter.py",
+        "sha256": "e2868b37e6e10f5528cd4d558f453796095b4ee7f86c11ea3ea1412b00605e2f",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/batch.py",
+        "sha256": "f497787a9b5919e2c024fbc6d41f57a9b81e940ec28bc4d053acab1edc5e4769",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/graph_context.py",
+        "sha256": "efac213ae52c324a31ce633639fde19267406268d3328405fea2ee1dbe093955",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/output.py",
+        "sha256": "c700fe01bc460e9f906e831a6f7616bb6f054a113be83bdf52164e449c02f582",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/data/signatures.py",
+        "sha256": "a19ce73d14ba575330accd80efbf7197deec5b54b7630c05e55c154a817acc3f",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/errors.py",
+        "sha256": "eefb85b8e9b8157ff8a17ea80cccb877d8b6f15461e78a2beeedafd2229a2a47",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/model_factories/moving_average.py",
+        "sha256": "39c00488213e6eb6c0953959b0a8f928f9c0779144ebe9385d9afb2096f3481d",
+        "role": "selected fixed model factory boundary"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/model_factories/registry.py",
+        "sha256": "7273c2ad3936113e7a73341aa7640d3c7438c7eb27c1b84084d09e67c410139a",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/model_runtime.py",
+        "sha256": "301ff1f6a833ffdfa2b2d42303c74950366d982bbef194ab314d5ea0bc83f307",
+        "role": "explicit model runtime builder"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/models/moving_average.py",
+        "sha256": "25b4126d84bddd7d61eecd650eb5261c3df5de448f18b8c5fe13526793e30a1b",
+        "role": "model implementation source"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/protocol/hashing.py",
+        "sha256": "9c2f98081640822749f696749bdac7c6d2383a31cd3219c4e157a94539278c8f",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/registry/__init__.py",
+        "sha256": "d1e3c099ebb3c5de22b9d017185efb27cd0ac3226739ccf37d3ef0c242e447f5",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/registry/registry.py",
+        "sha256": "fe84aaa9a6b46027dc57729948c8ae1a1c3e8ef2ffc895879f880e40b6a07423",
+        "role": "transitive repository-local import"
+      }
+    ]
+  },
+  "artifact_profile": "NON_TRAINABLE",
+  "formal_registry_entry": true
+}

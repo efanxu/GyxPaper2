@@ -1466,6 +1466,23 @@ def _run_once(args: argparse.Namespace, cfg: STMGPromptConfig, run_dir: Path) ->
             "best_val_Score_H3": checkpoint_info.get("best_val_score_h3") if checkpoint_info else None,
             "best_val_Score_H6": checkpoint_info.get("best_val_score_h6") if checkpoint_info else None,
             "best_val_Score_H10": checkpoint_info.get("best_val_score_h10") if checkpoint_info else None,
+            "branch_diagnostics": {
+                key: out["aux"].get(key)
+                for key in [
+                    "fine_branch_active",
+                    "coarse_branch_active",
+                    "fine_branch_active_ratio",
+                    "coarse_branch_active_ratio",
+                    "fine_representation_norm",
+                    "coarse_representation_norm",
+                    "x_fine_shape",
+                    "x_coarse_shape",
+                    "vadsp_mode",
+                    "coarse_alignment_mode",
+                    "coarse_upsample_rule",
+                ]
+                if key in out["aux"]
+            },
         }
     )
     if not minimal_diagnostics:

@@ -1,0 +1,22 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant": {
+    "variant_id": "G7",
+    "display_name": "Fixed dual graph",
+    "family": "G",
+    "base_config": "CANONICAL_FULL",
+    "config_overrides": {
+      "use_adaptive_graph": false
+    },
+    "expected_unique_diff": [
+      "use_adaptive_graph"
+    ],
+    "trainable": true,
+    "paired_reference": "G0",
+    "implementation_status": "ready",
+    "implementation_note": "",
+    "reference_only": false
+  },
+  "seed": 2026,
+  "mode": "smoke"
+}

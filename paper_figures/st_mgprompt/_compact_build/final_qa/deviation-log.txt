@@ -1,0 +1,1 @@
+Slides 1–2: viewport changed from 1280 × 720 px to 960 × 537.6 px. Inherited slide-local diagram objects were replaced with compact editable shapes; source master/theme retained. Figure 3 history token boxes replaced by waveform/trend ribbons.

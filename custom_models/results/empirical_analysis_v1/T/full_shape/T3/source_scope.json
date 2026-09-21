@@ -1,0 +1,12 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "protocol_profile": "STMG_FORMAL_V2",
+  "source_scope": "internal_mechanism",
+  "variant_id": "T3",
+  "paired_reference": "T0",
+  "reference_only": false,
+  "formal_training": false,
+  "smoke_or_preflight": true,
+  "checkpoint_copied": false,
+  "metrics_copied": false
+}

@@ -1,0 +1,25 @@
+{
+  "status": "FAILED",
+  "run_mode": "formal",
+  "artifact_profile": "TRAIN",
+  "started_at": "2026-08-14T14:44:52.153684+00:00",
+  "finished_at": "2026-08-14T15:08:28.882752+00:00",
+  "exit_code": 1,
+  "failure_stage": "fit",
+  "error_type": "ContractError",
+  "error_message": "prediction contains NaN/Inf",
+  "traceback_tail": [
+    "Traceback (most recent call last):",
+    "  File \"D:\\PaperProject\\GyxPaper2\\custom_models\\src\\benchmark_v2\\engine.py\", line 247, in fit",
+    "    output = adapter_forward(",
+    "             ^^^^^^^^^^^^^^^^",
+    "  File \"D:\\PaperProject\\GyxPaper2\\custom_models\\src\\benchmark_v2\\adapters\\base.py\", line 7, in adapter_forward",
+    "    return adapter(model, batch, **kwargs)",
+    "           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "  File \"D:\\PaperProject\\GyxPaper2\\custom_models\\src\\benchmark_v2\\contracts\\adapter.py\", line 34, in __call__",
+    "    output.validate(batch, expected_horizon=int(kwargs.get(\"expected_horizon\", 10)))",
+    "  File \"D:\\PaperProject\\GyxPaper2\\custom_models\\src\\benchmark_v2\\contracts\\output.py\", line 24, in validate",
+    "    raise ContractError(\"prediction contains NaN/Inf\")",
+    "benchmark_v2.errors.ContractError: prediction contains NaN/Inf"
+  ]
+}

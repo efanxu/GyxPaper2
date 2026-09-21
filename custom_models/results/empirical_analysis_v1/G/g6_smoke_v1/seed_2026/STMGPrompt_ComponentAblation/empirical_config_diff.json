@@ -1,0 +1,22 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "G6",
+  "family": "G",
+  "implementation_status": "ready",
+  "expected_diff_fields": [
+    "use_trend_prior_graph"
+  ],
+  "actual_diff_fields": [
+    "use_trend_prior_graph"
+  ],
+  "missing_expected_diff_fields": [],
+  "unexpected_diff_fields": [],
+  "frozen_protocol_changes": [],
+  "differences": {
+    "use_trend_prior_graph": {
+      "canonical": true,
+      "effective": false
+    }
+  },
+  "passed": true
+}

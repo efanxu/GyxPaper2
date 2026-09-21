@@ -1,0 +1,194 @@
+{
+  "analysis_id": "data_evidence_v1",
+  "generated_at_utc": "2026-09-20T13:30:49.261874+00:00",
+  "mode": "smoke",
+  "training_performed": false,
+  "data_loader_reuse": {
+    "model_input_loader": "st_mgprompt.data.load_model_input",
+    "target_loader": "st_mgprompt.data.load_eval_target",
+    "alignment_and_pivot": "st_mgprompt.data._pivot_arrays",
+    "split_function": "st_mgprompt.data.compute_split_indices",
+    "window_function": "st_mgprompt.data.build_window_start_indices"
+  },
+  "dataset": {
+    "time_points": 1800,
+    "num_nodes": 8,
+    "feature_count": 16,
+    "feature_names": [
+      "Wspd",
+      "Wdir",
+      "Etmp",
+      "Itmp",
+      "Ndir",
+      "Pab1",
+      "Pab2",
+      "Pab3",
+      "Prtv",
+      "T2m",
+      "Sp",
+      "RelH",
+      "Wspd_w",
+      "Wdir_w",
+      "Tp",
+      "Patv_clean_for_input"
+    ],
+    "split_indices": {
+      "train": [
+        0,
+        1440
+      ],
+      "val": [
+        1440,
+        1620
+      ],
+      "test": [
+        1620,
+        1800
+      ]
+    },
+    "window_counts": {
+      "train": 215,
+      "val": 9,
+      "test": 27
+    }
+  },
+  "train_only_protocol": {
+    "statistics_fit_split": "train",
+    "statistics_source_index_range": [
+      0,
+      1439
+    ],
+    "train_end_index_exclusive": 1440,
+    "validation_or_test_targets_used_for_training_statistics": false,
+    "graph_statistics_fit_split": "train",
+    "event_selection_fit_split": "train",
+    "future_feature_access": false,
+    "association_feature_rule": "feature(t) uses values <=t; target uses t+1..t+H"
+  },
+  "temporal_protocol": {
+    "coarse_windows": [
+      6,
+      18,
+      36
+    ],
+    "formal_model_coarse_windows": [
+      6,
+      18,
+      36
+    ],
+    "rolling_alignment": "coaxial causal trailing mean including current index",
+    "high_frequency_cutoff_cycles_per_step": 0.05555555555555555,
+    "acf_decay_rule": "first lag with absolute ACF <= exp(-1), capped at 144"
+  },
+  "alignment_audit": {
+    "event_selection": "descending absolute one-step farm-mean Patv_raw ramp on train, separated by >36 steps",
+    "typical_event_rule": "rank 1 maximum absolute eligible training ramp",
+    "selected_event_count": 4,
+    "typical_event_index": 360,
+    "max_resampled_source_end_index": 1403,
+    "resampled_all_sources_causal": true
+  },
+  "spectrum_audit": {
+    "selected_turbine_id": 6,
+    "selection_rule": "maximum train-only Patv_raw first-difference standard deviation"
+  },
+  "graph_audit": {
+    "official_builders_reused": [
+      "build_micro_local_graph",
+      "build_macro_trend_graph",
+      "build_distance_prior_graph"
+    ],
+    "global_support_jaccard_micro_macro": 0.875,
+    "macro_row_sum_range": [
+      1.0,
+      1.0
+    ],
+    "micro_row_sum_range": [
+      1.0,
+      1.0000001192092896
+    ],
+    "distance_row_sum_range": [
+      0.9999999403953552,
+      1.0000001192092896
+    ]
+  },
+  "difficulty_audit": {
+    "baseline": "MovingAverage",
+    "formal_test_prediction_path": null,
+    "formal_export_metadata": {
+      "display_name": "MovingAverage smoke reference",
+      "prediction_source": "generated_from_synthetic_history",
+      "validation_pass": true
+    },
+    "validation_prediction_rule": "mean of the preceding 144 Patv_clean_for_input values, repeated for H10 and physically clipped",
+    "hard_turbine_reference_split": "validation",
+    "hard_turbine_metric": "validation H10 Score",
+    "hard_turbine_count": 1,
+    "hard_turbine_threshold": 0.14221630605862978,
+    "hard_turbine_ids": [
+      7
+    ],
+    "test_targets_used_for_threshold": false
+  },
+  "evidence_summary": {
+    "fixed_dual_motivation": {
+      "mean_high_frequency_energy_ratio_by_component": {
+        "local_residual": 0.11674791054722271,
+        "raw": 0.01574045829161938,
+        "trend": 0.0011084755759294385
+      },
+      "scope": "descriptive train-only evidence for distinct local and trend scales"
+    },
+    "coaxial_alignment_motivation": {
+      "mean_event_reconstruction_rmse_kw_by_alignment_mode": {
+        "causal_downsample_upsample": 190.83917617797852,
+        "coaxial": 61.4805695215861
+      },
+      "scope": "descriptive train-only event alignment evidence"
+    },
+    "dual_graph_motivation": {
+      "mean_weighted_semantic_fit_by_assignment": {
+        "crossed": 0.7726885465031565,
+        "matched": 0.7744901372537016
+      },
+      "scope": "statistical semantic matching only; no physical causality claim"
+    },
+    "dynamic_difficulty_motivation": {
+      "test_h10_score_mean_hard_group": 0.1491585745406234,
+      "test_h10_score_mean_other_group": 0.15086906831428057,
+      "scope": "validation-fixed grouping applied to formal test predictions"
+    }
+  },
+  "output_files": [
+    "alignment_event_metrics.csv",
+    "alignment_typical_event_curve.csv",
+    "baseline_horizon_difficulty.csv",
+    "baseline_turbine_difficulty.csv",
+    "data_overview.csv",
+    "graph_edge_lengths.csv",
+    "graph_neighbor_overlap.csv",
+    "graph_semantic_fit.csv",
+    "horizon_feature_association.csv",
+    "spectrum_acf_source.csv",
+    "temporal_statistics.csv",
+    "turbine_summary.csv"
+  ],
+  "interpretation_limits": [
+    "Graph results quantify statistical matching and do not establish physical causality.",
+    "Data evidence motivates later controlled experiments but is not itself an ablation result."
+  ],
+  "figure_files": [
+    "figures\\figure_01_data_split_distribution.png",
+    "figures\\figure_01_data_split_distribution.svg",
+    "figures\\figure_02_temporal_scales_coaxial.png",
+    "figures\\figure_02_temporal_scales_coaxial.svg",
+    "figures\\figure_03_spectrum_acf.png",
+    "figures\\figure_03_spectrum_acf.svg",
+    "figures\\figure_04_alignment_event_position.png",
+    "figures\\figure_04_alignment_event_position.svg",
+    "figures\\figure_05_graph_semantic_matching.png",
+    "figures\\figure_05_graph_semantic_matching.svg",
+    "figures\\figure_06_horizon_turbine_difficulty.png",
+    "figures\\figure_06_horizon_turbine_difficulty.svg"
+  ]
+}

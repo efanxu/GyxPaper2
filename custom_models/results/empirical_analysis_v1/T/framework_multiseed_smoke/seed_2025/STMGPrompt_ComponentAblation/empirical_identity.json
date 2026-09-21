@@ -1,0 +1,22 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant": {
+    "variant_id": "T1",
+    "display_name": "Fine-only",
+    "family": "T",
+    "base_config": "CANONICAL_FULL",
+    "config_overrides": {
+      "vadsp_gate_mode": "fine_only"
+    },
+    "expected_unique_diff": [
+      "vadsp_gate_mode"
+    ],
+    "trainable": true,
+    "paired_reference": "T0",
+    "implementation_status": "ready",
+    "implementation_note": "",
+    "reference_only": false
+  },
+  "seed": 2025,
+  "mode": "smoke"
+}

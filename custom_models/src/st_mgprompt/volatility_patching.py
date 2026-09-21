@@ -206,6 +206,41 @@ def causal_rolling_mean(features: Tensor, window: int) -> Tensor:
     return (sums / counts).reshape(B, L, N, D)
 
 
+def causal_downsample_upsample(features: Tensor, stride: int) -> tuple[Tensor, dict[str, Tensor | str | int]]:
+    """Causal non-overlapping aggregation followed by zero-order hold.
+
+    Anchor positions are ``0, stride, 2 * stride, ...``.  At an anchor ``a``
+    the representation uses only ``[max(0, a-stride+1), a]`` and is repeated
+    until the next anchor.  Consequently the access upper bound for output
+    position ``t`` is the latest anchor and never exceeds ``t``.
+    """
+
+    if features.ndim != 4:
+        raise ValueError(f"features must be [B,L,N,D], got {tuple(features.shape)}.")
+    if stride <= 0:
+        raise ValueError("stride must be positive.")
+    _, length, _, _ = features.shape
+    output_position = torch.arange(length, device=features.device, dtype=torch.long)
+    anchor = torch.div(output_position, int(stride), rounding_mode="floor") * int(stride)
+    source_start = torch.clamp(anchor - int(stride) + 1, min=0)
+    source_end = anchor
+    csum = torch.cumsum(features, dim=1)
+    padded = F.pad(csum, (0, 0, 0, 0, 1, 0))
+    sums = padded[:, source_end + 1, :, :] - padded[:, source_start, :, :]
+    counts = (source_end - source_start + 1).to(features.dtype).view(1, length, 1, 1)
+    restored = sums / counts
+    trace: dict[str, Tensor | str | int] = {
+        "stride": int(stride),
+        "source_interval_start": source_start.detach().cpu(),
+        "source_interval_end": source_end.detach().cpu(),
+        "causal_cutoff": output_position.detach().cpu(),
+        "access_upper_bound": source_end.detach().cpu(),
+        "upsample_rule": "causal_repeat",
+        "tail_rule": "repeat_latest_causal_anchor",
+    }
+    return restored.reshape_as(features), trace
+
+
 class CausalDepthwiseTemporalConv(nn.Module):
     def __init__(self, hidden_dim: int, kernel_size: int, dropout: float) -> None:
         super().__init__()
@@ -245,6 +280,8 @@ class VolatilityAwareDynamicSemanticPatching(nn.Module):
         vol_window: int = 6,
         fine_kernel_size: int = 3,
         coarse_windows: list[int] | None = None,
+        coarse_alignment_mode: str = "same_axis",
+        coarse_upsample_rule: str = "causal_repeat",
         dropout: float = 0.1,
         use_train_robust_volatility: bool = True,
         volatility_scale_eps: float = 1e-6,
@@ -267,6 +304,12 @@ class VolatilityAwareDynamicSemanticPatching(nn.Module):
             raise ValueError("volatility_mode must be per_node or global.")
         self.vol_window = int(vol_window)
         self.coarse_windows = list(coarse_windows or [6, 18, 36])
+        self.coarse_alignment_mode = str(coarse_alignment_mode)
+        self.coarse_upsample_rule = str(coarse_upsample_rule)
+        if self.coarse_alignment_mode not in {"same_axis", "causal_downsample_upsample"}:
+            raise ValueError(f"Unsupported coarse_alignment_mode: {self.coarse_alignment_mode}")
+        if self.coarse_upsample_rule != "causal_repeat":
+            raise ValueError(f"Unsupported coarse_upsample_rule: {self.coarse_upsample_rule}")
         self.use_train_robust_volatility = bool(use_train_robust_volatility)
         self.volatility_scale_eps = float(volatility_scale_eps)
         self.tau_min = float(tau_min)
@@ -456,7 +499,7 @@ class VolatilityAwareDynamicSemanticPatching(nn.Module):
         permutation = torch.randperm(flat.numel(), generator=generator, device="cpu").to(flat.device)
         return flat.index_select(0, permutation).reshape_as(values)
 
-    def forward(self, projected_x: Tensor, raw_x: Tensor) -> dict[str, Tensor]:
+    def forward(self, projected_x: Tensor, raw_x: Tensor) -> dict[str, Any]:
         if projected_x.ndim != 4:
             raise ValueError(f"projected_x must be [B,L,N,D], got {tuple(projected_x.shape)}.")
         if self.gate_mode in {"dynamic", "random_gate", "shuffled_volatility"}:
@@ -492,7 +535,15 @@ class VolatilityAwareDynamicSemanticPatching(nn.Module):
             temperature = projected_x.new_tensor(1.0)
         fine_delta = self.fine_conv(projected_x)
         fine_feature = projected_x + self.beta_fine * fine_delta
-        coarse_features = [causal_rolling_mean(projected_x, window) for window in self.coarse_windows]
+        alignment_traces: list[dict[str, Tensor | str | int]] = []
+        if self.coarse_alignment_mode == "same_axis":
+            coarse_features = [causal_rolling_mean(projected_x, window) for window in self.coarse_windows]
+        else:
+            coarse_features = []
+            for window in self.coarse_windows:
+                restored, trace = causal_downsample_upsample(projected_x, window)
+                coarse_features.append(restored)
+                alignment_traces.append(trace)
         stacked_coarse = torch.stack(coarse_features, dim=-2)
         coarse_delta = (stacked_coarse * coarse_scale_weights.unsqueeze(-1)).sum(dim=-2)
         coarse_delta = self.coarse_dropout(self.coarse_norm(coarse_delta))
@@ -505,7 +556,37 @@ class VolatilityAwareDynamicSemanticPatching(nn.Module):
             "vadsp_mode": self.gate_mode,
             "x_fine_shape": list(x_fine.shape),
             "x_coarse_shape": list(x_coarse.shape),
+            "coarse_alignment_mode": self.coarse_alignment_mode,
+            "coarse_upsample_rule": self.coarse_upsample_rule,
         }
+        if alignment_traces:
+            result["coarse_alignment_trace"] = {
+                "scale_count": len(alignment_traces),
+                "strides": [int(item["stride"]) for item in alignment_traces],
+                "source_interval_start": torch.stack(
+                    [item["source_interval_start"] for item in alignment_traces], dim=1
+                ),
+                "source_interval_end": torch.stack(
+                    [item["source_interval_end"] for item in alignment_traces], dim=1
+                ),
+                "causal_cutoff": torch.stack(
+                    [item["causal_cutoff"] for item in alignment_traces], dim=1
+                ),
+                "access_upper_bound": torch.stack(
+                    [item["access_upper_bound"] for item in alignment_traces], dim=1
+                ),
+                "upsample_rule": self.coarse_upsample_rule,
+                "tail_rule": "repeat_latest_causal_anchor",
+            }
+        with torch.no_grad():
+            result.update(
+                {
+                    "fine_branch_active_ratio": float((x_fine.detach().abs() > 1e-8).float().mean().cpu().item()),
+                    "coarse_branch_active_ratio": float((x_coarse.detach().abs() > 1e-8).float().mean().cpu().item()),
+                    "fine_representation_norm": float(x_fine.detach().float().norm(dim=-1).mean().cpu().item()),
+                    "coarse_representation_norm": float(x_coarse.detach().float().norm(dim=-1).mean().cpu().item()),
+                }
+            )
         if self.diagnostics_level in {"none", "minimal"}:
             if self.diagnostics_level == "minimal":
                 with torch.no_grad():

@@ -1,0 +1,81 @@
+{
+  "schema_version": "original_scope26_archive_intent_v1",
+  "status": "COMPLETED",
+  "attempt_id": "317cfcfd1d8646a89bbf6c13346f46b0",
+  "operation": "QUARANTINE",
+  "source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\TimesNet_node_shared_d32_k5_bs4_seed2026",
+  "target": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\.original_scope26_quarantine\\TimesNet_node_shared_d32_k5_bs4_seed2026\\20260806T083126.335923Z_21200_81d480b5960f429bb5aed9cc3526e65d",
+  "receipt_name": "quarantine_receipt.json",
+  "receipt": {
+    "schema_version": "original_scope26_quarantine_receipt_v1",
+    "scope_id": "benchmark_v2_batch4_scope26_seed2026",
+    "model_id": "timesnet",
+    "run_id": "TimesNet_node_shared_d32_k5_bs4_seed2026",
+    "original_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\TimesNet_node_shared_d32_k5_bs4_seed2026",
+    "archive_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\.original_scope26_quarantine\\TimesNet_node_shared_d32_k5_bs4_seed2026\\20260806T083126.335923Z_21200_81d480b5960f429bb5aed9cc3526e65d",
+    "archive_reason": "explicit quarantine-existing --apply",
+    "original_classification": "CURRENT_SCOPE26_IDENTITY_MISMATCH",
+    "original_rejection_reasons": [
+      "PREDICTION_METADATA_MISSING_FILE",
+      "STATUS_NOT_COMPLETED:RUNNING",
+      "EXIT_CODE_NOT_ZERO:None",
+      "PREDICTION_RUN_ID_MISMATCH",
+      "PREDICTION_MODEL_ID_MISMATCH",
+      "METRICS_H3_MISSING_FILE",
+      "METRICS_H6_MISSING_FILE",
+      "METRICS_H10_MISSING_FILE",
+      "METRICS_CSV_MISSING",
+      "METRICS_BUNDLE_HASH_UNAVAILABLE",
+      "BEST_CHECKPOINT.PT_MISSING",
+      "LAST_CHECKPOINT.PT_MISSING",
+      "TRAIN_LOG.CSV_MISSING",
+      "BEST_CHECKPOINT_MISSING_OR_EMPTY",
+      "EXECUTION_RECEIPT_MISSING"
+    ],
+    "recursive_file_manifest": [
+      {
+        "path": "artifact_manifest.json",
+        "sha256": "3dfb7049a3ede3148427eb5dbd2417eaaf44cc6b53cbe02b932756851a3fb7ee"
+      },
+      {
+        "path": "data_signature.json",
+        "sha256": "8b2c38ec496adf178dc12eeaf665ff4a7f4f311cb6f4d6d9ced6e83b71f7e60a"
+      },
+      {
+        "path": "effective_config.json",
+        "sha256": "33cbbddb14609d606217adb772d72d8f347df88ea03c9ed7c15c264ff5839360"
+      },
+      {
+        "path": "environment.json",
+        "sha256": "2373a17b6192b49329b4a00e4529025f16f6c0b9ca054192d0396f949c5c55b7"
+      },
+      {
+        "path": "model_summary.json",
+        "sha256": "09117169f2d4ef7c92220a3624644a30ba168441b3317c9826e84fc5c796c03f"
+      },
+      {
+        "path": "protocol_check.json",
+        "sha256": "f7af2fd0e8b4a01cae8c2062cd2608755097f2cb12c057cf1126cc782629d82b"
+      },
+      {
+        "path": "resolved_config.json",
+        "sha256": "33cbbddb14609d606217adb772d72d8f347df88ea03c9ed7c15c264ff5839360"
+      },
+      {
+        "path": "run_status.json",
+        "sha256": "7fbde6f32f2967a4e7f8220dfefe575e09afee5141a6646449d3d6647dce8bbc"
+      }
+    ],
+    "current_git_identity": {
+      "git_commit": "41ed7f1145e39945ae6541c3467aaa0d58286122",
+      "source_revision_type": "git"
+    },
+    "current_manifest_hash": "57a93bb4219bfd437d73d34638aed883723511f77120da71ad39e9e5f4f6775f",
+    "current_run_map_hash": "d491de25fc098350b1e4c7934d5a03755b9ba5d8cb39b2cfdcc6cad1fe0b4cc7",
+    "current_freeze_hash": "863df0a3d7c88716e93a1ac15b458b88c5407a0e04613330f75b42dd073f0578",
+    "attempt_id": "317cfcfd1d8646a89bbf6c13346f46b0",
+    "timestamp": "2026-08-06T08:31:26.343767+00:00"
+  },
+  "started_at": "2026-08-06T08:31:26.344769+00:00",
+  "finished_at": "2026-08-06T08:31:26.347739+00:00"
+}

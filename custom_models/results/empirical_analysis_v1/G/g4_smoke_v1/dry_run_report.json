@@ -1,0 +1,18 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "G4",
+  "display_name": "Distance-only dual graph",
+  "family": "G",
+  "implementation_status": "pending",
+  "trainable": true,
+  "paired_reference": "G0",
+  "expected_diff_fields": [
+    "graph_prior_component"
+  ],
+  "declared_overrides": {
+    "graph_prior_component": "distance_only"
+  },
+  "passed": true,
+  "execution_ready": false,
+  "note": "Implemented in empirical step 4."
+}

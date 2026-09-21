@@ -1,0 +1,7 @@
+{
+  "source_class": "ORIGINAL26_CONTROL",
+  "read_only": true,
+  "model_id": "patchtst",
+  "run_id": "PatchTST_node_shared_p16_s8_bs4_seed2026",
+  "source_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\PatchTST_node_shared_p16_s8_bs4_seed2026"
+}

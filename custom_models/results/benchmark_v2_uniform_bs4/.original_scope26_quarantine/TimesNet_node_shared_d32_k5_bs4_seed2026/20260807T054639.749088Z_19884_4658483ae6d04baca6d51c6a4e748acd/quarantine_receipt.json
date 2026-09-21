@@ -1,0 +1,75 @@
+{
+  "schema_version": "original_scope26_quarantine_receipt_v1",
+  "scope_id": "benchmark_v2_batch4_scope26_seed2026",
+  "model_id": "timesnet",
+  "run_id": "TimesNet_node_shared_d32_k5_bs4_seed2026",
+  "original_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_b_seed2026\\TimesNet_node_shared_d32_k5_bs4_seed2026",
+  "archive_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\.original_scope26_quarantine\\TimesNet_node_shared_d32_k5_bs4_seed2026\\20260807T054639.749088Z_19884_4658483ae6d04baca6d51c6a4e748acd",
+  "archive_reason": "explicit quarantine-existing --apply",
+  "original_classification": "CURRENT_SCOPE26_IDENTITY_MISMATCH",
+  "original_rejection_reasons": [
+    "PREDICTION_METADATA_MISSING_FILE",
+    "STATUS_NOT_COMPLETED:RUNNING",
+    "EXIT_CODE_NOT_ZERO:None",
+    "PREDICTION_RUN_ID_MISMATCH",
+    "PREDICTION_MODEL_ID_MISMATCH",
+    "METRICS_H3_MISSING_FILE",
+    "METRICS_H6_MISSING_FILE",
+    "METRICS_H10_MISSING_FILE",
+    "METRICS_CSV_MISSING",
+    "METRICS_BUNDLE_HASH_UNAVAILABLE",
+    "TRAIN_LOG.CSV_MISSING",
+    "EXECUTION_RECEIPT_MISSING"
+  ],
+  "recursive_file_manifest": [
+    {
+      "path": "artifact_manifest.json",
+      "sha256": "3dfb7049a3ede3148427eb5dbd2417eaaf44cc6b53cbe02b932756851a3fb7ee"
+    },
+    {
+      "path": "best_checkpoint.pt",
+      "sha256": "4a465e90c6fd2b3bcc403cb0bf3e38060006dd8767fb015321a24201f94157fd"
+    },
+    {
+      "path": "data_signature.json",
+      "sha256": "8b2c38ec496adf178dc12eeaf665ff4a7f4f311cb6f4d6d9ced6e83b71f7e60a"
+    },
+    {
+      "path": "effective_config.json",
+      "sha256": "2ee4d10e946fedd15fe2ec0bade8850627ddb2ec5121fe55c2f0ad6872680830"
+    },
+    {
+      "path": "environment.json",
+      "sha256": "2373a17b6192b49329b4a00e4529025f16f6c0b9ca054192d0396f949c5c55b7"
+    },
+    {
+      "path": "last_checkpoint.pt",
+      "sha256": "16dae42f1f8d82d2e45849f40e5c361061c5bda6fa8ad2d4aed537b96f2d7664"
+    },
+    {
+      "path": "model_summary.json",
+      "sha256": "32f80b02535441df2eaa24f3f777dfe536693e514a404d7d4efe3033c0dc5015"
+    },
+    {
+      "path": "protocol_check.json",
+      "sha256": "f7af2fd0e8b4a01cae8c2062cd2608755097f2cb12c057cf1126cc782629d82b"
+    },
+    {
+      "path": "resolved_config.json",
+      "sha256": "2ee4d10e946fedd15fe2ec0bade8850627ddb2ec5121fe55c2f0ad6872680830"
+    },
+    {
+      "path": "run_status.json",
+      "sha256": "ffcb09d6b4edd4a7b49f7a885cc90dd2558b0dba80296a8fc17ea0fac4717251"
+    }
+  ],
+  "current_git_identity": {
+    "git_commit": "41ed7f1145e39945ae6541c3467aaa0d58286122",
+    "source_revision_type": "git"
+  },
+  "current_manifest_hash": "57a93bb4219bfd437d73d34638aed883723511f77120da71ad39e9e5f4f6775f",
+  "current_run_map_hash": "d491de25fc098350b1e4c7934d5a03755b9ba5d8cb39b2cfdcc6cad1fe0b4cc7",
+  "current_freeze_hash": "863df0a3d7c88716e93a1ac15b458b88c5407a0e04613330f75b42dd073f0578",
+  "attempt_id": "d97cc7a60b0042aa9fbf6d3c3af29608",
+  "timestamp": "2026-08-07T05:46:39.778517+00:00"
+}

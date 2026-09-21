@@ -1,0 +1,154 @@
+{
+  "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+  "experiment_family": "component_ablation",
+  "run_id": "component_ablation_fixed_dual_seed2026",
+  "selection_uses_test_metrics": false,
+  "variants": [
+    {
+      "variant_id": "A0",
+      "display_name": "Canonical Full",
+      "experiment_family": "component_ablation",
+      "trainable": false,
+      "canonical_reference": "full_fixed_dual_keep_msmgdwu_seed2026",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {},
+      "expected_unique_diff": []
+    },
+    {
+      "variant_id": "A1",
+      "display_name": "w/o Spatial Graph",
+      "experiment_family": "component_ablation",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "use_graph_in_temporal_encoder": false
+      },
+      "expected_unique_diff": [
+        "use_graph_in_temporal_encoder"
+      ]
+    },
+    {
+      "variant_id": "A2",
+      "display_name": "w/o Adaptive Graph",
+      "experiment_family": "component_ablation",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "use_adaptive_graph": false
+      },
+      "expected_unique_diff": [
+        "use_adaptive_graph"
+      ]
+    },
+    {
+      "variant_id": "A3",
+      "display_name": "w/o Diffusion",
+      "experiment_family": "component_ablation",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "graph_operator": "simple"
+      },
+      "expected_unique_diff": [
+        "graph_operator"
+      ]
+    },
+    {
+      "variant_id": "A4",
+      "display_name": "Mean-Pooling Macro Prompt",
+      "experiment_family": "component_ablation",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "macro_prompt_pooling": "mean"
+      },
+      "expected_unique_diff": [
+        "macro_prompt_pooling"
+      ]
+    },
+    {
+      "variant_id": "A5",
+      "display_name": "Short-context Reverse Cross",
+      "experiment_family": "component_ablation",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "cross_fusion_recent_len": 6
+      },
+      "expected_unique_diff": [
+        "cross_fusion_recent_len"
+      ]
+    },
+    {
+      "variant_id": "A6",
+      "display_name": "Fine-to-Coarse Only Cross Fusion",
+      "experiment_family": "component_ablation",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "disable_macro_to_fine_cross": true
+      },
+      "expected_unique_diff": [
+        "disable_macro_to_fine_cross"
+      ]
+    },
+    {
+      "variant_id": "A7",
+      "display_name": "w/o MS-MG-DWU",
+      "experiment_family": "component_ablation",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "use_msmg_dwu": false,
+        "loss_function": "masked_score_aligned_hybrid",
+        "loss_protocol": "fair_main"
+      },
+      "expected_unique_diff": [
+        "use_msmg_dwu",
+        "loss_function",
+        "loss_protocol"
+      ]
+    }
+  ],
+  "selected_variants": [
+    "A6-C1",
+    "A6-C3"
+  ],
+  "candidate_variants": [
+    {
+      "variant_id": "A6-C1",
+      "display_name": "Early-History Macro Cross Fusion",
+      "experiment_family": "component_ablation",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "macro_to_fine_exclude_recent_len": 24
+      },
+      "expected_unique_diff": [
+        "macro_to_fine_exclude_recent_len"
+      ]
+    },
+    {
+      "variant_id": "A6-C3",
+      "display_name": "Shared-Projection Cross Fusion",
+      "experiment_family": "component_ablation",
+      "trainable": true,
+      "canonical_reference": null,
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "share_cross_attention_projections": true
+      },
+      "expected_unique_diff": [
+        "share_cross_attention_projections"
+      ]
+    }
+  ]
+}

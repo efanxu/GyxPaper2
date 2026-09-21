@@ -1,0 +1,18 @@
+{
+  "reference_source": "C:\\Users\\12811\\Desktop\\ChatGPT Image 2026年9月18日 15_03_11.png",
+  "render_source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\paper_figure\\figures\\st_mgprompt_component_ablation_A0_A8_600dpi.png",
+  "reference_original_size_px": [
+    1122,
+    1402
+  ],
+  "render_size_px": [
+    4800,
+    6000
+  ],
+  "reference_original_aspect_ratio": 0.8002853067047075,
+  "render_aspect_ratio": 0.8,
+  "same_resolution_reference": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\paper_figure\\visual_qa\\reference_same_resolution.png",
+  "overlay_50pct": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\paper_figure\\visual_qa\\reference_render_overlay_50pct.png",
+  "absolute_difference": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\paper_figure\\visual_qa\\reference_render_difference.png",
+  "intentional_content_difference": "The formal render omits the reference preview's Fig. X caption."
+}

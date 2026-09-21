@@ -73,3 +73,12 @@ dist/
 *.exe
 *.tmp
 *.bak
+
+# Local agent, dependency, and render workspaces
+.codex*/
+node_modules/
+work/
+tmp/
+a6_xlsx_build/
+codex_artifacts_a9/
+qa_a7_render/

@@ -1,0 +1,34 @@
+{
+  "outputSlides": [
+    {
+      "outputSlide": 1,
+      "sourceSlide": 1,
+      "narrativeRole": "Figure 2 technical mechanism",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite-and-reposition",
+          "sourceElementId": "FIGURE_TITLE"
+        },
+        {
+          "action": "add",
+          "newPrimitiveAllowed": true,
+          "mustNotOverlapInherited": true,
+          "reason": "User explicitly requested a full Figure 2 redesign while preserving the source master/theme and frozen scientific logic.",
+          "zone": {
+            "left": 0,
+            "top": 0,
+            "width": 864,
+            "height": 480
+          }
+        }
+      ]
+    }
+  ],
+  "omittedSourceSlides": [
+    {
+      "sourceSlide": 2,
+      "reason": "Figure 3 is frozen and explicitly omitted from the one-slide deliverable without editing."
+    }
+  ]
+}

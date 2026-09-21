@@ -1,0 +1,12 @@
+{
+  "status": "full_shape_completed",
+  "variant_id": "T4",
+  "started_at": "2026-09-21T11:19:36.937612+00:00",
+  "finished_at": "2026-09-21T11:19:50.537093+00:00",
+  "trace_summary": {
+    "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\full_shape\\T4\\coarse_alignment_trace.csv",
+    "rows": 432,
+    "full_trace": false,
+    "max_access_le_cutoff": true
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "T5",
+  "display_name": "Fixed Dual concat/MLP interaction",
+  "family": "T",
+  "implementation_status": "pending",
+  "trainable": true,
+  "paired_reference": "T0",
+  "expected_diff_fields": [
+    "cross_granularity_interaction"
+  ],
+  "declared_overrides": {
+    "cross_granularity_interaction": "direct_concat_mlp"
+  },
+  "passed": true,
+  "execution_ready": false,
+  "note": "Requires the controlled direct concat/MLP path from step 3."
+}

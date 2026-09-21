@@ -1,0 +1,4 @@
+﻿split,start_index_inclusive,end_index_exclusive,start_timestamp,end_timestamp,time_points,window_count,prediction_start_stride,valid_target_count,total_target_count,valid_target_ratio,lookback,max_pred_len,window_rule
+train,0,42047,2021-01-01 00:10:00,2021-10-19 23:50:00,42047,6983,6,3927812,5634298,0.6971253561668197,144,10,"[t-lookback,t)->[t,t+max_pred_len)"
+val,42047,47302,2021-10-20 00:00:00,2021-11-25 11:40:00,5255,1701,3,448865,704170,0.637438402658449,144,10,"[t-lookback,t)->[t,t+max_pred_len)"
+test,47302,52559,2021-11-25 11:50:00,2021-12-31 23:50:00,5257,5104,1,424986,704438,0.6032979481515761,144,10,"[t-lookback,t)->[t,t+max_pred_len)"

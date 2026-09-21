@@ -1,0 +1,203 @@
+{"kind":"deck","id":"pr/kxutr3","name":"Deck"}
+{"kind":"layout","layoutId":"/ppt/slideMasters/slideMaster1.xml","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout1.xml","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/y90nupkv","slide":1,"title":"ST-MGPrompt Overall Framework","textShapes":78}
+{"kind":"textbox","id":"sh/i18729cr","slide":1,"name":"FIGURE_TITLE","text":"ST-MGPrompt Overall Framework","textPreview":"ST-MGPrompt Overall Framework","textChars":29,"textLines":1,"bbox":[20,18,920,52]}
+{"kind":"shape","id":"sh/547294r6","slide":1,"name":"FIG1_PANEL_A__BACKGROUND","bbox":[20,84,420,450]}
+{"kind":"textbox","id":"sh/k3yl0zql","slide":1,"name":"FIG1_PANEL_A__TITLE","text":"1. Feature Input and\nTemporal Decomposition","textPreview":"1. Feature Input and | Temporal Decomposition","textChars":43,"textLines":2,"bbox":[26,84.36,408,39.01]}
+{"kind":"shape","id":"sh/wn6dc7eh","slide":1,"name":"FIG1_PANEL_A__INPUT__SHEET_2","bbox":[59,125.1,102,40.4]}
+{"kind":"shape","id":"sh/hofulsf2","slide":1,"name":"FIG1_PANEL_A__INPUT__SHEET_1","bbox":[50,128.58,102,40.4]}
+{"kind":"shape","id":"sh/ul4vaxgb","slide":1,"name":"FIG1_PANEL_A__INPUT__SHEET_0","bbox":[41,132.07,102,40.4]}
+{"kind":"shape","id":"sh/vmdcj2xw","slide":1,"name":"FIG1_PANEL_A__INPUT__GRID_V_1","bbox":[66.5,132.07,0.15,40.4]}
+{"kind":"shape","id":"sh/4r6dg7et","slide":1,"name":"FIG1_PANEL_A__INPUT__GRID_V_2","bbox":[92,132.07,0.15,40.4]}
+{"kind":"shape","id":"sh/5sfepcfe","slide":1,"name":"FIG1_PANEL_A__INPUT__GRID_V_3","bbox":[117.5,132.07,0.15,40.4]}
+{"kind":"shape","id":"sh/ipovexwn","slide":1,"name":"FIG1_PANEL_A__INPUT__GRID_H_1","bbox":[41,145.53,102,0.07]}
+{"kind":"shape","id":"sh/3qxwn2x8","slide":1,"name":"FIG1_PANEL_A__INPUT__GRID_H_2","bbox":[41,159,102,0.07]}
+{"kind":"textbox","id":"sh/sfqdkrep","slide":1,"name":"FIG1_PANEL_A__INPUT_LABEL","text":"Historical\nWind-Farm Input","textPreview":"Historical | Wind-Farm Input","textChars":26,"textLines":2,"bbox":[31,174,130,34]}
+{"kind":"textbox","id":"sh/dgzetcfa","slide":1,"name":"FIG1_PANEL_A__INPUT_META","text":"134 turbines\n16 variables","textPreview":"134 turbines | 16 variables","textChars":25,"textLines":2,"bbox":[38,207,118,31]}
+{"kind":"textbox","id":"sh/1cvuxc7e","slide":1,"name":"FIG1_PANEL_A__PROJECTION","text":"16 \n 64","textPreview":"16  |  64","textChars":7,"textLines":2,"bbox":[169.1,139.94,90.75,29.26]}
+{"kind":"textbox","id":"sh/0bmd476t","slide":1,"name":"FIG1_PANEL_A__PROJECTION_LABEL","text":"Shared Input Projection","textPreview":"Shared Input Projection","textChars":23,"textLines":1,"bbox":[150,172,120,24]}
+{"kind":"textbox","id":"sh/zadcv2p8","slide":1,"name":"FIG1_PANEL_A__DECOMP","text":"Fine\n+\nCoarse","textPreview":"Fine | + | Coarse","textChars":13,"textLines":3,"bbox":[309.5,132.07,108,44.58]}
+{"kind":"textbox","id":"sh/e94v2hon","slide":1,"name":"FIG1_PANEL_A__DECOMP_LABEL","text":"Same-Time-Axis Fixed Dual-Granularity Decomposition","textPreview":"Same-Time-Axis Fixed Dual-Granularity Decomposition","textChars":51,"textLines":1,"bbox":[294,178,140,40]}
+{"kind":"shape","id":"sh/90ve1w7q","slide":1,"name":"FIG1_PANEL_A__TIMELINE","bbox":[45.5,238.64,361.5,0.07]}
+{"kind":"shape","id":"sh/ozmd8r65","slide":1,"name":"FIG1_PANEL_A__TICK_0","bbox":[45.5,235.86,0.15,5.57]}
+{"kind":"shape","id":"sh/nydczmpk","slide":1,"name":"FIG1_PANEL_A__TICK_1","bbox":[75.5,235.86,0.15,5.57]}
+{"kind":"shape","id":"sh/mx4v6hoz","slide":1,"name":"FIG1_PANEL_A__TICK_2","bbox":[105.5,235.86,0.15,5.57]}
+{"kind":"shape","id":"sh/p4bu5s76","slide":1,"name":"FIG1_PANEL_A__TICK_3","bbox":[135.5,235.86,0.15,5.57]}
+{"kind":"shape","id":"sh/432dwn6l","slide":1,"name":"FIG1_PANEL_A__TICK_4","bbox":[165.5,235.86,0.15,5.57]}
+{"kind":"shape","id":"sh/uxgjq907","slide":1,"name":"FIG1_PANEL_A__TICK_5","bbox":[195.5,235.86,0.15,5.57]}
+{"kind":"shape","id":"sh/vyp0je1s","slide":1,"name":"FIG1_PANEL_A__TICK_6","bbox":[225.5,235.86,0.15,5.57]}
+{"kind":"shape","id":"sh/wzy1szid","slide":1,"name":"FIG1_PANEL_A__TICK_7","bbox":[255.5,235.86,0.15,5.57]}
+{"kind":"shape","id":"sh/h072l4jy","slide":1,"name":"FIG1_PANEL_A__TICK_8","bbox":[285.5,235.86,0.15,5.57]}
+{"kind":"shape","id":"sh/i1gje90j","slide":1,"name":"FIG1_PANEL_A__TICK_9","bbox":[315.5,235.86,0.15,5.57]}
+{"kind":"shape","id":"sh/j2pkne14","slide":1,"name":"FIG1_PANEL_A__TICK_10","bbox":[345.5,235.86,0.15,5.57]}
+{"kind":"shape","id":"sh/43y1gji9","slide":1,"name":"FIG1_PANEL_A__TICK_11","bbox":[375.5,235.86,0.15,5.57]}
+{"kind":"shape","id":"sh/54r2poju","slide":1,"name":"FIG1_PANEL_A__TICK_12","bbox":[405.5,235.86,0.15,5.57]}
+{"kind":"textbox","id":"sh/y5wjip0z","slide":1,"name":"FIG1_PANEL_A__SAME_TIME","text":"Same-Time-Axis · 144 timestamps","textPreview":"Same-Time-Axis · 144 timestamps","textChars":31,"textLines":1,"bbox":[170,221,245,18]}
+{"kind":"textbox","id":"sh/z650ba1k","slide":1,"name":"FIG1_PANEL_A__FINE_LABEL","text":"Fine","textPreview":"Fine","textChars":4,"textLines":1,"bbox":[39.5,244,66,20]}
+{"kind":"textbox","id":"sh/juhg7q9s","slide":1,"name":"FIG1_PANEL_A__FINE_METHOD","text":"Causal Depthwise Separable TCN","textPreview":"Causal Depthwise Separable TCN","textChars":30,"textLines":1,"bbox":[59.6,278.63,333,20.9]}
+{"kind":"textbox","id":"sh/xsfy5grm","slide":1,"name":"FIG1_PANEL_A__FINE_RESIDUAL","text":"Scale-Learned Residual Connection","textPreview":"Scale-Learned Residual Connection","textChars":33,"textLines":1,"bbox":[59.6,306.91,344.1,27.17]}
+{"kind":"textbox","id":"sh/dc7md8fe","slide":1,"name":"FIG1_PANEL_A__FINE_OUT","text":"Fine representation","textPreview":"Fine representation","textChars":19,"textLines":1,"bbox":[89.84,337,274.5,22]}
+{"kind":"textbox","id":"sh/cby5k3yt","slide":1,"name":"FIG1_PANEL_A__COARSE_LABEL","text":"Coarse","textPreview":"Coarse","textChars":6,"textLines":1,"bbox":[36.5,368,81,20]}
+{"kind":"textbox","id":"sh/2d8rm9kb","slide":1,"name":"FIG1_PANEL_A__COARSE_METHOD","text":"Multi-Window Causal Rolling Mean","textPreview":"Multi-Window Causal Rolling Mean","textChars":32,"textLines":1,"bbox":[47,421.15,352.05,21.59]}
+{"kind":"textbox","id":"sh/dkja1ojy","slide":1,"name":"FIG1_PANEL_A__COARSE_WINDOWS","text":"w = 6 / 18 / 36","textPreview":"w = 6 / 18 / 36","textChars":15,"textLines":1,"bbox":[75.5,442.05,279,16.02]}
+{"kind":"textbox","id":"sh/bi1sze1s","slide":1,"name":"FIG1_PANEL_A__COARSE_RESIDUAL","text":"Scale-Learned Residual Connection","textPreview":"Scale-Learned Residual Connection","textChars":33,"textLines":1,"bbox":[57,464.29,349.1,27.17]}
+{"kind":"textbox","id":"sh/qhsbq9k7","slide":1,"name":"FIG1_PANEL_A__COARSE_OUT","text":"Coarse representation","textPreview":"Coarse representation","textChars":21,"textLines":1,"bbox":[89.6,489,274.5,22]}
+{"kind":"shape","id":"sh/lsja54ra","slide":1,"name":"FIG1_PANEL_A__FLOW_2__LINE","bbox":[266.3,154.36,39,0.07]}
+{"kind":"shape","id":"sh/ypsbupsz","slide":1,"name":"FIG1_PANEL_A__FLOW_2__HEAD","bbox":[293,150.87,15,6.97]}
+{"kind":"shape","id":"sh/7qp4be9c","slide":1,"name":"FIG1_PANEL_B__BACKGROUND","bbox":[468,84,472,450]}
+{"kind":"textbox","id":"sh/65g3298r","slide":1,"name":"FIG1_PANEL_B__TITLE","text":"2.Dual-Semantic Graph-\nTemporal Encoding","textPreview":"2.Dual-Semantic Graph- | Temporal Encoding","textChars":40,"textLines":2,"bbox":[474.51,85.7,458.98,39.01]}
+{"kind":"textbox","id":"sh/jq1s3u9k","slide":1,"name":"FIG1_PANEL_B__MICRO_LANE","text":"Fine / Micro","textPreview":"Fine / Micro","textChars":12,"textLines":1,"bbox":[487.53,127.72,143.23,22.36]}
+{"kind":"shape","id":"sh/svut0za1","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH_ANCHOR","bbox":[492.41,152.66,100.91,67.08]}
+{"kind":"shape","id":"sh/tw3a94rm","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__EDGE_0_1","bbox":[505.83,166.25,20.7,18.58]}
+{"kind":"shape","id":"sh/6tsbypsv","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__EDGE_0_2","bbox":[505.83,184.82,30.19,4.13]}
+{"kind":"shape","id":"sh/7u1s7u9g","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__EDGE_1_2","bbox":[526.53,166.25,9.49,22.7]}
+{"kind":"shape","id":"sh/gzut4jax","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__EDGE_1_3","bbox":[526.53,166.25,30.19,2.06]}
+{"kind":"shape","id":"sh/hk3adori","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__EDGE_2_3","bbox":[536.02,168.31,20.7,20.64]}
+{"kind":"shape","id":"sh/repw3it0","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__EDGE_2_4","bbox":[536.02,188.95,28.47,4.13]}
+{"kind":"shape","id":"sh/qtwvadcf","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__EDGE_3_5","bbox":[556.72,168.31,23.29,12.38]}
+{"kind":"shape","id":"sh/dg7e5sbq","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__EDGE_4_5","bbox":[564.48,180.7,15.53,12.38]}
+{"kind":"shape","id":"sh/cfydcnu5","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__EDGE_1_5","bbox":[526.53,166.25,53.48,14.45]}
+{"kind":"shape","id":"sh/3q5czyto","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__NODE_1","bbox":[496.83,175.82,18,18]}
+{"kind":"shape","id":"sh/2pwv6tc3","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__NODE_2","bbox":[517.53,157.25,18,18]}
+{"kind":"shape","id":"sh/psne18bu","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__NODE_3","bbox":[527.02,179.95,18,18]}
+{"kind":"shape","id":"sh/4red83u9","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__NODE_4","bbox":[547.72,159.31,18,18]}
+{"kind":"shape","id":"sh/nm9wb2ts","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__NODE_5","bbox":[555.48,184.08,18,18]}
+{"kind":"shape","id":"sh/ml0v2xcn","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH__NODE_6","bbox":[571.01,171.7,18,18]}
+{"kind":"textbox","id":"sh/atgz6h8r","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH_LABEL","text":"Micro Local Graph","textPreview":"Micro Local Graph","textChars":17,"textLines":1,"bbox":[485.21,203.59,123.7,23.22]}
+{"kind":"textbox","id":"sh/vupgzmpc","slide":1,"name":"FIG1_PANEL_B__MICRO_GRAPH_NOTE","text":"1st-order ΔWspd\n+ distance","textPreview":"1st-order ΔWspd | + distance","textChars":26,"textLines":2,"bbox":[483.35,234.91,128.58,32.68]}
+{"kind":"textbox","id":"sh/wvyh8rqx","slide":1,"name":"FIG1_PANEL_B__MICRO_ADAPT","text":"Prior ×\nlearned weights","textPreview":"Prior × | learned weights","textChars":23,"textLines":2,"bbox":[611.77,169,110.68,41.28]}
+{"kind":"shape","id":"sh/xw7i1w7i","slide":1,"name":"FIG1_PANEL_B__MICRO_DIFF","bbox":[747.94,161.26,139.97,56.76]}
+{"kind":"shape","id":"sh/8reh4rql","slide":1,"name":"FIG1_PANEL_B__MICRO_TCN__LAYER_1","bbox":[752.5,253.35,127.01,36.12]}
+{"kind":"textbox","id":"sh/m5wz2h8v","slide":1,"name":"FIG1_PANEL_B__MICRO_DIFF_LABEL","text":"Bidirectional 2nd-Order Graph Diffusion","textPreview":"Bidirectional 2nd-Order Graph Diffusion","textChars":39,"textLines":1,"bbox":[743.6,168.2,150.39,45.32]}
+{"kind":"textbox","id":"sh/9s7yxw76","slide":1,"name":"FIG1_PANEL_B__MICRO_TCN_PARAM","text":"k = 3 d = {1,2}","textPreview":"k = 3 d = {1,2}","textChars":15,"textLines":1,"bbox":[744.33,293.34,152.09,21.39]}
+{"kind":"textbox","id":"sh/tsb2t0rq","slide":1,"name":"FIG1_PANEL_B__MACRO_LANE","text":"Coarse / Macro","textPreview":"Coarse / Macro","textChars":14,"textLines":1,"bbox":[487.53,350.49,187.02,22.19]}
+{"kind":"shape","id":"sh/sri10va5","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH_ANCHOR","bbox":[492.41,371.05,100.91,65.95]}
+{"kind":"shape","id":"sh/7q9krq9k","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__EDGE_0_1","bbox":[505.83,384.41,20.7,18.26]}
+{"kind":"textbox","id":"sh/610ze18z","slide":1,"name":"FIG1_PANEL_B__MICRO_TCN_LABEL","text":"Asymmetric Causal TCN","textPreview":"Asymmetric Causal TCN","textChars":21,"textLines":1,"bbox":[753.12,254.61,123.08,32.16]}
+{"kind":"shape","id":"sh/6p0jylsz","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__EDGE_0_2","bbox":[505.83,402.67,30.19,4.06]}
+{"kind":"shape","id":"sh/dov254ru","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__EDGE_1_2","bbox":[526.53,384.41,9.49,22.32]}
+{"kind":"shape","id":"sh/cnmlcza9","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__EDGE_1_3","bbox":[526.53,384.41,30.19,2.03]}
+{"kind":"shape","id":"sh/w3edon2h","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__EDGE_2_3","bbox":[536.02,386.44,20.7,20.29]}
+{"kind":"shape","id":"sh/x4nexs32","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__EDGE_2_4","bbox":[536.02,406.73,28.47,4.06]}
+{"kind":"shape","id":"sh/a1wvmx4r","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__EDGE_3_5","bbox":[556.72,386.44,23.29,12.17]}
+{"kind":"shape","id":"sh/v25wv2lc","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__EDGE_4_5","bbox":[564.48,398.62,15.53,12.17]}
+{"kind":"shape","id":"sh/8zudknml","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__EDGE_1_5","bbox":[526.53,384.41,53.48,14.2]}
+{"kind":"shape","id":"sh/90nuts36","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__NODE_1","bbox":[496.83,393.67,18,18]}
+{"kind":"shape","id":"sh/mdcvid4f","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__NODE_2","bbox":[517.53,375.41,18,18]}
+{"kind":"shape","id":"sh/nelcril0","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__NODE_3","bbox":[527.02,397.73,18,18]}
+{"kind":"shape","id":"sh/0budg3mp","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__NODE_4","bbox":[547.72,377.44,18,18]}
+{"kind":"shape","id":"sh/lc3up83u","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__NODE_5","bbox":[555.48,401.79,18,18]}
+{"kind":"shape","id":"sh/361wzy5w","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH__NODE_6","bbox":[571.01,389.62,18,18]}
+{"kind":"textbox","id":"sh/25sv6dob","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH_LABEL","text":"Macro Trend Graph","textPreview":"Macro Trend Graph","textChars":17,"textLines":1,"bbox":[484.6,422.63,133.46,22.83]}
+{"kind":"textbox","id":"sh/p8je18n2","slide":1,"name":"FIG1_PANEL_B__MACRO_GRAPH_NOTE","text":"Patv trend\n+ distance","textPreview":"Patv trend | + distance","textChars":21,"textLines":2,"bbox":[490.46,450.7,126.95,32.13]}
+{"kind":"textbox","id":"sh/o7ad836h","slide":1,"name":"FIG1_PANEL_B__MACRO_ADAPT","text":"Prior ×\nlearned weights","textPreview":"Prior × | learned weights","textChars":23,"textLines":2,"bbox":[624.57,374.78,120.28,42.1]}
+{"kind":"shape","id":"sh/balw3i5s","slide":1,"name":"FIG1_PANEL_B__MACRO_DIFF","bbox":[779.19,366.66,139.97,55.8]}
+{"kind":"textbox","id":"sh/mlsz2hkn","slide":1,"name":"FIG1_PANEL_B__MACRO_TCN_PARAM","text":"k = 5  d = {1,2,4,8}","textPreview":"k = 5  d = {1,2,4,8}","textChars":20,"textLines":1,"bbox":[729.72,491.9,193.68,25.36]}
+{"kind":"shape","id":"sh/ts7md4r2","slide":1,"name":"FIG1_PANEL_C__BACKGROUND","bbox":[20,554,386,500]}
+{"kind":"textbox","id":"sh/sryl4zqx","slide":1,"name":"FIG1_PANEL_C__TITLE","text":"3.Prompt-Guided Cross-\nGranularity Fusion","textPreview":"3.Prompt-Guided Cross- | Granularity Fusion","textChars":41,"textLines":2,"bbox":[25.29,555.89,375.42,43.34]}
+{"kind":"shape","id":"sh/65w3y547","slide":1,"name":"FIG1_PANEL_C__COARSE_SOURCE__TOKEN_7","bbox":[59.74,612.05,200.98,24.77]}
+{"kind":"textbox","id":"sh/1c72xk3u","slide":1,"name":"FIG1_PANEL_C__PROMPT_METHOD","text":"Macro-Trend Prompt","textPreview":"Macro-Trend Prompt","textChars":18,"textLines":1,"bbox":[90.06,654.62,243.23,23.22]}
+{"kind":"textbox","id":"sh/wbuh8r2p","slide":1,"name":"FIG1_PANEL_C__COARSE_SOURCE_LABEL","text":"Coarse representation","textPreview":"Coarse representation","textChars":21,"textLines":1,"bbox":[60.19,612.05,201.86,25.17]}
+{"kind":"textbox","id":"sh/0byl4fm9","slide":1,"name":"FIG1_PANEL_C__PROMPTS__TOKEN_1","text":"P1","textPreview":"P1","textChars":2,"textLines":1,"bbox":[111.21,683.26,48.91,23.22]}
+{"kind":"textbox","id":"sh/fapkvalo","slide":1,"name":"FIG1_PANEL_C__PROMPTS__TOKEN_2","text":"P2","textPreview":"P2","textChars":2,"textLines":1,"bbox":[166.73,683.26,48.91,23.22]}
+{"kind":"textbox","id":"sh/e9g32543","slide":1,"name":"FIG1_PANEL_C__PROMPTS__TOKEN_3","text":"P3","textPreview":"P3","textChars":2,"textLines":1,"bbox":[222.25,683.26,48.91,23.22]}
+{"kind":"textbox","id":"sh/p0rm1k3q","slide":1,"name":"FIG1_PANEL_C__PROMPTS__TOKEN_4","text":"P4","textPreview":"P4","textChars":2,"textLines":1,"bbox":[277.77,683.26,48.91,23.22]}
+{"kind":"textbox","id":"sh/ofil8fm5","slide":1,"name":"FIG1_PANEL_C__PROMPT_NOTE","text":"4 prompt tokens\n/ turbine","textPreview":"4 prompt tokens | / turbine","textChars":25,"textLines":2,"bbox":[63.36,708.18,182.95,27.09]}
+{"kind":"textbox","id":"sh/pgnqdgn6","slide":1,"name":"FIG1_PANEL_C__FUSION_TITLE","text":"Bidirectional Cross-Fusion","textPreview":"Bidirectional Cross-Fusion","textChars":26,"textLines":1,"bbox":[69.44,735.27,304.04,23.99]}
+{"kind":"textbox","id":"sh/ofepkb6l","slide":1,"name":"FIG1_PANEL_C__ATTN_FINE","text":"Attn","textPreview":"Attn","textChars":4,"textLines":1,"bbox":[96.75,768.81,58,58]}
+{"kind":"textbox","id":"sh/3el8b650","slide":1,"name":"FIG1_PANEL_C__GATE","text":"G","textPreview":"G","textChars":1,"textLines":1,"bbox":[185.32,768.81,58,58]}
+{"kind":"textbox","id":"sh/2tc7i1of","slide":1,"name":"FIG1_PANEL_C__ATTN_COARSE","text":"Attn","textPreview":"Attn","textChars":4,"textLines":1,"bbox":[276.53,768.81,58,58]}
+{"kind":"textbox","id":"sh/dknqhgn2","slide":1,"name":"FIG1_PANEL_C__DIRECTION1","text":"Macro-Trend Prompt → Fine","textPreview":"Macro-Trend Prompt → Fine","textChars":25,"textLines":1,"bbox":[35.86,832.22,183.23,30.96]}
+{"kind":"textbox","id":"sh/cjepob6x","slide":1,"name":"FIG1_PANEL_C__DIRECTION2","text":"Recent Fine → Coarse","textPreview":"Recent Fine → Coarse","textChars":20,"textLines":1,"bbox":[215.64,832.22,169.21,30.96]}
+{"kind":"textbox","id":"sh/qhw7mlor","slide":1,"name":"FIG1_PANEL_C__UPDATED_FINE","text":"Updated Fine","textPreview":"Updated Fine","textChars":12,"textLines":1,"bbox":[54.37,933.26,148.05,26.32]}
+{"kind":"textbox","id":"sh/lo7ql0ne","slide":1,"name":"FIG1_PANEL_C__UPDATED_COARSE","text":"Updated Coarse","textPreview":"Updated Coarse","textChars":14,"textLines":1,"bbox":[228.86,933.26,148.05,26.32]}
+{"kind":"textbox","id":"sh/qpc3ihkr","slide":1,"name":"FIG1_PANEL_C__SEPARATE_NOTE","text":"Updated Fine and Updated Coarse remain separate","textPreview":"Updated Fine and Updated Coarse remain separate","textChars":47,"textLines":1,"bbox":[86.34,969.67,293.29,32.51]}
+{"kind":"shape","id":"sh/ds3mdcj2","slide":1,"name":"FIG1_PANEL_C__PROMPT_FLOW__LINE","bbox":[164.09,639.02,47.59,15.6]}
+{"kind":"shape","id":"sh/crulkr2h","slide":1,"name":"FIG1_PANEL_C__PROMPT_FLOW__HEAD","bbox":[205.07,650.75,13.22,7.74]}
+{"kind":"shape","id":"sh/yp4rmpwz","slide":1,"name":"FIG1_PANEL_C__GATE_TO_FINE__1","bbox":[214.32,816.38,0.13,58.44]}
+{"kind":"shape","id":"sh/jqxsvudk","slide":1,"name":"FIG1_PANEL_C__GATE_TO_FINE__2","bbox":[128.4,874.82,85.92,0.08]}
+{"kind":"shape","id":"sh/8v69sju1","slide":1,"name":"FIG1_PANEL_C__GATE_TO_FINE__3","bbox":[128.26,874.82,0.13,54.1]}
+{"kind":"shape","id":"sh/6torq9wv","slide":1,"name":"FIG1_PANEL_C__GATE_TO_COARSE__1","bbox":[214.32,816.38,0.13,58.44]}
+{"kind":"shape","id":"sh/7uxszedg","slide":1,"name":"FIG1_PANEL_C__GATE_TO_COARSE__2","bbox":[214.32,874.82,88.57,0.08]}
+{"kind":"shape","id":"sh/ozm9gfex","slide":1,"name":"FIG1_PANEL_C__GATE_TO_COARSE__3","bbox":[302.89,874.82,0.01,56.58]}
+{"kind":"shape","id":"sh/fu94fe98","slide":1,"name":"FIG1_PANEL_D__BACKGROUND","bbox":[426,554,514,500]}
+{"kind":"textbox","id":"sh/utg3698n","slide":1,"name":"FIG1_PANEL_D__TITLE","text":"4.Multi-Horizon Forecasting and\nDifficulty-Aware Training","textPreview":"4.Multi-Horizon Forecasting and | Difficulty-Aware Training","textChars":57,"textLines":2,"bbox":[431.94,557.87,502.12,43.34]}
+{"kind":"textbox","id":"sh/1sra54zy","slide":1,"name":"FIG1_PANEL_D__INFERENCE_LABEL","text":"Inference / Forecasting","textPreview":"Inference / Forecasting","textChars":23,"textLines":1,"bbox":[464.62,601.68,255.51,21.67]}
+{"kind":"textbox","id":"sh/grytcjid","slide":1,"name":"FIG1_PANEL_D__DUAL_UPDATED","text":"Concat [Updated Fine, Updated Coarse,\nMean Macro Prompt]","textPreview":"Concat [Updated Fine, Updated Coarse, | Mean Macro Prompt]","textChars":56,"textLines":2,"bbox":[473.54,618.24,415.95,32.51]}
+{"kind":"textbox","id":"sh/fqps3ehs","slide":1,"name":"FIG1_PANEL_D__LAST_STATE","text":"Context MLP → Last-State Context","textPreview":"Context MLP → Last-State Context","textChars":32,"textLines":1,"bbox":[515.13,660.04,332.76,24.77]}
+{"kind":"textbox","id":"sh/epgba907","slide":1,"name":"FIG1_PANEL_D__ST_PROMPT","text":"Node-Horizon ST Prompt","textPreview":"Node-Horizon ST Prompt","textChars":22,"textLines":1,"bbox":[515.13,696.41,332.76,26.32]}
+{"kind":"textbox","id":"sh/to7a14zm","slide":1,"name":"FIG1_PANEL_D__DECODER","text":"Last-State Direct Multi-Output Decoding","textPreview":"Last-State Direct Multi-Output Decoding","textChars":39,"textLines":1,"bbox":[482.45,734.34,398.13,29.41]}
+{"kind":"textbox","id":"sh/s3y98zih","slide":1,"name":"FIG1_PANEL_D__FORECAST_LABEL","text":"10-Step Forecast","textPreview":"10-Step Forecast","textChars":16,"textLines":1,"bbox":[601.29,765.76,178.27,20.12]}
+{"kind":"textbox","id":"sh/r2pszuhw","slide":1,"name":"FIG1_PANEL_D__FORECAST__TOKEN_1","text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[476.51,788,35.65,20.9]}
+{"kind":"textbox","id":"sh/61gr6p0b","slide":1,"name":"FIG1_PANEL_D__FORECAST__TOKEN_2","text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[516.62,788,35.65,20.9]}
+{"kind":"textbox","id":"sh/507axkzq","slide":1,"name":"FIG1_PANEL_D__FORECAST__TOKEN_3","text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[556.73,788,35.65,20.9]}
+{"kind":"textbox","id":"sh/4ze94zi5","slide":1,"name":"FIG1_PANEL_D__FORECAST__TOKEN_4","text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[596.84,788,35.65,20.9]}
+{"kind":"textbox","id":"sh/u5c7elg3","slide":1,"name":"FIG1_PANEL_D__FORECAST__TOKEN_5","text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[636.95,788,35.65,20.9]}
+{"kind":"textbox","id":"sh/v6l87qxo","slide":1,"name":"FIG1_PANEL_D__FORECAST__TOKEN_6","text":"6","textPreview":"6","textChars":1,"textLines":1,"bbox":[677.06,788,35.65,20.9]}
+{"kind":"textbox","id":"sh/w7upgvy9","slide":1,"name":"FIG1_PANEL_D__FORECAST__TOKEN_7","text":"7","textPreview":"7","textChars":1,"textLines":1,"bbox":[717.17,788,35.65,20.9]}
+{"kind":"textbox","id":"sh/h8nq90fe","slide":1,"name":"FIG1_PANEL_D__FORECAST__TOKEN_8","text":"8","textPreview":"8","textChars":1,"textLines":1,"bbox":[757.28,788,35.65,20.9]}
+{"kind":"textbox","id":"sh/m1c7algr","slide":1,"name":"FIG1_PANEL_D__FORECAST__TOKEN_9","text":"9","textPreview":"9","textChars":1,"textLines":1,"bbox":[797.39,788,35.65,20.9]}
+{"kind":"textbox","id":"sh/72l83qxc","slide":1,"name":"FIG1_PANEL_D__FORECAST__TOKEN_10","text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[837.5,788,35.65,20.9]}
+{"kind":"shape","id":"sh/83upcvyx","slide":1,"name":"FIG1_PANEL_D__H3","bbox":[476.51,812.15,115.87,0.08]}
+{"kind":"textbox","id":"sh/943q50fi","slide":1,"name":"FIG1_PANEL_D__H3_LABEL","text":"H3","textPreview":"H3","textChars":2,"textLines":1,"bbox":[510.68,813.7,50.51,14.71]}
+{"kind":"shape","id":"sh/yds761gv","slide":1,"name":"FIG1_PANEL_D__H6","bbox":[476.51,831.5,231.75,0.08]}
+{"kind":"textbox","id":"sh/ze1oz6xg","slide":1,"name":"FIG1_PANEL_D__H6_LABEL","text":"H6","textPreview":"H6","textChars":2,"textLines":1,"bbox":[565.64,833.05,50.51,14.71]}
+{"kind":"shape","id":"sh/36xwri9w","slide":1,"name":"FIG1_PANEL_D__H10","bbox":[476.51,850.85,386.24,0.08]}
+{"kind":"textbox","id":"sh/25ovidsb","slide":1,"name":"FIG1_PANEL_D__H10_LABEL","text":"H10","textPreview":"H10","textChars":3,"textLines":1,"bbox":[639.92,852.4,59.42,14.71]}
+{"kind":"shape","id":"sh/p8fetsr2","slide":1,"name":"FIG1_PANEL_D__FORECAST_FLOW_1__LINE","bbox":[681.51,647.65,0.15,11.61]}
+{"kind":"shape","id":"sh/476dknah","slide":1,"name":"FIG1_PANEL_D__FORECAST_FLOW_1__HEAD","bbox":[466.54,627.5,14,14]}
+{"kind":"shape","id":"sh/ruxwvi9s","slide":1,"name":"FIG1_PANEL_D__FORECAST_FLOW_2__LINE","bbox":[681.51,684.03,0.15,12.38]}
+{"kind":"shape","id":"sh/qtovmdsn","slide":1,"name":"FIG1_PANEL_D__FORECAST_FLOW_2__HEAD","bbox":[674.88,692.54,14.86,7.74]}
+{"kind":"shape","id":"sh/dwzexsry","slide":1,"name":"FIG1_PANEL_D__FORECAST_FLOW_3__LINE","bbox":[681.51,722.73,0.15,11.61]}
+{"kind":"shape","id":"sh/cv6donad","slide":1,"name":"FIG1_PANEL_D__FORECAST_FLOW_3__HEAD","bbox":[674.88,730.47,14.86,7.74]}
+{"kind":"shape","id":"sh/7ydcjy9o","slide":1,"name":"FIG1_PANEL_D__DIVIDER","bbox":[449.77,865.25,466.46,0.08]}
+{"kind":"textbox","id":"sh/x4rat47m","slide":1,"name":"FIG1_PANEL_D__SMOOTH_L1","text":"Masked Smooth L1 Loss","textPreview":"Masked Smooth L1 Loss","textChars":21,"textLines":1,"bbox":[528.5,884.8,308.99,24.77]}
+{"kind":"textbox","id":"sh/ah0bip8v","slide":1,"name":"FIG1_PANEL_D__H_BRANCH","text":"Horizon Difficulty-Rate EMA\nWeighting + Clipping\nand Normalization","textPreview":"Horizon Difficulty-Rate EMA | Weighting + Clipping | and Normalization","textChars":66,"textLines":3,"bbox":[455.71,933.42,219.78,46.57]}
+{"kind":"textbox","id":"sh/vi9srupg","slide":1,"name":"FIG1_PANEL_D__S_BRANCH","text":"Dynamic Site EMA Weighting\nMean Normalization → Clipping","textPreview":"Dynamic Site EMA Weighting | Mean Normalization → Clipping","textChars":56,"textLines":2,"bbox":[697.26,930.95,221.64,46.57]}
+{"kind":"textbox","id":"sh/8fitgfq5","slide":1,"name":"FIG1_PANEL_D__LOSS_MERGE","text":"+","textPreview":"+","textChars":1,"textLines":1,"bbox":[670.49,977,28,28]}
+{"kind":"shape","id":"sh/9grapk7a","slide":1,"name":"FIG1_PANEL_D__MSMG","bbox":[506.22,1006.94,371.39,37.31]}
+{"kind":"textbox","id":"sh/mdgre58z","slide":1,"name":"FIG1_PANEL_D__MSMG_TITLE","text":"MS-MG-DWU","textPreview":"MS-MG-DWU","textChars":9,"textLines":1,"bbox":[518.1,1012.67,332.76,13.16]}
+{"kind":"textbox","id":"sh/ne9snapk","slide":1,"name":"FIG1_PANEL_D__MSMG_SUBTITLE","text":"Difficulty-Rate Dynamic Weighting Loss","textPreview":"Difficulty-Rate Dynamic Weighting Loss","textChars":38,"textLines":1,"bbox":[518.1,1021.8,358.31,21.52]}
+{"kind":"shape","id":"sh/1cf6lgzy","slide":1,"name":"FIG1_PANEL_D__LOSS_SPLIT_H__3","bbox":[567.13,959.57,0.15,0.77]}
+{"kind":"shape","id":"sh/yxg3mdgv","slide":1,"name":"FIG1_MAIN_FLOW_C_D__1","bbox":[379.63,985.92,36.37,0.1]}
+{"kind":"shape","id":"sh/zypkfixg","slide":1,"name":"FIG1_MAIN_FLOW_C_D__2","bbox":[416,634.5,0.1,351.43]}
+{"kind":"shape","id":"sh/43qp4zux","slide":1,"name":"FIG1_MAIN_FLOW_C_D__3","bbox":[416,634.5,57.54,0.1]}
+{"kind":"shape","id":"sh/58nqp0ni","slide":1,"name":"直接箭头连接符 307","bbox":[204.23,154.36,22.17,0]}
+{"kind":"shape","id":"sh/69w7y5o3","slide":1,"name":"直接箭头连接符 311","bbox":[233.06,327.81,0,12.07]}
+{"kind":"shape","id":"sh/ru58rq5o","slide":1,"name":"直接箭头连接符 313","bbox":[229.16,483.85,0,12.81]}
+{"kind":"shape","id":"sh/svep0vm9","slide":1,"name":"连接符: 肘形 320","bbox":[360,150,132,179]}
+{"kind":"shape","id":"sh/twnqt0nu","slide":1,"name":"直接箭头连接符 328","bbox":[440,170,42,0.1]}
+{"kind":"shape","id":"sh/2pgny1on","slide":1,"name":"直接连接符 332","bbox":[364.6,356.12,46.46,0]}
+{"kind":"shape","id":"sh/7y18f65k","slide":1,"name":"连接符: 肘形 335","bbox":[360,352,132,123]}
+{"kind":"shape","id":"sh/l0r610n6","slide":1,"name":"直接连接符 337","bbox":[364.6,509.46,66.26,0]}
+{"kind":"shape","id":"sh/o3i183ut","slide":1,"name":"直接箭头连接符 340","bbox":[474.48,397.33,23.42,0]}
+{"kind":"shape","id":"sh/n29kfyt8","slide":1,"name":"直接箭头连接符 342","bbox":[594.59,400.03,23.42,0]}
+{"kind":"shape","id":"sh/210j6tcn","slide":1,"name":"直接箭头连接符 343","bbox":[749.21,399.76,23.42,0]}
+{"kind":"shape","id":"sh/x8b2l8ba","slide":1,"name":"直接箭头连接符 344","bbox":[584.86,187.12,27.53,0]}
+{"kind":"shape","id":"sh/w721c3ap","slide":1,"name":"直接箭头连接符 347","bbox":[724.61,189.3,22.46,0.34]}
+{"kind":"shape","id":"sh/b6tkjyt4","slide":1,"name":"直接箭头连接符 349","bbox":[816.81,225.07,0,19.77]}
+{"kind":"textbox","id":"sh/b6hcbi90","slide":1,"name":"FIG1_PANEL_B__MICRO_DIFF_LABEL","text":"Bidirectional 2nd-Order Graph Diffusion","textPreview":"Bidirectional 2nd-Order Graph Diffusion","textChars":39,"textLines":1,"bbox":[773.81,372.29,150.39,44.55]}
+{"kind":"shape","id":"sh/x8judsrq","slide":1,"name":"FIG1_PANEL_B__MICRO_TCN__LAYER_1","bbox":[786.36,457.85,127.01,35.51]}
+{"kind":"textbox","id":"sh/raxszy9g","slide":1,"name":"FIG1_PANEL_B__MICRO_TCN_LABEL","text":"Asymmetric Causal TCN","textPreview":"Asymmetric Causal TCN","textChars":21,"textLines":1,"bbox":[786.97,458.64,123.08,31.62]}
+{"kind":"shape","id":"sh/4f21gj2h","slide":1,"name":"直接箭头连接符 358","bbox":[850.5,429.65,0,17.86]}
+{"kind":"shape","id":"sh/5gb2poj2","slide":1,"name":"连接符: 肘形 362","bbox":[405,250,63,420]}
+{"kind":"shape","id":"sh/m1cvuhcn","slide":1,"name":"直接连接符 363","bbox":[408,740,20,0.1]}
+{"kind":"shape","id":"sh/jutkne1w","slide":1,"name":"直接箭头连接符 370","bbox":[38.48,626.22,19.02,0]}
+{"kind":"shape","id":"sh/sjm1kj2d","slide":1,"name":"直接箭头连接符 371","bbox":[219.22,711.59,0,26.63]}
+{"kind":"shape","id":"sh/tkv2tojy","slide":1,"name":"直接箭头连接符 374","bbox":[146.96,756.79,71.2,19.81]}
+{"kind":"shape","id":"sh/6h4jitk7","slide":1,"name":"直接箭头连接符 377","bbox":[158.59,798.07,22.86,0]}
+{"kind":"shape","id":"sh/ridkry1s","slide":1,"name":"直接箭头连接符 379","bbox":[248.13,798.07,23.91,0]}
+{"kind":"shape","id":"sh/gnmlo32p","slide":1,"name":"直接箭头连接符 382","bbox":[128.26,919.53,0.01,13]}
+{"kind":"shape","id":"sh/1ov2x8ju","slide":1,"name":"直接箭头连接符 385","bbox":[303.17,916.62,0,16.35]}
+{"kind":"shape","id":"sh/s7u5ov61","slide":1,"name":"FIG1_PANEL_D__FORECAST_FLOW_1__HEAD","bbox":[474.43,630.63,14.86,7.74]}
+{"kind":"shape","id":"sh/ah8nex4r","slide":1,"name":"直接箭头连接符 388","bbox":[565.6,912.28,88.58,23.14]}
+{"kind":"shape","id":"sh/x4zmpc32","slide":1,"name":"直接箭头连接符 390","bbox":[701.57,912.28,97.6,20.25]}
+{"kind":"shape","id":"sh/xo3m9kne","slide":1,"name":"FIG1_PANEL_A__FINE_WAVE__SMOOTH","bbox":[108.5,256.06,277.5,16.37]}
+{"kind":"shape","id":"sh/ypc3ip4z","slide":1,"name":"FIG1_PANEL_A__COARSE_W1__SMOOTH","bbox":[122,374.41,264,7.31]}
+{"kind":"shape","id":"sh/jq54ba5k","slide":1,"name":"FIG1_PANEL_A__COARSE_W2__SMOOTH","bbox":[122,389.8,264,6.13]}
+{"kind":"shape","id":"sh/krelkfm5","slide":1,"name":"FIG1_PANEL_A__COARSE_W3__SMOOTH","bbox":[122,404.22,264,7.17]}
+{"kind":"textbox","id":"sh/z2xgf6to","slide":1,"name":"FIG1_PANEL_D__LOSS_MERGE","text":"+","textPreview":"+","textChars":1,"textLines":1,"bbox":[-714.76,961.64,28,28]}
+{"kind":"textbox","id":"sh/e1oz61c3","slide":1,"name":"FIG1_PANEL_D__LOSS_MERGE","text":"+","textPreview":"+","textChars":1,"textLines":1,"bbox":[-710.01,784.3,28,28]}
+{"kind":"shape","id":"sh/m9snmh4z","slide":1,"name":"FIG1_PANEL_D__MEAN_MACRO_PROMPT_INPUT","bbox":[326.68,634.5,146.85,60.37]}
+{"kind":"notes","id":"nt/y90nupkv","slide":1,"text":"[Sources]\n- D:/PaperProject/GyxPaper2/custom_models/src/st_mgprompt/model.py\n- D:/PaperProject/GyxPaper2/custom_models/src/st_mgprompt/volatility_patching.py\n- D:/PaperProject/GyxPaper2/custom_models/src/st_mgprompt/temporal_layers.py\n- D:/PaperProject/GyxPaper2/custom_models/src/st_mgprompt/cross_fusion.py\n- D:/PaperProject/GyxPaper2/custom_models/src/st_mgprompt/decoder.py\n- D:/PaperProject/GyxPaper2/custom_models/src/st_mgprompt/losses.py\n- D:/PaperProject/GyxPaper2/custom_models/src/st_mgprompt/experiment_protocol.py"}

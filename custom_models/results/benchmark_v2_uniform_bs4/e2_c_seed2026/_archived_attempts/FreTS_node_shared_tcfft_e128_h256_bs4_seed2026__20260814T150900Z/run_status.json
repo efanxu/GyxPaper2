@@ -1,0 +1,14 @@
+{
+  "status": "RUNNING",
+  "run_mode": "formal",
+  "artifact_profile": "TRAIN",
+  "started_at": "2026-08-10T08:42:48.842043+00:00",
+  "finished_at": null,
+  "exit_code": null,
+  "failure_stage": null,
+  "error_type": null,
+  "error_message": null,
+  "traceback_tail": null,
+  "pid": 6500,
+  "process_start_time": 1786351345.4628806
+}

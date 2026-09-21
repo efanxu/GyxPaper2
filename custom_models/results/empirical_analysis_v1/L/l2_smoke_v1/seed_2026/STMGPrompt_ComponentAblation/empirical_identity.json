@@ -1,0 +1,22 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant": {
+    "variant_id": "L2",
+    "display_name": "Dynamic node difficulty only",
+    "family": "L",
+    "base_config": "CANONICAL_FULL",
+    "config_overrides": {
+      "granularity_weight_mode": "static"
+    },
+    "expected_unique_diff": [
+      "granularity_weight_mode"
+    ],
+    "trainable": true,
+    "paired_reference": "L3",
+    "implementation_status": "ready",
+    "implementation_note": "",
+    "reference_only": false
+  },
+  "seed": 2026,
+  "mode": "smoke"
+}

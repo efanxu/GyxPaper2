@@ -1,0 +1,335 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180mm" height="104.25mm" viewBox="0 0 2400 1390" role="img" aria-labelledby="title desc">
+<title id="title">Dual Semantic Graph Construction</title>
+<desc id="desc">Academic vector diagram for the ST-MGPrompt forecasting model.</desc>
+<style>text{font-family:Arial,Helvetica,Arial,sans-serif;fill:#253244;} .muted{fill:#607086;} .small{font-size:13px;} .tiny{font-size:11px;} .label{font-size:14px;font-weight:700;letter-spacing:.2px;} .title{font-size:23px;font-weight:700;} .section{font-size:12px;font-weight:700;letter-spacing:1.1px;} .math{font-family:Arial,Arial,sans-serif;}</style>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,4 L0,8 Z" fill="#536579"/></marker><marker id="arrowFine" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,4 L0,8 Z" fill="#C97812"/></marker><marker id="arrowCoarse" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,4 L0,8 Z" fill="#277573"/></marker><marker id="arrowPurple" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,4 L0,8 Z" fill="#624486"/></marker><marker id="arrowLoss" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,4 L0,8 Z" fill="#B86770"/></marker></defs>
+<rect x="0" y="0" width="2400" height="1390" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0" opacity="1"/>
+<text x="42" y="66" font-size="64px" fill="#253244" font-weight="700" text-anchor="start">Dual Semantic Graph Construction</text>
+<text x="2358" y="63" font-size="31px" fill="#607086" font-weight="700" text-anchor="end">train-only priors · constrained adaptation</text>
+<rect x="35" y="118" width="365" height="1160" rx="22" fill="#FBFCFD" stroke="#D9E2EC" stroke-width="1.1" opacity="1" stroke-dasharray="10 8"/>
+<circle cx="62" cy="147" r="16" fill="#788DA5" stroke="#FFFFFF" stroke-width="1.0"/>
+<text x="62" y="155" font-size="22px" fill="#FFFFFF" font-weight="700" text-anchor="middle">1</text>
+<text x="90" y="155" font-size="34px" fill="#253244" font-weight="700" text-anchor="start">Data sources</text>
+<rect x="425" y="118" width="835" height="1160" rx="22" fill="#FBFCFD" stroke="#D9E2EC" stroke-width="1.1" opacity="1" stroke-dasharray="10 8"/>
+<circle cx="452" cy="147" r="16" fill="#788DA5" stroke="#FFFFFF" stroke-width="1.0"/>
+<text x="452" y="155" font-size="22px" fill="#FFFFFF" font-weight="700" text-anchor="middle">2</text>
+<text x="480" y="155" font-size="34px" fill="#253244" font-weight="700" text-anchor="start">Semantic priors</text>
+<rect x="1285" y="118" width="1080" height="1160" rx="22" fill="#F1EBF8" stroke="#8C6BB1" stroke-width="1.1" opacity="1"/>
+<circle cx="1312" cy="147" r="16" fill="#8C6BB1" stroke="#FFFFFF" stroke-width="1.0"/>
+<text x="1312" y="155" font-size="22px" fill="#FFFFFF" font-weight="700" text-anchor="middle">3</text>
+<text x="1340" y="155" font-size="34px" fill="#8C6BB1" font-weight="700" text-anchor="start">Prior-constrained adaptation</text>
+<text x="62" y="205" font-size="25px" fill="#B86770" font-weight="700" text-anchor="start">statistics computed on training data only</text>
+<text x="62" y="238" font-size="23px" fill="#607086" font-weight="400" text-anchor="start">No validation/test statistics</text>
+<rect x="123" y="291" width="220" height="118" rx="7" fill="#FFFFFF" stroke="#3E9C9A" stroke-width="1.8" opacity="1"/>
+<rect x="112" y="299" width="220" height="118" rx="7" fill="#FFFFFF" stroke="#3E9C9A" stroke-width="1.8" opacity="1"/>
+<rect x="101" y="307" width="220" height="118" rx="7" fill="#FFFFFF" stroke="#3E9C9A" stroke-width="1.8" opacity="1"/>
+<rect x="90" y="315" width="220" height="118" rx="7" fill="#E5F4F1" stroke="#3E9C9A" stroke-width="1.8" opacity="1"/>
+<path d="M 108.0,381.1 133.8,378.7 159.5,376.9 185.3,374.6 212.9,372.2 240.5,369.9 266.2,367.8 292.0,365.4" fill="none" stroke="#3E9C9A" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+<text x="216.5" y="407.04" font-size="30px" fill="#253244" font-weight="700" text-anchor="middle">Patv</text>
+<text x="216.5" y="467" font-size="25px" fill="#607086" font-weight="400" text-anchor="middle">raw + valid mask</text>
+<path d="M 125.0,372.8 146.0,370.4 167.0,368.6 188.0,366.2 210.5,363.8 233.0,361.4 254.0,359.3 275.0,356.9" fill="none" stroke="#277573" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<path d="M 315 374 C 370 374, 390 290, 455 290" fill="none" stroke="#277573" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrowCoarse)"/>
+<rect x="123" y="566" width="220" height="118" rx="7" fill="#FFFFFF" stroke="#F4A340" stroke-width="1.8" opacity="1"/>
+<rect x="112" y="574" width="220" height="118" rx="7" fill="#FFFFFF" stroke="#F4A340" stroke-width="1.8" opacity="1"/>
+<rect x="101" y="582" width="220" height="118" rx="7" fill="#FFFFFF" stroke="#F4A340" stroke-width="1.8" opacity="1"/>
+<rect x="90" y="590" width="220" height="118" rx="7" fill="#FFF3DE" stroke="#F4A340" stroke-width="1.8" opacity="1"/>
+<path d="M 108.0,656.1 133.8,653.7 159.5,651.9 185.3,649.6 212.9,647.2 240.5,644.9 266.2,642.8 292.0,640.4" fill="none" stroke="#F4A340" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+<text x="216.5" y="682.04" font-size="30px" fill="#253244" font-weight="700" text-anchor="middle">Wspd</text>
+<text x="216.5" y="742" font-size="25px" fill="#607086" font-weight="400" text-anchor="middle">wind-speed history</text>
+<path d="M 125.0,644.8 137.0,635.8 147.5,646.6 159.5,631.6 171.5,642.1 183.5,635.5 197.0,648.4 210.5,632.5 224.0,642.7 239.0,634.9 254.0,646.0 275.0,637.6" fill="none" stroke="#C97812" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<path d="M 315 649 C 370 649, 390 590, 455 590" fill="none" stroke="#C97812" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrowFine)"/>
+<rect x="90" y="890" width="220" height="118" rx="12" fill="#E8EEF5" stroke="#788DA5" stroke-width="1.8" opacity="1"/>
+<line x1="120" y1="972" x2="270" y2="972" stroke="#788DA5" stroke-width="1.4" opacity="1"/>
+<line x1="120" y1="972" x2="120" y2="912" stroke="#788DA5" stroke-width="1.4" opacity="1"/>
+<circle cx="147.0" cy="954.0" r="7" fill="#FFFFFF" stroke="#788DA5" stroke-width="2.0"/>
+<circle cx="183.0" cy="930.0" r="7" fill="#FFFFFF" stroke="#788DA5" stroke-width="2.0"/>
+<circle cx="222.0" cy="949.2" r="7" fill="#FFFFFF" stroke="#788DA5" stroke-width="2.0"/>
+<circle cx="246.0" cy="922.8" r="7" fill="#FFFFFF" stroke="#788DA5" stroke-width="2.0"/>
+<circle cx="168.0" cy="963.0" r="7" fill="#FFFFFF" stroke="#788DA5" stroke-width="2.0"/>
+<text x="200" y="1040" font-size="23px" fill="#788DA5" font-weight="700" text-anchor="middle">coordinates r_i=(x_i,y_i)</text>
+<path d="M 315 948 C 370 948, 392 1008, 455 1008" fill="none" stroke="#788DA5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrow)"/>
+<text x="465" y="205" font-size="32px" fill="#277573" font-weight="700" text-anchor="start">Macro / m</text>
+<text x="465" y="248" font-size="24px" fill="#607086" font-weight="400" text-anchor="start">trend semantics</text>
+<path d="M 470.0,350.2 494.5,344.9 519.0,340.9 543.5,335.6 569.8,330.4 596.0,325.1 620.5,320.5 645.0,315.2" fill="none" stroke="#277573" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<line x1="470" y1="366" x2="645" y2="366" stroke="#D9E2EC" stroke-width="1.0" opacity="1"/>
+<text x="558" y="403" font-size="24px" fill="#277573" font-weight="700" text-anchor="middle">causal trend</text>
+<text x="558" y="431" font-size="22px" fill="#607086" font-weight="400" text-anchor="middle">MA = 36 ≈ 6 h</text>
+<line x1="658" y1="340" x2="712" y2="340" stroke="#277573" stroke-width="2.3" opacity="1" marker-end="url(#arrowCoarse)"/>
+<path d="M 720.0,338.5 741.7,333.4 763.4,329.6 785.1,324.5 808.4,319.3 831.6,314.2 853.3,309.8 875.0,304.7" fill="none" stroke="#277573" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<path d="M 735.5,380.5 C 775.8,357.3 820.8,399.0 859.5,371.2" fill="none" stroke="#277573" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<circle cx="797.5" cy="385.12" r="17" fill="#FFFFFF" stroke="#277573" stroke-width="1.6"/>
+<text x="797.5" y="392.08" font-size="20px" fill="#277573" font-weight="700" text-anchor="middle">rho</text>
+<text x="797" y="431" font-size="23px" fill="#277573" font-weight="700" text-anchor="middle">Pearson similarity</text>
+<line x1="885" y1="340" x2="930" y2="340" stroke="#277573" stroke-width="2.3" opacity="1" marker-end="url(#arrowCoarse)"/>
+<line x1="955.0" y1="317.0" x2="987.5" y2="302.96" stroke="#277573" stroke-width="2.5" opacity="0.85"/>
+<line x1="987.5" y1="302.96" x2="1030.0" y2="311.6" stroke="#277573" stroke-width="2.5" opacity="0.85"/>
+<line x1="955.0" y1="317.0" x2="1017.5" y2="356.96" stroke="#277573" stroke-width="2.5" opacity="0.85"/>
+<line x1="987.5" y1="302.96" x2="1017.5" y2="356.96" stroke="#277573" stroke-width="2.5" opacity="0.85"/>
+<line x1="1030.0" y1="311.6" x2="1017.5" y2="356.96" stroke="#277573" stroke-width="2.5" opacity="0.85"/>
+<line x1="971.25" y1="374.24" x2="1017.5" y2="356.96" stroke="#277573" stroke-width="2.5" opacity="0.85"/>
+<line x1="1017.5" y1="356.96" x2="1052.5" y2="374.24" stroke="#277573" stroke-width="2.5" opacity="0.85"/>
+<line x1="971.25" y1="374.24" x2="1052.5" y2="374.24" stroke="#277573" stroke-width="2.5" opacity="0.85"/>
+<circle cx="955.0" cy="317.0" r="6" fill="#FFFFFF" stroke="#277573" stroke-width="1.8"/>
+<circle cx="987.5" cy="302.96" r="6" fill="#FFFFFF" stroke="#277573" stroke-width="1.8"/>
+<circle cx="1030.0" cy="311.6" r="6" fill="#FFFFFF" stroke="#277573" stroke-width="1.8"/>
+<circle cx="971.25" cy="374.24" r="6" fill="#FFFFFF" stroke="#277573" stroke-width="1.8"/>
+<circle cx="1017.5" cy="356.96" r="6" fill="#FFFFFF" stroke="#277573" stroke-width="1.8"/>
+<circle cx="1052.5" cy="374.24" r="6" fill="#FFFFFF" stroke="#277573" stroke-width="1.8"/>
+<text x="1002.5" y="426" font-size="24px" fill="#277573" font-weight="700" text-anchor="middle">K=10</text>
+<text x="1002" y="431" font-size="23px" fill="#607086" font-weight="400" text-anchor="middle">trend support</text>
+<line x1="1075" y1="340" x2="1116" y2="340" stroke="#277573" stroke-width="2.3" opacity="1" marker-end="url(#arrowCoarse)"/>
+<circle cx="1152" cy="340" r="30" fill="#E5F4F1" stroke="#277573" stroke-width="2.0"/>
+<text x="1152" y="351" font-size="29px" fill="#277573" font-weight="700" text-anchor="middle">Σ</text>
+<text x="1152" y="394" font-size="20px" fill="#277573" font-weight="400" text-anchor="middle">0.7 trend + 0.3 distance</text>
+<path d="M 1185 340 C 1210 340, 1215 430, 1245 430" fill="none" stroke="#277573" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrowCoarse)"/>
+<line x1="1128.0" y1="470.36" x2="1180.0" y2="462.2" stroke="#277573" stroke-width="2.2" opacity="0.65"/>
+<line x1="1180.0" y1="462.2" x2="1232.0" y2="470.36" stroke="#277573" stroke-width="2.2" opacity="0.65"/>
+<line x1="1128.0" y1="470.36" x2="1182.6" y2="503.0" stroke="#277573" stroke-width="1.8" opacity="0.65"/>
+<line x1="1180.0" y1="462.2" x2="1182.6" y2="503.0" stroke="#277573" stroke-width="1.8" opacity="0.65"/>
+<line x1="1232.0" y1="470.36" x2="1182.6" y2="503.0" stroke="#277573" stroke-width="1.8" opacity="0.65"/>
+<line x1="1141.0" y1="525.44" x2="1182.6" y2="503.0" stroke="#277573" stroke-width="1.8" opacity="0.65"/>
+<line x1="1182.6" y1="503.0" x2="1224.2" y2="525.44" stroke="#277573" stroke-width="1.8" opacity="0.65"/>
+<line x1="1141.0" y1="525.44" x2="1180.0" y2="546.86" stroke="#277573" stroke-width="2.2" opacity="0.65"/>
+<line x1="1224.2" y1="525.44" x2="1180.0" y2="546.86" stroke="#277573" stroke-width="2.2" opacity="0.65"/>
+<line x1="1180.0" y1="462.2" x2="1180.0" y2="546.86" stroke="#277573" stroke-width="1.4" opacity="0.65"/>
+<circle cx="1128.0" cy="470.36" r="7" fill="#FFFFFF" stroke="#277573" stroke-width="2.0"/>
+<circle cx="1180.0" cy="462.2" r="7" fill="#FFFFFF" stroke="#277573" stroke-width="2.0"/>
+<circle cx="1232.0" cy="470.36" r="7" fill="#FFFFFF" stroke="#277573" stroke-width="2.0"/>
+<circle cx="1141.0" cy="525.44" r="7" fill="#FFFFFF" stroke="#277573" stroke-width="2.0"/>
+<circle cx="1182.6" cy="503.0" r="7" fill="#FFFFFF" stroke="#277573" stroke-width="2.0"/>
+<circle cx="1224.2" cy="525.44" r="7" fill="#FFFFFF" stroke="#277573" stroke-width="2.0"/>
+<circle cx="1180.0" cy="546.86" r="7" fill="#FFFFFF" stroke="#277573" stroke-width="2.0"/>
+<text x="1180" y="585" font-size="25px" fill="#277573" font-weight="700" text-anchor="middle">Macro prior</text>
+<text x="465" y="540" font-size="32px" fill="#C97812" font-weight="700" text-anchor="start">Micro / mu</text>
+<text x="465" y="583" font-size="24px" fill="#607086" font-weight="400" text-anchor="start">local-change semantics</text>
+<path d="M 470.0,669.3 487.5,650.8 503.2,682.5 520.8,656.1 540.0,678.6 559.2,645.6 580.2,683.8 599.5,660.1 620.5,675.9 645.0,663.4" fill="none" stroke="#C97812" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<line x1="470" y1="701" x2="645" y2="701" stroke="#D9E2EC" stroke-width="1.0" opacity="1"/>
+<text x="558" y="738" font-size="24px" fill="#C97812" font-weight="700" text-anchor="middle">ΔWspd</text>
+<text x="558" y="766" font-size="22px" fill="#607086" font-weight="400" text-anchor="middle">first difference</text>
+<line x1="658" y1="675" x2="712" y2="675" stroke="#C97812" stroke-width="2.3" opacity="1" marker-end="url(#arrowFine)"/>
+<path d="M 720.0,658.2 735.5,640.3 749.5,670.9 765.0,645.4 782.0,667.1 799.0,635.2 817.6,672.2 834.7,649.2 853.3,664.6 875.0,652.4" fill="none" stroke="#C97812" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<path d="M 735.5,715.5 L 772.7,671.4 L 809.9,708.5 L 859.5,664.4" fill="none" stroke="#C97812" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<circle cx="797.5" cy="720.12" r="17" fill="#FFFFFF" stroke="#C97812" stroke-width="1.6"/>
+<text x="797.5" y="727.08" font-size="20px" fill="#C97812" font-weight="700" text-anchor="middle">cos</text>
+<text x="797" y="766" font-size="23px" fill="#C97812" font-weight="700" text-anchor="middle">cosine similarity</text>
+<line x1="885" y1="675" x2="930" y2="675" stroke="#C97812" stroke-width="2.3" opacity="1" marker-end="url(#arrowFine)"/>
+<line x1="955.0" y1="652.0" x2="987.5" y2="637.96" stroke="#C97812" stroke-width="2.5" opacity="0.85"/>
+<line x1="987.5" y1="637.96" x2="1030.0" y2="646.6" stroke="#C97812" stroke-width="2.5" opacity="0.85"/>
+<line x1="955.0" y1="652.0" x2="1017.5" y2="691.96" stroke="#C97812" stroke-width="2.5" opacity="0.85"/>
+<line x1="987.5" y1="637.96" x2="1017.5" y2="691.96" stroke="#C97812" stroke-width="2.5" opacity="0.85"/>
+<line x1="1030.0" y1="646.6" x2="1017.5" y2="691.96" stroke="#C97812" stroke-width="2.5" opacity="0.85"/>
+<line x1="971.25" y1="709.24" x2="1017.5" y2="691.96" stroke="#C97812" stroke-width="2.5" opacity="0.85"/>
+<line x1="1017.5" y1="691.96" x2="1052.5" y2="709.24" stroke="#C97812" stroke-width="2.5" opacity="0.85"/>
+<line x1="971.25" y1="709.24" x2="1052.5" y2="709.24" stroke="#C97812" stroke-width="2.5" opacity="0.85"/>
+<circle cx="955.0" cy="652.0" r="6" fill="#FFFFFF" stroke="#C97812" stroke-width="1.8"/>
+<circle cx="987.5" cy="637.96" r="6" fill="#FFFFFF" stroke="#C97812" stroke-width="1.8"/>
+<circle cx="1030.0" cy="646.6" r="6" fill="#FFFFFF" stroke="#C97812" stroke-width="1.8"/>
+<circle cx="971.25" cy="709.24" r="6" fill="#FFFFFF" stroke="#C97812" stroke-width="1.8"/>
+<circle cx="1017.5" cy="691.96" r="6" fill="#FFFFFF" stroke="#C97812" stroke-width="1.8"/>
+<circle cx="1052.5" cy="709.24" r="6" fill="#FFFFFF" stroke="#C97812" stroke-width="1.8"/>
+<text x="1002.5" y="761" font-size="24px" fill="#C97812" font-weight="700" text-anchor="middle">K=5</text>
+<text x="1002" y="766" font-size="23px" fill="#607086" font-weight="400" text-anchor="middle">local support</text>
+<line x1="1075" y1="675" x2="1116" y2="675" stroke="#C97812" stroke-width="2.3" opacity="1" marker-end="url(#arrowFine)"/>
+<circle cx="1152" cy="675" r="30" fill="#FFF3DE" stroke="#C97812" stroke-width="2.0"/>
+<text x="1152" y="686" font-size="29px" fill="#C97812" font-weight="700" text-anchor="middle">Σ</text>
+<text x="1152" y="729" font-size="20px" fill="#C97812" font-weight="400" text-anchor="middle">0.3 local + 0.7 distance</text>
+<path d="M 1185 675 C 1210 675, 1215 770, 1245 770" fill="none" stroke="#C97812" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrowFine)"/>
+<line x1="1128.0" y1="810.36" x2="1180.0" y2="802.2" stroke="#C97812" stroke-width="2.2" opacity="0.65"/>
+<line x1="1180.0" y1="802.2" x2="1232.0" y2="810.36" stroke="#C97812" stroke-width="2.2" opacity="0.65"/>
+<line x1="1128.0" y1="810.36" x2="1182.6" y2="843.0" stroke="#C97812" stroke-width="1.8" opacity="0.65"/>
+<line x1="1180.0" y1="802.2" x2="1182.6" y2="843.0" stroke="#C97812" stroke-width="1.8" opacity="0.65"/>
+<line x1="1232.0" y1="810.36" x2="1182.6" y2="843.0" stroke="#C97812" stroke-width="1.8" opacity="0.65"/>
+<line x1="1141.0" y1="865.44" x2="1182.6" y2="843.0" stroke="#C97812" stroke-width="1.8" opacity="0.65"/>
+<line x1="1182.6" y1="843.0" x2="1224.2" y2="865.44" stroke="#C97812" stroke-width="1.8" opacity="0.65"/>
+<line x1="1141.0" y1="865.44" x2="1180.0" y2="886.86" stroke="#C97812" stroke-width="2.2" opacity="0.65"/>
+<line x1="1224.2" y1="865.44" x2="1180.0" y2="886.86" stroke="#C97812" stroke-width="2.2" opacity="0.65"/>
+<line x1="1180.0" y1="802.2" x2="1180.0" y2="886.86" stroke="#C97812" stroke-width="1.4" opacity="0.65"/>
+<circle cx="1128.0" cy="810.36" r="7" fill="#FFFFFF" stroke="#C97812" stroke-width="2.0"/>
+<circle cx="1180.0" cy="802.2" r="7" fill="#FFFFFF" stroke="#C97812" stroke-width="2.0"/>
+<circle cx="1232.0" cy="810.36" r="7" fill="#FFFFFF" stroke="#C97812" stroke-width="2.0"/>
+<circle cx="1141.0" cy="865.44" r="7" fill="#FFFFFF" stroke="#C97812" stroke-width="2.0"/>
+<circle cx="1182.6" cy="843.0" r="7" fill="#FFFFFF" stroke="#C97812" stroke-width="2.0"/>
+<circle cx="1224.2" cy="865.44" r="7" fill="#FFFFFF" stroke="#C97812" stroke-width="2.0"/>
+<circle cx="1180.0" cy="886.86" r="7" fill="#FFFFFF" stroke="#C97812" stroke-width="2.0"/>
+<text x="1180" y="925" font-size="25px" fill="#C97812" font-weight="700" text-anchor="middle">Micro prior</text>
+<text x="465" y="944" font-size="28px" fill="#788DA5" font-weight="700" text-anchor="start">Shared distance support</text>
+<text x="465" y="984" font-size="22px" fill="#607086" font-weight="400" text-anchor="start">A_d,ij = exp(−||r_i−r_j||² / sigma²)</text>
+<line x1="720" y1="1008" x2="785" y2="1008" stroke="#788DA5" stroke-width="2.2" opacity="1" marker-end="url(#arrow)"/>
+<line x1="816.2" y1="975.0" x2="851.3" y2="962.0" stroke="#788DA5" stroke-width="2.5" opacity="0.85"/>
+<line x1="851.3" y1="962.0" x2="897.2" y2="970.0" stroke="#788DA5" stroke-width="2.5" opacity="0.85"/>
+<line x1="816.2" y1="975.0" x2="883.7" y2="1012.0" stroke="#788DA5" stroke-width="2.5" opacity="0.85"/>
+<line x1="851.3" y1="962.0" x2="883.7" y2="1012.0" stroke="#788DA5" stroke-width="2.5" opacity="0.85"/>
+<line x1="897.2" y1="970.0" x2="883.7" y2="1012.0" stroke="#788DA5" stroke-width="2.5" opacity="0.85"/>
+<line x1="833.75" y1="1028.0" x2="883.7" y2="1012.0" stroke="#788DA5" stroke-width="2.5" opacity="0.85"/>
+<line x1="883.7" y1="1012.0" x2="921.5" y2="1028.0" stroke="#788DA5" stroke-width="2.5" opacity="0.85"/>
+<line x1="833.75" y1="1028.0" x2="921.5" y2="1028.0" stroke="#788DA5" stroke-width="2.5" opacity="0.85"/>
+<circle cx="816.2" cy="975.0" r="6" fill="#FFFFFF" stroke="#788DA5" stroke-width="1.8"/>
+<circle cx="851.3" cy="962.0" r="6" fill="#FFFFFF" stroke="#788DA5" stroke-width="1.8"/>
+<circle cx="897.2" cy="970.0" r="6" fill="#FFFFFF" stroke="#788DA5" stroke-width="1.8"/>
+<circle cx="833.75" cy="1028.0" r="6" fill="#FFFFFF" stroke="#788DA5" stroke-width="1.8"/>
+<circle cx="883.7" cy="1012.0" r="6" fill="#FFFFFF" stroke="#788DA5" stroke-width="1.8"/>
+<circle cx="921.5" cy="1028.0" r="6" fill="#FFFFFF" stroke="#788DA5" stroke-width="1.8"/>
+<text x="867.5" y="1078" font-size="24px" fill="#788DA5" font-weight="700" text-anchor="middle">K=5</text>
+<text x="868" y="1080" font-size="22px" fill="#788DA5" font-weight="700" text-anchor="middle">distance K=5</text>
+<path d="M 940 1000 C 1010 1000, 1010 470, 1100 470" fill="none" stroke="#788DA5" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" opacity="1" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+<path d="M 940 1010 C 1010 1010, 1010 810, 1100 810" fill="none" stroke="#788DA5" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" opacity="1" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+<text x="1325" y="205" font-size="28px" fill="#624486" font-weight="700" text-anchor="start">Independent node embeddings E1, E2 · dim = 10</text>
+<text x="1325" y="245" font-size="24px" fill="#607086" font-weight="400" text-anchor="start">Reweight allowed edges only; unsupported links stay absent</text>
+<text x="1330" y="345" font-size="30px" fill="#277573" font-weight="700" text-anchor="start">Macro</text>
+<line x1="1428.0" y1="298.0" x2="1480.0" y2="290.0" stroke="#277573" stroke-width="2.2" opacity="0.65"/>
+<line x1="1480.0" y1="290.0" x2="1532.0" y2="298.0" stroke="#277573" stroke-width="2.2" opacity="0.65"/>
+<line x1="1428.0" y1="298.0" x2="1482.6" y2="330.0" stroke="#277573" stroke-width="1.8" opacity="0.65"/>
+<line x1="1480.0" y1="290.0" x2="1482.6" y2="330.0" stroke="#277573" stroke-width="1.8" opacity="0.65"/>
+<line x1="1532.0" y1="298.0" x2="1482.6" y2="330.0" stroke="#277573" stroke-width="1.8" opacity="0.65"/>
+<line x1="1441.0" y1="352.0" x2="1482.6" y2="330.0" stroke="#277573" stroke-width="1.8" opacity="0.65"/>
+<line x1="1482.6" y1="330.0" x2="1524.2" y2="352.0" stroke="#277573" stroke-width="1.8" opacity="0.65"/>
+<line x1="1441.0" y1="352.0" x2="1480.0" y2="373.0" stroke="#277573" stroke-width="2.2" opacity="0.65"/>
+<line x1="1524.2" y1="352.0" x2="1480.0" y2="373.0" stroke="#277573" stroke-width="2.2" opacity="0.65"/>
+<line x1="1480.0" y1="290.0" x2="1480.0" y2="373.0" stroke="#277573" stroke-width="1.4" opacity="0.65"/>
+<circle cx="1428.0" cy="298.0" r="7" fill="#FFFFFF" stroke="#277573" stroke-width="2.0"/>
+<circle cx="1480.0" cy="290.0" r="7" fill="#FFFFFF" stroke="#277573" stroke-width="2.0"/>
+<circle cx="1532.0" cy="298.0" r="7" fill="#FFFFFF" stroke="#277573" stroke-width="2.0"/>
+<circle cx="1441.0" cy="352.0" r="7" fill="#FFFFFF" stroke="#277573" stroke-width="2.0"/>
+<circle cx="1482.6" cy="330.0" r="7" fill="#FFFFFF" stroke="#277573" stroke-width="2.0"/>
+<circle cx="1524.2" cy="352.0" r="7" fill="#FFFFFF" stroke="#277573" stroke-width="2.0"/>
+<circle cx="1480.0" cy="373.0" r="7" fill="#FFFFFF" stroke="#277573" stroke-width="2.0"/>
+<text x="1480" y="415" font-size="22px" fill="#277573" font-weight="400" text-anchor="middle">A^m_prior</text>
+<text x="1585" y="340" font-size="38px" fill="#624486" font-weight="700" text-anchor="middle">×</text>
+<line x1="1653.0" y1="298.0" x2="1705.0" y2="290.0" stroke="#624486" stroke-width="4.5" opacity="1.0"/>
+<line x1="1705.0" y1="290.0" x2="1757.0" y2="298.0" stroke="#624486" stroke-width="1.5" opacity="0.45"/>
+<line x1="1653.0" y1="298.0" x2="1707.6" y2="330.0" stroke="#624486" stroke-width="3.8" opacity="0.9"/>
+<line x1="1705.0" y1="290.0" x2="1707.6" y2="330.0" stroke="#624486" stroke-width="2.0" opacity="0.55"/>
+<line x1="1757.0" y1="298.0" x2="1707.6" y2="330.0" stroke="#624486" stroke-width="4.8" opacity="0.95"/>
+<line x1="1666.0" y1="352.0" x2="1707.6" y2="330.0" stroke="#624486" stroke-width="1.6" opacity="0.48"/>
+<line x1="1707.6" y1="330.0" x2="1749.2" y2="352.0" stroke="#624486" stroke-width="3.5" opacity="0.82"/>
+<line x1="1666.0" y1="352.0" x2="1705.0" y2="373.0" stroke="#624486" stroke-width="2.2" opacity="0.55"/>
+<line x1="1749.2" y1="352.0" x2="1705.0" y2="373.0" stroke="#624486" stroke-width="4.3" opacity="0.9"/>
+<line x1="1705.0" y1="290.0" x2="1705.0" y2="373.0" stroke="#624486" stroke-width="1.2" opacity="0.38"/>
+<circle cx="1653.0" cy="298.0" r="7" fill="#FFFFFF" stroke="#624486" stroke-width="2.0"/>
+<circle cx="1705.0" cy="290.0" r="7" fill="#FFFFFF" stroke="#624486" stroke-width="2.0"/>
+<circle cx="1757.0" cy="298.0" r="7" fill="#FFFFFF" stroke="#624486" stroke-width="2.0"/>
+<circle cx="1666.0" cy="352.0" r="7" fill="#FFFFFF" stroke="#624486" stroke-width="2.0"/>
+<circle cx="1707.6" cy="330.0" r="7" fill="#FFFFFF" stroke="#624486" stroke-width="2.0"/>
+<circle cx="1749.2" cy="352.0" r="7" fill="#FFFFFF" stroke="#624486" stroke-width="2.0"/>
+<circle cx="1705.0" cy="373.0" r="7" fill="#FFFFFF" stroke="#624486" stroke-width="2.0"/>
+<text x="1705" y="415" font-size="22px" fill="#624486" font-weight="400" text-anchor="middle">A^m_adp</text>
+<line x1="1795" y1="330" x2="1845" y2="330" stroke="#624486" stroke-width="2.5" opacity="1" marker-end="url(#arrowPurple)"/>
+<line x1="1884.5" y1="298.9" x2="1942.5" y2="290.5" stroke="#253244" stroke-width="3.8" opacity="1.0"/>
+<line x1="1942.5" y1="290.5" x2="2000.5" y2="298.9" stroke="#253244" stroke-width="1.6" opacity="0.5"/>
+<line x1="1884.5" y1="298.9" x2="1945.4" y2="332.5" stroke="#253244" stroke-width="3.2" opacity="0.95"/>
+<line x1="1942.5" y1="290.5" x2="1945.4" y2="332.5" stroke="#253244" stroke-width="1.9" opacity="0.58"/>
+<line x1="2000.5" y1="298.9" x2="1945.4" y2="332.5" stroke="#253244" stroke-width="4.1" opacity="0.98"/>
+<line x1="1899.0" y1="355.6" x2="1945.4" y2="332.5" stroke="#253244" stroke-width="1.7" opacity="0.5"/>
+<line x1="1945.4" y1="332.5" x2="1991.8" y2="355.6" stroke="#253244" stroke-width="3.0" opacity="0.85"/>
+<line x1="1899.0" y1="355.6" x2="1942.5" y2="377.65" stroke="#253244" stroke-width="2.0" opacity="0.58"/>
+<line x1="1991.8" y1="355.6" x2="1942.5" y2="377.65" stroke="#253244" stroke-width="3.8" opacity="0.9"/>
+<line x1="1942.5" y1="290.5" x2="1942.5" y2="377.65" stroke="#253244" stroke-width="1.2" opacity="0.4"/>
+<circle cx="1884.5" cy="298.9" r="7" fill="#FFFFFF" stroke="#253244" stroke-width="2.0"/>
+<circle cx="1942.5" cy="290.5" r="7" fill="#FFFFFF" stroke="#253244" stroke-width="2.0"/>
+<circle cx="2000.5" cy="298.9" r="7" fill="#FFFFFF" stroke="#253244" stroke-width="2.0"/>
+<circle cx="1899.0" cy="355.6" r="7" fill="#FFFFFF" stroke="#253244" stroke-width="2.0"/>
+<circle cx="1945.4" cy="332.5" r="7" fill="#FFFFFF" stroke="#253244" stroke-width="2.0"/>
+<circle cx="1991.8" cy="355.6" r="7" fill="#FFFFFF" stroke="#253244" stroke-width="2.0"/>
+<circle cx="1942.5" cy="377.65" r="7" fill="#FFFFFF" stroke="#253244" stroke-width="2.0"/>
+<text x="1942" y="415" font-size="23px" fill="#253244" font-weight="700" text-anchor="middle">Effective macro graph</text>
+<text x="2160" y="334" font-size="22px" fill="#277573" font-weight="400" text-anchor="middle">A^m = normalize(A^m_prior × A^m_adp)</text>
+<text x="1330" y="660" font-size="30px" fill="#C97812" font-weight="700" text-anchor="start">Micro</text>
+<line x1="1428.0" y1="613.0" x2="1480.0" y2="605.0" stroke="#C97812" stroke-width="2.2" opacity="0.65"/>
+<line x1="1480.0" y1="605.0" x2="1532.0" y2="613.0" stroke="#C97812" stroke-width="2.2" opacity="0.65"/>
+<line x1="1428.0" y1="613.0" x2="1482.6" y2="645.0" stroke="#C97812" stroke-width="1.8" opacity="0.65"/>
+<line x1="1480.0" y1="605.0" x2="1482.6" y2="645.0" stroke="#C97812" stroke-width="1.8" opacity="0.65"/>
+<line x1="1532.0" y1="613.0" x2="1482.6" y2="645.0" stroke="#C97812" stroke-width="1.8" opacity="0.65"/>
+<line x1="1441.0" y1="667.0" x2="1482.6" y2="645.0" stroke="#C97812" stroke-width="1.8" opacity="0.65"/>
+<line x1="1482.6" y1="645.0" x2="1524.2" y2="667.0" stroke="#C97812" stroke-width="1.8" opacity="0.65"/>
+<line x1="1441.0" y1="667.0" x2="1480.0" y2="688.0" stroke="#C97812" stroke-width="2.2" opacity="0.65"/>
+<line x1="1524.2" y1="667.0" x2="1480.0" y2="688.0" stroke="#C97812" stroke-width="2.2" opacity="0.65"/>
+<line x1="1480.0" y1="605.0" x2="1480.0" y2="688.0" stroke="#C97812" stroke-width="1.4" opacity="0.65"/>
+<circle cx="1428.0" cy="613.0" r="7" fill="#FFFFFF" stroke="#C97812" stroke-width="2.0"/>
+<circle cx="1480.0" cy="605.0" r="7" fill="#FFFFFF" stroke="#C97812" stroke-width="2.0"/>
+<circle cx="1532.0" cy="613.0" r="7" fill="#FFFFFF" stroke="#C97812" stroke-width="2.0"/>
+<circle cx="1441.0" cy="667.0" r="7" fill="#FFFFFF" stroke="#C97812" stroke-width="2.0"/>
+<circle cx="1482.6" cy="645.0" r="7" fill="#FFFFFF" stroke="#C97812" stroke-width="2.0"/>
+<circle cx="1524.2" cy="667.0" r="7" fill="#FFFFFF" stroke="#C97812" stroke-width="2.0"/>
+<circle cx="1480.0" cy="688.0" r="7" fill="#FFFFFF" stroke="#C97812" stroke-width="2.0"/>
+<text x="1480" y="730" font-size="22px" fill="#C97812" font-weight="400" text-anchor="middle">A^mu_prior</text>
+<text x="1585" y="655" font-size="38px" fill="#624486" font-weight="700" text-anchor="middle">×</text>
+<line x1="1653.0" y1="613.0" x2="1705.0" y2="605.0" stroke="#624486" stroke-width="4.5" opacity="1.0"/>
+<line x1="1705.0" y1="605.0" x2="1757.0" y2="613.0" stroke="#624486" stroke-width="1.5" opacity="0.45"/>
+<line x1="1653.0" y1="613.0" x2="1707.6" y2="645.0" stroke="#624486" stroke-width="3.8" opacity="0.9"/>
+<line x1="1705.0" y1="605.0" x2="1707.6" y2="645.0" stroke="#624486" stroke-width="2.0" opacity="0.55"/>
+<line x1="1757.0" y1="613.0" x2="1707.6" y2="645.0" stroke="#624486" stroke-width="4.8" opacity="0.95"/>
+<line x1="1666.0" y1="667.0" x2="1707.6" y2="645.0" stroke="#624486" stroke-width="1.6" opacity="0.48"/>
+<line x1="1707.6" y1="645.0" x2="1749.2" y2="667.0" stroke="#624486" stroke-width="3.5" opacity="0.82"/>
+<line x1="1666.0" y1="667.0" x2="1705.0" y2="688.0" stroke="#624486" stroke-width="2.2" opacity="0.55"/>
+<line x1="1749.2" y1="667.0" x2="1705.0" y2="688.0" stroke="#624486" stroke-width="4.3" opacity="0.9"/>
+<line x1="1705.0" y1="605.0" x2="1705.0" y2="688.0" stroke="#624486" stroke-width="1.2" opacity="0.38"/>
+<circle cx="1653.0" cy="613.0" r="7" fill="#FFFFFF" stroke="#624486" stroke-width="2.0"/>
+<circle cx="1705.0" cy="605.0" r="7" fill="#FFFFFF" stroke="#624486" stroke-width="2.0"/>
+<circle cx="1757.0" cy="613.0" r="7" fill="#FFFFFF" stroke="#624486" stroke-width="2.0"/>
+<circle cx="1666.0" cy="667.0" r="7" fill="#FFFFFF" stroke="#624486" stroke-width="2.0"/>
+<circle cx="1707.6" cy="645.0" r="7" fill="#FFFFFF" stroke="#624486" stroke-width="2.0"/>
+<circle cx="1749.2" cy="667.0" r="7" fill="#FFFFFF" stroke="#624486" stroke-width="2.0"/>
+<circle cx="1705.0" cy="688.0" r="7" fill="#FFFFFF" stroke="#624486" stroke-width="2.0"/>
+<text x="1705" y="730" font-size="22px" fill="#624486" font-weight="400" text-anchor="middle">A^mu_adp</text>
+<line x1="1795" y1="645" x2="1845" y2="645" stroke="#624486" stroke-width="2.5" opacity="1" marker-end="url(#arrowPurple)"/>
+<line x1="1884.5" y1="613.9" x2="1942.5" y2="605.5" stroke="#253244" stroke-width="3.8" opacity="1.0"/>
+<line x1="1942.5" y1="605.5" x2="2000.5" y2="613.9" stroke="#253244" stroke-width="1.6" opacity="0.5"/>
+<line x1="1884.5" y1="613.9" x2="1945.4" y2="647.5" stroke="#253244" stroke-width="3.2" opacity="0.95"/>
+<line x1="1942.5" y1="605.5" x2="1945.4" y2="647.5" stroke="#253244" stroke-width="1.9" opacity="0.58"/>
+<line x1="2000.5" y1="613.9" x2="1945.4" y2="647.5" stroke="#253244" stroke-width="4.1" opacity="0.98"/>
+<line x1="1899.0" y1="670.6" x2="1945.4" y2="647.5" stroke="#253244" stroke-width="1.7" opacity="0.5"/>
+<line x1="1945.4" y1="647.5" x2="1991.8" y2="670.6" stroke="#253244" stroke-width="3.0" opacity="0.85"/>
+<line x1="1899.0" y1="670.6" x2="1942.5" y2="692.65" stroke="#253244" stroke-width="2.0" opacity="0.58"/>
+<line x1="1991.8" y1="670.6" x2="1942.5" y2="692.65" stroke="#253244" stroke-width="3.8" opacity="0.9"/>
+<line x1="1942.5" y1="605.5" x2="1942.5" y2="692.65" stroke="#253244" stroke-width="1.2" opacity="0.4"/>
+<circle cx="1884.5" cy="613.9" r="7" fill="#FFFFFF" stroke="#253244" stroke-width="2.0"/>
+<circle cx="1942.5" cy="605.5" r="7" fill="#FFFFFF" stroke="#253244" stroke-width="2.0"/>
+<circle cx="2000.5" cy="613.9" r="7" fill="#FFFFFF" stroke="#253244" stroke-width="2.0"/>
+<circle cx="1899.0" cy="670.6" r="7" fill="#FFFFFF" stroke="#253244" stroke-width="2.0"/>
+<circle cx="1945.4" cy="647.5" r="7" fill="#FFFFFF" stroke="#253244" stroke-width="2.0"/>
+<circle cx="1991.8" cy="670.6" r="7" fill="#FFFFFF" stroke="#253244" stroke-width="2.0"/>
+<circle cx="1942.5" cy="692.65" r="7" fill="#FFFFFF" stroke="#253244" stroke-width="2.0"/>
+<text x="1942" y="730" font-size="23px" fill="#253244" font-weight="700" text-anchor="middle">Effective micro graph</text>
+<text x="2160" y="649" font-size="22px" fill="#C97812" font-weight="400" text-anchor="middle">A^mu = normalize(A^mu_prior × A^mu_adp)</text>
+<line x1="1410" y1="850" x2="2015" y2="850" stroke="#8C6BB1" stroke-width="1.6" opacity="1" stroke-dasharray="9 8"/>
+<text x="1712" y="900" font-size="27px" fill="#624486" font-weight="700" text-anchor="middle">same node set + same support</text>
+<line x1="1455.0" y1="960.7" x2="1515.0" y2="951.5" stroke="#788DA5" stroke-width="2.2" opacity="0.65"/>
+<line x1="1515.0" y1="951.5" x2="1575.0" y2="960.7" stroke="#788DA5" stroke-width="2.2" opacity="0.65"/>
+<line x1="1455.0" y1="960.7" x2="1518.0" y2="997.5" stroke="#788DA5" stroke-width="1.8" opacity="0.65"/>
+<line x1="1515.0" y1="951.5" x2="1518.0" y2="997.5" stroke="#788DA5" stroke-width="1.8" opacity="0.65"/>
+<line x1="1575.0" y1="960.7" x2="1518.0" y2="997.5" stroke="#788DA5" stroke-width="1.8" opacity="0.65"/>
+<line x1="1470.0" y1="1022.8" x2="1518.0" y2="997.5" stroke="#788DA5" stroke-width="1.8" opacity="0.65"/>
+<line x1="1518.0" y1="997.5" x2="1566.0" y2="1022.8" stroke="#788DA5" stroke-width="1.8" opacity="0.65"/>
+<line x1="1470.0" y1="1022.8" x2="1515.0" y2="1046.95" stroke="#788DA5" stroke-width="2.2" opacity="0.65"/>
+<line x1="1566.0" y1="1022.8" x2="1515.0" y2="1046.95" stroke="#788DA5" stroke-width="2.2" opacity="0.65"/>
+<line x1="1515.0" y1="951.5" x2="1515.0" y2="1046.95" stroke="#788DA5" stroke-width="1.4" opacity="0.65"/>
+<circle cx="1455.0" cy="960.7" r="7" fill="#FFFFFF" stroke="#788DA5" stroke-width="2.0"/>
+<circle cx="1515.0" cy="951.5" r="7" fill="#FFFFFF" stroke="#788DA5" stroke-width="2.0"/>
+<circle cx="1575.0" cy="960.7" r="7" fill="#FFFFFF" stroke="#788DA5" stroke-width="2.0"/>
+<circle cx="1470.0" cy="1022.8" r="7" fill="#FFFFFF" stroke="#788DA5" stroke-width="2.0"/>
+<circle cx="1518.0" cy="997.5" r="7" fill="#FFFFFF" stroke="#788DA5" stroke-width="2.0"/>
+<circle cx="1566.0" cy="1022.8" r="7" fill="#FFFFFF" stroke="#788DA5" stroke-width="2.0"/>
+<circle cx="1515.0" cy="1046.95" r="7" fill="#FFFFFF" stroke="#788DA5" stroke-width="2.0"/>
+<text x="1515" y="1090" font-size="22px" fill="#607086" font-weight="400" text-anchor="middle">prior edges</text>
+<text x="1670" y="1000" font-size="43px" fill="#624486" font-weight="700" text-anchor="middle">→</text>
+<line x1="1785.0" y1="960.7" x2="1845.0" y2="951.5" stroke="#253244" stroke-width="3.8" opacity="1.0"/>
+<line x1="1845.0" y1="951.5" x2="1905.0" y2="960.7" stroke="#253244" stroke-width="1.6" opacity="0.5"/>
+<line x1="1785.0" y1="960.7" x2="1848.0" y2="997.5" stroke="#253244" stroke-width="3.2" opacity="0.95"/>
+<line x1="1845.0" y1="951.5" x2="1848.0" y2="997.5" stroke="#253244" stroke-width="1.9" opacity="0.58"/>
+<line x1="1905.0" y1="960.7" x2="1848.0" y2="997.5" stroke="#253244" stroke-width="4.1" opacity="0.98"/>
+<line x1="1800.0" y1="1022.8" x2="1848.0" y2="997.5" stroke="#253244" stroke-width="1.7" opacity="0.5"/>
+<line x1="1848.0" y1="997.5" x2="1896.0" y2="1022.8" stroke="#253244" stroke-width="3.0" opacity="0.85"/>
+<line x1="1800.0" y1="1022.8" x2="1845.0" y2="1046.95" stroke="#253244" stroke-width="2.0" opacity="0.58"/>
+<line x1="1896.0" y1="1022.8" x2="1845.0" y2="1046.95" stroke="#253244" stroke-width="3.8" opacity="0.9"/>
+<line x1="1845.0" y1="951.5" x2="1845.0" y2="1046.95" stroke="#253244" stroke-width="1.2" opacity="0.4"/>
+<circle cx="1785.0" cy="960.7" r="7" fill="#FFFFFF" stroke="#253244" stroke-width="2.0"/>
+<circle cx="1845.0" cy="951.5" r="7" fill="#FFFFFF" stroke="#253244" stroke-width="2.0"/>
+<circle cx="1905.0" cy="960.7" r="7" fill="#FFFFFF" stroke="#253244" stroke-width="2.0"/>
+<circle cx="1800.0" cy="1022.8" r="7" fill="#FFFFFF" stroke="#253244" stroke-width="2.0"/>
+<circle cx="1848.0" cy="997.5" r="7" fill="#FFFFFF" stroke="#253244" stroke-width="2.0"/>
+<circle cx="1896.0" cy="1022.8" r="7" fill="#FFFFFF" stroke="#253244" stroke-width="2.0"/>
+<circle cx="1845.0" cy="1046.95" r="7" fill="#FFFFFF" stroke="#253244" stroke-width="2.0"/>
+<text x="1845" y="1090" font-size="22px" fill="#253244" font-weight="400" text-anchor="middle">changed thickness</text>
+<text x="2080" y="1010" font-size="24px" fill="#607086" font-weight="400" text-anchor="middle" font-style="italic">Adaptive weights change edge strength,
+not graph support.</text>
+</svg>

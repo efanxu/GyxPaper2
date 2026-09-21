@@ -2,62 +2,62 @@
   "schema_version": "e9_readiness_v1",
   "IMPLEMENTATION_READY": true,
   "PORTABILITY_AUDIT_READY": "PASS",
-  "ORIGINAL_MASKED_MSE_REFERENCE_READY": "0/6",
-  "MSMG_DWU_TRANSFER_READY": "0/6",
-  "LOSS_ONLY_PAIRING_READY": "0/6",
-  "CORE_E9_READY": "0/12",
-  "CORE_E9_READY_BOOL": false,
+  "ORIGINAL_MASKED_MSE_REFERENCE_READY": "6/6",
+  "MSMG_DWU_TRANSFER_READY": "6/6",
+  "LOSS_ONLY_PAIRING_READY": "6/6",
+  "CORE_E9_READY": "12/12",
+  "CORE_E9_READY_BOOL": true,
   "FULL_MS_MG_DWU_TRANSFER_READY": true,
   "PORTABLE_SUBSET_TRANSFER_READY": false,
   "STMG_REFERENCE_READY": "0/2",
   "pairs": [
     {
       "model_id": "lightts",
-      "control_ready": false,
-      "transfer_ready": false,
-      "loss_only_diff_valid": false,
-      "pair_status": "NOT_READY",
-      "ready": false
+      "control_ready": true,
+      "transfer_ready": true,
+      "loss_only_diff_valid": true,
+      "pair_status": "READY",
+      "ready": true
     },
     {
       "model_id": "tide",
-      "control_ready": false,
-      "transfer_ready": false,
-      "loss_only_diff_valid": false,
-      "pair_status": "NOT_READY",
-      "ready": false
+      "control_ready": true,
+      "transfer_ready": true,
+      "loss_only_diff_valid": true,
+      "pair_status": "READY",
+      "ready": true
     },
     {
       "model_id": "patchtst",
-      "control_ready": false,
-      "transfer_ready": false,
-      "loss_only_diff_valid": false,
-      "pair_status": "NOT_READY",
-      "ready": false
+      "control_ready": true,
+      "transfer_ready": true,
+      "loss_only_diff_valid": true,
+      "pair_status": "READY",
+      "ready": true
     },
     {
       "model_id": "itransformer",
-      "control_ready": false,
-      "transfer_ready": false,
-      "loss_only_diff_valid": false,
-      "pair_status": "NOT_READY",
-      "ready": false
+      "control_ready": true,
+      "transfer_ready": true,
+      "loss_only_diff_valid": true,
+      "pair_status": "READY",
+      "ready": true
     },
     {
       "model_id": "dcrnn",
-      "control_ready": false,
-      "transfer_ready": false,
-      "loss_only_diff_valid": false,
-      "pair_status": "NOT_READY",
-      "ready": false
+      "control_ready": true,
+      "transfer_ready": true,
+      "loss_only_diff_valid": true,
+      "pair_status": "READY",
+      "ready": true
     },
     {
       "model_id": "mtgnn",
-      "control_ready": false,
-      "transfer_ready": false,
-      "loss_only_diff_valid": false,
-      "pair_status": "NOT_READY",
-      "ready": false
+      "control_ready": true,
+      "transfer_ready": true,
+      "loss_only_diff_valid": true,
+      "pair_status": "READY",
+      "ready": true
     }
   ],
   "e5_consumed": false

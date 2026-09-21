@@ -212,10 +212,25 @@ def model_summary(model: torch.nn.Module, data: STMGPromptDataBundle) -> dict[st
     trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
     total = sum(p.numel() for p in model.parameters())
     non_trainable = total - trainable
+    shared_parameter_count = 0
+    branch_output_dimensions = None
+    temporal_branch_transform = getattr(getattr(model, "config", None), "temporal_branch_transform", None)
+    coupling_blocks = getattr(model, "coupling_blocks", None)
+    if coupling_blocks:
+        first_block = coupling_blocks[0]
+        fine_temporal = first_block.fine_micro_graph_temporal_encoder.block.causal_tcn
+        coarse_temporal = first_block.coarse_macro_graph_temporal_encoder.block.causal_tcn
+        if fine_temporal is coarse_temporal:
+            shared_parameter_count = sum(parameter.numel() for parameter in fine_temporal.parameters())
+        hidden_dim = int(getattr(model, "hidden_dim", 0))
+        branch_output_dimensions = {"fine": hidden_dim, "coarse": hidden_dim}
     return {
         "trainable_parameters": trainable,
         "non_trainable_parameters": non_trainable,
         "total_parameters": total,
+        "shared_parameter_count": shared_parameter_count,
+        "temporal_branch_transform": temporal_branch_transform,
+        "branch_output_dimensions": branch_output_dimensions,
         "parameter_memory_mb": float(sum(p.numel() * p.element_size() for p in model.parameters()) / (1024**2)),
         "input_dim": data.input_dim,
         "num_nodes": data.num_nodes,

@@ -1,0 +1,14 @@
+{
+  "metrics_compute_space": "kW inputs; official Score converts error to MW internally",
+  "target_inverse_transform_before_metrics": true,
+  "masked_metrics": true,
+  "physical_clip_applied": true,
+  "physical_clip_protocol": "uniform_eval_clip_all_models",
+  "score_compute_unit": "MW_after_kW_to_MW_conversion",
+  "score_lower_is_better": true,
+  "artifact_source_checkpoint": "best_checkpoint.pt",
+  "prediction_accumulation": "streaming",
+  "inference_time_sec_full_test": 0.01350559999991674,
+  "inference_time_ms_per_window": 4.5018666666389136,
+  "inference_windows_per_sec": 222.1300793758511
+}

@@ -1,0 +1,29 @@
+{
+  "loss_function": "msmg_dwu_loss",
+  "base_loss": "smooth_l1",
+  "lambda_site": 0.2,
+  "ema_alpha": 0.9,
+  "node_weight_clip": [
+    0.5,
+    3.0
+  ],
+  "granularity_weight_mode": "difficulty_rate",
+  "site_weight_mode": "dynamic",
+  "eval_horizons": [
+    3,
+    6,
+    10
+  ],
+  "final_granularity_weight": {
+    "h3": 1.128654956817627,
+    "h6": 0.96636563539505,
+    "h10": 0.9049793481826782
+  },
+  "final_log_sigma_g": {
+    "h3": 0.0,
+    "h6": 0.0,
+    "h10": 0.0
+  },
+  "artifact_source_checkpoint": "best_checkpoint.pt",
+  "granularity_weight_curve_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f4_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\diagnostics\\granularity_weight_curve.png"
+}

@@ -1,0 +1,1 @@
+Output slide 1: viewport changed from 960 × 537.67 px to 864 × 480 px. The former three boxed A/B/C panels were replaced by a shared-spatial region, paired semantic ribbons, and a horizontal prior-constrained graph-transformation strip. Scientific mechanisms, weights, K values, row normalization, d_e, and topology constraint are unchanged.

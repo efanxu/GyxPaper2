@@ -1,0 +1,91 @@
+{
+  "schema_version": "original_scope26_archive_intent_v1",
+  "status": "COMPLETED",
+  "attempt_id": "bd60feb4d4854c28981c5162e0cbbe5a",
+  "operation": "QUARANTINE",
+  "source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\TimeXer_node_shared_ms_d512_bs4_seed2026",
+  "target": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\.original_scope26_quarantine\\TimeXer_node_shared_ms_d512_bs4_seed2026\\20260806T081832.829770Z_20936_1f862a9bd63043b99bd22fdb1affb4f4",
+  "receipt_name": "quarantine_receipt.json",
+  "receipt": {
+    "schema_version": "original_scope26_quarantine_receipt_v1",
+    "scope_id": "benchmark_v2_batch4_scope26_seed2026",
+    "model_id": "timexer",
+    "run_id": "TimeXer_node_shared_ms_d512_bs4_seed2026",
+    "original_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\TimeXer_node_shared_ms_d512_bs4_seed2026",
+    "archive_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\.original_scope26_quarantine\\TimeXer_node_shared_ms_d512_bs4_seed2026\\20260806T081832.829770Z_20936_1f862a9bd63043b99bd22fdb1affb4f4",
+    "archive_reason": "explicit quarantine-existing --apply",
+    "original_classification": "CURRENT_SCOPE26_IDENTITY_MISMATCH",
+    "original_rejection_reasons": [
+      "PREDICTION_METADATA_MISSING_FILE",
+      "STATUS_NOT_COMPLETED:FAILED",
+      "EXIT_CODE_NOT_ZERO:1",
+      "PREDICTION_RUN_ID_MISMATCH",
+      "PREDICTION_MODEL_ID_MISMATCH",
+      "METRICS_H3_MISSING_FILE",
+      "METRICS_H6_MISSING_FILE",
+      "METRICS_H10_MISSING_FILE",
+      "METRICS_CSV_MISSING",
+      "METRICS_BUNDLE_HASH_UNAVAILABLE",
+      "TRAIN_LOG.CSV_MISSING",
+      "EXECUTION_RECEIPT_NOT_SUCCESS",
+      "EXECUTION_RECEIPT_EXIT_CODE_MISMATCH"
+    ],
+    "recursive_file_manifest": [
+      {
+        "path": "artifact_manifest.json",
+        "sha256": "3cdef6ea3de94fd5e19106a5758998b5d3fb857673d2f5af0230c99fec5f543f"
+      },
+      {
+        "path": "best_checkpoint.pt",
+        "sha256": "299c24f96ba6059d582a1b688f664307e643e9d0cce796b9140dd7514334e303"
+      },
+      {
+        "path": "data_signature.json",
+        "sha256": "8b2c38ec496adf178dc12eeaf665ff4a7f4f311cb6f4d6d9ced6e83b71f7e60a"
+      },
+      {
+        "path": "effective_config.json",
+        "sha256": "b407d4a097d45b0241655e88ccd9c174274fa604f199c712f5fa9a179db414e2"
+      },
+      {
+        "path": "environment.json",
+        "sha256": "2373a17b6192b49329b4a00e4529025f16f6c0b9ca054192d0396f949c5c55b7"
+      },
+      {
+        "path": "execution_receipt.json",
+        "sha256": "6639361a76985fafe7a100b2199d9a3e6871a8d0068b08771834b066c454d2d8"
+      },
+      {
+        "path": "last_checkpoint.pt",
+        "sha256": "8224c372062f9fdf2ad636011883727d64086a2542ae9d11fe1fbda65d83a644"
+      },
+      {
+        "path": "model_summary.json",
+        "sha256": "26765aa8c7a228bf713543b0431e6eff29c9cbf91872313089e8fce58389092c"
+      },
+      {
+        "path": "protocol_check.json",
+        "sha256": "f7af2fd0e8b4a01cae8c2062cd2608755097f2cb12c057cf1126cc782629d82b"
+      },
+      {
+        "path": "resolved_config.json",
+        "sha256": "b407d4a097d45b0241655e88ccd9c174274fa604f199c712f5fa9a179db414e2"
+      },
+      {
+        "path": "run_status.json",
+        "sha256": "3558720939578af63be04dabb845c7afa513f918402439594c54a91bc7254cae"
+      }
+    ],
+    "current_git_identity": {
+      "git_commit": "41ed7f1145e39945ae6541c3467aaa0d58286122",
+      "source_revision_type": "git"
+    },
+    "current_manifest_hash": "57a93bb4219bfd437d73d34638aed883723511f77120da71ad39e9e5f4f6775f",
+    "current_run_map_hash": "d491de25fc098350b1e4c7934d5a03755b9ba5d8cb39b2cfdcc6cad1fe0b4cc7",
+    "current_freeze_hash": "863df0a3d7c88716e93a1ac15b458b88c5407a0e04613330f75b42dd073f0578",
+    "attempt_id": "bd60feb4d4854c28981c5162e0cbbe5a",
+    "timestamp": "2026-08-06T08:18:33.229313+00:00"
+  },
+  "started_at": "2026-08-06T08:18:33.229819+00:00",
+  "finished_at": "2026-08-06T08:18:33.233546+00:00"
+}

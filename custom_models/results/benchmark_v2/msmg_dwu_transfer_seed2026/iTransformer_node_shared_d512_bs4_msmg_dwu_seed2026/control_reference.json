@@ -1,0 +1,7 @@
+{
+  "source_class": "ORIGINAL26_CONTROL",
+  "read_only": true,
+  "model_id": "itransformer",
+  "run_id": "iTransformer_node_shared_d512_bs4_seed2026",
+  "source_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\benchmark_v2_uniform_bs4\\e2_a_seed2026\\iTransformer_node_shared_d512_bs4_seed2026"
+}

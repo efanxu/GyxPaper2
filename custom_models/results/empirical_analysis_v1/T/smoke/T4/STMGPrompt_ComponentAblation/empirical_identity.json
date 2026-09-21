@@ -1,0 +1,22 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant": {
+    "variant_id": "T4",
+    "display_name": "Downsample-upsample Coarse dual",
+    "family": "T",
+    "base_config": "CANONICAL_FULL",
+    "config_overrides": {
+      "coarse_alignment_mode": "causal_downsample_upsample"
+    },
+    "expected_unique_diff": [
+      "coarse_alignment_mode"
+    ],
+    "trainable": true,
+    "paired_reference": "T0",
+    "implementation_status": "ready",
+    "implementation_note": "Uses causal anchor aggregation and causal repeat recovery with an access trace.",
+    "reference_only": false
+  },
+  "seed": 2026,
+  "mode": "smoke"
+}

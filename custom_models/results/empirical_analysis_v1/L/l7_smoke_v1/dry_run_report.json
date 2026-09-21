@@ -1,0 +1,43 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "L7",
+  "family": "L",
+  "implementation_status": "reference",
+  "expected_diff_fields": [
+    "loss_function",
+    "loss_protocol",
+    "use_msmg_dwu"
+  ],
+  "actual_diff_fields": [
+    "loss_function",
+    "loss_protocol",
+    "use_msmg_dwu"
+  ],
+  "missing_expected_diff_fields": [],
+  "unexpected_diff_fields": [],
+  "frozen_protocol_changes": [],
+  "differences": {
+    "loss_function": {
+      "canonical": "msmg_dwu_loss",
+      "effective": "masked_score_aligned_hybrid"
+    },
+    "use_msmg_dwu": {
+      "canonical": true,
+      "effective": false
+    },
+    "loss_protocol": {
+      "canonical": "method_full",
+      "effective": "fair_main"
+    }
+  },
+  "passed": true,
+  "display_name": "Score-aligned hybrid",
+  "trainable": false,
+  "paired_reference": "A8",
+  "declared_overrides": {
+    "use_msmg_dwu": false,
+    "loss_function": "masked_score_aligned_hybrid",
+    "loss_protocol": "fair_main"
+  },
+  "execution_ready": true
+}

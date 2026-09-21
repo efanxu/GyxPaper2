@@ -1,0 +1,9 @@
+{
+  "fit_split": "train",
+  "validation_test_frozen": true,
+  "uses_test_target": false,
+  "model_output_dependent": true,
+  "algorithm_shared": true,
+  "values_shared": false,
+  "checkpointed": true
+}

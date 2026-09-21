@@ -1,0 +1,22 @@
+{
+  "experiment_family": "cross_fusion_candidate",
+  "variant": {
+    "variant_id": "A6-C1",
+    "display_name": "Early-History Macro Cross Fusion",
+    "experiment_family": "component_ablation",
+    "trainable": true,
+    "canonical_reference": null,
+    "base_config": "CANONICAL_FULL",
+    "config_overrides": {
+      "macro_to_fine_exclude_recent_len": 24
+    },
+    "expected_unique_diff": [
+      "macro_to_fine_exclude_recent_len"
+    ]
+  },
+  "base_variant": "A0",
+  "official_a6_unchanged": true,
+  "result_directory": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6-C1",
+  "effective_config": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6-C1\\effective_config.json",
+  "effective_config_diff": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6-C1\\effective_config_diff.json"
+}

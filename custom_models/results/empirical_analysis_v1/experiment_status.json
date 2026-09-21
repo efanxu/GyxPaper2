@@ -1,0 +1,1588 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "updated_at": "2026-09-21T11:20:24.863671+00:00",
+  "mode": "dry_run",
+  "statuses": [
+    {
+      "variant_id": "F0",
+      "seed": 2026,
+      "status": "completed",
+      "decision": "SKIP_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f0_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation"
+    },
+    {
+      "variant_id": "F1",
+      "seed": 2026,
+      "status": "completed",
+      "decision": "SKIP_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f1_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation"
+    },
+    {
+      "variant_id": "F2",
+      "seed": 2026,
+      "status": "completed",
+      "decision": "SKIP_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f2_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation"
+    },
+    {
+      "variant_id": "F4",
+      "seed": 2026,
+      "status": "completed",
+      "decision": "SKIP_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f4_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation"
+    },
+    {
+      "variant_id": "F5",
+      "seed": 2026,
+      "status": "completed",
+      "decision": "SKIP_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f5_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation"
+    },
+    {
+      "variant_id": "G6",
+      "seed": 2026,
+      "status": "completed",
+      "decision": "SKIP_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g6_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation"
+    },
+    {
+      "variant_id": "G7",
+      "seed": 2026,
+      "status": "completed",
+      "decision": "SKIP_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g7_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation"
+    },
+    {
+      "variant_id": "L0",
+      "seed": 2026,
+      "status": "completed",
+      "decision": "SKIP_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l0_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation"
+    },
+    {
+      "variant_id": "L1",
+      "seed": 2026,
+      "status": "completed",
+      "decision": "SKIP_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l1_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation"
+    },
+    {
+      "variant_id": "L2",
+      "seed": 2026,
+      "status": "completed",
+      "decision": "SKIP_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l2_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation"
+    },
+    {
+      "variant_id": "L5",
+      "seed": 2026,
+      "status": "completed",
+      "decision": "SKIP_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l5_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation"
+    },
+    {
+      "variant_id": "T1",
+      "seed": 2025,
+      "status": "completed",
+      "decision": "SKIP_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\framework_multiseed_smoke\\seed_2025\\STMGPrompt_ComponentAblation"
+    },
+    {
+      "variant_id": "T1",
+      "seed": 2026,
+      "status": "completed",
+      "decision": "SKIP_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\framework_multiseed_smoke\\seed_2026\\STMGPrompt_ComponentAblation"
+    },
+    {
+      "variant_id": "T1",
+      "seed": 2026,
+      "status": "smoke_completed",
+      "decision": "TRAIN",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\smoke\\T1\\STMGPrompt_ComponentAblation",
+      "protocol_passed": true,
+      "started_at": "2026-09-21T11:14:38.143614+00:00",
+      "finished_at": "2026-09-21T11:14:43.744436+00:00",
+      "trace_summary": null
+    },
+    {
+      "variant_id": "T1",
+      "seed": 2026,
+      "status": "completed",
+      "decision": "SKIP_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\t1_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation"
+    },
+    {
+      "variant_id": "T2",
+      "seed": 2026,
+      "status": "smoke_completed",
+      "decision": "TRAIN",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\smoke\\T2\\STMGPrompt_ComponentAblation",
+      "protocol_passed": true,
+      "started_at": "2026-09-21T11:14:43.781393+00:00",
+      "finished_at": "2026-09-21T11:14:45.560686+00:00",
+      "trace_summary": null
+    },
+    {
+      "variant_id": "T2",
+      "seed": 2026,
+      "status": "completed",
+      "decision": "SKIP_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\t2_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation"
+    },
+    {
+      "variant_id": "T3",
+      "seed": 2026,
+      "status": "smoke_completed",
+      "decision": "TRAIN",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\smoke\\T3\\STMGPrompt_ComponentAblation",
+      "protocol_passed": true,
+      "started_at": "2026-09-21T11:10:57.458886+00:00",
+      "finished_at": "2026-09-21T11:10:59.838357+00:00",
+      "trace_summary": null
+    },
+    {
+      "variant_id": "T4",
+      "seed": 2026,
+      "status": "smoke_completed",
+      "decision": "TRAIN",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\smoke\\T4\\STMGPrompt_ComponentAblation",
+      "protocol_passed": true,
+      "started_at": "2026-09-21T11:10:59.875691+00:00",
+      "finished_at": "2026-09-21T11:11:02.110522+00:00",
+      "trace_summary": {
+        "path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\smoke\\T4\\coarse_alignment_trace.csv",
+        "rows": 1152,
+        "full_trace": true,
+        "max_access_le_cutoff": true
+      }
+    },
+    {
+      "variant_id": "T5",
+      "seed": 2026,
+      "status": "smoke_completed",
+      "decision": "TRAIN",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\smoke\\T5\\STMGPrompt_ComponentAblation",
+      "protocol_passed": true,
+      "started_at": "2026-09-21T11:13:34.037881+00:00",
+      "finished_at": "2026-09-21T11:13:40.089526+00:00",
+      "trace_summary": null
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "F0",
+      "family": "F",
+      "implementation_status": "ready",
+      "expected_diff_fields": [
+        "use_cross_fusion",
+        "use_macro_prompt"
+      ],
+      "actual_diff_fields": [
+        "use_cross_fusion",
+        "use_macro_prompt"
+      ],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {
+        "use_macro_prompt": {
+          "canonical": true,
+          "effective": false
+        },
+        "use_cross_fusion": {
+          "canonical": true,
+          "effective": false
+        }
+      },
+      "passed": true,
+      "display_name": "Independent dual branches",
+      "trainable": true,
+      "paired_reference": "F7",
+      "declared_overrides": {
+        "use_macro_prompt": false,
+        "use_cross_fusion": false
+      },
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f0_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "F1",
+      "family": "F",
+      "implementation_status": "ready",
+      "expected_diff_fields": [
+        "fusion_mode"
+      ],
+      "actual_diff_fields": [
+        "fusion_mode"
+      ],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {
+        "fusion_mode": {
+          "canonical": "cross",
+          "effective": "add"
+        }
+      },
+      "passed": true,
+      "display_name": "Element-wise add",
+      "trainable": true,
+      "paired_reference": "F7",
+      "declared_overrides": {
+        "fusion_mode": "add"
+      },
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f1_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "F2",
+      "family": "F",
+      "implementation_status": "ready",
+      "expected_diff_fields": [
+        "fusion_mode"
+      ],
+      "actual_diff_fields": [
+        "fusion_mode"
+      ],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {
+        "fusion_mode": {
+          "canonical": "cross",
+          "effective": "concat"
+        }
+      },
+      "passed": true,
+      "display_name": "Concat + MLP",
+      "trainable": true,
+      "paired_reference": "F7",
+      "declared_overrides": {
+        "fusion_mode": "concat"
+      },
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f2_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "F3",
+      "display_name": "Unified gated fusion",
+      "family": "F",
+      "implementation_status": "pending",
+      "trainable": true,
+      "paired_reference": "F7",
+      "expected_diff_fields": [
+        "fusion_mode"
+      ],
+      "declared_overrides": {
+        "fusion_mode": "unified_gated"
+      },
+      "passed": true,
+      "execution_ready": false,
+      "note": "Implemented in empirical step 6.",
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f3_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "F3",
+      "display_name": "Unified gated fusion",
+      "family": "F",
+      "implementation_status": "pending",
+      "trainable": true,
+      "paired_reference": "F7",
+      "expected_diff_fields": [
+        "fusion_mode"
+      ],
+      "declared_overrides": {
+        "fusion_mode": "unified_gated"
+      },
+      "passed": true,
+      "execution_ready": false,
+      "note": "Implemented in empirical step 6.",
+      "status": "PENDING_IMPLEMENTATION",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f3_smoke_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "F4",
+      "family": "F",
+      "implementation_status": "ready",
+      "expected_diff_fields": [
+        "disable_reverse_cross"
+      ],
+      "actual_diff_fields": [
+        "disable_reverse_cross"
+      ],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {
+        "disable_reverse_cross": {
+          "canonical": false,
+          "effective": true
+        }
+      },
+      "passed": true,
+      "display_name": "Macro-to-Fine only",
+      "trainable": true,
+      "paired_reference": "F7",
+      "declared_overrides": {
+        "disable_reverse_cross": true
+      },
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f4_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "F5",
+      "family": "F",
+      "implementation_status": "ready",
+      "expected_diff_fields": [
+        "disable_macro_to_fine_cross"
+      ],
+      "actual_diff_fields": [
+        "disable_macro_to_fine_cross"
+      ],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {
+        "disable_macro_to_fine_cross": {
+          "canonical": false,
+          "effective": true
+        }
+      },
+      "passed": true,
+      "display_name": "Fine-to-Coarse only",
+      "trainable": true,
+      "paired_reference": "F7",
+      "declared_overrides": {
+        "disable_macro_to_fine_cross": true
+      },
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f5_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "F6",
+      "family": "F",
+      "implementation_status": "reference",
+      "expected_diff_fields": [
+        "share_cross_attention_projections"
+      ],
+      "actual_diff_fields": [
+        "share_cross_attention_projections"
+      ],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {
+        "share_cross_attention_projections": {
+          "canonical": false,
+          "effective": true
+        }
+      },
+      "passed": true,
+      "display_name": "Bidirectional Cross-Fusion, shared projections",
+      "trainable": false,
+      "paired_reference": "A7",
+      "declared_overrides": {
+        "share_cross_attention_projections": true
+      },
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f6_empirical_v1"
+    },
+    {
+      "variant_id": "F6",
+      "family": "F",
+      "status": "REFERENCE_ONLY",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f6_smoke_v1",
+      "source_exists": true
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "F7",
+      "family": "F",
+      "implementation_status": "reference",
+      "expected_diff_fields": [],
+      "actual_diff_fields": [],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {},
+      "passed": true,
+      "display_name": "Bidirectional Cross-Fusion, independent projections",
+      "trainable": false,
+      "paired_reference": "full_fixed_dual_keep_msmgdwu_seed2026",
+      "declared_overrides": {},
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f7_empirical_v1"
+    },
+    {
+      "variant_id": "F7",
+      "family": "F",
+      "status": "REFERENCE_ONLY",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f7_smoke_v1",
+      "source_exists": true
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "F8",
+      "family": "F",
+      "implementation_status": "reference",
+      "expected_diff_fields": [
+        "macro_prompt_pooling"
+      ],
+      "actual_diff_fields": [
+        "macro_prompt_pooling"
+      ],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {
+        "macro_prompt_pooling": {
+          "canonical": "attention",
+          "effective": "mean"
+        }
+      },
+      "passed": true,
+      "display_name": "Mean-pooling Macro Prompt",
+      "trainable": false,
+      "paired_reference": "A4",
+      "declared_overrides": {
+        "macro_prompt_pooling": "mean"
+      },
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f8_empirical_v1"
+    },
+    {
+      "variant_id": "F8",
+      "family": "F",
+      "status": "REFERENCE_ONLY",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f8_smoke_v1",
+      "source_exists": true
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "G0",
+      "family": "G",
+      "implementation_status": "reference",
+      "expected_diff_fields": [],
+      "actual_diff_fields": [],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {},
+      "passed": true,
+      "display_name": "Matched Micro/Fine + Macro/Coarse",
+      "trainable": false,
+      "paired_reference": "full_fixed_dual_keep_msmgdwu_seed2026",
+      "declared_overrides": {},
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g0_empirical_v1"
+    },
+    {
+      "variant_id": "G0",
+      "family": "G",
+      "status": "REFERENCE_ONLY",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g0_smoke_v1",
+      "source_exists": true
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "G1",
+      "display_name": "Shared Micro graph",
+      "family": "G",
+      "implementation_status": "pending",
+      "trainable": true,
+      "paired_reference": "G0",
+      "expected_diff_fields": [
+        "branch_graph_assignment"
+      ],
+      "declared_overrides": {
+        "branch_graph_assignment": "shared_micro"
+      },
+      "passed": true,
+      "execution_ready": false,
+      "note": "Implemented in empirical step 4.",
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g1_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "G1",
+      "display_name": "Shared Micro graph",
+      "family": "G",
+      "implementation_status": "pending",
+      "trainable": true,
+      "paired_reference": "G0",
+      "expected_diff_fields": [
+        "branch_graph_assignment"
+      ],
+      "declared_overrides": {
+        "branch_graph_assignment": "shared_micro"
+      },
+      "passed": true,
+      "execution_ready": false,
+      "note": "Implemented in empirical step 4.",
+      "status": "PENDING_IMPLEMENTATION",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g1_smoke_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "G2",
+      "display_name": "Shared Macro graph",
+      "family": "G",
+      "implementation_status": "pending",
+      "trainable": true,
+      "paired_reference": "G0",
+      "expected_diff_fields": [
+        "branch_graph_assignment"
+      ],
+      "declared_overrides": {
+        "branch_graph_assignment": "shared_macro"
+      },
+      "passed": true,
+      "execution_ready": false,
+      "note": "Implemented in empirical step 4.",
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g2_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "G2",
+      "display_name": "Shared Macro graph",
+      "family": "G",
+      "implementation_status": "pending",
+      "trainable": true,
+      "paired_reference": "G0",
+      "expected_diff_fields": [
+        "branch_graph_assignment"
+      ],
+      "declared_overrides": {
+        "branch_graph_assignment": "shared_macro"
+      },
+      "passed": true,
+      "execution_ready": false,
+      "note": "Implemented in empirical step 4.",
+      "status": "PENDING_IMPLEMENTATION",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g2_smoke_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "G3",
+      "display_name": "Swapped Micro/Macro graphs",
+      "family": "G",
+      "implementation_status": "pending",
+      "trainable": true,
+      "paired_reference": "G0",
+      "expected_diff_fields": [
+        "branch_graph_assignment"
+      ],
+      "declared_overrides": {
+        "branch_graph_assignment": "swapped"
+      },
+      "passed": true,
+      "execution_ready": false,
+      "note": "Implemented in empirical step 4.",
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g3_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "G3",
+      "display_name": "Swapped Micro/Macro graphs",
+      "family": "G",
+      "implementation_status": "pending",
+      "trainable": true,
+      "paired_reference": "G0",
+      "expected_diff_fields": [
+        "branch_graph_assignment"
+      ],
+      "declared_overrides": {
+        "branch_graph_assignment": "swapped"
+      },
+      "passed": true,
+      "execution_ready": false,
+      "note": "Implemented in empirical step 4.",
+      "status": "PENDING_IMPLEMENTATION",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g3_smoke_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "G4",
+      "display_name": "Distance-only dual graph",
+      "family": "G",
+      "implementation_status": "pending",
+      "trainable": true,
+      "paired_reference": "G0",
+      "expected_diff_fields": [
+        "graph_prior_component"
+      ],
+      "declared_overrides": {
+        "graph_prior_component": "distance_only"
+      },
+      "passed": true,
+      "execution_ready": false,
+      "note": "Implemented in empirical step 4.",
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g4_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "G4",
+      "display_name": "Distance-only dual graph",
+      "family": "G",
+      "implementation_status": "pending",
+      "trainable": true,
+      "paired_reference": "G0",
+      "expected_diff_fields": [
+        "graph_prior_component"
+      ],
+      "declared_overrides": {
+        "graph_prior_component": "distance_only"
+      },
+      "passed": true,
+      "execution_ready": false,
+      "note": "Implemented in empirical step 4.",
+      "status": "PENDING_IMPLEMENTATION",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g4_smoke_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "G5",
+      "display_name": "Statistics-only dual graph",
+      "family": "G",
+      "implementation_status": "pending",
+      "trainable": true,
+      "paired_reference": "G0",
+      "expected_diff_fields": [
+        "graph_prior_component"
+      ],
+      "declared_overrides": {
+        "graph_prior_component": "statistics_only"
+      },
+      "passed": true,
+      "execution_ready": false,
+      "note": "Implemented in empirical step 4.",
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g5_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "G5",
+      "display_name": "Statistics-only dual graph",
+      "family": "G",
+      "implementation_status": "pending",
+      "trainable": true,
+      "paired_reference": "G0",
+      "expected_diff_fields": [
+        "graph_prior_component"
+      ],
+      "declared_overrides": {
+        "graph_prior_component": "statistics_only"
+      },
+      "passed": true,
+      "execution_ready": false,
+      "note": "Implemented in empirical step 4.",
+      "status": "PENDING_IMPLEMENTATION",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g5_smoke_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "G6",
+      "family": "G",
+      "implementation_status": "ready",
+      "expected_diff_fields": [
+        "use_trend_prior_graph"
+      ],
+      "actual_diff_fields": [
+        "use_trend_prior_graph"
+      ],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {
+        "use_trend_prior_graph": {
+          "canonical": true,
+          "effective": false
+        }
+      },
+      "passed": true,
+      "display_name": "Free adaptive graph",
+      "trainable": true,
+      "paired_reference": "G0",
+      "declared_overrides": {
+        "use_trend_prior_graph": false
+      },
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g6_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "G7",
+      "family": "G",
+      "implementation_status": "ready",
+      "expected_diff_fields": [
+        "use_adaptive_graph"
+      ],
+      "actual_diff_fields": [
+        "use_adaptive_graph"
+      ],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {
+        "use_adaptive_graph": {
+          "canonical": true,
+          "effective": false
+        }
+      },
+      "passed": true,
+      "display_name": "Fixed dual graph",
+      "trainable": true,
+      "paired_reference": "G0",
+      "declared_overrides": {
+        "use_adaptive_graph": false
+      },
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g7_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "G8",
+      "display_name": "Degree-preserving random rewiring",
+      "family": "G",
+      "implementation_status": "pending",
+      "trainable": true,
+      "paired_reference": "G0",
+      "expected_diff_fields": [
+        "graph_rewire_mode"
+      ],
+      "declared_overrides": {
+        "graph_rewire_mode": "degree_preserving_random"
+      },
+      "passed": true,
+      "execution_ready": false,
+      "note": "Implemented in empirical step 4.",
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g8_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "G8",
+      "display_name": "Degree-preserving random rewiring",
+      "family": "G",
+      "implementation_status": "pending",
+      "trainable": true,
+      "paired_reference": "G0",
+      "expected_diff_fields": [
+        "graph_rewire_mode"
+      ],
+      "declared_overrides": {
+        "graph_rewire_mode": "degree_preserving_random"
+      },
+      "passed": true,
+      "execution_ready": false,
+      "note": "Implemented in empirical step 4.",
+      "status": "PENDING_IMPLEMENTATION",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g8_smoke_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "L0",
+      "family": "L",
+      "implementation_status": "ready",
+      "expected_diff_fields": [
+        "granularity_weight_mode",
+        "site_weight_mode"
+      ],
+      "actual_diff_fields": [
+        "granularity_weight_mode",
+        "site_weight_mode"
+      ],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {
+        "granularity_weight_mode": {
+          "canonical": "difficulty_rate",
+          "effective": "static"
+        },
+        "site_weight_mode": {
+          "canonical": "dynamic",
+          "effective": "static"
+        }
+      },
+      "passed": true,
+      "display_name": "Equal Smooth L1",
+      "trainable": true,
+      "paired_reference": "L3",
+      "declared_overrides": {
+        "granularity_weight_mode": "static",
+        "site_weight_mode": "static"
+      },
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l0_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "L1",
+      "family": "L",
+      "implementation_status": "ready",
+      "expected_diff_fields": [
+        "site_weight_mode"
+      ],
+      "actual_diff_fields": [
+        "site_weight_mode"
+      ],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {
+        "site_weight_mode": {
+          "canonical": "dynamic",
+          "effective": "static"
+        }
+      },
+      "passed": true,
+      "display_name": "Horizon difficulty-rate only",
+      "trainable": true,
+      "paired_reference": "L3",
+      "declared_overrides": {
+        "site_weight_mode": "static"
+      },
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l1_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "L2",
+      "family": "L",
+      "implementation_status": "ready",
+      "expected_diff_fields": [
+        "granularity_weight_mode"
+      ],
+      "actual_diff_fields": [
+        "granularity_weight_mode"
+      ],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {
+        "granularity_weight_mode": {
+          "canonical": "difficulty_rate",
+          "effective": "static"
+        }
+      },
+      "passed": true,
+      "display_name": "Dynamic node difficulty only",
+      "trainable": true,
+      "paired_reference": "L3",
+      "declared_overrides": {
+        "granularity_weight_mode": "static"
+      },
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l2_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "L3",
+      "family": "L",
+      "implementation_status": "reference",
+      "expected_diff_fields": [],
+      "actual_diff_fields": [],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {},
+      "passed": true,
+      "display_name": "Complete MS-MG-DWU",
+      "trainable": false,
+      "paired_reference": "full_fixed_dual_keep_msmgdwu_seed2026",
+      "declared_overrides": {},
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l3_empirical_v1"
+    },
+    {
+      "variant_id": "L3",
+      "family": "L",
+      "status": "REFERENCE_ONLY",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l3_smoke_v1",
+      "source_exists": true
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "L4",
+      "display_name": "Static increasing horizon weights",
+      "family": "L",
+      "implementation_status": "pending",
+      "trainable": true,
+      "paired_reference": "L3",
+      "expected_diff_fields": [
+        "granularity_weight_mode"
+      ],
+      "declared_overrides": {
+        "granularity_weight_mode": "static_increasing"
+      },
+      "passed": true,
+      "execution_ready": false,
+      "note": "Implemented in empirical step 8.",
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l4_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "L4",
+      "display_name": "Static increasing horizon weights",
+      "family": "L",
+      "implementation_status": "pending",
+      "trainable": true,
+      "paired_reference": "L3",
+      "expected_diff_fields": [
+        "granularity_weight_mode"
+      ],
+      "declared_overrides": {
+        "granularity_weight_mode": "static_increasing"
+      },
+      "passed": true,
+      "execution_ready": false,
+      "note": "Implemented in empirical step 8.",
+      "status": "PENDING_IMPLEMENTATION",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l4_smoke_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "L5",
+      "family": "L",
+      "implementation_status": "ready",
+      "expected_diff_fields": [
+        "granularity_weight_mode",
+        "site_weight_mode"
+      ],
+      "actual_diff_fields": [
+        "granularity_weight_mode",
+        "site_weight_mode"
+      ],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {
+        "granularity_weight_mode": {
+          "canonical": "difficulty_rate",
+          "effective": "uncertainty_precision"
+        },
+        "site_weight_mode": {
+          "canonical": "dynamic",
+          "effective": "static"
+        }
+      },
+      "passed": true,
+      "display_name": "Uncertainty weighting",
+      "trainable": true,
+      "paired_reference": "L3",
+      "declared_overrides": {
+        "granularity_weight_mode": "uncertainty_precision",
+        "site_weight_mode": "static"
+      },
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l5_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "L6",
+      "display_name": "Dynamic weight average",
+      "family": "L",
+      "implementation_status": "pending",
+      "trainable": true,
+      "paired_reference": "L3",
+      "expected_diff_fields": [
+        "granularity_weight_mode"
+      ],
+      "declared_overrides": {
+        "granularity_weight_mode": "dynamic_weight_average"
+      },
+      "passed": true,
+      "execution_ready": false,
+      "note": "Implemented in empirical step 8.",
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l6_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "L6",
+      "display_name": "Dynamic weight average",
+      "family": "L",
+      "implementation_status": "pending",
+      "trainable": true,
+      "paired_reference": "L3",
+      "expected_diff_fields": [
+        "granularity_weight_mode"
+      ],
+      "declared_overrides": {
+        "granularity_weight_mode": "dynamic_weight_average"
+      },
+      "passed": true,
+      "execution_ready": false,
+      "note": "Implemented in empirical step 8.",
+      "status": "PENDING_IMPLEMENTATION",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l6_smoke_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "L7",
+      "family": "L",
+      "implementation_status": "reference",
+      "expected_diff_fields": [
+        "loss_function",
+        "loss_protocol",
+        "use_msmg_dwu"
+      ],
+      "actual_diff_fields": [
+        "loss_function",
+        "loss_protocol",
+        "use_msmg_dwu"
+      ],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {
+        "loss_function": {
+          "canonical": "msmg_dwu_loss",
+          "effective": "masked_score_aligned_hybrid"
+        },
+        "use_msmg_dwu": {
+          "canonical": true,
+          "effective": false
+        },
+        "loss_protocol": {
+          "canonical": "method_full",
+          "effective": "fair_main"
+        }
+      },
+      "passed": true,
+      "display_name": "Score-aligned hybrid",
+      "trainable": false,
+      "paired_reference": "A8",
+      "declared_overrides": {
+        "use_msmg_dwu": false,
+        "loss_function": "masked_score_aligned_hybrid",
+        "loss_protocol": "fair_main"
+      },
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l7_empirical_v1"
+    },
+    {
+      "variant_id": "L7",
+      "family": "L",
+      "status": "REFERENCE_ONLY",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l7_smoke_v1",
+      "source_exists": true
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "R0",
+      "family": "R",
+      "implementation_status": "reference",
+      "expected_diff_fields": [],
+      "actual_diff_fields": [],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {},
+      "passed": true,
+      "display_name": "Canonical robustness reference",
+      "trainable": false,
+      "paired_reference": "full_fixed_dual_keep_msmgdwu_seed2026",
+      "declared_overrides": {},
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\R\\r0_empirical_v1"
+    },
+    {
+      "variant_id": "R0",
+      "family": "R",
+      "status": "REFERENCE_ONLY",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\R\\r0_smoke_v1",
+      "source_exists": true
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "T0",
+      "family": "T",
+      "implementation_status": "reference",
+      "expected_diff_fields": [],
+      "actual_diff_fields": [],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {},
+      "passed": true,
+      "display_name": "Canonical Fixed Dual reference",
+      "trainable": false,
+      "paired_reference": "full_fixed_dual_keep_msmgdwu_seed2026",
+      "declared_overrides": {},
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\dry_run\\T0"
+    },
+    {
+      "variant_id": "T0",
+      "family": "T",
+      "status": "REFERENCE_ONLY",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\full_shape\\T0",
+      "source_exists": true
+    },
+    {
+      "variant_id": "T0",
+      "family": "T",
+      "status": "REFERENCE_ONLY",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\smoke\\T0",
+      "source_exists": true
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "T0",
+      "family": "T",
+      "implementation_status": "reference",
+      "expected_diff_fields": [],
+      "actual_diff_fields": [],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {},
+      "passed": true,
+      "display_name": "Canonical Fixed Dual reference",
+      "trainable": false,
+      "paired_reference": "full_fixed_dual_keep_msmgdwu_seed2026",
+      "declared_overrides": {},
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\t0_empirical_v1"
+    },
+    {
+      "variant_id": "T0",
+      "family": "T",
+      "status": "REFERENCE_ONLY",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\t0_smoke_v1",
+      "source_exists": true
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "T1",
+      "family": "T",
+      "implementation_status": "ready",
+      "expected_diff_fields": [
+        "vadsp_gate_mode"
+      ],
+      "actual_diff_fields": [
+        "vadsp_gate_mode"
+      ],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {
+        "vadsp_gate_mode": {
+          "canonical": "fixed_dual",
+          "effective": "fine_only"
+        }
+      },
+      "passed": true,
+      "display_name": "Fine-only",
+      "trainable": true,
+      "paired_reference": "T0",
+      "declared_overrides": {
+        "vadsp_gate_mode": "fine_only"
+      },
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\dry_run\\T1"
+    },
+    {
+      "variant_id": "T1",
+      "family": "T",
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\full_shape\\T1",
+      "output_shape": [
+        32,
+        10,
+        134
+      ],
+      "peak_memory_mb": 3913.78564453125
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "T1",
+      "family": "T",
+      "implementation_status": "ready",
+      "expected_diff_fields": [
+        "vadsp_gate_mode"
+      ],
+      "actual_diff_fields": [
+        "vadsp_gate_mode"
+      ],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {
+        "vadsp_gate_mode": {
+          "canonical": "fixed_dual",
+          "effective": "fine_only"
+        }
+      },
+      "passed": true,
+      "display_name": "Fine-only",
+      "trainable": true,
+      "paired_reference": "T0",
+      "declared_overrides": {
+        "vadsp_gate_mode": "fine_only"
+      },
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\t1_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "T2",
+      "family": "T",
+      "implementation_status": "ready",
+      "expected_diff_fields": [
+        "vadsp_gate_mode"
+      ],
+      "actual_diff_fields": [
+        "vadsp_gate_mode"
+      ],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {
+        "vadsp_gate_mode": {
+          "canonical": "fixed_dual",
+          "effective": "coarse_only"
+        }
+      },
+      "passed": true,
+      "display_name": "Coarse-only",
+      "trainable": true,
+      "paired_reference": "T0",
+      "declared_overrides": {
+        "vadsp_gate_mode": "coarse_only"
+      },
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\dry_run\\T2"
+    },
+    {
+      "variant_id": "T2",
+      "family": "T",
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\full_shape\\T2",
+      "output_shape": [
+        32,
+        10,
+        134
+      ],
+      "peak_memory_mb": 4820.16455078125
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "T2",
+      "family": "T",
+      "implementation_status": "ready",
+      "expected_diff_fields": [
+        "vadsp_gate_mode"
+      ],
+      "actual_diff_fields": [
+        "vadsp_gate_mode"
+      ],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {
+        "vadsp_gate_mode": {
+          "canonical": "fixed_dual",
+          "effective": "coarse_only"
+        }
+      },
+      "passed": true,
+      "display_name": "Coarse-only",
+      "trainable": true,
+      "paired_reference": "T0",
+      "declared_overrides": {
+        "vadsp_gate_mode": "coarse_only"
+      },
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\t2_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "T3",
+      "family": "T",
+      "implementation_status": "ready",
+      "expected_diff_fields": [
+        "temporal_branch_transform"
+      ],
+      "actual_diff_fields": [
+        "temporal_branch_transform"
+      ],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {
+        "temporal_branch_transform": {
+          "canonical": "independent",
+          "effective": "shared"
+        }
+      },
+      "passed": true,
+      "display_name": "Shared temporal transform dual",
+      "trainable": true,
+      "paired_reference": "T0",
+      "declared_overrides": {
+        "temporal_branch_transform": "shared"
+      },
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\dry_run\\T3"
+    },
+    {
+      "variant_id": "T3",
+      "family": "T",
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\full_shape\\T3",
+      "output_shape": [
+        32,
+        10,
+        134
+      ],
+      "peak_memory_mb": 8356.0791015625
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "T3",
+      "display_name": "Shared temporal transform dual",
+      "family": "T",
+      "implementation_status": "pending",
+      "trainable": true,
+      "paired_reference": "T0",
+      "expected_diff_fields": [
+        "temporal_branch_transform"
+      ],
+      "declared_overrides": {
+        "temporal_branch_transform": "shared"
+      },
+      "passed": true,
+      "execution_ready": false,
+      "note": "Implemented in empirical step 3.",
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\t3_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "T3",
+      "display_name": "Shared temporal transform dual",
+      "family": "T",
+      "implementation_status": "pending",
+      "trainable": true,
+      "paired_reference": "T0",
+      "expected_diff_fields": [
+        "temporal_branch_transform"
+      ],
+      "declared_overrides": {
+        "temporal_branch_transform": "shared"
+      },
+      "passed": true,
+      "execution_ready": false,
+      "note": "Implemented in empirical step 3.",
+      "status": "PENDING_IMPLEMENTATION",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\t3_smoke_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "T4",
+      "family": "T",
+      "implementation_status": "ready",
+      "expected_diff_fields": [
+        "coarse_alignment_mode"
+      ],
+      "actual_diff_fields": [
+        "coarse_alignment_mode"
+      ],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {
+        "coarse_alignment_mode": {
+          "canonical": "same_axis",
+          "effective": "causal_downsample_upsample"
+        }
+      },
+      "passed": true,
+      "display_name": "Downsample-upsample Coarse dual",
+      "trainable": true,
+      "paired_reference": "T0",
+      "declared_overrides": {
+        "coarse_alignment_mode": "causal_downsample_upsample"
+      },
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\dry_run\\T4"
+    },
+    {
+      "variant_id": "T4",
+      "family": "T",
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\full_shape\\T4",
+      "output_shape": [
+        32,
+        10,
+        134
+      ],
+      "peak_memory_mb": 9312.8349609375
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "T4",
+      "display_name": "Downsample-upsample Coarse dual",
+      "family": "T",
+      "implementation_status": "pending",
+      "trainable": true,
+      "paired_reference": "T0",
+      "expected_diff_fields": [
+        "coarse_alignment_mode"
+      ],
+      "declared_overrides": {
+        "coarse_alignment_mode": "causal_downsample_upsample"
+      },
+      "passed": true,
+      "execution_ready": false,
+      "note": "Requires the causal resampling implementation and access audit from step 3.",
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\t4_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "T4",
+      "display_name": "Downsample-upsample Coarse dual",
+      "family": "T",
+      "implementation_status": "pending",
+      "trainable": true,
+      "paired_reference": "T0",
+      "expected_diff_fields": [
+        "coarse_alignment_mode"
+      ],
+      "declared_overrides": {
+        "coarse_alignment_mode": "causal_downsample_upsample"
+      },
+      "passed": true,
+      "execution_ready": false,
+      "note": "Requires the causal resampling implementation and access audit from step 3.",
+      "status": "PENDING_IMPLEMENTATION",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\t4_smoke_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "T5",
+      "family": "T",
+      "implementation_status": "ready",
+      "expected_diff_fields": [
+        "cross_granularity_interaction"
+      ],
+      "actual_diff_fields": [
+        "cross_granularity_interaction"
+      ],
+      "missing_expected_diff_fields": [],
+      "unexpected_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "differences": {
+        "cross_granularity_interaction": {
+          "canonical": "cross_fusion",
+          "effective": "direct_concat_mlp"
+        }
+      },
+      "passed": true,
+      "display_name": "Fixed Dual concat/MLP interaction",
+      "trainable": true,
+      "paired_reference": "T0",
+      "declared_overrides": {
+        "cross_granularity_interaction": "direct_concat_mlp"
+      },
+      "execution_ready": true,
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\dry_run\\T5"
+    },
+    {
+      "variant_id": "T5",
+      "family": "T",
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\full_shape\\T5",
+      "output_shape": [
+        32,
+        10,
+        134
+      ],
+      "peak_memory_mb": 8709.240234375
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "T5",
+      "display_name": "Fixed Dual concat/MLP interaction",
+      "family": "T",
+      "implementation_status": "pending",
+      "trainable": true,
+      "paired_reference": "T0",
+      "expected_diff_fields": [
+        "cross_granularity_interaction"
+      ],
+      "declared_overrides": {
+        "cross_granularity_interaction": "direct_concat_mlp"
+      },
+      "passed": true,
+      "execution_ready": false,
+      "note": "Requires the controlled direct concat/MLP path from step 3.",
+      "status": "DRY_RUN",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\t5_empirical_v1"
+    },
+    {
+      "protocol_id": "empirical_analysis_v1",
+      "variant_id": "T5",
+      "display_name": "Fixed Dual concat/MLP interaction",
+      "family": "T",
+      "implementation_status": "pending",
+      "trainable": true,
+      "paired_reference": "T0",
+      "expected_diff_fields": [
+        "cross_granularity_interaction"
+      ],
+      "declared_overrides": {
+        "cross_granularity_interaction": "direct_concat_mlp"
+      },
+      "passed": true,
+      "execution_ready": false,
+      "note": "Requires the controlled direct concat/MLP path from step 3.",
+      "status": "PENDING_IMPLEMENTATION",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\T\\t5_smoke_v1"
+    }
+  ]
+}

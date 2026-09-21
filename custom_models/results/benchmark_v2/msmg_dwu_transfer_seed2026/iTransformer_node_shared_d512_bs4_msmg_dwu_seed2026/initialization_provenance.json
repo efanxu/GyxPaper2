@@ -1,0 +1,11 @@
+{
+  "initialization_seed": 2026,
+  "initial_model_state_hash": null,
+  "exact_initial_state_pairing": "NOT_VERIFIED",
+  "rng_manifest": {
+    "seed": 2026,
+    "torch_rng_saved_in_checkpoint": true
+  },
+  "sampler_identity": "ProviderBatchIterable sequential formal starts",
+  "data_order_identity": "strict chronological train starts, stride=6, no shuffle"
+}

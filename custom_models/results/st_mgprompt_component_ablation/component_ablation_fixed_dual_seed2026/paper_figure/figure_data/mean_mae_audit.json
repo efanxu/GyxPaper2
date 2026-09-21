@@ -1,0 +1,218 @@
+[
+  {
+    "variant": "A0",
+    "horizon": 3,
+    "distribution_mean": 76.33717563517675,
+    "official_mae": 76.33942955875908,
+    "absolute_difference": 0.0022539235823302306,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A1",
+    "horizon": 3,
+    "distribution_mean": 85.8801465426706,
+    "official_mae": 85.87967738074794,
+    "absolute_difference": 0.0004691619226662169,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A2",
+    "horizon": 3,
+    "distribution_mean": 82.41794186492464,
+    "official_mae": 82.41692721724712,
+    "absolute_difference": 0.001014647677521907,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A3",
+    "horizon": 3,
+    "distribution_mean": 80.413649922155,
+    "official_mae": 80.4141367030879,
+    "absolute_difference": 0.000486780932902775,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A4",
+    "horizon": 3,
+    "distribution_mean": 87.2102108879927,
+    "official_mae": 87.20905019788103,
+    "absolute_difference": 0.0011606901116749668,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A5",
+    "horizon": 3,
+    "distribution_mean": 85.17190429505327,
+    "official_mae": 85.17045994968592,
+    "absolute_difference": 0.0014443453673465,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A6",
+    "horizon": 3,
+    "distribution_mean": 82.20776482029657,
+    "official_mae": 82.20814262394342,
+    "absolute_difference": 0.0003778036468418122,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A7",
+    "horizon": 3,
+    "distribution_mean": 88.21729739609545,
+    "official_mae": 88.2153250062636,
+    "absolute_difference": 0.0019723898318488864,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A8",
+    "horizon": 3,
+    "distribution_mean": 89.50132317960845,
+    "official_mae": 89.50451403834093,
+    "absolute_difference": 0.003190858732480706,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A0",
+    "horizon": 6,
+    "distribution_mean": 90.46015193298196,
+    "official_mae": 90.46171513146376,
+    "absolute_difference": 0.0015631984818043065,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A1",
+    "horizon": 6,
+    "distribution_mean": 98.38637133468701,
+    "official_mae": 98.38567411534402,
+    "absolute_difference": 0.0006972193429959361,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A2",
+    "horizon": 6,
+    "distribution_mean": 96.78232465594593,
+    "official_mae": 96.78146369258228,
+    "absolute_difference": 0.0008609633636496028,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A3",
+    "horizon": 6,
+    "distribution_mean": 95.43629560209934,
+    "official_mae": 95.436681716849,
+    "absolute_difference": 0.00038611474965932757,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A4",
+    "horizon": 6,
+    "distribution_mean": 100.72937557279113,
+    "official_mae": 100.72851391348726,
+    "absolute_difference": 0.0008616593038652809,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A5",
+    "horizon": 6,
+    "distribution_mean": 97.38722259369194,
+    "official_mae": 97.3863861549692,
+    "absolute_difference": 0.0008364387227430825,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A6",
+    "horizon": 6,
+    "distribution_mean": 95.01968120758238,
+    "official_mae": 95.01996914308968,
+    "absolute_difference": 0.00028793550730199513,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A7",
+    "horizon": 6,
+    "distribution_mean": 98.79633616827446,
+    "official_mae": 98.79487221977995,
+    "absolute_difference": 0.0014639484945178083,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A8",
+    "horizon": 6,
+    "distribution_mean": 101.47545089042153,
+    "official_mae": 101.47805400478595,
+    "absolute_difference": 0.002603114364418957,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A0",
+    "horizon": 10,
+    "distribution_mean": 105.41181837051266,
+    "official_mae": 105.41287395398908,
+    "absolute_difference": 0.0010555834764147676,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A1",
+    "horizon": 10,
+    "distribution_mean": 111.97243471455907,
+    "official_mae": 111.97175038372599,
+    "absolute_difference": 0.0006843308330815034,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A2",
+    "horizon": 10,
+    "distribution_mean": 111.83538298216703,
+    "official_mae": 111.83473093814827,
+    "absolute_difference": 0.0006520440187642862,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A3",
+    "horizon": 10,
+    "distribution_mean": 110.56404232530872,
+    "official_mae": 110.56446379556643,
+    "absolute_difference": 0.0004214702577058915,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A4",
+    "horizon": 10,
+    "distribution_mean": 115.0244822328149,
+    "official_mae": 115.02377220373323,
+    "absolute_difference": 0.0007100290816737242,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A5",
+    "horizon": 10,
+    "distribution_mean": 110.79423275514694,
+    "official_mae": 110.79384044345592,
+    "absolute_difference": 0.0003923116910158342,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A6",
+    "horizon": 10,
+    "distribution_mean": 109.00652934933315,
+    "official_mae": 109.0069387460383,
+    "absolute_difference": 0.0004093967051517211,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A7",
+    "horizon": 10,
+    "distribution_mean": 111.33669539280713,
+    "official_mae": 111.33556602248989,
+    "absolute_difference": 0.0011293703172441383,
+    "same_at_one_decimal": true
+  },
+  {
+    "variant": "A8",
+    "horizon": 10,
+    "distribution_mean": 113.78286211518417,
+    "official_mae": 113.78496839750896,
+    "absolute_difference": 0.002106282324788822,
+    "same_at_one_decimal": true
+  }
+]

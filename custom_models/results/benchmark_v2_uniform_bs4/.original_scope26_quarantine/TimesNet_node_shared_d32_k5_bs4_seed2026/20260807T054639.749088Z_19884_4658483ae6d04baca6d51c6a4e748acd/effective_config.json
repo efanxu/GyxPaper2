@@ -1,0 +1,354 @@
+{
+  "model_id": "timesnet",
+  "task_name": "long_term_forecast",
+  "run_mode": "formal",
+  "seq_len": 144,
+  "pred_len": 10,
+  "enc_in": 16,
+  "input_mode": "multivariate",
+  "output_mode": "single_target",
+  "target_column": "Patv_raw",
+  "selected_power_feature": "Patv_clean_for_input",
+  "output_policy": "select_power_associated_channel",
+  "node_semantics": "node_shared",
+  "cross_node_interaction": false,
+  "uses_graph": false,
+  "uses_node_embedding": false,
+  "uses_future_target": false,
+  "uses_future_observed_covariates": false,
+  "uses_future_calendar_covariates": false,
+  "optimizer": "Adam",
+  "learning_rate": 0.001,
+  "weight_decay": 0.0,
+  "scheduler": null,
+  "gradient_clip": null,
+  "epochs": 20,
+  "patience": 6,
+  "min_delta": 0.01,
+  "seed": 2026,
+  "amp_enabled": true,
+  "loss": "masked_mse",
+  "loss_space": "normalized_target_space",
+  "checkpoint_metric": "validation_official_score_h10",
+  "checkpoint_direction": "lower_is_better",
+  "protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "upstream_project": "THUML/Time-Series-Library",
+  "upstream_license_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\LICENSE",
+  "source_modified": false,
+  "validation_search_performed": false,
+  "test_result_used": false,
+  "initialization_policy": "Upstream TSLib initialization after benchmark_v2 seed",
+  "label_len": 48,
+  "c_out": 16,
+  "d_model": 32,
+  "d_ff": 32,
+  "e_layers": 2,
+  "top_k": 5,
+  "num_kernels": 6,
+  "dropout": 0.1,
+  "embed": "timeF",
+  "freq": "h",
+  "raw_output_channels": 16,
+  "frequency_bins": 73,
+  "period_source": "dynamic_fft_of_history_only",
+  "time_mark_policy": "none",
+  "amp_fft_policy": "FFT FP32; convolution and backward under AMP",
+  "wrapper_path": "custom_models/src/benchmark_v2/models/timesnet.py",
+  "adapter_path": "custom_models/src/benchmark_v2/adapters/e2_b.py",
+  "model_specific_parameters": {
+    "label_len": 48,
+    "c_out": 16,
+    "d_model": 32,
+    "d_ff": 32,
+    "e_layers": 2,
+    "top_k": 5,
+    "num_kernels": 6,
+    "dropout": 0.1,
+    "embed": "timeF",
+    "freq": "h"
+  },
+  "config_resolution_reason": "local official Weather long-term forecasting script; fixed before smoke",
+  "oom_driven_capacity_reduction": false,
+  "upstream_source_path": "D:\\PaperProject\\GyxPaper2\\Time-Series-Library\\models\\TimesNet.py",
+  "upstream_source_relative_path": "Time-Series-Library/models/TimesNet.py",
+  "upstream_source_sha256": "f64c4bed1fd7347090044a0163bd4209c9f9ec1c1b19ceff47842df36b64bba7",
+  "upstream_license_sha256": "3892254202fc16573828d34ec901ab765d8eb73a03d174b131a49771adcd8d64",
+  "parameter_count": 1196810,
+  "trainable_parameter_count": 1196810,
+  "base_benchmark_protocol_hash": "0140d8774e2cc189a8bd99f1fc9c8a120b565265bf9a7c729ed1d47a0b1c069b",
+  "training_batch_profile_id": "uniform_train_batch4_v1",
+  "training_batch_profile_hash": "f58bbc161dfba0f00774879fdf2f78ec7c59a7faff9ef28a1733a2ed6835fe66",
+  "train_batch_size": 4,
+  "val_batch_size": 4,
+  "test_batch_size": 4,
+  "gradient_accumulation_steps": 1,
+  "effective_train_batch_size": 4,
+  "precision_policy": "profile_default",
+  "precision_resolution": {
+    "requested_amp_enabled": true,
+    "effective_amp_enabled": true,
+    "reason": "uniform_train_batch4_v1 profile default; no model-specific override."
+  },
+  "active_scope_id": "benchmark_v2_batch4_scope26_seed2026",
+  "current_scope_manifest_hash": "57a93bb4219bfd437d73d34638aed883723511f77120da71ad39e9e5f4f6775f",
+  "current_scope_entry_id": "original_scope26_timesnet",
+  "run_id": "TimesNet_node_shared_d32_k5_bs4_seed2026",
+  "output_root": "custom_models/results/benchmark_v2_uniform_bs4/e2_b_seed2026",
+  "model_config_hash": "4ddd96fb22cf66513e8692050cbed0bbb2c3bf0f07dcd3c7deabb8009aebed5e",
+  "source_closure_hash": "77d3dee0bbccc4b8b4907401d9b811a4bfa86a42e888f8ac81c2028eaf59e8ad",
+  "source_identity": {
+    "source_identity_schema_version": "model_source_identity_v1",
+    "model_id": "timesnet",
+    "source_closure_files": [
+      {
+        "path": "Time-Series-Library/layers/Conv_Blocks.py",
+        "sha256": "16d9f2d9e4fa094dc357901e32beecda9839709bcca02625e6447186933ce4e1",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "Time-Series-Library/layers/Embed.py",
+        "sha256": "17e7c3577324c41a0da427a199c955b782fde905aabb1f7cbc3c4e15ebd4ae35",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "Time-Series-Library/models/TimesNet.py",
+        "sha256": "f64c4bed1fd7347090044a0163bd4209c9f9ec1c1b19ceff47842df36b64bba7",
+        "role": "model implementation source"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/adapters/e2_b.py",
+        "sha256": "4e002b7cc250695d25f6b041f1ce03e9493e98d247d05601d4d6026571d78d72",
+        "role": "benchmark adapter implementation"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+        "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+        "role": "shared adapter contract used by the model adapter"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/adapters/tslib_channel.py",
+        "sha256": "ee615be94e84efd4ee7891bf675f4822d8ed442bf567e34f512774013c4c9fce",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/configs/timesnet.py",
+        "sha256": "8827368d682f80ec96b9693564a778315591d09f77057b157dc29929508986ce",
+        "role": "model-specific config resolver"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/configs/tslib_common.py",
+        "sha256": "a1d3557d64e66a16ddd9a9b229d148c3a578f6b9b61b85a092e9d7cfac1a7571",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/__init__.py",
+        "sha256": "9ba4e8c4d76989120b710b9ca1db9aa9d4720c5b1983d6eeae127474f9884a01",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/adapter.py",
+        "sha256": "e2868b37e6e10f5528cd4d558f453796095b4ee7f86c11ea3ea1412b00605e2f",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/batch.py",
+        "sha256": "f497787a9b5919e2c024fbc6d41f57a9b81e940ec28bc4d053acab1edc5e4769",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/graph_context.py",
+        "sha256": "efac213ae52c324a31ce633639fde19267406268d3328405fea2ee1dbe093955",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/output.py",
+        "sha256": "c700fe01bc460e9f906e831a6f7616bb6f054a113be83bdf52164e449c02f582",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/data/signatures.py",
+        "sha256": "a19ce73d14ba575330accd80efbf7197deec5b54b7630c05e55c154a817acc3f",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/errors.py",
+        "sha256": "eefb85b8e9b8157ff8a17ea80cccb877d8b6f15461e78a2beeedafd2229a2a47",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/model_factories/registry.py",
+        "sha256": "7273c2ad3936113e7a73341aa7640d3c7438c7eb27c1b84084d09e67c410139a",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/model_factories/timesnet.py",
+        "sha256": "8a750011dc5d0651904143eb9227967eaaca92cf7d9f5e699c601da58d35a660",
+        "role": "selected fixed model factory boundary"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/model_runtime.py",
+        "sha256": "301ff1f6a833ffdfa2b2d42303c74950366d982bbef194ab314d5ea0bc83f307",
+        "role": "explicit model runtime builder"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/models/timesnet.py",
+        "sha256": "95bd735cca819ee750af34d705db82b9b45216cec3a39b8805e5bda9f8c52896",
+        "role": "benchmark model wrapper"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/registry/__init__.py",
+        "sha256": "d1e3c099ebb3c5de22b9d017185efb27cd0ac3226739ccf37d3ef0c242e447f5",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/registry/registry.py",
+        "sha256": "fe84aaa9a6b46027dc57729948c8ae1a1c3e8ef2ffc895879f880e40b6a07423",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/upstream/__init__.py",
+        "sha256": "64f21ae3da1938045f3902aecb48b581171286d09303177be369f7544a47b42d",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+        "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9",
+        "role": "audited TSLib loader and source resolver"
+      }
+    ],
+    "canonical_combined_hash": "77d3dee0bbccc4b8b4907401d9b811a4bfa86a42e888f8ac81c2028eaf59e8ad",
+    "source_closure_cycles": []
+  },
+  "source_revision": {
+    "git_commit": "41ed7f1145e39945ae6541c3467aaa0d58286122",
+    "source_revision_type": "git"
+  },
+  "formal_training": true,
+  "provenance": {
+    "active_scope_id": "benchmark_v2_batch4_scope26_seed2026",
+    "base_model_id": "timesnet",
+    "base_model_config_hash": "4ddd96fb22cf66513e8692050cbed0bbb2c3bf0f07dcd3c7deabb8009aebed5e",
+    "base_model_source_closure_hash": "77d3dee0bbccc4b8b4907401d9b811a4bfa86a42e888f8ac81c2028eaf59e8ad",
+    "base_model_source_identity_schema_version": "model_source_identity_v1",
+    "base_model_source_closure_files": [
+      {
+        "path": "Time-Series-Library/layers/Conv_Blocks.py",
+        "sha256": "16d9f2d9e4fa094dc357901e32beecda9839709bcca02625e6447186933ce4e1",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "Time-Series-Library/layers/Embed.py",
+        "sha256": "17e7c3577324c41a0da427a199c955b782fde905aabb1f7cbc3c4e15ebd4ae35",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "Time-Series-Library/models/TimesNet.py",
+        "sha256": "f64c4bed1fd7347090044a0163bd4209c9f9ec1c1b19ceff47842df36b64bba7",
+        "role": "model implementation source"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/adapters/e2_b.py",
+        "sha256": "4e002b7cc250695d25f6b041f1ce03e9493e98d247d05601d4d6026571d78d72",
+        "role": "benchmark adapter implementation"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/adapters/node_shared.py",
+        "sha256": "151b34f010f2883402a43153bdbdbb8e7858efc6c09fde853d59a92e0e44cf8d",
+        "role": "shared adapter contract used by the model adapter"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/adapters/tslib_channel.py",
+        "sha256": "ee615be94e84efd4ee7891bf675f4822d8ed442bf567e34f512774013c4c9fce",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/configs/timesnet.py",
+        "sha256": "8827368d682f80ec96b9693564a778315591d09f77057b157dc29929508986ce",
+        "role": "model-specific config resolver"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/configs/tslib_common.py",
+        "sha256": "a1d3557d64e66a16ddd9a9b229d148c3a578f6b9b61b85a092e9d7cfac1a7571",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/__init__.py",
+        "sha256": "9ba4e8c4d76989120b710b9ca1db9aa9d4720c5b1983d6eeae127474f9884a01",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/adapter.py",
+        "sha256": "e2868b37e6e10f5528cd4d558f453796095b4ee7f86c11ea3ea1412b00605e2f",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/batch.py",
+        "sha256": "f497787a9b5919e2c024fbc6d41f57a9b81e940ec28bc4d053acab1edc5e4769",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/graph_context.py",
+        "sha256": "efac213ae52c324a31ce633639fde19267406268d3328405fea2ee1dbe093955",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/contracts/output.py",
+        "sha256": "c700fe01bc460e9f906e831a6f7616bb6f054a113be83bdf52164e449c02f582",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/data/signatures.py",
+        "sha256": "a19ce73d14ba575330accd80efbf7197deec5b54b7630c05e55c154a817acc3f",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/errors.py",
+        "sha256": "eefb85b8e9b8157ff8a17ea80cccb877d8b6f15461e78a2beeedafd2229a2a47",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/model_factories/registry.py",
+        "sha256": "7273c2ad3936113e7a73341aa7640d3c7438c7eb27c1b84084d09e67c410139a",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/model_factories/timesnet.py",
+        "sha256": "8a750011dc5d0651904143eb9227967eaaca92cf7d9f5e699c601da58d35a660",
+        "role": "selected fixed model factory boundary"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/model_runtime.py",
+        "sha256": "301ff1f6a833ffdfa2b2d42303c74950366d982bbef194ab314d5ea0bc83f307",
+        "role": "explicit model runtime builder"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/models/timesnet.py",
+        "sha256": "95bd735cca819ee750af34d705db82b9b45216cec3a39b8805e5bda9f8c52896",
+        "role": "benchmark model wrapper"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/registry/__init__.py",
+        "sha256": "d1e3c099ebb3c5de22b9d017185efb27cd0ac3226739ccf37d3ef0c242e447f5",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/registry/registry.py",
+        "sha256": "fe84aaa9a6b46027dc57729948c8ae1a1c3e8ef2ffc895879f880e40b6a07423",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/upstream/__init__.py",
+        "sha256": "64f21ae3da1938045f3902aecb48b581171286d09303177be369f7544a47b42d",
+        "role": "transitive repository-local import"
+      },
+      {
+        "path": "custom_models/src/benchmark_v2/upstream/tslib_loader.py",
+        "sha256": "7266fe8c3fab0e75181d340dc1d7cc72621ad457abab5238763baa6441ed57f9",
+        "role": "audited TSLib loader and source resolver"
+      }
+    ]
+  },
+  "artifact_profile": "TRAIN",
+  "formal_worker_pid": 19088,
+  "formal_registry_entry": true
+}

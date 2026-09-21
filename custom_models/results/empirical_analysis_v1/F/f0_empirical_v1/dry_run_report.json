@@ -1,0 +1,36 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "F0",
+  "family": "F",
+  "implementation_status": "ready",
+  "expected_diff_fields": [
+    "use_cross_fusion",
+    "use_macro_prompt"
+  ],
+  "actual_diff_fields": [
+    "use_cross_fusion",
+    "use_macro_prompt"
+  ],
+  "missing_expected_diff_fields": [],
+  "unexpected_diff_fields": [],
+  "frozen_protocol_changes": [],
+  "differences": {
+    "use_macro_prompt": {
+      "canonical": true,
+      "effective": false
+    },
+    "use_cross_fusion": {
+      "canonical": true,
+      "effective": false
+    }
+  },
+  "passed": true,
+  "display_name": "Independent dual branches",
+  "trainable": true,
+  "paired_reference": "F7",
+  "declared_overrides": {
+    "use_macro_prompt": false,
+    "use_cross_fusion": false
+  },
+  "execution_ready": true
+}

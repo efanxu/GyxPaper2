@@ -1,0 +1,18 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "G3",
+  "display_name": "Swapped Micro/Macro graphs",
+  "family": "G",
+  "implementation_status": "pending",
+  "trainable": true,
+  "paired_reference": "G0",
+  "expected_diff_fields": [
+    "branch_graph_assignment"
+  ],
+  "declared_overrides": {
+    "branch_graph_assignment": "swapped"
+  },
+  "passed": true,
+  "execution_ready": false,
+  "note": "Implemented in empirical step 4."
+}

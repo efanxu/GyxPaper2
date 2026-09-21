@@ -18,8 +18,19 @@ class STMGPromptCouplingBlock(nn.Module):
         self.config = config
         self.collect_detailed_diagnostics = config.diagnostics_level in {"standard", "full"}
         self.use_graph = bool(config.use_graph_in_temporal_encoder)
-        self.use_macro_prompt = bool(config.use_macro_prompt)
-        self.use_cross_fusion = bool(config.use_cross_fusion)
+        self.branch_mode = str(config.vadsp_gate_mode)
+        self.temporal_branch_transform = str(config.temporal_branch_transform)
+        self.cross_granularity_interaction = str(config.cross_granularity_interaction)
+        self.use_macro_prompt = bool(
+            config.use_macro_prompt
+            and self.cross_granularity_interaction == "cross_fusion"
+            and self.branch_mode != "fine_only"
+        )
+        self.use_cross_fusion = bool(
+            config.use_cross_fusion
+            and self.cross_granularity_interaction == "cross_fusion"
+            and self.branch_mode not in {"fine_only", "coarse_only"}
+        )
         self.fine_micro_graph_temporal_encoder = FineMicroGraphTemporalEncoder(
             hidden_dim=D,
             kernel_size=config.fine_tcn_kernel_size,
@@ -46,6 +57,19 @@ class STMGPromptCouplingBlock(nn.Module):
             use_temporal_attention=config.use_temporal_attention,
             temporal_attention_heads=config.temporal_attention_heads,
         )
+        self.shared_temporal_output_projections = None
+        if self.temporal_branch_transform == "shared":
+            shared_transform = self.fine_micro_graph_temporal_encoder.block.causal_tcn
+            self.coarse_macro_graph_temporal_encoder.block.causal_tcn = shared_transform
+            self.shared_temporal_output_projections = nn.ModuleDict(
+                {
+                    "fine": nn.Linear(D, D),
+                    "coarse": nn.Linear(D, D),
+                }
+            )
+            for projection in self.shared_temporal_output_projections.values():
+                nn.init.eye_(projection.weight)
+                nn.init.zeros_(projection.bias)
         self.macro_prompt_encoder = (
             MacroTrendPrompt(
                 hidden_dim=D,
@@ -74,6 +98,22 @@ class STMGPromptCouplingBlock(nn.Module):
             if self.use_cross_fusion
             else None
         )
+        self.direct_concat_mlp = None
+        if self.cross_granularity_interaction == "direct_concat_mlp":
+            activation = nn.GELU if config.direct_concat_mlp_activation == "gelu" else nn.ReLU
+            layers: list[nn.Module]
+            if config.direct_concat_mlp_layers == 2:
+                width = int(config.direct_concat_mlp_hidden_dim)
+                layers = [
+                    nn.Linear(D * 2, width),
+                    activation(),
+                    nn.Dropout(config.dropout),
+                    nn.Linear(width, D),
+                ]
+            else:
+                layers = [nn.Linear(D * 2, D)]
+            layers.append(nn.LayerNorm(D))
+            self.direct_concat_mlp = nn.Sequential(*layers)
 
     def forward(
         self,
@@ -83,18 +123,31 @@ class STMGPromptCouplingBlock(nn.Module):
         A_macro: Tensor | None,
         st_prompt_context=None,
     ) -> tuple[Tensor, Tensor, dict]:
-        if self.collect_detailed_diagnostics:
+        micro_graph_aux = {}
+        macro_graph_aux = {}
+        if self.branch_mode == "coarse_only":
+            h_fine = torch.zeros_like(x_fine)
+        elif self.collect_detailed_diagnostics:
             h_fine, micro_graph_aux = self.fine_micro_graph_temporal_encoder(
                 x_fine, A_micro if self.use_graph else None, return_aux=True
             )
+        else:
+            h_fine = self.fine_micro_graph_temporal_encoder(x_fine, A_micro if self.use_graph else None)
+        if self.branch_mode == "fine_only":
+            h_coarse = torch.zeros_like(x_coarse)
+        elif self.collect_detailed_diagnostics:
             h_coarse, macro_graph_aux = self.coarse_macro_graph_temporal_encoder(
                 x_coarse, A_macro if self.use_graph else None, return_aux=True
             )
         else:
-            h_fine = self.fine_micro_graph_temporal_encoder(x_fine, A_micro if self.use_graph else None)
             h_coarse = self.coarse_macro_graph_temporal_encoder(x_coarse, A_macro if self.use_graph else None)
-            micro_graph_aux = {}
-            macro_graph_aux = {}
+        if self.shared_temporal_output_projections is not None:
+            h_fine = self.shared_temporal_output_projections["fine"](h_fine)
+            h_coarse = self.shared_temporal_output_projections["coarse"](h_coarse)
+        if self.branch_mode == "coarse_only":
+            h_fine = torch.zeros_like(h_fine)
+        if self.branch_mode == "fine_only":
+            h_coarse = torch.zeros_like(h_coarse)
         if self.macro_prompt_encoder is None:
             macro_prompt = None
             prompt_aux = {
@@ -105,7 +158,28 @@ class STMGPromptCouplingBlock(nn.Module):
             }
         else:
             macro_prompt, prompt_aux = self.macro_prompt_encoder(h_coarse)
-        if self.symmetric_cross_fusion is None:
+        if self.direct_concat_mlp is not None:
+            macro_prompt = None
+            fused = self.direct_concat_mlp(torch.cat([h_fine, h_coarse], dim=-1))
+            new_fine, new_coarse = fused, fused
+            fusion_aux = {
+                "macro_attn_entropy": None,
+                "fine_attn_entropy": None,
+                "fusion_gate_mean": None,
+                "fusion_gate_std": None,
+                "attention_weights_requested": False,
+                "entropy_called": False,
+                "cross_fusion_uses_spatial_enhanced_features": False,
+                "disable_reverse_cross": True,
+                "disable_macro_to_fine_cross": True,
+                "macro_to_fine_mode": "disabled",
+                "macro_to_fine_exclude_recent_len": 0,
+                "share_cross_attention_projections": False,
+                "fusion_mode": "direct_concat_mlp",
+                "coarse_to_fine_source": "none",
+                "direct_concat_mlp_called": True,
+            }
+        elif self.symmetric_cross_fusion is None:
             # Strict w/o Cross-Fusion: no add/concat substitute and no shared
             # cross-attention; the two graph-temporal histories remain separate.
             new_fine, new_coarse = h_fine, h_coarse
@@ -126,6 +200,7 @@ class STMGPromptCouplingBlock(nn.Module):
                 ),
                 "fusion_mode": "independent",
                 "coarse_to_fine_source": "none",
+                "direct_concat_mlp_called": False,
             }
         else:
             new_fine, new_coarse, fusion_aux = self.symmetric_cross_fusion(
@@ -168,6 +243,12 @@ class STMGPromptCouplingBlock(nn.Module):
             "cross_fusion_uses_spatial_enhanced_features": self.use_cross_fusion,
             "uses_macro_prompt": self.use_macro_prompt,
             "uses_cross_fusion": self.use_cross_fusion,
+            "temporal_branch_transform": self.temporal_branch_transform,
+            "shared_temporal_parameters": self.temporal_branch_transform == "shared",
+            "cross_granularity_interaction": self.cross_granularity_interaction,
+            "direct_concat_mlp_called": bool(fusion_aux.get("direct_concat_mlp_called", False)),
+            "fine_branch_active": self.branch_mode != "coarse_only",
+            "coarse_branch_active": self.branch_mode != "fine_only",
         }
         for key, value in micro_graph_aux.items():
             aux[f"micro_{key}"] = value

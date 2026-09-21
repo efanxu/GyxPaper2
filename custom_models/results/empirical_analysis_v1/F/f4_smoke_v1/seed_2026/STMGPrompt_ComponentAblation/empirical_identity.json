@@ -1,0 +1,22 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant": {
+    "variant_id": "F4",
+    "display_name": "Macro-to-Fine only",
+    "family": "F",
+    "base_config": "CANONICAL_FULL",
+    "config_overrides": {
+      "disable_reverse_cross": true
+    },
+    "expected_unique_diff": [
+      "disable_reverse_cross"
+    ],
+    "trainable": true,
+    "paired_reference": "F7",
+    "implementation_status": "ready",
+    "implementation_note": "",
+    "reference_only": false
+  },
+  "seed": 2026,
+  "mode": "smoke"
+}

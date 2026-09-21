@@ -1,0 +1,7 @@
+﻿graph,semantic,assignment,edge_count,mean_semantic_fit,weighted_mean_semantic_fit,mean_edge_length,global_support_jaccard_micro_macro,fit_split,interpretation_scope
+Micro,delta_wspd_cosine,matched,49,0.5480998744381553,0.5499604094997291,2.852331647418906,0.875,train,statistical_association_not_physical_causality
+Micro,ma36_patv_correlation,crossed,49,0.9990207809795105,0.9990393110684157,2.852331647418906,0.875,train,statistical_association_not_physical_causality
+Macro,delta_wspd_cosine,crossed,56,0.5451793757595459,0.5463377819378974,3.082099910176805,0.875,train,statistical_association_not_physical_causality
+Macro,ma36_patv_correlation,matched,56,0.9990078124983021,0.999019865007674,3.082099910176805,0.875,train,statistical_association_not_physical_causality
+Distance,delta_wspd_cosine,reference,40,0.5482911025772317,0.5490403480408771,2.2865619032664304,0.875,train,statistical_association_not_physical_causality
+Distance,ma36_patv_correlation,reference,40,0.9990219870564196,0.9990478979463165,2.2865619032664304,0.875,train,statistical_association_not_physical_causality

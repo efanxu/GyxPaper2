@@ -1,0 +1,22 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant": {
+    "variant_id": "F2",
+    "display_name": "Concat + MLP",
+    "family": "F",
+    "base_config": "CANONICAL_FULL",
+    "config_overrides": {
+      "fusion_mode": "concat"
+    },
+    "expected_unique_diff": [
+      "fusion_mode"
+    ],
+    "trainable": true,
+    "paired_reference": "F7",
+    "implementation_status": "ready",
+    "implementation_note": "",
+    "reference_only": false
+  },
+  "seed": 2026,
+  "mode": "smoke"
+}

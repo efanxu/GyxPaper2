@@ -1,0 +1,18 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "G2",
+  "display_name": "Shared Macro graph",
+  "family": "G",
+  "implementation_status": "pending",
+  "trainable": true,
+  "paired_reference": "G0",
+  "expected_diff_fields": [
+    "branch_graph_assignment"
+  ],
+  "declared_overrides": {
+    "branch_graph_assignment": "shared_macro"
+  },
+  "passed": true,
+  "execution_ready": false,
+  "note": "Implemented in empirical step 4."
+}

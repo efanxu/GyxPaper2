@@ -1,0 +1,326 @@
+{
+  "canonical_source": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026",
+  "component_result_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026",
+  "source_artifacts_modified": false,
+  "variants": [
+    {
+      "variant": "A0",
+      "display_name": "Canonical Full",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\best_checkpoint.pt",
+      "checkpoint_epoch": 12,
+      "checkpoint_best_epoch": 12,
+      "protocol_check_passed": true,
+      "metrics_present": true,
+      "formal_config_diff": {
+        "passed": true,
+        "actual_diff_fields": [],
+        "unexpected_diff_fields": [],
+        "missing_expected_diff_fields": []
+      },
+      "checkpoint_config_semantic_mismatches": [
+        "site_weight_mode",
+        "vadsp_gate_mode"
+      ],
+      "accepted_checkpoint_semantic_mismatches": [
+        "site_weight_mode",
+        "vadsp_gate_mode"
+      ],
+      "passed": true,
+      "note": null
+    },
+    {
+      "variant": "A1",
+      "display_name": "w/o Spatial Graph",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A1\\STMGPrompt_ComponentAblation",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A1\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+      "checkpoint_epoch": 10,
+      "checkpoint_best_epoch": 10,
+      "protocol_check_passed": true,
+      "metrics_present": true,
+      "formal_config_diff": {
+        "variant": "A1",
+        "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+        "effective_diff_count": 1,
+        "expected_diff_fields": [
+          "use_graph_in_temporal_encoder"
+        ],
+        "actual_diff_fields": [
+          "use_graph_in_temporal_encoder"
+        ],
+        "unexpected_diff_fields": [],
+        "missing_expected_diff_fields": [],
+        "unexpected_effective_diff_count": 0,
+        "differences": {
+          "use_graph_in_temporal_encoder": {
+            "canonical": true,
+            "effective": false
+          }
+        },
+        "passed": true
+      },
+      "checkpoint_config_semantic_mismatches": [],
+      "accepted_checkpoint_semantic_mismatches": [],
+      "passed": true,
+      "note": "The formal checkpoint and config.json are a valid A1 run. A later incomplete launch overwrote active_config.json and requested_config.json with A8 values and left an orphan TRAIN_STARTED event; those mutable files are not used here."
+    },
+    {
+      "variant": "A2",
+      "display_name": "w/o Adaptive Graph",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A2\\STMGPrompt_ComponentAblation",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A2\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+      "checkpoint_epoch": 19,
+      "checkpoint_best_epoch": 19,
+      "protocol_check_passed": true,
+      "metrics_present": true,
+      "formal_config_diff": {
+        "variant": "A2",
+        "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+        "effective_diff_count": 1,
+        "expected_diff_fields": [
+          "use_adaptive_graph"
+        ],
+        "actual_diff_fields": [
+          "use_adaptive_graph"
+        ],
+        "unexpected_diff_fields": [],
+        "missing_expected_diff_fields": [],
+        "unexpected_effective_diff_count": 0,
+        "differences": {
+          "use_adaptive_graph": {
+            "canonical": true,
+            "effective": false
+          }
+        },
+        "passed": true
+      },
+      "checkpoint_config_semantic_mismatches": [],
+      "accepted_checkpoint_semantic_mismatches": [],
+      "passed": true,
+      "note": null
+    },
+    {
+      "variant": "A3",
+      "display_name": "w/o Diffusion",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A3\\STMGPrompt_ComponentAblation",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A3\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+      "checkpoint_epoch": 12,
+      "checkpoint_best_epoch": 12,
+      "protocol_check_passed": true,
+      "metrics_present": true,
+      "formal_config_diff": {
+        "variant": "A3",
+        "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+        "effective_diff_count": 1,
+        "expected_diff_fields": [
+          "graph_operator"
+        ],
+        "actual_diff_fields": [
+          "graph_operator"
+        ],
+        "unexpected_diff_fields": [],
+        "missing_expected_diff_fields": [],
+        "unexpected_effective_diff_count": 0,
+        "differences": {
+          "graph_operator": {
+            "canonical": "bi_diffusion",
+            "effective": "simple"
+          }
+        },
+        "passed": true
+      },
+      "checkpoint_config_semantic_mismatches": [],
+      "accepted_checkpoint_semantic_mismatches": [],
+      "passed": true,
+      "note": null
+    },
+    {
+      "variant": "A4",
+      "display_name": "Mean-Pooling Macro Prompt",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A4\\STMGPrompt_ComponentAblation",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A4\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+      "checkpoint_epoch": 20,
+      "checkpoint_best_epoch": 20,
+      "protocol_check_passed": true,
+      "metrics_present": true,
+      "formal_config_diff": {
+        "variant": "A4",
+        "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+        "effective_diff_count": 1,
+        "expected_diff_fields": [
+          "macro_prompt_pooling"
+        ],
+        "actual_diff_fields": [
+          "macro_prompt_pooling"
+        ],
+        "unexpected_diff_fields": [],
+        "missing_expected_diff_fields": [],
+        "unexpected_effective_diff_count": 0,
+        "differences": {
+          "macro_prompt_pooling": {
+            "canonical": "attention",
+            "effective": "mean"
+          }
+        },
+        "passed": true
+      },
+      "checkpoint_config_semantic_mismatches": [],
+      "accepted_checkpoint_semantic_mismatches": [],
+      "passed": true,
+      "note": null
+    },
+    {
+      "variant": "A5",
+      "display_name": "Short-context Reverse Cross",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A5\\STMGPrompt_ComponentAblation",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A5\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+      "checkpoint_epoch": 13,
+      "checkpoint_best_epoch": 13,
+      "protocol_check_passed": true,
+      "metrics_present": true,
+      "formal_config_diff": {
+        "variant": "A5",
+        "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+        "effective_diff_count": 1,
+        "expected_diff_fields": [
+          "cross_fusion_recent_len"
+        ],
+        "actual_diff_fields": [
+          "cross_fusion_recent_len"
+        ],
+        "unexpected_diff_fields": [],
+        "missing_expected_diff_fields": [],
+        "unexpected_effective_diff_count": 0,
+        "differences": {
+          "cross_fusion_recent_len": {
+            "canonical": 24,
+            "effective": 6
+          }
+        },
+        "passed": true
+      },
+      "checkpoint_config_semantic_mismatches": [],
+      "accepted_checkpoint_semantic_mismatches": [],
+      "passed": true,
+      "note": null
+    },
+    {
+      "variant": "A6",
+      "display_name": "Early-History Macro Cross Fusion",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6\\STMGPrompt_ComponentAblation",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A6\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+      "checkpoint_epoch": 12,
+      "checkpoint_best_epoch": 12,
+      "protocol_check_passed": true,
+      "metrics_present": true,
+      "formal_config_diff": {
+        "variant": "A6",
+        "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+        "effective_diff_count": 1,
+        "expected_diff_fields": [
+          "macro_to_fine_exclude_recent_len"
+        ],
+        "actual_diff_fields": [
+          "macro_to_fine_exclude_recent_len"
+        ],
+        "unexpected_diff_fields": [],
+        "missing_expected_diff_fields": [],
+        "unexpected_effective_diff_count": 0,
+        "differences": {
+          "macro_to_fine_exclude_recent_len": {
+            "canonical": 0,
+            "effective": 24
+          }
+        },
+        "passed": true
+      },
+      "checkpoint_config_semantic_mismatches": [],
+      "accepted_checkpoint_semantic_mismatches": [],
+      "passed": true,
+      "note": null
+    },
+    {
+      "variant": "A7",
+      "display_name": "Shared-Projection Cross Fusion",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A7\\STMGPrompt_ComponentAblation",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A7\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+      "checkpoint_epoch": 11,
+      "checkpoint_best_epoch": 11,
+      "protocol_check_passed": true,
+      "metrics_present": true,
+      "formal_config_diff": {
+        "variant": "A7",
+        "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+        "effective_diff_count": 1,
+        "expected_diff_fields": [
+          "share_cross_attention_projections"
+        ],
+        "actual_diff_fields": [
+          "share_cross_attention_projections"
+        ],
+        "unexpected_diff_fields": [],
+        "missing_expected_diff_fields": [],
+        "unexpected_effective_diff_count": 0,
+        "differences": {
+          "share_cross_attention_projections": {
+            "canonical": false,
+            "effective": true
+          }
+        },
+        "passed": true
+      },
+      "checkpoint_config_semantic_mismatches": [],
+      "accepted_checkpoint_semantic_mismatches": [],
+      "passed": true,
+      "note": null
+    },
+    {
+      "variant": "A8",
+      "display_name": "w/o MS-MG-DWU",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A8\\STMGPrompt_ComponentAblation",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A8\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+      "checkpoint_epoch": 10,
+      "checkpoint_best_epoch": 10,
+      "protocol_check_passed": true,
+      "metrics_present": true,
+      "formal_config_diff": {
+        "variant": "A8",
+        "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+        "effective_diff_count": 3,
+        "expected_diff_fields": [
+          "use_msmg_dwu",
+          "loss_function",
+          "loss_protocol"
+        ],
+        "actual_diff_fields": [
+          "loss_function",
+          "loss_protocol",
+          "use_msmg_dwu"
+        ],
+        "unexpected_diff_fields": [],
+        "missing_expected_diff_fields": [],
+        "unexpected_effective_diff_count": 0,
+        "differences": {
+          "use_msmg_dwu": {
+            "canonical": true,
+            "effective": false
+          },
+          "loss_function": {
+            "canonical": "msmg_dwu_loss",
+            "effective": "masked_score_aligned_hybrid"
+          },
+          "loss_protocol": {
+            "canonical": "method_full",
+            "effective": "fair_main"
+          }
+        },
+        "passed": true
+      },
+      "checkpoint_config_semantic_mismatches": [],
+      "accepted_checkpoint_semantic_mismatches": [],
+      "passed": true,
+      "note": null
+    }
+  ],
+  "all_variants_protocol_comparable": true
+}

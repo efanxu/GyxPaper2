@@ -31,24 +31,50 @@ def _should_train_variant(args, artifact: dict) -> bool:
     return not bool(artifact.get("completed"))
 
 
-def read_best_val_summary(root: Path, manifest: list[dict], status: dict) -> list[dict]:
+def read_best_val_summary(root: Path, manifest: list[dict], status: dict | None = None) -> list[dict]:
+    status = status or {}
     rows = []
     for item in manifest:
         variant = item.get("variant") or item.get("variant_id")
         current = status.get(variant, {})
-        value = current.get("best_val_score_h10")
-        if value is None:
-            train_path = root / variant / str(item.get("model_name", "")) / "train_complete.json"
-            if train_path.exists():
-                try:
-                    value = json.loads(train_path.read_text(encoding="utf-8")).get("best_val_score_h10")
-                except Exception:
-                    value = None
+        run_dir = root / variant / str(item.get("model_name", ""))
+        checkpoint_values: dict = {}
+        checkpoint_path = run_dir / "best_checkpoint.pt"
+        if checkpoint_path.exists():
+            try:
+                import torch
+
+                checkpoint_values = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
+            except Exception:
+                checkpoint_values = {}
+        train_values: dict = {}
+        train_path = run_dir / "train_complete.json"
+        if train_path.exists():
+            try:
+                train_values = json.loads(train_path.read_text(encoding="utf-8"))
+            except Exception:
+                train_values = {}
+        model_summary: dict = {}
+        summary_path = run_dir / "model_summary.json"
+        if summary_path.exists():
+            try:
+                model_summary = json.loads(summary_path.read_text(encoding="utf-8"))
+            except Exception:
+                model_summary = {}
+
+        def resolved(name: str):
+            return current.get(name, checkpoint_values.get(name, train_values.get(name)))
+
+        value = resolved("best_val_score_h10")
         rows.append(
             {
                 "variant": variant,
                 "status": current.get("status", "pending"),
+                "best_epoch": resolved("best_epoch"),
+                "best_val_Score_H3": resolved("best_val_score_h3"),
+                "best_val_Score_H6": resolved("best_val_score_h6"),
                 "best_val_Score_H10": value,
+                "trainable_parameters": model_summary.get("trainable_parameters"),
                 "relative_improvement_vs_P0_H10": "",
             }
         )

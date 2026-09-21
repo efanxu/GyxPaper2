@@ -1,0 +1,22 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "L1",
+  "family": "L",
+  "implementation_status": "ready",
+  "expected_diff_fields": [
+    "site_weight_mode"
+  ],
+  "actual_diff_fields": [
+    "site_weight_mode"
+  ],
+  "missing_expected_diff_fields": [],
+  "unexpected_diff_fields": [],
+  "frozen_protocol_changes": [],
+  "differences": {
+    "site_weight_mode": {
+      "canonical": "dynamic",
+      "effective": "static"
+    }
+  },
+  "passed": true
+}
