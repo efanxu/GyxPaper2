@@ -1,0 +1,242 @@
+{
+  "variants": {
+    "G0": {
+      "assignment": "matched",
+      "status": "reference-only"
+    },
+    "G1": {
+      "variant_id": "G1",
+      "layers": [
+        {
+          "layer": 0,
+          "fine_branch": "micro",
+          "coarse_branch": "micro",
+          "fine_builder": "AdaptiveGraphBuilder",
+          "coarse_builder": "AdaptiveGraphBuilder"
+        }
+      ],
+      "assignment": "shared_micro",
+      "fine_graph_id": "micro",
+      "coarse_graph_id": "micro",
+      "fine_builder": "AdaptiveGraphBuilder",
+      "coarse_builder": "AdaptiveGraphBuilder",
+      "adaptive_support_mode": "prior_constrained",
+      "fine_edges_outside_assigned_prior": 0,
+      "coarse_edges_outside_assigned_prior": 0
+    },
+    "G2": {
+      "variant_id": "G2",
+      "layers": [
+        {
+          "layer": 0,
+          "fine_branch": "macro",
+          "coarse_branch": "macro",
+          "fine_builder": "AdaptiveGraphBuilder",
+          "coarse_builder": "AdaptiveGraphBuilder"
+        }
+      ],
+      "assignment": "shared_macro",
+      "fine_graph_id": "macro",
+      "coarse_graph_id": "macro",
+      "fine_builder": "AdaptiveGraphBuilder",
+      "coarse_builder": "AdaptiveGraphBuilder",
+      "adaptive_support_mode": "prior_constrained",
+      "fine_edges_outside_assigned_prior": 0,
+      "coarse_edges_outside_assigned_prior": 0
+    },
+    "G3": {
+      "variant_id": "G3",
+      "layers": [
+        {
+          "layer": 0,
+          "fine_branch": "macro",
+          "coarse_branch": "micro",
+          "fine_builder": "AdaptiveGraphBuilder",
+          "coarse_builder": "AdaptiveGraphBuilder"
+        }
+      ],
+      "assignment": "swapped",
+      "fine_graph_id": "macro",
+      "coarse_graph_id": "micro",
+      "fine_builder": "AdaptiveGraphBuilder",
+      "coarse_builder": "AdaptiveGraphBuilder",
+      "adaptive_support_mode": "prior_constrained",
+      "fine_edges_outside_assigned_prior": 0,
+      "coarse_edges_outside_assigned_prior": 0
+    },
+    "G4": {
+      "variant_id": "G4",
+      "layers": [
+        {
+          "layer": 0,
+          "fine_branch": "micro",
+          "coarse_branch": "macro",
+          "fine_builder": "AdaptiveGraphBuilder",
+          "coarse_builder": "AdaptiveGraphBuilder"
+        }
+      ],
+      "assignment": "matched",
+      "fine_graph_id": "micro",
+      "coarse_graph_id": "macro",
+      "fine_builder": "AdaptiveGraphBuilder",
+      "coarse_builder": "AdaptiveGraphBuilder",
+      "adaptive_support_mode": "prior_constrained",
+      "fine_edges_outside_assigned_prior": 0,
+      "coarse_edges_outside_assigned_prior": 0
+    },
+    "G5": {
+      "variant_id": "G5",
+      "layers": [
+        {
+          "layer": 0,
+          "fine_branch": "micro",
+          "coarse_branch": "macro",
+          "fine_builder": "AdaptiveGraphBuilder",
+          "coarse_builder": "AdaptiveGraphBuilder"
+        }
+      ],
+      "assignment": "matched",
+      "fine_graph_id": "micro",
+      "coarse_graph_id": "macro",
+      "fine_builder": "AdaptiveGraphBuilder",
+      "coarse_builder": "AdaptiveGraphBuilder",
+      "adaptive_support_mode": "prior_constrained",
+      "fine_edges_outside_assigned_prior": 0,
+      "coarse_edges_outside_assigned_prior": 0
+    },
+    "G6": {
+      "variant_id": "G6",
+      "layers": [
+        {
+          "layer": 0,
+          "fine_branch": "micro",
+          "coarse_branch": "macro",
+          "fine_builder": "AdaptiveGraphBuilder",
+          "coarse_builder": "AdaptiveGraphBuilder"
+        }
+      ],
+      "assignment": "matched",
+      "fine_graph_id": "micro",
+      "coarse_graph_id": "macro",
+      "fine_builder": "AdaptiveGraphBuilder",
+      "coarse_builder": "AdaptiveGraphBuilder",
+      "adaptive_support_mode": "free",
+      "fine_edges_outside_assigned_prior": 16972,
+      "coarse_edges_outside_assigned_prior": 16241
+    },
+    "G7": {
+      "variant_id": "G7",
+      "layers": [
+        {
+          "layer": 0,
+          "fine_branch": "micro",
+          "coarse_branch": "macro",
+          "fine_builder": "FixedPriorGraphBuilder",
+          "coarse_builder": "FixedPriorGraphBuilder"
+        }
+      ],
+      "assignment": "matched",
+      "fine_graph_id": "micro",
+      "coarse_graph_id": "macro",
+      "fine_builder": "FixedPriorGraphBuilder",
+      "coarse_builder": "FixedPriorGraphBuilder",
+      "adaptive_support_mode": "fixed",
+      "fine_edges_outside_assigned_prior": 0,
+      "coarse_edges_outside_assigned_prior": 0
+    },
+    "G8": {
+      "variant_id": "G8",
+      "layers": [
+        {
+          "layer": 0,
+          "fine_branch": "micro",
+          "coarse_branch": "macro",
+          "fine_builder": "AdaptiveGraphBuilder",
+          "coarse_builder": "AdaptiveGraphBuilder"
+        }
+      ],
+      "assignment": "matched",
+      "fine_graph_id": "micro",
+      "coarse_graph_id": "macro",
+      "fine_builder": "AdaptiveGraphBuilder",
+      "coarse_builder": "AdaptiveGraphBuilder",
+      "adaptive_support_mode": "prior_constrained",
+      "fine_edges_outside_assigned_prior": 0,
+      "coarse_edges_outside_assigned_prior": 0
+    }
+  },
+  "rows": [
+    {
+      "variant_id": "G0",
+      "expected_assignment": "matched",
+      "actual_assignment": "matched",
+      "fine_graph_id": "micro",
+      "coarse_graph_id": "macro",
+      "trace_path": ""
+    },
+    {
+      "variant_id": "G1",
+      "expected_assignment": "shared_micro",
+      "actual_assignment": "shared_micro",
+      "fine_graph_id": "micro",
+      "coarse_graph_id": "micro",
+      "trace_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g1_empirical_v1\\branch_graph_assignment_trace.json"
+    },
+    {
+      "variant_id": "G2",
+      "expected_assignment": "shared_macro",
+      "actual_assignment": "shared_macro",
+      "fine_graph_id": "macro",
+      "coarse_graph_id": "macro",
+      "trace_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g2_empirical_v1\\branch_graph_assignment_trace.json"
+    },
+    {
+      "variant_id": "G3",
+      "expected_assignment": "swapped",
+      "actual_assignment": "swapped",
+      "fine_graph_id": "macro",
+      "coarse_graph_id": "micro",
+      "trace_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g3_empirical_v1\\branch_graph_assignment_trace.json"
+    },
+    {
+      "variant_id": "G4",
+      "expected_assignment": "matched",
+      "actual_assignment": "matched",
+      "fine_graph_id": "micro",
+      "coarse_graph_id": "macro",
+      "trace_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g4_empirical_v1\\branch_graph_assignment_trace.json"
+    },
+    {
+      "variant_id": "G5",
+      "expected_assignment": "matched",
+      "actual_assignment": "matched",
+      "fine_graph_id": "micro",
+      "coarse_graph_id": "macro",
+      "trace_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g5_empirical_v1\\branch_graph_assignment_trace.json"
+    },
+    {
+      "variant_id": "G6",
+      "expected_assignment": "matched",
+      "actual_assignment": "matched",
+      "fine_graph_id": "micro",
+      "coarse_graph_id": "macro",
+      "trace_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g6_empirical_v1\\branch_graph_assignment_trace.json"
+    },
+    {
+      "variant_id": "G7",
+      "expected_assignment": "matched",
+      "actual_assignment": "matched",
+      "fine_graph_id": "micro",
+      "coarse_graph_id": "macro",
+      "trace_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g7_empirical_v1\\branch_graph_assignment_trace.json"
+    },
+    {
+      "variant_id": "G8",
+      "expected_assignment": "matched",
+      "actual_assignment": "matched",
+      "fine_graph_id": "micro",
+      "coarse_graph_id": "macro",
+      "trace_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g8_empirical_v1\\branch_graph_assignment_trace.json"
+    }
+  ]
+}

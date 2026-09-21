@@ -1,0 +1,128 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "model_input_path_exists",
+      "passed": true,
+      "details": "smoke synthetic mode; file existence not required"
+    },
+    {
+      "name": "eval_target_path_exists",
+      "passed": true,
+      "details": "smoke synthetic mode; file existence not required"
+    },
+    {
+      "name": "location_path_exists",
+      "passed": true,
+      "details": "D:\\PaperProject\\GyxPaper2\\dataset\\sdwpf_turb_location_elevation.csv"
+    },
+    {
+      "name": "target_is_patv_raw",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "target_mask_is_valid_target_mask",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "default_16_features",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "no_forbidden_input_features",
+      "passed": true,
+      "details": "[]"
+    },
+    {
+      "name": "method_full_loss_name",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "msmg_dwu_model_name",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "msmg_dwu_method_full_protocol",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "msmg_dwu_not_fair_main_table",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "test_uses_full_windows",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "direct_decoder_strategy",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "no_fake_coupling_block_for_non_coupled_models",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_sources_in_base_features",
+      "passed": true,
+      "details": "['Wspd', 'Patv_clean_for_input']"
+    },
+    {
+      "name": "physical_clip_eval_enabled",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "physical_clip_uniform_protocol",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "checkpoint_metric_declared",
+      "passed": true,
+      "details": ""
+    }
+  ],
+  "data_summary": null,
+  "protocol_id": "empirical_analysis_v1",
+  "protocol_profile": "STMG_FORMAL_V2",
+  "source_scope": "internal_mechanism",
+  "empirical_unique_difference_audit": {
+    "protocol_id": "empirical_analysis_v1",
+    "variant_id": "G2",
+    "family": "G",
+    "implementation_status": "ready",
+    "expected_diff_fields": [
+      "branch_graph_assignment"
+    ],
+    "actual_diff_fields": [
+      "branch_graph_assignment"
+    ],
+    "missing_expected_diff_fields": [],
+    "unexpected_diff_fields": [],
+    "frozen_protocol_changes": [],
+    "differences": {
+      "branch_graph_assignment": {
+        "canonical": "matched",
+        "effective": "shared_macro"
+      }
+    },
+    "passed": true
+  },
+  "effective_batch": {
+    "train": 4,
+    "val": 4,
+    "test": 4
+  },
+  "mask": "valid_target_mask",
+  "prediction_start_index_rule": "[t-lookback,t)->[t,t+max_pred_len)"
+}

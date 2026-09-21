@@ -177,6 +177,8 @@ def _location_coordinates(
         if turbine_ids is not None:
             df = df.set_index(id_col).reindex(turbine_ids).reset_index()
     requested = list(getattr(config, "graph_coordinate_cols", ["x", "y"]))
+    if bool(getattr(config, "graph_use_elevation", False)):
+        requested.append("elevation")
     coord_cols = []
     for name in [*requested, "x", "y"]:
         if name in lower_to_col and lower_to_col[name] in df.columns:
@@ -198,7 +200,12 @@ def _location_coordinates(
     return coords
 
 
-def build_distance_prior_graph(location, config: STMGPromptConfig) -> np.ndarray:
+def build_distance_prior_graph(
+    location,
+    config: STMGPromptConfig,
+    *,
+    top_k: int | None = None,
+) -> np.ndarray:
     num_nodes = int(getattr(config, "_graph_num_nodes", config.num_nodes))
     turbine_ids = getattr(config, "_graph_turbine_ids", None)
     coords = _location_coordinates(location, num_nodes=num_nodes, turbine_ids=turbine_ids, config=config)
@@ -217,7 +224,118 @@ def build_distance_prior_graph(location, config: STMGPromptConfig) -> np.ndarray
         np.fill_diagonal(A, 1.0)
     else:
         np.fill_diagonal(A, 0.0)
-    return _row_normalize(_top_k(A, config.graph_top_k, config.graph_self_loop))
+    return _row_normalize(
+        _top_k(A, int(config.graph_top_k if top_k is None else top_k), config.graph_self_loop)
+    )
+
+
+def degree_preserving_random_rewire(
+    adjacency: np.ndarray,
+    *,
+    seed: int,
+    keep_self: bool,
+) -> np.ndarray:
+    """Randomize row-wise support while preserving every row's nonzero count."""
+
+    source = np.asarray(adjacency, dtype=np.float32)
+    if source.ndim != 2 or source.shape[0] != source.shape[1]:
+        raise ValueError(f"adjacency must be square, got {source.shape}.")
+    node_count = source.shape[0]
+    rng = np.random.default_rng(int(seed))
+    rewired = np.zeros_like(source)
+    for row_idx in range(node_count):
+        support = np.flatnonzero(source[row_idx] > EPS)
+        has_self = bool(row_idx in support)
+        if has_self != bool(keep_self):
+            raise ValueError(
+                f"Row {row_idx} self-loop state {has_self} does not match declared keep_self={keep_self}."
+            )
+        offdiag_support = support[support != row_idx]
+        candidates = np.delete(np.arange(node_count, dtype=np.int64), row_idx)
+        if offdiag_support.size > candidates.size:
+            raise ValueError("Cannot preserve row degree during random rewiring.")
+        chosen = rng.choice(candidates, size=offdiag_support.size, replace=False)
+        weights = source[row_idx, offdiag_support].copy()
+        rng.shuffle(weights)
+        rewired[row_idx, chosen] = weights
+        if has_self:
+            rewired[row_idx, row_idx] = source[row_idx, row_idx]
+    before = np.count_nonzero(source > EPS, axis=1)
+    after = np.count_nonzero(rewired > EPS, axis=1)
+    if not np.array_equal(before, after):
+        raise RuntimeError("Degree-preserving rewiring changed at least one row degree.")
+    return _row_normalize(rewired)
+
+
+def _select_prior_component(
+    statistics_graph: np.ndarray,
+    distance_graph: np.ndarray,
+    *,
+    component: str,
+    alpha: float,
+) -> tuple[np.ndarray, list[str]]:
+    if component == "distance_only":
+        return distance_graph.copy(), ["distance"]
+    if component == "statistics_only":
+        return statistics_graph.copy(), ["train_statistics"]
+    if component == "fused":
+        return _row_normalize(alpha * statistics_graph + (1.0 - alpha) * distance_graph), [
+            "distance",
+            "train_statistics",
+        ]
+    raise ValueError(f"Unsupported graph_prior_component: {component}")
+
+
+def reconstruct_variant_graphs_from_fused(
+    macro_fused: np.ndarray,
+    micro_fused: np.ndarray,
+    location,
+    config: STMGPromptConfig,
+) -> tuple[np.ndarray, np.ndarray, dict[str, Any]]:
+    """Reconstruct Step-4 priors from canonical fused checkpoint buffers."""
+
+    distance = build_distance_prior_graph(location, config)
+    if config.macro_alpha <= 0 or config.micro_alpha <= 0:
+        raise ValueError("Statistics-only reconstruction requires positive canonical graph alpha values.")
+    macro_statistics = _row_normalize(
+        np.maximum(
+            (np.asarray(macro_fused, dtype=np.float32) - (1.0 - config.macro_alpha) * distance)
+            / config.macro_alpha,
+            0.0,
+        )
+    )
+    micro_statistics = _row_normalize(
+        np.maximum(
+            (np.asarray(micro_fused, dtype=np.float32) - (1.0 - config.micro_alpha) * distance)
+            / config.micro_alpha,
+            0.0,
+        )
+    )
+    macro, macro_sources = _select_prior_component(
+        macro_statistics,
+        distance,
+        component=config.graph_prior_component,
+        alpha=config.macro_alpha,
+    )
+    micro, micro_sources = _select_prior_component(
+        micro_statistics,
+        distance,
+        component=config.graph_prior_component,
+        alpha=config.micro_alpha,
+    )
+    if config.graph_rewire_mode == "degree_preserving_random":
+        macro = degree_preserving_random_rewire(
+            macro, seed=int(config.seed) + 1009, keep_self=bool(config.graph_self_loop)
+        )
+        micro = degree_preserving_random_rewire(
+            micro, seed=int(config.seed) + 2017, keep_self=bool(config.graph_self_loop)
+        )
+    return macro, micro, {
+        "macro_source_components": macro_sources,
+        "micro_source_components": micro_sources,
+        "reconstructed_from_fused_checkpoint": True,
+        "graph_rewire_seed": int(config.seed),
+    }
 
 
 def build_trend_prior_graph(
@@ -250,7 +368,13 @@ def build_macro_trend_graph(train_series, train_mask, location, config: STMGProm
         top_k=config.macro_top_k,
     )
     A_dist = build_distance_prior_graph(location, config)
-    return _row_normalize(config.macro_alpha * A_trend + (1.0 - config.macro_alpha) * A_dist)
+    graph, _ = _select_prior_component(
+        A_trend,
+        A_dist,
+        component=config.graph_prior_component,
+        alpha=config.macro_alpha,
+    )
+    return graph
 
 
 def build_micro_local_graph(train_series, train_mask, location, config: STMGPromptConfig) -> np.ndarray:
@@ -273,7 +397,13 @@ def build_micro_local_graph(train_series, train_mask, location, config: STMGProm
         metric=config.micro_similarity_metric,
         top_k=config.micro_top_k,
     )
-    return _row_normalize(config.micro_alpha * A_local + (1.0 - config.micro_alpha) * A_dist)
+    graph, _ = _select_prior_component(
+        A_local,
+        A_dist,
+        component=config.graph_prior_component,
+        alpha=config.micro_alpha,
+    )
+    return graph
 
 
 def build_wake_prior_graph(*args, **kwargs):
@@ -305,8 +435,75 @@ def _train_feature_series(data: STMGPromptDataBundle, col: str) -> tuple[np.ndar
 
 
 def _graph_paths(config: STMGPromptConfig) -> tuple[Path, Path, Path]:
-    graph_dir = config.resolve_path(config.graph_output_root) / config.graph_tag
+    if str(getattr(config, "variant", "")).upper().startswith("G"):
+        graph_dir = config.resolve_path(config.output_root) / str(config.run_id) / "_graph_artifacts" / config.graph_tag
+    else:
+        graph_dir = config.resolve_path(config.graph_output_root) / config.graph_tag
     return graph_dir, graph_dir / "macro_trend_adjacency.npy", graph_dir / "micro_local_adjacency.npy"
+
+
+def _row_degree_summary(adjacency: np.ndarray) -> dict[str, float | int]:
+    degree = np.count_nonzero(np.asarray(adjacency) > EPS, axis=1)
+    return {
+        "min": int(degree.min()),
+        "median": float(np.median(degree)),
+        "mean": float(degree.mean()),
+        "max": int(degree.max()),
+    }
+
+
+def summarize_graph_identity(
+    macro: np.ndarray,
+    micro: np.ndarray,
+    config: STMGPromptConfig,
+    *,
+    node_order: list[int] | None = None,
+    location_path: str | Path | None = None,
+    source_components: list[str] | None = None,
+    fit_split: str = "train_only",
+) -> dict[str, Any]:
+    macro = np.asarray(macro, dtype=np.float32)
+    micro = np.asarray(micro, dtype=np.float32)
+    if macro.shape != micro.shape or macro.ndim != 2 or macro.shape[0] != macro.shape[1]:
+        raise ValueError(f"Macro and Micro graphs must be matching square matrices, got {macro.shape}, {micro.shape}.")
+    count = int(macro.shape[0])
+    order = node_order if node_order is not None else list(range(1, count + 1))
+    return {
+        "node_count": count,
+        "node_order_source": "STMGPromptDataBundle.turbine_ids" if node_order is not None else "canonical_1_based_order",
+        "node_order": [int(value) for value in order],
+        "coordinate_columns": list(config.graph_coordinate_cols),
+        "location_file": str(Path(location_path or config.resolve_path(config.location_path)).resolve()),
+        "distance_definition": "exp(-squared_euclidean_distance/sigma^2)",
+        "micro_top_k": int(config.micro_top_k),
+        "macro_top_k": int(config.macro_top_k),
+        "distance_top_k": int(config.graph_top_k),
+        "self_loop": bool(config.graph_self_loop),
+        "normalization": "row_sum_one",
+        "elevation_used": bool(config.graph_use_elevation),
+        "micro_source": config.micro_graph_source,
+        "macro_source": config.macro_graph_source,
+        "source_components": source_components
+        if source_components is not None
+        else {
+            "fused": ["distance", "train_statistics"],
+            "distance_only": ["distance"],
+            "statistics_only": ["train_statistics"],
+        }[config.graph_prior_component],
+        "fit_split": fit_split,
+        "edge_count": {"micro": int((micro > EPS).sum()), "macro": int((macro > EPS).sum())},
+        "row_degree_summary": {
+            "micro": _row_degree_summary(micro),
+            "macro": _row_degree_summary(macro),
+        },
+        "branch_graph_assignment": config.branch_graph_assignment,
+        "adaptive_support_mode": config.adaptive_support_mode,
+        "graph_prior_component": config.graph_prior_component,
+        "graph_rewire_mode": config.graph_rewire_mode,
+        "graph_rewire_seed": int(config.seed) if config.graph_rewire_mode != "none" else None,
+        "directionality": "directed_rowwise_top_k",
+        "not_applicable_reason": None,
+    }
 
 
 def build_graph_artifacts(data: STMGPromptDataBundle, config: STMGPromptConfig) -> dict[str, Any]:
@@ -320,6 +517,23 @@ def build_graph_artifacts(data: STMGPromptDataBundle, config: STMGPromptConfig) 
     location_path = config.resolve_path(config.location_path)
     A_macro = build_macro_trend_graph(train_series, train_mask, location_path, config)
     A_micro = build_micro_local_graph(micro_series, micro_mask, location_path, config)
+    if config.graph_rewire_mode == "degree_preserving_random":
+        macro_degree_before = np.count_nonzero(A_macro > EPS, axis=1)
+        micro_degree_before = np.count_nonzero(A_micro > EPS, axis=1)
+        A_macro = degree_preserving_random_rewire(
+            A_macro,
+            seed=int(config.seed) + 1009,
+            keep_self=bool(config.graph_self_loop),
+        )
+        A_micro = degree_preserving_random_rewire(
+            A_micro,
+            seed=int(config.seed) + 2017,
+            keep_self=bool(config.graph_self_loop),
+        )
+        if not np.array_equal(macro_degree_before, np.count_nonzero(A_macro > EPS, axis=1)):
+            raise RuntimeError("Macro graph rewiring failed the row-degree contract.")
+        if not np.array_equal(micro_degree_before, np.count_nonzero(A_micro > EPS, axis=1)):
+            raise RuntimeError("Micro graph rewiring failed the row-degree contract.")
     np.save(macro_path, A_macro)
     np.save(micro_path, A_micro)
     macro_support = A_macro > EPS
@@ -329,6 +543,19 @@ def build_graph_artifacts(data: STMGPromptDataBundle, config: STMGPromptConfig) 
     weight_corr = float(np.corrcoef(A_macro.reshape(-1), A_micro.reshape(-1))[0, 1]) if A_macro.size > 1 else float("nan")
 
     graph_path = str(graph_dir).replace("\\", "/") + "/"
+    component_sources = {
+        "fused": ["distance", "train_statistics"],
+        "distance_only": ["distance"],
+        "statistics_only": ["train_statistics"],
+    }[config.graph_prior_component]
+    graph_identity = summarize_graph_identity(
+        A_macro,
+        A_micro,
+        config,
+        node_order=data.turbine_ids,
+        location_path=location_path,
+        source_components=component_sources,
+    )
     metadata = {
         "uses_custom_graph": True,
         "graph_type": "trend_prior_adaptive_dual_graph",
@@ -345,8 +572,15 @@ def build_graph_artifacts(data: STMGPromptDataBundle, config: STMGPromptConfig) 
         "micro_graph_source": config.micro_graph_source,
         "trend_extraction_method": config.trend_method,
         "trend_statistics_fit_split": "train_only",
-        "uses_adaptive_graph": bool(config.use_adaptive_graph),
-        "adaptive_graph_constrained_by_prior": bool(config.use_adaptive_graph),
+        "uses_adaptive_graph": bool(config.use_adaptive_graph and config.adaptive_support_mode != "fixed"),
+        "adaptive_graph_constrained_by_prior": bool(
+            config.use_adaptive_graph and config.adaptive_support_mode == "prior_constrained"
+        ),
+        "adaptive_support_mode": config.adaptive_support_mode,
+        "branch_graph_assignment": config.branch_graph_assignment,
+        "graph_prior_component": config.graph_prior_component,
+        "graph_rewire_mode": config.graph_rewire_mode,
+        "source_components": component_sources,
         "graph_fusion_mode": config.graph_fusion_mode,
         "target_mask_used_for_graph_statistics": bool(config.trend_source_col == config.target_col),
         "target_mask_used_as_model_input": False,
@@ -367,6 +601,8 @@ def build_graph_artifacts(data: STMGPromptDataBundle, config: STMGPromptConfig) 
         "macro_micro_prior_weight_correlation": weight_corr,
         "graph_self_loop": bool(config.graph_self_loop),
         "graph_coordinate_cols": list(config.graph_coordinate_cols),
+        "graph_use_elevation": bool(config.graph_use_elevation),
+        "graph_identity": graph_identity,
     }
     (graph_dir / "metadata.json").write_text(json.dumps(metadata, indent=2, ensure_ascii=False), encoding="utf-8")
     return {"A_macro_trend": A_macro, "A_micro_local": A_micro, "metadata": metadata}
@@ -384,8 +620,12 @@ def prepare_graph_artifacts(data: STMGPromptDataBundle, config: STMGPromptConfig
         return None
     if config.use_trend_prior_graph:
         artifacts = build_graph_artifacts(data, config)
-        artifacts["metadata"]["uses_adaptive_graph"] = bool(config.use_adaptive_graph)
-        artifacts["metadata"]["adaptive_graph_constrained_by_prior"] = bool(config.use_adaptive_graph)
+        artifacts["metadata"]["uses_adaptive_graph"] = bool(
+            config.use_adaptive_graph and config.adaptive_support_mode != "fixed"
+        )
+        artifacts["metadata"]["adaptive_graph_constrained_by_prior"] = bool(
+            config.use_adaptive_graph and config.adaptive_support_mode == "prior_constrained"
+        )
         return artifacts
 
     identity = np.eye(int(data.num_nodes), dtype=np.float32)

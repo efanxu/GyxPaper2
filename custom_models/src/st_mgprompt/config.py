@@ -141,6 +141,10 @@ class STMGPromptConfig:
     graph_self_loop: bool = False
     graph_distance_sigma: float | None = None
     graph_fusion_mode: str = "multiply"
+    branch_graph_assignment: str = "matched"
+    graph_prior_component: str = "fused"
+    adaptive_support_mode: str = "prior_constrained"
+    graph_rewire_mode: str = "none"
     graph_operator: str = "simple"
     diffusion_order_micro: int = 2
     diffusion_order_macro: int = 2
@@ -383,6 +387,16 @@ class STMGPromptConfig:
             raise ValueError("graph_alpha must be in [0, 1].")
         if self.graph_fusion_mode != "multiply":
             raise ValueError("Step 2 main graph fusion mode must be multiply.")
+        if self.branch_graph_assignment not in {"matched", "shared_micro", "shared_macro", "swapped"}:
+            raise ValueError(
+                "branch_graph_assignment must be matched, shared_micro, shared_macro, or swapped."
+            )
+        if self.graph_prior_component not in {"fused", "distance_only", "statistics_only"}:
+            raise ValueError("graph_prior_component must be fused, distance_only, or statistics_only.")
+        if self.adaptive_support_mode not in {"prior_constrained", "free", "fixed"}:
+            raise ValueError("adaptive_support_mode must be prior_constrained, free, or fixed.")
+        if self.graph_rewire_mode not in {"none", "degree_preserving_random"}:
+            raise ValueError("graph_rewire_mode must be none or degree_preserving_random.")
         if self.graph_operator not in {"simple", "bidirectional_diffusion"}:
             raise ValueError("graph_operator must be simple or bidirectional_diffusion.")
         if not (1 <= self.diffusion_order_micro <= 3 and 1 <= self.diffusion_order_macro <= 3):

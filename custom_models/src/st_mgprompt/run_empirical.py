@@ -36,10 +36,12 @@ from st_mgprompt.experiment_protocol import (
     canonical_directory,
     config_diff,
 )
+from st_mgprompt.graph_prior import reconstruct_variant_graphs_from_fused, summarize_graph_identity
 from st_mgprompt.losses import get_loss_fn
 from st_mgprompt.registry import build_model
 from st_mgprompt.run_st_mgprompt import _autocast_context, _run_once, resolve_device, update_run_status
 from st_mgprompt.step3_reporting import write_step3_reports
+from st_mgprompt.step4_reporting import write_step4_reports
 from st_mgprompt.summarize_empirical import summarize_empirical
 
 
@@ -357,6 +359,42 @@ def _augment_completed_run_artifacts(
         _atomic_json(summary_path, summary)
 
 
+def _write_graph_audit_artifacts(run_dir: Path, config: STMGPromptConfig) -> None:
+    if not str(config.variant or "").upper().startswith("G"):
+        return
+    graph_dir = config.resolve_path(config.output_root) / str(config.run_id) / "_graph_artifacts" / config.graph_tag
+    metadata_path = graph_dir / "metadata.json"
+    if metadata_path.is_file():
+        metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+        identity = metadata.get("graph_identity")
+        if isinstance(identity, dict):
+            identity = {**identity, "artifact_directory": str(graph_dir.resolve())}
+            _atomic_json(run_dir / "graph_identity.json", identity)
+    summary_path = run_dir / "model_summary.json"
+    if summary_path.is_file():
+        summary = json.loads(summary_path.read_text(encoding="utf-8"))
+        branch = summary.get("branch_diagnostics", {})
+        trace = branch.get("branch_graph_assignment_trace") if isinstance(branch, dict) else None
+        if isinstance(trace, dict):
+            _atomic_json(
+                run_dir / "branch_graph_assignment_trace.json",
+                {
+                    "variant_id": config.variant,
+                    "layers": [
+                        {
+                            "layer": layer,
+                            "fine_branch": trace.get("fine_graph_id"),
+                            "coarse_branch": trace.get("coarse_graph_id"),
+                            "fine_builder": trace.get("fine_builder"),
+                            "coarse_builder": trace.get("coarse_builder"),
+                        }
+                        for layer in range(int(config.num_coupling_layers))
+                    ],
+                    **trace,
+                },
+            )
+
+
 def _write_alignment_trace(
     path: Path,
     *,
@@ -496,16 +534,44 @@ def _run_full_shape(
         micro = state[graph_keys[1]].detach().cpu().numpy().astype(np.float32)
         if macro.shape != (effective.num_nodes, effective.num_nodes) or micro.shape != macro.shape:
             raise ValueError(f"Canonical graph shape mismatch: macro={macro.shape}, micro={micro.shape}")
+        transform_metadata: dict[str, Any] = {
+            "macro_source_components": ["distance", "train_statistics"],
+            "micro_source_components": ["distance", "train_statistics"],
+            "reconstructed_from_fused_checkpoint": False,
+            "graph_rewire_seed": None,
+        }
+        if effective.graph_prior_component != "fused" or effective.graph_rewire_mode != "none":
+            setattr(effective, "_graph_num_nodes", effective.num_nodes)
+            setattr(effective, "_graph_turbine_ids", list(range(1, effective.num_nodes + 1)))
+            macro, micro, transform_metadata = reconstruct_variant_graphs_from_fused(
+                macro,
+                micro,
+                effective.resolve_path(effective.location_path),
+                effective,
+            )
         graph = {
             "A_macro_trend": macro,
             "A_micro_local": micro,
-            "metadata": checkpoint.get(
-                "graph_metadata", {"graph_uses_train_only_statistics": True}
-            ),
+            "metadata": {
+                **checkpoint.get("graph_metadata", {"graph_uses_train_only_statistics": True}),
+                **transform_metadata,
+                "branch_graph_assignment": effective.branch_graph_assignment,
+                "graph_prior_component": effective.graph_prior_component,
+                "adaptive_support_mode": effective.adaptive_support_mode,
+                "graph_rewire_mode": effective.graph_rewire_mode,
+            },
         }
+        graph_identity = summarize_graph_identity(
+            macro,
+            micro,
+            effective,
+            source_components=transform_metadata["macro_source_components"],
+            fit_split="canonical_train_only_checkpoint_reconstruction",
+        )
         _atomic_json(
             run_dir / "graph_identity.json",
             {
+                **graph_identity,
                 "graph_tag": effective.graph_tag,
                 "source": "canonical_checkpoint_buffers",
                 "checkpoint_path": str(canonical_checkpoint.resolve()),
@@ -513,8 +579,8 @@ def _run_full_shape(
                 "micro_buffer": graph_keys[1],
                 "macro_shape": list(macro.shape),
                 "micro_shape": list(micro.shape),
-                "node_count": effective.num_nodes,
                 "graph_operator": effective.graph_operator,
+                "transform_metadata": transform_metadata,
             },
         )
         model = build_model(effective, input_dim=len(effective.feature_cols), graph_data=graph).to(device)
@@ -580,8 +646,31 @@ def _run_full_shape(
                 "macro_prompt_instantiated": first_block.macro_prompt_encoder is not None,
                 "cross_fusion_instantiated": first_block.symmetric_cross_fusion is not None,
             },
+            "branch_graph_assignment_trace": output["aux"].get("branch_graph_assignment_trace"),
+            "graph_prior_component": effective.graph_prior_component,
+            "adaptive_support_mode": effective.adaptive_support_mode,
+            "graph_rewire_mode": effective.graph_rewire_mode,
         }
         _atomic_json(run_dir / "model_summary.json", summary)
+        trace = output["aux"].get("branch_graph_assignment_trace")
+        if isinstance(trace, dict):
+            _atomic_json(
+                run_dir / "branch_graph_assignment_trace.json",
+                {
+                    "variant_id": variant.variant_id,
+                    "layers": [
+                        {
+                            "layer": layer,
+                            "fine_branch": trace.get("fine_graph_id"),
+                            "coarse_branch": trace.get("coarse_graph_id"),
+                            "fine_builder": trace.get("fine_builder"),
+                            "coarse_builder": trace.get("coarse_builder"),
+                        }
+                        for layer in range(int(effective.num_coupling_layers))
+                    ],
+                    **trace,
+                },
+            )
         trace_summary = None
         if variant.variant_id == "T4":
             trace_summary = _write_alignment_trace(
@@ -702,6 +791,7 @@ def _run_seed(
             raise
         return {**failure, "run_dir": str(run_dir.resolve())}
     _augment_completed_run_artifacts(run_dir, config, variant, audit)
+    _write_graph_audit_artifacts(run_dir, config)
     trace_summary = None
     if variant.variant_id == "T4":
         trace_summary = _write_alignment_trace(
@@ -831,8 +921,19 @@ def run_empirical(argv: list[str] | None = None) -> dict[str, Any]:
         if any(variant.family == "T" for variant in variants) and not args.dry_run
         else None
     )
+    step4 = (
+        write_step4_reports(output_root)
+        if any(variant.family == "G" for variant in variants) and not args.dry_run
+        else None
+    )
     summary = summarize_empirical(output_root)
-    return {"output_root": str(output_root.resolve()), "statuses": statuses, "step3": step3, "summary": summary}
+    return {
+        "output_root": str(output_root.resolve()),
+        "statuses": statuses,
+        "step3": step3,
+        "step4": step4,
+        "summary": summary,
+    }
 
 
 def main() -> None:

@@ -1,0 +1,193 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "canonical_run_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+  "canonical_checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\best_checkpoint.pt",
+  "variants": [
+    {
+      "variant_id": "G0",
+      "display_name": "Matched Micro/Fine + Macro/Coarse",
+      "family": "G",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {},
+      "expected_unique_diff": [],
+      "trainable": false,
+      "paired_reference": "full_fixed_dual_keep_msmgdwu_seed2026",
+      "implementation_status": "reference",
+      "implementation_note": "",
+      "reference_only": true,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_graph",
+      "formal_result_status": "reference-only",
+      "graph_identity_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\best_checkpoint.pt"
+    },
+    {
+      "variant_id": "G1",
+      "display_name": "Shared Micro graph",
+      "family": "G",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "branch_graph_assignment": "shared_micro"
+      },
+      "expected_unique_diff": [
+        "branch_graph_assignment"
+      ],
+      "trainable": true,
+      "paired_reference": "G0",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_graph",
+      "formal_result_status": "preflight-only",
+      "graph_identity_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g1_empirical_v1\\graph_identity.json"
+    },
+    {
+      "variant_id": "G2",
+      "display_name": "Shared Macro graph",
+      "family": "G",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "branch_graph_assignment": "shared_macro"
+      },
+      "expected_unique_diff": [
+        "branch_graph_assignment"
+      ],
+      "trainable": true,
+      "paired_reference": "G0",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_graph",
+      "formal_result_status": "preflight-only",
+      "graph_identity_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g2_empirical_v1\\graph_identity.json"
+    },
+    {
+      "variant_id": "G3",
+      "display_name": "Swapped Micro/Macro graphs",
+      "family": "G",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "branch_graph_assignment": "swapped"
+      },
+      "expected_unique_diff": [
+        "branch_graph_assignment"
+      ],
+      "trainable": true,
+      "paired_reference": "G0",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_graph",
+      "formal_result_status": "preflight-only",
+      "graph_identity_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g3_empirical_v1\\graph_identity.json"
+    },
+    {
+      "variant_id": "G4",
+      "display_name": "Distance-only dual graph",
+      "family": "G",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "graph_prior_component": "distance_only"
+      },
+      "expected_unique_diff": [
+        "graph_prior_component"
+      ],
+      "trainable": true,
+      "paired_reference": "G0",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_graph",
+      "formal_result_status": "preflight-only",
+      "graph_identity_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g4_empirical_v1\\graph_identity.json"
+    },
+    {
+      "variant_id": "G5",
+      "display_name": "Statistics-only dual graph",
+      "family": "G",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "graph_prior_component": "statistics_only"
+      },
+      "expected_unique_diff": [
+        "graph_prior_component"
+      ],
+      "trainable": true,
+      "paired_reference": "G0",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_graph",
+      "formal_result_status": "preflight-only",
+      "graph_identity_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g5_empirical_v1\\graph_identity.json"
+    },
+    {
+      "variant_id": "G6",
+      "display_name": "Free adaptive graph",
+      "family": "G",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "adaptive_support_mode": "free"
+      },
+      "expected_unique_diff": [
+        "adaptive_support_mode"
+      ],
+      "trainable": true,
+      "paired_reference": "G0",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_graph",
+      "formal_result_status": "preflight-only",
+      "graph_identity_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g6_empirical_v1\\graph_identity.json"
+    },
+    {
+      "variant_id": "G7",
+      "display_name": "Fixed dual graph",
+      "family": "G",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "adaptive_support_mode": "fixed"
+      },
+      "expected_unique_diff": [
+        "adaptive_support_mode"
+      ],
+      "trainable": true,
+      "paired_reference": "G0",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_graph",
+      "formal_result_status": "preflight-only",
+      "graph_identity_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g7_empirical_v1\\graph_identity.json"
+    },
+    {
+      "variant_id": "G8",
+      "display_name": "Degree-preserving random rewiring",
+      "family": "G",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "graph_rewire_mode": "degree_preserving_random"
+      },
+      "expected_unique_diff": [
+        "graph_rewire_mode"
+      ],
+      "trainable": true,
+      "paired_reference": "G0",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_graph",
+      "formal_result_status": "preflight-only",
+      "graph_identity_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g8_empirical_v1\\graph_identity.json"
+    }
+  ],
+  "updated_at": "2026-09-21T12:06:17.815885+00:00"
+}

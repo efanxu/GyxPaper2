@@ -130,20 +130,21 @@ class STMGPrompt_TrendPriorGraph(nn.Module):
         self.num_nodes = int(A_macro.shape[0])
         self.register_buffer("A_macro_prior", A_macro)
         self.register_buffer("A_micro_prior", A_micro)
-        if config.use_adaptive_graph:
+        adaptive_enabled = bool(config.use_adaptive_graph and config.adaptive_support_mode != "fixed")
+        if adaptive_enabled:
             self.macro_graph_builder = AdaptiveGraphBuilder(
                 num_nodes=self.num_nodes,
                 node_embed_dim=config.node_embed_dim,
                 temperature=config.adaptive_graph_temperature,
                 fusion_mode=config.graph_fusion_mode,
-                use_prior=config.use_trend_prior_graph,
+                use_prior=config.adaptive_support_mode == "prior_constrained",
             )
             self.micro_graph_builder = AdaptiveGraphBuilder(
                 num_nodes=self.num_nodes,
                 node_embed_dim=config.node_embed_dim,
                 temperature=config.adaptive_graph_temperature,
                 fusion_mode=config.graph_fusion_mode,
-                use_prior=config.use_trend_prior_graph,
+                use_prior=config.adaptive_support_mode == "prior_constrained",
             )
         else:
             self.macro_graph_builder = FixedPriorGraphBuilder()
@@ -235,20 +236,21 @@ class STMGPrompt_GraphTemporalSmoke(nn.Module):
         self.num_nodes = int(A_macro.shape[0])
         self.register_buffer("A_macro_prior", A_macro)
         self.register_buffer("A_micro_prior", A_micro)
-        if config.use_adaptive_graph:
+        adaptive_enabled = bool(config.use_adaptive_graph and config.adaptive_support_mode != "fixed")
+        if adaptive_enabled:
             self.macro_graph_builder = AdaptiveGraphBuilder(
                 num_nodes=self.num_nodes,
                 node_embed_dim=config.node_embed_dim,
                 temperature=config.adaptive_graph_temperature,
                 fusion_mode=config.graph_fusion_mode,
-                use_prior=config.use_trend_prior_graph,
+                use_prior=config.adaptive_support_mode == "prior_constrained",
             )
             self.micro_graph_builder = AdaptiveGraphBuilder(
                 num_nodes=self.num_nodes,
                 node_embed_dim=config.node_embed_dim,
                 temperature=config.adaptive_graph_temperature,
                 fusion_mode=config.graph_fusion_mode,
-                use_prior=config.use_trend_prior_graph,
+                use_prior=config.adaptive_support_mode == "prior_constrained",
             )
         else:
             self.macro_graph_builder = FixedPriorGraphBuilder()
@@ -382,20 +384,21 @@ class STMGPrompt_FairFull(nn.Module):
             self.register_buffer("A_macro_prior", A_macro)
             self.register_buffer("A_micro_prior", A_micro)
             self.graph_metadata = graph_data.get("metadata", {})
-        if config.use_adaptive_graph:
+        adaptive_enabled = bool(config.use_adaptive_graph and config.adaptive_support_mode != "fixed")
+        if adaptive_enabled:
             self.macro_graph_builder = AdaptiveGraphBuilder(
                 num_nodes=self.num_nodes,
                 node_embed_dim=config.node_embed_dim,
                 temperature=config.adaptive_graph_temperature,
                 fusion_mode=config.graph_fusion_mode,
-                use_prior=config.use_trend_prior_graph,
+                use_prior=config.adaptive_support_mode == "prior_constrained",
             )
             self.micro_graph_builder = AdaptiveGraphBuilder(
                 num_nodes=self.num_nodes,
                 node_embed_dim=config.node_embed_dim,
                 temperature=config.adaptive_graph_temperature,
                 fusion_mode=config.graph_fusion_mode,
-                use_prior=config.use_trend_prior_graph,
+                use_prior=config.adaptive_support_mode == "prior_constrained",
             )
         else:
             self.macro_graph_builder = FixedPriorGraphBuilder()
@@ -491,11 +494,48 @@ class STMGPrompt_FairFull(nn.Module):
             "component_ablation": config.component_ablation,
             "use_vadsp": bool(config.use_vadsp),
             "use_trend_prior_graph": bool(config.use_trend_prior_graph),
-            "use_adaptive_graph": bool(config.use_adaptive_graph),
+            "use_adaptive_graph": adaptive_enabled,
+            "branch_graph_assignment": config.branch_graph_assignment,
+            "graph_prior_component": config.graph_prior_component,
+            "adaptive_support_mode": config.adaptive_support_mode,
+            "graph_rewire_mode": config.graph_rewire_mode,
             "use_macro_prompt": bool(self.coupling_blocks[0].use_macro_prompt),
             "use_cross_fusion": bool(self.coupling_blocks[0].use_cross_fusion),
             "use_st_prompt": bool(config.use_st_prompt),
         }
+
+    def assigned_graph_priors(self) -> tuple[Tensor, Tensor, str, str]:
+        assignment = self.config.branch_graph_assignment
+        if assignment == "matched":
+            return self.A_micro_prior, self.A_macro_prior, "micro", "macro"
+        if assignment == "shared_micro":
+            return self.A_micro_prior, self.A_micro_prior, "micro", "micro"
+        if assignment == "shared_macro":
+            return self.A_macro_prior, self.A_macro_prior, "macro", "macro"
+        if assignment == "swapped":
+            return self.A_macro_prior, self.A_micro_prior, "macro", "micro"
+        raise ValueError(f"Unsupported branch_graph_assignment: {assignment}")
+
+    def effective_graphs(self) -> tuple[Tensor, Tensor, dict[str, object]]:
+        fine_prior, coarse_prior, fine_id, coarse_id = self.assigned_graph_priors()
+        fine_graph = self.micro_graph_builder(fine_prior)
+        coarse_graph = self.macro_graph_builder(coarse_prior)
+        eps = 1e-8
+        trace = {
+            "assignment": self.config.branch_graph_assignment,
+            "fine_graph_id": fine_id,
+            "coarse_graph_id": coarse_id,
+            "fine_builder": type(self.micro_graph_builder).__name__,
+            "coarse_builder": type(self.macro_graph_builder).__name__,
+            "adaptive_support_mode": self.config.adaptive_support_mode,
+            "fine_edges_outside_assigned_prior": int(
+                torch.logical_and(fine_graph > eps, fine_prior <= eps).sum().detach().cpu().item()
+            ),
+            "coarse_edges_outside_assigned_prior": int(
+                torch.logical_and(coarse_graph > eps, coarse_prior <= eps).sum().detach().cpu().item()
+            ),
+        }
+        return fine_graph, coarse_graph, trace
 
     @staticmethod
     def _scalar_aux(aux: dict, prefix: str, layer_aux: dict) -> None:
@@ -520,8 +560,7 @@ class STMGPrompt_FairFull(nn.Module):
         vadsp_out = self.vadsp(projected, raw_x=x_tensor)
         x_fine = vadsp_out["x_fine"]
         x_coarse = vadsp_out["x_coarse"]
-        A_micro = self.micro_graph_builder(self.A_micro_prior)
-        A_macro = self.macro_graph_builder(self.A_macro_prior)
+        A_micro, A_macro, graph_assignment_trace = self.effective_graphs()
 
         layer_auxes = []
         aux: dict = {}
@@ -579,7 +618,9 @@ class STMGPrompt_FairFull(nn.Module):
                 "uses_fixed_dual_granularity": self.vadsp.gate_mode == "fixed_dual",
                 "vadsp_mode": self.vadsp.gate_mode,
                 "uses_trend_prior_graph": bool(self.config.use_trend_prior_graph),
-                "uses_adaptive_graph": bool(self.config.use_adaptive_graph),
+                "uses_adaptive_graph": bool(
+                    self.config.use_adaptive_graph and self.config.adaptive_support_mode != "fixed"
+                ),
                 "uses_graph_temporal_encoder": True,
                 "uses_graph_in_temporal_encoder": bool(self.config.use_graph_in_temporal_encoder),
                 "uses_temporal_attention": bool(self.config.use_temporal_attention),
@@ -646,6 +687,13 @@ class STMGPrompt_FairFull(nn.Module):
                 "coupling_metadata": self.coupling_metadata,
                 "decoder_metadata": self.direct_decoder.metadata,
                 "graph_metadata": self.graph_metadata,
+                "branch_graph_assignment": self.config.branch_graph_assignment,
+                "fine_graph_id": graph_assignment_trace["fine_graph_id"],
+                "coarse_graph_id": graph_assignment_trace["coarse_graph_id"],
+                "branch_graph_assignment_trace": graph_assignment_trace,
+                "graph_prior_component": self.config.graph_prior_component,
+                "adaptive_support_mode": self.config.adaptive_support_mode,
+                "graph_rewire_mode": self.config.graph_rewire_mode,
                 "graph_operator": self.config.graph_operator,
                 "decoder_context_mode": self.config.decoder_context_mode,
                 "diagnostics_level": self.config.diagnostics_level,

@@ -1,0 +1,22 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "G8",
+  "family": "G",
+  "implementation_status": "ready",
+  "expected_diff_fields": [
+    "graph_rewire_mode"
+  ],
+  "actual_diff_fields": [
+    "graph_rewire_mode"
+  ],
+  "missing_expected_diff_fields": [],
+  "unexpected_diff_fields": [],
+  "frozen_protocol_changes": [],
+  "differences": {
+    "graph_rewire_mode": {
+      "canonical": "none",
+      "effective": "degree_preserving_random"
+    }
+  },
+  "passed": true
+}

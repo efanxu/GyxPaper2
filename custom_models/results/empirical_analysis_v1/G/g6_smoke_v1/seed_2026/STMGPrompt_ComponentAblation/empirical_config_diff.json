@@ -4,18 +4,18 @@
   "family": "G",
   "implementation_status": "ready",
   "expected_diff_fields": [
-    "use_trend_prior_graph"
+    "adaptive_support_mode"
   ],
   "actual_diff_fields": [
-    "use_trend_prior_graph"
+    "adaptive_support_mode"
   ],
   "missing_expected_diff_fields": [],
   "unexpected_diff_fields": [],
   "frozen_protocol_changes": [],
   "differences": {
-    "use_trend_prior_graph": {
-      "canonical": true,
-      "effective": false
+    "adaptive_support_mode": {
+      "canonical": "prior_constrained",
+      "effective": "free"
     }
   },
   "passed": true

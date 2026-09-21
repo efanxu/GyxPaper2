@@ -1,0 +1,20 @@
+{
+  "variant_id": "G6",
+  "layers": [
+    {
+      "layer": 0,
+      "fine_branch": "micro",
+      "coarse_branch": "macro",
+      "fine_builder": "AdaptiveGraphBuilder",
+      "coarse_builder": "AdaptiveGraphBuilder"
+    }
+  ],
+  "assignment": "matched",
+  "fine_graph_id": "micro",
+  "coarse_graph_id": "macro",
+  "fine_builder": "AdaptiveGraphBuilder",
+  "coarse_builder": "AdaptiveGraphBuilder",
+  "adaptive_support_mode": "free",
+  "fine_edges_outside_assigned_prior": 9,
+  "coarse_edges_outside_assigned_prior": 8
+}

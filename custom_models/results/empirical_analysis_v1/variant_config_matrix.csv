@@ -6,14 +6,14 @@ T3,Shared temporal transform dual,T,CANONICAL_FULL,"{""temporal_branch_transform
 T4,Downsample-upsample Coarse dual,T,CANONICAL_FULL,"{""coarse_alignment_mode"": ""causal_downsample_upsample""}","[""coarse_alignment_mode""]",True,T0,ready,Uses causal anchor aggregation and causal repeat recovery with an access trace.,False
 T5,Fixed Dual concat/MLP interaction,T,CANONICAL_FULL,"{""cross_granularity_interaction"": ""direct_concat_mlp""}","[""cross_granularity_interaction""]",True,T0,ready,Bypasses Macro Prompt and Cross-Fusion and uses an explicit capacity-recorded concat/MLP projection.,False
 G0,Matched Micro/Fine + Macro/Coarse,G,CANONICAL_FULL,{},[],False,full_fixed_dual_keep_msmgdwu_seed2026,reference,,True
-G1,Shared Micro graph,G,CANONICAL_FULL,"{""branch_graph_assignment"": ""shared_micro""}","[""branch_graph_assignment""]",True,G0,pending,Implemented in empirical step 4.,False
-G2,Shared Macro graph,G,CANONICAL_FULL,"{""branch_graph_assignment"": ""shared_macro""}","[""branch_graph_assignment""]",True,G0,pending,Implemented in empirical step 4.,False
-G3,Swapped Micro/Macro graphs,G,CANONICAL_FULL,"{""branch_graph_assignment"": ""swapped""}","[""branch_graph_assignment""]",True,G0,pending,Implemented in empirical step 4.,False
-G4,Distance-only dual graph,G,CANONICAL_FULL,"{""graph_prior_component"": ""distance_only""}","[""graph_prior_component""]",True,G0,pending,Implemented in empirical step 4.,False
-G5,Statistics-only dual graph,G,CANONICAL_FULL,"{""graph_prior_component"": ""statistics_only""}","[""graph_prior_component""]",True,G0,pending,Implemented in empirical step 4.,False
-G6,Free adaptive graph,G,CANONICAL_FULL,"{""use_trend_prior_graph"": false}","[""use_trend_prior_graph""]",True,G0,ready,,False
-G7,Fixed dual graph,G,CANONICAL_FULL,"{""use_adaptive_graph"": false}","[""use_adaptive_graph""]",True,G0,ready,,False
-G8,Degree-preserving random rewiring,G,CANONICAL_FULL,"{""graph_rewire_mode"": ""degree_preserving_random""}","[""graph_rewire_mode""]",True,G0,pending,Implemented in empirical step 4.,False
+G1,Shared Micro graph,G,CANONICAL_FULL,"{""branch_graph_assignment"": ""shared_micro""}","[""branch_graph_assignment""]",True,G0,ready,,False
+G2,Shared Macro graph,G,CANONICAL_FULL,"{""branch_graph_assignment"": ""shared_macro""}","[""branch_graph_assignment""]",True,G0,ready,,False
+G3,Swapped Micro/Macro graphs,G,CANONICAL_FULL,"{""branch_graph_assignment"": ""swapped""}","[""branch_graph_assignment""]",True,G0,ready,,False
+G4,Distance-only dual graph,G,CANONICAL_FULL,"{""graph_prior_component"": ""distance_only""}","[""graph_prior_component""]",True,G0,ready,,False
+G5,Statistics-only dual graph,G,CANONICAL_FULL,"{""graph_prior_component"": ""statistics_only""}","[""graph_prior_component""]",True,G0,ready,,False
+G6,Free adaptive graph,G,CANONICAL_FULL,"{""adaptive_support_mode"": ""free""}","[""adaptive_support_mode""]",True,G0,ready,,False
+G7,Fixed dual graph,G,CANONICAL_FULL,"{""adaptive_support_mode"": ""fixed""}","[""adaptive_support_mode""]",True,G0,ready,,False
+G8,Degree-preserving random rewiring,G,CANONICAL_FULL,"{""graph_rewire_mode"": ""degree_preserving_random""}","[""graph_rewire_mode""]",True,G0,ready,,False
 F0,Independent dual branches,F,CANONICAL_FULL,"{""use_cross_fusion"": false, ""use_macro_prompt"": false}","[""use_macro_prompt"", ""use_cross_fusion""]",True,F7,ready,,False
 F1,Element-wise add,F,CANONICAL_FULL,"{""fusion_mode"": ""add""}","[""fusion_mode""]",True,F7,ready,,False
 F2,Concat + MLP,F,CANONICAL_FULL,"{""fusion_mode"": ""concat""}","[""fusion_mode""]",True,F7,ready,,False

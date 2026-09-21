@@ -1,18 +1,29 @@
 {
   "protocol_id": "empirical_analysis_v1",
   "variant_id": "G5",
-  "display_name": "Statistics-only dual graph",
   "family": "G",
-  "implementation_status": "pending",
-  "trainable": true,
-  "paired_reference": "G0",
+  "implementation_status": "ready",
   "expected_diff_fields": [
     "graph_prior_component"
   ],
+  "actual_diff_fields": [
+    "graph_prior_component"
+  ],
+  "missing_expected_diff_fields": [],
+  "unexpected_diff_fields": [],
+  "frozen_protocol_changes": [],
+  "differences": {
+    "graph_prior_component": {
+      "canonical": "fused",
+      "effective": "statistics_only"
+    }
+  },
+  "passed": true,
+  "display_name": "Statistics-only dual graph",
+  "trainable": true,
+  "paired_reference": "G0",
   "declared_overrides": {
     "graph_prior_component": "statistics_only"
   },
-  "passed": true,
-  "execution_ready": false,
-  "note": "Implemented in empirical step 4."
+  "execution_ready": true
 }

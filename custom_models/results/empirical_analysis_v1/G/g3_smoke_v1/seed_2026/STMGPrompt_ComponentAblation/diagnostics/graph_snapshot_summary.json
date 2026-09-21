@@ -1,0 +1,21 @@
+{
+  "artifact_source_checkpoint": "best_checkpoint.pt",
+  "macro_micro_prior_support_jaccard": 0.9821428571428571,
+  "macro_micro_final_support_jaccard": 0.9821428571428571,
+  "macro_micro_prior_weight_correlation": 0.8948365962056251,
+  "macro_micro_final_weight_correlation": 0.7743339790571631,
+  "macro_topology_edge_count": 55,
+  "micro_topology_edge_count": 56,
+  "macro_self_weight_mean": 0.0,
+  "micro_self_weight_mean": 0.0,
+  "branch_graph_assignment_trace": {
+    "assignment": "swapped",
+    "fine_graph_id": "macro",
+    "coarse_graph_id": "micro",
+    "fine_builder": "AdaptiveGraphBuilder",
+    "coarse_builder": "AdaptiveGraphBuilder",
+    "adaptive_support_mode": "prior_constrained",
+    "fine_edges_outside_assigned_prior": 0,
+    "coarse_edges_outside_assigned_prior": 0
+  }
+}

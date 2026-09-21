@@ -1,0 +1,22 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant": {
+    "variant_id": "G8",
+    "display_name": "Degree-preserving random rewiring",
+    "family": "G",
+    "base_config": "CANONICAL_FULL",
+    "config_overrides": {
+      "graph_rewire_mode": "degree_preserving_random"
+    },
+    "expected_unique_diff": [
+      "graph_rewire_mode"
+    ],
+    "trainable": true,
+    "paired_reference": "G0",
+    "implementation_status": "ready",
+    "implementation_note": "",
+    "reference_only": false
+  },
+  "seed": 2026,
+  "mode": "smoke"
+}

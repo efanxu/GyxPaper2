@@ -6,10 +6,10 @@
     "family": "G",
     "base_config": "CANONICAL_FULL",
     "config_overrides": {
-      "use_trend_prior_graph": false
+      "adaptive_support_mode": "free"
     },
     "expected_unique_diff": [
-      "use_trend_prior_graph"
+      "adaptive_support_mode"
     ],
     "trainable": true,
     "paired_reference": "G0",

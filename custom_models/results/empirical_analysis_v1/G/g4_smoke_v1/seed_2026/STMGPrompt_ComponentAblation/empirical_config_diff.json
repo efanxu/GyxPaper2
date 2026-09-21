@@ -1,0 +1,22 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "G4",
+  "family": "G",
+  "implementation_status": "ready",
+  "expected_diff_fields": [
+    "graph_prior_component"
+  ],
+  "actual_diff_fields": [
+    "graph_prior_component"
+  ],
+  "missing_expected_diff_fields": [],
+  "unexpected_diff_fields": [],
+  "frozen_protocol_changes": [],
+  "differences": {
+    "graph_prior_component": {
+      "canonical": "fused",
+      "effective": "distance_only"
+    }
+  },
+  "passed": true
+}

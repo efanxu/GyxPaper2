@@ -1,0 +1,10 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "G6",
+  "status": "not_started",
+  "reasons": [
+    "formal_long_training_not_run_during_step4_preflight"
+  ],
+  "contaminated_checkpoint_reused": false,
+  "updated_at": "2026-09-21T12:06:17.595727+00:00"
+}

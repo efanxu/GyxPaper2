@@ -1,0 +1,51 @@
+{
+  "total_parameters": 273174,
+  "trainable_parameters": 273174,
+  "shared_parameter_count": 0,
+  "branch_output_dimensions": {
+    "fine": 64,
+    "coarse": 64
+  },
+  "input_shape": [
+    32,
+    144,
+    134,
+    16
+  ],
+  "output_shape": [
+    32,
+    10,
+    134
+  ],
+  "loss": 0.6055740714073181,
+  "loss_finite": true,
+  "gradient_finite": true,
+  "device": "cuda",
+  "amp_enabled": true,
+  "peak_memory_mb": 8701.234375,
+  "temporal_branch_transform": "independent",
+  "coarse_alignment_mode": "same_axis",
+  "cross_granularity_interaction": "cross_fusion",
+  "direct_concat_mlp": {
+    "layers": 2,
+    "hidden_dim": 432,
+    "activation": "gelu",
+    "dropout": 0.1,
+    "output_dim": 64,
+    "macro_prompt_instantiated": true,
+    "cross_fusion_instantiated": true
+  },
+  "branch_graph_assignment_trace": {
+    "assignment": "matched",
+    "fine_graph_id": "micro",
+    "coarse_graph_id": "macro",
+    "fine_builder": "FixedPriorGraphBuilder",
+    "coarse_builder": "FixedPriorGraphBuilder",
+    "adaptive_support_mode": "fixed",
+    "fine_edges_outside_assigned_prior": 0,
+    "coarse_edges_outside_assigned_prior": 0
+  },
+  "graph_prior_component": "fused",
+  "adaptive_support_mode": "fixed",
+  "graph_rewire_mode": "none"
+}

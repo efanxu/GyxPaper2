@@ -1427,9 +1427,12 @@ def _run_once(args: argparse.Namespace, cfg: STMGPromptConfig, run_dir: Path) ->
         checkpoint_info = {}
     minimal_diagnostics = cfg.diagnostics_level in {"none", "minimal"}
     graph_summary = {}
-    if not minimal_diagnostics:
+    empirical_graph_variant = str(getattr(cfg, "variant", "")).upper().startswith("G")
+    if not minimal_diagnostics or empirical_graph_variant:
         update_run_status(run_dir, "DIAGNOSTICS_STARTED")
         graph_summary = save_graph_snapshots(model, run_dir / "diagnostics", checkpoint_name=Path(checkpoint_path).name)
+        if minimal_diagnostics:
+            update_run_status(run_dir, "DIAGNOSTICS_FINISHED")
     summary.update(
         {
             "model_name": cfg.model_name,
@@ -1480,6 +1483,13 @@ def _run_once(args: argparse.Namespace, cfg: STMGPromptConfig, run_dir: Path) ->
                     "vadsp_mode",
                     "coarse_alignment_mode",
                     "coarse_upsample_rule",
+                    "branch_graph_assignment",
+                    "fine_graph_id",
+                    "coarse_graph_id",
+                    "branch_graph_assignment_trace",
+                    "graph_prior_component",
+                    "adaptive_support_mode",
+                    "graph_rewire_mode",
                 ]
                 if key in out["aux"]
             },

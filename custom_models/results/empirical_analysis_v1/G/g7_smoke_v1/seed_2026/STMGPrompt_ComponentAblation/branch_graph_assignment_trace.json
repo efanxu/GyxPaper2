@@ -1,0 +1,20 @@
+{
+  "variant_id": "G7",
+  "layers": [
+    {
+      "layer": 0,
+      "fine_branch": "micro",
+      "coarse_branch": "macro",
+      "fine_builder": "FixedPriorGraphBuilder",
+      "coarse_builder": "FixedPriorGraphBuilder"
+    }
+  ],
+  "assignment": "matched",
+  "fine_graph_id": "micro",
+  "coarse_graph_id": "macro",
+  "fine_builder": "FixedPriorGraphBuilder",
+  "coarse_builder": "FixedPriorGraphBuilder",
+  "adaptive_support_mode": "fixed",
+  "fine_edges_outside_assigned_prior": 0,
+  "coarse_edges_outside_assigned_prior": 0
+}

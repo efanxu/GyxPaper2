@@ -124,14 +124,14 @@ _T_VARIANTS = (
 
 _G_VARIANTS = (
     _variant("G0", "Matched Micro/Fine + Macro/Coarse", "G", trainable=False, paired_reference=CANONICAL_ID, status="reference"),
-    _variant("G1", "Shared Micro graph", "G", {"branch_graph_assignment": "shared_micro"}, status="pending", paired_reference="G0", note="Implemented in empirical step 4."),
-    _variant("G2", "Shared Macro graph", "G", {"branch_graph_assignment": "shared_macro"}, status="pending", paired_reference="G0", note="Implemented in empirical step 4."),
-    _variant("G3", "Swapped Micro/Macro graphs", "G", {"branch_graph_assignment": "swapped"}, status="pending", paired_reference="G0", note="Implemented in empirical step 4."),
-    _variant("G4", "Distance-only dual graph", "G", {"graph_prior_component": "distance_only"}, status="pending", paired_reference="G0", note="Implemented in empirical step 4."),
-    _variant("G5", "Statistics-only dual graph", "G", {"graph_prior_component": "statistics_only"}, status="pending", paired_reference="G0", note="Implemented in empirical step 4."),
-    _variant("G6", "Free adaptive graph", "G", {"use_trend_prior_graph": False}, paired_reference="G0"),
-    _variant("G7", "Fixed dual graph", "G", {"use_adaptive_graph": False}, paired_reference="G0"),
-    _variant("G8", "Degree-preserving random rewiring", "G", {"graph_rewire_mode": "degree_preserving_random"}, status="pending", paired_reference="G0", note="Implemented in empirical step 4."),
+    _variant("G1", "Shared Micro graph", "G", {"branch_graph_assignment": "shared_micro"}, paired_reference="G0"),
+    _variant("G2", "Shared Macro graph", "G", {"branch_graph_assignment": "shared_macro"}, paired_reference="G0"),
+    _variant("G3", "Swapped Micro/Macro graphs", "G", {"branch_graph_assignment": "swapped"}, paired_reference="G0"),
+    _variant("G4", "Distance-only dual graph", "G", {"graph_prior_component": "distance_only"}, paired_reference="G0"),
+    _variant("G5", "Statistics-only dual graph", "G", {"graph_prior_component": "statistics_only"}, paired_reference="G0"),
+    _variant("G6", "Free adaptive graph", "G", {"adaptive_support_mode": "free"}, paired_reference="G0"),
+    _variant("G7", "Fixed dual graph", "G", {"adaptive_support_mode": "fixed"}, paired_reference="G0"),
+    _variant("G8", "Degree-preserving random rewiring", "G", {"graph_rewire_mode": "degree_preserving_random"}, paired_reference="G0"),
 )
 
 _F_VARIANTS = (

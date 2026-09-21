@@ -271,8 +271,12 @@ def save_graph_snapshots(model: torch.nn.Module, output_dir, checkpoint_name: st
     output_dir.mkdir(parents=True, exist_ok=True)
     A_macro_prior = model.A_macro_prior.detach().cpu().numpy()
     A_micro_prior = model.A_micro_prior.detach().cpu().numpy()
-    A_macro_final_t = model.macro_graph_builder(model.A_macro_prior)
-    A_micro_final_t = model.micro_graph_builder(model.A_micro_prior)
+    assignment_trace = None
+    if hasattr(model, "effective_graphs"):
+        A_micro_final_t, A_macro_final_t, assignment_trace = model.effective_graphs()
+    else:
+        A_macro_final_t = model.macro_graph_builder(model.A_macro_prior)
+        A_micro_final_t = model.micro_graph_builder(model.A_micro_prior)
     A_macro_final = A_macro_final_t.detach().cpu().numpy()
     A_micro_final = A_micro_final_t.detach().cpu().numpy()
     macro_adaptive = A_macro_final
@@ -284,6 +288,8 @@ def save_graph_snapshots(model: torch.nn.Module, output_dir, checkpoint_name: st
         "micro_adaptive_final.npy": micro_adaptive,
         "macro_final_adjacency.npy": A_macro_final,
         "micro_final_adjacency.npy": A_micro_final,
+        "coarse_branch_final_adjacency.npy": A_macro_final,
+        "fine_branch_final_adjacency.npy": A_micro_final,
     }
     for filename, array in files.items():
         np.save(output_dir / filename, array)
@@ -310,6 +316,7 @@ def save_graph_snapshots(model: torch.nn.Module, output_dir, checkpoint_name: st
         "micro_topology_edge_count": int(micro_support.sum()),
         "macro_self_weight_mean": float(np.diag(A_macro_final).mean()),
         "micro_self_weight_mean": float(np.diag(A_micro_final).mean()),
+        "branch_graph_assignment_trace": assignment_trace,
     }
     (output_dir / "graph_snapshot_summary.json").write_text(
         json.dumps(summary, indent=2, ensure_ascii=False),

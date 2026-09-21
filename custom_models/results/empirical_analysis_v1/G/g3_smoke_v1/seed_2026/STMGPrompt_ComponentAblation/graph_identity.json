@@ -1,0 +1,59 @@
+{
+  "node_count": 8,
+  "node_order_source": "STMGPromptDataBundle.turbine_ids",
+  "node_order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "coordinate_columns": [
+    "x",
+    "y"
+  ],
+  "location_file": "D:\\PaperProject\\GyxPaper2\\dataset\\sdwpf_turb_location_elevation.csv",
+  "distance_definition": "exp(-squared_euclidean_distance/sigma^2)",
+  "micro_top_k": 5,
+  "macro_top_k": 10,
+  "distance_top_k": 5,
+  "self_loop": false,
+  "normalization": "row_sum_one",
+  "elevation_used": false,
+  "micro_source": "distance_delta_wspd",
+  "macro_source": "causal_trend_similarity",
+  "source_components": [
+    "distance",
+    "train_statistics"
+  ],
+  "fit_split": "train_only",
+  "edge_count": {
+    "micro": 55,
+    "macro": 56
+  },
+  "row_degree_summary": {
+    "micro": {
+      "min": 6,
+      "median": 7.0,
+      "mean": 6.875,
+      "max": 7
+    },
+    "macro": {
+      "min": 7,
+      "median": 7.0,
+      "mean": 7.0,
+      "max": 7
+    }
+  },
+  "branch_graph_assignment": "swapped",
+  "adaptive_support_mode": "prior_constrained",
+  "graph_prior_component": "fused",
+  "graph_rewire_mode": "none",
+  "graph_rewire_seed": null,
+  "directionality": "directed_rowwise_top_k",
+  "not_applicable_reason": null,
+  "artifact_directory": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g3_smoke_v1\\_graph_artifacts\\trend_prior_v4_2"
+}
