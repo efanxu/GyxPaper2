@@ -1,0 +1,24 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant": {
+    "variant_id": "N2",
+    "display_name": "No node or horizon identity, type-only prompt",
+    "family": "N",
+    "base_config": "CANONICAL_FULL",
+    "config_overrides": {
+      "st_prompt_use_node_identity": false,
+      "st_prompt_use_horizon_identity": false
+    },
+    "expected_unique_diff": [
+      "st_prompt_use_node_identity",
+      "st_prompt_use_horizon_identity"
+    ],
+    "trainable": true,
+    "paired_reference": "N5",
+    "implementation_status": "ready",
+    "implementation_note": "Retains only the fixed decoder-input type embedding and shape adapter.",
+    "reference_only": false
+  },
+  "seed": 2026,
+  "mode": "smoke"
+}

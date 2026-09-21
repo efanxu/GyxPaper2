@@ -203,6 +203,74 @@ _F_VARIANTS = (
     _variant("F8", "Mean-pooling Macro Prompt", "F", {"macro_prompt_pooling": "mean"}, trainable=False, paired_reference="A4", status="reference"),
 )
 
+_N_VARIANTS = (
+    _variant(
+        "N0",
+        "No node identity",
+        "N",
+        {"st_prompt_use_node_identity": False},
+        paired_reference="N5",
+    ),
+    _variant(
+        "N1",
+        "No horizon identity",
+        "N",
+        {"st_prompt_use_horizon_identity": False},
+        paired_reference="N5",
+        note="Removes the horizon component; every future step receives the same fixed-zero horizon representation.",
+    ),
+    _variant(
+        "N2",
+        "No node or horizon identity, type-only prompt",
+        "N",
+        {"st_prompt_use_node_identity": False, "st_prompt_use_horizon_identity": False},
+        paired_reference="N5",
+        note="Retains only the fixed decoder-input type embedding and shape adapter.",
+    ),
+    _variant(
+        "N3",
+        "Shared learnable horizon embedding",
+        "N",
+        {
+            "st_prompt_use_horizon_identity": False,
+            "st_prompt_use_shared_horizon_embedding": True,
+        },
+        paired_reference="N5",
+        note="Uses one learnable horizon vector shared by all ten steps; unlike N1, the shared horizon component is trainable.",
+    ),
+    _variant(
+        "N4",
+        "Independent horizon output heads",
+        "N",
+        {"use_st_prompt": False, "decoder_input_strategy": "direct_multi_output_horizon_head"},
+        paired_reference="N5",
+    ),
+    _variant("N5", "Last-state plus full ST Prompt", "N", trainable=False, paired_reference=CANONICAL_ID, status="reference"),
+    _variant(
+        "N6",
+        "Mean-pooling history",
+        "N",
+        {"decoder_context_mode": "mean_pooling_history"},
+        paired_reference="N5",
+    ),
+    _variant(
+        "N7",
+        "Attention-pooling history",
+        "N",
+        {"decoder_context_mode": "attention_pooling_history"},
+        paired_reference="N5",
+    ),
+    _variant(
+        "N8",
+        "Full-history cross-attention",
+        "N",
+        {"decoder_context_mode": "full_history_cross_attention"},
+        trainable=False,
+        paired_reference="P3",
+        status="reference",
+    ),
+)
+
 _L_VARIANTS = (
     _variant("L0", "Equal Smooth L1", "L", {"granularity_weight_mode": "static", "site_weight_mode": "static"}, paired_reference="L3"),
     _variant("L1", "Horizon difficulty-rate only", "L", {"site_weight_mode": "static"}, paired_reference="L3"),
@@ -237,6 +305,7 @@ EMPIRICAL_FAMILIES: dict[str, dict[str, EmpiricalVariant]] = {
         "G": _G_VARIANTS,
         "D": _D_VARIANTS,
         "F": _F_VARIANTS,
+        "N": _N_VARIANTS,
         "L": _L_VARIANTS,
         "R": _R_VARIANTS,
     }.items()

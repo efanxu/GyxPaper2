@@ -789,10 +789,20 @@ def save_coupling_diagnostics(model: torch.nn.Module, loader, output_dir, max_ba
             "decoder_context_mode": getattr(model.config, "decoder_context_mode", None),
             "decoder_history_len": getattr(model.config, "decoder_history_len", None),
             "st_prompt_use_node_identity": bool(getattr(model.config, "st_prompt_use_node_identity", True)),
-            "st_prompt_information": (
-                "node+future+granularity"
-                if bool(getattr(model.config, "st_prompt_use_node_identity", True))
-                else "future+granularity"
+            "st_prompt_use_horizon_identity": bool(
+                getattr(model.config, "st_prompt_use_horizon_identity", True)
+            ),
+            "st_prompt_use_shared_horizon_embedding": bool(
+                getattr(model.config, "st_prompt_use_shared_horizon_embedding", False)
+            ),
+            "st_prompt_use_type_embedding": bool(
+                getattr(model.config, "st_prompt_use_type_embedding", True)
+            ),
+            "st_prompt_type_semantics": getattr(
+                model.config, "st_prompt_type_semantics", "fixed_decoder_input_type"
+            ),
+            "st_prompt_information": getattr(model, "coupling_metadata", {}).get(
+                "st_prompt_information", "not_available"
             ),
             "graph_operator": getattr(model.config, "graph_operator", None),
             "diffusion_order_micro": getattr(model.config, "diffusion_order_micro", None),

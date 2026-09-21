@@ -1,0 +1,114 @@
+{
+  "pid": 17916,
+  "process_start_time": 1789999808.610556,
+  "events": [
+    {
+      "stage": "TRAIN_STARTED",
+      "time": "2026-09-21T22:10:20"
+    },
+    {
+      "stage": "TRAIN_FINISHED",
+      "time": "2026-09-21T22:10:22",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n1_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+      "last_completed_epoch": 1
+    },
+    {
+      "stage": "BEST_CHECKPOINT_SAVED",
+      "time": "2026-09-21T22:10:22",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n1_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt"
+    },
+    {
+      "stage": "FINAL_VALIDATION_STARTED",
+      "time": "2026-09-21T22:10:22"
+    },
+    {
+      "stage": "FINAL_VALIDATION_FINISHED",
+      "time": "2026-09-21T22:10:22"
+    },
+    {
+      "stage": "TEST_STARTED",
+      "time": "2026-09-21T22:10:22",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n1_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt"
+    },
+    {
+      "stage": "TEST_METRICS_WRITE_STARTED",
+      "time": "2026-09-21T22:10:22",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n1_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt"
+    },
+    {
+      "stage": "TEST_METRICS_WRITE_FINISHED",
+      "time": "2026-09-21T22:10:22",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n1_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt"
+    },
+    {
+      "stage": "PREDICTION_METADATA_WRITE_STARTED",
+      "time": "2026-09-21T22:10:22",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n1_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt"
+    },
+    {
+      "stage": "PREDICTION_METADATA_WRITE_FINISHED",
+      "time": "2026-09-21T22:10:22",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n1_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt"
+    },
+    {
+      "stage": "EVALUATION_COMPLETE_WRITE_STARTED",
+      "time": "2026-09-21T22:10:22",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n1_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt"
+    },
+    {
+      "stage": "EVALUATION_COMPLETE_WRITE_FINISHED",
+      "time": "2026-09-21T22:10:22",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n1_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt"
+    },
+    {
+      "stage": "TEST_FINISHED",
+      "time": "2026-09-21T22:10:22"
+    },
+    {
+      "stage": "FINAL_ARTIFACT_VALIDATION_STARTED",
+      "time": "2026-09-21T22:10:22"
+    },
+    {
+      "stage": "FINAL_ARTIFACT_VALIDATION_FINISHED",
+      "time": "2026-09-21T22:10:22",
+      "artifact_validation": {
+        "best_checkpoint.pt": true,
+        "metrics.csv": true,
+        "metrics_eval_h3.json": true,
+        "metrics_eval_h6.json": true,
+        "metrics_eval_h10.json": true,
+        "prediction_metadata.json": true,
+        "evaluation_complete.json": true
+      },
+      "artifacts_complete": true
+    },
+    {
+      "stage": "PROTOCOL_CHECK_STARTED",
+      "time": "2026-09-21T22:10:22"
+    },
+    {
+      "stage": "PROTOCOL_CHECK_FINISHED",
+      "time": "2026-09-21T22:10:22",
+      "protocol_passed": true
+    },
+    {
+      "stage": "PROCESS_FINISHED",
+      "time": "2026-09-21T22:10:22"
+    }
+  ],
+  "current_stage": "PROCESS_FINISHED",
+  "updated_at": "2026-09-21T22:10:22",
+  "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n1_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+  "last_completed_epoch": 1,
+  "artifact_validation": {
+    "best_checkpoint.pt": true,
+    "metrics.csv": true,
+    "metrics_eval_h3.json": true,
+    "metrics_eval_h6.json": true,
+    "metrics_eval_h10.json": true,
+    "prediction_metadata.json": true,
+    "evaluation_complete.json": true
+  },
+  "artifacts_complete": true,
+  "protocol_passed": true
+}

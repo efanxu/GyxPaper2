@@ -33,6 +33,8 @@ from st_mgprompt.experiment_protocol import (
     CANONICAL_ID,
     COMPONENT_RESULT_ROOT,
     COMPONENT_RUN_ID,
+    PRECISION_RESULT_ROOT,
+    PRECISION_RUN_ID,
     canonical_directory,
     config_diff,
 )
@@ -44,6 +46,7 @@ from st_mgprompt.step3_reporting import write_step3_reports
 from st_mgprompt.step4_reporting import write_step4_reports
 from st_mgprompt.step5_reporting import write_step5_reports
 from st_mgprompt.step6_reporting import write_step6_reports
+from st_mgprompt.step7_reporting import write_step7_reports
 from st_mgprompt.summarize_empirical import summarize_empirical
 
 
@@ -56,6 +59,8 @@ def _effective_source_scope(args: argparse.Namespace, variant: EmpiricalVariant)
         return "internal_diffusion"
     if variant.family == "F" and args.source_scope == "internal_mechanism":
         return "internal_fusion"
+    if variant.family == "N" and args.source_scope == "internal_mechanism":
+        return "internal_decoder"
     return str(args.source_scope)
 
 
@@ -211,6 +216,13 @@ def _reference_source(variant: EmpiricalVariant) -> Path:
             / target
             / "STMGPrompt_ComponentAblation"
         )
+    if target in {"P3", "P4", "P5"}:
+        return (
+            resolve_project_path(PRECISION_RESULT_ROOT)
+            / PRECISION_RUN_ID
+            / target
+            / "STMGPrompt_ComponentAblation"
+        )
     return resolve_project_path(EMPIRICAL_RESULT_ROOT) / variant.family / str(target)
 
 
@@ -222,7 +234,8 @@ def _write_reference(
     source_scope: str = "internal_mechanism",
 ) -> dict[str, Any]:
     source = _reference_source(variant)
-    formal_variant = variant.paired_reference if variant.paired_reference in {"A4", "A7", "A8"} else "A0"
+    formal_family = "precision" if variant.paired_reference in {"P3", "P4", "P5"} else "component_ablation"
+    formal_variant = variant.paired_reference if variant.paired_reference in {"A4", "A7", "A8", "P3", "P4", "P5"} else "A0"
     source_config_path = source / "effective_config.json"
     if not source_config_path.is_file():
         source_config_path = source / "active_config.json"
@@ -236,7 +249,7 @@ def _write_reference(
     }
     if source_config_path.is_file():
         source_config = json.loads(source_config_path.read_text(encoding="utf-8"))
-        source_audit = config_diff(source_config, formal_variant, "component_ablation")
+        source_audit = config_diff(source_config, formal_variant, formal_family)
         source_audit["config_path"] = str(source_config_path.resolve())
     payload = {
         "protocol_id": EMPIRICAL_PROTOCOL_ID,
@@ -250,6 +263,7 @@ def _write_reference(
         "source_run_dir": str(source.resolve()),
         "source_exists": source.is_dir(),
         "source_semantic_audit": source_audit,
+        "source_formal_family": formal_family,
         "created_at": _utc_now(),
         "note": "This is a reference; no checkpoint or metrics were copied.",
     }
@@ -355,6 +369,22 @@ def _write_identity_contract(
             },
             "mask": formal_config.target_mask_col,
             "prediction_start_index_rule": "[t-lookback,t)->[t,t+max_pred_len)",
+            "prompt_contract": {
+                "shape": [1, formal_config.max_pred_len, formal_config.num_nodes, formal_config.hidden_dim],
+                "node_identity": formal_config.st_prompt_use_node_identity,
+                "horizon_identity": formal_config.st_prompt_use_horizon_identity,
+                "shared_horizon_embedding": formal_config.st_prompt_use_shared_horizon_embedding,
+                "type_embedding": formal_config.st_prompt_use_type_embedding,
+                "type_semantics": formal_config.st_prompt_type_semantics,
+            },
+            "decoder_contract": {
+                "context_mode": formal_config.decoder_context_mode,
+                "input_strategy": formal_config.decoder_input_strategy,
+                "teacher_forcing": False,
+                "autoregressive": False,
+                "future_observed_features_used": False,
+                "output_shape": ["B", formal_config.max_pred_len, formal_config.num_nodes],
+            },
             "graph_identity_reference": "G0/CANONICAL" if variant.family == "D" else None,
             **(diffusion_contract if variant.family == "D" else {}),
             "passed": bool(audit.get("passed")),
@@ -405,6 +435,22 @@ def _augment_completed_run_artifacts(
             },
             "mask": config.target_mask_col,
             "prediction_start_index_rule": "[t-lookback,t)->[t,t+max_pred_len)",
+            "prompt_contract": {
+                "shape": [1, config.max_pred_len, config.num_nodes, config.hidden_dim],
+                "node_identity": config.st_prompt_use_node_identity,
+                "horizon_identity": config.st_prompt_use_horizon_identity,
+                "shared_horizon_embedding": config.st_prompt_use_shared_horizon_embedding,
+                "type_embedding": config.st_prompt_use_type_embedding,
+                "type_semantics": config.st_prompt_type_semantics,
+            },
+            "decoder_contract": {
+                "context_mode": config.decoder_context_mode,
+                "input_strategy": config.decoder_input_strategy,
+                "teacher_forcing": False,
+                "autoregressive": False,
+                "future_observed_features_used": False,
+                "output_shape": ["B", config.max_pred_len, config.num_nodes],
+            },
             "graph_identity_reference": "G0/CANONICAL" if variant.family == "D" else None,
             **diffusion_contract,
         }
@@ -421,6 +467,16 @@ def _augment_completed_run_artifacts(
                 "prediction_start_index_rule": "[t-lookback,t)->[t,t+max_pred_len)",
                 "node_count": config.num_nodes,
                 "horizon": config.max_pred_len,
+                "st_prompt_use_node_identity": config.st_prompt_use_node_identity,
+                "st_prompt_use_horizon_identity": config.st_prompt_use_horizon_identity,
+                "st_prompt_use_shared_horizon_embedding": config.st_prompt_use_shared_horizon_embedding,
+                "st_prompt_use_type_embedding": config.st_prompt_use_type_embedding,
+                "st_prompt_type_semantics": config.st_prompt_type_semantics,
+                "decoder_context_mode": config.decoder_context_mode,
+                "decoder_input_strategy": config.decoder_input_strategy,
+                "teacher_forcing": False,
+                "autoregressive": False,
+                "future_observed_features_used": False,
                 "graph_identity_reference": "G0/CANONICAL" if variant.family == "D" else None,
                 **diffusion_contract,
                 "effective_batch": {
@@ -732,7 +788,7 @@ def _run_full_shape(
     audit = assert_empirical_expected_diff(formal, variant.variant_id, variant.family)
     formal.source_scope = _effective_source_scope(args, variant)
     effective = deepcopy(formal)
-    effective.diagnostics_level = "standard" if variant.family == "F" else "minimal"
+    effective.diagnostics_level = "standard" if variant.family in {"F", "N"} else "minimal"
     effective.prediction_accumulation = "streaming"
     _write_identity_contract(run_dir, formal, effective, variant, audit, "full_shape")
     started_at = _utc_now()
@@ -878,6 +934,77 @@ def _run_full_shape(
             "graph_rewire_mode": effective.graph_rewire_mode,
             **(_diffusion_config_contract(effective) if variant.family == "D" else {}),
         }
+        if variant.family == "N":
+            prompt_summary: dict[str, Any] = {
+                "status": "NOT_APPLICABLE" if model.st_prompt is None else "available",
+                "prompt_shape": output["aux"].get("st_prompt_shape"),
+                "node_identity": effective.st_prompt_use_node_identity,
+                "horizon_identity": effective.st_prompt_use_horizon_identity,
+                "shared_horizon_embedding": effective.st_prompt_use_shared_horizon_embedding,
+                "type_embedding": effective.st_prompt_use_type_embedding,
+                "type_semantics": effective.st_prompt_type_semantics,
+                "horizon_representation": output["aux"].get("st_prompt_horizon_representation"),
+            }
+            horizon_distance: list[list[float]] = []
+            if model.st_prompt is not None:
+                prompt_was_training = model.st_prompt.training
+                model.st_prompt.eval()
+                with torch.no_grad():
+                    prompt = model.st_prompt(
+                        num_nodes=effective.num_nodes,
+                        horizon=effective.max_pred_len,
+                        granularity_index=0,
+                    ).detach().float().cpu()
+                    horizon_vectors = prompt.mean(dim=2).squeeze(0)
+                    node_vectors = prompt.mean(dim=1).squeeze(0)
+                    horizon_distance = torch.cdist(horizon_vectors, horizon_vectors).tolist()
+                    flattened = prompt.reshape(-1, prompt.shape[-1])
+                    prompt_summary.update(
+                        {
+                            "prompt_norm_mean": float(prompt.norm(dim=-1).mean().item()),
+                            "horizon_variance": float(prompt.var(dim=1, unbiased=False).mean().item()),
+                            "node_variance": float(prompt.var(dim=2, unbiased=False).mean().item()),
+                            "effective_rank": int(torch.linalg.matrix_rank(flattened).item()),
+                            "horizon_difference_max": float(
+                                (prompt[:, 1:] - prompt[:, :1]).abs().max().item()
+                                if prompt.shape[1] > 1
+                                else 0.0
+                            ),
+                            "node_difference_max": float(
+                                (prompt[:, :, 1:] - prompt[:, :, :1]).abs().max().item()
+                                if prompt.shape[2] > 1
+                                else 0.0
+                            ),
+                            "horizon_vector_norms": horizon_vectors.norm(dim=-1).tolist(),
+                            "node_vector_norm_mean": float(node_vectors.norm(dim=-1).mean().item()),
+                        }
+                    )
+                model.st_prompt.train(prompt_was_training)
+            summary["prompt_embedding_summary"] = prompt_summary
+            summary["horizon_distance_matrix"] = horizon_distance
+            summary["decoder_summary"] = {
+                "decoder_type": output["aux"].get("decoder_type"),
+                "decoder_input_strategy": output["aux"].get("decoder_input_strategy"),
+                "decoder_context_mode": effective.decoder_context_mode,
+                "decoder_actual_history_len": output["aux"].get("decoder_actual_history_len", 1),
+                "decoder_history_range": output["aux"].get(
+                    "decoder_history_range",
+                    f"[{effective.lookback - 1},{effective.lookback})"
+                    if effective.decoder_context_mode == "last_state"
+                    else f"[0,{effective.lookback})",
+                ),
+                "decoder_pooling": output["aux"].get("decoder_pooling", "last_state"),
+                "fine_history_attention_entropy": output["aux"].get("fine_history_attention_entropy"),
+                "coarse_history_attention_entropy": output["aux"].get("coarse_history_attention_entropy"),
+                "teacher_forcing": False,
+                "autoregressive": False,
+                "future_observed_features_used": False,
+                "head_parameterization": model.direct_decoder.metadata.get("head_parameterization"),
+                "head_specific_parameter_count": model.direct_decoder.metadata.get(
+                    "head_specific_parameter_count"
+                ),
+                "output_shape": list(output["pred"].shape),
+            }
         if variant.family == "F":
             diagnostic_keys = (
                 "pre_fusion_cosine_similarity",
@@ -1249,6 +1376,11 @@ def run_empirical(argv: list[str] | None = None) -> dict[str, Any]:
         if any(variant.family == "F" for variant in variants) and not args.dry_run
         else None
     )
+    step7 = (
+        write_step7_reports(output_root)
+        if any(variant.family == "N" for variant in variants) and not args.dry_run
+        else None
+    )
     summary = summarize_empirical(output_root)
     return {
         "output_root": str(output_root.resolve()),
@@ -1257,6 +1389,7 @@ def run_empirical(argv: list[str] | None = None) -> dict[str, Any]:
         "step4": step4,
         "step5": step5,
         "step6": step6,
+        "step7": step7,
         "summary": summary,
     }
 

@@ -171,6 +171,10 @@ class STMGPromptConfig:
     use_st_prompt: bool = False
     st_prompt_mode: str = "full"
     st_prompt_use_node_identity: bool = True
+    st_prompt_use_horizon_identity: bool = True
+    st_prompt_use_shared_horizon_embedding: bool = False
+    st_prompt_use_type_embedding: bool = True
+    st_prompt_type_semantics: str = "fixed_decoder_input_type"
     decoder_context_mode: str = "last_state"
     decoder_history_len: int | None = None
     macro_prompt_len: int = 4
@@ -517,8 +521,23 @@ class STMGPromptConfig:
             raise ValueError("st_prompt_mode must be full or horizon_only.")
         if not isinstance(self.st_prompt_use_node_identity, bool):
             raise ValueError("st_prompt_use_node_identity must be a boolean.")
-        if self.decoder_context_mode not in {"last_state", "full_history_cross_attention"}:
-            raise ValueError("decoder_context_mode must be last_state or full_history_cross_attention.")
+        if not isinstance(self.st_prompt_use_horizon_identity, bool):
+            raise ValueError("st_prompt_use_horizon_identity must be a boolean.")
+        if not isinstance(self.st_prompt_use_shared_horizon_embedding, bool):
+            raise ValueError("st_prompt_use_shared_horizon_embedding must be a boolean.")
+        if self.st_prompt_use_horizon_identity and self.st_prompt_use_shared_horizon_embedding:
+            raise ValueError("Step-specific and shared horizon embeddings cannot both be enabled.")
+        if not isinstance(self.st_prompt_use_type_embedding, bool):
+            raise ValueError("st_prompt_use_type_embedding must be a boolean.")
+        if self.st_prompt_type_semantics != "fixed_decoder_input_type":
+            raise ValueError("st_prompt_type_semantics must be fixed_decoder_input_type.")
+        if self.decoder_context_mode not in {
+            "last_state",
+            "mean_pooling_history",
+            "attention_pooling_history",
+            "full_history_cross_attention",
+        }:
+            raise ValueError("Unsupported decoder_context_mode.")
         if self.decoder_input_strategy not in {
             "direct_multi_output_prompt_query",
             "direct_multi_output_horizon_head",

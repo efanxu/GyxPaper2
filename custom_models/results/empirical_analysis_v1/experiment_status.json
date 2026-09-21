@@ -1,6 +1,6 @@
 {
   "protocol_id": "empirical_analysis_v1",
-  "updated_at": "2026-09-21T13:29:38.592018+00:00",
+  "updated_at": "2026-09-21T14:16:04.241282+00:00",
   "mode": "full_shape",
   "statuses": [
     {
@@ -231,6 +231,83 @@
       "status": "completed",
       "decision": "SKIP_COMPLETED",
       "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l5_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation"
+    },
+    {
+      "variant_id": "N0",
+      "seed": 2026,
+      "status": "smoke_completed",
+      "decision": "TRAIN",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n0_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation",
+      "protocol_passed": true,
+      "started_at": "2026-09-21T14:10:13.403369+00:00",
+      "finished_at": "2026-09-21T14:10:20.421980+00:00",
+      "trace_summary": null
+    },
+    {
+      "variant_id": "N1",
+      "seed": 2026,
+      "status": "smoke_completed",
+      "decision": "TRAIN",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n1_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation",
+      "protocol_passed": true,
+      "started_at": "2026-09-21T14:10:20.455071+00:00",
+      "finished_at": "2026-09-21T14:10:22.819654+00:00",
+      "trace_summary": null
+    },
+    {
+      "variant_id": "N2",
+      "seed": 2026,
+      "status": "smoke_completed",
+      "decision": "TRAIN",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n2_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation",
+      "protocol_passed": true,
+      "started_at": "2026-09-21T14:10:22.848613+00:00",
+      "finished_at": "2026-09-21T14:10:25.195688+00:00",
+      "trace_summary": null
+    },
+    {
+      "variant_id": "N3",
+      "seed": 2026,
+      "status": "smoke_completed",
+      "decision": "TRAIN",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n3_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation",
+      "protocol_passed": true,
+      "started_at": "2026-09-21T14:10:25.243424+00:00",
+      "finished_at": "2026-09-21T14:10:27.810912+00:00",
+      "trace_summary": null
+    },
+    {
+      "variant_id": "N4",
+      "seed": 2026,
+      "status": "smoke_completed",
+      "decision": "TRAIN",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n4_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation",
+      "protocol_passed": true,
+      "started_at": "2026-09-21T14:10:27.846095+00:00",
+      "finished_at": "2026-09-21T14:10:29.990788+00:00",
+      "trace_summary": null
+    },
+    {
+      "variant_id": "N6",
+      "seed": 2026,
+      "status": "smoke_completed",
+      "decision": "TRAIN",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n6_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation",
+      "protocol_passed": true,
+      "started_at": "2026-09-21T14:10:30.037646+00:00",
+      "finished_at": "2026-09-21T14:10:32.339553+00:00",
+      "trace_summary": null
+    },
+    {
+      "variant_id": "N7",
+      "seed": 2026,
+      "status": "smoke_completed",
+      "decision": "TRAIN",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n7_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation",
+      "protocol_passed": true,
+      "started_at": "2026-09-21T14:10:32.365874+00:00",
+      "finished_at": "2026-09-21T14:10:34.766014+00:00",
+      "trace_summary": null
     },
     {
       "variant_id": "T1",
@@ -1117,6 +1194,118 @@
       "family": "L",
       "status": "REFERENCE_ONLY",
       "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l7_smoke_v1",
+      "source_exists": true
+    },
+    {
+      "variant_id": "N0",
+      "family": "N",
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n0_empirical_v1",
+      "output_shape": [
+        32,
+        10,
+        134
+      ],
+      "peak_memory_mb": 10151.3388671875
+    },
+    {
+      "variant_id": "N1",
+      "family": "N",
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n1_empirical_v1",
+      "output_shape": [
+        32,
+        10,
+        134
+      ],
+      "peak_memory_mb": 10151.369140625
+    },
+    {
+      "variant_id": "N2",
+      "family": "N",
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n2_empirical_v1",
+      "output_shape": [
+        32,
+        10,
+        134
+      ],
+      "peak_memory_mb": 10157.71142578125
+    },
+    {
+      "variant_id": "N3",
+      "family": "N",
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n3_empirical_v1",
+      "output_shape": [
+        32,
+        10,
+        134
+      ],
+      "peak_memory_mb": 10157.74462890625
+    },
+    {
+      "variant_id": "N4",
+      "family": "N",
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n4_empirical_v1",
+      "output_shape": [
+        32,
+        10,
+        134
+      ],
+      "peak_memory_mb": 10157.7119140625
+    },
+    {
+      "variant_id": "N5",
+      "family": "N",
+      "status": "REFERENCE_ONLY",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n5_empirical_v1",
+      "source_exists": true
+    },
+    {
+      "variant_id": "N5",
+      "family": "N",
+      "status": "REFERENCE_ONLY",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n5_smoke_v1",
+      "source_exists": true
+    },
+    {
+      "variant_id": "N6",
+      "family": "N",
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n6_empirical_v1",
+      "output_shape": [
+        32,
+        10,
+        134
+      ],
+      "peak_memory_mb": 10157.74658203125
+    },
+    {
+      "variant_id": "N7",
+      "family": "N",
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n7_empirical_v1",
+      "output_shape": [
+        32,
+        10,
+        134
+      ],
+      "peak_memory_mb": 10157.74853515625
+    },
+    {
+      "variant_id": "N8",
+      "family": "N",
+      "status": "REFERENCE_ONLY",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n8_empirical_v1",
+      "source_exists": true
+    },
+    {
+      "variant_id": "N8",
+      "family": "N",
+      "status": "REFERENCE_ONLY",
+      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n8_smoke_v1",
       "source_exists": true
     },
     {

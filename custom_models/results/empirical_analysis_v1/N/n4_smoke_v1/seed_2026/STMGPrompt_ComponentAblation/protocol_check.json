@@ -1,0 +1,160 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "model_input_path_exists",
+      "passed": true,
+      "details": "smoke synthetic mode; file existence not required"
+    },
+    {
+      "name": "eval_target_path_exists",
+      "passed": true,
+      "details": "smoke synthetic mode; file existence not required"
+    },
+    {
+      "name": "location_path_exists",
+      "passed": true,
+      "details": "D:\\PaperProject\\GyxPaper2\\dataset\\sdwpf_turb_location_elevation.csv"
+    },
+    {
+      "name": "target_is_patv_raw",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "target_mask_is_valid_target_mask",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "default_16_features",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "no_forbidden_input_features",
+      "passed": true,
+      "details": "[]"
+    },
+    {
+      "name": "method_full_loss_name",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "msmg_dwu_model_name",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "msmg_dwu_method_full_protocol",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "msmg_dwu_not_fair_main_table",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "test_uses_full_windows",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "direct_decoder_strategy",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "no_fake_coupling_block_for_non_coupled_models",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "vadsp_sources_in_base_features",
+      "passed": true,
+      "details": "['Wspd', 'Patv_clean_for_input']"
+    },
+    {
+      "name": "physical_clip_eval_enabled",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "physical_clip_uniform_protocol",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "checkpoint_metric_declared",
+      "passed": true,
+      "details": ""
+    }
+  ],
+  "data_summary": null,
+  "protocol_id": "empirical_analysis_v1",
+  "protocol_profile": "STMG_FORMAL_V2",
+  "source_scope": "internal_decoder",
+  "empirical_unique_difference_audit": {
+    "protocol_id": "empirical_analysis_v1",
+    "variant_id": "N4",
+    "family": "N",
+    "implementation_status": "ready",
+    "expected_diff_fields": [
+      "decoder_input_strategy",
+      "use_st_prompt"
+    ],
+    "actual_diff_fields": [
+      "decoder_input_strategy",
+      "use_st_prompt"
+    ],
+    "missing_expected_diff_fields": [],
+    "unexpected_diff_fields": [],
+    "frozen_protocol_changes": [],
+    "differences": {
+      "decoder_input_strategy": {
+        "canonical": "direct_multi_output_prompt_query",
+        "effective": "direct_multi_output_horizon_head"
+      },
+      "use_st_prompt": {
+        "canonical": true,
+        "effective": false
+      }
+    },
+    "passed": true
+  },
+  "effective_batch": {
+    "train": 4,
+    "val": 4,
+    "test": 4
+  },
+  "mask": "valid_target_mask",
+  "prediction_start_index_rule": "[t-lookback,t)->[t,t+max_pred_len)",
+  "prompt_contract": {
+    "shape": [
+      1,
+      10,
+      134,
+      16
+    ],
+    "node_identity": true,
+    "horizon_identity": true,
+    "shared_horizon_embedding": false,
+    "type_embedding": true,
+    "type_semantics": "fixed_decoder_input_type"
+  },
+  "decoder_contract": {
+    "context_mode": "last_state",
+    "input_strategy": "direct_multi_output_horizon_head",
+    "teacher_forcing": false,
+    "autoregressive": false,
+    "future_observed_features_used": false,
+    "output_shape": [
+      "B",
+      10,
+      134
+    ]
+  },
+  "graph_identity_reference": null
+}

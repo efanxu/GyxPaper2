@@ -5,7 +5,12 @@ from torch import Tensor, nn
 
 from .config import STMGPromptConfig
 from .coupling_block import STMGPromptCouplingBlock
-from .decoder import HorizonDirectDecoder, STPromptDirectDecoder, STPromptFullHistoryDecoder
+from .decoder import (
+    HorizonDirectDecoder,
+    STPromptDirectDecoder,
+    STPromptFullHistoryDecoder,
+    STPromptHistoryPoolingDecoder,
+)
 from .graph_layers import AdaptiveGraphBuilder, FixedPriorGraphBuilder, SimpleGraphConv
 from .prompt_alignment import STPromptEmbedding
 from .temporal_layers import DualGraphTemporalEncoder
@@ -416,6 +421,10 @@ class STMGPrompt_FairFull(nn.Module):
                 dropout=config.dropout,
                 mode=config.st_prompt_mode,
                 use_node_identity=config.st_prompt_use_node_identity,
+                use_horizon_identity=config.st_prompt_use_horizon_identity,
+                use_shared_horizon_embedding=config.st_prompt_use_shared_horizon_embedding,
+                use_type_embedding=config.st_prompt_use_type_embedding,
+                type_semantics=config.st_prompt_type_semantics,
             )
             if config.use_st_prompt
             else None
@@ -433,6 +442,13 @@ class STMGPrompt_FairFull(nn.Module):
                 num_heads=config.cross_attention_heads,
                 dropout=config.dropout,
                 history_len=config.decoder_history_len,
+                diagnostics_level=config.diagnostics_level,
+            )
+        elif config.decoder_context_mode in {"mean_pooling_history", "attention_pooling_history"}:
+            self.direct_decoder = STPromptHistoryPoolingDecoder(
+                hidden_dim=self.hidden_dim,
+                pooling="mean" if config.decoder_context_mode == "mean_pooling_history" else "attention",
+                dropout=config.dropout,
                 diagnostics_level=config.diagnostics_level,
             )
         else:
@@ -478,11 +494,20 @@ class STMGPrompt_FairFull(nn.Module):
             "serial_graph_then_fusion": False,
             "st_prompt_direct_decoder_enabled": bool(config.use_st_prompt),
             "st_prompt_use_node_identity": bool(config.st_prompt_use_node_identity),
-            "st_prompt_information": (
-                "node+future+granularity"
-                if config.st_prompt_use_node_identity
-                else "future+granularity"
-            ),
+            "st_prompt_use_horizon_identity": bool(config.st_prompt_use_horizon_identity),
+            "st_prompt_use_shared_horizon_embedding": bool(config.st_prompt_use_shared_horizon_embedding),
+            "st_prompt_use_type_embedding": bool(config.st_prompt_use_type_embedding),
+            "st_prompt_type_semantics": config.st_prompt_type_semantics,
+            "st_prompt_information": "+".join(
+                name
+                for name, enabled in (
+                    ("node_identity", config.st_prompt_use_node_identity),
+                    ("horizon_identity", config.st_prompt_use_horizon_identity),
+                    ("shared_horizon", config.st_prompt_use_shared_horizon_embedding),
+                    ("fixed_input_type", config.st_prompt_use_type_embedding),
+                )
+                if enabled
+            ) or "zero_prompt",
             "decoder_context_mode": config.decoder_context_mode,
             "decoder_history_len": config.decoder_history_len,
             "decoder_input_strategy": config.decoder_input_strategy,
@@ -639,11 +664,16 @@ class STMGPrompt_FairFull(nn.Module):
                 "uses_st_prompt": bool(self.config.use_st_prompt),
                 "st_prompt_mode": self.config.st_prompt_mode,
                 "st_prompt_use_node_identity": bool(self.config.st_prompt_use_node_identity),
-                "st_prompt_information": (
-                    "node+future+granularity"
-                    if self.config.st_prompt_use_node_identity
-                    else "future+granularity"
+                "st_prompt_use_horizon_identity": bool(self.config.st_prompt_use_horizon_identity),
+                "st_prompt_use_shared_horizon_embedding": bool(
+                    self.config.st_prompt_use_shared_horizon_embedding
                 ),
+                "st_prompt_use_type_embedding": bool(self.config.st_prompt_use_type_embedding),
+                "st_prompt_type_semantics": self.config.st_prompt_type_semantics,
+                "st_prompt_horizon_representation": (
+                    self.st_prompt.horizon_representation if self.st_prompt is not None else "not_applicable"
+                ),
+                "st_prompt_information": self.coupling_metadata["st_prompt_information"],
                 "macro_prompt_pooling": last_aux.get("macro_prompt_pooling"),
                 "macro_prompt_attention_enabled": last_aux.get("macro_prompt_attention_enabled"),
                 "uses_direct_decoder": True,

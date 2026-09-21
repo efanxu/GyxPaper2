@@ -1,0 +1,10 @@
+﻿variant_id,decoder_type,decoder_input_strategy,decoder_context_mode,decoder_actual_history_len,decoder_history_range,decoder_pooling,attention_entropy_fine,attention_entropy_coarse,teacher_forcing,autoregressive,future_observed_features_used,head_parameterization,head_specific_parameter_count,output_shape,parameter_count
+N0,STPromptDirectDecoder,direct_multi_output_prompt_query,last_state,1,"[143,144)",last_state,,,False,False,False,,,"[32, 10, 134]",269958
+N1,STPromptDirectDecoder,direct_multi_output_prompt_query,last_state,1,"[143,144)",last_state,,,False,False,False,,,"[32, 10, 134]",277894
+N2,STPromptDirectDecoder,direct_multi_output_prompt_query,last_state,1,"[143,144)",last_state,,,False,False,False,,,"[32, 10, 134]",269318
+N3,STPromptDirectDecoder,direct_multi_output_prompt_query,last_state,1,"[143,144)",last_state,,,False,False,False,,,"[32, 10, 134]",277958
+N4,HorizonDirectDecoder,direct_multi_output_horizon_head,last_state,1,"[143,144)",last_state,,,False,False,False,shared_context_with_independent_output_columns,65,"[32, 10, 134]",269647
+N5,STPromptDirectDecoder,direct_multi_output_prompt_query,last_state,1,"[143,144)",,,,False,False,False,,,"[""B"", 10, 134]",
+N6,STPromptHistoryPoolingDecoder,direct_multi_output_prompt_query,mean_pooling_history,144,"[0,144)",mean,4.969813346862793,4.969813346862793,False,False,False,,,"[32, 10, 134]",278534
+N7,STPromptHistoryPoolingDecoder,direct_multi_output_prompt_query,attention_pooling_history,144,"[0,144)",attention,4.82925271987915,4.853243350982666,False,False,False,,,"[32, 10, 134]",278664
+N8,STPromptFullHistoryDecoder,direct_multi_output_prompt_query,full_history_cross_attention,144,"[0,144)",,,,False,False,False,,,"[""B"", 10, 134]",

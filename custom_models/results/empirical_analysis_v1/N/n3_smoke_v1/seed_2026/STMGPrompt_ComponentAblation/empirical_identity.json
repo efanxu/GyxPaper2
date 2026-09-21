@@ -1,0 +1,24 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant": {
+    "variant_id": "N3",
+    "display_name": "Shared learnable horizon embedding",
+    "family": "N",
+    "base_config": "CANONICAL_FULL",
+    "config_overrides": {
+      "st_prompt_use_horizon_identity": false,
+      "st_prompt_use_shared_horizon_embedding": true
+    },
+    "expected_unique_diff": [
+      "st_prompt_use_horizon_identity",
+      "st_prompt_use_shared_horizon_embedding"
+    ],
+    "trainable": true,
+    "paired_reference": "N5",
+    "implementation_status": "ready",
+    "implementation_note": "Uses one learnable horizon vector shared by all ten steps; unlike N1, the shared horizon component is trainable.",
+    "reference_only": false
+  },
+  "seed": 2026,
+  "mode": "smoke"
+}

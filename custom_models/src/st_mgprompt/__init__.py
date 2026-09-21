@@ -3,7 +3,7 @@
 from .config import COMPONENT_ABLATION_IDS, DEFAULT_16_FEATURES, STMGPromptConfig, apply_component_ablation
 from .graph_prior import build_graph_artifacts, prepare_graph_artifacts
 from .coupling_block import STMGPromptCouplingBlock
-from .decoder import HorizonDirectDecoder, STPromptDirectDecoder, STPromptFullHistoryDecoder
+from .decoder import HorizonDirectDecoder, STPromptDirectDecoder, STPromptFullHistoryDecoder, STPromptHistoryPoolingDecoder
 from .graph_layers import AdaptiveGraphBuilder, FixedPriorGraphBuilder, PriorConstrainedDiffusionGraphConv
 from .losses import MSMGDWULoss, get_loss_fn, masked_score_aligned_hybrid_loss
 from .model import (
@@ -31,6 +31,7 @@ __all__ = [
     "STMGPromptCouplingBlock",
     "STPromptDirectDecoder",
     "STPromptFullHistoryDecoder",
+    "STPromptHistoryPoolingDecoder",
     "HorizonDirectDecoder",
     "AdaptiveGraphBuilder",
     "FixedPriorGraphBuilder",

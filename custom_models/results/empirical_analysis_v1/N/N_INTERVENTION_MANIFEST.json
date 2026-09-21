@@ -1,0 +1,31 @@
+{
+  "analysis_label": "internal_sensitivity_analysis",
+  "real_world_counterfactual": false,
+  "source_run": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n0_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation",
+  "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n0_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+  "seed": 2026,
+  "split": "test",
+  "sample_selection_rule": "first_batches_in_chronological_order",
+  "prediction_start_indices": [
+    228,
+    229,
+    230
+  ],
+  "node_selection": "all_nodes",
+  "horizons": [
+    3,
+    6,
+    10
+  ],
+  "interventions": [
+    "horizon_zero",
+    "node_zero",
+    "horizon_swap",
+    "node_swap",
+    "horizon_mean"
+  ],
+  "checkpoint_modified": false,
+  "backpropagation_used": false,
+  "formal_metrics_overwritten": false,
+  "created_at": "2026-09-21T14:16:33.749620+00:00"
+}

@@ -1,0 +1,24 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant": {
+    "variant_id": "N4",
+    "display_name": "Independent horizon output heads",
+    "family": "N",
+    "base_config": "CANONICAL_FULL",
+    "config_overrides": {
+      "use_st_prompt": false,
+      "decoder_input_strategy": "direct_multi_output_horizon_head"
+    },
+    "expected_unique_diff": [
+      "use_st_prompt",
+      "decoder_input_strategy"
+    ],
+    "trainable": true,
+    "paired_reference": "N5",
+    "implementation_status": "ready",
+    "implementation_note": "",
+    "reference_only": false
+  },
+  "seed": 2026,
+  "mode": "smoke"
+}

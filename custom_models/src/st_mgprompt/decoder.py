@@ -130,6 +130,9 @@ class HorizonDirectDecoder(nn.Module):
             "uses_history_only": True,
             "uses_st_prompt": False,
             "future_observed_features_used": False,
+            "head_parameterization": "shared_context_with_independent_output_columns",
+            "head_initialization": "pytorch_linear_default",
+            "head_specific_parameter_count": self.hidden_dim + 1,
         }
 
     def forward(
@@ -187,6 +190,129 @@ class HorizonDirectDecoder(nn.Module):
             **diagnostic_scalars,
         }
         return pred, aux
+
+
+class STPromptHistoryPoolingDecoder(nn.Module):
+    """Direct prompt decoder using a causal summary of the complete input history."""
+
+    def __init__(
+        self,
+        hidden_dim: int,
+        pooling: str,
+        dropout: float = 0.0,
+        diagnostics_level: str = "standard",
+    ) -> None:
+        super().__init__()
+        if pooling not in {"mean", "attention"}:
+            raise ValueError("pooling must be mean or attention.")
+        self.hidden_dim = int(hidden_dim)
+        self.pooling = pooling
+        self.diagnostics_level = diagnostics_level
+        self.fine_score = nn.Linear(self.hidden_dim, 1) if pooling == "attention" else None
+        self.coarse_score = nn.Linear(self.hidden_dim, 1) if pooling == "attention" else None
+        self.fusion_layer = nn.Sequential(
+            nn.Linear(self.hidden_dim * 3, self.hidden_dim),
+            nn.GELU(),
+            nn.Dropout(dropout),
+            nn.LayerNorm(self.hidden_dim),
+        )
+        self.predict_head = nn.Sequential(
+            nn.Linear(self.hidden_dim, self.hidden_dim),
+            nn.GELU(),
+            nn.Dropout(dropout),
+            nn.Linear(self.hidden_dim, 1),
+        )
+        self.metadata = {
+            "decoder_type": "STPromptHistoryPoolingDecoder",
+            "decoder_input_strategy": "direct_multi_output_prompt_query",
+            "decoder_context_mode": f"{pooling}_pooling_history",
+            "history_len": None,
+            "teacher_forcing": False,
+            "autoregressive": False,
+            "uses_history_only": True,
+            "future_observed_features_used": False,
+        }
+
+    def _pool(self, history: Tensor, score: nn.Linear | None) -> tuple[Tensor, Tensor]:
+        B, L, N, _ = history.shape
+        if score is None:
+            weights = torch.full(
+                (B, N, L),
+                1.0 / float(L),
+                device=history.device,
+                dtype=history.dtype,
+            )
+        else:
+            logits = score(history).squeeze(-1).permute(0, 2, 1).contiguous()
+            weights = torch.softmax(logits, dim=-1)
+        pooled = torch.einsum("bnl,blnd->bnd", weights, history)
+        return pooled, weights
+
+    @staticmethod
+    def _entropy(weights: Tensor) -> float:
+        probs = weights.detach().float().clamp_min(1e-8)
+        return float(torch.special.entr(probs).sum(dim=-1).mean().cpu().item())
+
+    def forward(
+        self,
+        z_fine: Tensor,
+        z_coarse: Tensor,
+        st_prompt: Tensor,
+        macro_prompt: Tensor | None = None,
+        return_aux: bool = False,
+    ):
+        if z_fine.shape != z_coarse.shape or z_fine.ndim != 4:
+            raise ValueError("z_fine/z_coarse must have matching [B,L,N,D] shapes.")
+        if st_prompt.ndim != 4:
+            raise ValueError(f"st_prompt must be [1,H,N,D], got {tuple(st_prompt.shape)}.")
+        B, L, N, D = z_fine.shape
+        if D != self.hidden_dim or st_prompt.shape[0] != 1 or st_prompt.shape[2:] != (N, D):
+            raise ValueError("st_prompt and history must align on N,D.")
+        fine_summary, fine_weights = self._pool(z_fine, self.fine_score)
+        coarse_summary, coarse_weights = self._pool(z_coarse, self.coarse_score)
+        if macro_prompt is None:
+            macro_summary = torch.zeros_like(fine_summary)
+        else:
+            if macro_prompt.ndim != 4 or macro_prompt.shape[:2] != (B, N) or macro_prompt.shape[3] != D:
+                raise ValueError("macro_prompt must align with history on B,N,D.")
+            macro_summary = macro_prompt.mean(dim=2)
+        context = self.fusion_layer(torch.cat([fine_summary, coarse_summary, macro_summary], dim=-1))
+        context_future = context[:, None, :, :] + st_prompt
+        pred = self.predict_head(context_future).squeeze(-1).contiguous()
+        if not return_aux:
+            return pred
+        diagnostics = {
+            "decoder_context_norm_mean": None,
+            "decoder_macro_summary_norm_mean": None,
+            "decoder_st_prompt_norm_mean": None,
+            "decoder_context_future_norm_mean": None,
+        }
+        if self.diagnostics_level != "none":
+            with torch.no_grad():
+                diagnostics = {
+                    "decoder_context_norm_mean": float(context.detach().float().norm(dim=-1).mean().cpu().item()),
+                    "decoder_macro_summary_norm_mean": float(macro_summary.detach().float().norm(dim=-1).mean().cpu().item()),
+                    "decoder_st_prompt_norm_mean": float(st_prompt.detach().float().norm(dim=-1).mean().cpu().item()),
+                    "decoder_context_future_norm_mean": float(context_future.detach().float().norm(dim=-1).mean().cpu().item()),
+                }
+        return pred, {
+            "decoder_type": self.metadata["decoder_type"],
+            "decoder_input_strategy": self.metadata["decoder_input_strategy"],
+            "decoder_context_mode": self.metadata["decoder_context_mode"],
+            "teacher_forcing": False,
+            "autoregressive": False,
+            "decoder_uses_history_only": True,
+            "future_observed_features_used": False,
+            "decoder_actual_history_len": L,
+            "decoder_used_complete_history": True,
+            "decoder_history_range": f"[0,{L})",
+            "decoder_pooling": self.pooling,
+            "fine_history_attention_entropy": self._entropy(fine_weights),
+            "coarse_history_attention_entropy": self._entropy(coarse_weights),
+            "fine_history_weight_sum_max_error": float((fine_weights.sum(dim=-1) - 1.0).abs().max().cpu().item()),
+            "coarse_history_weight_sum_max_error": float((coarse_weights.sum(dim=-1) - 1.0).abs().max().cpu().item()),
+            **diagnostics,
+        }
 
 
 class STPromptFullHistoryDecoder(nn.Module):
@@ -366,6 +492,7 @@ class STPromptFullHistoryDecoder(nn.Module):
             "decoder_history_len_config": self.history_len,
             "decoder_actual_history_len": actual_history_len,
             "decoder_used_complete_history": self.history_len is None and actual_history_len == L,
+            "decoder_history_range": f"[{L - actual_history_len},{L})",
             "decoder_query_shape": [B, H, N, D],
             "attention_weights_requested": need_attention_diagnostics,
             **diagnostic_scalars,

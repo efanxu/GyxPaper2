@@ -1,0 +1,28 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "N4",
+  "family": "N",
+  "implementation_status": "ready",
+  "expected_diff_fields": [
+    "decoder_input_strategy",
+    "use_st_prompt"
+  ],
+  "actual_diff_fields": [
+    "decoder_input_strategy",
+    "use_st_prompt"
+  ],
+  "missing_expected_diff_fields": [],
+  "unexpected_diff_fields": [],
+  "frozen_protocol_changes": [],
+  "differences": {
+    "decoder_input_strategy": {
+      "canonical": "direct_multi_output_prompt_query",
+      "effective": "direct_multi_output_horizon_head"
+    },
+    "use_st_prompt": {
+      "canonical": true,
+      "effective": false
+    }
+  },
+  "passed": true
+}

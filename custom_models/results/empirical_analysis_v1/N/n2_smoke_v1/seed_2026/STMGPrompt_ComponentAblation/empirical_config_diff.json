@@ -1,0 +1,28 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "N2",
+  "family": "N",
+  "implementation_status": "ready",
+  "expected_diff_fields": [
+    "st_prompt_use_horizon_identity",
+    "st_prompt_use_node_identity"
+  ],
+  "actual_diff_fields": [
+    "st_prompt_use_horizon_identity",
+    "st_prompt_use_node_identity"
+  ],
+  "missing_expected_diff_fields": [],
+  "unexpected_diff_fields": [],
+  "frozen_protocol_changes": [],
+  "differences": {
+    "st_prompt_use_node_identity": {
+      "canonical": true,
+      "effective": false
+    },
+    "st_prompt_use_horizon_identity": {
+      "canonical": true,
+      "effective": false
+    }
+  },
+  "passed": true
+}

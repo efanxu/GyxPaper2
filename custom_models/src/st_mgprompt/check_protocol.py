@@ -338,13 +338,26 @@ def run_protocol_checks(config: STMGPromptConfig, build_data: bool = True) -> di
                     ),
                     _check(
                         (not config.use_st_prompt)
-                        or aux.get("st_prompt_information")
-                        == (
-                            "node+future+granularity"
-                            if config.st_prompt_use_node_identity
-                            else "future+granularity"
-                        ),
-                        "st_prompt_information_matches_variant",
+                        or aux.get("st_prompt_use_horizon_identity")
+                        is bool(config.st_prompt_use_horizon_identity),
+                        "st_prompt_horizon_identity_matches_variant",
+                    ),
+                    _check(
+                        (not config.use_st_prompt)
+                        or aux.get("st_prompt_use_shared_horizon_embedding")
+                        is bool(config.st_prompt_use_shared_horizon_embedding),
+                        "st_prompt_shared_horizon_matches_variant",
+                    ),
+                    _check(
+                        (not config.use_st_prompt)
+                        or aux.get("st_prompt_use_type_embedding")
+                        is bool(config.st_prompt_use_type_embedding),
+                        "st_prompt_type_embedding_matches_variant",
+                    ),
+                    _check(
+                        (not config.use_st_prompt)
+                        or aux.get("st_prompt_type_semantics") == "fixed_decoder_input_type",
+                        "st_prompt_type_semantics_not_dynamic_branch_identity",
                     ),
                     _check(
                         aux.get("macro_prompt_from_spatial_enhanced_coarse") is bool(config.use_macro_prompt),
@@ -403,6 +416,15 @@ def run_protocol_checks(config: STMGPromptConfig, build_data: bool = True) -> di
                             "st_prompt_shared_across_nodes_without_identity",
                         )
                     )
+                if config.diagnostics_level not in {"none", "minimal"} and not config.st_prompt_use_horizon_identity:
+                    prompt = aux.get("st_prompt")
+                    checks.append(
+                        _check(
+                            prompt is not None
+                            and torch.allclose(prompt, prompt[:, :1, :, :].expand_as(prompt)),
+                            "st_prompt_shared_across_horizons_without_identity",
+                        )
+                    )
             if config.use_cross_fusion:
                 checks.append(
                     _check(
@@ -456,12 +478,20 @@ def run_protocol_checks(config: STMGPromptConfig, build_data: bool = True) -> di
                         ]
                     )
                 checks.append(_check(h_fine_shape == x_fine_shape, "diffusion_output_shape_check"))
-            if config.decoder_context_mode == "full_history_cross_attention":
+            if config.decoder_context_mode in {
+                "mean_pooling_history",
+                "attention_pooling_history",
+                "full_history_cross_attention",
+            }:
                 checks.extend(
                     [
-                        _check(aux.get("decoder_metadata", {}).get("decoder_context_mode") == "full_history_cross_attention", "full_history_decoder_used"),
+                        _check(
+                            aux.get("decoder_metadata", {}).get("decoder_context_mode")
+                            == config.decoder_context_mode,
+                            "configured_history_decoder_used",
+                        ),
                         _check(int(aux["decoder_actual_history_len"]) == (config.decoder_history_len or config.lookback), "decoder_history_len_matches_config"),
-                        _check(bool(aux["decoder_used_complete_history"]) is (config.decoder_history_len is None), "decoder_uses_complete_history_when_none"),
+                        _check(bool(aux["decoder_used_complete_history"]) is True, "decoder_uses_complete_history"),
                         _check(aux.get("decoder_uses_history_only") is True, "decoder_uses_history_only"),
                         _check(aux.get("future_observed_features_used") is False, "decoder_no_future_observed_features_aux"),
                         _check(tuple(out["pred"].shape) == tuple(batch["y"].shape), "decoder_output_shape_check"),

@@ -1,0 +1,82 @@
+{
+  "total_parameters": 269647,
+  "trainable_parameters": 269647,
+  "shared_parameter_count": 0,
+  "branch_output_dimensions": {
+    "fine": 64,
+    "coarse": 64
+  },
+  "input_shape": [
+    32,
+    144,
+    134,
+    16
+  ],
+  "output_shape": [
+    32,
+    10,
+    134
+  ],
+  "loss": 0.5246648788452148,
+  "loss_finite": true,
+  "gradient_finite": true,
+  "device": "cuda",
+  "amp_enabled": true,
+  "peak_memory_mb": 10157.7119140625,
+  "temporal_branch_transform": "independent",
+  "coarse_alignment_mode": "same_axis",
+  "cross_granularity_interaction": "cross_fusion",
+  "direct_concat_mlp": {
+    "layers": 2,
+    "hidden_dim": 432,
+    "activation": "gelu",
+    "dropout": 0.1,
+    "output_dim": 64,
+    "macro_prompt_instantiated": true,
+    "cross_fusion_instantiated": true
+  },
+  "branch_graph_assignment_trace": {
+    "assignment": "matched",
+    "fine_graph_id": "micro",
+    "coarse_graph_id": "macro",
+    "fine_builder": "AdaptiveGraphBuilder",
+    "coarse_builder": "AdaptiveGraphBuilder",
+    "adaptive_support_mode": "prior_constrained",
+    "fine_edges_outside_assigned_prior": 0,
+    "coarse_edges_outside_assigned_prior": 0
+  },
+  "graph_prior_component": "fused",
+  "adaptive_support_mode": "prior_constrained",
+  "graph_rewire_mode": "none",
+  "prompt_embedding_summary": {
+    "status": "NOT_APPLICABLE",
+    "prompt_shape": null,
+    "node_identity": true,
+    "horizon_identity": true,
+    "shared_horizon_embedding": false,
+    "type_embedding": true,
+    "type_semantics": "fixed_decoder_input_type",
+    "horizon_representation": "not_applicable"
+  },
+  "horizon_distance_matrix": [],
+  "decoder_summary": {
+    "decoder_type": "HorizonDirectDecoder",
+    "decoder_input_strategy": "direct_multi_output_horizon_head",
+    "decoder_context_mode": "last_state",
+    "decoder_actual_history_len": 1,
+    "decoder_history_range": "[143,144)",
+    "decoder_pooling": "last_state",
+    "fine_history_attention_entropy": null,
+    "coarse_history_attention_entropy": null,
+    "teacher_forcing": false,
+    "autoregressive": false,
+    "future_observed_features_used": false,
+    "head_parameterization": "shared_context_with_independent_output_columns",
+    "head_specific_parameter_count": 65,
+    "output_shape": [
+      32,
+      10,
+      134
+    ]
+  }
+}

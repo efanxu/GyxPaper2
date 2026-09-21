@@ -1,0 +1,227 @@
+{
+  "total_parameters": 269318,
+  "trainable_parameters": 269318,
+  "shared_parameter_count": 0,
+  "branch_output_dimensions": {
+    "fine": 64,
+    "coarse": 64
+  },
+  "input_shape": [
+    32,
+    144,
+    134,
+    16
+  ],
+  "output_shape": [
+    32,
+    10,
+    134
+  ],
+  "loss": 0.5903432369232178,
+  "loss_finite": true,
+  "gradient_finite": true,
+  "device": "cuda",
+  "amp_enabled": true,
+  "peak_memory_mb": 10157.71142578125,
+  "temporal_branch_transform": "independent",
+  "coarse_alignment_mode": "same_axis",
+  "cross_granularity_interaction": "cross_fusion",
+  "direct_concat_mlp": {
+    "layers": 2,
+    "hidden_dim": 432,
+    "activation": "gelu",
+    "dropout": 0.1,
+    "output_dim": 64,
+    "macro_prompt_instantiated": true,
+    "cross_fusion_instantiated": true
+  },
+  "branch_graph_assignment_trace": {
+    "assignment": "matched",
+    "fine_graph_id": "micro",
+    "coarse_graph_id": "macro",
+    "fine_builder": "AdaptiveGraphBuilder",
+    "coarse_builder": "AdaptiveGraphBuilder",
+    "adaptive_support_mode": "prior_constrained",
+    "fine_edges_outside_assigned_prior": 0,
+    "coarse_edges_outside_assigned_prior": 0
+  },
+  "graph_prior_component": "fused",
+  "adaptive_support_mode": "prior_constrained",
+  "graph_rewire_mode": "none",
+  "prompt_embedding_summary": {
+    "status": "available",
+    "prompt_shape": [
+      1,
+      10,
+      134,
+      64
+    ],
+    "node_identity": false,
+    "horizon_identity": false,
+    "shared_horizon_embedding": false,
+    "type_embedding": true,
+    "type_semantics": "fixed_decoder_input_type",
+    "horizon_representation": "shared_zero",
+    "prompt_norm_mean": 7.99996280670166,
+    "horizon_variance": 0.0,
+    "node_variance": 0.0,
+    "effective_rank": 1,
+    "horizon_difference_max": 0.0,
+    "node_difference_max": 0.0,
+    "horizon_vector_norms": [
+      7.999963760375977,
+      7.999963760375977,
+      7.999963760375977,
+      7.999963760375977,
+      7.999963760375977,
+      7.999963760375977,
+      7.999963760375977,
+      7.999963760375977,
+      7.999963760375977,
+      7.999963760375977
+    ],
+    "node_vector_norm_mean": 7.99996280670166
+  },
+  "horizon_distance_matrix": [
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  ],
+  "decoder_summary": {
+    "decoder_type": "STPromptDirectDecoder",
+    "decoder_input_strategy": "direct_multi_output_prompt_query",
+    "decoder_context_mode": "last_state",
+    "decoder_actual_history_len": 1,
+    "decoder_history_range": "[143,144)",
+    "decoder_pooling": "last_state",
+    "fine_history_attention_entropy": null,
+    "coarse_history_attention_entropy": null,
+    "teacher_forcing": false,
+    "autoregressive": false,
+    "future_observed_features_used": false,
+    "head_parameterization": null,
+    "head_specific_parameter_count": null,
+    "output_shape": [
+      32,
+      10,
+      134
+    ]
+  }
+}

@@ -100,6 +100,10 @@ class STPromptEmbedding(nn.Module):
         dropout: float = 0.0,
         mode: str = "full",
         use_node_identity: bool = True,
+        use_horizon_identity: bool = True,
+        use_shared_horizon_embedding: bool = False,
+        use_type_embedding: bool = True,
+        type_semantics: str = "fixed_decoder_input_type",
     ) -> None:
         super().__init__()
         if num_nodes <= 0:
@@ -114,14 +118,47 @@ class STPromptEmbedding(nn.Module):
         self.mode = mode
         if not isinstance(use_node_identity, bool):
             raise ValueError("use_node_identity must be a boolean.")
+        if not isinstance(use_horizon_identity, bool):
+            raise ValueError("use_horizon_identity must be a boolean.")
+        if not isinstance(use_shared_horizon_embedding, bool):
+            raise ValueError("use_shared_horizon_embedding must be a boolean.")
+        if use_horizon_identity and use_shared_horizon_embedding:
+            raise ValueError("Step-specific and shared horizon embeddings cannot both be enabled.")
+        if not isinstance(use_type_embedding, bool):
+            raise ValueError("use_type_embedding must be a boolean.")
+        if type_semantics != "fixed_decoder_input_type":
+            raise ValueError("type_semantics must be fixed_decoder_input_type.")
         self.use_node_identity = use_node_identity
+        self.use_horizon_identity = use_horizon_identity
+        self.use_shared_horizon_embedding = use_shared_horizon_embedding
+        self.use_type_embedding = use_type_embedding
+        self.type_semantics = type_semantics
         self.node_embedding = (
             nn.Embedding(self.num_nodes, self.hidden_dim) if self.use_node_identity else None
         )
-        self.future_step_embedding = nn.Embedding(self.max_pred_len, self.hidden_dim)
-        self.granularity_embedding = nn.Embedding(int(num_granularities), self.hidden_dim)
+        self.future_step_embedding = (
+            nn.Embedding(self.max_pred_len, self.hidden_dim) if self.use_horizon_identity else None
+        )
+        self.shared_horizon_embedding = (
+            nn.Parameter(torch.empty(1, 1, 1, self.hidden_dim))
+            if self.use_shared_horizon_embedding
+            else None
+        )
+        if self.shared_horizon_embedding is not None:
+            nn.init.normal_(self.shared_horizon_embedding, mean=0.0, std=0.02)
+        self.granularity_embedding = (
+            nn.Embedding(int(num_granularities), self.hidden_dim) if self.use_type_embedding else None
+        )
         self.norm = nn.LayerNorm(self.hidden_dim)
         self.dropout = nn.Dropout(dropout)
+
+    @property
+    def horizon_representation(self) -> str:
+        if self.use_horizon_identity:
+            return "step_specific"
+        if self.use_shared_horizon_embedding:
+            return "shared_learnable"
+        return "shared_zero"
 
     def forward(
         self,
@@ -135,16 +172,25 @@ class STPromptEmbedding(nn.Module):
             raise ValueError(f"Requested N={N} exceeds configured num_nodes={self.num_nodes}.")
         if H > self.max_pred_len:
             raise ValueError(f"Requested horizon={H} exceeds max_pred_len={self.max_pred_len}.")
-        device = self.future_step_embedding.weight.device
-        step_ids = torch.arange(H, device=device)
-        step = self.future_step_embedding(step_ids).view(1, H, 1, self.hidden_dim)
+        reference = next(self.parameters())
+        device = reference.device
+        if self.future_step_embedding is not None:
+            step_ids = torch.arange(H, device=device)
+            step = self.future_step_embedding(step_ids).view(1, H, 1, self.hidden_dim)
+        elif self.shared_horizon_embedding is not None:
+            step = self.shared_horizon_embedding.expand(1, H, 1, self.hidden_dim)
+        else:
+            step = torch.zeros(1, H, 1, self.hidden_dim, device=device, dtype=reference.dtype)
         if self.mode == "horizon_only":
             # Legacy compatibility only. Formal node-identity ablations use
             # mode="full" with use_node_identity=False so granularity is retained.
             prompt = step.expand(1, H, N, self.hidden_dim)
         else:
-            granularity_id = torch.tensor(int(granularity_index), device=device)
-            granularity = self.granularity_embedding(granularity_id).view(1, 1, 1, self.hidden_dim)
+            if self.granularity_embedding is not None:
+                granularity_id = torch.tensor(int(granularity_index), device=device)
+                granularity = self.granularity_embedding(granularity_id).view(1, 1, 1, self.hidden_dim)
+            else:
+                granularity = torch.zeros_like(step[:, :1])
             if self.use_node_identity:
                 node_ids = torch.arange(N, device=device)
                 node = self.node_embedding(node_ids).view(1, 1, N, self.hidden_dim)

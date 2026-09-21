@@ -1,0 +1,209 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "canonical_run_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+  "protocol_profile": "STMG_FORMAL_V2",
+  "source_scope": "internal_decoder",
+  "variants": [
+    {
+      "variant_id": "N0",
+      "display_name": "No node identity",
+      "family": "N",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "st_prompt_use_node_identity": false
+      },
+      "expected_unique_diff": [
+        "st_prompt_use_node_identity"
+      ],
+      "trainable": true,
+      "paired_reference": "N5",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_decoder",
+      "formal_result_status": "preflight-only",
+      "model_summary_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n0_empirical_v1\\model_summary.json",
+      "reference_path": ""
+    },
+    {
+      "variant_id": "N1",
+      "display_name": "No horizon identity",
+      "family": "N",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "st_prompt_use_horizon_identity": false
+      },
+      "expected_unique_diff": [
+        "st_prompt_use_horizon_identity"
+      ],
+      "trainable": true,
+      "paired_reference": "N5",
+      "implementation_status": "ready",
+      "implementation_note": "Removes the horizon component; every future step receives the same fixed-zero horizon representation.",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_decoder",
+      "formal_result_status": "preflight-only",
+      "model_summary_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n1_empirical_v1\\model_summary.json",
+      "reference_path": ""
+    },
+    {
+      "variant_id": "N2",
+      "display_name": "No node or horizon identity, type-only prompt",
+      "family": "N",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "st_prompt_use_node_identity": false,
+        "st_prompt_use_horizon_identity": false
+      },
+      "expected_unique_diff": [
+        "st_prompt_use_node_identity",
+        "st_prompt_use_horizon_identity"
+      ],
+      "trainable": true,
+      "paired_reference": "N5",
+      "implementation_status": "ready",
+      "implementation_note": "Retains only the fixed decoder-input type embedding and shape adapter.",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_decoder",
+      "formal_result_status": "preflight-only",
+      "model_summary_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n2_empirical_v1\\model_summary.json",
+      "reference_path": ""
+    },
+    {
+      "variant_id": "N3",
+      "display_name": "Shared learnable horizon embedding",
+      "family": "N",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "st_prompt_use_horizon_identity": false,
+        "st_prompt_use_shared_horizon_embedding": true
+      },
+      "expected_unique_diff": [
+        "st_prompt_use_horizon_identity",
+        "st_prompt_use_shared_horizon_embedding"
+      ],
+      "trainable": true,
+      "paired_reference": "N5",
+      "implementation_status": "ready",
+      "implementation_note": "Uses one learnable horizon vector shared by all ten steps; unlike N1, the shared horizon component is trainable.",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_decoder",
+      "formal_result_status": "preflight-only",
+      "model_summary_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n3_empirical_v1\\model_summary.json",
+      "reference_path": ""
+    },
+    {
+      "variant_id": "N4",
+      "display_name": "Independent horizon output heads",
+      "family": "N",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "use_st_prompt": false,
+        "decoder_input_strategy": "direct_multi_output_horizon_head"
+      },
+      "expected_unique_diff": [
+        "use_st_prompt",
+        "decoder_input_strategy"
+      ],
+      "trainable": true,
+      "paired_reference": "N5",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_decoder",
+      "formal_result_status": "preflight-only",
+      "model_summary_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n4_empirical_v1\\model_summary.json",
+      "reference_path": ""
+    },
+    {
+      "variant_id": "N5",
+      "display_name": "Last-state plus full ST Prompt",
+      "family": "N",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {},
+      "expected_unique_diff": [],
+      "trainable": false,
+      "paired_reference": "full_fixed_dual_keep_msmgdwu_seed2026",
+      "implementation_status": "reference",
+      "implementation_note": "",
+      "reference_only": true,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_decoder",
+      "formal_result_status": "reference-only",
+      "model_summary_path": "",
+      "reference_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n5_empirical_v1\\reference.json"
+    },
+    {
+      "variant_id": "N6",
+      "display_name": "Mean-pooling history",
+      "family": "N",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "decoder_context_mode": "mean_pooling_history"
+      },
+      "expected_unique_diff": [
+        "decoder_context_mode"
+      ],
+      "trainable": true,
+      "paired_reference": "N5",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_decoder",
+      "formal_result_status": "preflight-only",
+      "model_summary_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n6_empirical_v1\\model_summary.json",
+      "reference_path": ""
+    },
+    {
+      "variant_id": "N7",
+      "display_name": "Attention-pooling history",
+      "family": "N",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "decoder_context_mode": "attention_pooling_history"
+      },
+      "expected_unique_diff": [
+        "decoder_context_mode"
+      ],
+      "trainable": true,
+      "paired_reference": "N5",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_decoder",
+      "formal_result_status": "preflight-only",
+      "model_summary_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n7_empirical_v1\\model_summary.json",
+      "reference_path": ""
+    },
+    {
+      "variant_id": "N8",
+      "display_name": "Full-history cross-attention",
+      "family": "N",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "decoder_context_mode": "full_history_cross_attention"
+      },
+      "expected_unique_diff": [
+        "decoder_context_mode"
+      ],
+      "trainable": false,
+      "paired_reference": "P3",
+      "implementation_status": "reference",
+      "implementation_note": "",
+      "reference_only": true,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_decoder",
+      "formal_result_status": "reference-only",
+      "model_summary_path": "",
+      "reference_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\N\\n8_empirical_v1\\reference.json"
+    }
+  ],
+  "updated_at": "2026-09-21T14:18:39.293377+00:00"
+}

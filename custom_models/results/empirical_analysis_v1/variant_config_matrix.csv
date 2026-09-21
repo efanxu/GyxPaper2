@@ -29,6 +29,15 @@ F5,Fine-to-Coarse only,F,CANONICAL_FULL,"{""disable_macro_to_fine_cross"": true}
 F6,"Bidirectional Cross-Fusion, shared projections",F,CANONICAL_FULL,"{""share_cross_attention_projections"": true}","[""share_cross_attention_projections""]",False,A7,reference,,True
 F7,"Bidirectional Cross-Fusion, independent projections",F,CANONICAL_FULL,{},[],False,full_fixed_dual_keep_msmgdwu_seed2026,reference,,True
 F8,Mean-pooling Macro Prompt,F,CANONICAL_FULL,"{""macro_prompt_pooling"": ""mean""}","[""macro_prompt_pooling""]",False,A4,reference,,True
+N0,No node identity,N,CANONICAL_FULL,"{""st_prompt_use_node_identity"": false}","[""st_prompt_use_node_identity""]",True,N5,ready,,False
+N1,No horizon identity,N,CANONICAL_FULL,"{""st_prompt_use_horizon_identity"": false}","[""st_prompt_use_horizon_identity""]",True,N5,ready,Removes the horizon component; every future step receives the same fixed-zero horizon representation.,False
+N2,"No node or horizon identity, type-only prompt",N,CANONICAL_FULL,"{""st_prompt_use_horizon_identity"": false, ""st_prompt_use_node_identity"": false}","[""st_prompt_use_node_identity"", ""st_prompt_use_horizon_identity""]",True,N5,ready,Retains only the fixed decoder-input type embedding and shape adapter.,False
+N3,Shared learnable horizon embedding,N,CANONICAL_FULL,"{""st_prompt_use_horizon_identity"": false, ""st_prompt_use_shared_horizon_embedding"": true}","[""st_prompt_use_horizon_identity"", ""st_prompt_use_shared_horizon_embedding""]",True,N5,ready,"Uses one learnable horizon vector shared by all ten steps; unlike N1, the shared horizon component is trainable.",False
+N4,Independent horizon output heads,N,CANONICAL_FULL,"{""decoder_input_strategy"": ""direct_multi_output_horizon_head"", ""use_st_prompt"": false}","[""use_st_prompt"", ""decoder_input_strategy""]",True,N5,ready,,False
+N5,Last-state plus full ST Prompt,N,CANONICAL_FULL,{},[],False,full_fixed_dual_keep_msmgdwu_seed2026,reference,,True
+N6,Mean-pooling history,N,CANONICAL_FULL,"{""decoder_context_mode"": ""mean_pooling_history""}","[""decoder_context_mode""]",True,N5,ready,,False
+N7,Attention-pooling history,N,CANONICAL_FULL,"{""decoder_context_mode"": ""attention_pooling_history""}","[""decoder_context_mode""]",True,N5,ready,,False
+N8,Full-history cross-attention,N,CANONICAL_FULL,"{""decoder_context_mode"": ""full_history_cross_attention""}","[""decoder_context_mode""]",False,P3,reference,,True
 L0,Equal Smooth L1,L,CANONICAL_FULL,"{""granularity_weight_mode"": ""static"", ""site_weight_mode"": ""static""}","[""granularity_weight_mode"", ""site_weight_mode""]",True,L3,ready,,False
 L1,Horizon difficulty-rate only,L,CANONICAL_FULL,"{""site_weight_mode"": ""static""}","[""site_weight_mode""]",True,L3,ready,,False
 L2,Dynamic node difficulty only,L,CANONICAL_FULL,"{""granularity_weight_mode"": ""static""}","[""granularity_weight_mode""]",True,L3,ready,,False

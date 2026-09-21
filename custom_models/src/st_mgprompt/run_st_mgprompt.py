@@ -1487,11 +1487,11 @@ def _run_once(args: argparse.Namespace, cfg: STMGPromptConfig, run_dir: Path) ->
             "macro_prompt_attention_enabled": cfg.macro_prompt_pooling == "attention",
             "st_prompt_mode": cfg.st_prompt_mode,
             "st_prompt_use_node_identity": bool(cfg.st_prompt_use_node_identity),
-            "st_prompt_information": (
-                "node+future+granularity"
-                if cfg.st_prompt_use_node_identity
-                else "future+granularity"
-            ),
+            "st_prompt_use_horizon_identity": bool(cfg.st_prompt_use_horizon_identity),
+            "st_prompt_use_shared_horizon_embedding": bool(cfg.st_prompt_use_shared_horizon_embedding),
+            "st_prompt_use_type_embedding": bool(cfg.st_prompt_use_type_embedding),
+            "st_prompt_type_semantics": cfg.st_prompt_type_semantics,
+            "st_prompt_information": model.coupling_metadata.get("st_prompt_information"),
             "decoder_input_strategy": cfg.decoder_input_strategy,
             "eligible_for_fair_main_table": cfg.eligible_for_fair_main_table,
             **get_loss_metadata(cfg),

@@ -1,0 +1,22 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant": {
+    "variant_id": "N1",
+    "display_name": "No horizon identity",
+    "family": "N",
+    "base_config": "CANONICAL_FULL",
+    "config_overrides": {
+      "st_prompt_use_horizon_identity": false
+    },
+    "expected_unique_diff": [
+      "st_prompt_use_horizon_identity"
+    ],
+    "trainable": true,
+    "paired_reference": "N5",
+    "implementation_status": "ready",
+    "implementation_note": "Removes the horizon component; every future step receives the same fixed-zero horizon representation.",
+    "reference_only": false
+  },
+  "seed": 2026,
+  "mode": "smoke"
+}

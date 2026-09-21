@@ -1,0 +1,227 @@
+{
+  "total_parameters": 269958,
+  "trainable_parameters": 269958,
+  "shared_parameter_count": 0,
+  "branch_output_dimensions": {
+    "fine": 64,
+    "coarse": 64
+  },
+  "input_shape": [
+    32,
+    144,
+    134,
+    16
+  ],
+  "output_shape": [
+    32,
+    10,
+    134
+  ],
+  "loss": 0.6335674524307251,
+  "loss_finite": true,
+  "gradient_finite": true,
+  "device": "cuda",
+  "amp_enabled": true,
+  "peak_memory_mb": 10151.3388671875,
+  "temporal_branch_transform": "independent",
+  "coarse_alignment_mode": "same_axis",
+  "cross_granularity_interaction": "cross_fusion",
+  "direct_concat_mlp": {
+    "layers": 2,
+    "hidden_dim": 432,
+    "activation": "gelu",
+    "dropout": 0.1,
+    "output_dim": 64,
+    "macro_prompt_instantiated": true,
+    "cross_fusion_instantiated": true
+  },
+  "branch_graph_assignment_trace": {
+    "assignment": "matched",
+    "fine_graph_id": "micro",
+    "coarse_graph_id": "macro",
+    "fine_builder": "AdaptiveGraphBuilder",
+    "coarse_builder": "AdaptiveGraphBuilder",
+    "adaptive_support_mode": "prior_constrained",
+    "fine_edges_outside_assigned_prior": 0,
+    "coarse_edges_outside_assigned_prior": 0
+  },
+  "graph_prior_component": "fused",
+  "adaptive_support_mode": "prior_constrained",
+  "graph_rewire_mode": "none",
+  "prompt_embedding_summary": {
+    "status": "available",
+    "prompt_shape": [
+      1,
+      10,
+      134,
+      64
+    ],
+    "node_identity": false,
+    "horizon_identity": true,
+    "shared_horizon_embedding": false,
+    "type_embedding": true,
+    "type_semantics": "fixed_decoder_input_type",
+    "horizon_representation": "step_specific",
+    "prompt_norm_mean": 8.594625473022461,
+    "horizon_variance": 0.6090987920761108,
+    "node_variance": 0.0,
+    "effective_rank": 10,
+    "horizon_difference_max": 4.106014728546143,
+    "node_difference_max": 0.0,
+    "horizon_vector_norms": [
+      8.841815948486328,
+      8.56494426727295,
+      8.469712257385254,
+      8.282349586486816,
+      8.592732429504395,
+      8.87404727935791,
+      8.330431938171387,
+      8.661050796508789,
+      8.742866516113281,
+      8.586299896240234
+    ],
+    "node_vector_norm_mean": 5.909331798553467
+  },
+  "horizon_distance_matrix": [
+    [
+      0.0,
+      9.16148567199707,
+      8.504692077636719,
+      7.8052592277526855,
+      8.259159088134766,
+      9.36535930633545,
+      8.954388618469238,
+      8.034223556518555,
+      8.629461288452148,
+      8.819779396057129
+    ],
+    [
+      9.16148567199707,
+      0.0,
+      9.990824699401855,
+      9.681241035461426,
+      9.504547119140625,
+      9.474676132202148,
+      10.26332950592041,
+      9.043023109436035,
+      9.387964248657227,
+      9.412520408630371
+    ],
+    [
+      8.504692077636719,
+      9.990824699401855,
+      0.0,
+      8.215642929077148,
+      8.342459678649902,
+      9.934163093566895,
+      9.918137550354004,
+      9.349924087524414,
+      9.25292682647705,
+      10.015965461730957
+    ],
+    [
+      7.8052592277526855,
+      9.681241035461426,
+      8.215642929077148,
+      0.0,
+      10.29605484008789,
+      10.543059349060059,
+      9.280771255493164,
+      9.74049186706543,
+      9.713912010192871,
+      9.619601249694824
+    ],
+    [
+      8.259159088134766,
+      9.504547119140625,
+      8.342459678649902,
+      10.29605484008789,
+      0.0,
+      9.849773406982422,
+      9.450824737548828,
+      7.570267677307129,
+      9.1815185546875,
+      8.985747337341309
+    ],
+    [
+      9.36535930633545,
+      9.474676132202148,
+      9.934163093566895,
+      10.543059349060059,
+      9.849773406982422,
+      0.0,
+      10.379788398742676,
+      10.061445236206055,
+      9.620893478393555,
+      8.515005111694336
+    ],
+    [
+      8.954388618469238,
+      10.26332950592041,
+      9.918137550354004,
+      9.280771255493164,
+      9.450824737548828,
+      10.379788398742676,
+      0.0,
+      10.374651908874512,
+      9.367304801940918,
+      9.5169038772583
+    ],
+    [
+      8.034223556518555,
+      9.043023109436035,
+      9.349924087524414,
+      9.74049186706543,
+      7.570267677307129,
+      10.061445236206055,
+      10.374651908874512,
+      0.0,
+      9.377467155456543,
+      7.982515811920166
+    ],
+    [
+      8.629461288452148,
+      9.387964248657227,
+      9.25292682647705,
+      9.713912010192871,
+      9.1815185546875,
+      9.620893478393555,
+      9.367304801940918,
+      9.377467155456543,
+      0.0,
+      8.816505432128906
+    ],
+    [
+      8.819779396057129,
+      9.412520408630371,
+      10.015965461730957,
+      9.619601249694824,
+      8.985747337341309,
+      8.515005111694336,
+      9.5169038772583,
+      7.982515811920166,
+      8.816505432128906,
+      0.0
+    ]
+  ],
+  "decoder_summary": {
+    "decoder_type": "STPromptDirectDecoder",
+    "decoder_input_strategy": "direct_multi_output_prompt_query",
+    "decoder_context_mode": "last_state",
+    "decoder_actual_history_len": 1,
+    "decoder_history_range": "[143,144)",
+    "decoder_pooling": "last_state",
+    "fine_history_attention_entropy": null,
+    "coarse_history_attention_entropy": null,
+    "teacher_forcing": false,
+    "autoregressive": false,
+    "future_observed_features_used": false,
+    "head_parameterization": null,
+    "head_specific_parameter_count": null,
+    "output_shape": [
+      32,
+      10,
+      134
+    ]
+  }
+}

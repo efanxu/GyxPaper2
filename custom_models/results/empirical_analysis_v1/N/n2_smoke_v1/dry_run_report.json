@@ -1,0 +1,36 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "N2",
+  "family": "N",
+  "implementation_status": "ready",
+  "expected_diff_fields": [
+    "st_prompt_use_horizon_identity",
+    "st_prompt_use_node_identity"
+  ],
+  "actual_diff_fields": [
+    "st_prompt_use_horizon_identity",
+    "st_prompt_use_node_identity"
+  ],
+  "missing_expected_diff_fields": [],
+  "unexpected_diff_fields": [],
+  "frozen_protocol_changes": [],
+  "differences": {
+    "st_prompt_use_node_identity": {
+      "canonical": true,
+      "effective": false
+    },
+    "st_prompt_use_horizon_identity": {
+      "canonical": true,
+      "effective": false
+    }
+  },
+  "passed": true,
+  "display_name": "No node or horizon identity, type-only prompt",
+  "trainable": true,
+  "paired_reference": "N5",
+  "declared_overrides": {
+    "st_prompt_use_node_identity": false,
+    "st_prompt_use_horizon_identity": false
+  },
+  "execution_ready": true
+}

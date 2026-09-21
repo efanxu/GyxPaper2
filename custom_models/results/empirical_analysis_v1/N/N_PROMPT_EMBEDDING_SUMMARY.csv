@@ -1,0 +1,10 @@
+﻿variant_id,status,prompt_shape,node_identity,horizon_identity,shared_horizon_embedding,type_embedding,type_semantics,horizon_representation,prompt_norm_mean,node_variance,horizon_variance,effective_rank,node_difference_max,horizon_difference_max
+N0,available,"[1, 10, 134, 64]",False,True,False,True,fixed_decoder_input_type,step_specific,8.594625473022461,0.0,0.6090987920761108,10,0.0,4.106014728546143
+N1,available,"[1, 10, 134, 64]",True,False,False,True,fixed_decoder_input_type,shared_zero,7.9999775886535645,0.5317625999450684,0.0,63,4.81894588470459,0.0
+N2,available,"[1, 10, 134, 64]",False,False,False,True,fixed_decoder_input_type,shared_zero,7.99996280670166,0.0,0.0,1,0.0,0.0
+N3,available,"[1, 10, 134, 64]",True,False,True,True,fixed_decoder_input_type,shared_learnable,7.999976634979248,0.5369449853897095,0.0,63,5.143942356109619,0.0
+N4,NOT_APPLICABLE,null,True,True,False,True,fixed_decoder_input_type,not_applicable,,,,,,
+N5,available,"[1, 10, 134, 64]",True,True,False,True,fixed_decoder_input_type,step_specific,6.538458347320557,0.20707550644874573,0.19548720121383667,64,3.439120054244995,2.743380308151245
+N6,available,"[1, 10, 134, 64]",True,True,False,True,fixed_decoder_input_type,step_specific,8.417863845825195,0.44727689027786255,0.38426128029823303,64,4.482037544250488,4.121757507324219
+N7,available,"[1, 10, 134, 64]",True,True,False,True,fixed_decoder_input_type,step_specific,8.417863845825195,0.44727689027786255,0.38426128029823303,64,4.482037544250488,4.121757507324219
+N8,available,"[1, 10, 134, 64]",True,True,False,True,fixed_decoder_input_type,step_specific,8.243199348449707,0.36441341042518616,0.31394341588020325,63,4.084920406341553,3.376072645187378

@@ -1,0 +1,13 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "protocol_profile": "STMG_FORMAL_V2",
+  "source_scope": "internal_decoder",
+  "variant_id": "N6",
+  "paired_reference": "N5",
+  "graph_identity_reference": null,
+  "reference_only": false,
+  "formal_training": false,
+  "smoke_or_preflight": true,
+  "checkpoint_copied": false,
+  "metrics_copied": false
+}

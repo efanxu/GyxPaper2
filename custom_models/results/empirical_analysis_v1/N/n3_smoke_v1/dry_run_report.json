@@ -1,0 +1,36 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "N3",
+  "family": "N",
+  "implementation_status": "ready",
+  "expected_diff_fields": [
+    "st_prompt_use_horizon_identity",
+    "st_prompt_use_shared_horizon_embedding"
+  ],
+  "actual_diff_fields": [
+    "st_prompt_use_horizon_identity",
+    "st_prompt_use_shared_horizon_embedding"
+  ],
+  "missing_expected_diff_fields": [],
+  "unexpected_diff_fields": [],
+  "frozen_protocol_changes": [],
+  "differences": {
+    "st_prompt_use_horizon_identity": {
+      "canonical": true,
+      "effective": false
+    },
+    "st_prompt_use_shared_horizon_embedding": {
+      "canonical": false,
+      "effective": true
+    }
+  },
+  "passed": true,
+  "display_name": "Shared learnable horizon embedding",
+  "trainable": true,
+  "paired_reference": "N5",
+  "declared_overrides": {
+    "st_prompt_use_horizon_identity": false,
+    "st_prompt_use_shared_horizon_embedding": true
+  },
+  "execution_ready": true
+}

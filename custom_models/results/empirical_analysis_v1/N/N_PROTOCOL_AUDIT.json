@@ -1,0 +1,198 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "passed": true,
+  "frozen_fields": [
+    "model_input_path",
+    "eval_target_path",
+    "target_col",
+    "target_mask_col",
+    "input_patv_col",
+    "feature_cols",
+    "lookback",
+    "max_pred_len",
+    "eval_horizons",
+    "split_ratios",
+    "train_sample_stride",
+    "val_sample_stride",
+    "test_sample_stride",
+    "batch_size",
+    "eval_batch_size",
+    "train_batch_size",
+    "val_batch_size",
+    "test_batch_size",
+    "epochs",
+    "patience",
+    "early_stopping_min_delta",
+    "seed",
+    "enable_physical_clip_eval",
+    "physical_power_min_kw",
+    "physical_power_max_kw",
+    "physical_clip_protocol",
+    "checkpoint_selection_metric",
+    "checkpoint_selection_mode",
+    "primary_val_horizon",
+    "result_protocol",
+    "protocol_profile",
+    "source_scope"
+  ],
+  "variant_audits": [
+    {
+      "variant_id": "N0",
+      "passed": true,
+      "expected_diff_fields": [
+        "st_prompt_use_node_identity"
+      ],
+      "actual_diff_fields": [
+        "st_prompt_use_node_identity"
+      ],
+      "frozen_protocol_changes": [],
+      "reference_semantic_audit": null
+    },
+    {
+      "variant_id": "N1",
+      "passed": true,
+      "expected_diff_fields": [
+        "st_prompt_use_horizon_identity"
+      ],
+      "actual_diff_fields": [
+        "st_prompt_use_horizon_identity"
+      ],
+      "frozen_protocol_changes": [],
+      "reference_semantic_audit": null
+    },
+    {
+      "variant_id": "N2",
+      "passed": true,
+      "expected_diff_fields": [
+        "st_prompt_use_horizon_identity",
+        "st_prompt_use_node_identity"
+      ],
+      "actual_diff_fields": [
+        "st_prompt_use_horizon_identity",
+        "st_prompt_use_node_identity"
+      ],
+      "frozen_protocol_changes": [],
+      "reference_semantic_audit": null
+    },
+    {
+      "variant_id": "N3",
+      "passed": true,
+      "expected_diff_fields": [
+        "st_prompt_use_horizon_identity",
+        "st_prompt_use_shared_horizon_embedding"
+      ],
+      "actual_diff_fields": [
+        "st_prompt_use_horizon_identity",
+        "st_prompt_use_shared_horizon_embedding"
+      ],
+      "frozen_protocol_changes": [],
+      "reference_semantic_audit": null
+    },
+    {
+      "variant_id": "N4",
+      "passed": true,
+      "expected_diff_fields": [
+        "decoder_input_strategy",
+        "use_st_prompt"
+      ],
+      "actual_diff_fields": [
+        "decoder_input_strategy",
+        "use_st_prompt"
+      ],
+      "frozen_protocol_changes": [],
+      "reference_semantic_audit": null
+    },
+    {
+      "variant_id": "N5",
+      "passed": true,
+      "expected_diff_fields": [],
+      "actual_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "reference_semantic_audit": {
+        "variant": "A0",
+        "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+        "effective_diff_count": 0,
+        "expected_diff_fields": [],
+        "actual_diff_fields": [],
+        "unexpected_diff_fields": [],
+        "missing_expected_diff_fields": [],
+        "unexpected_effective_diff_count": 0,
+        "differences": {},
+        "passed": true,
+        "config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\effective_config.json"
+      }
+    },
+    {
+      "variant_id": "N6",
+      "passed": true,
+      "expected_diff_fields": [
+        "decoder_context_mode"
+      ],
+      "actual_diff_fields": [
+        "decoder_context_mode"
+      ],
+      "frozen_protocol_changes": [],
+      "reference_semantic_audit": null
+    },
+    {
+      "variant_id": "N7",
+      "passed": true,
+      "expected_diff_fields": [
+        "decoder_context_mode"
+      ],
+      "actual_diff_fields": [
+        "decoder_context_mode"
+      ],
+      "frozen_protocol_changes": [],
+      "reference_semantic_audit": null
+    },
+    {
+      "variant_id": "N8",
+      "passed": true,
+      "expected_diff_fields": [
+        "decoder_context_mode"
+      ],
+      "actual_diff_fields": [
+        "decoder_context_mode"
+      ],
+      "frozen_protocol_changes": [],
+      "reference_semantic_audit": {
+        "variant": "P3",
+        "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+        "effective_diff_count": 1,
+        "expected_diff_fields": [
+          "decoder_context_mode"
+        ],
+        "actual_diff_fields": [
+          "decoder_context_mode"
+        ],
+        "unexpected_diff_fields": [],
+        "missing_expected_diff_fields": [],
+        "unexpected_effective_diff_count": 0,
+        "differences": {
+          "decoder_context_mode": {
+            "canonical": "last_state",
+            "effective": "full_history_cross_attention"
+          }
+        },
+        "passed": true,
+        "config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_precision\\precision_ablation_fixed_dual_seed2026\\P3\\STMGPrompt_ComponentAblation\\active_config.json"
+      }
+    }
+  ],
+  "prompt_shape": [
+    1,
+    10,
+    134,
+    "D"
+  ],
+  "n1_n3_distinction": {
+    "N1": "no learned horizon component; shared zero horizon representation",
+    "N3": "one learned horizon vector shared across all ten future steps"
+  },
+  "type_embedding_semantics": "fixed_decoder_input_type_not_fine_coarse_dynamic_branch",
+  "future_target_access_prohibited": true,
+  "embedding_physical_interpretation_prohibited": true,
+  "intervention_real_world_counterfactual_label_prohibited": true,
+  "updated_at": "2026-09-21T14:18:39.293377+00:00"
+}

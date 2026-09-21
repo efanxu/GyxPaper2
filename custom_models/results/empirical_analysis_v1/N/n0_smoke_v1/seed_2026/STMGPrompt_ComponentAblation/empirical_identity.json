@@ -1,0 +1,22 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant": {
+    "variant_id": "N0",
+    "display_name": "No node identity",
+    "family": "N",
+    "base_config": "CANONICAL_FULL",
+    "config_overrides": {
+      "st_prompt_use_node_identity": false
+    },
+    "expected_unique_diff": [
+      "st_prompt_use_node_identity"
+    ],
+    "trainable": true,
+    "paired_reference": "N5",
+    "implementation_status": "ready",
+    "implementation_note": "",
+    "reference_only": false
+  },
+  "seed": 2026,
+  "mode": "smoke"
+}

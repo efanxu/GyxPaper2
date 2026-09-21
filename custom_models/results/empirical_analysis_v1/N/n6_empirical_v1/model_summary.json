@@ -1,0 +1,227 @@
+{
+  "total_parameters": 278534,
+  "trainable_parameters": 278534,
+  "shared_parameter_count": 0,
+  "branch_output_dimensions": {
+    "fine": 64,
+    "coarse": 64
+  },
+  "input_shape": [
+    32,
+    144,
+    134,
+    16
+  ],
+  "output_shape": [
+    32,
+    10,
+    134
+  ],
+  "loss": 0.521439254283905,
+  "loss_finite": true,
+  "gradient_finite": true,
+  "device": "cuda",
+  "amp_enabled": true,
+  "peak_memory_mb": 10157.74658203125,
+  "temporal_branch_transform": "independent",
+  "coarse_alignment_mode": "same_axis",
+  "cross_granularity_interaction": "cross_fusion",
+  "direct_concat_mlp": {
+    "layers": 2,
+    "hidden_dim": 432,
+    "activation": "gelu",
+    "dropout": 0.1,
+    "output_dim": 64,
+    "macro_prompt_instantiated": true,
+    "cross_fusion_instantiated": true
+  },
+  "branch_graph_assignment_trace": {
+    "assignment": "matched",
+    "fine_graph_id": "micro",
+    "coarse_graph_id": "macro",
+    "fine_builder": "AdaptiveGraphBuilder",
+    "coarse_builder": "AdaptiveGraphBuilder",
+    "adaptive_support_mode": "prior_constrained",
+    "fine_edges_outside_assigned_prior": 0,
+    "coarse_edges_outside_assigned_prior": 0
+  },
+  "graph_prior_component": "fused",
+  "adaptive_support_mode": "prior_constrained",
+  "graph_rewire_mode": "none",
+  "prompt_embedding_summary": {
+    "status": "available",
+    "prompt_shape": [
+      1,
+      10,
+      134,
+      64
+    ],
+    "node_identity": true,
+    "horizon_identity": true,
+    "shared_horizon_embedding": false,
+    "type_embedding": true,
+    "type_semantics": "fixed_decoder_input_type",
+    "horizon_representation": "step_specific",
+    "prompt_norm_mean": 8.417863845825195,
+    "horizon_variance": 0.38426128029823303,
+    "node_variance": 0.44727689027786255,
+    "effective_rank": 64,
+    "horizon_difference_max": 4.121757507324219,
+    "node_difference_max": 4.482037544250488,
+    "horizon_vector_norms": [
+      6.417110919952393,
+      6.295361518859863,
+      6.495710849761963,
+      6.671233654022217,
+      6.465007781982422,
+      6.506731986999512,
+      6.552717685699463,
+      6.533344268798828,
+      6.499276161193848,
+      6.618000507354736
+    ],
+    "node_vector_norm_mean": 6.805578231811523
+  },
+  "horizon_distance_matrix": [
+    [
+      0.0,
+      6.357444763183594,
+      6.568169593811035,
+      6.568668842315674,
+      6.421558380126953,
+      6.825263500213623,
+      6.404319763183594,
+      6.102747440338135,
+      6.362149238586426,
+      6.662942886352539
+    ],
+    [
+      6.357444763183594,
+      0.0,
+      6.056768894195557,
+      6.778897285461426,
+      5.9818878173828125,
+      6.902493953704834,
+      5.753833293914795,
+      6.4069952964782715,
+      6.63461446762085,
+      6.1801066398620605
+    ],
+    [
+      6.568169593811035,
+      6.056768894195557,
+      0.0,
+      6.815433979034424,
+      6.789560794830322,
+      7.137698650360107,
+      5.638949394226074,
+      6.585029125213623,
+      6.216343879699707,
+      5.979278564453125
+    ],
+    [
+      6.568668842315674,
+      6.778897285461426,
+      6.815433979034424,
+      0.0,
+      6.220205307006836,
+      5.315292835235596,
+      6.922489643096924,
+      5.806560039520264,
+      5.7711262702941895,
+      6.488131046295166
+    ],
+    [
+      6.421558380126953,
+      5.9818878173828125,
+      6.789560794830322,
+      6.220205307006836,
+      0.0,
+      5.665122032165527,
+      6.067920207977295,
+      6.39260721206665,
+      6.0442118644714355,
+      5.585147857666016
+    ],
+    [
+      6.825263500213623,
+      6.902493953704834,
+      7.137698650360107,
+      5.315292835235596,
+      5.665122032165527,
+      0.0,
+      6.338526248931885,
+      6.672946929931641,
+      6.245243549346924,
+      6.3681840896606445
+    ],
+    [
+      6.404319763183594,
+      5.753833293914795,
+      5.638949394226074,
+      6.922489643096924,
+      6.067920207977295,
+      6.338526248931885,
+      0.0,
+      6.5090436935424805,
+      7.000395774841309,
+      5.781435489654541
+    ],
+    [
+      6.102747440338135,
+      6.4069952964782715,
+      6.585029125213623,
+      5.806560039520264,
+      6.39260721206665,
+      6.672946929931641,
+      6.5090436935424805,
+      0.0,
+      5.855619430541992,
+      6.111591339111328
+    ],
+    [
+      6.362149238586426,
+      6.63461446762085,
+      6.216343879699707,
+      5.7711262702941895,
+      6.0442118644714355,
+      6.245243549346924,
+      7.000395774841309,
+      5.855619430541992,
+      0.0,
+      6.347620964050293
+    ],
+    [
+      6.662942886352539,
+      6.1801066398620605,
+      5.979278564453125,
+      6.488131046295166,
+      5.585147857666016,
+      6.3681840896606445,
+      5.781435489654541,
+      6.111591339111328,
+      6.347620964050293,
+      0.0
+    ]
+  ],
+  "decoder_summary": {
+    "decoder_type": "STPromptHistoryPoolingDecoder",
+    "decoder_input_strategy": "direct_multi_output_prompt_query",
+    "decoder_context_mode": "mean_pooling_history",
+    "decoder_actual_history_len": 144,
+    "decoder_history_range": "[0,144)",
+    "decoder_pooling": "mean",
+    "fine_history_attention_entropy": 4.969813346862793,
+    "coarse_history_attention_entropy": 4.969813346862793,
+    "teacher_forcing": false,
+    "autoregressive": false,
+    "future_observed_features_used": false,
+    "head_parameterization": null,
+    "head_specific_parameter_count": null,
+    "output_shape": [
+      32,
+      10,
+      134
+    ]
+  }
+}

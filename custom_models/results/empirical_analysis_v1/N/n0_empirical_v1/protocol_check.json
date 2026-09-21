@@ -1,0 +1,67 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "protocol_profile": "STMG_FORMAL_V2",
+  "source_scope": "internal_decoder",
+  "mode": "full_shape",
+  "unique_difference_audit": {
+    "protocol_id": "empirical_analysis_v1",
+    "variant_id": "N0",
+    "family": "N",
+    "implementation_status": "ready",
+    "expected_diff_fields": [
+      "st_prompt_use_node_identity"
+    ],
+    "actual_diff_fields": [
+      "st_prompt_use_node_identity"
+    ],
+    "missing_expected_diff_fields": [],
+    "unexpected_diff_fields": [],
+    "frozen_protocol_changes": [],
+    "differences": {
+      "st_prompt_use_node_identity": {
+        "canonical": true,
+        "effective": false
+      }
+    },
+    "passed": true
+  },
+  "formal_batch": {
+    "train": 32,
+    "val": 4,
+    "test": 4
+  },
+  "effective_batch": {
+    "train": 32,
+    "val": 4,
+    "test": 4
+  },
+  "mask": "valid_target_mask",
+  "prediction_start_index_rule": "[t-lookback,t)->[t,t+max_pred_len)",
+  "prompt_contract": {
+    "shape": [
+      1,
+      10,
+      134,
+      64
+    ],
+    "node_identity": false,
+    "horizon_identity": true,
+    "shared_horizon_embedding": false,
+    "type_embedding": true,
+    "type_semantics": "fixed_decoder_input_type"
+  },
+  "decoder_contract": {
+    "context_mode": "last_state",
+    "input_strategy": "direct_multi_output_prompt_query",
+    "teacher_forcing": false,
+    "autoregressive": false,
+    "future_observed_features_used": false,
+    "output_shape": [
+      "B",
+      10,
+      134
+    ]
+  },
+  "graph_identity_reference": null,
+  "passed": true
+}
