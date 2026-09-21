@@ -43,6 +43,7 @@ from st_mgprompt.run_st_mgprompt import _autocast_context, _run_once, resolve_de
 from st_mgprompt.step3_reporting import write_step3_reports
 from st_mgprompt.step4_reporting import write_step4_reports
 from st_mgprompt.step5_reporting import write_step5_reports
+from st_mgprompt.step6_reporting import write_step6_reports
 from st_mgprompt.summarize_empirical import summarize_empirical
 
 
@@ -53,6 +54,8 @@ def _utc_now() -> str:
 def _effective_source_scope(args: argparse.Namespace, variant: EmpiricalVariant) -> str:
     if variant.family == "D" and args.source_scope == "internal_mechanism":
         return "internal_diffusion"
+    if variant.family == "F" and args.source_scope == "internal_mechanism":
+        return "internal_fusion"
     return str(args.source_scope)
 
 
@@ -729,7 +732,7 @@ def _run_full_shape(
     audit = assert_empirical_expected_diff(formal, variant.variant_id, variant.family)
     formal.source_scope = _effective_source_scope(args, variant)
     effective = deepcopy(formal)
-    effective.diagnostics_level = "minimal"
+    effective.diagnostics_level = "standard" if variant.family == "F" else "minimal"
     effective.prediction_accumulation = "streaming"
     _write_identity_contract(run_dir, formal, effective, variant, audit, "full_shape")
     started_at = _utc_now()
@@ -737,6 +740,9 @@ def _run_full_shape(
         import torch
 
         device = resolve_device(args.device)
+        torch.manual_seed(2026)
+        if torch.cuda.is_available():
+            torch.cuda.manual_seed_all(2026)
         if device.type == "cuda":
             torch.cuda.empty_cache()
             torch.cuda.reset_peak_memory_stats(device)
@@ -872,6 +878,81 @@ def _run_full_shape(
             "graph_rewire_mode": effective.graph_rewire_mode,
             **(_diffusion_config_contract(effective) if variant.family == "D" else {}),
         }
+        if variant.family == "F":
+            diagnostic_keys = (
+                "pre_fusion_cosine_similarity",
+                "post_fusion_cosine_similarity",
+                "fine_representation_shift",
+                "coarse_representation_shift",
+                "fusion_gate_mean",
+                "fusion_gate_std",
+                "fusion_gate_q05",
+                "fusion_gate_q25",
+                "fusion_gate_q50",
+                "fusion_gate_q75",
+                "fusion_gate_q95",
+                "fusion_gate_saturation_ratio",
+                "macro_attn_entropy",
+                "fine_attn_entropy",
+                "macro_prompt_attn_entropy",
+                "macro_prompt_pairwise_cosine_mean",
+                "macro_prompt_pairwise_cosine_max",
+                "macro_to_fine_interaction_increment_norm",
+                "fine_to_coarse_interaction_increment_norm",
+                "macro_to_fine_query_source",
+                "macro_to_fine_key_source",
+                "macro_to_fine_value_source",
+                "macro_to_fine_query_history_range",
+                "fine_to_coarse_query_source",
+                "fine_to_coarse_key_source",
+                "fine_to_coarse_value_source",
+                "fine_to_coarse_history_range",
+                "macro_to_fine_attention_shape",
+                "fine_to_coarse_attention_shape",
+                "macro_to_fine_attention_row_sum_max_error",
+                "fine_to_coarse_attention_row_sum_max_error",
+                "attention_not_applicable_reason",
+                "gate_input",
+                "gate_level",
+                "gate_range",
+                "gate_initial_bias",
+                "gate_stop_gradient",
+                "uses_macro_prompt",
+                "uses_cross_fusion",
+                "basic_fusion_called",
+                "direct_concat_mlp_called",
+            )
+            summary["fusion_diagnostics"] = {
+                key: output["aux"].get(key) for key in diagnostic_keys
+            }
+            fusion_module = first_block.symmetric_cross_fusion
+            summary["fusion_structure"] = {
+                "fusion_mode": effective.fusion_mode,
+                "macro_prompt_instantiated": first_block.macro_prompt_encoder is not None,
+                "cross_fusion_instantiated": fusion_module is not None,
+                "basic_fusion_mode": first_block.basic_fusion_mode,
+                "basic_concat_layers": len(first_block.basic_concat_mlp) if first_block.basic_concat_mlp else 0,
+                "basic_concat_activation": "gelu" if first_block.basic_concat_mlp else "NOT_APPLICABLE",
+                "basic_concat_dropout": effective.dropout if first_block.basic_concat_mlp else None,
+                "basic_concat_output_dim": effective.hidden_dim if first_block.basic_concat_mlp else None,
+                "unified_gate_parameter_count": (
+                    sum(parameter.numel() for parameter in first_block.unified_gate.parameters())
+                    if first_block.unified_gate is not None
+                    else 0
+                ),
+                "shared_attention_module_identity": (
+                    fusion_module.macro_to_fine is fusion_module.fine_to_coarse
+                    if fusion_module is not None
+                    else False
+                ),
+                "decoder_input_source": (
+                    "independent_fine_coarse_last_states"
+                    if variant.variant_id == "F0"
+                    else "shared_basic_fusion_last_state"
+                    if first_block.basic_fusion_mode is not None
+                    else "directional_cross_fusion_last_states"
+                ),
+            }
         _atomic_json(run_dir / "model_summary.json", summary)
         _write_diffusion_audit_artifacts(
             run_dir,
@@ -1163,6 +1244,11 @@ def run_empirical(argv: list[str] | None = None) -> dict[str, Any]:
         if any(variant.family == "D" for variant in variants) and not args.dry_run
         else None
     )
+    step6 = (
+        write_step6_reports(output_root)
+        if any(variant.family == "F" for variant in variants) and not args.dry_run
+        else None
+    )
     summary = summarize_empirical(output_root)
     return {
         "output_root": str(output_root.resolve()),
@@ -1170,6 +1256,7 @@ def run_empirical(argv: list[str] | None = None) -> dict[str, Any]:
         "step3": step3,
         "step4": step4,
         "step5": step5,
+        "step6": step6,
         "summary": summary,
     }
 

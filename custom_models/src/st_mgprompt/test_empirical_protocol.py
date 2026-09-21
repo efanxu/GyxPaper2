@@ -35,7 +35,7 @@ from st_mgprompt.summarize_empirical import summarize_empirical
 
 class EmpiricalProtocolTests(unittest.TestCase):
     def test_registry_has_requested_namespaces_and_declared_differences(self) -> None:
-        self.assertEqual(tuple(EMPIRICAL_FAMILIES), ("T", "G", "F", "L", "R"))
+        self.assertEqual(tuple(EMPIRICAL_FAMILIES), ("T", "G", "D", "F", "L", "R"))
         self.assertEqual(tuple(EMPIRICAL_FAMILIES["T"]), tuple(f"T{i}" for i in range(6)))
         self.assertEqual(tuple(EMPIRICAL_FAMILIES["G"]), tuple(f"G{i}" for i in range(9)))
         self.assertEqual(tuple(EMPIRICAL_FAMILIES["F"]), tuple(f"F{i}" for i in range(9)))

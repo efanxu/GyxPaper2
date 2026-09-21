@@ -1,18 +1,29 @@
 {
   "protocol_id": "empirical_analysis_v1",
   "variant_id": "F3",
-  "display_name": "Unified gated fusion",
   "family": "F",
-  "implementation_status": "pending",
-  "trainable": true,
-  "paired_reference": "F7",
+  "implementation_status": "ready",
   "expected_diff_fields": [
     "fusion_mode"
   ],
+  "actual_diff_fields": [
+    "fusion_mode"
+  ],
+  "missing_expected_diff_fields": [],
+  "unexpected_diff_fields": [],
+  "frozen_protocol_changes": [],
+  "differences": {
+    "fusion_mode": {
+      "canonical": "cross",
+      "effective": "unified_gated"
+    }
+  },
+  "passed": true,
+  "display_name": "Unified gated fusion",
+  "trainable": true,
+  "paired_reference": "F7",
   "declared_overrides": {
     "fusion_mode": "unified_gated"
   },
-  "passed": true,
-  "execution_ready": false,
-  "note": "Implemented in empirical step 6."
+  "execution_ready": true
 }

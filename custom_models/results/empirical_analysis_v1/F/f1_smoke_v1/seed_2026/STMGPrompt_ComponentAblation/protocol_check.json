@@ -92,5 +92,38 @@
       "details": ""
     }
   ],
-  "data_summary": null
+  "data_summary": null,
+  "protocol_id": "empirical_analysis_v1",
+  "protocol_profile": "STMG_FORMAL_V2",
+  "source_scope": "internal_fusion",
+  "empirical_unique_difference_audit": {
+    "protocol_id": "empirical_analysis_v1",
+    "variant_id": "F1",
+    "family": "F",
+    "implementation_status": "ready",
+    "expected_diff_fields": [
+      "fusion_mode"
+    ],
+    "actual_diff_fields": [
+      "fusion_mode"
+    ],
+    "missing_expected_diff_fields": [],
+    "unexpected_diff_fields": [],
+    "frozen_protocol_changes": [],
+    "differences": {
+      "fusion_mode": {
+        "canonical": "cross",
+        "effective": "add"
+      }
+    },
+    "passed": true
+  },
+  "effective_batch": {
+    "train": 4,
+    "val": 4,
+    "test": 4
+  },
+  "mask": "valid_target_mask",
+  "prediction_start_index_rule": "[t-lookback,t)->[t,t+max_pred_len)",
+  "graph_identity_reference": null
 }

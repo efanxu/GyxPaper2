@@ -41,6 +41,12 @@ class MacroTrendPrompt(nn.Module):
             weights = torch.softmax(logits, dim=-1)
             pooled = torch.einsum("bnl,blnd->bnd", weights, h_coarse)
         else:
+            weights = torch.full(
+                (B, N, L),
+                1.0 / float(L),
+                device=h_coarse.device,
+                dtype=h_coarse.dtype,
+            )
             pooled = h_coarse.mean(dim=1)
 
         prompt = self.project(pooled).reshape(B, N, self.prompt_len, D)
@@ -55,14 +61,29 @@ class MacroTrendPrompt(nn.Module):
                 probs = probs.float().clamp_min(1e-8)
                 entropy = float(torch.special.entr(probs).sum(dim=-1).mean().cpu().item())
         prompt_norm_mean = None
+        pairwise_cosine_mean = None
+        pairwise_cosine_max = None
+        temporal_weight_mean = None
         if self.diagnostics_level != "none":
             with torch.no_grad():
                 prompt_norm_mean = float(prompt.detach().float().norm(dim=-1).mean().cpu().item())
+                normalized = torch.nn.functional.normalize(prompt.detach().float(), dim=-1)
+                cosine = torch.einsum("bnpd,bnqd->bnpq", normalized, normalized)
+                off_diagonal = ~torch.eye(self.prompt_len, device=cosine.device, dtype=torch.bool)
+                pairs = cosine[..., off_diagonal]
+                pairwise_cosine_mean = float(pairs.mean().cpu().item()) if pairs.numel() else None
+                pairwise_cosine_max = float(pairs.max().cpu().item()) if pairs.numel() else None
+                temporal_weight_mean = weights.detach().float().mean(dim=(0, 1)).cpu()
         aux = {
             "macro_prompt_attn_entropy": entropy,
             "macro_prompt_norm_mean": prompt_norm_mean,
             "macro_prompt_pooling": self.pooling,
             "macro_prompt_attention_enabled": self.pooling == "attention",
+            "macro_prompt_pairwise_cosine_mean": pairwise_cosine_mean,
+            "macro_prompt_pairwise_cosine_max": pairwise_cosine_max,
+            "macro_prompt_temporal_weight_mean": temporal_weight_mean,
+            "macro_prompt_source_history_range": f"[0,{L})",
+            "macro_prompt_token_count": self.prompt_len,
         }
         return prompt, aux
 

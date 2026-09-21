@@ -195,7 +195,7 @@ _F_VARIANTS = (
     _variant("F0", "Independent dual branches", "F", {"use_macro_prompt": False, "use_cross_fusion": False}, paired_reference="F7"),
     _variant("F1", "Element-wise add", "F", {"fusion_mode": "add"}, paired_reference="F7"),
     _variant("F2", "Concat + MLP", "F", {"fusion_mode": "concat"}, paired_reference="F7"),
-    _variant("F3", "Unified gated fusion", "F", {"fusion_mode": "unified_gated"}, status="pending", paired_reference="F7", note="Implemented in empirical step 6."),
+    _variant("F3", "Unified gated fusion", "F", {"fusion_mode": "unified_gated"}, paired_reference="F7"),
     _variant("F4", "Macro-to-Fine only", "F", {"disable_reverse_cross": True}, paired_reference="F7"),
     _variant("F5", "Fine-to-Coarse only", "F", {"disable_macro_to_fine_cross": True}, paired_reference="F7"),
     _variant("F6", "Bidirectional Cross-Fusion, shared projections", "F", {"share_cross_attention_projections": True}, trainable=False, paired_reference="A7", status="reference"),

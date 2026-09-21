@@ -5,6 +5,8 @@
   "family": "F",
   "reference_only": true,
   "paired_reference": "full_fixed_dual_keep_msmgdwu_seed2026",
+  "protocol_profile": "STMG_FORMAL_V2",
+  "source_scope": "internal_fusion",
   "source_run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026",
   "source_exists": true,
   "source_semantic_audit": {
@@ -20,6 +22,6 @@
     "passed": true,
     "config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\effective_config.json"
   },
-  "created_at": "2026-09-20T13:13:43.809169+00:00",
+  "created_at": "2026-09-21T13:26:45.906275+00:00",
   "note": "This is a reference; no checkpoint or metrics were copied."
 }

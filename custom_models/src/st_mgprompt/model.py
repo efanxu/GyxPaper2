@@ -463,6 +463,11 @@ class STMGPrompt_FairFull(nn.Module):
             "macro_to_fine_exclude_recent_len": config.macro_to_fine_exclude_recent_len,
             "macro_to_fine_mode": config.macro_to_fine_mode,
             "share_cross_attention_projections": bool(config.share_cross_attention_projections),
+            "fusion_mode": config.fusion_mode,
+            "unified_gate_input": config.unified_gate_input,
+            "unified_gate_level": config.unified_gate_level,
+            "unified_gate_init_bias": float(config.unified_gate_init_bias),
+            "unified_gate_stop_gradient": bool(config.unified_gate_stop_gradient),
             "temporal_branch_transform": config.temporal_branch_transform,
             "coarse_alignment_mode": config.coarse_alignment_mode,
             "coarse_upsample_rule": config.coarse_upsample_rule,
@@ -664,10 +669,55 @@ class STMGPrompt_FairFull(nn.Module):
                 "h_fine_spatial_delta_ratio": last_aux["h_fine_spatial_delta_ratio"],
                 "h_coarse_spatial_delta_ratio": last_aux["h_coarse_spatial_delta_ratio"],
                 "macro_prompt_norm_mean": last_aux["macro_prompt_norm_mean"],
+                "macro_prompt_pairwise_cosine_mean": last_aux.get("macro_prompt_pairwise_cosine_mean"),
+                "macro_prompt_pairwise_cosine_max": last_aux.get("macro_prompt_pairwise_cosine_max"),
+                "macro_prompt_temporal_weight_mean": last_aux.get("macro_prompt_temporal_weight_mean"),
+                "macro_prompt_source_history_range": last_aux.get("macro_prompt_source_history_range"),
+                "macro_prompt_token_count": last_aux.get("macro_prompt_token_count"),
                 "macro_attn_entropy": last_aux["macro_attn_entropy"],
                 "fine_attn_entropy": last_aux["fine_attn_entropy"],
                 "fusion_gate_mean": last_aux["fusion_gate_mean"],
                 "fusion_gate_std": last_aux["fusion_gate_std"],
+                "fusion_gate_q05": last_aux.get("fusion_gate_q05"),
+                "fusion_gate_q25": last_aux.get("fusion_gate_q25"),
+                "fusion_gate_q50": last_aux.get("fusion_gate_q50"),
+                "fusion_gate_q75": last_aux.get("fusion_gate_q75"),
+                "fusion_gate_q95": last_aux.get("fusion_gate_q95"),
+                "fusion_gate_saturation_ratio": last_aux.get("fusion_gate_saturation_ratio"),
+                "pre_fusion_cosine_similarity": last_aux.get("pre_fusion_cosine_similarity"),
+                "post_fusion_cosine_similarity": last_aux.get("post_fusion_cosine_similarity"),
+                "fine_representation_shift": last_aux.get("fine_representation_shift"),
+                "coarse_representation_shift": last_aux.get("coarse_representation_shift"),
+                "macro_to_fine_interaction_increment_norm": last_aux.get(
+                    "macro_to_fine_interaction_increment_norm"
+                ),
+                "fine_to_coarse_interaction_increment_norm": last_aux.get(
+                    "fine_to_coarse_interaction_increment_norm"
+                ),
+                "macro_to_fine_query_source": last_aux.get("macro_to_fine_query_source"),
+                "macro_to_fine_key_source": last_aux.get("macro_to_fine_key_source"),
+                "macro_to_fine_value_source": last_aux.get("macro_to_fine_value_source"),
+                "macro_to_fine_query_history_range": last_aux.get(
+                    "macro_to_fine_query_history_range"
+                ),
+                "fine_to_coarse_query_source": last_aux.get("fine_to_coarse_query_source"),
+                "fine_to_coarse_key_source": last_aux.get("fine_to_coarse_key_source"),
+                "fine_to_coarse_value_source": last_aux.get("fine_to_coarse_value_source"),
+                "fine_to_coarse_history_range": last_aux.get("fine_to_coarse_history_range"),
+                "macro_to_fine_attention_shape": last_aux.get("macro_to_fine_attention_shape"),
+                "fine_to_coarse_attention_shape": last_aux.get("fine_to_coarse_attention_shape"),
+                "macro_to_fine_attention_row_sum_max_error": last_aux.get(
+                    "macro_to_fine_attention_row_sum_max_error"
+                ),
+                "fine_to_coarse_attention_row_sum_max_error": last_aux.get(
+                    "fine_to_coarse_attention_row_sum_max_error"
+                ),
+                "attention_not_applicable_reason": last_aux.get("attention_not_applicable_reason"),
+                "gate_input": last_aux.get("gate_input"),
+                "gate_level": last_aux.get("gate_level"),
+                "gate_range": last_aux.get("gate_range"),
+                "gate_initial_bias": last_aux.get("gate_initial_bias"),
+                "gate_stop_gradient": last_aux.get("gate_stop_gradient"),
                 "cross_fusion_uses_spatial_enhanced_features": bool(
                     last_aux.get("cross_fusion_uses_spatial_enhanced_features", False)
                 ),
@@ -686,6 +736,7 @@ class STMGPrompt_FairFull(nn.Module):
                 "coarse_upsample_rule": self.config.coarse_upsample_rule,
                 "cross_granularity_interaction": self.config.cross_granularity_interaction,
                 "direct_concat_mlp_called": bool(last_aux.get("direct_concat_mlp_called", False)),
+                "basic_fusion_called": bool(last_aux.get("basic_fusion_called", False)),
                 "fine_branch_active": bool(last_aux.get("fine_branch_active", True)),
                 "coarse_branch_active": bool(last_aux.get("coarse_branch_active", True)),
                 "coupling_metadata": self.coupling_metadata,

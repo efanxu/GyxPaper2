@@ -1,0 +1,231 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "passed": true,
+  "frozen_fields": [
+    "model_input_path",
+    "eval_target_path",
+    "target_col",
+    "target_mask_col",
+    "input_patv_col",
+    "feature_cols",
+    "lookback",
+    "max_pred_len",
+    "eval_horizons",
+    "split_ratios",
+    "train_sample_stride",
+    "val_sample_stride",
+    "test_sample_stride",
+    "batch_size",
+    "eval_batch_size",
+    "train_batch_size",
+    "val_batch_size",
+    "test_batch_size",
+    "epochs",
+    "patience",
+    "early_stopping_min_delta",
+    "seed",
+    "enable_physical_clip_eval",
+    "physical_power_min_kw",
+    "physical_power_max_kw",
+    "physical_clip_protocol",
+    "checkpoint_selection_metric",
+    "checkpoint_selection_mode",
+    "primary_val_horizon",
+    "result_protocol",
+    "protocol_profile",
+    "source_scope"
+  ],
+  "variant_audits": [
+    {
+      "variant_id": "F0",
+      "passed": true,
+      "execution_ready": true,
+      "expected_diff_fields": [
+        "use_cross_fusion",
+        "use_macro_prompt"
+      ],
+      "actual_diff_fields": [
+        "use_cross_fusion",
+        "use_macro_prompt"
+      ],
+      "frozen_protocol_changes": [],
+      "reference_semantic_audit": null,
+      "reference_inference_diagnostics": null,
+      "diagnostic_prediction_regression_equal": null
+    },
+    {
+      "variant_id": "F1",
+      "passed": true,
+      "execution_ready": true,
+      "expected_diff_fields": [
+        "fusion_mode"
+      ],
+      "actual_diff_fields": [
+        "fusion_mode"
+      ],
+      "frozen_protocol_changes": [],
+      "reference_semantic_audit": null,
+      "reference_inference_diagnostics": null,
+      "diagnostic_prediction_regression_equal": null
+    },
+    {
+      "variant_id": "F2",
+      "passed": true,
+      "execution_ready": true,
+      "expected_diff_fields": [
+        "fusion_mode"
+      ],
+      "actual_diff_fields": [
+        "fusion_mode"
+      ],
+      "frozen_protocol_changes": [],
+      "reference_semantic_audit": null,
+      "reference_inference_diagnostics": null,
+      "diagnostic_prediction_regression_equal": null
+    },
+    {
+      "variant_id": "F3",
+      "passed": true,
+      "execution_ready": true,
+      "expected_diff_fields": [
+        "fusion_mode"
+      ],
+      "actual_diff_fields": [
+        "fusion_mode"
+      ],
+      "frozen_protocol_changes": [],
+      "reference_semantic_audit": null,
+      "reference_inference_diagnostics": null,
+      "diagnostic_prediction_regression_equal": null
+    },
+    {
+      "variant_id": "F4",
+      "passed": true,
+      "execution_ready": true,
+      "expected_diff_fields": [
+        "disable_reverse_cross"
+      ],
+      "actual_diff_fields": [
+        "disable_reverse_cross"
+      ],
+      "frozen_protocol_changes": [],
+      "reference_semantic_audit": null,
+      "reference_inference_diagnostics": null,
+      "diagnostic_prediction_regression_equal": null
+    },
+    {
+      "variant_id": "F5",
+      "passed": true,
+      "execution_ready": true,
+      "expected_diff_fields": [
+        "disable_macro_to_fine_cross"
+      ],
+      "actual_diff_fields": [
+        "disable_macro_to_fine_cross"
+      ],
+      "frozen_protocol_changes": [],
+      "reference_semantic_audit": null,
+      "reference_inference_diagnostics": null,
+      "diagnostic_prediction_regression_equal": null
+    },
+    {
+      "variant_id": "F6",
+      "passed": true,
+      "execution_ready": true,
+      "expected_diff_fields": [
+        "share_cross_attention_projections"
+      ],
+      "actual_diff_fields": [
+        "share_cross_attention_projections"
+      ],
+      "frozen_protocol_changes": [],
+      "reference_semantic_audit": {
+        "variant": "A7",
+        "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+        "effective_diff_count": 1,
+        "expected_diff_fields": [
+          "share_cross_attention_projections"
+        ],
+        "actual_diff_fields": [
+          "share_cross_attention_projections"
+        ],
+        "unexpected_diff_fields": [],
+        "missing_expected_diff_fields": [],
+        "unexpected_effective_diff_count": 0,
+        "differences": {
+          "share_cross_attention_projections": {
+            "canonical": false,
+            "effective": true
+          }
+        },
+        "passed": true,
+        "config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A7\\STMGPrompt_ComponentAblation\\effective_config.json"
+      },
+      "reference_inference_diagnostics": true,
+      "diagnostic_prediction_regression_equal": true
+    },
+    {
+      "variant_id": "F7",
+      "passed": true,
+      "execution_ready": true,
+      "expected_diff_fields": [],
+      "actual_diff_fields": [],
+      "frozen_protocol_changes": [],
+      "reference_semantic_audit": {
+        "variant": "A0",
+        "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+        "effective_diff_count": 0,
+        "expected_diff_fields": [],
+        "actual_diff_fields": [],
+        "unexpected_diff_fields": [],
+        "missing_expected_diff_fields": [],
+        "unexpected_effective_diff_count": 0,
+        "differences": {},
+        "passed": true,
+        "config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_canonical\\full_fixed_dual_keep_msmgdwu_seed2026\\effective_config.json"
+      },
+      "reference_inference_diagnostics": true,
+      "diagnostic_prediction_regression_equal": true
+    },
+    {
+      "variant_id": "F8",
+      "passed": true,
+      "execution_ready": true,
+      "expected_diff_fields": [
+        "macro_prompt_pooling"
+      ],
+      "actual_diff_fields": [
+        "macro_prompt_pooling"
+      ],
+      "frozen_protocol_changes": [],
+      "reference_semantic_audit": {
+        "variant": "A4",
+        "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+        "effective_diff_count": 1,
+        "expected_diff_fields": [
+          "macro_prompt_pooling"
+        ],
+        "actual_diff_fields": [
+          "macro_prompt_pooling"
+        ],
+        "unexpected_diff_fields": [],
+        "missing_expected_diff_fields": [],
+        "unexpected_effective_diff_count": 0,
+        "differences": {
+          "macro_prompt_pooling": {
+            "canonical": "attention",
+            "effective": "mean"
+          }
+        },
+        "passed": true,
+        "config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A4\\STMGPrompt_ComponentAblation\\effective_config.json"
+      },
+      "reference_inference_diagnostics": true,
+      "diagnostic_prediction_regression_equal": true
+    }
+  ],
+  "direction_semantics_frozen": true,
+  "future_target_access_prohibited": true,
+  "horizon_causal_attention_interpretation_prohibited": true,
+  "updated_at": "2026-09-21T13:35:22.254157+00:00"
+}

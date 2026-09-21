@@ -183,6 +183,10 @@ class STMGPromptConfig:
     disable_macro_to_fine_cross: bool = False
     macro_to_fine_mode: str = "query_attention"
     share_cross_attention_projections: bool = False
+    unified_gate_input: str = "fine_coarse_concat"
+    unified_gate_level: str = "node_time_channel"
+    unified_gate_init_bias: float = 0.0
+    unified_gate_stop_gradient: bool = False
     cross_granularity_interaction: str = "cross_fusion"
     direct_concat_mlp_layers: int = 2
     direct_concat_mlp_hidden_dim: int = 432
@@ -483,14 +487,20 @@ class STMGPromptConfig:
             raise ValueError("cross_fusion_recent_len must be positive.")
         if self.macro_to_fine_exclude_recent_len < 0:
             raise ValueError("macro_to_fine_exclude_recent_len cannot be negative.")
-        if self.fusion_mode not in {"cross", "add", "concat"}:
-            raise ValueError("fusion_mode must be cross, add, or concat.")
+        if self.fusion_mode not in {"cross", "add", "concat", "unified_gated"}:
+            raise ValueError("fusion_mode must be cross, add, concat, or unified_gated.")
         if not isinstance(self.disable_macro_to_fine_cross, bool):
             raise ValueError("disable_macro_to_fine_cross must be a boolean.")
         if self.macro_to_fine_mode not in {"query_attention", "static_mean"}:
             raise ValueError("macro_to_fine_mode must be query_attention or static_mean.")
         if not isinstance(self.share_cross_attention_projections, bool):
             raise ValueError("share_cross_attention_projections must be a boolean.")
+        if self.unified_gate_input != "fine_coarse_concat":
+            raise ValueError("unified_gate_input must be fine_coarse_concat.")
+        if self.unified_gate_level != "node_time_channel":
+            raise ValueError("unified_gate_level must be node_time_channel.")
+        if not isinstance(self.unified_gate_stop_gradient, bool):
+            raise ValueError("unified_gate_stop_gradient must be a boolean.")
         if self.cross_granularity_interaction not in {"cross_fusion", "direct_concat_mlp"}:
             raise ValueError("cross_granularity_interaction must be cross_fusion or direct_concat_mlp.")
         if self.direct_concat_mlp_layers not in {1, 2}:

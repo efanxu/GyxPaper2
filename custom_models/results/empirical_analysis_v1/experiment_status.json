@@ -1,6 +1,6 @@
 {
   "protocol_id": "empirical_analysis_v1",
-  "updated_at": "2026-09-21T12:55:37.690802+00:00",
+  "updated_at": "2026-09-21T13:29:38.592018+00:00",
   "mode": "full_shape",
   "statuses": [
     {
@@ -53,37 +53,68 @@
     {
       "variant_id": "F0",
       "seed": 2026,
-      "status": "completed",
-      "decision": "SKIP_COMPLETED",
-      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f0_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation"
+      "status": "smoke_completed",
+      "decision": "TRAIN",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f0_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation",
+      "protocol_passed": true,
+      "started_at": "2026-09-21T13:26:17.655497+00:00",
+      "finished_at": "2026-09-21T13:26:35.803850+00:00",
+      "trace_summary": null
     },
     {
       "variant_id": "F1",
       "seed": 2026,
-      "status": "completed",
-      "decision": "SKIP_COMPLETED",
-      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f1_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation"
+      "status": "smoke_completed",
+      "decision": "TRAIN",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f1_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation",
+      "protocol_passed": true,
+      "started_at": "2026-09-21T13:26:35.834120+00:00",
+      "finished_at": "2026-09-21T13:26:37.482352+00:00",
+      "trace_summary": null
     },
     {
       "variant_id": "F2",
       "seed": 2026,
-      "status": "completed",
-      "decision": "SKIP_COMPLETED",
-      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f2_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation"
+      "status": "smoke_completed",
+      "decision": "TRAIN",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f2_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation",
+      "protocol_passed": true,
+      "started_at": "2026-09-21T13:26:37.516675+00:00",
+      "finished_at": "2026-09-21T13:26:39.768313+00:00",
+      "trace_summary": null
+    },
+    {
+      "variant_id": "F3",
+      "seed": 2026,
+      "status": "smoke_completed",
+      "decision": "TRAIN",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f3_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation",
+      "protocol_passed": true,
+      "started_at": "2026-09-21T13:26:39.802687+00:00",
+      "finished_at": "2026-09-21T13:26:41.621229+00:00",
+      "trace_summary": null
     },
     {
       "variant_id": "F4",
       "seed": 2026,
-      "status": "completed",
-      "decision": "SKIP_COMPLETED",
-      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f4_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation"
+      "status": "smoke_completed",
+      "decision": "TRAIN",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f4_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation",
+      "protocol_passed": true,
+      "started_at": "2026-09-21T13:26:41.654801+00:00",
+      "finished_at": "2026-09-21T13:26:43.851499+00:00",
+      "trace_summary": null
     },
     {
       "variant_id": "F5",
       "seed": 2026,
-      "status": "completed",
-      "decision": "SKIP_COMPLETED",
-      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f5_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation"
+      "status": "smoke_completed",
+      "decision": "TRAIN",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f5_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation",
+      "protocol_passed": true,
+      "started_at": "2026-09-21T13:26:43.881572+00:00",
+      "finished_at": "2026-09-21T13:26:45.882199+00:00",
+      "trace_summary": null
     },
     {
       "variant_id": "G1",
@@ -464,24 +495,16 @@
       "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f2_empirical_v1"
     },
     {
-      "protocol_id": "empirical_analysis_v1",
       "variant_id": "F3",
-      "display_name": "Unified gated fusion",
       "family": "F",
-      "implementation_status": "pending",
-      "trainable": true,
-      "paired_reference": "F7",
-      "expected_diff_fields": [
-        "fusion_mode"
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f3_empirical_v1",
+      "output_shape": [
+        32,
+        10,
+        134
       ],
-      "declared_overrides": {
-        "fusion_mode": "unified_gated"
-      },
-      "passed": true,
-      "execution_ready": false,
-      "note": "Implemented in empirical step 6.",
-      "status": "DRY_RUN",
-      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f3_empirical_v1"
+      "peak_memory_mb": 7988.7607421875
     },
     {
       "protocol_id": "empirical_analysis_v1",
@@ -504,97 +527,35 @@
       "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f3_smoke_v1"
     },
     {
-      "protocol_id": "empirical_analysis_v1",
       "variant_id": "F4",
       "family": "F",
-      "implementation_status": "ready",
-      "expected_diff_fields": [
-        "disable_reverse_cross"
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f4_empirical_v1",
+      "output_shape": [
+        32,
+        10,
+        134
       ],
-      "actual_diff_fields": [
-        "disable_reverse_cross"
-      ],
-      "missing_expected_diff_fields": [],
-      "unexpected_diff_fields": [],
-      "frozen_protocol_changes": [],
-      "differences": {
-        "disable_reverse_cross": {
-          "canonical": false,
-          "effective": true
-        }
-      },
-      "passed": true,
-      "display_name": "Macro-to-Fine only",
-      "trainable": true,
-      "paired_reference": "F7",
-      "declared_overrides": {
-        "disable_reverse_cross": true
-      },
-      "execution_ready": true,
-      "status": "DRY_RUN",
-      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f4_empirical_v1"
+      "peak_memory_mb": 9149.18359375
     },
     {
-      "protocol_id": "empirical_analysis_v1",
       "variant_id": "F5",
       "family": "F",
-      "implementation_status": "ready",
-      "expected_diff_fields": [
-        "disable_macro_to_fine_cross"
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f5_empirical_v1",
+      "output_shape": [
+        32,
+        10,
+        134
       ],
-      "actual_diff_fields": [
-        "disable_macro_to_fine_cross"
-      ],
-      "missing_expected_diff_fields": [],
-      "unexpected_diff_fields": [],
-      "frozen_protocol_changes": [],
-      "differences": {
-        "disable_macro_to_fine_cross": {
-          "canonical": false,
-          "effective": true
-        }
-      },
-      "passed": true,
-      "display_name": "Fine-to-Coarse only",
-      "trainable": true,
-      "paired_reference": "F7",
-      "declared_overrides": {
-        "disable_macro_to_fine_cross": true
-      },
-      "execution_ready": true,
-      "status": "DRY_RUN",
-      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f5_empirical_v1"
+      "peak_memory_mb": 9658.1171875
     },
     {
-      "protocol_id": "empirical_analysis_v1",
       "variant_id": "F6",
       "family": "F",
-      "implementation_status": "reference",
-      "expected_diff_fields": [
-        "share_cross_attention_projections"
-      ],
-      "actual_diff_fields": [
-        "share_cross_attention_projections"
-      ],
-      "missing_expected_diff_fields": [],
-      "unexpected_diff_fields": [],
-      "frozen_protocol_changes": [],
-      "differences": {
-        "share_cross_attention_projections": {
-          "canonical": false,
-          "effective": true
-        }
-      },
-      "passed": true,
-      "display_name": "Bidirectional Cross-Fusion, shared projections",
-      "trainable": false,
-      "paired_reference": "A7",
-      "declared_overrides": {
-        "share_cross_attention_projections": true
-      },
-      "execution_ready": true,
-      "status": "DRY_RUN",
-      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f6_empirical_v1"
+      "status": "REFERENCE_ONLY",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f6_empirical_v1",
+      "source_exists": true
     },
     {
       "variant_id": "F6",
@@ -604,24 +565,11 @@
       "source_exists": true
     },
     {
-      "protocol_id": "empirical_analysis_v1",
       "variant_id": "F7",
       "family": "F",
-      "implementation_status": "reference",
-      "expected_diff_fields": [],
-      "actual_diff_fields": [],
-      "missing_expected_diff_fields": [],
-      "unexpected_diff_fields": [],
-      "frozen_protocol_changes": [],
-      "differences": {},
-      "passed": true,
-      "display_name": "Bidirectional Cross-Fusion, independent projections",
-      "trainable": false,
-      "paired_reference": "full_fixed_dual_keep_msmgdwu_seed2026",
-      "declared_overrides": {},
-      "execution_ready": true,
-      "status": "DRY_RUN",
-      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f7_empirical_v1"
+      "status": "REFERENCE_ONLY",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f7_empirical_v1",
+      "source_exists": true
     },
     {
       "variant_id": "F7",
@@ -631,35 +579,11 @@
       "source_exists": true
     },
     {
-      "protocol_id": "empirical_analysis_v1",
       "variant_id": "F8",
       "family": "F",
-      "implementation_status": "reference",
-      "expected_diff_fields": [
-        "macro_prompt_pooling"
-      ],
-      "actual_diff_fields": [
-        "macro_prompt_pooling"
-      ],
-      "missing_expected_diff_fields": [],
-      "unexpected_diff_fields": [],
-      "frozen_protocol_changes": [],
-      "differences": {
-        "macro_prompt_pooling": {
-          "canonical": "attention",
-          "effective": "mean"
-        }
-      },
-      "passed": true,
-      "display_name": "Mean-pooling Macro Prompt",
-      "trainable": false,
-      "paired_reference": "A4",
-      "declared_overrides": {
-        "macro_prompt_pooling": "mean"
-      },
-      "execution_ready": true,
-      "status": "DRY_RUN",
-      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f8_empirical_v1"
+      "status": "REFERENCE_ONLY",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f8_empirical_v1",
+      "source_exists": true
     },
     {
       "variant_id": "F8",

@@ -23,7 +23,7 @@ D5,Bidirectional third-order diffusion,D,CANONICAL_FULL,"{""diffusion_order_macr
 F0,Independent dual branches,F,CANONICAL_FULL,"{""use_cross_fusion"": false, ""use_macro_prompt"": false}","[""use_macro_prompt"", ""use_cross_fusion""]",True,F7,ready,,False
 F1,Element-wise add,F,CANONICAL_FULL,"{""fusion_mode"": ""add""}","[""fusion_mode""]",True,F7,ready,,False
 F2,Concat + MLP,F,CANONICAL_FULL,"{""fusion_mode"": ""concat""}","[""fusion_mode""]",True,F7,ready,,False
-F3,Unified gated fusion,F,CANONICAL_FULL,"{""fusion_mode"": ""unified_gated""}","[""fusion_mode""]",True,F7,pending,Implemented in empirical step 6.,False
+F3,Unified gated fusion,F,CANONICAL_FULL,"{""fusion_mode"": ""unified_gated""}","[""fusion_mode""]",True,F7,ready,,False
 F4,Macro-to-Fine only,F,CANONICAL_FULL,"{""disable_reverse_cross"": true}","[""disable_reverse_cross""]",True,F7,ready,,False
 F5,Fine-to-Coarse only,F,CANONICAL_FULL,"{""disable_macro_to_fine_cross"": true}","[""disable_macro_to_fine_cross""]",True,F7,ready,,False
 F6,"Bidirectional Cross-Fusion, shared projections",F,CANONICAL_FULL,"{""share_cross_attention_projections"": true}","[""share_cross_attention_projections""]",False,A7,reference,,True

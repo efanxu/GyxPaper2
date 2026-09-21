@@ -2,6 +2,35 @@
   "trainable_parameters": 18230,
   "non_trainable_parameters": 0,
   "total_parameters": 18230,
+  "shared_parameter_count": 0,
+  "temporal_branch_transform": "independent",
+  "branch_output_dimensions": {
+    "fine": 16,
+    "coarse": 16
+  },
+  "graph_operator": "bidirectional_diffusion",
+  "operator_direction": "bidirectional",
+  "diffusion_order_micro": 2,
+  "diffusion_order_macro": 2,
+  "diffusion_state_count": 4,
+  "diffusion_state_count_micro": 4,
+  "diffusion_state_count_macro": 4,
+  "diffusion_stream_count_micro": 5,
+  "diffusion_stream_count_macro": 5,
+  "state_concat_order": [
+    "input",
+    "forward_hop_1",
+    "forward_hop_2",
+    "reverse_hop_1",
+    "reverse_hop_2"
+  ],
+  "projection_mode": "shared_output_dim",
+  "projection_input_dim_micro": 80,
+  "projection_input_dim_macro": 80,
+  "projection_output_dim": 16,
+  "forward_normalization": "row_normalize(A)",
+  "reverse_normalization": "row_normalize(A_transpose)",
+  "transpose_topk_recomputed": false,
   "parameter_memory_mb": 0.06954193115234375,
   "input_dim": 16,
   "num_nodes": 8,
@@ -392,18 +421,65 @@
     "vadsp_statistics_feature_space": "model_input_scaled"
   },
   "graph_snapshot_summary": {},
-  "train_time_sec": 1.3804841000019223,
-  "mean_epoch_time_sec": 1.3804841000019223,
+  "train_time_sec": 1.3687696999986656,
+  "mean_epoch_time_sec": 1.3687696999986656,
   "best_epoch": 1,
   "best_metric_name": "val_official_score_h10",
-  "best_metric_value": 12.293815936674093,
-  "best_val_Score_H3": 15.25955667771653,
-  "best_val_Score_H6": 13.881696122310268,
-  "best_val_Score_H10": 12.293815936674093,
+  "best_metric_value": 12.144934668657584,
+  "best_val_Score_H3": 15.184108543017794,
+  "best_val_Score_H6": 13.74668879644156,
+  "best_val_Score_H10": 12.144934668657584,
+  "branch_diagnostics": {
+    "fine_branch_active": true,
+    "coarse_branch_active": true,
+    "fine_branch_active_ratio": 1.0,
+    "coarse_branch_active_ratio": 1.0,
+    "fine_representation_norm": 0.8829569220542908,
+    "coarse_representation_norm": 1.0034042596817017,
+    "x_fine_shape": [
+      4,
+      12,
+      8,
+      16
+    ],
+    "x_coarse_shape": [
+      4,
+      12,
+      8,
+      16
+    ],
+    "vadsp_mode": "fixed_dual",
+    "coarse_alignment_mode": "same_axis",
+    "coarse_upsample_rule": "causal_repeat",
+    "branch_graph_assignment": "matched",
+    "fine_graph_id": "micro",
+    "coarse_graph_id": "macro",
+    "branch_graph_assignment_trace": {
+      "assignment": "matched",
+      "fine_graph_id": "micro",
+      "coarse_graph_id": "macro",
+      "fine_builder": "AdaptiveGraphBuilder",
+      "coarse_builder": "AdaptiveGraphBuilder",
+      "adaptive_support_mode": "prior_constrained",
+      "fine_edges_outside_assigned_prior": 0,
+      "coarse_edges_outside_assigned_prior": 0
+    },
+    "graph_prior_component": "fused",
+    "adaptive_support_mode": "prior_constrained",
+    "graph_rewire_mode": "none"
+  },
   "inference_efficiency": {
-    "inference_time_sec_full_test": 0.01588640000045416,
-    "inference_time_ms_per_window": 5.2954666668180534,
-    "inference_windows_per_sec": 188.84076945779006,
+    "inference_time_sec_full_test": 0.022160799999255687,
+    "inference_time_ms_per_window": 7.386933333085229,
+    "inference_windows_per_sec": 135.37417422208406,
     "inference_valid_points_per_sec": null
-  }
+  },
+  "protocol_profile": "STMG_FORMAL_V2",
+  "source_scope": "internal_fusion",
+  "variant_id": "F4",
+  "output_shape": [
+    4,
+    10,
+    8
+  ]
 }

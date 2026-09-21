@@ -1,0 +1,287 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "canonical_run_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+  "protocol_profile": "STMG_FORMAL_V2",
+  "source_scope": "internal_fusion",
+  "variants": [
+    {
+      "variant_id": "F0",
+      "display_name": "Independent dual branches",
+      "family": "F",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "use_macro_prompt": false,
+        "use_cross_fusion": false
+      },
+      "expected_unique_diff": [
+        "use_macro_prompt",
+        "use_cross_fusion"
+      ],
+      "trainable": true,
+      "paired_reference": "F7",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_fusion",
+      "formal_result_status": "preflight-only",
+      "model_summary_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f0_empirical_v1\\model_summary.json",
+      "reference_path": "",
+      "fusion_structure": {
+        "fusion_mode": "cross",
+        "macro_prompt_instantiated": false,
+        "cross_fusion_instantiated": false,
+        "basic_fusion_mode": null,
+        "basic_concat_layers": 0,
+        "basic_concat_activation": "NOT_APPLICABLE",
+        "basic_concat_dropout": null,
+        "basic_concat_output_dim": null,
+        "unified_gate_parameter_count": 0,
+        "shared_attention_module_identity": false,
+        "decoder_input_source": "independent_fine_coarse_last_states"
+      }
+    },
+    {
+      "variant_id": "F1",
+      "display_name": "Element-wise add",
+      "family": "F",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "fusion_mode": "add"
+      },
+      "expected_unique_diff": [
+        "fusion_mode"
+      ],
+      "trainable": true,
+      "paired_reference": "F7",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_fusion",
+      "formal_result_status": "preflight-only",
+      "model_summary_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f1_empirical_v1\\model_summary.json",
+      "reference_path": "",
+      "fusion_structure": {
+        "fusion_mode": "add",
+        "macro_prompt_instantiated": false,
+        "cross_fusion_instantiated": false,
+        "basic_fusion_mode": "add",
+        "basic_concat_layers": 0,
+        "basic_concat_activation": "NOT_APPLICABLE",
+        "basic_concat_dropout": null,
+        "basic_concat_output_dim": null,
+        "unified_gate_parameter_count": 0,
+        "shared_attention_module_identity": false,
+        "decoder_input_source": "shared_basic_fusion_last_state"
+      }
+    },
+    {
+      "variant_id": "F2",
+      "display_name": "Concat + MLP",
+      "family": "F",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "fusion_mode": "concat"
+      },
+      "expected_unique_diff": [
+        "fusion_mode"
+      ],
+      "trainable": true,
+      "paired_reference": "F7",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_fusion",
+      "formal_result_status": "preflight-only",
+      "model_summary_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f2_empirical_v1\\model_summary.json",
+      "reference_path": "",
+      "fusion_structure": {
+        "fusion_mode": "concat",
+        "macro_prompt_instantiated": false,
+        "cross_fusion_instantiated": false,
+        "basic_fusion_mode": "concat",
+        "basic_concat_layers": 5,
+        "basic_concat_activation": "gelu",
+        "basic_concat_dropout": 0.1,
+        "basic_concat_output_dim": 64,
+        "unified_gate_parameter_count": 0,
+        "shared_attention_module_identity": false,
+        "decoder_input_source": "shared_basic_fusion_last_state"
+      }
+    },
+    {
+      "variant_id": "F3",
+      "display_name": "Unified gated fusion",
+      "family": "F",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "fusion_mode": "unified_gated"
+      },
+      "expected_unique_diff": [
+        "fusion_mode"
+      ],
+      "trainable": true,
+      "paired_reference": "F7",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_fusion",
+      "formal_result_status": "preflight-only",
+      "model_summary_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f3_empirical_v1\\model_summary.json",
+      "reference_path": "",
+      "fusion_structure": {
+        "fusion_mode": "unified_gated",
+        "macro_prompt_instantiated": false,
+        "cross_fusion_instantiated": false,
+        "basic_fusion_mode": "unified_gated",
+        "basic_concat_layers": 0,
+        "basic_concat_activation": "NOT_APPLICABLE",
+        "basic_concat_dropout": null,
+        "basic_concat_output_dim": null,
+        "unified_gate_parameter_count": 8256,
+        "shared_attention_module_identity": false,
+        "decoder_input_source": "shared_basic_fusion_last_state"
+      }
+    },
+    {
+      "variant_id": "F4",
+      "display_name": "Macro-to-Fine only",
+      "family": "F",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "disable_reverse_cross": true
+      },
+      "expected_unique_diff": [
+        "disable_reverse_cross"
+      ],
+      "trainable": true,
+      "paired_reference": "F7",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_fusion",
+      "formal_result_status": "preflight-only",
+      "model_summary_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f4_empirical_v1\\model_summary.json",
+      "reference_path": "",
+      "fusion_structure": {
+        "fusion_mode": "cross",
+        "macro_prompt_instantiated": true,
+        "cross_fusion_instantiated": true,
+        "basic_fusion_mode": null,
+        "basic_concat_layers": 0,
+        "basic_concat_activation": "NOT_APPLICABLE",
+        "basic_concat_dropout": null,
+        "basic_concat_output_dim": null,
+        "unified_gate_parameter_count": 0,
+        "shared_attention_module_identity": false,
+        "decoder_input_source": "directional_cross_fusion_last_states"
+      }
+    },
+    {
+      "variant_id": "F5",
+      "display_name": "Fine-to-Coarse only",
+      "family": "F",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "disable_macro_to_fine_cross": true
+      },
+      "expected_unique_diff": [
+        "disable_macro_to_fine_cross"
+      ],
+      "trainable": true,
+      "paired_reference": "F7",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_fusion",
+      "formal_result_status": "preflight-only",
+      "model_summary_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f5_empirical_v1\\model_summary.json",
+      "reference_path": "",
+      "fusion_structure": {
+        "fusion_mode": "cross",
+        "macro_prompt_instantiated": true,
+        "cross_fusion_instantiated": true,
+        "basic_fusion_mode": null,
+        "basic_concat_layers": 0,
+        "basic_concat_activation": "NOT_APPLICABLE",
+        "basic_concat_dropout": null,
+        "basic_concat_output_dim": null,
+        "unified_gate_parameter_count": 0,
+        "shared_attention_module_identity": false,
+        "decoder_input_source": "directional_cross_fusion_last_states"
+      }
+    },
+    {
+      "variant_id": "F6",
+      "display_name": "Bidirectional Cross-Fusion, shared projections",
+      "family": "F",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "share_cross_attention_projections": true
+      },
+      "expected_unique_diff": [
+        "share_cross_attention_projections"
+      ],
+      "trainable": false,
+      "paired_reference": "A7",
+      "implementation_status": "reference",
+      "implementation_note": "",
+      "reference_only": true,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_fusion",
+      "formal_result_status": "reference-only",
+      "model_summary_path": "",
+      "reference_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f6_empirical_v1\\reference.json",
+      "fusion_structure": {}
+    },
+    {
+      "variant_id": "F7",
+      "display_name": "Bidirectional Cross-Fusion, independent projections",
+      "family": "F",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {},
+      "expected_unique_diff": [],
+      "trainable": false,
+      "paired_reference": "full_fixed_dual_keep_msmgdwu_seed2026",
+      "implementation_status": "reference",
+      "implementation_note": "",
+      "reference_only": true,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_fusion",
+      "formal_result_status": "reference-only",
+      "model_summary_path": "",
+      "reference_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f7_empirical_v1\\reference.json",
+      "fusion_structure": {}
+    },
+    {
+      "variant_id": "F8",
+      "display_name": "Mean-pooling Macro Prompt",
+      "family": "F",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "macro_prompt_pooling": "mean"
+      },
+      "expected_unique_diff": [
+        "macro_prompt_pooling"
+      ],
+      "trainable": false,
+      "paired_reference": "A4",
+      "implementation_status": "reference",
+      "implementation_note": "",
+      "reference_only": true,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_fusion",
+      "formal_result_status": "reference-only",
+      "model_summary_path": "",
+      "reference_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\F\\f8_empirical_v1\\reference.json",
+      "fusion_structure": {}
+    }
+  ],
+  "formal_training_started": false,
+  "updated_at": "2026-09-21T13:35:22.251467+00:00"
+}

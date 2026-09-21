@@ -212,18 +212,53 @@ class SymmetricCrossFusion(nn.Module):
             "fine_attention_output_dtype": str(out_b_seq.dtype) if not self.disable_reverse_cross else None,
             "fine_attention_weights_shape": list(fine_attn.shape) if fine_attn is not None else None,
             "fine_attention_weights_dtype": str(fine_attn.dtype) if fine_attn is not None else None,
+            "macro_attention_row_sum_max_error": (
+                float((macro_attn.detach().float().sum(dim=-1) - 1.0).abs().max().cpu().item())
+                if macro_attn is not None
+                else None
+            ),
+            "fine_attention_row_sum_max_error": (
+                float((fine_attn.detach().float().sum(dim=-1) - 1.0).abs().max().cpu().item())
+                if fine_attn is not None
+                else None
+            ),
         }
         if self.diagnostics_level == "none":
             gate_mean = None
             gate_std = None
+            gate_quantiles = [None] * 5
+            gate_saturation_ratio = None
         else:
-            gate_mean = float(gate.detach().float().mean().cpu().item())
-            gate_std = float(gate.detach().float().std(unbiased=False).cpu().item())
+            gate_flat = gate.detach().float().reshape(-1)
+            gate_mean = float(gate_flat.mean().cpu().item())
+            gate_std = float(gate_flat.std(unbiased=False).cpu().item())
+            if gate_flat.numel() > 1_000_000:
+                sample_step = (gate_flat.numel() + 999_999) // 1_000_000
+                gate_for_quantiles = gate_flat[::sample_step]
+            else:
+                gate_for_quantiles = gate_flat
+            quantiles = torch.quantile(
+                gate_for_quantiles,
+                torch.tensor(
+                    [0.05, 0.25, 0.5, 0.75, 0.95],
+                    device=gate_for_quantiles.device,
+                ),
+            )
+            gate_quantiles = [float(value.cpu().item()) for value in quantiles]
+            gate_saturation_ratio = float(
+                ((gate_flat <= 0.05) | (gate_flat >= 0.95)).float().mean().cpu().item()
+            )
         aux = {
             "macro_attn_entropy": macro_attn_entropy,
             "fine_attn_entropy": fine_attn_entropy,
             "fusion_gate_mean": gate_mean,
             "fusion_gate_std": gate_std,
+            "fusion_gate_q05": gate_quantiles[0],
+            "fusion_gate_q25": gate_quantiles[1],
+            "fusion_gate_q50": gate_quantiles[2],
+            "fusion_gate_q75": gate_quantiles[3],
+            "fusion_gate_q95": gate_quantiles[4],
+            "fusion_gate_saturation_ratio": gate_saturation_ratio,
             "attention_weights_requested": need_attention_diagnostics,
             "entropy_called": need_attention_diagnostics,
             "cross_fusion_uses_spatial_enhanced_features": True,
@@ -245,6 +280,53 @@ class SymmetricCrossFusion(nn.Module):
             ),
             "share_cross_attention_projections": self.share_cross_attention_projections,
             "fusion_mode": self.fusion_mode,
+            "macro_to_fine_query_source": "fine_history" if not self.disable_macro_to_fine_cross else "none",
+            "macro_to_fine_key_source": (
+                "none"
+                if self.disable_macro_to_fine_cross
+                else "macro_prompt" if macro_prompt is not None else "coarse_history"
+            ),
+            "macro_to_fine_value_source": (
+                "none"
+                if self.disable_macro_to_fine_cross
+                else "macro_prompt" if macro_prompt is not None else "coarse_history"
+            ),
+            "macro_to_fine_query_history_range": (
+                "NOT_APPLICABLE"
+                if self.disable_macro_to_fine_cross
+                else f"[0,{L - min(self.macro_to_fine_exclude_recent_len, L)})"
+            ),
+            "fine_to_coarse_query_source": "coarse_history" if not self.disable_reverse_cross else "none",
+            "fine_to_coarse_key_source": "recent_fine_history" if not self.disable_reverse_cross else "none",
+            "fine_to_coarse_value_source": "recent_fine_history" if not self.disable_reverse_cross else "none",
+            "fine_to_coarse_history_range": (
+                "NOT_APPLICABLE"
+                if self.disable_reverse_cross
+                else f"[{L - min(self.recent_len, L)},{L})"
+            ),
+            "macro_to_fine_attention_shape": list(macro_attn.shape) if macro_attn is not None else None,
+            "fine_to_coarse_attention_shape": list(fine_attn.shape) if fine_attn is not None else None,
+            "macro_to_fine_attention_row_sum_max_error": self.last_attention_diagnostics[
+                "macro_attention_row_sum_max_error"
+            ],
+            "fine_to_coarse_attention_row_sum_max_error": self.last_attention_diagnostics[
+                "fine_attention_row_sum_max_error"
+            ],
+            "macro_to_fine_interaction_increment_norm": (
+                None
+                if self.disable_macro_to_fine_cross
+                else float(out_a.detach().float().norm(dim=-1).mean().cpu().item())
+            ),
+            "fine_to_coarse_interaction_increment_norm": (
+                None
+                if self.disable_reverse_cross
+                else float(out_b.detach().float().norm(dim=-1).mean().cpu().item())
+            ),
+            "attention_not_applicable_reason": (
+                "diagnostics_level_does_not_request_attention_weights"
+                if not need_attention_diagnostics
+                else None
+            ),
             "coarse_to_fine_source": (
                 "none"
                 if self.disable_macro_to_fine_cross
@@ -254,5 +336,6 @@ class SymmetricCrossFusion(nn.Module):
                 if self.macro_to_fine_mode == "static_mean"
                 else "macro_prompt" if macro_prompt is not None else "coarse_history"
             ),
+            "fine_to_coarse_source": "none" if self.disable_reverse_cross else "recent_fine_history",
         }
         return new_fine, new_coarse, aux

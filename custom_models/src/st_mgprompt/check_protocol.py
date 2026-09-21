@@ -356,7 +356,10 @@ def run_protocol_checks(config: STMGPromptConfig, build_data: bool = True) -> di
                     ),
                     _check(aux["coupling_metadata"].get("serial_graph_then_fusion") is False, "not_serial_graph_then_fusion"),
                     _check(aux["coupling_metadata"].get("num_coupling_layers") == config.num_coupling_layers, "num_coupling_layers_config"),
-                    _check(config.fusion_mode in {"cross", "add", "concat"}, "fusion_mode_supported"),
+                    _check(
+                        config.fusion_mode in {"cross", "add", "concat", "unified_gated"},
+                        "fusion_mode_supported",
+                    ),
                     _check(aux.get("uses_direct_decoder") is True, "direct_decoder_used"),
                     _check(aux.get("decoder_metadata", {}).get("teacher_forcing") is False, "no_teacher_forcing"),
                     _check(aux.get("decoder_metadata", {}).get("future_observed_features_used") is False, "decoder_no_future_observed_features"),

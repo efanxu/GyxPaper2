@@ -1,0 +1,42 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "protocol_profile": "STMG_FORMAL_V2",
+  "source_scope": "internal_fusion",
+  "mode": "full_shape",
+  "unique_difference_audit": {
+    "protocol_id": "empirical_analysis_v1",
+    "variant_id": "F4",
+    "family": "F",
+    "implementation_status": "ready",
+    "expected_diff_fields": [
+      "disable_reverse_cross"
+    ],
+    "actual_diff_fields": [
+      "disable_reverse_cross"
+    ],
+    "missing_expected_diff_fields": [],
+    "unexpected_diff_fields": [],
+    "frozen_protocol_changes": [],
+    "differences": {
+      "disable_reverse_cross": {
+        "canonical": false,
+        "effective": true
+      }
+    },
+    "passed": true
+  },
+  "formal_batch": {
+    "train": 32,
+    "val": 4,
+    "test": 4
+  },
+  "effective_batch": {
+    "train": 32,
+    "val": 4,
+    "test": 4
+  },
+  "mask": "valid_target_mask",
+  "prediction_start_index_rule": "[t-lookback,t)->[t,t+max_pred_len)",
+  "graph_identity_reference": null,
+  "passed": true
+}

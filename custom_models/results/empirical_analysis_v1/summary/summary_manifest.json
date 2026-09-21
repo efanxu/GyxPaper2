@@ -1,14 +1,14 @@
 {
   "protocol_id": "empirical_analysis_v1",
   "results_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1",
-  "long_row_count": 114,
-  "wide_row_count": 60,
-  "aggregate_row_count": 111,
+  "long_row_count": 126,
+  "wide_row_count": 68,
+  "aggregate_row_count": 123,
   "status_counts": {
-    "completed": 26,
-    "partial": 13,
-    "pending": 9,
-    "reference-only": 12
+    "completed": 27,
+    "partial": 19,
+    "pending": 7,
+    "reference-only": 15
   },
   "missing_values_are_not_zero_filled": true,
   "outputs": [

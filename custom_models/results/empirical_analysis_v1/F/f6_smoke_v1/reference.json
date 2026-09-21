@@ -5,6 +5,8 @@
   "family": "F",
   "reference_only": true,
   "paired_reference": "A7",
+  "protocol_profile": "STMG_FORMAL_V2",
+  "source_scope": "internal_fusion",
   "source_run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A7\\STMGPrompt_ComponentAblation",
   "source_exists": true,
   "source_semantic_audit": {
@@ -29,6 +31,6 @@
     "passed": true,
     "config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A7\\STMGPrompt_ComponentAblation\\effective_config.json"
   },
-  "created_at": "2026-09-20T13:13:43.797025+00:00",
+  "created_at": "2026-09-21T13:26:45.891473+00:00",
   "note": "This is a reference; no checkpoint or metrics were copied."
 }
