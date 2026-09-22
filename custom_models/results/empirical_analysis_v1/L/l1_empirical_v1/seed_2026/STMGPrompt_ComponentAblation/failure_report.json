@@ -1,0 +1,11 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "variant_id": "L1",
+  "status": "not_started",
+  "reasons": [
+    "formal_long_training_requires_separate_user_approval"
+  ],
+  "metrics_zero_filled": false,
+  "checkpoint_copied": false,
+  "updated_at": "2026-09-22T06:37:08.349817+00:00"
+}

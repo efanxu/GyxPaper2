@@ -42,8 +42,8 @@ L0,Equal Smooth L1,L,CANONICAL_FULL,"{""granularity_weight_mode"": ""static"", "
 L1,Horizon difficulty-rate only,L,CANONICAL_FULL,"{""site_weight_mode"": ""static""}","[""site_weight_mode""]",True,L3,ready,,False
 L2,Dynamic node difficulty only,L,CANONICAL_FULL,"{""granularity_weight_mode"": ""static""}","[""granularity_weight_mode""]",True,L3,ready,,False
 L3,Complete MS-MG-DWU,L,CANONICAL_FULL,{},[],False,full_fixed_dual_keep_msmgdwu_seed2026,reference,,True
-L4,Static increasing horizon weights,L,CANONICAL_FULL,"{""granularity_weight_mode"": ""static_increasing""}","[""granularity_weight_mode""]",True,L3,pending,Implemented in empirical step 8.,False
+L4,Static increasing horizon weights,L,CANONICAL_FULL,"{""granularity_weight_mode"": ""static_increasing"", ""site_weight_mode"": ""static""}","[""granularity_weight_mode"", ""site_weight_mode""]",True,L3,ready,,False
 L5,Uncertainty weighting,L,CANONICAL_FULL,"{""granularity_weight_mode"": ""uncertainty_precision"", ""site_weight_mode"": ""static""}","[""granularity_weight_mode"", ""site_weight_mode""]",True,L3,ready,,False
-L6,Dynamic weight average,L,CANONICAL_FULL,"{""granularity_weight_mode"": ""dynamic_weight_average""}","[""granularity_weight_mode""]",True,L3,pending,Implemented in empirical step 8.,False
+L6,Dynamic weight average,L,CANONICAL_FULL,"{""granularity_weight_mode"": ""dynamic_weight_average"", ""site_weight_mode"": ""static""}","[""granularity_weight_mode"", ""site_weight_mode""]",True,L3,ready,,False
 L7,Score-aligned hybrid,L,CANONICAL_FULL,"{""loss_function"": ""masked_score_aligned_hybrid"", ""loss_protocol"": ""fair_main"", ""use_msmg_dwu"": false}","[""use_msmg_dwu"", ""loss_function"", ""loss_protocol""]",False,A8,reference,,True
 R0,Canonical robustness reference,R,CANONICAL_FULL,{},[],False,full_fixed_dual_keep_msmgdwu_seed2026,reference,,True

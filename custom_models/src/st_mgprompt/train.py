@@ -58,6 +58,11 @@ STRICT_RESUME_KEYS = [
     "loss_function",
     "granularity_weight_mode",
     "site_weight_mode",
+    "static_granularity_weights",
+    "static_granularity_weight_source",
+    "dwa_temperature",
+    "dwa_update_timing",
+    "loss_state_schema_version",
     "vadsp_gate_mode",
 ]
 
@@ -484,6 +489,8 @@ def train_model(
 
     for epoch in range(start_epoch, config.epochs + 1):
         epoch_start = time.perf_counter()
+        if hasattr(loss_fn, "begin_training_epoch"):
+            loss_fn.begin_training_epoch()
         train_loss, skipped_train, train_details = _run_epoch(
             model,
             data.train_loader,
@@ -495,6 +502,8 @@ def train_model(
             amp_enabled=bool(config.amp_enabled),
             epoch=epoch,
         )
+        if hasattr(loss_fn, "end_training_epoch"):
+            train_details.update(loss_fn.end_training_epoch())
         val_loss, skipped_val, val_details = _run_epoch(
             model,
             data.val_loader,
@@ -557,6 +566,7 @@ def train_model(
             "best_val_score_h10": best_scores.get("val_official_score_h10"),
             "model_state_dict": model.state_dict(),
             "loss_state_dict": loss_fn.state_dict() if isinstance(loss_fn, torch.nn.Module) else None,
+            "loss_state_schema_version": getattr(loss_fn, "loss_state_schema_version", None),
             "optimizer_state_dict": optimizer.state_dict(),
             "scheduler_state_dict": None,
             "grad_scaler_state_dict": scaler.state_dict() if scaler is not None else None,

@@ -1,6 +1,6 @@
 {
   "protocol_id": "empirical_analysis_v1",
-  "updated_at": "2026-09-21T14:16:04.241282+00:00",
+  "updated_at": "2026-09-22T06:30:54.141028+00:00",
   "mode": "full_shape",
   "statuses": [
     {
@@ -226,11 +226,29 @@
       "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l2_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation"
     },
     {
+      "variant_id": "L4",
+      "seed": 2026,
+      "status": "smoke_completed",
+      "decision": "TRAIN",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l4_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation",
+      "protocol_passed": true,
+      "started_at": "2026-09-22T06:27:29.327841+00:00",
+      "finished_at": "2026-09-22T06:27:35.539394+00:00",
+      "trace_summary": null
+    },
+    {
       "variant_id": "L5",
       "seed": 2026,
       "status": "completed",
       "decision": "SKIP_COMPLETED",
       "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l5_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation"
+    },
+    {
+      "variant_id": "L6",
+      "seed": 2026,
+      "status": "completed",
+      "decision": "SKIP_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l6_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation"
     },
     {
       "variant_id": "N0",
@@ -900,124 +918,47 @@
       "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\G\\g8_smoke_v1"
     },
     {
-      "protocol_id": "empirical_analysis_v1",
       "variant_id": "L0",
       "family": "L",
-      "implementation_status": "ready",
-      "expected_diff_fields": [
-        "granularity_weight_mode",
-        "site_weight_mode"
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l0_empirical_v1",
+      "output_shape": [
+        32,
+        10,
+        134
       ],
-      "actual_diff_fields": [
-        "granularity_weight_mode",
-        "site_weight_mode"
-      ],
-      "missing_expected_diff_fields": [],
-      "unexpected_diff_fields": [],
-      "frozen_protocol_changes": [],
-      "differences": {
-        "granularity_weight_mode": {
-          "canonical": "difficulty_rate",
-          "effective": "static"
-        },
-        "site_weight_mode": {
-          "canonical": "dynamic",
-          "effective": "static"
-        }
-      },
-      "passed": true,
-      "display_name": "Equal Smooth L1",
-      "trainable": true,
-      "paired_reference": "L3",
-      "declared_overrides": {
-        "granularity_weight_mode": "static",
-        "site_weight_mode": "static"
-      },
-      "execution_ready": true,
-      "status": "DRY_RUN",
-      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l0_empirical_v1"
+      "peak_memory_mb": 9492.49365234375
     },
     {
-      "protocol_id": "empirical_analysis_v1",
       "variant_id": "L1",
       "family": "L",
-      "implementation_status": "ready",
-      "expected_diff_fields": [
-        "site_weight_mode"
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l1_empirical_v1",
+      "output_shape": [
+        32,
+        10,
+        134
       ],
-      "actual_diff_fields": [
-        "site_weight_mode"
-      ],
-      "missing_expected_diff_fields": [],
-      "unexpected_diff_fields": [],
-      "frozen_protocol_changes": [],
-      "differences": {
-        "site_weight_mode": {
-          "canonical": "dynamic",
-          "effective": "static"
-        }
-      },
-      "passed": true,
-      "display_name": "Horizon difficulty-rate only",
-      "trainable": true,
-      "paired_reference": "L3",
-      "declared_overrides": {
-        "site_weight_mode": "static"
-      },
-      "execution_ready": true,
-      "status": "DRY_RUN",
-      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l1_empirical_v1"
+      "peak_memory_mb": 9496.55615234375
     },
     {
-      "protocol_id": "empirical_analysis_v1",
       "variant_id": "L2",
       "family": "L",
-      "implementation_status": "ready",
-      "expected_diff_fields": [
-        "granularity_weight_mode"
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l2_empirical_v1",
+      "output_shape": [
+        32,
+        10,
+        134
       ],
-      "actual_diff_fields": [
-        "granularity_weight_mode"
-      ],
-      "missing_expected_diff_fields": [],
-      "unexpected_diff_fields": [],
-      "frozen_protocol_changes": [],
-      "differences": {
-        "granularity_weight_mode": {
-          "canonical": "difficulty_rate",
-          "effective": "static"
-        }
-      },
-      "passed": true,
-      "display_name": "Dynamic node difficulty only",
-      "trainable": true,
-      "paired_reference": "L3",
-      "declared_overrides": {
-        "granularity_weight_mode": "static"
-      },
-      "execution_ready": true,
-      "status": "DRY_RUN",
-      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l2_empirical_v1"
+      "peak_memory_mb": 9496.55615234375
     },
     {
-      "protocol_id": "empirical_analysis_v1",
       "variant_id": "L3",
       "family": "L",
-      "implementation_status": "reference",
-      "expected_diff_fields": [],
-      "actual_diff_fields": [],
-      "missing_expected_diff_fields": [],
-      "unexpected_diff_fields": [],
-      "frozen_protocol_changes": [],
-      "differences": {},
-      "passed": true,
-      "display_name": "Complete MS-MG-DWU",
-      "trainable": false,
-      "paired_reference": "full_fixed_dual_keep_msmgdwu_seed2026",
-      "declared_overrides": {},
-      "execution_ready": true,
-      "status": "DRY_RUN",
-      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l3_empirical_v1"
+      "status": "REFERENCE_ONLY",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l3_empirical_v1",
+      "source_exists": true
     },
     {
       "variant_id": "L3",
@@ -1027,24 +968,16 @@
       "source_exists": true
     },
     {
-      "protocol_id": "empirical_analysis_v1",
       "variant_id": "L4",
-      "display_name": "Static increasing horizon weights",
       "family": "L",
-      "implementation_status": "pending",
-      "trainable": true,
-      "paired_reference": "L3",
-      "expected_diff_fields": [
-        "granularity_weight_mode"
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l4_empirical_v1",
+      "output_shape": [
+        32,
+        10,
+        134
       ],
-      "declared_overrides": {
-        "granularity_weight_mode": "static_increasing"
-      },
-      "passed": true,
-      "execution_ready": false,
-      "note": "Implemented in empirical step 8.",
-      "status": "DRY_RUN",
-      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l4_empirical_v1"
+      "peak_memory_mb": 9496.55615234375
     },
     {
       "protocol_id": "empirical_analysis_v1",
@@ -1067,62 +1000,28 @@
       "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l4_smoke_v1"
     },
     {
-      "protocol_id": "empirical_analysis_v1",
       "variant_id": "L5",
       "family": "L",
-      "implementation_status": "ready",
-      "expected_diff_fields": [
-        "granularity_weight_mode",
-        "site_weight_mode"
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l5_empirical_v1",
+      "output_shape": [
+        32,
+        10,
+        134
       ],
-      "actual_diff_fields": [
-        "granularity_weight_mode",
-        "site_weight_mode"
-      ],
-      "missing_expected_diff_fields": [],
-      "unexpected_diff_fields": [],
-      "frozen_protocol_changes": [],
-      "differences": {
-        "granularity_weight_mode": {
-          "canonical": "difficulty_rate",
-          "effective": "uncertainty_precision"
-        },
-        "site_weight_mode": {
-          "canonical": "dynamic",
-          "effective": "static"
-        }
-      },
-      "passed": true,
-      "display_name": "Uncertainty weighting",
-      "trainable": true,
-      "paired_reference": "L3",
-      "declared_overrides": {
-        "granularity_weight_mode": "uncertainty_precision",
-        "site_weight_mode": "static"
-      },
-      "execution_ready": true,
-      "status": "DRY_RUN",
-      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l5_empirical_v1"
+      "peak_memory_mb": 9496.55615234375
     },
     {
-      "protocol_id": "empirical_analysis_v1",
       "variant_id": "L6",
-      "display_name": "Dynamic weight average",
       "family": "L",
-      "implementation_status": "pending",
-      "trainable": true,
-      "paired_reference": "L3",
-      "expected_diff_fields": [
-        "granularity_weight_mode"
+      "status": "FULL_SHAPE_COMPLETED",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l6_empirical_v1",
+      "output_shape": [
+        32,
+        10,
+        134
       ],
-      "declared_overrides": {
-        "granularity_weight_mode": "dynamic_weight_average"
-      },
-      "passed": true,
-      "execution_ready": false,
-      "note": "Implemented in empirical step 8.",
-      "status": "DRY_RUN",
-      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l6_empirical_v1"
+      "peak_memory_mb": 9496.55615234375
     },
     {
       "protocol_id": "empirical_analysis_v1",
@@ -1145,56 +1044,18 @@
       "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l6_smoke_v1"
     },
     {
-      "protocol_id": "empirical_analysis_v1",
       "variant_id": "L7",
       "family": "L",
-      "implementation_status": "reference",
-      "expected_diff_fields": [
-        "loss_function",
-        "loss_protocol",
-        "use_msmg_dwu"
-      ],
-      "actual_diff_fields": [
-        "loss_function",
-        "loss_protocol",
-        "use_msmg_dwu"
-      ],
-      "missing_expected_diff_fields": [],
-      "unexpected_diff_fields": [],
-      "frozen_protocol_changes": [],
-      "differences": {
-        "loss_function": {
-          "canonical": "msmg_dwu_loss",
-          "effective": "masked_score_aligned_hybrid"
-        },
-        "use_msmg_dwu": {
-          "canonical": true,
-          "effective": false
-        },
-        "loss_protocol": {
-          "canonical": "method_full",
-          "effective": "fair_main"
-        }
-      },
-      "passed": true,
-      "display_name": "Score-aligned hybrid",
-      "trainable": false,
-      "paired_reference": "A8",
-      "declared_overrides": {
-        "use_msmg_dwu": false,
-        "loss_function": "masked_score_aligned_hybrid",
-        "loss_protocol": "fair_main"
-      },
-      "execution_ready": true,
-      "status": "DRY_RUN",
-      "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l7_empirical_v1"
+      "status": "REFERENCE_ONLY",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l7_empirical_v1",
+      "source_exists": false
     },
     {
       "variant_id": "L7",
       "family": "L",
       "status": "REFERENCE_ONLY",
       "run_root": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l7_smoke_v1",
-      "source_exists": true
+      "source_exists": false
     },
     {
       "variant_id": "N0",

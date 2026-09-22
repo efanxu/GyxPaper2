@@ -1,5 +1,6 @@
 {
   "loss_function": "msmg_dwu_loss",
+  "loss_state_schema_version": "msmg_dwu_loss_state_v2",
   "base_loss": "smooth_l1",
   "lambda_site": 0.2,
   "ema_alpha": 0.9,
@@ -9,6 +10,25 @@
   ],
   "granularity_weight_mode": "static",
   "site_weight_mode": "dynamic",
+  "static_granularity_weight_source": "preset_arithmetic_progression",
+  "static_granularity_weight_raw": [
+    1.0,
+    2.0,
+    3.0
+  ],
+  "static_granularity_weight": [
+    0.5,
+    1.0,
+    1.5
+  ],
+  "dwa_temperature": 2.0,
+  "dwa_update_timing": "epoch_end",
+  "dwa_update_count": 0,
+  "dwa_previous_epoch_loss": [
+    1.0,
+    1.0,
+    1.0
+  ],
   "eval_horizons": [
     3,
     6,

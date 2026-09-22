@@ -199,8 +199,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--msmg-lambda-site", type=float, default=None)
     parser.add_argument("--msmg-ema-alpha", type=float, default=None)
     parser.add_argument("--msmg-node-weight-clip", type=float, nargs=2, default=None)
-    parser.add_argument("--granularity-weight-mode", choices=["uncertainty_precision", "difficulty_rate"], default=None)
+    parser.add_argument(
+        "--granularity-weight-mode",
+        choices=["static", "static_increasing", "uncertainty_precision", "difficulty_rate", "dynamic_weight_average"],
+        default=None,
+    )
     parser.add_argument("--site-weight-mode", choices=["static", "dynamic"], default=None)
+    parser.add_argument("--static-granularity-weights", type=float, nargs="+", default=None)
+    parser.add_argument("--static-granularity-weight-source", default=None)
+    parser.add_argument("--dwa-temperature", type=float, default=None)
     parser.add_argument(
         "--vadsp-gate-mode",
         choices=["dynamic", "fine_only", "coarse_only", "fixed_dual", "random_gate", "shuffled_volatility"],
@@ -302,11 +309,14 @@ def build_config(args: argparse.Namespace) -> STMGPromptConfig:
         "msmg_node_weight_clip",
         "granularity_weight_mode",
         "site_weight_mode",
+        "static_granularity_weights",
+        "static_granularity_weight_source",
+        "dwa_temperature",
         "vadsp_gate_mode",
     ]:
         value = getattr(args, key, None)
         if value is not None:
-            setattr(cfg, key, tuple(value) if key == "msmg_node_weight_clip" else value)
+            setattr(cfg, key, tuple(value) if key in {"msmg_node_weight_clip", "static_granularity_weights"} else value)
     if args.persistent_workers:
         cfg.persistent_workers = True
     if args.pin_memory:

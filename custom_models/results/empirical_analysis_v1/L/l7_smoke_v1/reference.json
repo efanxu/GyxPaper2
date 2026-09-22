@@ -5,42 +5,78 @@
   "family": "L",
   "reference_only": true,
   "paired_reference": "A8",
-  "source_run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A8\\STMGPrompt_ComponentAblation",
-  "source_exists": true,
+  "protocol_profile": "STMG_A8_BATCH4_V1",
+  "source_scope": "internal_loss_a8_reference",
+  "source_run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_uniform_bs4\\component_ablation_a8_bs4_seed2026\\STMGPrompt_ComponentAblation",
+  "source_exists": false,
   "source_semantic_audit": {
-    "variant": "A8",
-    "canonical_id": "full_fixed_dual_keep_msmgdwu_seed2026",
-    "effective_diff_count": 3,
-    "expected_diff_fields": [
-      "use_msmg_dwu",
-      "loss_function",
-      "loss_protocol"
-    ],
-    "actual_diff_fields": [
-      "loss_function",
-      "loss_protocol",
-      "use_msmg_dwu"
-    ],
-    "unexpected_diff_fields": [],
-    "missing_expected_diff_fields": [],
-    "unexpected_effective_diff_count": 0,
-    "differences": {
-      "use_msmg_dwu": {
-        "canonical": true,
-        "effective": false
-      },
-      "loss_function": {
-        "canonical": "msmg_dwu_loss",
-        "effective": "masked_score_aligned_hybrid"
-      },
-      "loss_protocol": {
-        "canonical": "method_full",
-        "effective": "fair_main"
-      }
+    "formal_variant": "A8",
+    "passed": false,
+    "reason": "dedicated_batch4_a8_not_ready",
+    "readiness": {
+      "status": "NOT_READY",
+      "ready": false,
+      "scope_id": "st_mgprompt_a8_batch4_seed2026",
+      "model_id": "st_mgprompt_a8",
+      "run_id": "component_ablation_a8_bs4_seed2026",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_uniform_bs4\\component_ablation_a8_bs4_seed2026\\STMGPrompt_ComponentAblation",
+      "metrics": {},
+      "metrics_complete": false,
+      "checkpoint_loadable": false,
+      "explicit_config_conflicts": {},
+      "missing_config_fields": [
+        "scope_id",
+        "model_id",
+        "run_id",
+        "component_ablation",
+        "variant",
+        "definition",
+        "training_batch_profile_id",
+        "train_batch_size",
+        "val_batch_size",
+        "test_batch_size",
+        "gradient_accumulation_steps",
+        "seed",
+        "lookback",
+        "max_pred_len",
+        "loss_function",
+        "precision_policy",
+        "amp_enabled",
+        "formal_training"
+      ],
+      "reasons": [
+        "MISSING_OR_INVALID:run_status.json",
+        "MISSING_OR_INVALID:effective_config.json",
+        "NOT_COMPLETED",
+        "MISSING:metrics_eval_h3.json",
+        "MISSING:metrics_eval_h6.json",
+        "MISSING:metrics_eval_h10.json",
+        "CHECKPOINT_NOT_LOADABLE",
+        "MISSING_EXPLICIT_CONFIG_FIELDS:scope_id,model_id,run_id,component_ablation,variant,definition,training_batch_profile_id,train_batch_size,val_batch_size,test_batch_size,gradient_accumulation_steps,seed,lookback,max_pred_len,loss_function,precision_policy,amp_enabled,formal_training"
+      ],
+      "pid": null,
+      "process_start_time": null
     },
-    "passed": true,
-    "config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_component_ablation\\component_ablation_fixed_dual_seed2026\\A8\\STMGPrompt_ComponentAblation\\active_config.json"
+    "contract": {
+      "scope_id": "st_mgprompt_a8_batch4_seed2026",
+      "model_id": "st_mgprompt_a8",
+      "run_id": "component_ablation_a8_bs4_seed2026",
+      "variant": "A8",
+      "definition": "w/o MS-MG-DWU",
+      "training_role": "ST_MGPROMPT_COMPONENT_ABLATION",
+      "training_profile_id": "uniform_train_batch4_v1",
+      "batch_size": 4,
+      "lookback": 144,
+      "node_count": 134,
+      "feature_count": 16,
+      "horizon": 10,
+      "loss_id": "masked_score_aligned_hybrid",
+      "precision": "fp32"
+    },
+    "config_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\st_mgprompt_uniform_bs4\\component_ablation_a8_bs4_seed2026\\STMGPrompt_ComponentAblation\\config.json"
   },
-  "created_at": "2026-09-20T13:13:43.844065+00:00",
+  "source_formal_family": "component_ablation",
+  "comparison_scope": "independent_batch4_reference",
+  "created_at": "2026-09-22T06:30:47.558257+00:00",
   "note": "This is a reference; no checkpoint or metrics were copied."
 }

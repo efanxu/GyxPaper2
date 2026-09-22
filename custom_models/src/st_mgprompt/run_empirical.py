@@ -18,6 +18,8 @@ if __package__ is None or __package__ == "":
     sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 from st_mgprompt.config import STMGPromptConfig, resolve_project_path
+from st_mgprompt.a8_batch4_contract import A8_RUN_RELATIVE_PATH, variant_contract as a8_variant_contract
+from st_mgprompt.a8_batch4_readiness import inspect_a8_run
 from st_mgprompt.empirical_protocol import (
     EMPIRICAL_FAMILIES,
     EMPIRICAL_PROTOCOL_ID,
@@ -39,7 +41,7 @@ from st_mgprompt.experiment_protocol import (
     config_diff,
 )
 from st_mgprompt.graph_prior import reconstruct_variant_graphs_from_fused, summarize_graph_identity
-from st_mgprompt.losses import get_loss_fn
+from st_mgprompt.losses import LOSS_STATE_SCHEMA_VERSION, get_loss_fn
 from st_mgprompt.registry import build_model
 from st_mgprompt.run_st_mgprompt import _autocast_context, _run_once, resolve_device, update_run_status
 from st_mgprompt.step3_reporting import write_step3_reports
@@ -47,6 +49,7 @@ from st_mgprompt.step4_reporting import write_step4_reports
 from st_mgprompt.step5_reporting import write_step5_reports
 from st_mgprompt.step6_reporting import write_step6_reports
 from st_mgprompt.step7_reporting import write_step7_reports
+from st_mgprompt.step8_reporting import write_step8_reports
 from st_mgprompt.summarize_empirical import summarize_empirical
 
 
@@ -61,6 +64,8 @@ def _effective_source_scope(args: argparse.Namespace, variant: EmpiricalVariant)
         return "internal_fusion"
     if variant.family == "N" and args.source_scope == "internal_mechanism":
         return "internal_decoder"
+    if variant.family == "L" and args.source_scope == "internal_mechanism":
+        return "internal_loss"
     return str(args.source_scope)
 
 
@@ -113,6 +118,33 @@ def _diffusion_config_contract(config: STMGPromptConfig) -> dict[str, Any]:
         "reverse_normalization": "row_normalize(A_transpose)",
         "transpose_topk_recomputed": False,
     }
+
+
+def _loss_config_contract(config: STMGPromptConfig) -> dict[str, Any]:
+    return {
+        "loss_identity": config.loss_function,
+        "base_loss": config.msmg_base_loss,
+        "granularity_weight_mode": config.granularity_weight_mode,
+        "site_weight_mode": config.site_weight_mode,
+        "lambda_site": config.msmg_lambda_site,
+        "ema_alpha": config.msmg_ema_alpha,
+        "node_weight_clip": list(config.msmg_node_weight_clip),
+        "granularity_weight_clip": list(config.granularity_weight_clip),
+        "difficulty_gamma": config.difficulty_gamma,
+        "difficulty_rate_gamma": config.difficulty_rate_gamma,
+        "difficulty_temperature": config.difficulty_temperature,
+        "static_granularity_weights": list(config.static_granularity_weights),
+        "static_granularity_weight_source": config.static_granularity_weight_source,
+        "dwa_temperature": config.dwa_temperature,
+        "dwa_update_timing": config.dwa_update_timing,
+        "loss_state_schema_version": LOSS_STATE_SCHEMA_VERSION,
+    }
+
+
+def _config_payload(config: STMGPromptConfig) -> dict[str, Any]:
+    payload = config.to_dict()
+    payload.update(_loss_config_contract(config))
+    return payload
 
 
 def _atomic_json(path: Path, payload: Any) -> None:
@@ -209,7 +241,9 @@ def _reference_source(variant: EmpiricalVariant) -> Path:
     target = variant.paired_reference
     if target in {None, CANONICAL_ID, "T0", "G0", "F7", "L3", "R0"}:
         return canonical_directory(resolve_project_path("."))
-    if target in {"A4", "A7", "A8"}:
+    if target == "A8":
+        return resolve_project_path(A8_RUN_RELATIVE_PATH)
+    if target in {"A4", "A7"}:
         return (
             resolve_project_path(COMPONENT_RESULT_ROOT)
             / COMPONENT_RUN_ID
@@ -247,7 +281,17 @@ def _write_reference(
         "passed": False,
         "reason": "source config is missing",
     }
-    if source_config_path.is_file():
+    if variant.paired_reference == "A8":
+        readiness = inspect_a8_run(source)
+        source_audit = {
+            "formal_variant": "A8",
+            "passed": bool(readiness.get("ready")),
+            "reason": "dedicated_batch4_a8_ready" if readiness.get("ready") else "dedicated_batch4_a8_not_ready",
+            "readiness": readiness,
+            "contract": a8_variant_contract(),
+            "config_path": str(source_config_path.resolve()),
+        }
+    elif source_config_path.is_file():
         source_config = json.loads(source_config_path.read_text(encoding="utf-8"))
         source_audit = config_diff(source_config, formal_variant, formal_family)
         source_audit["config_path"] = str(source_config_path.resolve())
@@ -258,12 +302,13 @@ def _write_reference(
         "family": variant.family,
         "reference_only": True,
         "paired_reference": variant.paired_reference,
-        "protocol_profile": protocol_profile,
-        "source_scope": source_scope,
+        "protocol_profile": "STMG_A8_BATCH4_V1" if variant.paired_reference == "A8" else protocol_profile,
+        "source_scope": "internal_loss_a8_reference" if variant.paired_reference == "A8" else source_scope,
         "source_run_dir": str(source.resolve()),
         "source_exists": source.is_dir(),
         "source_semantic_audit": source_audit,
         "source_formal_family": formal_family,
+        "comparison_scope": "independent_batch4_reference" if variant.paired_reference == "A8" else "paired_reference",
         "created_at": _utc_now(),
         "note": "This is a reference; no checkpoint or metrics were copied.",
     }
@@ -277,7 +322,7 @@ def _write_reference(
             }
         )
     _atomic_json(run_root / "reference.json", payload)
-    if not source.is_dir() or not source_audit.get("passed"):
+    if variant.paired_reference != "A8" and (not source.is_dir() or not source_audit.get("passed")):
         raise RuntimeError(
             f"Reference source for {variant.variant_id} is missing or fails its formal semantic audit: {source}"
         )
@@ -347,8 +392,8 @@ def _write_identity_contract(
 ) -> None:
     run_dir.mkdir(parents=True, exist_ok=True)
     diffusion_contract = _diffusion_config_contract(effective_config)
-    _atomic_json(run_dir / "resolved_config.json", formal_config.to_dict())
-    _atomic_json(run_dir / "effective_config.json", effective_config.to_dict())
+    _atomic_json(run_dir / "resolved_config.json", _config_payload(formal_config))
+    _atomic_json(run_dir / "effective_config.json", _config_payload(effective_config))
     _atomic_json(
         run_dir / "protocol_check.json",
         {
@@ -368,6 +413,7 @@ def _write_identity_contract(
                 "test": effective_config.test_batch_size or effective_config.eval_batch_size,
             },
             "mask": formal_config.target_mask_col,
+            "loss_contract": _loss_config_contract(formal_config),
             "prediction_start_index_rule": "[t-lookback,t)->[t,t+max_pred_len)",
             "prompt_contract": {
                 "shape": [1, formal_config.max_pred_len, formal_config.num_nodes, formal_config.hidden_dim],
@@ -406,6 +452,7 @@ def _write_identity_contract(
             "smoke_or_preflight": mode in {"smoke", "full_shape"},
             "checkpoint_copied": False,
             "metrics_copied": False,
+            "loss_contract": _loss_config_contract(formal_config),
             **(diffusion_contract if variant.family == "D" else {}),
         },
     )
@@ -417,6 +464,7 @@ def _augment_completed_run_artifacts(
     variant: EmpiricalVariant,
     audit: dict[str, Any],
 ) -> None:
+    _atomic_json(run_dir / "effective_config.json", _config_payload(config))
     diffusion_contract = _diffusion_config_contract(config) if variant.family == "D" else {}
     protocol = {}
     protocol_path = run_dir / "protocol_check.json"
@@ -434,6 +482,7 @@ def _augment_completed_run_artifacts(
                 "test": config.test_batch_size or config.eval_batch_size,
             },
             "mask": config.target_mask_col,
+            "loss_contract": _loss_config_contract(config),
             "prediction_start_index_rule": "[t-lookback,t)->[t,t+max_pred_len)",
             "prompt_contract": {
                 "shape": [1, config.max_pred_len, config.num_nodes, config.hidden_dim],
@@ -464,6 +513,7 @@ def _augment_completed_run_artifacts(
                 "protocol_profile": config.protocol_profile,
                 "source_scope": config.source_scope,
                 "target_mask": config.target_mask_col,
+                "loss_identity": config.loss_function,
                 "prediction_start_index_rule": "[t-lookback,t)->[t,t+max_pred_len)",
                 "node_count": config.num_nodes,
                 "horizon": config.max_pred_len,
@@ -910,6 +960,15 @@ def _run_full_shape(
             "output_shape": list(output["pred"].shape),
             "loss": float(loss.detach().cpu()),
             "loss_finite": True,
+            "loss_contract": _loss_config_contract(effective),
+            "loss_diagnostics": (
+                {
+                    key: (value.tolist() if hasattr(value, "tolist") else value)
+                    for key, value in loss_fn.diagnostics_state().items()
+                }
+                if hasattr(loss_fn, "diagnostics_state")
+                else None
+            ),
             "gradient_finite": True,
             "device": str(device),
             "amp_enabled": bool(effective.amp_enabled),
@@ -1381,6 +1440,11 @@ def run_empirical(argv: list[str] | None = None) -> dict[str, Any]:
         if any(variant.family == "N" for variant in variants) and not args.dry_run
         else None
     )
+    step8 = (
+        write_step8_reports(output_root)
+        if any(variant.family == "L" for variant in variants) and not args.dry_run
+        else None
+    )
     summary = summarize_empirical(output_root)
     return {
         "output_root": str(output_root.resolve()),
@@ -1390,6 +1454,7 @@ def run_empirical(argv: list[str] | None = None) -> dict[str, Any]:
         "step5": step5,
         "step6": step6,
         "step7": step7,
+        "step8": step8,
         "summary": summary,
     }
 

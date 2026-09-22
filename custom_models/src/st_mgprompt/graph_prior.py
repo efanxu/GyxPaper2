@@ -435,7 +435,9 @@ def _train_feature_series(data: STMGPromptDataBundle, col: str) -> tuple[np.ndar
 
 
 def _graph_paths(config: STMGPromptConfig) -> tuple[Path, Path, Path]:
-    if str(getattr(config, "variant", "")).upper().startswith("G"):
+    variant_value = getattr(config, "variant", None)
+    variant = str(variant_value).upper() if variant_value else ""
+    if variant[:1] in {"T", "G", "D", "F", "N", "L", "R"}:
         graph_dir = config.resolve_path(config.output_root) / str(config.run_id) / "_graph_artifacts" / config.graph_tag
     else:
         graph_dir = config.resolve_path(config.graph_output_root) / config.graph_tag

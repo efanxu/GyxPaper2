@@ -1,0 +1,7 @@
+﻿variant_id,epoch,source,granularity_clip_low_fraction,granularity_clip_high_fraction,site_clip_low_fraction,site_clip_high_fraction,site_weight_min,site_weight_mean,site_weight_max,valid_horizon_count,valid_node_count
+L0,1,smoke_only,0.0,0.0,0.0,0.0,1.0,1.0,1.0,3.0,8.0
+L1,1,smoke_only,0.0,0.0,0.0,0.0,1.0,1.0,1.0,3.0,8.0
+L2,1,smoke_only,0.0,0.0,0.0,0.0,0.8604510832916606,0.9999999756162817,1.2482470924204045,3.0,8.0
+L4,1,smoke_only,0.0,0.0,0.0,0.0,1.0,1.0,1.0,3.0,8.0
+L5,1,smoke_only,0.0,0.0,0.0,0.0,1.0,1.0,1.0,3.0,8.0
+L6,1,smoke_only,0.0,0.0,0.0,0.0,1.0,1.0,1.0,3.0,8.0

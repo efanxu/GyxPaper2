@@ -92,5 +92,91 @@
       "details": ""
     }
   ],
-  "data_summary": null
+  "data_summary": null,
+  "protocol_id": "empirical_analysis_v1",
+  "protocol_profile": "STMG_FORMAL_V2",
+  "source_scope": "internal_loss",
+  "empirical_unique_difference_audit": {
+    "protocol_id": "empirical_analysis_v1",
+    "variant_id": "L2",
+    "family": "L",
+    "implementation_status": "ready",
+    "expected_diff_fields": [
+      "granularity_weight_mode"
+    ],
+    "actual_diff_fields": [
+      "granularity_weight_mode"
+    ],
+    "missing_expected_diff_fields": [],
+    "unexpected_diff_fields": [],
+    "frozen_protocol_changes": [],
+    "differences": {
+      "granularity_weight_mode": {
+        "canonical": "difficulty_rate",
+        "effective": "static"
+      }
+    },
+    "passed": true
+  },
+  "effective_batch": {
+    "train": 4,
+    "val": 4,
+    "test": 4
+  },
+  "mask": "valid_target_mask",
+  "loss_contract": {
+    "loss_identity": "msmg_dwu_loss",
+    "base_loss": "smooth_l1",
+    "granularity_weight_mode": "static",
+    "site_weight_mode": "dynamic",
+    "lambda_site": 0.2,
+    "ema_alpha": 0.9,
+    "node_weight_clip": [
+      0.5,
+      3.0
+    ],
+    "granularity_weight_clip": [
+      0.5,
+      3.0
+    ],
+    "difficulty_gamma": 1.0,
+    "difficulty_rate_gamma": 1.0,
+    "difficulty_temperature": 1.0,
+    "static_granularity_weights": [
+      1.0,
+      2.0,
+      3.0
+    ],
+    "static_granularity_weight_source": "preset_arithmetic_progression",
+    "dwa_temperature": 2.0,
+    "dwa_update_timing": "epoch_end",
+    "loss_state_schema_version": "msmg_dwu_loss_state_v2"
+  },
+  "prediction_start_index_rule": "[t-lookback,t)->[t,t+max_pred_len)",
+  "prompt_contract": {
+    "shape": [
+      1,
+      10,
+      134,
+      16
+    ],
+    "node_identity": true,
+    "horizon_identity": true,
+    "shared_horizon_embedding": false,
+    "type_embedding": true,
+    "type_semantics": "fixed_decoder_input_type"
+  },
+  "decoder_contract": {
+    "context_mode": "last_state",
+    "input_strategy": "direct_multi_output_prompt_query",
+    "teacher_forcing": false,
+    "autoregressive": false,
+    "future_observed_features_used": false,
+    "output_shape": [
+      "B",
+      10,
+      134
+    ]
+  },
+  "graph_identity_reference": null
 }

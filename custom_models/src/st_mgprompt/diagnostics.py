@@ -561,12 +561,20 @@ def save_loss_diagnostics(loss_fn: Any, logs: list[dict[str, Any]], output_dir) 
     log_sigma = state["log_sigma_g"].numpy().tolist()
     summary = {
         "loss_function": "msmg_dwu_loss",
+        "loss_state_schema_version": state.get("loss_state_schema_version"),
         "base_loss": state["base_loss"],
         "lambda_site": state["lambda_site"],
         "ema_alpha": state["ema_alpha"],
         "node_weight_clip": list(state["node_weight_clip"]),
         "granularity_weight_mode": state.get("granularity_weight_mode"),
         "site_weight_mode": state.get("site_weight_mode"),
+        "static_granularity_weight_source": state.get("static_granularity_weight_source"),
+        "static_granularity_weight_raw": state["static_granularity_weight_raw"].numpy().tolist(),
+        "static_granularity_weight": state["static_granularity_weight"].numpy().tolist(),
+        "dwa_temperature": state.get("dwa_temperature"),
+        "dwa_update_timing": state.get("dwa_update_timing"),
+        "dwa_update_count": state.get("dwa_update_count"),
+        "dwa_previous_epoch_loss": state["dwa_previous_epoch_loss"].numpy().tolist(),
         "eval_horizons": horizons,
         "final_granularity_weight": {f"h{h}": float(w) for h, w in zip(horizons, weights)},
         "final_log_sigma_g": {f"h{h}": float(s) for h, s in zip(horizons, log_sigma)},
@@ -582,12 +590,29 @@ def save_loss_diagnostics(loss_fn: Any, logs: list[dict[str, Any]], output_dir) 
                 f"initial_loss_h{horizon}",
                 f"difficulty_level_h{horizon}",
                 f"relative_training_rate_h{horizon}",
+                f"granularity_weight_preclip_h{horizon}",
                 f"granularity_loss_h{horizon}",
                 f"granularity_weight_h{horizon}",
                 f"weighted_contribution_h{horizon}",
+                f"dwa_epoch_loss_h{horizon}",
+                f"dwa_loss_ratio_h{horizon}",
             ]
         )
-    weight_fieldnames.extend(["site_weight_mean", "site_weight_min", "site_weight_max", "total_loss"])
+    weight_fieldnames.extend(
+        [
+            "site_weight_mean",
+            "site_weight_min",
+            "site_weight_max",
+            "valid_horizon_count",
+            "valid_node_count",
+            "granularity_weight_clip_low_fraction",
+            "granularity_weight_clip_high_fraction",
+            "site_weight_clip_low_fraction",
+            "site_weight_clip_high_fraction",
+            "dwa_update_count",
+            "total_loss",
+        ]
+    )
     with (output_dir / "loss_weights.csv").open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=weight_fieldnames)
         writer.writeheader()

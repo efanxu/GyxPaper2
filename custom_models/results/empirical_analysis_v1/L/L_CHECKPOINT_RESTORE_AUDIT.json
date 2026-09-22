@@ -1,0 +1,211 @@
+{
+  "passed": true,
+  "loss_state_schema_version": "msmg_dwu_loss_state_v2",
+  "audits": [
+    {
+      "variant_id": "L0",
+      "status": "passed",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l0_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l0_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+      "loss_state_equal_after_reload": true,
+      "loss_state_keys": [
+        "dwa_epoch_loss_count",
+        "dwa_epoch_loss_sum",
+        "dwa_previous_epoch_loss",
+        "dwa_previous_fitted",
+        "dwa_update_count",
+        "dwa_weight",
+        "ema_granularity_loss",
+        "ema_node_loss",
+        "initial_granularity_fitted",
+        "initial_granularity_loss",
+        "log_sigma_g",
+        "node_weight",
+        "static_granularity_weight",
+        "static_granularity_weight_raw"
+      ],
+      "loss_state_schema_version": "msmg_dwu_loss_state_v2",
+      "expected_loss_state_schema_version": "msmg_dwu_loss_state_v2",
+      "required_checkpoint_state": {
+        "loss_state_dict": true,
+        "optimizer_state_dict": true,
+        "grad_scaler_state_dict_recorded": true,
+        "early_stopping_counter": true,
+        "python_random_state": true,
+        "numpy_random_state": true,
+        "torch_random_state": true
+      }
+    },
+    {
+      "variant_id": "L1",
+      "status": "passed",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l1_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l1_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+      "loss_state_equal_after_reload": true,
+      "loss_state_keys": [
+        "dwa_epoch_loss_count",
+        "dwa_epoch_loss_sum",
+        "dwa_previous_epoch_loss",
+        "dwa_previous_fitted",
+        "dwa_update_count",
+        "dwa_weight",
+        "ema_granularity_loss",
+        "ema_node_loss",
+        "initial_granularity_fitted",
+        "initial_granularity_loss",
+        "log_sigma_g",
+        "node_weight",
+        "static_granularity_weight",
+        "static_granularity_weight_raw"
+      ],
+      "loss_state_schema_version": "msmg_dwu_loss_state_v2",
+      "expected_loss_state_schema_version": "msmg_dwu_loss_state_v2",
+      "required_checkpoint_state": {
+        "loss_state_dict": true,
+        "optimizer_state_dict": true,
+        "grad_scaler_state_dict_recorded": true,
+        "early_stopping_counter": true,
+        "python_random_state": true,
+        "numpy_random_state": true,
+        "torch_random_state": true
+      }
+    },
+    {
+      "variant_id": "L2",
+      "status": "passed",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l2_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l2_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+      "loss_state_equal_after_reload": true,
+      "loss_state_keys": [
+        "dwa_epoch_loss_count",
+        "dwa_epoch_loss_sum",
+        "dwa_previous_epoch_loss",
+        "dwa_previous_fitted",
+        "dwa_update_count",
+        "dwa_weight",
+        "ema_granularity_loss",
+        "ema_node_loss",
+        "initial_granularity_fitted",
+        "initial_granularity_loss",
+        "log_sigma_g",
+        "node_weight",
+        "static_granularity_weight",
+        "static_granularity_weight_raw"
+      ],
+      "loss_state_schema_version": "msmg_dwu_loss_state_v2",
+      "expected_loss_state_schema_version": "msmg_dwu_loss_state_v2",
+      "required_checkpoint_state": {
+        "loss_state_dict": true,
+        "optimizer_state_dict": true,
+        "grad_scaler_state_dict_recorded": true,
+        "early_stopping_counter": true,
+        "python_random_state": true,
+        "numpy_random_state": true,
+        "torch_random_state": true
+      }
+    },
+    {
+      "variant_id": "L4",
+      "status": "passed",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l4_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l4_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+      "loss_state_equal_after_reload": true,
+      "loss_state_keys": [
+        "dwa_epoch_loss_count",
+        "dwa_epoch_loss_sum",
+        "dwa_previous_epoch_loss",
+        "dwa_previous_fitted",
+        "dwa_update_count",
+        "dwa_weight",
+        "ema_granularity_loss",
+        "ema_node_loss",
+        "initial_granularity_fitted",
+        "initial_granularity_loss",
+        "log_sigma_g",
+        "node_weight",
+        "static_granularity_weight",
+        "static_granularity_weight_raw"
+      ],
+      "loss_state_schema_version": "msmg_dwu_loss_state_v2",
+      "expected_loss_state_schema_version": "msmg_dwu_loss_state_v2",
+      "required_checkpoint_state": {
+        "loss_state_dict": true,
+        "optimizer_state_dict": true,
+        "grad_scaler_state_dict_recorded": true,
+        "early_stopping_counter": true,
+        "python_random_state": true,
+        "numpy_random_state": true,
+        "torch_random_state": true
+      }
+    },
+    {
+      "variant_id": "L5",
+      "status": "passed",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l5_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l5_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+      "loss_state_equal_after_reload": true,
+      "loss_state_keys": [
+        "dwa_epoch_loss_count",
+        "dwa_epoch_loss_sum",
+        "dwa_previous_epoch_loss",
+        "dwa_previous_fitted",
+        "dwa_update_count",
+        "dwa_weight",
+        "ema_granularity_loss",
+        "ema_node_loss",
+        "initial_granularity_fitted",
+        "initial_granularity_loss",
+        "log_sigma_g",
+        "node_weight",
+        "static_granularity_weight",
+        "static_granularity_weight_raw"
+      ],
+      "loss_state_schema_version": "msmg_dwu_loss_state_v2",
+      "expected_loss_state_schema_version": "msmg_dwu_loss_state_v2",
+      "required_checkpoint_state": {
+        "loss_state_dict": true,
+        "optimizer_state_dict": true,
+        "grad_scaler_state_dict_recorded": true,
+        "early_stopping_counter": true,
+        "python_random_state": true,
+        "numpy_random_state": true,
+        "torch_random_state": true
+      }
+    },
+    {
+      "variant_id": "L6",
+      "status": "passed",
+      "run_dir": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l6_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation",
+      "checkpoint": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l6_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\best_checkpoint.pt",
+      "loss_state_equal_after_reload": true,
+      "loss_state_keys": [
+        "dwa_epoch_loss_count",
+        "dwa_epoch_loss_sum",
+        "dwa_previous_epoch_loss",
+        "dwa_previous_fitted",
+        "dwa_update_count",
+        "dwa_weight",
+        "ema_granularity_loss",
+        "ema_node_loss",
+        "initial_granularity_fitted",
+        "initial_granularity_loss",
+        "log_sigma_g",
+        "node_weight",
+        "static_granularity_weight",
+        "static_granularity_weight_raw"
+      ],
+      "loss_state_schema_version": "msmg_dwu_loss_state_v2",
+      "expected_loss_state_schema_version": "msmg_dwu_loss_state_v2",
+      "required_checkpoint_state": {
+        "loss_state_dict": true,
+        "optimizer_state_dict": true,
+        "grad_scaler_state_dict_recorded": true,
+        "early_stopping_counter": true,
+        "python_random_state": true,
+        "numpy_random_state": true,
+        "torch_random_state": true
+      }
+    }
+  ],
+  "updated_at": "2026-09-22T06:37:08.515482+00:00"
+}

@@ -1,0 +1,17 @@
+{
+  "loss_identity": "msmg_dwu_loss",
+  "base_loss": "smooth_l1",
+  "prediction_shape": [
+    "B",
+    10,
+    134
+  ],
+  "mask": "valid_target_mask",
+  "mask_updates_only": true,
+  "all_invalid_batch": "return_none_and_skip_optimizer_step",
+  "dynamic_weight_gradient": "stopped",
+  "uncertainty_log_sigma_gradient": "learnable",
+  "dwa_update_timing": "epoch_end",
+  "loss_state_schema_version": "msmg_dwu_loss_state_v2",
+  "source_scope": "internal_loss"
+}

@@ -8,7 +8,30 @@
   "score_lower_is_better": true,
   "artifact_source_checkpoint": "best_checkpoint.pt",
   "prediction_accumulation": "streaming",
-  "inference_time_sec_full_test": 0.017909399997734,
-  "inference_time_ms_per_window": 5.969799999244667,
-  "inference_windows_per_sec": 167.50979934445473
+  "inference_time_sec_full_test": 0.015545799999927112,
+  "inference_time_ms_per_window": 5.181933333309037,
+  "inference_windows_per_sec": 192.9781677375282,
+  "protocol_profile": "STMG_FORMAL_V2",
+  "source_scope": "internal_loss",
+  "target_mask": "valid_target_mask",
+  "loss_identity": "msmg_dwu_loss",
+  "prediction_start_index_rule": "[t-lookback,t)->[t,t+max_pred_len)",
+  "node_count": 134,
+  "horizon": 10,
+  "st_prompt_use_node_identity": true,
+  "st_prompt_use_horizon_identity": true,
+  "st_prompt_use_shared_horizon_embedding": false,
+  "st_prompt_use_type_embedding": true,
+  "st_prompt_type_semantics": "fixed_decoder_input_type",
+  "decoder_context_mode": "last_state",
+  "decoder_input_strategy": "direct_multi_output_prompt_query",
+  "teacher_forcing": false,
+  "autoregressive": false,
+  "future_observed_features_used": false,
+  "graph_identity_reference": null,
+  "effective_batch": {
+    "train": 4,
+    "val": 4,
+    "test": 4
+  }
 }

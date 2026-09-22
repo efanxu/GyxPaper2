@@ -1,5 +1,6 @@
 {
   "loss_function": "msmg_dwu_loss",
+  "loss_state_schema_version": "msmg_dwu_loss_state_v2",
   "base_loss": "smooth_l1",
   "lambda_site": 0.2,
   "ema_alpha": 0.9,
@@ -9,20 +10,39 @@
   ],
   "granularity_weight_mode": "uncertainty_precision",
   "site_weight_mode": "static",
+  "static_granularity_weight_source": "preset_arithmetic_progression",
+  "static_granularity_weight_raw": [
+    1.0,
+    2.0,
+    3.0
+  ],
+  "static_granularity_weight": [
+    0.5,
+    1.0,
+    1.5
+  ],
+  "dwa_temperature": 2.0,
+  "dwa_update_timing": "epoch_end",
+  "dwa_update_count": 0,
+  "dwa_previous_epoch_loss": [
+    1.0,
+    1.0,
+    1.0
+  ],
   "eval_horizons": [
     3,
     6,
     10
   ],
   "final_granularity_weight": {
-    "h3": 1.021705985069275,
-    "h6": 1.0218360424041748,
-    "h10": 1.0219128131866455
+    "h3": 1.0217018127441406,
+    "h6": 1.0218321084976196,
+    "h10": 1.0219082832336426
   },
   "final_log_sigma_g": {
-    "h3": -0.021473782137036324,
-    "h6": -0.021601034328341484,
-    "h10": -0.021676143631339073
+    "h3": -0.02146967127919197,
+    "h6": -0.02159719541668892,
+    "h10": -0.021671686321496964
   },
   "artifact_source_checkpoint": "best_checkpoint.pt",
   "granularity_weight_curve_path": "D:\\PaperProject\\GyxPaper2\\custom_models\\results\\empirical_analysis_v1\\L\\l5_smoke_v1\\seed_2026\\STMGPrompt_ComponentAblation\\diagnostics\\granularity_weight_curve.png"

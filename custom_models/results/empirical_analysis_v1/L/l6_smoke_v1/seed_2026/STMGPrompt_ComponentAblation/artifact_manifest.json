@@ -1,0 +1,18 @@
+{
+  "schema_version": "st_mgprompt_uniform_batch4_artifact_v1",
+  "run_id": "l6_smoke_v1",
+  "model_name": "STMGPrompt_ComponentAblation",
+  "component_ablation": null,
+  "variant": "L6",
+  "definition": "Dynamic weight average",
+  "training_role": null,
+  "training_batch_profile_id": null,
+  "checkpoint_copied": false,
+  "metrics_copied": false,
+  "warm_started_from_historical_a8": false,
+  "precision_policy": null,
+  "canonical_status": "BATCH4_CANONICAL_CANDIDATE",
+  "train_batch_size": null,
+  "val_batch_size": null,
+  "test_batch_size": null
+}

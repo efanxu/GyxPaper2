@@ -276,9 +276,21 @@ _L_VARIANTS = (
     _variant("L1", "Horizon difficulty-rate only", "L", {"site_weight_mode": "static"}, paired_reference="L3"),
     _variant("L2", "Dynamic node difficulty only", "L", {"granularity_weight_mode": "static"}, paired_reference="L3"),
     _variant("L3", "Complete MS-MG-DWU", "L", trainable=False, paired_reference=CANONICAL_ID, status="reference"),
-    _variant("L4", "Static increasing horizon weights", "L", {"granularity_weight_mode": "static_increasing"}, status="pending", paired_reference="L3", note="Implemented in empirical step 8."),
+    _variant(
+        "L4",
+        "Static increasing horizon weights",
+        "L",
+        {"granularity_weight_mode": "static_increasing", "site_weight_mode": "static"},
+        paired_reference="L3",
+    ),
     _variant("L5", "Uncertainty weighting", "L", {"granularity_weight_mode": "uncertainty_precision", "site_weight_mode": "static"}, paired_reference="L3"),
-    _variant("L6", "Dynamic weight average", "L", {"granularity_weight_mode": "dynamic_weight_average"}, status="pending", paired_reference="L3", note="Implemented in empirical step 8."),
+    _variant(
+        "L6",
+        "Dynamic weight average",
+        "L",
+        {"granularity_weight_mode": "dynamic_weight_average", "site_weight_mode": "static"},
+        paired_reference="L3",
+    ),
     _variant(
         "L7",
         "Score-aligned hybrid",

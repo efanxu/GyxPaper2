@@ -1,0 +1,109 @@
+{
+  "uses_custom_graph": true,
+  "graph_type": "trend_prior_adaptive_dual_graph",
+  "graph_tag": "trend_prior_v4_2",
+  "graph_path": "D:/PaperProject/GyxPaper2/custom_models/results/empirical_analysis_v1/L/l2_smoke_v1/_graph_artifacts/trend_prior_v4_2/",
+  "graph_uses_train_only_statistics": true,
+  "graph_uses_test_statistics": false,
+  "graph_uses_future_target": false,
+  "edge_weight_used": true,
+  "graph_normalize": true,
+  "uses_macro_trend_graph": true,
+  "uses_micro_local_graph": true,
+  "macro_graph_source": "causal_trend_similarity",
+  "micro_graph_source": "distance_delta_wspd",
+  "trend_extraction_method": "causal_moving_average",
+  "trend_statistics_fit_split": "train_only",
+  "uses_adaptive_graph": true,
+  "adaptive_graph_constrained_by_prior": true,
+  "adaptive_support_mode": "prior_constrained",
+  "branch_graph_assignment": "matched",
+  "graph_prior_component": "fused",
+  "graph_rewire_mode": "none",
+  "source_components": [
+    "distance",
+    "train_statistics"
+  ],
+  "graph_fusion_mode": "multiply",
+  "target_mask_used_for_graph_statistics": true,
+  "target_mask_used_as_model_input": false,
+  "macro_graph_path": "D:/PaperProject/GyxPaper2/custom_models/results/empirical_analysis_v1/L/l2_smoke_v1/_graph_artifacts/trend_prior_v4_2/macro_trend_adjacency.npy",
+  "micro_graph_path": "D:/PaperProject/GyxPaper2/custom_models/results/empirical_analysis_v1/L/l2_smoke_v1/_graph_artifacts/trend_prior_v4_2/micro_local_adjacency.npy",
+  "macro_row_sum_min": 1.0,
+  "macro_row_sum_max": 1.0,
+  "micro_row_sum_min": 1.0,
+  "micro_row_sum_max": 1.0,
+  "num_nodes": 8,
+  "trend_source_col": "Patv_raw",
+  "graph_top_k": 5,
+  "macro_top_k": 10,
+  "micro_top_k": 5,
+  "macro_alpha": 0.7,
+  "micro_alpha": 0.3,
+  "macro_micro_prior_support_jaccard": 0.9821428571428571,
+  "macro_micro_prior_weight_correlation": 0.8948365962056251,
+  "graph_self_loop": false,
+  "graph_coordinate_cols": [
+    "x",
+    "y"
+  ],
+  "graph_use_elevation": false,
+  "graph_identity": {
+    "node_count": 8,
+    "node_order_source": "STMGPromptDataBundle.turbine_ids",
+    "node_order": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "coordinate_columns": [
+      "x",
+      "y"
+    ],
+    "location_file": "D:\\PaperProject\\GyxPaper2\\dataset\\sdwpf_turb_location_elevation.csv",
+    "distance_definition": "exp(-squared_euclidean_distance/sigma^2)",
+    "micro_top_k": 5,
+    "macro_top_k": 10,
+    "distance_top_k": 5,
+    "self_loop": false,
+    "normalization": "row_sum_one",
+    "elevation_used": false,
+    "micro_source": "distance_delta_wspd",
+    "macro_source": "causal_trend_similarity",
+    "source_components": [
+      "distance",
+      "train_statistics"
+    ],
+    "fit_split": "train_only",
+    "edge_count": {
+      "micro": 55,
+      "macro": 56
+    },
+    "row_degree_summary": {
+      "micro": {
+        "min": 6,
+        "median": 7.0,
+        "mean": 6.875,
+        "max": 7
+      },
+      "macro": {
+        "min": 7,
+        "median": 7.0,
+        "mean": 7.0,
+        "max": 7
+      }
+    },
+    "branch_graph_assignment": "matched",
+    "adaptive_support_mode": "prior_constrained",
+    "graph_prior_component": "fused",
+    "graph_rewire_mode": "none",
+    "graph_rewire_seed": null,
+    "directionality": "directed_rowwise_top_k",
+    "not_applicable_reason": null
+  }
+}

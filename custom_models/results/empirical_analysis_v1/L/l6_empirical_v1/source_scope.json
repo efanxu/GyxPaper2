@@ -1,0 +1,41 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "protocol_profile": "STMG_FORMAL_V2",
+  "source_scope": "internal_loss",
+  "variant_id": "L6",
+  "paired_reference": "L3",
+  "graph_identity_reference": null,
+  "reference_only": false,
+  "formal_training": false,
+  "smoke_or_preflight": true,
+  "checkpoint_copied": false,
+  "metrics_copied": false,
+  "loss_contract": {
+    "loss_identity": "msmg_dwu_loss",
+    "base_loss": "smooth_l1",
+    "granularity_weight_mode": "dynamic_weight_average",
+    "site_weight_mode": "static",
+    "lambda_site": 0.2,
+    "ema_alpha": 0.9,
+    "node_weight_clip": [
+      0.5,
+      3.0
+    ],
+    "granularity_weight_clip": [
+      0.5,
+      3.0
+    ],
+    "difficulty_gamma": 1.0,
+    "difficulty_rate_gamma": 1.0,
+    "difficulty_temperature": 1.0,
+    "static_granularity_weights": [
+      1.0,
+      2.0,
+      3.0
+    ],
+    "static_granularity_weight_source": "preset_arithmetic_progression",
+    "dwa_temperature": 2.0,
+    "dwa_update_timing": "epoch_end",
+    "loss_state_schema_version": "msmg_dwu_loss_state_v2"
+  }
+}

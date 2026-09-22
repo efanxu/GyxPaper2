@@ -207,6 +207,16 @@ class STMGPromptConfig:
     difficulty_rate_gamma: float = 1.0
     difficulty_temperature: float = 1.0
     granularity_weight_clip: tuple[float, float] = (0.5, 3.0)
+    static_granularity_weights: tuple[float, ...] = (1.0, 2.0, 3.0)
+    static_granularity_weight_source: str = "preset_arithmetic_progression"
+    dwa_temperature: float = 2.0
+    dwa_update_timing: str = "epoch_end"
+    loss_state_schema_version: str = "msmg_dwu_loss_state_v2"
+    loss_identity: str | None = None
+    base_loss: str | None = None
+    lambda_site: float | None = None
+    ema_alpha: float | None = None
+    node_weight_clip: tuple[float, float] | None = None
 
     component_ablation: str | None = None
 
@@ -317,12 +327,29 @@ class STMGPromptConfig:
                 raise ValueError(f"{self.model_name} must use loss_protocol=method_full.")
         if self.msmg_base_loss not in {"mae", "mse", "smooth_l1"}:
             raise ValueError("msmg_base_loss must be mae, mse, or smooth_l1.")
-        if self.granularity_weight_mode not in {"static", "uncertainty_precision", "difficulty_rate"}:
-            raise ValueError("granularity_weight_mode must be static, uncertainty_precision, or difficulty_rate.")
+        if self.granularity_weight_mode not in {
+            "static",
+            "static_increasing",
+            "uncertainty_precision",
+            "difficulty_rate",
+            "dynamic_weight_average",
+        }:
+            raise ValueError(
+                "granularity_weight_mode must be static, static_increasing, uncertainty_precision, "
+                "difficulty_rate, or dynamic_weight_average."
+            )
         if self.site_weight_mode not in {"static", "dynamic"}:
             raise ValueError("site_weight_mode must be static or dynamic.")
         if self.difficulty_temperature <= 0:
             raise ValueError("difficulty_temperature must be positive.")
+        if self.dwa_temperature <= 0:
+            raise ValueError("dwa_temperature must be positive.")
+        if self.dwa_update_timing != "epoch_end":
+            raise ValueError("dwa_update_timing must be epoch_end.")
+        if len(self.static_granularity_weights) != len(self.eval_horizons):
+            raise ValueError("static_granularity_weights must match eval_horizons.")
+        if any(float(value) <= 0 for value in self.static_granularity_weights):
+            raise ValueError("static_granularity_weights must be positive.")
         if len(self.granularity_weight_clip) != 2:
             raise ValueError("granularity_weight_clip must have two values.")
         if self.granularity_weight_clip[0] <= 0 or self.granularity_weight_clip[1] < self.granularity_weight_clip[0]:

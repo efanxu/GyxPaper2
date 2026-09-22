@@ -1,0 +1,200 @@
+{
+  "protocol_id": "empirical_analysis_v1",
+  "canonical_run_id": "full_fixed_dual_keep_msmgdwu_seed2026",
+  "source_scope": "internal_loss",
+  "variants": [
+    {
+      "variant_id": "L0",
+      "display_name": "Equal Smooth L1",
+      "family": "L",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "granularity_weight_mode": "static",
+        "site_weight_mode": "static"
+      },
+      "expected_unique_diff": [
+        "granularity_weight_mode",
+        "site_weight_mode"
+      ],
+      "trainable": true,
+      "paired_reference": "L3",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_loss",
+      "smoke_complete": true,
+      "full_shape_complete": true,
+      "formal_result_status": "preflight-only",
+      "loss_state_schema_version": "msmg_dwu_loss_state_v2"
+    },
+    {
+      "variant_id": "L1",
+      "display_name": "Horizon difficulty-rate only",
+      "family": "L",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "site_weight_mode": "static"
+      },
+      "expected_unique_diff": [
+        "site_weight_mode"
+      ],
+      "trainable": true,
+      "paired_reference": "L3",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_loss",
+      "smoke_complete": true,
+      "full_shape_complete": true,
+      "formal_result_status": "preflight-only",
+      "loss_state_schema_version": "msmg_dwu_loss_state_v2"
+    },
+    {
+      "variant_id": "L2",
+      "display_name": "Dynamic node difficulty only",
+      "family": "L",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "granularity_weight_mode": "static"
+      },
+      "expected_unique_diff": [
+        "granularity_weight_mode"
+      ],
+      "trainable": true,
+      "paired_reference": "L3",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_loss",
+      "smoke_complete": true,
+      "full_shape_complete": true,
+      "formal_result_status": "preflight-only",
+      "loss_state_schema_version": "msmg_dwu_loss_state_v2"
+    },
+    {
+      "variant_id": "L3",
+      "display_name": "Complete MS-MG-DWU",
+      "family": "L",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {},
+      "expected_unique_diff": [],
+      "trainable": false,
+      "paired_reference": "full_fixed_dual_keep_msmgdwu_seed2026",
+      "implementation_status": "reference",
+      "implementation_note": "",
+      "reference_only": true,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_loss",
+      "smoke_complete": true,
+      "full_shape_complete": true,
+      "formal_result_status": "reference-only",
+      "loss_state_schema_version": "msmg_dwu_loss_state_v2"
+    },
+    {
+      "variant_id": "L4",
+      "display_name": "Static increasing horizon weights",
+      "family": "L",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "granularity_weight_mode": "static_increasing",
+        "site_weight_mode": "static"
+      },
+      "expected_unique_diff": [
+        "granularity_weight_mode",
+        "site_weight_mode"
+      ],
+      "trainable": true,
+      "paired_reference": "L3",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_loss",
+      "smoke_complete": true,
+      "full_shape_complete": true,
+      "formal_result_status": "preflight-only",
+      "loss_state_schema_version": "msmg_dwu_loss_state_v2"
+    },
+    {
+      "variant_id": "L5",
+      "display_name": "Uncertainty weighting",
+      "family": "L",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "granularity_weight_mode": "uncertainty_precision",
+        "site_weight_mode": "static"
+      },
+      "expected_unique_diff": [
+        "granularity_weight_mode",
+        "site_weight_mode"
+      ],
+      "trainable": true,
+      "paired_reference": "L3",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_loss",
+      "smoke_complete": true,
+      "full_shape_complete": true,
+      "formal_result_status": "preflight-only",
+      "loss_state_schema_version": "msmg_dwu_loss_state_v2"
+    },
+    {
+      "variant_id": "L6",
+      "display_name": "Dynamic weight average",
+      "family": "L",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "granularity_weight_mode": "dynamic_weight_average",
+        "site_weight_mode": "static"
+      },
+      "expected_unique_diff": [
+        "granularity_weight_mode",
+        "site_weight_mode"
+      ],
+      "trainable": true,
+      "paired_reference": "L3",
+      "implementation_status": "ready",
+      "implementation_note": "",
+      "reference_only": false,
+      "protocol_profile": "STMG_FORMAL_V2",
+      "source_scope": "internal_loss",
+      "smoke_complete": true,
+      "full_shape_complete": true,
+      "formal_result_status": "preflight-only",
+      "loss_state_schema_version": "msmg_dwu_loss_state_v2"
+    },
+    {
+      "variant_id": "L7",
+      "display_name": "Score-aligned hybrid",
+      "family": "L",
+      "base_config": "CANONICAL_FULL",
+      "config_overrides": {
+        "use_msmg_dwu": false,
+        "loss_function": "masked_score_aligned_hybrid",
+        "loss_protocol": "fair_main"
+      },
+      "expected_unique_diff": [
+        "use_msmg_dwu",
+        "loss_function",
+        "loss_protocol"
+      ],
+      "trainable": false,
+      "paired_reference": "A8",
+      "implementation_status": "reference",
+      "implementation_note": "",
+      "reference_only": true,
+      "protocol_profile": "STMG_A8_BATCH4_V1",
+      "source_scope": "internal_loss",
+      "smoke_complete": true,
+      "full_shape_complete": true,
+      "formal_result_status": "reference-only",
+      "loss_state_schema_version": "msmg_dwu_loss_state_v2"
+    }
+  ],
+  "updated_at": "2026-09-22T06:37:08.512311+00:00"
+}
