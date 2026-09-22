@@ -23,3 +23,9 @@ GitHub 不提供数据集下载。请将原始或处理后的数据放在本地 
 克隆后执行 `git lfs install` 和 `git lfs pull`，再创建 `feature/<name>`、`fix/<name>` 或 `experiment/<name>` 分支。提交前先检查本地修改，只添加明确的逻辑批次并运行相应的轻量验证；不要使用 `git add .`。完整协作约定见 [`GIT_COLLABORATION.md`](GIT_COLLABORATION.md)。
 
 本次导入没有选择 canonical checkpoint 或其他必须使用 Git LFS 的大文件。大型 checkpoint、数组、日志和可重建实验结果保留在本地；路径、大小、content record 与原因见 [`GIT_IMPORT_AUDIT.md`](GIT_IMPORT_AUDIT.md)。
+
+## 步骤 3–8 一次性运行
+
+Windows 下可使用 `scripts/empirical_analysis/run_steps_3_to_8.ps1` 串行完成步骤 3–8 的
+预检与正式训练。脚本支持 epoch checkpoint 恢复、跳过已完成变体和阶段级断点续跑；完整
+命令与运行约定见 [`custom_models/docs/STEPS_3_TO_8_WINDOWS.md`](custom_models/docs/STEPS_3_TO_8_WINDOWS.md)。
